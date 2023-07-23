@@ -1,14 +1,16 @@
 import { useState, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
+import { alpha, useTheme } from '@mui/system';
 import Accordion from '@mui/material/Accordion';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
 
 import Image from 'src/components/image';
+import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -46,6 +48,7 @@ const FAQ = [
 
 export default function FAQs() {
   const mdUp = useResponsive('up', 'md');
+  const theme = useTheme();
 
   const [expanded, setExpanded] = useState(false);
 
@@ -72,9 +75,11 @@ export default function FAQs() {
             </Typography>
 
             <Typography variant="h2">Frequently Asked Questions</Typography>
-            <Typography>
-              If you have any other questions not covered in our FAQ section, feel free to contact
-              us, and we&#39;ll be happy to assist you!
+            <Typography sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+              Our FAQ section is where we address common questions and provide helpful answers.
+              We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
+              you&#39;ll find information on various topics to assist you in getting the answers you
+              need.
             </Typography>
           </Stack>
 
@@ -83,17 +88,20 @@ export default function FAQs() {
               key={index}
               expanded={expanded === faq.question}
               onChange={handleChangeExpanded(faq.question)}
+              sx={{ border: 'none' }}
             >
               <AccordionSummary
                 sx={{
-                  minHeight: 64,
-                  [`& .${accordionSummaryClasses.content}`]: {
-                    p: 0,
-                    m: 0,
-                  },
-                  [`&.${accordionSummaryClasses.expanded}`]: {
-                    bgcolor: 'action.selected',
-                  },
+                  //   background: `linear-gradient(120deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark} 95%)`,
+                  ...bgGradient({
+                    direction: '115deg',
+                    startColor: `${alpha(theme.palette.custom.peach, 0.05)} 20%`,
+                    endColor: `${alpha(theme.palette.custom.peach, 0.2)} 60%`,
+                  }),
+                  mb: 2,
+                  px: 2,
+                  borderRadius: 1,
+                  border: 'none',
                 }}
               >
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
