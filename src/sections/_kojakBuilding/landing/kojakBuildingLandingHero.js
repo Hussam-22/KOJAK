@@ -25,20 +25,20 @@ export default function KojakBuildingLandingHero() {
     >
       <Container
         sx={{
-            ...bgGradient({
-                direction: '115deg',
-                startColor: `${alpha(theme.palette.custom.peach, 0.1)} 30%`,
-                endColor: `${alpha(theme.palette.custom.peach, 0.2)} 100%`,
-              }),
-            //   border:'solid 2px #000000',
-              borderRadius:3,
+          ...bgGradient({
+            direction: '115deg',
+            startColor: `${alpha(theme.palette.custom.peach, 0.05)} 20%`,
+            endColor: `${alpha(theme.palette.custom.peach, 0.2)} 60%`,
+          }),
+          //   border:'solid 2px #000000',
+          borderRadius: 3,
           py: 15,
-          mt:10,
+          mt: 12,
           display: { md: 'flex' },
           alignItems: { md: 'center' },
           height: { md: `80vh` },
         }}
-        maxWidth='xl'
+        maxWidth="xl"
       >
         <Grid container columnSpacing={{ xs: 0, md: 10 }}>
           <Grid
@@ -47,19 +47,19 @@ export default function KojakBuildingLandingHero() {
             lg={5}
             sx={{
               textAlign: { xs: 'center', md: 'left' },
-              px:8,
+              px: 8,
             }}
           >
             <Typography variant="overline" sx={{ color: 'secondary.main' }}>
               Looking for residential or commercial space ?
             </Typography>
 
-            <Typography variant="h1" sx={{ my: 3,textTransform:'capitalize' }}>
-            Find Your Perfect Space for Living or Business Thriving!
+            <Typography variant="h1" sx={{ my: 3, textTransform: 'capitalize' }}>
+              Find Your Perfect Space for Living or Business Thriving!
             </Typography>
 
             <Typography sx={{ color: 'text.secondary' }}>
-            {`Your ideal residential or commercial space awaits, and we can't wait to be a part of your journey towards a brighter future. Let's find your perfect space together!`}
+              {`Your ideal residential or commercial space awaits, and we can't wait to be a part of your journey towards a brighter future. Let's find your perfect space together!`}
             </Typography>
 
             <Stack
