@@ -71,6 +71,15 @@ const ERROR = {
   contrastText: '#FFFFFF',
 };
 
+const CUSTOM={
+  pink:'#FFACAC',
+  peach:'#FFBFA9',
+  orange:'#FFB84C',
+  red:'#F16767',
+  green:'#AACB73',
+  contrastText: '#FFFFFF',
+}
+
 const COMMON = {
   common: {
     black: '#000000',
@@ -82,6 +91,7 @@ const COMMON = {
   success: SUCCESS,
   warning: WARNING,
   error: ERROR,
+  custom: CUSTOM,
   grey: GREY,
   divider: alpha(GREY[500], 0.2),
   action: {
