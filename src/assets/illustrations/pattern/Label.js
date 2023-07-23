@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 import { memo } from 'react';
-// @mui
-import { Box, Stack } from '@mui/material';
+import PropTypes from 'prop-types';
+
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 // ----------------------------------------------------------------------
 
@@ -36,7 +37,7 @@ function Label({ icon, text, sx, ...other }) {
 Label.propTypes = {
   icon: PropTypes.node,
   sx: PropTypes.object,
-  text: PropTypes.node,
+  text: PropTypes.string,
 };
 
 export default memo(Label);

@@ -1,3 +1,3 @@
-export { default as StyledProgressBar } from './styles';
+export { default } from './progress-bar';
 
-export { default } from './ProgressBar';
+export { default as StyledProgressBar } from './styles';

@@ -1,31 +1,17 @@
 import PropTypes from 'prop-types';
-// @mui
-import { styled, alpha } from '@mui/material/styles';
-import { Stack, Box, Typography, Button } from '@mui/material';
-// utils
-import { bgGradient } from 'src/utils/cssStyles';
-// components
+
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
+
 import Image from 'src/components/image';
 
 // ----------------------------------------------------------------------
 
-const StyledOverlay = styled('div')(({ theme }) => ({
-  ...bgGradient({
-    startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
-    endColor: `${theme.palette.common.black} 100%`,
-  }),
-  top: 0,
-  left: 0,
-  zIndex: 8,
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-}));
-
-// ----------------------------------------------------------------------
-
 export default function Advertisement({ advertisement, sx, ...other }) {
-  const { title, description, path, imageUrl } = advertisement;
+  const theme = useTheme();
 
   return (
     <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', ...sx }} {...other}>
@@ -41,21 +27,26 @@ export default function Advertisement({ advertisement, sx, ...other }) {
         }}
       >
         <Typography variant="h4" sx={{ color: 'primary.main' }}>
-          {title}
+          {advertisement.title}
         </Typography>
 
         <Typography variant="body2" sx={{ mt: 1, mb: 3, color: 'common.white' }}>
-          {description}
+          {advertisement.description}
         </Typography>
 
-        <Button href={path} variant="contained">
+        <Button href={advertisement.path} variant="contained" color="primary">
           Go Now
         </Button>
       </Stack>
 
-      <Image alt="advertisement" src={imageUrl} ratio="1/1" />
-
-      <StyledOverlay />
+      <Image
+        alt="advertisement"
+        src={advertisement.imageUrl}
+        ratio="1/1"
+        overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
+          theme.palette.common.black
+        } 100%)`}
+      />
     </Box>
   );
 }

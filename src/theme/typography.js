@@ -27,7 +27,7 @@ const secondaryFont = 'Barlow, sans-serif';
 
 // ----------------------------------------------------------------------
 
-const typography = {
+export const typography = {
   fontFamily: primaryFont,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
@@ -110,5 +110,3 @@ const typography = {
     textTransform: 'capitalize',
   },
 };
-
-export default typography;

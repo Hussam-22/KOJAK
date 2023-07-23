@@ -5,6 +5,8 @@
     "es2021": true
   },
   "plugins": [
+    "perfectionist",
+    "unused-imports",
     "prettier"
   ],
   "extends": [
@@ -25,6 +27,23 @@
       "presets": [
         "@babel/preset-react"
       ]
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          [
+            "src",
+            "./src"
+          ]
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".json"
+        ]
+      }
     }
   },
   "rules": {
@@ -86,6 +105,59 @@
       1,
       {
         "ignoreCase": false
+      }
+    ],
+    "unused-imports/no-unused-imports": 1,
+    "unused-imports/no-unused-vars": [
+      0,
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "perfectionist/sort-imports": [
+      2,
+      {
+        "type": "line-length",
+        "order": "asc",
+        "newlines-between": "always",
+        "groups": [
+          [
+            "builtin",
+            "external"
+          ],
+          "mui",
+          "internal",
+          "parent",
+          "sibling",
+          "object",
+          "unknown"
+        ],
+        "custom-groups": {
+          "value": {
+            "mui": "@mui/**",
+            "internal": "src/**",
+            "parent": "../**",
+            "sibling": "./**"
+          }
+        },
+        "read-tsconfig": false
+      }
+    ],
+    "perfectionist/sort-named-imports": [
+      2,
+      {
+        "type": "line-length",
+        "order": "asc"
+      }
+    ],
+    "perfectionist/sort-exports": [
+      2,
+      {
+        "type": "line-length",
+        "order": "asc"
       }
     ]
   }

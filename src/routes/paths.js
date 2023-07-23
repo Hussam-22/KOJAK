@@ -3,7 +3,7 @@
 export const paths = {
   // Marketing
   marketing: {
-    landing: '/marketing/landing',
+    root: '/marketing',
     services: '/marketing/services',
     caseStudies: '/marketing/case-studies',
     caseStudy: `/marketing/case-study`,
@@ -14,7 +14,7 @@ export const paths = {
   },
   // Travel
   travel: {
-    landing: '/travel/landing',
+    root: '/travel',
     tours: '/travel/tours',
     tour: `/travel/tour`,
     checkout: '/travel/checkout',
@@ -26,7 +26,7 @@ export const paths = {
   },
   // Career
   career: {
-    landing: '/career/landing',
+    root: '/career',
     jobs: '/career/jobs',
     job: `/career/job`,
     posts: '/career/posts',
@@ -36,7 +36,7 @@ export const paths = {
   },
   // E-learning
   eLearning: {
-    landing: '/e-learning/landing',
+    root: '/e-learning',
     courses: '/e-learning/courses',
     course: `/e-learning/course`,
     posts: '/e-learning/posts',
@@ -46,7 +46,7 @@ export const paths = {
   },
   // E-commerce
   eCommerce: {
-    landing: '/e-commerce/landing',
+    root: '/e-commerce',
     products: '/e-commerce/products',
     product: `/e-commerce/product`,
     cart: '/e-commerce/cart',
@@ -70,8 +70,8 @@ export const paths = {
   registerCover: '/auth/register-cover',
   registerBackground: '/auth/register-background',
   registerIllustration: '/auth/register-illustration',
-  resetPassword: '/auth/reset-password',
-  verifyCode: '/auth/verify-code',
+  forgotPassword: '/auth/forgot-password',
+  verify: '/auth/verify',
   // Common
   maintenance: '/maintenance',
   comingsoon: '/coming-soon',

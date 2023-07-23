@@ -1,3 +1,3 @@
-export { default } from './Player';
+export { default } from './player';
 
-export { default as PlayerDialog } from './PlayerDialog';
+export { default as PlayerDialog } from './player-dialog';

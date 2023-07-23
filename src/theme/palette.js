@@ -72,7 +72,10 @@ const ERROR = {
 };
 
 const COMMON = {
-  common: { black: '#000000', white: '#FFFFFF' },
+  common: {
+    black: '#000000',
+    white: '#FFFFFF',
+  },
   primary: PRIMARY,
   secondary: SECONDARY,
   info: INFO,
@@ -80,7 +83,7 @@ const COMMON = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
-  divider: alpha(GREY[500], 0.24),
+  divider: alpha(GREY[500], 0.2),
   action: {
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.16),
@@ -92,7 +95,7 @@ const COMMON = {
   },
 };
 
-export default function palette(themeMode) {
+export function palette(mode) {
   const light = {
     ...COMMON,
     mode: 'light',
@@ -101,7 +104,11 @@ export default function palette(themeMode) {
       secondary: GREY[600],
       disabled: GREY[500],
     },
-    background: { paper: '#FFFFFF', default: '#FFFFFF', neutral: GREY[100] },
+    background: {
+      paper: '#FFFFFF',
+      default: '#FFFFFF',
+      neutral: GREY[200],
+    },
     action: {
       ...COMMON.action,
       active: GREY[600],
@@ -127,5 +134,5 @@ export default function palette(themeMode) {
     },
   };
 
-  return themeMode === 'light' ? light : dark;
+  return mode === 'light' ? light : dark;
 }

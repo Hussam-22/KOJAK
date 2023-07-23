@@ -1,11 +1,10 @@
-export * from './RHFSelect';
-export * from './RHFCheckbox';
+export * from './rhf-select';
+export * from './rhf-checkbox';
 
-export { default } from './FormProvider';
-
-export { default as RHFCodes } from './RHFCodes';
-export { default as RHFSwitch } from './RHFSwitch';
-export { default as RHFSlider } from './RHFSlider';
-export { default as RHFTextField } from './RHFTextField';
-export { default as RHFRadioGroup } from './RHFRadioGroup';
-export { default as RHFAutocomplete } from './RHFAutocomplete';
+export { default } from './form-provider';
+export { default as RHFCode } from './rhf-code';
+export { default as RHFSlider } from './rhf-slider';
+export { default as RHFSwitch } from './rhf-switch';
+export { default as RHFTextField } from './rhf-text-field';
+export { default as RHFRadioGroup } from './rhf-radio-group';
+export { default as RHFAutocomplete } from './rhf-autocomplete';

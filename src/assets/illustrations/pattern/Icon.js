@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types';
 import { memo } from 'react';
-// @mui
+import PropTypes from 'prop-types';
+
+import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
 const StyledContent = styled('div')(({ theme }) => ({
   width: 56,
   height: 56,
-  borderRadius: Number(theme.shape.borderRadius) * 1.5,
+  borderRadius: theme.shape.borderRadius * 1.5,
   position: 'relative',
   display: 'flex',
   overflow: 'hidden',
@@ -86,7 +86,7 @@ function Icon({ content, color, sx, ...other }) {
 
 Icon.propTypes = {
   color: PropTypes.string,
-  content: PropTypes.element,
+  content: PropTypes.node,
   sx: PropTypes.object,
 };
 

@@ -1,24 +1,24 @@
-// @mui
 import { styled } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
-const MARGIN = {
-  marginTop: 0,
-  marginBottom: 16,
-};
-
 const StyledMarkdown = styled('div', {
   shouldForwardProp: (prop) => prop !== 'firstLetter',
 })(({ firstLetter, theme }) => ({
-  // Heading
-  '& h1': { ...MARGIN, ...theme.typography.h1 },
-  '& h2': { ...MARGIN, ...theme.typography.h2 },
-  '& h3': { ...MARGIN, ...theme.typography.h3 },
-  '& h4': { ...MARGIN, ...theme.typography.h4 },
-  '& h5': { ...MARGIN, ...theme.typography.h5 },
-  '& h6': { ...MARGIN, ...theme.typography.h6 },
-  '& p': { ...MARGIN },
+  // Text
+  h1: { margin: 0, ...theme.typography.h1 },
+  h2: { margin: 0, ...theme.typography.h2 },
+  h3: { margin: 0, ...theme.typography.h3 },
+  h4: { margin: 0, ...theme.typography.h4 },
+  h5: { margin: 0, ...theme.typography.h5 },
+  h6: { margin: 0, ...theme.typography.h6 },
+  p: { margin: 0, ...theme.typography.body1 },
+
+  br: {
+    display: 'grid',
+    content: '""',
+    marginTop: '0.75em',
+  },
 
   // Link
   a: {
@@ -29,18 +29,24 @@ const StyledMarkdown = styled('div', {
     },
   },
 
-  // Hr
-  hr: {
-    borderColor: theme.palette.divider,
-  },
-
   // List
   '& ul, & ol': {
-    ...theme.typography.body1,
-    paddingLeft: theme.spacing(5),
+    margin: 0,
     '& li': {
       lineHeight: 2,
     },
+  },
+
+  // Divider
+  hr: {
+    margin: 0,
+    flexShrink: 0,
+    borderWidth: 0,
+    msFlexNegative: 0,
+    WebkitFlexShrink: 0,
+    borderStyle: 'solid',
+    borderBottomWidth: 'thin',
+    borderColor: theme.palette.divider,
   },
 
   // Blockquote
@@ -51,17 +57,16 @@ const StyledMarkdown = styled('div', {
     position: 'relative',
     fontFamily: 'Georgia, serif',
     padding: theme.spacing(3, 3, 3, 8),
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    color: theme.palette.text.secondary,
+    borderRadius: theme.shape.borderRadius * 2,
     backgroundColor: theme.palette.background.neutral,
-    color: `${theme.palette.text.secondary} !important`,
     [theme.breakpoints.up('md')]: {
       width: '80%',
     },
     '& p, & span': {
-      marginBottom: '0 !important',
-      fontSize: 'inherit !important',
-      fontFamily: 'Georgia, serif !important',
-      color: `${theme.palette.text.secondary} !important`,
+      marginBottom: 0,
+      fontSize: 'inherit',
+      fontFamily: 'inherit',
     },
     '&:before': {
       left: 16,
@@ -76,7 +81,6 @@ const StyledMarkdown = styled('div', {
 
   // Image
   '& img': {
-    margin: theme.spacing(5, 0),
     borderRadius: theme.spacing(1),
   },
 

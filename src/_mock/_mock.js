@@ -1,88 +1,83 @@
 import { sub } from 'date-fns';
-//
+
 import {
-  role,
-  email,
-  video,
-  boolean,
-  company,
-  phoneNumber,
-  //
-  firstName,
-  lastName,
-  fullName,
-  //
-  price,
-  rating,
-  age,
-  percent,
-  //
-  fullAddress,
-  country,
-  //
-  jobTitle,
-  tourName,
-  sentence,
-  blogTitle,
-  brandsName,
-  courseTitle,
-  description,
-  jobCategories,
+  _id,
+  _ages,
+  _roles,
+  _emails,
+  _prices,
+  _nativeL,
+  _nativeM,
+  _nativeS,
+  _ratings,
+  _booleans,
+  _percents,
+  _taskNames,
+  _jobTitles,
+  _tourNames,
+  _fullNames,
+  _lastNames,
+  _sentences,
+  _firstNames,
+  _postTitles,
+  _courseTitle,
+  _fullAddress,
+  _phoneNumbers,
+  _descriptions,
+  _productNames,
+  _companyNames,
 } from './assets';
 
 // ----------------------------------------------------------------------
 
-const _mock = {
-  id: (index) => `e99f09a7-dd88-49d5-b1c8-1daf80c2d7b${index + 1}`,
-  email: (index) => email[index],
-  phoneNumber: (index) => phoneNumber[index],
+export const _mock = {
+  id: (index) => _id[index],
   time: (index) => sub(new Date(), { days: index, hours: index }),
-  boolean: (index) => boolean[index],
-  role: (index) => role[index],
-  company: (index) => company[index],
-  address: {
-    fullAddress: (index) => fullAddress[index],
-    country: (index) => country[index],
-  },
-  name: {
-    firstName: (index) => firstName[index],
-    lastName: (index) => lastName[index],
-    fullName: (index) => fullName[index],
-  },
-  text: {
-    blogTitle: (index) => blogTitle[index],
-    courseTitle: (index) => courseTitle[index],
-    jobTitle: (index) => jobTitle[index],
-    jobCategories: (index) => jobCategories[index],
-    tourName: (index) => tourName[index],
-    brandsName: (index) => brandsName[index],
-    sentence: (index) => sentence[index],
-    description: (index) => description[index],
-  },
+  boolean: (index) => _booleans[index],
+  role: (index) => _roles[index],
+  // Text
+  courseTitle: (index) => _courseTitle[index],
+  taskNames: (index) => _taskNames[index],
+  postTitle: (index) => _postTitles[index],
+  jobTitle: (index) => _jobTitles[index],
+  tourName: (index) => _tourNames[index],
+  productName: (index) => _productNames[index],
+  sentence: (index) => _sentences[index],
+  description: (index) => _descriptions[index],
+  // Contact
+  email: (index) => _emails[index],
+  phoneNumber: (index) => _phoneNumbers[index],
+  fullAddress: (index) => _fullAddress[index],
+  // Name
+  firstName: (index) => _firstNames[index],
+  lastName: (index) => _lastNames[index],
+  fullName: (index) => _fullNames[index],
+  companyName: (index) => _companyNames[index],
+  // Number
   number: {
-    percent: (index) => percent[index],
-    rating: (index) => rating[index],
-    age: (index) => age[index],
-    price: (index) => price[index],
+    percent: (index) => _percents[index],
+    rating: (index) => _ratings[index],
+    age: (index) => _ages[index],
+    price: (index) => _prices[index],
+    nativeS: (index) => _nativeS[index],
+    nativeM: (index) => _nativeM[index],
+    nativeL: (index) => _nativeL[index],
   },
+  // Image
   image: {
+    cover: (index) => `/assets/images/cover/cover_${index + 1}.jpg`,
     avatar: (index) => `/assets/images/avatar/avatar_${index + 1}.jpg`,
-    company: (index) => `/assets/images/company/company_${index + 1}.png`,
-    marketing: (index) => `/assets/images/marketing/marketing_${index + 1}.jpg`,
     travel: (index) => `/assets/images/travel/travel_${index + 1}.jpg`,
+    company: (index) => `/assets/images/company/company_${index + 1}.png`,
+    product: (index) => `/assets/images/z_product/product_${index + 1}.png`,
+    portrait: (index) => `/assets/images/portrait/portrait_${index + 1}.jpg`,
     career: (index) => `/assets/images/career/career_${index + 1}.jpg`,
+    marketing: (index) => `/assets/images/marketing/marketing_${index + 1}.jpg`,
     course: (index) => `/assets/images/course/course_${index + 1}.jpg`,
-    product: (index) => `/assets/images/product/product_${index + 1}.png`,
   },
-  video: (index) => video[index],
-  jobTitle,
-  jobCategories,
-  shareLinks: {
-    facebook: `facebook/user-name`,
-    instagram: `instagram/user-name`,
-    linkedin: `linkedin/user-name`,
-    twitter: `twitter/user-name`,
-  },
+  video: (index) =>
+    [
+      `https://www.dropbox.com/s/odzycivuo9cy5rg/video_01.mp4?dl=0`,
+      `https://www.dropbox.com/s/7cx04n8rr4w5rbg/video_02.mp4?dl=0`,
+    ][index],
 };
-
-export default _mock;

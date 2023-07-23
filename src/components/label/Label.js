@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-// @mui
+
+import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
-//
+
 import { StyledLabel } from './styles';
 
 // ----------------------------------------------------------------------
@@ -42,11 +42,7 @@ const Label = forwardRef(
 );
 
 Label.propTypes = {
-  sx: PropTypes.object,
-  endIcon: PropTypes.node,
   children: PropTypes.node,
-  startIcon: PropTypes.node,
-  variant: PropTypes.oneOf(['filled', 'outlined', 'ghost', 'soft']),
   color: PropTypes.oneOf([
     'default',
     'primary',
@@ -56,6 +52,10 @@ Label.propTypes = {
     'warning',
     'error',
   ]),
+  endIcon: PropTypes.object,
+  startIcon: PropTypes.object,
+  sx: PropTypes.object,
+  variant: PropTypes.oneOf(['filled', 'outlined', 'ghost', 'soft']),
 };
 
 export default Label;

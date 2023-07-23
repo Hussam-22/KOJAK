@@ -1,54 +1,37 @@
-// scroll bar
-import 'simplebar-react/dist/simplebar.min.css';
-
-// lightbox
-/* eslint-disable import/no-unresolved */
-import 'yet-another-react-lightbox/styles.css';
-import 'yet-another-react-lightbox/plugins/captions.css';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
-
-// slick-carousel
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-// lazy image
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'src/global.css';
 
 // ----------------------------------------------------------------------
 
-import { BrowserRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-// @mui
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// routes
-import Router from 'src/routes';
-// theme
 import ThemeProvider from 'src/theme';
-// components
-import ScrollToTop from 'src/components/scroll-to-top';
-import { ThemeSettings, SettingsProvider } from 'src/components/settings';
-import MotionLazyContainer from 'src/components/animate/MotionLazyContainer';
+import Router from 'src/routes/sections';
+import { LocalizationProvider } from 'src/locales';
+import ProgressBar from 'src/components/progress-bar';
+import MotionLazy from 'src/components/animate/motion-lazy';
+import { useScrollToTop } from 'src/hooks/use-scroll-to-top';
+import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
 export default function App() {
+  useScrollToTop();
+
   return (
-    <HelmetProvider>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <SettingsProvider>
-          <BrowserRouter>
-            <ScrollToTop />
-            <ThemeProvider>
-              <ThemeSettings>
-                <MotionLazyContainer>
-                  <Router />
-                </MotionLazyContainer>
-              </ThemeSettings>
-            </ThemeProvider>
-          </BrowserRouter>
-        </SettingsProvider>
-      </LocalizationProvider>
-    </HelmetProvider>
+    <LocalizationProvider>
+      <SettingsProvider
+        defaultSettings={{
+          themeMode: 'light', // 'light' | 'dark'
+          themeDirection: 'ltr', //  'rtl' | 'ltr'
+          themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+        }}
+      >
+        <ThemeProvider>
+          <MotionLazy>
+            <ProgressBar />
+            <SettingsDrawer />
+            <Router />
+          </MotionLazy>
+        </ThemeProvider>
+      </SettingsProvider>
+    </LocalizationProvider>
   );
 }

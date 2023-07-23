@@ -1,5 +1,4 @@
-//
-import { varTranEnter, varTranExit } from './transition';
+import { varTranExit, varTranEnter } from './transition';
 
 // ----------------------------------------------------------------------
 
@@ -89,10 +88,18 @@ export const varBounce = (props) => {
       animate: { scale: [0.9, 1.1, 0.3], opacity: [1, 1, 0] },
     },
     outUp: {
-      animate: { y: [-12, 24, -720], scaleY: [0.985, 0.9, 3], opacity: [1, 1, 0] },
+      animate: {
+        y: [-12, 24, -720],
+        scaleY: [0.985, 0.9, 3],
+        opacity: [1, 1, 0],
+      },
     },
     outDown: {
-      animate: { y: [12, -24, 720], scaleY: [0.985, 0.9, 3], opacity: [1, 1, 0] },
+      animate: {
+        y: [12, -24, 720],
+        scaleY: [0.985, 0.9, 3],
+        opacity: [1, 1, 0],
+      },
     },
     outLeft: {
       animate: { x: [0, 24, -720], scaleX: [1, 0.9, 2], opacity: [1, 1, 0] },

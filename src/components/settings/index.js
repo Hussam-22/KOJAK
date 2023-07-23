@@ -1,3 +1,3 @@
-export { SettingsProvider, useSettingsContext } from './SettingsContext';
+export * from './context';
 
-export { default as ThemeSettings } from './ThemeSettings';
+export { default as SettingsDrawer } from './drawer';

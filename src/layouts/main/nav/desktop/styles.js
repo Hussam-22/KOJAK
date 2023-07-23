@@ -1,6 +1,7 @@
-// @mui
+import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { Paper, ListSubheader, ListItemButton } from '@mui/material';
+import ListSubheader from '@mui/material/ListSubheader';
+import ListItemButton from '@mui/material/ListItemButton';
 
 // ----------------------------------------------------------------------
 
@@ -19,6 +20,7 @@ export const StyledNavItem = styled(ListItemButton, {
 
   return {
     ...theme.typography.body2,
+    fontWeight: theme.typography.fontWeightMedium,
     padding: 0,
     height: '100%',
     transition: theme.transitions.create('opacity', {
@@ -31,13 +33,13 @@ export const StyledNavItem = styled(ListItemButton, {
     },
     // Sub item
     ...(subItem && {
-      ...theme.typography.body2,
+      fontWeight: theme.typography.fontWeightRegular,
       color: theme.palette.text.secondary,
     }),
     // Active
     ...(active && {
       color: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightSemiBold,
+      fontWeight: theme.typography.fontWeightBold,
       '&::before': dotActiveStyle,
     }),
     // Active sub item
@@ -61,7 +63,7 @@ export const StyledNavItem = styled(ListItemButton, {
 // ----------------------------------------------------------------------
 
 export const StyledMenu = styled(Paper)(({ theme }) => ({
-  top: 72,
+  top: 62,
   width: '100%',
   borderRadius: 0,
   position: 'fixed',

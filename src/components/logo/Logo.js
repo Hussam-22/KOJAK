@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
 import { memo } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-// @mui
+import PropTypes from 'prop-types';
+
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material/styles';
-import { Box, Link } from '@mui/material';
+
+import { RouterLink } from 'src/routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -47,7 +49,7 @@ function Logo({ single = false, sx }) {
   return (
     <Link
       component={RouterLink}
-      to="/"
+      href="/"
       color="inherit"
       aria-label="go to homepage"
       sx={{ lineHeight: 0 }}

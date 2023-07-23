@@ -1,18 +1,17 @@
 /* eslint-disable import/no-unresolved */
 import PropTypes from 'prop-types';
-import ReactLightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import Captions from 'yet-another-react-lightbox/plugins/captions';
 import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
-import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import { useLightboxState } from 'yet-another-react-lightbox/core';
-// @mui
-import { Typography } from '@mui/material';
-//
+import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
+import ReactLightbox, { useLightboxState } from 'yet-another-react-lightbox';
+
+import Box from '@mui/material/Box';
+
 import Iconify from '../iconify';
-//
+
 import StyledLightbox from './styles';
 
 // ----------------------------------------------------------------------
@@ -59,12 +58,7 @@ export default function Lightbox({
         }}
         toolbar={{
           buttons: [
-            <DisplayTotal
-              key={0}
-              totalItems={totalItems}
-              disabledTotal={disabledTotal}
-              disabledCaptions={disabledCaptions}
-            />,
+            <DisplayTotal key={0} totalItems={totalItems} disabledTotal={disabledTotal} />,
             'close',
           ],
         }}
@@ -86,15 +80,15 @@ export default function Lightbox({
 }
 
 Lightbox.propTypes = {
-  slides: PropTypes.array,
-  disabledZoom: PropTypes.bool,
-  disabledVideo: PropTypes.bool,
-  disabledTotal: PropTypes.bool,
   disabledCaptions: PropTypes.bool,
+  disabledFullscreen: PropTypes.bool,
   disabledSlideshow: PropTypes.bool,
   disabledThumbnails: PropTypes.bool,
-  disabledFullscreen: PropTypes.bool,
+  disabledTotal: PropTypes.bool,
+  disabledVideo: PropTypes.bool,
+  disabledZoom: PropTypes.bool,
   onGetCurrentIndex: PropTypes.func,
+  slides: PropTypes.array,
 };
 
 // ----------------------------------------------------------------------
@@ -133,38 +127,30 @@ export function getPlugins({
 
 // ----------------------------------------------------------------------
 
-export function DisplayTotal({ totalItems, disabledTotal, disabledCaptions }) {
-  const { state } = useLightboxState();
-
-  const { currentIndex } = state;
+export function DisplayTotal({ totalItems, disabledTotal }) {
+  const { currentIndex } = useLightboxState();
 
   if (disabledTotal) {
     return null;
   }
 
   return (
-    <Typography
+    <Box
+      component="span"
       className="yarl__button"
       sx={{
-        pl: 3,
-        left: 0,
-        position: 'fixed',
         typography: 'body2',
-        ...(!disabledCaptions && {
-          px: 'unset',
-          minWidth: 64,
-          position: 'unset',
-          textAlign: 'center',
-        }),
+        alignItems: 'center',
+        display: 'inline-flex',
+        justifyContent: 'center',
       }}
     >
       <strong> {currentIndex + 1} </strong> / {totalItems}
-    </Typography>
+    </Box>
   );
 }
 
 DisplayTotal.propTypes = {
-  disabledCaptions: PropTypes.bool,
   disabledTotal: PropTypes.bool,
   totalItems: PropTypes.number,
 };
