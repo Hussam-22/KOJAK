@@ -8,8 +8,8 @@ export default function KojakBuildingLandingView() {
   return (
     <>
       <KojakBuildingLandingHero />
-      <WhatWeOffer />
       <WhyKojakBuilding />
+      <WhatWeOffer />
       <FAQs />
       <ContactUs />
     </>

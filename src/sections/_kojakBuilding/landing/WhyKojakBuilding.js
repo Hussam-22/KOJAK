@@ -34,7 +34,7 @@ export default function WhyKojakBuilding() {
     <Box
       sx={{
         overflow: 'hidden',
-        bgcolor: 'background.neutral',
+
         py: { xs: 8, md: 15 },
       }}
     >

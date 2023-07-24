@@ -41,7 +41,7 @@ export default function ContactUs() {
           justifyContent={{ md: 'space-between' }}
           sx={{ p: isMdUp ? 3 : 1 }}
         >
-          <Grid xs={12} md={7}>
+          <Grid xs={12} md={7} sx={{ bgcolor: 'common.white', borderRadius: 2 }}>
             <ContactKojakForm />
           </Grid>
 
@@ -49,18 +49,14 @@ export default function ContactUs() {
             xs={12}
             md={5}
             sx={{
-              bgcolor: 'common.white',
               p: 3,
-              pt: isMdUp ? 0 : 3,
-              borderRadius: 3,
+              px: { md: 5, xs: 0 },
             }}
           >
             <Typography
               variant="h2"
               sx={{
-                my: 5,
                 textAlign: { xs: 'center', md: 'left' },
-                color: 'common.black',
               }}
             >
               Get In Touch
@@ -173,7 +169,7 @@ function ContactKojakForm() {
         }}
       >
         <Typography
-          variant="h1"
+          variant="h2"
           sx={{ textAlign: { xs: 'center', md: 'left' }, color: 'common.black' }}
         >
           Contact Us
