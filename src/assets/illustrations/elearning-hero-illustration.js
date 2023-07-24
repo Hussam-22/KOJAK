@@ -8,9 +8,9 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 import Image from 'src/components/image';
 
-import Icon from './pattern/icon';
-import Label from './pattern/label';
-import Shape from './pattern/shape';
+import Icon from './pattern/Icon';
+import Label from './pattern/Label';
+import Shape from './pattern/Shape';
 import Pattern01 from './pattern/pattern-01';
 import Pattern02 from './pattern/pattern-02';
 

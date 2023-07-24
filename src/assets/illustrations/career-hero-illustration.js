@@ -9,9 +9,9 @@ import Image from 'src/components/image';
 import SvgColor from 'src/components/svg-color';
 import { useHoverParallax } from 'src/hooks/use-hover-parallax';
 
-import Icon from './pattern/icon';
-import Label from './pattern/label';
-import Character from './pattern/character';
+import Icon from './pattern/Icon';
+import Label from './pattern/Label';
+import Character from './pattern/Character';
 import Pattern02 from './pattern/pattern-02';
 import Pattern01 from './pattern/pattern-01';
 
