@@ -12,44 +12,64 @@ import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
 const RESIDENTIAL = [
   {
     id: 'R-1',
-    coverUrl:
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/322154/pexels-photo-322154.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 33000,
     bed: 3,
     bath: 3,
     size: '1200 sqft',
     location: 'Sharjah - Al Qasimeyah',
     datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The ACE Tower',
+    slug: 'The ACE Tower',
   },
   {
     id: 'R-2',
-    coverUrl:
-      'https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/1717272/pexels-photo-1717272.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 29000,
     bed: 2,
     bath: 2,
     size: '1000 sqft',
     location: 'Dubai - Motor City',
     datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The White Tower',
+    slug: 'The White Tower',
   },
   {
     id: 'R-3',
-    coverUrl:
-      'https://images.pexels.com/photos/2635038/pexels-photo-2635038.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/1031593/pexels-photo-1031593.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 25000,
     bed: 1,
     bath: 1,
     size: '800 sqft',
     location: 'Sharjah - Taawoun',
     datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The Address Tower',
+    slug: 'The Address Tower',
   },
   {
     id: 'R-4',
-    coverUrl:
-      'https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 33000,
     bed: 3,
     bath: 2,
@@ -57,15 +77,20 @@ const RESIDENTIAL = [
     location: 'Sharjah - Buhairah',
     datePosted: new Date().toDateString(),
     priceSale: 31000,
-    slug: '3 Bedroom - The Point Tower',
+    slug: 'The Point Tower',
   },
 ];
 
 const COMMERCIAL = [
   {
-    id: 'R-1',
-    coverUrl:
-      'https://images.pexels.com/photos/17105610/pexels-photo-17105610/free-photo-of-hedge-along-white-house-wall.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    id: 'C-1',
+    gallery: [
+      'https://images.pexels.com/photos/434139/pexels-photo-434139.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 33000,
     bed: 3,
     bath: 3,
@@ -75,9 +100,14 @@ const COMMERCIAL = [
     slug: '3 Bedroom - The ACE Tower',
   },
   {
-    id: 'R-2',
-    coverUrl:
-      'https://images.pexels.com/photos/15832365/pexels-photo-15832365/free-photo-of-steps-leading-to-a-white-building.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    id: 'C-2',
+    gallery: [
+      'https://images.pexels.com/photos/1436190/pexels-photo-1436190.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 29000,
     bed: 2,
     bath: 2,
@@ -87,9 +117,14 @@ const COMMERCIAL = [
     slug: '3 Bedroom - The White Tower',
   },
   {
-    id: 'R-3',
-    coverUrl:
-      'https://alzajelrealestate.com/wp-content/uploads/2019/02/jebel-ali-labor-camp-178-01.jpg',
+    id: 'C-3',
+    gallery: [
+      'https://images.pexels.com/photos/280212/pexels-photo-280212.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 25000,
     bed: 1,
     bath: 1,
@@ -99,9 +134,14 @@ const COMMERCIAL = [
     slug: '3 Bedroom - The Address Tower',
   },
   {
-    id: 'R-4',
-    coverUrl:
-      'https://alzajelrealestate.com/wp-content/uploads/2019/02/jebel-ali-labor-camp-88-01.jpg',
+    id: 'C-4',
+    gallery: [
+      'https://images.pexels.com/photos/1124461/pexels-photo-1124461.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+    ],
     rent: 33000,
     bed: 3,
     bath: 2,
@@ -109,7 +149,7 @@ const COMMERCIAL = [
     location: 'Sharjah - Buhairah',
     datePosted: new Date().toDateString(),
     priceSale: 31000,
-    slug: '3 Bedroom - The Point Tower',
+    slug: 'The Point Tower',
   },
 ];
 // ----------------------------------------------------------------------
@@ -134,7 +174,7 @@ export default function WhatWeOffer() {
       >
         <Grid container spacing={10}>
           <Grid xs={12} md={12}>
-            <Stack spacing={2}>
+            <Stack spacing={2} id="scrollHere">
               <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
                 We offer a variety of residential and commercial spaces
               </Typography>

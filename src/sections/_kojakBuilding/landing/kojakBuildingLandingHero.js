@@ -14,8 +14,11 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function KojakBuildingLandingHero() {
   const theme = useTheme();
-
   const mdUp = useResponsive('up', 'md');
+
+  const scrollToElement = () => {
+    document.getElementById('scrollHere').scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <Box
@@ -30,13 +33,14 @@ export default function KojakBuildingLandingHero() {
             startColor: `${alpha(theme.palette.custom.bluishPurpleLight, 0.15)} 30%`,
             endColor: `${alpha(theme.palette.custom.bluishPurple, 0.1)} 70%`,
           }),
-          //   border:'solid 2px #000000',
-          borderRadius: 3,
-          py: 15,
-          mt: 12,
+          border: 'solid 2px #000000',
+          width: { xs: '90vw' },
+          borderRadius: 1,
+          py: { md: 15, xs: 8 },
+          mt: { md: 12, xs: 8 },
           display: { md: 'flex' },
           alignItems: { md: 'center' },
-          height: { md: `80vh` },
+          height: { md: `80vh`, xs: '80vh' },
         }}
         maxWidth="xl"
       >
@@ -44,10 +48,9 @@ export default function KojakBuildingLandingHero() {
           <Grid
             xs={12}
             md={6}
-            lg={5}
             sx={{
               textAlign: { xs: 'center', md: 'left' },
-              px: 8,
+              px: { md: 8 },
             }}
           >
             <Typography variant="overline" sx={{ color: 'secondary.main' }}>
@@ -80,14 +83,14 @@ export default function KojakBuildingLandingHero() {
               justifyContent={{ xs: 'center', md: 'unset' }}
               sx={{ mt: 5 }}
             >
-              <Button variant="contained" color="secondary" size="large">
+              <Button variant="contained" color="secondary" size="large" onClick={scrollToElement}>
                 Explore Available Spaces
               </Button>
             </Stack>
           </Grid>
 
           {mdUp && (
-            <Grid xs={12} md={6} lg={7}>
+            <Grid xs={12} md={6}>
               <Image
                 visibleByDefault
                 disabledEffect

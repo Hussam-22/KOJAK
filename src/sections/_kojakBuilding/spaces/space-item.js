@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -17,7 +18,12 @@ import { fCurrency } from 'src/utils/format-number';
 // ----------------------------------------------------------------------
 
 export default function SpaceItem({ space }) {
-  const { slug, location, rent, priceSale, datePosted, coverUrl, bed, bath, size } = space;
+  const { id, slug, location, rent, priceSale, datePosted, gallery, bed, bath, size } = space;
+  const navigate = useNavigate();
+
+  const openSpaceCard = () => {
+    navigate(paths.building.spaceView + id);
+  };
 
   return (
     <Card sx={{ borderRadius: 1 }}>
@@ -49,7 +55,7 @@ export default function SpaceItem({ space }) {
           {priceSale > 0 && (
             <Box
               sx={{
-                color: 'grey.500',
+                color: 'grey.200',
                 textDecoration: 'line-through',
                 mr: 0.5,
               }}
@@ -61,7 +67,7 @@ export default function SpaceItem({ space }) {
         </Stack>
       </Stack>
 
-      <Image alt={slug} src={coverUrl} ratio="4/3" />
+      <Image alt={slug} src={gallery[0]} ratio="4/3" />
 
       <Stack spacing={2} sx={{ p: 2.5 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -69,7 +75,7 @@ export default function SpaceItem({ space }) {
         </Typography>
 
         <Link component={RouterLink} href={paths.travel.tour} color="inherit">
-          <Typography variant="h6">{slug}</Typography>
+          <Typography variant="h6">{`${bed} Bedroom - ${slug}`}</Typography>
         </Link>
 
         <Stack
@@ -111,7 +117,7 @@ export default function SpaceItem({ space }) {
             <Iconify icon="ph:calendar-light" width={16} sx={{ mr: 1 }} /> {datePosted}
           </Box>
           <Box>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" onClick={openSpaceCard}>
               More details
             </Button>
           </Box>
@@ -123,7 +129,8 @@ export default function SpaceItem({ space }) {
 
 SpaceItem.propTypes = {
   space: PropTypes.shape({
-    coverUrl: PropTypes.string,
+    id: PropTypes.string,
+    gallery: PropTypes.array,
     datePosted: PropTypes.string,
     location: PropTypes.string,
     rent: PropTypes.number,

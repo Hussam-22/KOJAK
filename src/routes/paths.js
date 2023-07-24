@@ -1,6 +1,11 @@
 // ----------------------------------------------------------------------
 
 export const paths = {
+  // Building
+  building: {
+    root: '/',
+    spaceView: '/space-view/',
+  },
   // Marketing
   marketing: {
     root: '/marketing',
