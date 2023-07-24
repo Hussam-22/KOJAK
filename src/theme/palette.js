@@ -6,7 +6,7 @@ import { alpha } from '@mui/material/styles';
 
 const GREY = {
   0: '#FFFFFF',
-  100: '#ECECEC',
+  100: '#F8F8F8',
   200: '#CCCCCC',
   300: '#B5B5B5',
   400: '#8D8D8D',
@@ -125,7 +125,7 @@ export function palette(mode) {
     background: {
       paper: '#FFFFFF',
       default: '#FFFFFF',
-      neutral: GREY[200],
+      neutral: GREY[100],
     },
     action: {
       ...COMMON.action,
