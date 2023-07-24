@@ -27,10 +27,12 @@ export default function ContactUs() {
   const theme = useTheme();
   const isMdUp = useResponsive('up', 'md');
 
+  console.log(theme);
+
   return (
     <Box
       sx={{
-        bgcolor: 'custom.bluishPurpleLighter',
+        bgcolor: theme.palette.mode === 'light' ? 'custom.bluishPurpleLighter' : '',
         py: 8,
       }}
     >

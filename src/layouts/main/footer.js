@@ -53,11 +53,11 @@ export default function Footer() {
   const isHome = pathname === '/';
 
   const simpleFooter = (
-    <Container sx={{ py: 8, textAlign: 'center' }}>
-      <Logo single />
+    <Container sx={{ py: 3, textAlign: 'center' }}>
+      <Logo />
 
       <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-        © 2023. All rights reserved
+        Kojak Building © 2023. All rights reserved
       </Typography>
     </Container>
   );

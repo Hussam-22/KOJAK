@@ -6,15 +6,16 @@ import { alpha } from '@mui/material/styles';
 
 const GREY = {
   0: '#FFFFFF',
-  100: '#F9FAFB',
-  200: '#F4F6F8',
-  300: '#DFE3E8',
-  400: '#C4CDD5',
-  500: '#919EAB',
-  600: '#637381',
-  700: '#454F5B',
-  800: '#212B36',
-  900: '#161C24',
+  100: '#ECECEC',
+  200: '#CCCCCC',
+  300: '#B5B5B5',
+  400: '#8D8D8D',
+  500: '#636363',
+  600: '#424242',
+  700: '#2D2D2D',
+  800: '#212121',
+  900: '#0B0B0B',
+  1000: '#000000',
 };
 
 const PRIMARY = {
@@ -76,7 +77,7 @@ const CUSTOM = {
   peachLighter: '#FFF8F6',
   peachLight: '#FFEBE5',
   peach: '#FFC7C7',
-  bluishPurpleLighter: '#F7F2FF',
+  bluishPurpleLighter: '#F8F8FF',
   bluishPurpleLight: '#EDE4FF',
   bluishPurple: '#7A77A4',
   bluishPurpleDark: '#626082',
@@ -117,7 +118,7 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: GREY[800],
+      primary: '#000000',
       secondary: GREY[600],
       disabled: GREY[500],
     },

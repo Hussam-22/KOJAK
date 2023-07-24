@@ -55,11 +55,22 @@ export default function KojakBuildingLandingHero() {
             </Typography>
 
             <Typography variant="h1" sx={{ my: 3, textTransform: 'capitalize' }}>
-              Find Your Perfect Space for Living or Business Thriving!
+              Find Your Perfect Space for Living or Business Thriving with{' '}
+              <Box
+                component="span"
+                sx={{
+                  color: 'common.white',
+                  backgroundColor: 'common.black',
+                  px: 1.5,
+                  borderRadius: 1.25,
+                }}
+              >
+                KOJAK!
+              </Box>
             </Typography>
 
             <Typography sx={{ color: 'text.secondary' }}>
-              {`Your ideal residential or commercial space awaits, and we can't wait to be a part of your journey towards a brighter future. Let's find your perfect space together!`}
+              {`Your ideal residential or commercial space awaits, Let's find your perfect space together!`}
             </Typography>
 
             <Stack
