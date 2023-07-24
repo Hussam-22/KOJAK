@@ -131,10 +131,31 @@ export const presetOptions = [
     secondary: {
       lighter: '#FEEFD5',
       light: '#FBC182',
-      main: '#F37F31',
-      dark: '#AE4318',
+      main: '#7A77A4',
+      dark: '#626082',
       darker: '#741B09',
       contrastText: '#FFFFFF',
     },
   },
+
+  // // GREEN - ORANGE
+  // {
+  //   name: 'preset04',
+  //   primary: {
+  //     lighter: '#DBF7EE',
+  //     light: '#8BD0C7',
+  //     main: '#2D6365',
+  //     dark: '#163E48',
+  //     darker: '#082130',
+  //     contrastText: '#FFFFFF',
+  //   },
+  //   secondary: {
+  //     lighter: '#FEEFD5',
+  //     light: '#FBC182',
+  //     main: '#F37F31',
+  //     dark: '#AE4318',
+  //     darker: '#741B09',
+  //     contrastText: '#FFFFFF',
+  //   },
+  // },
 ];

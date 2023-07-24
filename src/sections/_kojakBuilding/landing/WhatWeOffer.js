@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
-import { Stack, Divider } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
 import { useTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { Stack, Button, Divider } from '@mui/material';
 
 import Image from 'src/components/image';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -71,38 +71,48 @@ export default function WhatWeOffer() {
               textAlign: { xs: 'center', md: 'left' },
             }}
           >
-            <Typography variant="h2" sx={{ my: 3, textTransform: 'capitalize' }}>
-              We offer a variety of residential and commercial spaces
-            </Typography>
+            <Stack spacing={5}>
+              <Stack spacing={2}>
+                <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+                  We offer a variety of residential and commercial spaces
+                </Typography>
 
-            <Typography>
-              At{' '}
-              <Box component="span" sx={{ fontWeight: 'bold', color: 'secondary.main' }}>
-                Kojak Building
-              </Box>{' '}
-              , we take pride in offering an extensive selection of both commercial and residential
-              spaces that cater to all your needs. Whether you&#39;re looking to upgrade your
-              business headquarters or find a cozy abode to call home, we&#39;ve got you covered.
-            </Typography>
+                <Typography>
+                  At{' '}
+                  <Box component="span" sx={{ fontWeight: 'bold', color: 'secondary.main' }}>
+                    Kojak Building
+                  </Box>{' '}
+                  , we take pride in offering an extensive selection of both commercial and
+                  residential spaces that cater to all your needs. Whether you&#39;re looking to
+                  upgrade your business headquarters or find a cozy abode to call home, we&#39;ve
+                  got you covered.
+                </Typography>
+              </Stack>
 
-            <Stack
-              spacing={3}
-              direction={{ xs: 'column', md: 'row' }}
-              divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
-              sx={{ pt: { md: 5 } }}
-            >
-              <Stack>
-                <Typography variant="body2">Dubai</Typography>
-                <Typography variant="body2">Motor City</Typography>
+              <Stack
+                spacing={3}
+                direction={{ xs: 'column', md: 'row' }}
+                divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
+              >
+                <Stack>
+                  <Typography variant="body2">Dubai</Typography>
+                  <Typography variant="body2">Motor City</Typography>
+                </Stack>
+                <Stack>
+                  <Typography variant="body2">Sharjah</Typography>
+                  <Typography variant="body2">Al Qasimeyah</Typography>
+                </Stack>
+                <Stack>
+                  <Typography variant="body2">Sharjah</Typography>
+                  <Typography variant="body2">Industrial Area 1</Typography>
+                </Stack>
               </Stack>
-              <Stack>
-                <Typography variant="body2">Sharjah</Typography>
-                <Typography variant="body2">Al Qasimeyah</Typography>
-              </Stack>
-              <Stack>
-                <Typography variant="body2">Sharjah</Typography>
-                <Typography variant="body2">Industrial Area 1</Typography>
-              </Stack>
+
+              <Box>
+                <Button variant="contained" color="secondary" size="large">
+                  Explore Available Spaces
+                </Button>
+              </Box>
             </Stack>
           </Grid>
         </Grid>

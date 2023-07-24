@@ -71,14 +71,21 @@ const ERROR = {
   contrastText: '#FFFFFF',
 };
 
-const CUSTOM={
-  pink:'#FFACAC',
-  peach:'#FFBFA9',
-  orange:'#FFB84C',
-  red:'#F16767',
-  green:'#AACB73',
+const CUSTOM = {
+  pink: '#FFACAC',
+  peachLighter: '#FFF8F6',
+  peachLight: '#FFEBE5',
+  peach: '#FFC7C7',
+  bluishPurpleLighter: '#F7F2FF',
+  bluishPurpleLight: '#EDE4FF',
+  bluishPurple: '#7A77A4',
+  bluishPurpleDark: '#626082',
+  purple: '#674188',
+  orange: '#FFB84C',
+  red: '#F16767',
+  green: '#AACB73',
   contrastText: '#FFFFFF',
-}
+};
 
 const COMMON = {
   common: {

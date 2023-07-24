@@ -49,7 +49,7 @@ export default function WhyKojakBuilding() {
           }}
         >
           <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
-            why you should choose us for your space-hunting journey
+            why you should choose us
           </Typography>
 
           <Typography>

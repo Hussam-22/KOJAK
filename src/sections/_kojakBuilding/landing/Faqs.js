@@ -68,7 +68,7 @@ export default function FAQs() {
       maxWidth="xl"
     >
       <Grid container spacing={10} justifyContent="space-between" alignItems="center">
-        <Grid xs={12} md={8}>
+        <Grid xs={12} md={7}>
           <Stack spacing={2} sx={{ mb: 5, textAlign: { xs: 'center', md: 'left' } }}>
             <Typography variant="overline" color="text.disabled">
               Find Answers to Your Space-Hunting Queries
@@ -88,20 +88,18 @@ export default function FAQs() {
               key={index}
               expanded={expanded === faq.question}
               onChange={handleChangeExpanded(faq.question)}
-              sx={{ border: 'none' }}
+              sx={{ '&:before': { backgroundColor: 'unset' } }}
             >
               <AccordionSummary
                 sx={{
-                  //   background: `linear-gradient(120deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark} 95%)`,
                   ...bgGradient({
                     direction: '115deg',
-                    startColor: `${alpha(theme.palette.custom.peach, 0.05)} 20%`,
-                    endColor: `${alpha(theme.palette.custom.peach, 0.2)} 60%`,
+                    startColor: `${alpha(theme.palette.custom.bluishPurpleLighter, 0.05)} 20%`,
+                    endColor: `${alpha(theme.palette.custom.bluishPurpleLight, 0.2)} 60%`,
                   }),
                   mb: 2,
                   px: 2,
                   borderRadius: 1,
-                  border: 'none',
                 }}
               >
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -120,12 +118,16 @@ export default function FAQs() {
         </Grid>
 
         {mdUp && (
-          <Grid xs={12} md={4}>
+          <Grid xs={12} md={5}>
             <Image
               alt="faqs"
-              src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-              ratio="9/16"
-              sx={{ borderRadius: 2 }}
+              src="https://images.pexels.com/photos/7731326/pexels-photo-7731326.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              ratio="3/4"
+              sx={{
+                borderRadius: 2,
+                outline: `0.5rem solid ${theme.palette.custom.bluishPurple}`,
+                outlineOffset: '0.25rem',
+              }}
             />
           </Grid>
         )}

@@ -27,8 +27,8 @@ export default function KojakBuildingLandingHero() {
         sx={{
           ...bgGradient({
             direction: '115deg',
-            startColor: `${alpha(theme.palette.custom.peach, 0.05)} 20%`,
-            endColor: `${alpha(theme.palette.custom.peach, 0.2)} 60%`,
+            startColor: `${alpha(theme.palette.custom.bluishPurpleLight, 0.15)} 30%`,
+            endColor: `${alpha(theme.palette.custom.bluishPurple, 0.1)} 70%`,
           }),
           //   border:'solid 2px #000000',
           borderRadius: 3,
