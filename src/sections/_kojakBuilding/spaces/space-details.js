@@ -52,7 +52,6 @@ export default function SpaceDetails() {
   const { spaceId } = useParams();
   const loading = useBoolean(true);
   const [data, setData] = useState('');
-
   const { getProjectInfo } = useAuthContext();
 
   console.log(data);
@@ -88,7 +87,7 @@ export default function SpaceDetails() {
         <Grid xs={12} md={5} lg={4}>
           <Stack spacing={3}>
             <SpaceDetailsContactCard contactInfo={_mockSpace.contactDetails} />
-            <SpaceDetailsContactForm tour={_mockTour} />
+            <SpaceDetailsContactForm spaceInfo={_mockSpace} />
           </Stack>
         </Grid>
 

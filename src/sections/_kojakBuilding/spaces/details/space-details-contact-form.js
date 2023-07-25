@@ -6,11 +6,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Card, Stack, Typography } from '@mui/material';
 
+import { useAuthContext } from 'src/auth/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceContactForm({ spaceID }) {
+export default function SpaceContactForm({ spaceInfo }) {
+  const { addNewFromCallbackSubmit } = useAuthContext();
+
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string().required('Mobile number is required'),
@@ -34,11 +37,30 @@ export default function SpaceContactForm({ spaceID }) {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (formData) => {
     try {
+      const dataToSend = Object.entries({ ...formData, building: spaceInfo.buildingName })
+        .join('\r\n')
+        .replaceAll(',', ': ');
+      const url =
+        'https://hooks.slack.com/services/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';
+
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({ text: dataToSend }),
+        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
+      };
+
+      const response = await fetch(url, requestOptions);
+
+      // axios.post(url, JSON.stringify({ text: dataToSend }), {
+      //   withCredentials: false,
+      //   transformRequest: [(data, Headers) => data],
+      // });
+
+      await addNewFromCallbackSubmit(formData);
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      console.log('DATA', data);
     } catch (error) {
       console.error(error);
     }
@@ -76,5 +98,5 @@ export default function SpaceContactForm({ spaceID }) {
 }
 
 SpaceContactForm.propTypes = {
-  spaceID: PropTypes.string,
+  spaceInfo: PropTypes.object,
 };

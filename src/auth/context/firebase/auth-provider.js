@@ -169,6 +169,19 @@ export function AuthProvider({ children }) {
     return docSnap.data();
   }, []);
 
+  // add new request-callback form
+  const addNewFromCallbackSubmit = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/building/form-callback/`));
+    const date = new Date();
+    const dateTime = date.toDateString();
+    setDoc(newDocRef, {
+      ...payload,
+      id: newDocRef.id,
+      createdAt: dateTime,
+    });
+    return newDocRef.id;
+  }, []);
+
   const checkAuthenticated = state.user?.emailVerified ? 'authenticated' : 'unauthenticated';
 
   const status = state.loading ? 'loading' : checkAuthenticated;
@@ -190,6 +203,7 @@ export function AuthProvider({ children }) {
       loginWithTwitter,
       //
       getProjectInfo,
+      addNewFromCallbackSubmit,
     }),
     [
       status,
@@ -204,6 +218,7 @@ export function AuthProvider({ children }) {
       loginWithTwitter,
       //
       getProjectInfo,
+      addNewFromCallbackSubmit,
     ]
   );
 
