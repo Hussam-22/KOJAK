@@ -5,6 +5,7 @@ import KojakBuildingLandingView from 'src/sections/_kojakBuilding/views/kojak-bu
 // ----------------------------------------------------------------------
 
 export default function KojakBuildingLandingPage() {
+  console.log('TEST');
   return (
     <>
       <Helmet>
