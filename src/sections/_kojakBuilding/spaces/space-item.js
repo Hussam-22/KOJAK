@@ -74,7 +74,7 @@ export default function SpaceItem({ space }) {
           {location}
         </Typography>
 
-        <Link component={RouterLink} href={paths.travel.tour} color="inherit">
+        <Link component={RouterLink} href={paths.building.spaceView + id} color="inherit">
           <Typography variant="h6">{`${bed} Bedroom - ${slug}`}</Typography>
         </Link>
 

@@ -10,7 +10,6 @@ import Lightbox, { useLightbox } from 'src/components/lightbox';
 // ----------------------------------------------------------------------
 
 export default function SpaceDetailsGallery({ images }) {
-  console.log(images);
   const slides = images.map((slide) => ({
     src: slide,
   }));

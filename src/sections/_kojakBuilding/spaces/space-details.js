@@ -1,17 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 
+import { _tours } from 'src/_mock';
 import { paths } from 'src/routes/paths';
-import Iconify from 'src/components/iconify';
-import { _tours, _socials } from 'src/_mock';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
@@ -23,6 +18,25 @@ import SpaceDetailsContactForm from 'src/sections/_kojakBuilding/spaces/details/
 const _mockTour = _tours[0];
 
 const _mockSpace = {
+  id: 'space-1',
+  type: 'Residential',
+  rent: 33000,
+  listingDate: new Date().toDateString(),
+  city: 'Sharjah',
+  location: 'Al Qasemeyah',
+  buildingName: 'Kojak Tower',
+  contactDetails: { fullName: 'Mohamed', mobile: '050-1234567', email: 'mohamed@kojak-group.com' },
+  features: {
+    area: '1250 sqft',
+    bedrooms: 3,
+    bathrooms: 3,
+    ac: 'Central AC',
+    parking: 0,
+    cctv: true,
+    security: true,
+    healthClub: false,
+    chequesNo: 6,
+  },
   gallery: [
     'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1600',
     'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -35,7 +49,6 @@ const _mockSpace = {
 export default function SpaceDetails() {
   const { spaceId } = useParams();
   const loading = useBoolean(true);
-  console.log(_mockSpace);
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -67,41 +80,12 @@ export default function SpaceDetails() {
           <SpaceDetailsContactForm tour={_mockTour} />
         </Grid>
 
-        <Grid xs={12} md={7} lg={8}>
-          <SpaceDetailsHeader tour={_mockTour} />
+        <Grid xs={12} md={7} lg={8} sx={{ mb: 4 }}>
+          <SpaceDetailsHeader spaceInfo={_mockSpace} />
 
           <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-          <SpaceDetailsSummary tour={_mockTour} />
-
-          <Stack direction="row" flexWrap="wrap" sx={{ mt: 5 }}>
-            <Typography variant="subtitle2" sx={{ mt: 0.75, mr: 1.5 }}>
-              Share:
-            </Typography>
-
-            <Stack direction="row" alignItems="center" flexWrap="wrap">
-              {_socials.map((social) => (
-                <Button
-                  key={social.value}
-                  size="small"
-                  variant="outlined"
-                  startIcon={<Iconify icon={social.icon} />}
-                  sx={{
-                    m: 0.5,
-                    flexShrink: 0,
-                    color: social.color,
-                    borderColor: social.color,
-                    '&:hover': {
-                      borderColor: social.color,
-                      bgcolor: alpha(social.color, 0.08),
-                    },
-                  }}
-                >
-                  {social.label}
-                </Button>
-              ))}
-            </Stack>
-          </Stack>
+          <SpaceDetailsSummary spaceFeatures={_mockSpace.features} />
         </Grid>
       </Grid>
     </Container>

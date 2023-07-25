@@ -1,132 +1,63 @@
 import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
-import Popover from '@mui/material/Popover';
-import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { _socials } from 'src/_mock';
 import Iconify from 'src/components/iconify';
-import { fShortenNumber } from 'src/utils/format-number';
+import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceDetailsHeader({ tour }) {
-  const { slug, ratingNumber, totalReviews, location, favorited, tourGuide } = tour;
-
-  const [favorite, setFavorite] = useState(favorited);
-
-  const [open, setOpen] = useState(null);
-
-  const handleOpen = useCallback((event) => {
-    setOpen(event.currentTarget);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setOpen(null);
-  }, []);
-
-  const handleChangeFavorite = useCallback((event) => {
-    setFavorite(event.target.checked);
-  }, []);
+export default function SpaceDetailsHeader({ spaceInfo }) {
+  const { id, type, rent, city, location, buildingName, listingDate } = spaceInfo;
 
   return (
     <>
+      <Typography variant="caption">{type}</Typography>
       <Stack
         spacing={3}
-        direction={{ xs: 'column', md: 'row' }}
+        direction="row"
         sx={{
-          mb: 3,
+          mb: 2,
         }}
       >
         <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-          {slug}
+          {buildingName}
         </Typography>
 
-        <Stack direction="row" alignItems="center" flexShrink={0}>
-          <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
-            <Iconify icon="carbon:share" />
-          </IconButton>
-
-          <Checkbox
-            color="error"
-            checked={favorite}
-            onChange={handleChangeFavorite}
-            icon={<Iconify icon="carbon:favorite" />}
-            checkedIcon={<Iconify icon="carbon:favorite-filled" />}
-          />
-        </Stack>
+        {/* <Stack direction="row" alignItems="center" flexShrink={0}>
+          <Iconify icon="carbon:share" />
+        </Stack> */}
       </Stack>
 
       <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
         <Stack spacing={0.5} direction="row" alignItems="center">
-          <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
+          <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
-          <Box sx={{ typography: 'h6' }}>
-            {Number.isInteger(ratingNumber) ? `${ratingNumber}.0` : ratingNumber}
-          </Box>
-
-          <Link variant="body2" sx={{ color: 'text.secondary' }}>
-            ({fShortenNumber(totalReviews)} reviews)
-          </Link>
+          <Box sx={{ typography: 'h6' }}>{fCurrency(rent)}</Box>
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> {location}
+          <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> {`${city} - ${location}`}
         </Stack>
 
-        <Stack direction="row" alignItems="center">
-          <Avatar src={tourGuide?.avatarUrl} sx={{ width: 24, height: 24 }} />
-
-          <Typography variant="body2" sx={{ color: 'text.secondary', mx: 0.5 }}>
-            Tour guide by
-          </Typography>
-
-          <Link variant="subtitle2" color="inherit">
-            {tourGuide?.name}
-          </Link>
+        <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+          <Iconify icon="clarity:date-line" sx={{ mr: 0.5 }} /> {listingDate}
         </Stack>
       </Stack>
-
-      <Popover
-        open={!!open}
-        onClose={handleClose}
-        anchorEl={open}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        slotProps={{
-          paper: {
-            sx: { width: 220 },
-          },
-        }}
-      >
-        {_socials.map((social) => (
-          <MenuItem key={social.value} onClick={handleClose}>
-            <Iconify icon={social.icon} width={24} sx={{ mr: 1, color: social.color }} />
-            Share via {social.label}
-          </MenuItem>
-        ))}
-      </Popover>
     </>
   );
 }
 
 SpaceDetailsHeader.propTypes = {
-  tour: PropTypes.shape({
-    favorited: PropTypes.bool,
+  spaceInfo: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    rent: PropTypes.number,
+    city: PropTypes.string,
     location: PropTypes.string,
-    slug: PropTypes.string,
-    ratingNumber: PropTypes.number,
-    totalReviews: PropTypes.number,
-    tourGuide: PropTypes.shape({
-      avatarUrl: PropTypes.string,
-      name: PropTypes.string,
-    }),
+    buildingName: PropTypes.string,
+    listingDate: PropTypes.string,
   }),
 };

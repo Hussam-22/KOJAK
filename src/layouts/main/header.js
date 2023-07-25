@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -12,7 +11,6 @@ import { useTheme } from '@mui/material/styles';
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
-import Label from 'src/components/label';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 
@@ -65,7 +63,7 @@ export default function Header({ headerOnDark }) {
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
             <Logo />
 
-            <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
+            {/* <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
               <Label
                 color="info"
                 sx={{
@@ -81,7 +79,7 @@ export default function Header({ headerOnDark }) {
               >
                 v2.1.0
               </Label>
-            </Link>
+            </Link> */}
           </Box>
 
           {mdUp && <NavDesktop data={navConfig} />}
