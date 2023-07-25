@@ -1,4 +1,5 @@
 import 'src/global.css';
+import { AuthProvider } from 'src/auth/context/firebase';
 
 // ----------------------------------------------------------------------
 
@@ -16,22 +17,24 @@ export default function App() {
   useScrollToTop();
 
   return (
-    <LocalizationProvider>
-      <SettingsProvider
-        defaultSettings={{
-          themeMode: 'light', // 'light' | 'dark'
-          themeDirection: 'ltr', //  'rtl' | 'ltr'
-          themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-        }}
-      >
-        <ThemeProvider>
-          <MotionLazy>
-            <ProgressBar />
-            <SettingsDrawer />
-            <Router />
-          </MotionLazy>
-        </ThemeProvider>
-      </SettingsProvider>
-    </LocalizationProvider>
+    <AuthProvider>
+      <LocalizationProvider>
+        <SettingsProvider
+          defaultSettings={{
+            themeMode: 'light', // 'light' | 'dark'
+            themeDirection: 'ltr', //  'rtl' | 'ltr'
+            themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+          }}
+        >
+          <ThemeProvider>
+            <MotionLazy>
+              <ProgressBar />
+              <SettingsDrawer />
+              <Router />
+            </MotionLazy>
+          </ThemeProvider>
+        </SettingsProvider>
+      </LocalizationProvider>
+    </AuthProvider>
   );
 }
