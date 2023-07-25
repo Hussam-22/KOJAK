@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import KojakBuildingLandingView from 'src/sections/_kojakBuilding/views/Kojak-building-landing-view';
+import KojakBuildingLandingView from 'src/sections/_kojakBuilding/views/kojak-building-landing-view';
 
 // ----------------------------------------------------------------------
 
