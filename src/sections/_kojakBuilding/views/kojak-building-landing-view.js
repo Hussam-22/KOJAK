@@ -14,7 +14,7 @@ export default function KojakBuildingLandingView() {
       <WhatWeOffer />
       {/* <FutureProjects /> */}
       <FAQs />
-      <BuildingLatestPosts posts={_careerPosts.slice(0, 5)} />
+      <BuildingLatestPosts posts={_careerPosts.slice(0, 6)} />
       <ContactUs />
     </>
   );

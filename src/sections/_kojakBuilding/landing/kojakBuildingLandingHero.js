@@ -43,7 +43,7 @@ export default function KojakBuildingLandingHero() {
           ...bgGradient({
             direction: '115deg',
             startColor: `${alpha(theme.palette.primary.lighter, 0.15)} 30%`,
-            endColor: `${alpha(theme.palette.primary.main, 0.1)} 70%`,
+            endColor: `${alpha(theme.palette.secondary.main, 0.1)} 70%`,
           }),
           border: 'solid 2px #000000',
           width: { xs: '90vw' },

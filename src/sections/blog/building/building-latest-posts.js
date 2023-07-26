@@ -21,7 +21,7 @@ import BuildingLatestPostItem from './building-latest-post-item';
 export default function BuildingLatestPosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
 
-  const latestPost = posts[0];
+  const latestPost = posts[5];
 
   const viewAllBtn = (
     <Button
@@ -35,13 +35,13 @@ export default function BuildingLatestPosts({ posts }) {
   );
 
   return (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box>
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
           pb: 10,
         }}
-        maxWidth="xl"
+        // maxWidth="xl"
       >
         <Stack
           direction="row"
