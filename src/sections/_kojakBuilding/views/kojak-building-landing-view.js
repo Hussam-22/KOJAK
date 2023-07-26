@@ -1,6 +1,7 @@
 import FAQs from 'src/sections/_kojakBuilding/landing/Faqs';
 import ContactUs from 'src/sections/_kojakBuilding/landing/ContactUs';
 import WhatWeOffer from 'src/sections/_kojakBuilding/landing/WhatWeOffer';
+import FutureProjects from 'src/sections/_kojakBuilding/landing/FutureProjects';
 import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
 import KojakBuildingLandingHero from 'src/sections/_kojakBuilding/landing/kojakBuildingLandingHero';
 
@@ -10,6 +11,7 @@ export default function KojakBuildingLandingView() {
       <KojakBuildingLandingHero />
       <WhyKojakBuilding />
       <WhatWeOffer />
+      <FutureProjects />
       <FAQs />
       <ContactUs />
     </>

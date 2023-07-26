@@ -26,7 +26,7 @@ export default function SpaceItem({ space }) {
   };
 
   return (
-    <Card sx={{ borderRadius: 1 }}>
+    <Card sx={{ borderRadius: 1, display: 'flex', flexDirection: 'column' }}>
       <Stack
         direction="row"
         alignItems="center"
@@ -69,7 +69,7 @@ export default function SpaceItem({ space }) {
 
       <Image alt={slug} src={gallery[0]} ratio="4/3" />
 
-      <Stack spacing={2} sx={{ p: 2.5 }}>
+      <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {location}
         </Typography>

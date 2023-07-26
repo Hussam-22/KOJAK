@@ -1,14 +1,24 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
+import CountUp from 'src/components/count-up/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
+
+// ----------------------------------------------------------------------
+
+const SUMMARY = [
+  { name: 'Apartments', number: 220 },
+  { name: 'Happy Tenants', number: 1192 },
+  { name: 'Years of Experience', number: 22 },
+  { name: 'Total Leases processed', number: 1482 },
+];
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +34,8 @@ export default function KojakBuildingLandingHero() {
     <Box
       sx={{
         overflow: 'hidden',
+        zIndex: 9,
+        position: 'relative',
       }}
     >
       <Container
@@ -97,6 +109,44 @@ export default function KojakBuildingLandingHero() {
                 alt="marketing market"
                 src="/assets/kojak-building/hero/hero-img-1.png"
               />
+
+              <Box
+                sx={{
+                  rowGap: 5,
+                  columnGap: 3,
+                  display: 'grid',
+                  textAlign: 'center',
+                  gridTemplateColumns: {
+                    xs: 'repeat(2, 1fr)',
+                    md: 'repeat(4, 1fr)',
+                  },
+                  pt: 4,
+                }}
+              >
+                {SUMMARY.map((value) => (
+                  <Stack key={value.name} spacing={1}>
+                    <Typography variant="h2">
+                      <CountUp
+                        start={value.number / 5}
+                        end={value.number}
+                        formattingFn={(newValue) => newValue}
+                      />
+
+                      <Typography
+                        variant="h4"
+                        component="span"
+                        sx={{ verticalAlign: 'top', ml: 0.5, color: 'primary.main' }}
+                      >
+                        +
+                      </Typography>
+                    </Typography>
+
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      {value.name}
+                    </Typography>
+                  </Stack>
+                ))}
+              </Box>
             </Grid>
           )}
         </Grid>

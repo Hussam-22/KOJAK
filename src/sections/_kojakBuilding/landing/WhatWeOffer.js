@@ -2,8 +2,10 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Stack, Unstable_Grid2 as Grid } from '@mui/material';
+import { Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 
+import Image from 'src/components/image/Image';
+import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
 
@@ -157,6 +159,10 @@ export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
 
+  const scrollToElement = () => {
+    document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Box
       sx={{
@@ -220,7 +226,6 @@ export default function WhatWeOffer() {
             <Box
               sx={{
                 display: 'grid',
-                mb: { xs: 8, md: 10 },
                 gap: { xs: 4, md: 3 },
                 gridTemplateColumns: {
                   xs: 'repeat(1, 1fr)',
@@ -233,6 +238,34 @@ export default function WhatWeOffer() {
                 <SpaceItem key={space.id} space={space} />
               ))}
             </Box>
+          </Grid>
+
+          <Grid xs={12} md={12}>
+            <Stack
+              spacing={3}
+              direction="row"
+              sx={{
+                p: 3,
+                borderRadius: 1,
+                alignItems: 'center',
+                border: 'dashed 1px #999999',
+                justifyContent: 'center',
+              }}
+            >
+              <Image src="/assets/kojak-building/illustration/house-property.svg" width="7%" />
+              <Stack direction="column">
+                <Typography variant="h3">Did not find what you are looking for ?</Typography>
+                <Box>
+                  <Button
+                    variant="contained"
+                    endIcon={<Iconify icon="iconamoon:send-duotone" />}
+                    onClick={scrollToElement}
+                  >
+                    Drop us a message
+                  </Button>
+                </Box>
+              </Stack>
+            </Stack>
           </Grid>
         </Grid>
       </Container>

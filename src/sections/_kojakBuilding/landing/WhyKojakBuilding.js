@@ -5,6 +5,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
+import Image from 'src/components/image/Image';
 
 // ----------------------------------------------------------------------
 
@@ -33,11 +34,23 @@ export default function WhyKojakBuilding() {
   return (
     <Box
       sx={{
-        overflow: 'hidden',
-
         py: { xs: 8, md: 15 },
+        mt: { xs: 1, md: 3 },
+        backgroundColor: 'custom.bluishPurpleDark',
+        zIndex: -2,
+        position: 'relative',
       }}
     >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: -80,
+          left: 0,
+          width: 1,
+        }}
+      >
+        <Image src="/assets/kojak-building/shape/layered-waves.svg" width={1} />
+      </Box>
       <Container maxWidth="xl">
         <Stack
           spacing={3}
@@ -48,14 +61,14 @@ export default function WhyKojakBuilding() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+          <Typography variant="h2" sx={{ textTransform: 'capitalize', zIndex: 2 }} color="white">
             why you should choose us
           </Typography>
 
-          <Typography>
+          <Typography color="white" sx={{ zIndex: 2 }}>
             Choosing the right partner for your space-hunting journey can make all the difference.
             At{' '}
-            <Box component="span" sx={{ fontWeight: 'bold', color: 'secondary.main' }}>
+            <Box component="span" sx={{ fontWeight: 'bold', color: 'custom.bluishPurpleLight' }}>
               Kojak Building
             </Box>{' '}
             , we stand out as the ultimate destination for finding your ideal residential or
@@ -73,13 +86,16 @@ export default function WhyKojakBuilding() {
                 textAlign: 'center',
               }}
             >
-              <Iconify icon={value.icon} width={48} sx={{ color: 'secondary.main' }} />
+              <Iconify icon={value.icon} width={48} sx={{ color: 'custom.bluishPurpleLight' }} />
 
-              <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
+              <Typography variant="h5" sx={{ mt: 2, mb: 2 }} color="white">
                 {value.title}
               </Typography>
 
-              <Typography sx={{ color: 'text.secondary' }}> {value.description} </Typography>
+              <Typography sx={{ color: 'custom.bluishPurpleLight' }}>
+                {' '}
+                {value.description}{' '}
+              </Typography>
             </Grid>
           ))}
         </Grid>

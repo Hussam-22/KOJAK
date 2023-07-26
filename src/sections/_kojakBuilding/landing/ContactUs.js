@@ -41,7 +41,7 @@ export default function ContactUs() {
           justifyContent={{ md: 'space-between' }}
           sx={{ p: isMdUp ? 3 : 1 }}
         >
-          <Grid xs={12} md={7} sx={{ bgcolor: 'common.white', borderRadius: 2 }}>
+          <Grid xs={12} md={7} sx={{ bgcolor: 'common.white', borderRadius: 2 }} id="scrollToForm">
             <ContactKojakForm />
           </Grid>
 
