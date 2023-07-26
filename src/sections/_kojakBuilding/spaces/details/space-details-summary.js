@@ -28,9 +28,13 @@ export default function SpaceDetailsSummary({ spaceFeatures }) {
             },
           }}
         >
-          <OverviewItem icon="tabler:ruler-measure" label="Area" text={area} />
+          <OverviewItem icon="tabler:ruler-measure" label="Area" text={`${area} sqft`} />
 
-          <OverviewItem icon="carbon:floorplan" label="Bedrooms" text={`${bedrooms}`} />
+          <OverviewItem
+            icon="carbon:floorplan"
+            label="Bedrooms"
+            text={bedrooms === 0 ? 'N/A' : `${bedrooms}`}
+          />
 
           <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
 
@@ -39,7 +43,7 @@ export default function SpaceDetailsSummary({ spaceFeatures }) {
           <OverviewItem
             icon="tabler:parking"
             label="Parking"
-            text={parking === 0 ? 'Not Available' : parking}
+            text={parking === 0 ? 'Not Available' : `${parking}`}
           />
 
           <OverviewItem

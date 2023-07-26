@@ -12,6 +12,8 @@ import { fCurrency } from 'src/utils/format-number';
 export default function SpaceDetailsHeader({ spaceInfo }) {
   const { id, type, rent, city, location, buildingName, listingDate } = spaceInfo;
 
+  const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
+
   return (
     <>
       <Typography variant="caption">{type}</Typography>
@@ -43,7 +45,7 @@ export default function SpaceDetailsHeader({ spaceInfo }) {
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="clarity:date-line" sx={{ mr: 0.5 }} /> {listingDate}
+          <Iconify icon="clarity:date-line" sx={{ mr: 0.5 }} /> {listingDateTime}
         </Stack>
       </Stack>
     </>
@@ -58,6 +60,6 @@ SpaceDetailsHeader.propTypes = {
     city: PropTypes.string,
     location: PropTypes.string,
     buildingName: PropTypes.string,
-    listingDate: PropTypes.string,
+    listingDate: PropTypes.object,
   }),
 };

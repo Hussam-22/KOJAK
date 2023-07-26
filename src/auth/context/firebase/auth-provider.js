@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
+import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
-import { doc, setDoc, getDoc, collection, getFirestore } from 'firebase/firestore';
 import {
   getAuth,
   signOut,
@@ -15,6 +15,27 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
+import {
+  doc,
+  where,
+  query,
+  setDoc,
+  getDoc,
+  getDocs,
+  Timestamp,
+  increment,
+  deleteDoc,
+  updateDoc,
+  onSnapshot,
+  writeBatch,
+  arrayUnion,
+  collection,
+  deleteField,
+  arrayRemove,
+  getFirestore,
+  collectionGroup,
+  getCountFromServer,
+} from 'firebase/firestore';
 
 // config
 import { FIREBASE_API } from 'src/config-global';
@@ -31,9 +52,8 @@ import { AuthContext } from './auth-context';
 // ----------------------------------------------------------------------
 
 const firebaseApp = initializeApp(FIREBASE_API);
-
+const STORAGE = getStorage(firebaseApp);
 const AUTH = getAuth(firebaseApp);
-
 const DB = getFirestore(firebaseApp);
 
 // ----------------------------------------------------------------------
@@ -160,11 +180,27 @@ export function AuthProvider({ children }) {
     await sendPasswordResetEmail(AUTH, email);
   }, []);
 
-  // ----------------------------------------------------------------------
+  // ! ----------------------------------------------------------------------
+  // ! ----------------------------------------------------------------------
 
-  // get project info
-  const getProjectInfo = useCallback(async () => {
+  // get website info
+  const getWebsiteInfo = useCallback(async () => {
     const docRef = doc(DB, `/websites/building/`);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  }, []);
+
+  // get all spaces info
+  const getAllSpacesInfo = useCallback(async () => {
+    const dataArr = [];
+    const querySnapshot = await getDocs(collection(DB, 'websites', 'building', 'spaces'));
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    return dataArr;
+  }, []);
+
+  // get space info
+  const getSpaceInfo = useCallback(async (spaceID) => {
+    const docRef = doc(DB, `/websites/building/spaces/${spaceID}`);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }, []);
@@ -180,6 +216,17 @@ export function AuthProvider({ children }) {
       createdAt: dateTime,
     });
     return newDocRef.id;
+  }, []);
+
+  // ------------------ | Get image Download URL | ------------------
+  const fsGetImgDownloadUrl = useCallback(async (projectID, imgID) => {
+    // getDownloadURL(ref(STORAGE, `${state.user.id}/menusCover/${dataObj.cover.id}_800x800.webp`))
+    const url = await getDownloadURL(
+      ref(STORAGE, `gs://kojak-building/${projectID}/${imgID}_800x800.webp`)
+    );
+    // .then((response) => response)
+    // .catch((error) => console.log(error));
+    return url;
   }, []);
 
   const checkAuthenticated = state.user?.emailVerified ? 'authenticated' : 'unauthenticated';
@@ -202,8 +249,11 @@ export function AuthProvider({ children }) {
       loginWithGithub,
       loginWithTwitter,
       //
-      getProjectInfo,
+      getWebsiteInfo,
+      getAllSpacesInfo,
+      getSpaceInfo,
       addNewFromCallbackSubmit,
+      fsGetImgDownloadUrl,
     }),
     [
       status,
@@ -217,8 +267,11 @@ export function AuthProvider({ children }) {
       loginWithGoogle,
       loginWithTwitter,
       //
-      getProjectInfo,
+      getWebsiteInfo,
+      getAllSpacesInfo,
+      getSpaceInfo,
       addNewFromCallbackSubmit,
+      fsGetImgDownloadUrl,
     ]
   );
 

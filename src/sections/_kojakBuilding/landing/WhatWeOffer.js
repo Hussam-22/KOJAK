@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback } from 'react';
+
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
@@ -5,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 
 import Image from 'src/components/image/Image';
+import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
@@ -13,7 +16,8 @@ import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
 
 const RESIDENTIAL = [
   {
-    id: 'R-1',
+    id: 'R1001-3',
+    coverImgID: 0,
     gallery: [
       'https://images.pexels.com/photos/322154/pexels-photo-322154.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
@@ -30,7 +34,7 @@ const RESIDENTIAL = [
     slug: 'The ACE Tower',
   },
   {
-    id: 'R-2',
+    id: 'R1001-2',
     gallery: [
       'https://images.pexels.com/photos/1717272/pexels-photo-1717272.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
@@ -47,7 +51,7 @@ const RESIDENTIAL = [
     slug: 'The White Tower',
   },
   {
-    id: 'R-3',
+    id: 'R1001-1',
     gallery: [
       'https://images.pexels.com/photos/1031593/pexels-photo-1031593.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
       'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
@@ -62,24 +66,6 @@ const RESIDENTIAL = [
     location: 'Sharjah - Taawoun',
     datePosted: new Date().toDateString(),
     slug: 'The Address Tower',
-  },
-  {
-    id: 'R-4',
-    gallery: [
-      'https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 33000,
-    bed: 3,
-    bath: 2,
-    size: '1200 sqft',
-    location: 'Sharjah - Buhairah',
-    datePosted: new Date().toDateString(),
-    priceSale: 31000,
-    slug: 'The Point Tower',
   },
 ];
 
@@ -101,67 +87,28 @@ const COMMERCIAL = [
     datePosted: new Date().toDateString(),
     slug: '3 Bedroom - The ACE Tower',
   },
-  {
-    id: 'C-2',
-    gallery: [
-      'https://images.pexels.com/photos/1436190/pexels-photo-1436190.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 29000,
-    bed: 2,
-    bath: 2,
-    size: '1000 sqft',
-    location: 'Dubai - Motor City',
-    datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The White Tower',
-  },
-  {
-    id: 'C-3',
-    gallery: [
-      'https://images.pexels.com/photos/280212/pexels-photo-280212.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 25000,
-    bed: 1,
-    bath: 1,
-    size: '800 sqft',
-    location: 'Sharjah - Taawoun',
-    datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The Address Tower',
-  },
-  {
-    id: 'C-4',
-    gallery: [
-      'https://images.pexels.com/photos/1124461/pexels-photo-1124461.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 33000,
-    bed: 3,
-    bath: 2,
-    size: '1200 sqft',
-    location: 'Sharjah - Buhairah',
-    datePosted: new Date().toDateString(),
-    priceSale: 31000,
-    slug: 'The Point Tower',
-  },
 ];
 // ----------------------------------------------------------------------
 export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
+  const [spaces, setSpaces] = useState([]);
+  const { getAllSpacesInfo } = useAuthContext();
+
+  const commercialSpaces = useCallback(() => {}, []);
+  const residentialSpaces = useCallback(() => {}, []);
+
+  console.log(spaces);
 
   const scrollToElement = () => {
     document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    (async () => {
+      setSpaces(await getAllSpacesInfo());
+    })();
+  }, [getAllSpacesInfo]);
 
   return (
     <Box
@@ -209,7 +156,7 @@ export default function WhatWeOffer() {
                 gridTemplateColumns: {
                   xs: 'repeat(1, 1fr)',
                   sm: 'repeat(2, 1fr)',
-                  md: 'repeat(4, 1fr)',
+                  md: 'repeat(3, 1fr)',
                 },
               }}
             >
