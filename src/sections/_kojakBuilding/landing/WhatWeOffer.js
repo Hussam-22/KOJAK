@@ -93,12 +93,9 @@ export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const [spaces, setSpaces] = useState([]);
-  const { getAllSpacesInfo } = useAuthContext();
+  const { getAllSpacesInfo, addNewSpace } = useAuthContext();
 
-  const commercialSpaces = useCallback(() => {}, []);
-  const residentialSpaces = useCallback(() => {}, []);
-
-  console.log(spaces);
+  // const addListing = () => addNewSpace();
 
   const scrollToElement = () => {
     document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
@@ -109,6 +106,16 @@ export default function WhatWeOffer() {
       setSpaces(await getAllSpacesInfo());
     })();
   }, [getAllSpacesInfo]);
+
+  const commercialSpaces = useCallback(
+    () => spaces.filter((space) => space.type === 'commercial'),
+    [spaces]
+  );
+
+  const residentialSpaces = useCallback(
+    () => spaces.filter((space) => space.type === 'residential'),
+    [spaces]
+  );
 
   return (
     <Box
@@ -160,9 +167,8 @@ export default function WhatWeOffer() {
                 },
               }}
             >
-              {RESIDENTIAL.map((space) => (
-                <SpaceItem key={space.id} space={space} />
-              ))}
+              {spaces.length !== 0 &&
+                residentialSpaces().map((space) => <SpaceItem key={space.id} space={space} />)}
             </Box>
           </Grid>
 
@@ -181,9 +187,8 @@ export default function WhatWeOffer() {
                 },
               }}
             >
-              {COMMERCIAL.map((space) => (
-                <SpaceItem key={space.id} space={space} />
-              ))}
+              {spaces.length !== 0 &&
+                commercialSpaces().map((space) => <SpaceItem key={space.id} space={space} />)}
             </Box>
           </Grid>
 
@@ -203,6 +208,14 @@ export default function WhatWeOffer() {
               <Stack direction="column">
                 <Typography variant="h3">Did not find what you are looking for ?</Typography>
                 <Box>
+                  {/* <Button
+                    variant="contained"
+                    endIcon={<Iconify icon="iconamoon:send-duotone" />}
+                    onClick={addListing}
+                  >
+                    Add Listing
+                  </Button> */}
+
                   <Button
                     variant="contained"
                     endIcon={<Iconify icon="iconamoon:send-duotone" />}

@@ -205,6 +205,59 @@ export function AuthProvider({ children }) {
     return docSnap.data();
   }, []);
 
+  // add new space
+  const addNewSpace = useCallback(async () => {
+    await setDoc(doc(DB, '/websites/building/spaces/', 'R1001-3'), {
+      rent: 28000,
+      id: 'R1001-3',
+      location: 'Al Qassimia',
+      features: {
+        bathrooms: 2,
+        healthClub: true,
+        security: true,
+        chequesNo: 6,
+        cctv: true,
+        parking: 1,
+        bedrooms: 3,
+        area: '1100',
+        ac: 'Ducted',
+      },
+      buildingName: 'Kojak Building',
+      rentSale: 0,
+      coverImgID: '2',
+      imagesIDs: [
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+      ],
+      isAvailable: true,
+      city: 'Sharjah',
+      contactDetails: {
+        email: 'mohamed@kojak-group.com',
+        mobile: '0501234567',
+        fullName: 'Mohamed',
+      },
+      type: 'residential',
+      listingDate: {
+        seconds: 1690400112,
+        nanoseconds: 896000000,
+      },
+    });
+  }, []);
+
   // add new request-callback form
   const addNewFromCallbackSubmit = useCallback(async (payload) => {
     const newDocRef = doc(collection(DB, `/websites/building/form-callback/`));
@@ -252,6 +305,7 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      addNewSpace,
       addNewFromCallbackSubmit,
       fsGetImgDownloadUrl,
     }),
@@ -270,6 +324,7 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      addNewSpace,
       addNewFromCallbackSubmit,
       fsGetImgDownloadUrl,
     ]

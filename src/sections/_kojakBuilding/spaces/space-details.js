@@ -60,19 +60,19 @@ export default function SpaceDetails() {
 
   useEffect(() => {
     (async () => {
-      setSpaceInfo(await getSpaceInfo('C1001-1'));
+      setSpaceInfo(await getSpaceInfo(spaceId));
     })();
-  }, [getSpaceInfo]);
+  }, [getSpaceInfo, spaceId]);
 
   useEffect(() => {
     if (spaceInfo.imagesIDs && spaceInfo?.imagesIDs?.length !== 0) {
       (async () => {
         setGalleryURLs(
-          await Promise.all(spaceInfo.imagesIDs.map((id) => fsGetImgDownloadUrl('C1001-1', id)))
+          await Promise.all(spaceInfo.imagesIDs.map((id) => fsGetImgDownloadUrl(spaceId, id)))
         );
       })();
     }
-  }, [spaceInfo, fsGetImgDownloadUrl, getSpaceInfo, spaceInfo.imagesIDs]);
+  }, [spaceInfo, fsGetImgDownloadUrl, getSpaceInfo, spaceInfo.imagesIDs, spaceId]);
 
   useEffect(() => {
     const fakeLoading = async () => {

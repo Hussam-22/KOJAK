@@ -1,25 +1,48 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
 export default function SpaceItem({ space }) {
-  const { id, slug, location, rent, priceSale, datePosted, gallery, bed, bath, size } = space;
+  const {
+    id,
+    buildingName,
+    location,
+    rent,
+    rentSale,
+    listingDate,
+    coverImgID,
+    features: { bedrooms, bathrooms, area },
+  } = space;
   const navigate = useNavigate();
+  const [coverImgURL, setCoverImgURL] = useState('');
+  const { fsGetImgDownloadUrl } = useAuthContext();
+
+  console.log(bedrooms);
+
+  const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
+
+  useEffect(() => {
+    (async () => {
+      setCoverImgURL(await fsGetImgDownloadUrl(id, coverImgID));
+    })();
+  }, [coverImgID, fsGetImgDownloadUrl, id]);
 
   const openSpaceCard = () => {
     navigate(paths.building.spaceView + id);
@@ -52,7 +75,7 @@ export default function SpaceItem({ space }) {
             color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
           }}
         >
-          {priceSale > 0 && (
+          {rentSale > 0 && (
             <Box
               sx={{
                 color: 'grey.200',
@@ -60,14 +83,14 @@ export default function SpaceItem({ space }) {
                 mr: 0.5,
               }}
             >
-              {fCurrency(priceSale)}
+              {fCurrency(rentSale)}
             </Box>
           )}
           {fCurrency(rent)}
         </Stack>
       </Stack>
 
-      <Image alt={slug} src={gallery[0]} ratio="4/3" />
+      <Image alt={buildingName} src={coverImgURL} ratio="4/3" />
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -75,7 +98,9 @@ export default function SpaceItem({ space }) {
         </Typography>
 
         <Link component={RouterLink} href={paths.building.spaceView + id} color="inherit">
-          <Typography variant="h6">{`${bed} Bedroom - ${slug}`}</Typography>
+          <Typography variant="h6">
+            {bedrooms !== 0 ? `${bedrooms} Bedroom - ${buildingName}` : buildingName}
+          </Typography>
         </Link>
 
         <Stack
@@ -86,17 +111,17 @@ export default function SpaceItem({ space }) {
         >
           <Box>
             <Iconify icon="carbon:floorplan" width={18} sx={{ mr: 1 }} />
-            {size}
+            {area}
           </Box>
 
           <Box sx={{ alignItems: 'center' }}>
             <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mr: 1 }} />
-            {bed}
+            {bedrooms === 0 ? 'N/A' : `${bedrooms}`}
           </Box>
 
           <Box sx={{ alignItems: 'center' }}>
             <Iconify icon="cil:shower" width={18} sx={{ mr: 1 }} />
-            {bath}
+            {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
           </Box>
         </Stack>
       </Stack>
@@ -114,7 +139,7 @@ export default function SpaceItem({ space }) {
           sx={{ typography: 'body2', color: 'text.disabled' }}
         >
           <Box>
-            <Iconify icon="ph:calendar-light" width={16} sx={{ mr: 1 }} /> {datePosted}
+            <Iconify icon="ph:calendar-light" width={16} sx={{ mr: 1 }} /> {listingDateTime}
           </Box>
           <Box>
             <Button variant="contained" color="secondary" onClick={openSpaceCard}>
@@ -130,14 +155,17 @@ export default function SpaceItem({ space }) {
 SpaceItem.propTypes = {
   space: PropTypes.shape({
     id: PropTypes.string,
-    gallery: PropTypes.array,
-    datePosted: PropTypes.string,
+    coverImgID: PropTypes.string,
+    listingDate: PropTypes.object,
     location: PropTypes.string,
     rent: PropTypes.number,
-    priceSale: PropTypes.number,
-    slug: PropTypes.string,
-    bed: PropTypes.number,
-    bath: PropTypes.number,
-    size: PropTypes.string,
+    rentSale: PropTypes.number,
+    buildingName: PropTypes.string,
+
+    features: PropTypes.shape({
+      bedrooms: PropTypes.number,
+      bathrooms: PropTypes.number,
+      area: PropTypes.string,
+    }),
   }),
 };
