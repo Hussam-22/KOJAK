@@ -82,7 +82,7 @@ export default function BuildingLatestPosts({ posts }) {
         >
           {mdUp ? (
             <>
-              <BuildingLatestPostItem post={latestPost} />
+              <BuildingLatestPostItem post={latestPost} largePost />
 
               <Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
                 {posts.slice(1, 5).map((post, index) => (
