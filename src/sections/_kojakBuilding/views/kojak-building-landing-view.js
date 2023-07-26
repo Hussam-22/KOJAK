@@ -1,7 +1,8 @@
+import { _careerPosts } from 'src/_mock';
 import FAQs from 'src/sections/_kojakBuilding/landing/Faqs';
 import ContactUs from 'src/sections/_kojakBuilding/landing/ContactUs';
 import WhatWeOffer from 'src/sections/_kojakBuilding/landing/WhatWeOffer';
-import FutureProjects from 'src/sections/_kojakBuilding/landing/FutureProjects';
+import BuildingLatestPosts from 'src/sections/blog/building/building-latest-posts';
 import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
 import KojakBuildingLandingHero from 'src/sections/_kojakBuilding/landing/kojakBuildingLandingHero';
 
@@ -11,8 +12,9 @@ export default function KojakBuildingLandingView() {
       <KojakBuildingLandingHero />
       <WhyKojakBuilding />
       <WhatWeOffer />
-      <FutureProjects />
+      {/* <FutureProjects /> */}
       <FAQs />
+      <BuildingLatestPosts posts={_careerPosts.slice(0, 5)} />
       <ContactUs />
     </>
   );

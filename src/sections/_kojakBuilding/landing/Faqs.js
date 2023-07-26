@@ -94,8 +94,8 @@ export default function FAQs() {
                 sx={{
                   ...bgGradient({
                     direction: '115deg',
-                    startColor: `${alpha(theme.palette.custom.bluishPurpleLighter, 0.05)} 20%`,
-                    endColor: `${alpha(theme.palette.custom.bluishPurpleLight, 0.2)} 60%`,
+                    startColor: `${alpha(theme.palette.primary.lighter, 0.05)} 20%`,
+                    endColor: `${alpha(theme.palette.primary.main, 0.2)} 60%`,
                   }),
                   mb: 2,
                   px: 2,
@@ -125,7 +125,7 @@ export default function FAQs() {
               ratio="3/4"
               sx={{
                 borderRadius: 2,
-                outline: `0.5rem solid ${theme.palette.custom.bluishPurple}`,
+                outline: `0.5rem solid ${theme.palette.secondary.main}`,
                 outlineOffset: '0.25rem',
               }}
             />

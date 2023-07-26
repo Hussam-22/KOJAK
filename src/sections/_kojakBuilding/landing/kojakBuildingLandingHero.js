@@ -42,8 +42,8 @@ export default function KojakBuildingLandingHero() {
         sx={{
           ...bgGradient({
             direction: '115deg',
-            startColor: `${alpha(theme.palette.custom.bluishPurpleLight, 0.15)} 30%`,
-            endColor: `${alpha(theme.palette.custom.bluishPurple, 0.1)} 70%`,
+            startColor: `${alpha(theme.palette.primary.lighter, 0.15)} 30%`,
+            endColor: `${alpha(theme.palette.primary.main, 0.1)} 70%`,
           }),
           border: 'solid 2px #000000',
           width: { xs: '90vw' },
@@ -75,7 +75,7 @@ export default function KojakBuildingLandingHero() {
                 component="span"
                 sx={{
                   color: 'common.white',
-                  backgroundColor: 'common.black',
+                  backgroundColor: 'primary.main',
                   px: 1.5,
                   borderRadius: 1.25,
                 }}

@@ -30,7 +30,7 @@ export default function ContactUs() {
   return (
     <Box
       sx={{
-        bgcolor: theme.palette.mode === 'light' ? 'custom.bluishPurpleLighter' : '',
+        bgcolor: theme.palette.mode === 'light' ? 'secondary.main' : '',
         py: 8,
       }}
     >
@@ -57,12 +57,14 @@ export default function ContactUs() {
               variant="h2"
               sx={{
                 textAlign: { xs: 'center', md: 'left' },
+                mb: 2,
               }}
+              color="primary"
             >
               Get In Touch
             </Typography>
 
-            <Stack spacing={3} alignItems="flex-start">
+            <Stack spacing={3} alignItems="flex-start" sx={{ color: 'common.white' }}>
               <Stack spacing={1}>
                 <Stack direction="row" alignItems="center" sx={{ typography: 'subtitle2' }}>
                   <Iconify icon="carbon:email" width={24} sx={{ mr: 1 }} /> Email

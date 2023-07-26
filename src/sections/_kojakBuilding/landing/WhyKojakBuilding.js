@@ -36,7 +36,7 @@ export default function WhyKojakBuilding() {
       sx={{
         py: { xs: 8, md: 15 },
         mt: { xs: 1, md: 3 },
-        backgroundColor: 'custom.bluishPurpleDark',
+        backgroundColor: 'secondary.main',
         zIndex: -2,
         position: 'relative',
       }}
@@ -86,7 +86,7 @@ export default function WhyKojakBuilding() {
                 textAlign: 'center',
               }}
             >
-              <Iconify icon={value.icon} width={48} sx={{ color: 'custom.bluishPurpleLight' }} />
+              <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
 
               <Typography variant="h5" sx={{ mt: 2, mb: 2 }} color="white">
                 {value.title}

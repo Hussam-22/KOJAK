@@ -48,7 +48,7 @@ export default function SpaceItem({ space }) {
             px: 1,
             borderRadius: 0.75,
             typography: 'subtitle2',
-            bgcolor: 'custom.bluishPurpleDark',
+            bgcolor: 'secondary.main',
             color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
           }}
         >
