@@ -13,17 +13,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
+import { _posts, _socials } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { fDate } from 'src/utils/format-time';
 import Markdown from 'src/components/markdown';
-import { _posts, _socials, _careerPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import PostTags from '../../blog/common/post-tags';
-import PostAuthor from '../../blog/common/post-author';
 import PostTimeBlock from '../../blog/common/post-time-block';
-import PostSocialsShare from '../../blog/common/post-socials-share';
-import CareerLatestPosts from '../../blog/career/career-latest-posts';
 
 // ----------------------------------------------------------------------
 
@@ -32,8 +28,6 @@ export default function BlogItemView() {
   const { title, description, duration, createdAt, favorited, author, tags, content } = _posts.find(
     (post) => post.title.replaceAll(' ', '-') === postTitle
   );
-
-  const [favorite, setFavorite] = useState(favorited);
 
   const [open, setOpen] = useState(null);
 
@@ -45,21 +39,17 @@ export default function BlogItemView() {
     setOpen(null);
   }, []);
 
-  const handleChangeFavorite = useCallback((event) => {
-    setFavorite(event.target.checked);
-  }, []);
-
   return (
     <>
       <Divider />
 
-      <Container sx={{ overflow: 'hidden' }}>
+      <Container sx={{ overflow: 'hidden', mb: 8 }}>
         <Grid container spacing={3} justifyContent={{ md: 'center' }}>
           <Grid xs={12} md={8}>
             <CustomBreadcrumbs
               links={[
                 { name: 'Home', href: '/' },
-                { name: 'Blog', href: paths.career.posts },
+                { name: 'Blog', href: paths.building.blogPosts },
                 { name: title },
               ]}
               sx={{ my: 5 }}
@@ -78,19 +68,9 @@ export default function BlogItemView() {
                 <PostTimeBlock createdAt={fDate(createdAt)} duration={duration} />
               </Stack>
 
-              <Stack direction="row" alignItems="center">
-                <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
-                  <Iconify icon="carbon:share" />
-                </IconButton>
-
-                <Checkbox
-                  color="error"
-                  checked={favorite}
-                  onChange={handleChangeFavorite}
-                  icon={<Iconify icon="carbon:favorite" />}
-                  checkedIcon={<Iconify icon="carbon:favorite-filled" />}
-                />
-              </Stack>
+              <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
+                <Iconify icon="carbon:share" />
+              </IconButton>
             </Stack>
 
             <Typography variant="h5" sx={{ mb: 5 }}>
@@ -98,21 +78,9 @@ export default function BlogItemView() {
             </Typography>
 
             <Markdown content={content} firstLetter />
-
-            <PostTags tags={tags} />
-
-            <PostSocialsShare />
-
-            <Divider sx={{ mt: 8 }} />
-
-            <PostAuthor author={author} />
           </Grid>
         </Grid>
       </Container>
-
-      <Divider />
-
-      <CareerLatestPosts posts={_careerPosts.slice(0, 5)} />
 
       <Popover
         open={!!open}

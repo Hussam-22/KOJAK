@@ -66,7 +66,11 @@ export default function BuildingLatestPostItem({ post, order, largePost }) {
           }}
         />
 
-        <Link component={RouterLink} href={paths.career.post} color="inherit">
+        <Link
+          component={RouterLink}
+          href={paths.building.blogItem + post.title.replaceAll(' ', '-')}
+          color="inherit"
+        >
           <TextMaxLine variant={largePost ? 'h3' : 'h6'}>{post.title}</TextMaxLine>
         </Link>
 

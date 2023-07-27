@@ -26,7 +26,7 @@ export default function BuildingLatestPosts({ posts }) {
   const viewAllBtn = (
     <Button
       component={RouterLink}
-      href={paths.career.posts}
+      href={paths.building.blogPosts}
       color="inherit"
       endIcon={<Iconify icon="carbon:chevron-right" />}
     >

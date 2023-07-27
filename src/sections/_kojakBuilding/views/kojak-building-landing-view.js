@@ -1,4 +1,4 @@
-import { _careerPosts } from 'src/_mock';
+import { _posts } from 'src/_mock';
 import FAQs from 'src/sections/_kojakBuilding/landing/Faqs';
 import ContactUs from 'src/sections/_kojakBuilding/landing/ContactUs';
 import WhatWeOffer from 'src/sections/_kojakBuilding/landing/WhatWeOffer';
@@ -13,7 +13,7 @@ export default function KojakBuildingLandingView() {
       <WhyKojakBuilding />
       <WhatWeOffer />
       <FAQs />
-      <BuildingLatestPosts posts={_careerPosts.slice(0, 6)} />
+      <BuildingLatestPosts posts={_posts.slice(0, 6)} />
       <ContactUs />
     </>
   );

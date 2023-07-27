@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material';
 
 import { _posts } from 'src/_mock';
 
-import PostsMasnory from '../../blog/kojak/posts-masnory';
+import PostsMasonry from '../../blog/kojak/posts-masonry';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ export default function BlogPostsView() {
               nemo? Eaque autem sed, officiis quam ipsum amet natus!
             </Typography>
           </Stack>
-          <PostsMasnory posts={_posts} />
+          <PostsMasonry posts={_posts} />
         </Grid>
       </Grid>
     </Container>
