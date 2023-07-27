@@ -4,7 +4,11 @@ export const paths = {
   // Building
   building: {
     root: '/',
+    about: '/about',
+    contactUs: '/contact-us',
     spaceView: '/space-view/',
+    blogPosts: '/blog-posts',
+    blogItem: '/blog-posts/',
   },
   // Marketing
   marketing: {

@@ -20,7 +20,6 @@ import { _posts, _socials, _careerPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 import PostTags from '../../blog/common/post-tags';
-import CareerNewsletter from '../career-newsletter';
 import PostAuthor from '../../blog/common/post-author';
 import PostTimeBlock from '../../blog/common/post-time-block';
 import PostSocialsShare from '../../blog/common/post-socials-share';
@@ -28,13 +27,11 @@ import CareerLatestPosts from '../../blog/career/career-latest-posts';
 
 // ----------------------------------------------------------------------
 
-export default function CareerPostView() {
-  const { postId } = useParams();
+export default function BlogItemView() {
+  const { postTitle } = useParams();
   const { title, description, duration, createdAt, favorited, author, tags, content } = _posts.find(
-    (post) => post.id === postId
+    (post) => post.title.replaceAll(' ', '-') === postTitle
   );
-
-  console.log(postId);
 
   const [favorite, setFavorite] = useState(favorited);
 
@@ -116,8 +113,6 @@ export default function CareerPostView() {
       <Divider />
 
       <CareerLatestPosts posts={_careerPosts.slice(0, 5)} />
-
-      <CareerNewsletter />
 
       <Popover
         open={!!open}

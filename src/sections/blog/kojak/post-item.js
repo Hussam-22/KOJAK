@@ -14,7 +14,7 @@ import PostTimeBlock from '../common/post-time-block';
 
 // ----------------------------------------------------------------------
 
-export default function BuildingPostItem({ post, index }) {
+export default function PostItem({ post, index }) {
   const noImage = index === 1 || index === 4;
 
   const smallImage = index === 2 || index === 7;
@@ -51,7 +51,7 @@ export default function BuildingPostItem({ post, index }) {
 
         <Link
           component={RouterLink}
-          href={paths.career.post}
+          href={paths.building.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
           variant="h5"
           sx={{
@@ -94,9 +94,10 @@ export default function BuildingPostItem({ post, index }) {
   );
 }
 
-BuildingPostItem.propTypes = {
+PostItem.propTypes = {
   index: PropTypes.number,
   post: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     coverUrl: PropTypes.string,
     duration: PropTypes.string,

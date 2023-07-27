@@ -96,6 +96,13 @@ export const _careerPosts = [...Array(12)].map((_, index) => ({
   heroUrl: `/assets/images/career/career_post_hero.jpg`,
 }));
 
+export const _posts = [...Array(12)].map((_, index) => ({
+  ...base(index),
+  content: content('career'),
+  coverUrl: _mock.image.career(index),
+  heroUrl: `/assets/images/career/career_post_hero.jpg`,
+}));
+
 export const _coursePosts = [...Array(12)].map((_, index) => ({
   ...base(index),
   content: content('course'),
