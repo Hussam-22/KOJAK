@@ -2,7 +2,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, Typography } from '@mui/material';
 
-import { _posts } from 'src/_mock';
+import { blogPosts } from 'src/_mock';
 
 import PostsMasonry from '../../blog/kojak/posts-masonry';
 
@@ -26,7 +26,7 @@ export default function BlogPostsView() {
               nemo? Eaque autem sed, officiis quam ipsum amet natus!
             </Typography>
           </Stack>
-          <PostsMasonry posts={_posts} />
+          <PostsMasonry posts={blogPosts} />
         </Grid>
       </Grid>
     </Container>

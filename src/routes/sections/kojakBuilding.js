@@ -2,11 +2,11 @@ import { lazy } from 'react';
 
 // ----------------------------------------------------------------------
 
-const KojakBuildingLandingPage = lazy(() => import('src/pages/kojak-building/landing'));
-const KojakBuildingSpacePage = lazy(() => import('src/pages/kojak-building/space'));
-const KojakBuildingAboutPage = lazy(() => import('src/pages/kojak-building/about'));
-const BlogPostsPage = lazy(() => import('src/pages/kojak-building/blog-posts-page'));
-const BlogItemPage = lazy(() => import('src/pages/kojak-building/blog-item-page'));
+const KojakBuildingLandingPage = lazy(() => import('src/pages/kojak/landing'));
+const KojakBuildingSpacePage = lazy(() => import('src/pages/kojak/space'));
+const KojakBuildingAboutPage = lazy(() => import('src/pages/kojak/about'));
+const BlogPostsPage = lazy(() => import('src/pages/kojak/blog-posts-page'));
+const BlogItemPage = lazy(() => import('src/pages/kojak/blog-item-page'));
 // const BlogPage = lazy(() => import('src/pages/career/posts'));
 // const ContactPage = lazy(() => import('src/pages/career/contact'));
 // const JobPage = lazy(() => import('src/pages/career/job'));

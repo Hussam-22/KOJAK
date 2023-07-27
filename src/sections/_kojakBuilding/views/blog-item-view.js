@@ -1,22 +1,25 @@
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { useState, useCallback } from 'react';
 
+import { Link } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Popover from '@mui/material/Popover';
 import Divider from '@mui/material/Divider';
-import Checkbox from '@mui/material/Checkbox';
+import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
-import Container from '@mui/material/Container';
+import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Unstable_Grid2';
-import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
-import { _posts, _socials } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { fDate } from 'src/utils/format-time';
 import Markdown from 'src/components/markdown';
+import Image from 'src/components/image/Image';
+import { _posts, _socials, blogPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 import PostTimeBlock from '../../blog/common/post-time-block';
@@ -25,9 +28,8 @@ import PostTimeBlock from '../../blog/common/post-time-block';
 
 export default function BlogItemView() {
   const { postTitle } = useParams();
-  const { title, description, duration, createdAt, favorited, author, tags, content } = _posts.find(
-    (post) => post.title.replaceAll(' ', '-') === postTitle
-  );
+  const { title, description, duration, createdAt, favorited, author, tags, content } =
+    blogPosts.find((post) => post.title.replaceAll(' ', '-') === postTitle);
 
   const [open, setOpen] = useState(null);
 
@@ -66,6 +68,9 @@ export default function BlogItemView() {
                 <Typography variant="subtitle2">{author.name}</Typography>
 
                 <PostTimeBlock createdAt={fDate(createdAt)} duration={duration} />
+                <Link href={author.url} underline="always" target="_blank">
+                  Visit Original Post
+                </Link>
               </Stack>
 
               <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
@@ -77,7 +82,11 @@ export default function BlogItemView() {
               {description}
             </Typography>
 
-            <Markdown content={content} firstLetter />
+            <Stack spacing={5}>
+              {content.map((contentItem, index) => (
+                <ContentMarkdown key={index} content={contentItem} postTitle={title} />
+              ))}
+            </Stack>
           </Grid>
         </Grid>
       </Container>
@@ -104,3 +113,33 @@ export default function BlogItemView() {
     </>
   );
 }
+
+function ContentMarkdown({ content, postTitle }) {
+  const { title, text, imageURL } = content;
+  return (
+    <Stack spacing={3}>
+      {title.length !== 0 && (
+        <Typography variant="h6" sx={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+          {title}
+        </Typography>
+      )}
+      {text.length !== 0 && (
+        <Typography variant="body1" sx={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+          {text}
+        </Typography>
+      )}
+      {imageURL.length !== 0 && (
+        <Image src={imageURL} alt="postTitle" ratio="4/3" sx={{ borderRadius: 1 }} />
+      )}
+    </Stack>
+  );
+}
+
+ContentMarkdown.propTypes = {
+  postTitle: PropTypes.string,
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    text: PropTypes.string,
+    imageURL: PropTypes.string,
+  }),
+};

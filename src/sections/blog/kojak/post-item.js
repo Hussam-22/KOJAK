@@ -99,13 +99,15 @@ PostItem.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
+    titleAr: PropTypes.string,
     coverUrl: PropTypes.string,
     duration: PropTypes.string,
     description: PropTypes.string,
-    createdAt: PropTypes.instanceOf(Date),
+    createdAt: PropTypes.string,
     author: PropTypes.shape({
       avatarUrl: PropTypes.string,
       name: PropTypes.string,
+      url: PropTypes.string,
     }),
   }),
 };

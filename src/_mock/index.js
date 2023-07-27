@@ -13,3 +13,4 @@ export * from './_courses';
 export * from './_products';
 export * from './_blog';
 export * from './_caseStudies';
+export * from './blogPosts';
