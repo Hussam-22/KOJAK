@@ -66,7 +66,7 @@ export const _mock = {
   // Image
   image: {
     cover: (index) => `/assets/images/cover/cover_${index + 1}.jpg`,
-    avatar: (index) => `/assets/images/avatar/avatar_${index + 1}.jpg`,
+    avatar: (index) => `/assets/images/avatar/avatar_${index + 1}.svg`,
     travel: (index) => `/assets/images/travel/travel_${index + 1}.jpg`,
     company: (index) => `/assets/images/company/company_${index + 1}.png`,
     product: (index) => `/assets/images/z_product/product_${index + 1}.png`,
