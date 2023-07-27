@@ -59,7 +59,7 @@ export default function WhatWeOffer() {
         <Grid container spacing={10}>
           <Grid xs={12} md={12}>
             <Stack spacing={2} id="scrollHere">
-              <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+              <Typography variant="h2" color="primary" sx={{ textTransform: 'capitalize' }}>
                 We offer a variety of residential and commercial spaces
               </Typography>
 
@@ -142,6 +142,7 @@ export default function WhatWeOffer() {
 
                   <Button
                     variant="contained"
+                    color="primary"
                     endIcon={<Iconify icon="iconamoon:send-duotone" />}
                     onClick={scrollToElement}
                   >

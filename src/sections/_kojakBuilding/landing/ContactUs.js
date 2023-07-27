@@ -18,6 +18,7 @@ import {
 import { _socials } from 'src/_mock';
 // components
 import Iconify from 'src/components/iconify';
+import Image from 'src/components/image/Image';
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
 // components
@@ -32,6 +33,7 @@ export default function ContactUs() {
       sx={{
         bgcolor: theme.palette.mode === 'light' ? 'secondary.main' : '',
         py: 8,
+        position: 'relative',
       }}
     >
       <Container maxWidth="xl">

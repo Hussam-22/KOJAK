@@ -17,7 +17,7 @@ const SUMMARY = [
   { name: 'Apartments', number: 220 },
   { name: 'Happy Tenants', number: 1192 },
   { name: 'Years of Experience', number: 22 },
-  { name: 'Total Leases processed', number: 1482 },
+  { name: 'Total Leases processed', number: 12482 },
 ];
 
 // ----------------------------------------------------------------------
@@ -42,8 +42,8 @@ export default function KojakBuildingLandingHero() {
         sx={{
           ...bgGradient({
             direction: '115deg',
-            startColor: `${alpha(theme.palette.primary.lighter, 0.15)} 30%`,
-            endColor: `${alpha(theme.palette.secondary.main, 0.1)} 70%`,
+            startColor: `${alpha(theme.palette.common.white, 0.15)} 30%`,
+            endColor: `${alpha(theme.palette.primary.lighter, 0.1)} 70%`,
           }),
           border: 'solid 2px #000000',
           width: { xs: '90vw' },
@@ -59,7 +59,7 @@ export default function KojakBuildingLandingHero() {
         <Grid container columnSpacing={{ xs: 0, md: 10 }}>
           <Grid
             xs={12}
-            md={6}
+            md={5}
             sx={{
               textAlign: { xs: 'center', md: 'left' },
               px: { md: 8 },
@@ -69,15 +69,12 @@ export default function KojakBuildingLandingHero() {
               Looking for residential or commercial space ?
             </Typography>
 
-            <Typography variant="h1" sx={{ my: 3, textTransform: 'capitalize' }}>
+            <Typography variant="h1" sx={{ mb: 3, textTransform: 'capitalize' }}>
               Find Your Perfect Space for Living or Business Thriving with{' '}
               <Box
                 component="span"
                 sx={{
-                  color: 'common.white',
-                  backgroundColor: 'primary.main',
-                  px: 1.5,
-                  borderRadius: 1.25,
+                  color: 'primary.main',
                 }}
               >
                 KOJAK!
@@ -95,14 +92,14 @@ export default function KojakBuildingLandingHero() {
               justifyContent={{ xs: 'center', md: 'unset' }}
               sx={{ mt: 5 }}
             >
-              <Button variant="contained" color="secondary" size="large" onClick={scrollToElement}>
+              <Button variant="contained" color="primary" size="large" onClick={scrollToElement}>
                 Explore Available Spaces
               </Button>
             </Stack>
           </Grid>
 
           {mdUp && (
-            <Grid xs={12} md={6}>
+            <Grid xs={12} md={7}>
               <Image
                 visibleByDefault
                 disabledEffect

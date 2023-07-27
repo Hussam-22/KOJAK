@@ -61,79 +61,74 @@ export default function FAQs() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box sx={{ bgcolor: 'background.peach' }}>
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
           pb: { xs: 10, md: 15 },
         }}
-        maxWidth="xl"
       >
-        <Grid container spacing={10} justifyContent="space-between" alignItems="center">
-          <Grid xs={12} md={7}>
-            <Stack spacing={2} sx={{ mb: 5, textAlign: { xs: 'center', md: 'left' } }}>
-              <Typography variant="overline" color="text.disabled">
-                Find Answers to Your Space-Hunting Queries
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ mb: 5, textAlign: 'center', alignItems: 'center' }}
+        >
+          <Box>
+            <Typography variant="overline" color="text.disabled">
+              Find Answers to Your Space-Hunting Queries
+            </Typography>
+
+            <Typography variant="h2">Frequently Asked Questions</Typography>
+            <Typography sx={{ textAlign: 'center' }}>
+              Our FAQ section is where we address common questions and provide helpful answers.
+              We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
+              you&#39;ll find information on various topics to assist you in getting the answers you
+              need.
+            </Typography>
+          </Box>
+
+          <Box sx={{ textAlign: 'center', width: 1 }}>
+            <Image
+              alt="faqs"
+              src="/assets/kojak-building/illustration/Question_Flatline.svg"
+              // ratio="16/9"
+            />
+          </Box>
+        </Stack>
+
+        {FAQ.map((faq, index) => (
+          <Accordion
+            key={index}
+            expanded={expanded === faq.question}
+            onChange={handleChangeExpanded(faq.question)}
+            sx={{ '&:before': { backgroundColor: 'unset' } }}
+          >
+            <AccordionSummary
+              sx={{
+                // ...bgGradient({
+                //   direction: '115deg',
+                //   startColor: `${alpha(theme.palette.common.white, 1)} 30%`,
+                //   endColor: `${alpha(theme.palette.primary.lighter, 0.9)} 120%`,
+                // }),
+                backgroundColor: 'common.white',
+                mb: 2,
+                px: 2,
+                borderRadius: 1,
+              }}
+            >
+              <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                {faq.question}
               </Typography>
 
-              <Typography variant="h2">Frequently Asked Questions</Typography>
-              <Typography sx={{ textAlign: { md: 'left', xs: 'center' } }}>
-                Our FAQ section is where we address common questions and provide helpful answers.
-                We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
-                you&#39;ll find information on various topics to assist you in getting the answers
-                you need.
-              </Typography>
-            </Stack>
-
-            {FAQ.map((faq, index) => (
-              <Accordion
-                key={index}
-                expanded={expanded === faq.question}
-                onChange={handleChangeExpanded(faq.question)}
-                sx={{ '&:before': { backgroundColor: 'unset' } }}
-              >
-                <AccordionSummary
-                  sx={{
-                    ...bgGradient({
-                      direction: '115deg',
-                      startColor: `${alpha(theme.palette.primary.light, 0)} 20%`,
-                      endColor: `${alpha(theme.palette.secondary.main, 0.05)} 60%`,
-                    }),
-                    mb: 2,
-                    px: 2,
-                    borderRadius: 1,
-                  }}
-                >
-                  <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                    {faq.question}
-                  </Typography>
-
-                  <Iconify
-                    width={24}
-                    icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-                  />
-                </AccordionSummary>
-
-                <AccordionDetails>{faq.answer}</AccordionDetails>
-              </Accordion>
-            ))}
-          </Grid>
-
-          {mdUp && (
-            <Grid xs={12} md={5}>
-              <Image
-                alt="faqs"
-                src="https://images.pexels.com/photos/7731326/pexels-photo-7731326.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                ratio="3/4"
-                sx={{
-                  borderRadius: 2,
-                  outline: `0.5rem solid ${theme.palette.secondary.main}`,
-                  outlineOffset: '0.25rem',
-                }}
+              <Iconify
+                width={24}
+                icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
               />
-            </Grid>
-          )}
-        </Grid>
+            </AccordionSummary>
+
+            <AccordionDetails>{faq.answer}</AccordionDetails>
+          </Accordion>
+        ))}
       </Container>
     </Box>
   );

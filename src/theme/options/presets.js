@@ -121,12 +121,12 @@ export const presetOptions = [
   {
     name: 'preset04',
     primary: {
-      lighter: '#FFFFF0',
-      light: '#FFFF8F',
-      main: '#FFD700',
-      dark: '#FFC000',
-      darker: '#DAA520',
-      contrastText: '#000000',
+      lighter: '#D0FCE0',
+      light: '#72F2B9',
+      main: '#1AD5A6',
+      dark: '#0D9991',
+      darker: '#045966',
+      contrastText: palette.grey[800],
     },
     secondary: {
       lighter: '#333333',
