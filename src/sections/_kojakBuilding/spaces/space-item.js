@@ -23,18 +23,19 @@ export default function SpaceItem({ space }) {
   const {
     id,
     buildingName,
+    city,
     location,
     rent,
     rentSale,
     listingDate,
     coverImgID,
+    type,
+    isAvailable,
     features: { bedrooms, bathrooms, area },
   } = space;
   const navigate = useNavigate();
   const [coverImgURL, setCoverImgURL] = useState('');
   const { fsGetImgDownloadUrl } = useAuthContext();
-
-  console.log(bedrooms);
 
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
 
@@ -86,21 +87,35 @@ export default function SpaceItem({ space }) {
               {fCurrency(rentSale)}
             </Box>
           )}
-          {fCurrency(rent)}
+          {isAvailable ? fCurrency(rent) : 'Not Available'}
         </Stack>
       </Stack>
 
-      <Image alt={buildingName} src={coverImgURL} ratio="4/3" />
+      <Image
+        alt={buildingName}
+        src={coverImgURL}
+        ratio="4/3"
+        sx={{ filter: !isAvailable && 'grayscale(1) blur(3px)' }}
+      />
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {location}
+          {`${city} - ${location}`}
         </Typography>
 
         <Link component={RouterLink} href={paths.building.spaceView + id} color="inherit">
-          <Typography variant="h6">
-            {bedrooms !== 0 ? `${bedrooms} Bedroom - ${buildingName}` : buildingName}
-          </Typography>
+          {type === 'commercial' && (
+            <Typography variant="h6" sx={{ textDecoration: 'underline' }}>
+              {`Office Space - ${buildingName}`}
+            </Typography>
+          )}
+          {type === 'residential' && (
+            <Typography variant="h6" sx={{ textDecoration: 'underline' }}>
+              {bedrooms === 0
+                ? `Studio - ${buildingName}`
+                : `${bedrooms} Bedroom - ${buildingName}`}
+            </Typography>
+          )}
         </Link>
 
         <Stack
@@ -114,10 +129,19 @@ export default function SpaceItem({ space }) {
             {area}
           </Box>
 
-          <Box sx={{ alignItems: 'center' }}>
-            <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mr: 1 }} />
-            {bedrooms === 0 ? 'N/A' : `${bedrooms}`}
-          </Box>
+          {type === 'residential' && (
+            <Box sx={{ alignItems: 'center' }}>
+              <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mr: 1 }} />
+              {bedrooms === 0 ? 'Studio' : `${bedrooms}`}
+            </Box>
+          )}
+
+          {type === 'commercial' && (
+            <Box sx={{ alignItems: 'center' }}>
+              <Iconify icon="ph:office-chair-duotone" width={18} sx={{ mr: 1 }} />
+              Office Space
+            </Box>
+          )}
 
           <Box sx={{ alignItems: 'center' }}>
             <Iconify icon="cil:shower" width={18} sx={{ mr: 1 }} />
@@ -158,9 +182,12 @@ SpaceItem.propTypes = {
     coverImgID: PropTypes.string,
     listingDate: PropTypes.object,
     location: PropTypes.string,
+    city: PropTypes.string,
     rent: PropTypes.number,
     rentSale: PropTypes.number,
     buildingName: PropTypes.string,
+    type: PropTypes.string,
+    isAvailable: PropTypes.bool,
 
     features: PropTypes.shape({
       bedrooms: PropTypes.number,

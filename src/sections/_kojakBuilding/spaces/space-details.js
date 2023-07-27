@@ -17,37 +17,6 @@ import SpaceDetailsSummary from 'src/sections/_kojakBuilding/spaces/details/spac
 import SpaceDetailsContactCard from 'src/sections/_kojakBuilding/spaces/details/space-details-contact-card';
 import SpaceDetailsContactForm from 'src/sections/_kojakBuilding/spaces/details/space-details-contact-form';
 
-const _mockTour = _tours[0];
-
-// const _mockSpace = {
-//   id: 'space-1',
-//   type: 'Residential',
-//   rent: 33000,
-//   listingDate: new Date().toDateString(),
-//   city: 'Sharjah',
-//   location: 'Al Qasemeyah',
-//   buildingName: 'Kojak Tower',
-//   contactDetails: { fullName: 'Mohamed', mobile: '050-1234567', email: 'mohamed@kojak-group.com' },
-//   features: {
-//     area: '1250 sqft',
-//     bedrooms: 3,
-//     bathrooms: 3,
-//     ac: 'Central AC',
-//     parking: 0,
-//     cctv: true,
-//     security: true,
-//     healthClub: false,
-//     chequesNo: 6,
-//   },
-//   gallery: [
-//     'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F0_800x800.webp?alt=media&token=c0c61571-7806-445f-88b7-1bb1fccf1e1e',
-//     'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F14_800x800.webp?alt=media&token=d820708b-4559-4d74-a162-48920a877d13',
-//     'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//     'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=1600',
-//   ],
-// };
-
 export default function SpaceDetails() {
   const { spaceId } = useParams();
   const loading = useBoolean(true);
@@ -55,8 +24,6 @@ export default function SpaceDetails() {
   const [galleryURLs, setGalleryURLs] = useState([]);
 
   const { fsGetImgDownloadUrl, getSpaceInfo } = useAuthContext();
-
-  console.log(spaceInfo);
 
   useEffect(() => {
     (async () => {
@@ -109,7 +76,7 @@ export default function SpaceDetails() {
 
             <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-            <SpaceDetailsSummary spaceFeatures={spaceInfo.features} />
+            <SpaceDetailsSummary spaceFeatures={spaceInfo.features} type={spaceInfo.type} />
           </Grid>
         </Grid>
       )}

@@ -13,89 +13,13 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
 
 // ----------------------------------------------------------------------
-
-const RESIDENTIAL = [
-  {
-    id: 'R1001-3',
-    coverImgID: 0,
-    gallery: [
-      'https://images.pexels.com/photos/322154/pexels-photo-322154.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 33000,
-    bed: 3,
-    bath: 3,
-    size: '1200 sqft',
-    location: 'Sharjah - Al Qasimeyah',
-    datePosted: new Date().toDateString(),
-    slug: 'The ACE Tower',
-  },
-  {
-    id: 'R1001-2',
-    gallery: [
-      'https://images.pexels.com/photos/1717272/pexels-photo-1717272.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 29000,
-    bed: 2,
-    bath: 2,
-    size: '1000 sqft',
-    location: 'Dubai - Motor City',
-    datePosted: new Date().toDateString(),
-    slug: 'The White Tower',
-  },
-  {
-    id: 'R1001-1',
-    gallery: [
-      'https://images.pexels.com/photos/1031593/pexels-photo-1031593.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 25000,
-    bed: 1,
-    bath: 1,
-    size: '800 sqft',
-    location: 'Sharjah - Taawoun',
-    datePosted: new Date().toDateString(),
-    slug: 'The Address Tower',
-  },
-];
-
-const COMMERCIAL = [
-  {
-    id: 'C-1',
-    gallery: [
-      'https://images.pexels.com/photos/434139/pexels-photo-434139.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-      'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
-    ],
-    rent: 33000,
-    bed: 3,
-    bath: 3,
-    size: '1200 sqft',
-    location: 'Sharjah - Al Qasimeyah',
-    datePosted: new Date().toDateString(),
-    slug: '3 Bedroom - The ACE Tower',
-  },
-];
-// ----------------------------------------------------------------------
 export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const [spaces, setSpaces] = useState([]);
   const { getAllSpacesInfo, addNewSpace } = useAuthContext();
 
-  // const addListing = () => addNewSpace();
+  const addListing = () => addNewSpace();
 
   const scrollToElement = () => {
     document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
@@ -163,7 +87,7 @@ export default function WhatWeOffer() {
                 gridTemplateColumns: {
                   xs: 'repeat(1, 1fr)',
                   sm: 'repeat(2, 1fr)',
-                  md: 'repeat(3, 1fr)',
+                  md: 'repeat(4, 1fr)',
                 },
               }}
             >

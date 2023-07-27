@@ -9,7 +9,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceDetailsSummary({ spaceFeatures }) {
+export default function SpaceDetailsSummary({ spaceFeatures, type }) {
   const { area, bedrooms, bathrooms, ac, parking, cctv, security, healthClub, chequesNo } =
     spaceFeatures;
 
@@ -30,11 +30,17 @@ export default function SpaceDetailsSummary({ spaceFeatures }) {
         >
           <OverviewItem icon="tabler:ruler-measure" label="Area" text={`${area} sqft`} />
 
-          <OverviewItem
-            icon="carbon:floorplan"
-            label="Bedrooms"
-            text={bedrooms === 0 ? 'N/A' : `${bedrooms}`}
-          />
+          {type === 'residential' && (
+            <OverviewItem
+              icon="carbon:floorplan"
+              label="Bedrooms"
+              text={bedrooms === 0 ? 'Studio' : `${bedrooms}`}
+            />
+          )}
+
+          {type === 'commercial' && (
+            <OverviewItem icon="carbon:floorplan" label="Office Space" text="Office Space" />
+          )}
 
           <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
 
@@ -135,6 +141,7 @@ export default function SpaceDetailsSummary({ spaceFeatures }) {
 }
 
 SpaceDetailsSummary.propTypes = {
+  type: PropTypes.string,
   spaceFeatures: PropTypes.shape({
     area: PropTypes.string,
     bedrooms: PropTypes.number,

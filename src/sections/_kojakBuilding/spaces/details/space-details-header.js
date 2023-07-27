@@ -10,13 +10,25 @@ import { fCurrency } from 'src/utils/format-number';
 // ----------------------------------------------------------------------
 
 export default function SpaceDetailsHeader({ spaceInfo }) {
-  const { id, type, rent, city, location, buildingName, listingDate } = spaceInfo;
+  const {
+    id,
+    type,
+    rent,
+    city,
+    location,
+    buildingName,
+    listingDate,
+    isAvailable,
+    features: { bedrooms },
+  } = spaceInfo;
 
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
 
   return (
     <>
-      <Typography variant="caption">{type}</Typography>
+      <Typography variant="caption" sx={{ textTransform: 'capitalize' }}>
+        {type}
+      </Typography>
       <Stack
         spacing={3}
         direction="row"
@@ -24,9 +36,16 @@ export default function SpaceDetailsHeader({ spaceInfo }) {
           mb: 2,
         }}
       >
-        <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-          {buildingName}
-        </Typography>
+        {type === 'commercial' && (
+          <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+            {`Office Space - ${buildingName}`}
+          </Typography>
+        )}
+        {type === 'residential' && (
+          <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+            {bedrooms === 0 ? `Studio - ${buildingName}` : `${bedrooms} Bedroom - ${buildingName}`}
+          </Typography>
+        )}
 
         {/* <Stack direction="row" alignItems="center" flexShrink={0}>
           <Iconify icon="carbon:share" />
@@ -37,7 +56,8 @@ export default function SpaceDetailsHeader({ spaceInfo }) {
         <Stack spacing={0.5} direction="row" alignItems="center">
           <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
-          <Box sx={{ typography: 'h6' }}>{fCurrency(rent)}</Box>
+          {isAvailable && <Box sx={{ typography: 'h6' }}>{fCurrency(rent)}</Box>}
+          {!isAvailable && <Box sx={{ typography: 'h6' }}>Not Available</Box>}
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
@@ -61,5 +81,12 @@ SpaceDetailsHeader.propTypes = {
     location: PropTypes.string,
     buildingName: PropTypes.string,
     listingDate: PropTypes.object,
+    isAvailable: PropTypes.bool,
+
+    features: PropTypes.shape({
+      bedrooms: PropTypes.number,
+      bathrooms: PropTypes.number,
+      area: PropTypes.string,
+    }),
   }),
 };
