@@ -51,7 +51,7 @@ export default function PostItem({ post, index }) {
 
         <Link
           component={RouterLink}
-          href={paths.building.blogItem + post.title.replaceAll(' ', '-')}
+          href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
           variant="h5"
           sx={{

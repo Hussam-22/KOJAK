@@ -11,19 +11,23 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceContactForm({ spaceInfo }) {
-  const { addNewFromCallbackSubmit } = useAuthContext();
+export default function ContactUsForm() {
+  const { addNewFormGeneralSubmit } = useAuthContext();
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string().required('Mobile number is required'),
     email: Yup.string().email('That is not an email'),
+    subject: Yup.string().required('That is not an email'),
+    message: Yup.string().required('That is not an email'),
   });
 
   const defaultValues = {
     fullName: '',
     mobile: '',
     email: '',
+    subject: '',
+    message: '',
   };
 
   const methods = useForm({
@@ -39,9 +43,7 @@ export default function SpaceContactForm({ spaceInfo }) {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      const dataToSend = Object.entries({ ...formData, building: spaceInfo.buildingName })
-        .join('\r\n')
-        .replaceAll(',', ': ');
+      const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
       const url =
         'https://hooks.slack.com/services/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';
 
@@ -51,6 +53,7 @@ export default function SpaceContactForm({ spaceInfo }) {
         credentials: 'omit', // This is equivalent to withCredentials: false in Axios
       };
 
+      // Add Form Submit to Slack Channel
       const response = await fetch(url, requestOptions);
 
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
@@ -58,7 +61,7 @@ export default function SpaceContactForm({ spaceInfo }) {
       //   transformRequest: [(data, Headers) => data],
       // });
 
-      await addNewFromCallbackSubmit(formData);
+      await addNewFormGeneralSubmit(formData);
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
     } catch (error) {
@@ -67,36 +70,56 @@ export default function SpaceContactForm({ spaceInfo }) {
   });
 
   return (
-    <Card sx={{ p: 3 }}>
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        Request a Callback
-      </Typography>
+    <>
+      <Stack
+        spacing={2}
+        sx={{
+          mb: 5,
+          textAlign: { xs: 'center', md: 'left' },
+        }}
+      >
+        <Typography
+          variant="h2"
+          sx={{ textAlign: { xs: 'center', md: 'left' }, color: 'common.black' }}
+        >
+          Contact Us
+        </Typography>
+        <Typography sx={{ color: 'common.black', textAlign: { md: 'left', xs: 'center' } }}>
+          We&#39;re here to assist you. If you have any questions, feedback, or need support, please
+          don&#39;t hesitate to reach out to us. Our dedicated team is ready to help you in any way
+          we can.
+        </Typography>
+      </Stack>
 
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        <Stack spacing={2.5}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2.5} alignItems="flex-start">
           <RHFTextField name="fullName" label="Full name" />
 
-          <RHFTextField name="mobile" label="Mobile" />
+          <RHFTextField name="mobile" label="Contact Number" type="number" />
 
           <RHFTextField name="email" label="Email" />
 
-          <Stack alignItems="center" width={1}>
-            <LoadingButton
-              size="large"
-              type="submit"
-              variant="contained"
-              color="secondary"
-              loading={isSubmitting}
-            >
-              Request Callback
-            </LoadingButton>
-          </Stack>
+          <RHFTextField name="subject" label="Subject" />
+
+          <RHFTextField name="message" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
+
+          <LoadingButton
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isSubmitting}
+            sx={{
+              mx: { xs: 'auto !important', md: 'unset !important' },
+            }}
+          >
+            Send Request
+          </LoadingButton>
         </Stack>
       </FormProvider>
-    </Card>
+    </>
   );
 }
 
-SpaceContactForm.propTypes = {
-  spaceInfo: PropTypes.object,
-};
+// ContactUsForm.propTypes = {
+//   spaceInfo: PropTypes.object,
+// };

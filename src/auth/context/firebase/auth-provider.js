@@ -207,38 +207,40 @@ export function AuthProvider({ children }) {
 
   // add new space
   const addNewSpace = useCallback(async () => {
-    await setDoc(doc(DB, '/websites/building/spaces/', 'C1002-1'), {
-      rent: 12000,
-      id: 'C1002-1',
-      location: 'Industrial Area 9',
+    const data = await setDoc(doc(DB, '/websites/building/spaces/', 'C1001-3'), {
+      type: 'commercial'.toLowerCase(),
+      id: 'C1001-3',
+      bucketID: 'C1001-1',
+      city: 'Dubai',
+      location: 'Motor City',
+      buildingName: 'Kojak Building - Ground Floor - Option 3',
+      rent: 88000,
+      rentSale: 0,
+      coverImgID: '2',
+      imagesIDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      isAvailable: false,
       features: {
-        bathrooms: 12,
+        bathrooms: 3,
         healthClub: false,
         security: true,
-        chequesNo: 12,
+        chequesNo: 4,
         cctv: true,
-        parking: 0,
-        bedrooms: 26,
-        area: '15700',
-        ac: 'Split',
+        parking: 100,
+        bedrooms: 0,
+        area: '5000',
+        ac: 'Ducted',
       },
-      buildingName: 'Kojak Labor Camp',
-      rentSale: 0,
-      coverImgID: '0',
-      imagesIDs: ['0', '1', '2', '3', '4'],
-      isAvailable: false,
-      city: 'Sharjah',
       contactDetails: {
         email: 'mohamed@kojak-group.com',
         mobile: '0501234567',
         fullName: 'Mohamed',
       },
-      type: 'commercial',
       listingDate: {
         seconds: 1690400112,
         nanoseconds: 896000000,
       },
     });
+    return data;
   }, []);
 
   // add new request-callback form
@@ -250,6 +252,31 @@ export function AuthProvider({ children }) {
       ...payload,
       id: newDocRef.id,
       createdAt: dateTime,
+      to: 'hussam@hotmail.co.uk',
+      message: {
+        subject: 'Hello from firebase',
+        text: 'this is some random text',
+        html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
+      },
+    });
+    return newDocRef.id;
+  }, []);
+
+  // add new request-callback form
+  const addNewFormGeneralSubmit = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/building/form-general/`));
+    const date = new Date();
+    const dateTime = date.toDateString();
+    setDoc(newDocRef, {
+      ...payload,
+      id: newDocRef.id,
+      createdAt: dateTime,
+      to: 'hussam.alkhudari@gmail.com',
+      message: {
+        subject: 'Hello from firebase',
+        text: 'this is some random text',
+        html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
+      },
     });
     return newDocRef.id;
   }, []);
@@ -290,6 +317,7 @@ export function AuthProvider({ children }) {
       getSpaceInfo,
       addNewSpace,
       addNewFromCallbackSubmit,
+      addNewFormGeneralSubmit,
       fsGetImgDownloadUrl,
     }),
     [
@@ -309,6 +337,7 @@ export function AuthProvider({ children }) {
       getSpaceInfo,
       addNewSpace,
       addNewFromCallbackSubmit,
+      addNewFormGeneralSubmit,
       fsGetImgDownloadUrl,
     ]
   );

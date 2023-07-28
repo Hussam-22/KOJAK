@@ -4,7 +4,7 @@ import { Card, Stack, Typography } from '@mui/material';
 
 import Iconify from 'src/components/iconify/Iconify';
 
-export default function SpaceDetailsContactCard({ contactInfo }) {
+export default function PropertyDetailsContactCard({ contactInfo }) {
   const { fullName, mobile, email } = contactInfo;
   return (
     <Card sx={{ p: 3 }}>
@@ -29,7 +29,7 @@ export default function SpaceDetailsContactCard({ contactInfo }) {
   );
 }
 
-SpaceDetailsContactCard.propTypes = {
+PropertyDetailsContactCard.propTypes = {
   contactInfo: PropTypes.shape({
     fullName: PropTypes.string,
     mobile: PropTypes.string,

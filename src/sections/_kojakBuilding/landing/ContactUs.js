@@ -23,6 +23,7 @@ import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 // components
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
 
 export default function ContactUs() {
   const theme = useTheme();
@@ -44,7 +45,7 @@ export default function ContactUs() {
           sx={{ p: isMdUp ? 3 : 1 }}
         >
           <Grid xs={12} md={7} sx={{ bgcolor: 'common.white', borderRadius: 2 }} id="scrollToForm">
-            <ContactKojakForm />
+            <ContactUsForm />
           </Grid>
 
           <Grid

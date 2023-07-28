@@ -2,11 +2,12 @@
 
 export const paths = {
   // Building
-  building: {
+  website: {
     root: '/',
     about: '/about',
     contactUs: '/contact-us',
-    spaceView: '/space-view/',
+    properties: '/properties',
+    propertyDetails: '/properties/',
     blogPosts: '/blog-posts',
     blogItem: '/blog-posts/',
   },

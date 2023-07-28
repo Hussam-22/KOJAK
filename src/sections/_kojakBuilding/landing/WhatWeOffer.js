@@ -10,7 +10,7 @@ import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import SpaceItem from 'src/sections/_kojakBuilding/spaces/space-item';
+import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
 
 // ----------------------------------------------------------------------
 export default function WhatWeOffer() {
@@ -19,7 +19,12 @@ export default function WhatWeOffer() {
   const [spaces, setSpaces] = useState([]);
   const { getAllSpacesInfo, addNewSpace } = useAuthContext();
 
-  const addListing = () => addNewSpace();
+  console.log(spaces);
+
+  const addListing = async () => {
+    const data = await addNewSpace();
+    console.log(data);
+  };
 
   const scrollToElement = () => {
     document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
@@ -32,12 +37,12 @@ export default function WhatWeOffer() {
   }, [getAllSpacesInfo]);
 
   const commercialSpaces = useCallback(
-    () => spaces.filter((space) => space.type === 'commercial'),
+    () => spaces.filter((space) => space.type.toLowerCase() === 'commercial'),
     [spaces]
   );
 
   const residentialSpaces = useCallback(
-    () => spaces.filter((space) => space.type === 'residential'),
+    () => spaces.filter((space) => space.type.toLowerCase() === 'residential'),
     [spaces]
   );
 
@@ -92,7 +97,7 @@ export default function WhatWeOffer() {
               }}
             >
               {spaces.length !== 0 &&
-                residentialSpaces().map((space) => <SpaceItem key={space.id} space={space} />)}
+                residentialSpaces().map((space) => <PropertyCard key={space.id} space={space} />)}
             </Box>
           </Grid>
 
@@ -112,7 +117,7 @@ export default function WhatWeOffer() {
               }}
             >
               {spaces.length !== 0 &&
-                commercialSpaces().map((space) => <SpaceItem key={space.id} space={space} />)}
+                commercialSpaces().map((space) => <PropertyCard key={space.id} space={space} />)}
             </Box>
           </Grid>
 
@@ -132,13 +137,13 @@ export default function WhatWeOffer() {
               <Stack direction="column">
                 <Typography variant="h3">Did not find what you are looking for ?</Typography>
                 <Box>
-                  {/* <Button
+                  <Button
                     variant="contained"
                     endIcon={<Iconify icon="iconamoon:send-duotone" />}
                     onClick={addListing}
                   >
                     Add Listing
-                  </Button> */}
+                  </Button>
 
                   <Button
                     variant="contained"

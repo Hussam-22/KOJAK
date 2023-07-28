@@ -9,7 +9,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceDetailsSummary({ spaceFeatures, type }) {
+export default function PropertyDetailsSummary({ spaceFeatures, type }) {
   const { area, bedrooms, bathrooms, ac, parking, cctv, security, healthClub, chequesNo } =
     spaceFeatures;
 
@@ -140,7 +140,7 @@ export default function SpaceDetailsSummary({ spaceFeatures, type }) {
   );
 }
 
-SpaceDetailsSummary.propTypes = {
+PropertyDetailsSummary.propTypes = {
   type: PropTypes.string,
   spaceFeatures: PropTypes.shape({
     area: PropTypes.string,

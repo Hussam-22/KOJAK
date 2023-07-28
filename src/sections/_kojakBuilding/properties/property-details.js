@@ -3,22 +3,22 @@ import { useState, useEffect, useCallback } from 'react';
 
 import { Stack } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 
 import { _tours } from 'src/_mock';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import SpaceDetailsHeader from 'src/sections/_kojakBuilding/spaces/details/space-details-header';
-import SpaceDetailsGallery from 'src/sections/_kojakBuilding/spaces/details/space-details-gallery';
-import SpaceDetailsSummary from 'src/sections/_kojakBuilding/spaces/details/space-details-summary';
-import SpaceDetailsContactCard from 'src/sections/_kojakBuilding/spaces/details/space-details-contact-card';
-import SpaceDetailsContactForm from 'src/sections/_kojakBuilding/spaces/details/space-details-contact-form';
+import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
+import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
+import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/details/property-details-gallery';
+import PropertyDetailsContactForm from 'src/sections/_kojakBuilding/properties/details/property-details-contact-form';
+import PropertyDetailsContactCard from 'src/sections/_kojakBuilding/properties/details/property-details-contact-card';
 
-export default function SpaceDetails() {
-  const { spaceId } = useParams();
+export default function PropertyDetails() {
+  const { propertyID } = useParams();
   const loading = useBoolean(true);
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
@@ -27,19 +27,21 @@ export default function SpaceDetails() {
 
   useEffect(() => {
     (async () => {
-      setSpaceInfo(await getSpaceInfo(spaceId));
+      setSpaceInfo(await getSpaceInfo(propertyID));
     })();
-  }, [getSpaceInfo, spaceId]);
+  }, [getSpaceInfo, propertyID]);
 
   useEffect(() => {
     if (spaceInfo.imagesIDs && spaceInfo?.imagesIDs?.length !== 0) {
       (async () => {
         setGalleryURLs(
-          await Promise.all(spaceInfo.imagesIDs.map((id) => fsGetImgDownloadUrl(spaceId, id)))
+          await Promise.all(
+            spaceInfo.imagesIDs.map((imgID) => fsGetImgDownloadUrl(spaceInfo.bucketID, imgID))
+          )
         );
       })();
     }
-  }, [spaceInfo, fsGetImgDownloadUrl, getSpaceInfo, spaceInfo.imagesIDs, spaceId]);
+  }, [spaceInfo, fsGetImgDownloadUrl, getSpaceInfo, spaceInfo.imagesIDs, propertyID]);
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -60,23 +62,23 @@ export default function SpaceDetails() {
         sx={{ mt: 3, mb: 5 }}
       />
 
-      {galleryURLs.length !== 0 && <SpaceDetailsGallery images={galleryURLs} />}
+      {galleryURLs.length !== 0 && <PropertyDetailsGallery images={galleryURLs} />}
 
       {spaceInfo.id && (
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
           <Grid xs={12} md={5} lg={4}>
             <Stack spacing={3}>
-              <SpaceDetailsContactCard contactInfo={spaceInfo.contactDetails} />
-              <SpaceDetailsContactForm spaceInfo={spaceInfo} />
+              <PropertyDetailsContactCard contactInfo={spaceInfo.contactDetails} />
+              <PropertyDetailsContactForm spaceInfo={spaceInfo} />
             </Stack>
           </Grid>
 
           <Grid xs={12} md={7} lg={8} sx={{ mb: 4 }}>
-            <SpaceDetailsHeader spaceInfo={spaceInfo} />
+            <PropertyDetailsHeader spaceInfo={spaceInfo} />
 
             <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-            <SpaceDetailsSummary spaceFeatures={spaceInfo.features} type={spaceInfo.type} />
+            <PropertyDetailsSummary spaceFeatures={spaceInfo.features} type={spaceInfo.type} />
           </Grid>
         </Grid>
       )}

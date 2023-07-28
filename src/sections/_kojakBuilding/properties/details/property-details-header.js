@@ -9,7 +9,7 @@ import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceDetailsHeader({ spaceInfo }) {
+export default function PropertyDetailsHeader({ spaceInfo }) {
   const {
     id,
     type,
@@ -72,7 +72,7 @@ export default function SpaceDetailsHeader({ spaceInfo }) {
   );
 }
 
-SpaceDetailsHeader.propTypes = {
+PropertyDetailsHeader.propTypes = {
   spaceInfo: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,

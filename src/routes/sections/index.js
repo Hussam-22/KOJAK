@@ -13,7 +13,7 @@ import { marketingRoutes } from './marketing';
 import { eLearningRoutes } from './elearning';
 import { eCommerceRoutes } from './ecommerce';
 import { componentsRoutes } from './components';
-import { kojakBuildingRoutes } from './kojakBuilding';
+import { _websiteRouts } from './_websiteRouts';
 
 // ----------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ export default function Router() {
 
         ...componentsRoutes,
 
-        ...kojakBuildingRoutes,
+        ..._websiteRouts,
       ],
     },
 

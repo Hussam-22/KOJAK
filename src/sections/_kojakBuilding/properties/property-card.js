@@ -19,9 +19,10 @@ import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceItem({ space }) {
+export default function PropertyCard({ space }) {
   const {
     id,
+    bucketID,
     buildingName,
     city,
     location,
@@ -41,12 +42,12 @@ export default function SpaceItem({ space }) {
 
   useEffect(() => {
     (async () => {
-      setCoverImgURL(await fsGetImgDownloadUrl(id, coverImgID));
+      setCoverImgURL(await fsGetImgDownloadUrl(bucketID, coverImgID));
     })();
-  }, [coverImgID, fsGetImgDownloadUrl, id]);
+  }, [coverImgID, fsGetImgDownloadUrl, bucketID]);
 
   const openSpaceCard = () => {
-    navigate(paths.building.spaceView + id);
+    navigate(paths.website.propertyDetails + id);
   };
 
   return (
@@ -103,7 +104,7 @@ export default function SpaceItem({ space }) {
           {`${city} - ${location}`}
         </Typography>
 
-        <Link component={RouterLink} href={paths.building.spaceView + id} color="inherit">
+        <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
           {type === 'commercial' && (
             <Typography variant="h6" sx={{ textDecoration: 'underline' }}>
               {`Office Space - ${buildingName}`}
@@ -176,9 +177,10 @@ export default function SpaceItem({ space }) {
   );
 }
 
-SpaceItem.propTypes = {
+PropertyCard.propTypes = {
   space: PropTypes.shape({
     id: PropTypes.string,
+    bucketID: PropTypes.string,
     coverImgID: PropTypes.string,
     listingDate: PropTypes.object,
     location: PropTypes.string,

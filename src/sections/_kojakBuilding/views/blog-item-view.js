@@ -51,7 +51,7 @@ export default function BlogItemView() {
             <CustomBreadcrumbs
               links={[
                 { name: 'Home', href: '/' },
-                { name: 'Blog', href: paths.building.blogPosts },
+                { name: 'Blog', href: paths.website.blogPosts },
                 { name: title },
               ]}
               sx={{ my: 5 }}

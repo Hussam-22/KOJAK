@@ -15,7 +15,7 @@ import PostTimeBlock from '../common/post-time-block';
 
 // ----------------------------------------------------------------------
 
-export default function BuildingLatestPostItem({ post, order, largePost }) {
+export default function LatestPostItem({ post, order, largePost }) {
   const theme = useTheme();
 
   return (
@@ -68,7 +68,7 @@ export default function BuildingLatestPostItem({ post, order, largePost }) {
 
         <Link
           component={RouterLink}
-          href={paths.building.blogItem + post.title.replaceAll(' ', '-')}
+          href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
         >
           <TextMaxLine variant={largePost ? 'h3' : 'h6'}>{post.title}</TextMaxLine>
@@ -80,7 +80,7 @@ export default function BuildingLatestPostItem({ post, order, largePost }) {
   );
 }
 
-BuildingLatestPostItem.propTypes = {
+LatestPostItem.propTypes = {
   order: PropTypes.number,
   largePost: PropTypes.bool,
   post: PropTypes.shape({
@@ -88,6 +88,6 @@ BuildingLatestPostItem.propTypes = {
     coverUrl: PropTypes.string,
     duration: PropTypes.string,
     description: PropTypes.string,
-    createdAt: PropTypes.instanceOf(Date),
+    createdAt: PropTypes.string,
   }),
 };

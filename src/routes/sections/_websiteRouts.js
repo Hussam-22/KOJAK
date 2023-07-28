@@ -3,7 +3,8 @@ import { lazy } from 'react';
 // ----------------------------------------------------------------------
 
 const KojakBuildingLandingPage = lazy(() => import('src/pages/kojak/landing'));
-const KojakBuildingSpacePage = lazy(() => import('src/pages/kojak/space'));
+const PropertiesPage = lazy(() => import('src/pages/kojak/properties-page'));
+const PropertyDetailsPage = lazy(() => import('src/pages/kojak/property-details-page'));
 const KojakBuildingAboutPage = lazy(() => import('src/pages/kojak/about'));
 const BlogPostsPage = lazy(() => import('src/pages/kojak/blog-posts-page'));
 const BlogItemPage = lazy(() => import('src/pages/kojak/blog-item-page'));
@@ -15,12 +16,13 @@ const BlogItemPage = lazy(() => import('src/pages/kojak/blog-item-page'));
 
 // ----------------------------------------------------------------------
 
-export const kojakBuildingRoutes = [
+export const _websiteRouts = [
   {
     path: '/',
     children: [
       { element: <KojakBuildingLandingPage />, index: true },
-      { path: 'space-view/:spaceId', element: <KojakBuildingSpacePage /> },
+      { path: 'properties', element: <PropertiesPage /> },
+      { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'blog-posts', element: <BlogPostsPage /> },
       { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },

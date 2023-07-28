@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import KojakBuildingSpaceView from 'src/sections/_kojakBuilding/views/kojak-building-space-view';
+import PropertyDetailsView from 'src/sections/_kojakBuilding/views/property-details-view';
 
 // ----------------------------------------------------------------------
 
-export default function KojakBuildingSpacePage() {
+export default function PropertyDetailsPage() {
   return (
     <>
       <Helmet>
         <title>Kojak Building</title>
       </Helmet>
 
-      <KojakBuildingSpaceView />
+      <PropertyDetailsView />
     </>
   );
 }

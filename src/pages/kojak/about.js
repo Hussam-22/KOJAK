@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import KojakBuildingAboutView from 'src/sections/_kojakBuilding/views/kojak-building-about-view';
+import AboutView from 'src/sections/_kojakBuilding/views/about-view';
 
 export default function KojakBuildingAboutPage() {
   return (
@@ -9,7 +9,7 @@ export default function KojakBuildingAboutPage() {
         <title>Kojak Building</title>
       </Helmet>
 
-      <KojakBuildingAboutView />
+      <AboutView />
     </>
   );
 }

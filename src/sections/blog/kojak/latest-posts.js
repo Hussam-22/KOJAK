@@ -14,11 +14,11 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 import PostItemMobile from '../common/post-item-mobile';
 
-import BuildingLatestPostItem from './building-latest-post-item';
+import LatestPostItem from './latest-post-item';
 
 // ----------------------------------------------------------------------
 
-export default function BuildingLatestPosts({ posts }) {
+export default function LatestPosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
 
   const latestPost = posts[5];
@@ -26,7 +26,7 @@ export default function BuildingLatestPosts({ posts }) {
   const viewAllBtn = (
     <Button
       component={RouterLink}
-      href={paths.building.blogPosts}
+      href={paths.website.blogPosts}
       color="inherit"
       endIcon={<Iconify icon="carbon:chevron-right" />}
     >
@@ -82,11 +82,11 @@ export default function BuildingLatestPosts({ posts }) {
         >
           {mdUp ? (
             <>
-              <BuildingLatestPostItem post={latestPost} largePost />
+              <LatestPostItem post={latestPost} largePost />
 
               <Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
                 {posts.slice(1, 5).map((post, index) => (
-                  <BuildingLatestPostItem key={post.id} post={post} order={index % 2} />
+                  <LatestPostItem key={post.id} post={post} order={index % 2} />
                 ))}
               </Masonry>
             </>
@@ -109,6 +109,6 @@ export default function BuildingLatestPosts({ posts }) {
   );
 }
 
-BuildingLatestPosts.propTypes = {
+LatestPosts.propTypes = {
   posts: PropTypes.array,
 };

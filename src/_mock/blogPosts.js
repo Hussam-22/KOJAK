@@ -228,7 +228,7 @@ export const blogPosts = [
   },
   // ! ----------------------------------------------------------------------------------------------------
   {
-    id: 'T8FHGc',
+    id: 'T8FHGe',
     title: 'Sharjah home rents pick up speed in 2023, with popular locations up by 10-20%',
     titleAr: '',
     description:
@@ -281,7 +281,7 @@ export const blogPosts = [
   },
   // ! ----------------------------------------------------------------------------------------------------
   {
-    id: 'T8FHGc',
+    id: 'T8FHGf',
     title: 'Sharjah home rents pick up speed in 2023, with popular locations up by 10-20%',
     titleAr: '',
     description:

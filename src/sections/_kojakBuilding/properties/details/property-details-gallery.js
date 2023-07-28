@@ -9,7 +9,7 @@ import Lightbox, { useLightbox } from 'src/components/lightbox';
 
 // ----------------------------------------------------------------------
 
-export default function SpaceDetailsGallery({ images }) {
+export default function PropertyDetailsGallery({ images }) {
   const slides = images.map((slide) => ({
     src: slide,
   }));
@@ -58,7 +58,7 @@ export default function SpaceDetailsGallery({ images }) {
   );
 }
 
-SpaceDetailsGallery.propTypes = {
+PropertyDetailsGallery.propTypes = {
   images: PropTypes.array,
 };
 
