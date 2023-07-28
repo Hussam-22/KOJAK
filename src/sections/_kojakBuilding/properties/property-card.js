@@ -19,7 +19,7 @@ import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function PropertyCard({ space }) {
+export default function PropertyCard({ space, vertical }) {
   const {
     id,
     bucketID,
@@ -51,7 +51,34 @@ export default function PropertyCard({ space }) {
   };
 
   return (
-    <Card sx={{ borderRadius: 1, display: 'flex', flexDirection: 'column' }}>
+    <Card
+      sx={{
+        display: { sm: 'flex' },
+        '&:hover': {
+          boxShadow: (theme) => theme.customShadows.z24,
+        },
+        ...(vertical && {
+          flexDirection: 'column',
+        }),
+      }}
+    >
+      <Box sx={{ flexShrink: { sm: 0 } }}>
+        <Image
+          alt={buildingName}
+          src={coverImgURL}
+          ratio="4/3"
+          sx={{
+            height: 1,
+            objectFit: 'cover',
+            width: { sm: 240 },
+            ...(vertical && {
+              width: { sm: 1 },
+            }),
+            filter: !isAvailable && 'grayscale(1) blur(3px)',
+          }}
+        />
+      </Box>
+
       <Stack
         direction="row"
         alignItems="center"
@@ -91,13 +118,6 @@ export default function PropertyCard({ space }) {
           {isAvailable ? fCurrency(rent) : 'Not Available'}
         </Stack>
       </Stack>
-
-      <Image
-        alt={buildingName}
-        src={coverImgURL}
-        ratio="4/3"
-        sx={{ filter: !isAvailable && 'grayscale(1) blur(3px)' }}
-      />
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -149,28 +169,25 @@ export default function PropertyCard({ space }) {
             {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
           </Box>
         </Stack>
-      </Stack>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
 
-      <Stack direction="row" alignItems="center" sx={{ p: 2.5 }}>
-        <Stack
-          flexGrow={1}
-          spacing={3}
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
-          sx={{ typography: 'body2', color: 'text.disabled' }}
-        >
-          <Box>
-            <Iconify icon="ph:calendar-light" width={16} sx={{ mr: 1 }} /> {listingDateTime}
-          </Box>
-          <Box>
-            <Button variant="contained" color="secondary" onClick={openSpaceCard}>
-              More details
-            </Button>
-          </Box>
+        <Stack direction="row" alignItems="center">
+          <Stack
+            flexGrow={1}
+            spacing={3}
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ typography: 'body2', color: 'text.disabled' }}
+          >
+            <Box>Listed on: {listingDateTime}</Box>
+            <Box>
+              <Button variant="contained" color="secondary" onClick={openSpaceCard}>
+                More details
+              </Button>
+            </Box>
+          </Stack>
         </Stack>
       </Stack>
     </Card>
@@ -178,6 +195,7 @@ export default function PropertyCard({ space }) {
 }
 
 PropertyCard.propTypes = {
+  vertical: PropTypes.bool,
   space: PropTypes.shape({
     id: PropTypes.string,
     bucketID: PropTypes.string,
