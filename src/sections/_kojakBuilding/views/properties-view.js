@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { Box, Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 import { _courses } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { useBoolean } from 'src/hooks/use-boolean';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/elearning-filters';
+import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properties/did-not-find-property-card';
 
 // ----------------------------------------------------------------------
 
@@ -53,10 +50,11 @@ export default function PropertiesView() {
           </Button>
         </Stack>
 
-        <Stack direction={{ xs: 'column', md: 'row' }}>
-          <Box>
+        {/* <Stack direction={{ xs: 'column', md: 'row' }}>
+          <Stack spacing={3} sx={{ width: { md: `calc(47% - ${280}px)` } }}>
             <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-          </Box>
+            <DidNotFindWhatYouAreLookingFor />
+          </Stack>
 
           <Box
             sx={{
@@ -67,7 +65,19 @@ export default function PropertiesView() {
           >
             <PropertiesList courses={_courses} loading={loading.value} />
           </Box>
-        </Stack>
+        </Stack> */}
+
+        <Grid container spacing={10}>
+          <Grid md={3}>
+            <Stack spacing={3}>
+              <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
+              <DidNotFindWhatYouAreLookingFor />
+            </Stack>
+          </Grid>
+          <Grid md={9}>
+            <PropertiesList courses={_courses} loading={loading.value} />
+          </Grid>
+        </Grid>
       </Container>
 
       {/* <ElearningNewsletter /> */}

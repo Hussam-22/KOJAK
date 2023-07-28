@@ -19,8 +19,6 @@ export default function WhatWeOffer() {
   const [spaces, setSpaces] = useState([]);
   const { getAllSpacesInfo, addNewSpace } = useAuthContext();
 
-  console.log(spaces);
-
   const addListing = async () => {
     const data = await addNewSpace();
     console.log(data);
@@ -64,13 +62,13 @@ export default function WhatWeOffer() {
         <Grid container spacing={10}>
           <Grid xs={12} md={12}>
             <Stack spacing={2} id="scrollHere">
-              <Typography variant="h2" color="primary" sx={{ textTransform: 'capitalize' }}>
+              <Typography variant="h2" color="secondary" sx={{ textTransform: 'capitalize' }}>
                 We offer a variety of residential and commercial spaces
               </Typography>
 
               <Typography>
                 At{' '}
-                <Box component="span" sx={{ fontWeight: 'bold', color: 'secondary.main' }}>
+                <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
                   Kojak Building
                 </Box>{' '}
                 , we take pride in offering an extensive selection of both commercial and
@@ -82,79 +80,16 @@ export default function WhatWeOffer() {
           </Grid>
 
           <Grid xs={12} md={12}>
-            <Typography variant="h3" sx={{ mb: 2 }}>
-              Residential
-            </Typography>
-            <Box
-              sx={{
-                display: 'grid',
-                gap: { xs: 4, md: 3 },
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  sm: 'repeat(2, 1fr)',
-                  md: 'repeat(4, 1fr)',
-                },
-              }}
-            >
+            <Stack direction="row" spacing={4}>
               {spaces.length !== 0 &&
-                residentialSpaces().map((space) => <PropertyCard key={space.id} space={space} />)}
-            </Box>
-          </Grid>
+                residentialSpaces()
+                  .slice(0, 1)
+                  .map((space) => <PropertyCard key={space.id} space={space} />)}
 
-          <Grid xs={12} md={12}>
-            <Typography variant="h3" sx={{ mb: 2 }}>
-              Commercial
-            </Typography>
-            <Box
-              sx={{
-                display: 'grid',
-                gap: { xs: 4, md: 3 },
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  sm: 'repeat(2, 1fr)',
-                  md: 'repeat(4, 1fr)',
-                },
-              }}
-            >
               {spaces.length !== 0 &&
-                commercialSpaces().map((space) => <PropertyCard key={space.id} space={space} />)}
-            </Box>
-          </Grid>
-
-          <Grid xs={12} md={12}>
-            <Stack
-              spacing={3}
-              direction="row"
-              sx={{
-                p: 3,
-                borderRadius: 1,
-                alignItems: 'center',
-                border: 'dashed 1px #999999',
-                justifyContent: 'center',
-              }}
-            >
-              <Image src="/assets/kojak-building/illustration/house-property.svg" width="7%" />
-              <Stack direction="column">
-                <Typography variant="h3">Did not find what you are looking for ?</Typography>
-                <Box>
-                  <Button
-                    variant="contained"
-                    endIcon={<Iconify icon="iconamoon:send-duotone" />}
-                    onClick={addListing}
-                  >
-                    Add Listing
-                  </Button>
-
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    endIcon={<Iconify icon="iconamoon:send-duotone" />}
-                    onClick={scrollToElement}
-                  >
-                    Drop us a message
-                  </Button>
-                </Box>
-              </Stack>
+                commercialSpaces()
+                  .slice(0, 1)
+                  .map((space) => <PropertyCard key={space.id} space={space} />)}
             </Stack>
           </Grid>
         </Grid>
