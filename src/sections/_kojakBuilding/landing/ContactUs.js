@@ -92,7 +92,7 @@ export default function ContactUs() {
                 </Stack>
 
                 <Typography variant="body2">
-                  Industrial Area 1, Sharjah, United Arab Emirates
+                  Industrial Area 4, Sharjah, United Arab Emirates
                 </Typography>
               </Stack>
 

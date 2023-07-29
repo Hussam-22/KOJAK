@@ -67,14 +67,14 @@ export default function PropertiesList({ courses, loading }) {
 
   return (
     <>
-      <Stack spacing={4}>
+      <Stack spacing={4} sx={{ mb: 6 }}>
         {filteredProperties.length === 0 &&
           [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
         {filteredProperties.length !== 0 &&
           filteredProperties.map((property) => <PropertyCard key={property.id} space={property} />)}
       </Stack>
 
-      <Pagination
+      {/* <Pagination
         count={10}
         color="primary"
         sx={{
@@ -83,7 +83,7 @@ export default function PropertiesList({ courses, loading }) {
             justifyContent: 'center',
           },
         }}
-      />
+      /> */}
     </>
   );
 }

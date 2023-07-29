@@ -54,16 +54,18 @@ export default function LatestPosts({ posts }) {
         >
           <Stack
             sx={{
-              maxWidth: { md: 460 },
+              maxWidth: { md: 660 },
             }}
           >
             <Typography variant="h2" sx={{ my: 3 }}>
-              Read Our Lates News
+              Check out our Blog
             </Typography>
 
             <Typography sx={{ color: 'text.secondary' }}>
-              Aenean vulputate eleifend tellus. Mauris turpis nunc, blandit et, volutpat molestie,
-              porta ut, ligula.
+              Your go-to resource for all things related to property renting and leasing. Whether
+              you&#39;re a seasoned tenant or a first-time renter, a property owner, or a curious
+              observer of the real estate market, our blog is designed to provide you with valuable
+              information, tips, and industry insights
             </Typography>
           </Stack>
 

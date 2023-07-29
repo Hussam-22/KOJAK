@@ -61,7 +61,7 @@ export default function FAQs() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.peach' }}>
+    <Box sx={{ bgcolor: 'primary.lighter' }}>
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
@@ -116,7 +116,7 @@ export default function FAQs() {
                 borderRadius: 1,
               }}
             >
-              <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              <Typography variant="h5" sx={{ flexGrow: 1 }}>
                 {faq.question}
               </Typography>
 

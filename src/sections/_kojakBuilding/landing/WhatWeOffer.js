@@ -17,16 +17,7 @@ export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const [spaces, setSpaces] = useState([]);
-  const { getAllSpacesInfo, addNewSpace } = useAuthContext();
-
-  const addListing = async () => {
-    const data = await addNewSpace();
-    console.log(data);
-  };
-
-  const scrollToElement = () => {
-    document.getElementById('scrollToForm').scrollIntoView({ behavior: 'smooth' });
-  };
+  const { getAllSpacesInfo } = useAuthContext();
 
   useEffect(() => {
     (async () => {
@@ -80,6 +71,9 @@ export default function WhatWeOffer() {
           </Grid>
 
           <Grid xs={12} md={12}>
+            <Typography variant="h4" sx={{ mb: 3 }}>
+              Featured Properties
+            </Typography>
             <Stack direction="row" spacing={4}>
               {spaces.length !== 0 &&
                 residentialSpaces()

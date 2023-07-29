@@ -61,7 +61,7 @@ export default function Header({ headerOnDark }) {
           sx={{ height: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
         >
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
-            <Logo />
+            <Logo single />
 
             {/* <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
               <Label

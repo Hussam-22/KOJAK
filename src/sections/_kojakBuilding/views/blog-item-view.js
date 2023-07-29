@@ -68,7 +68,7 @@ export default function BlogItemView() {
                 <Typography variant="subtitle2">{author.name}</Typography>
 
                 <PostTimeBlock createdAt={fDate(createdAt)} duration={duration} />
-                <Link href={author.url} underline="always" target="_blank">
+                <Link href={author.url} target="_blank" rel="noopener" underline="none">
                   Visit Original Post
                 </Link>
               </Stack>

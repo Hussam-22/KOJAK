@@ -68,7 +68,7 @@ export default function WhyKojakBuilding() {
           <Typography color="white" sx={{ zIndex: 2 }}>
             Choosing the right partner for your space-hunting journey can make all the difference.
             At{' '}
-            <Box component="span" sx={{ fontWeight: 'bold', color: 'custom.bluishPurpleLight' }}>
+            <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
               Kojak Building
             </Box>{' '}
             , we stand out as the ultimate destination for finding your ideal residential or
@@ -92,10 +92,7 @@ export default function WhyKojakBuilding() {
                 {value.title}
               </Typography>
 
-              <Typography sx={{ color: 'custom.bluishPurpleLight' }}>
-                {' '}
-                {value.description}{' '}
-              </Typography>
+              <Typography sx={{ color: 'common.white' }}>{value.description}</Typography>
             </Grid>
           ))}
         </Grid>
