@@ -3,7 +3,10 @@ import { AuthProvider } from 'src/auth/context/firebase';
 
 // ----------------------------------------------------------------------
 
+import { Provider as ReduxProvider } from 'react-redux';
+
 import ThemeProvider from 'src/theme';
+import { store } from 'src/redux/store';
 import Router from 'src/routes/sections';
 import { LocalizationProvider } from 'src/locales';
 import ProgressBar from 'src/components/progress-bar';
@@ -18,23 +21,25 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <LocalizationProvider>
-        <SettingsProvider
-          defaultSettings={{
-            themeMode: 'light', // 'light' | 'dark'
-            themeDirection: 'ltr', //  'rtl' | 'ltr'
-            themeColorPresets: 'preset04', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-          }}
-        >
-          <ThemeProvider>
-            <MotionLazy>
-              <ProgressBar />
-              <SettingsDrawer />
-              <Router />
-            </MotionLazy>
-          </ThemeProvider>
-        </SettingsProvider>
-      </LocalizationProvider>
+      <ReduxProvider store={store}>
+        <LocalizationProvider>
+          <SettingsProvider
+            defaultSettings={{
+              themeMode: 'light', // 'light' | 'dark'
+              themeDirection: 'ltr', //  'rtl' | 'ltr'
+              themeColorPresets: 'preset04', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+            }}
+          >
+            <ThemeProvider>
+              <MotionLazy>
+                <ProgressBar />
+                <SettingsDrawer />
+                <Router />
+              </MotionLazy>
+            </ThemeProvider>
+          </SettingsProvider>
+        </LocalizationProvider>
+      </ReduxProvider>
     </AuthProvider>
   );
 }

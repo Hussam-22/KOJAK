@@ -67,7 +67,7 @@ export default function PropertiesView() {
           </Box>
         </Stack> */}
 
-        <Grid container spacing={10}>
+        <Grid container spacing={5}>
           <Grid md={3}>
             <Stack spacing={3}>
               <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useState, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
@@ -30,6 +31,9 @@ const defaultValues = {
 
 export default function WebsiteFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
+  const product = useSelector((state) => state.properties);
+
+  console.log(product);
 
   const [filters, setFilters] = useState(defaultValues);
 
@@ -105,10 +109,12 @@ export default function WebsiteFilters({ open, onClose }) {
   const renderContent = (
     <Stack
       spacing={2.5}
-      sx={{
-        flexShrink: 0,
-        width: { xs: 1, md: 280 },
-      }}
+      sx={
+        {
+          // flexShrink: 0,
+          // width: { xs: 1, md: 280 },
+        }
+      }
     >
       <TextField
         fullWidth
