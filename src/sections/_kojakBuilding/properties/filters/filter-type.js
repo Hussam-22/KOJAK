@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import PropTypes from 'prop-types';
 
 import Select from '@mui/material/Select';
@@ -12,19 +13,19 @@ const DURATIONS = ['0 - 1 Hour', '1 - 3 Hours', '3 - 6 Hours', '6 - 18 Hours', '
 
 // ----------------------------------------------------------------------
 
-export default function FilterDuration({ filterDuration, onChangeDuration }) {
+export default function FilterType({ filterType, onChangeType, filters, selectedAllText }) {
   return (
     <FormControl fullWidth hiddenLabel>
       <Select
         multiple
         displayEmpty
-        value={filterDuration}
-        onChange={onChangeDuration}
+        value={filterType}
+        onChange={onChangeType}
         renderValue={(selected) => {
           if (!selected.length) {
             return (
               <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-                All Duration
+                {selectedAllText}
               </Typography>
             );
           }
@@ -35,11 +36,11 @@ export default function FilterDuration({ filterDuration, onChangeDuration }) {
           );
         }}
       >
-        {DURATIONS.map((duration) => (
-          <MenuItem key={duration} value={duration}>
+        {filters.map((filterKey) => (
+          <MenuItem key={filterKey} value={filterKey}>
             <Checkbox
               size="small"
-              checked={filterDuration.includes(duration)}
+              checked={filterType.includes(filterKey)}
               sx={{
                 [`&.${checkboxClasses.root}`]: {
                   p: 0,
@@ -47,7 +48,11 @@ export default function FilterDuration({ filterDuration, onChangeDuration }) {
                 },
               }}
             />
-            {duration}
+            {typeof filterKey === 'boolean'
+              ? filterKey === false
+                ? 'Not Available'
+                : 'Available'
+              : filterKey}
           </MenuItem>
         ))}
       </Select>
@@ -55,7 +60,9 @@ export default function FilterDuration({ filterDuration, onChangeDuration }) {
   );
 }
 
-FilterDuration.propTypes = {
-  filterDuration: PropTypes.arrayOf(PropTypes.string),
-  onChangeDuration: PropTypes.func,
+FilterType.propTypes = {
+  filterType: PropTypes.array,
+  filters: PropTypes.array,
+  onChangeType: PropTypes.func,
+  selectedAllText: PropTypes.string,
 };

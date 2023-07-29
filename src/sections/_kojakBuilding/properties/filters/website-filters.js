@@ -13,10 +13,10 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxSetFilter } from 'src/redux/slices/properties';
 
 import FilterFee from './filter-fee';
+import FilterType from './filter-type';
 import FilterLevel from './filter-level';
 import FilterRating from './filter-rating';
 import FilterLanguage from './filter-language';
-import FilterDuration from './filter-duration';
 import FilterCategories from './filter-categories';
 
 // ----------------------------------------------------------------------
@@ -31,12 +31,8 @@ const filterValues = {
 
 export default function WebsiteFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
-  const rdxFilter = useSelector((state) => state.properties.filter);
+  const { rdxFilter, filterDefaultValues } = useSelector((state) => state.properties);
   const dispatch = useDispatch();
-
-  console.log(rdxFilter);
-
-  const [filters, setFilters] = useState(defaultValues);
 
   const handleChangeRating = useCallback(
     (event) => {
@@ -52,62 +48,66 @@ export default function WebsiteFilters({ open, onClose }) {
 
   const handleChangeCategory = useCallback(
     (newValue) => {
-      setFilters({
-        ...filters,
-        filterCategories: newValue,
-      });
+      dispatch(
+        rdxSetFilter({
+          ...rdxFilter,
+          filterCategories: newValue,
+        })
+      );
     },
-    [filters]
+    [rdxFilter, dispatch]
   );
 
-  const handleChangeLevel = useCallback(
-    (event) => {
+  // const handleChangeLevel = useCallback(
+  //   (event) => {
+  //     const {
+  //       target: { value },
+  //     } = event;
+  //     setFilters({
+  //       ...filters,
+  //       filterLevel: typeof value === 'string' ? value.split(',') : value,
+  //     });
+  //   },
+  //   [filters]
+  // );
+
+  // const handleChangeFee = useCallback(
+  //   (event) => {
+  //     const {
+  //       target: { value },
+  //     } = event;
+  //     setFilters({
+  //       ...filters,
+  //       filterFee: typeof value === 'string' ? value.split(',') : value,
+  //     });
+  //   },
+  //   [filters]
+  // );
+
+  const handleChangeType = useCallback(
+    (event, key) => {
       const {
         target: { value },
       } = event;
-      setFilters({
-        ...filters,
-        filterLevel: typeof value === 'string' ? value.split(',') : value,
-      });
+      dispatch(
+        rdxSetFilter({
+          ...rdxFilter,
+          [key]: typeof value === 'string' ? value.split(',') : value,
+        })
+      );
     },
-    [filters]
+    [rdxFilter, dispatch]
   );
 
-  const handleChangeFee = useCallback(
-    (event) => {
-      const {
-        target: { value },
-      } = event;
-      setFilters({
-        ...filters,
-        filterFee: typeof value === 'string' ? value.split(',') : value,
-      });
-    },
-    [filters]
-  );
-
-  const handleChangeDuration = useCallback(
-    (event) => {
-      const {
-        target: { value },
-      } = event;
-      setFilters({
-        ...filters,
-        filterDuration: typeof value === 'string' ? value.split(',') : value,
-      });
-    },
-    [filters]
-  );
-
-  const handleChangeLanguage = useCallback(
-    (newValue) => {
-      setFilters({
-        ...filters,
-        filterLanguage: newValue,
-      });
-    },
-    [filters]
-  );
+  // const handleChangeLanguage = useCallback(
+  //   (newValue) => {
+  //     setFilters({
+  //       ...filters,
+  //       filterLanguage: newValue,
+  //     });
+  //   },
+  //   [filters]
+  // );
 
   const renderContent = (
     <Stack
@@ -119,31 +119,43 @@ export default function WebsiteFilters({ open, onClose }) {
         }
       }
     >
-      <TextField
-        fullWidth
-        hiddenLabel
-        placeholder="Search..."
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Iconify icon="carbon:search" width={24} sx={{ color: 'text.disabled' }} />
-            </InputAdornment>
-          ),
-        }}
-      />
-
-      <Block title="Ratings">
-        <FilterRating filterRating={filters.filterRating} onChangeRating={handleChangeRating} />
-      </Block>
-
-      <Block title="Duration">
-        <FilterDuration
-          filterDuration={filters.filterDuration}
-          onChangeDuration={handleChangeDuration}
+      <Block title="Property Type">
+        <FilterType
+          filterType={rdxFilter.type}
+          onChangeType={(e) => handleChangeType(e, 'type')}
+          filters={filterDefaultValues.type}
+          selectedAllText="All Types"
         />
       </Block>
 
-      <Block title="Category">
+      <Block title="Space/Room Options">
+        <FilterType
+          filterType={rdxFilter.city}
+          onChangeType={(e) => handleChangeType(e, 'city')}
+          filters={filterDefaultValues.city}
+          selectedAllText="All Cities"
+        />
+      </Block>
+
+      <Block title="Space/Room Options">
+        <FilterType
+          filterType={rdxFilter.bedrooms}
+          onChangeType={(e) => handleChangeType(e, 'bedrooms')}
+          filters={filterDefaultValues.bedrooms}
+          selectedAllText="All Space/Room Options"
+        />
+      </Block>
+
+      <Block title="Space/Room Availability">
+        <FilterType
+          filterType={rdxFilter.isAvailable}
+          onChangeType={(e) => handleChangeType(e, 'isAvailable')}
+          filters={filterDefaultValues.isAvailable}
+          selectedAllText="All Space/Room"
+        />
+      </Block>
+
+      {/* <Block title="Category">
         <FilterCategories
           filterCategories={filters.filterCategories}
           onChangeCategory={handleChangeCategory}
@@ -163,7 +175,7 @@ export default function WebsiteFilters({ open, onClose }) {
           filterLanguage={filters.filterLanguage}
           onChangeLanguage={handleChangeLanguage}
         />
-      </Block>
+      </Block> */}
     </Stack>
   );
 

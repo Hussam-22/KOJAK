@@ -8,13 +8,20 @@ import axios from '../../utils/axios';
 const initialState = {
   isLoading: false,
   error: null,
-  products: ['Hussam'],
-  filter: {
-    type: undefined,
-    bedrooms: undefined,
-    bathrooms: undefined,
-    city: undefined,
-    isAvailable: undefined,
+  products: [],
+  filteredProducts: [],
+  filterDefaultValues: {
+    type: ['residential', 'commercial'],
+    bedrooms: [1, 2, 3, 0],
+    bathrooms: [1, 2, 3],
+    city: ['sharjah', 'dubai'],
+    isAvailable: [true, false],
+  },
+  rdxFilter: {
+    type: [],
+    bedrooms: [],
+    city: [],
+    isAvailable: [],
   },
 };
 
@@ -27,10 +34,15 @@ const slice = createSlice({
       state.isLoading = true;
     },
 
+    rdxSetProducts(state, action) {
+      state.products = action.payload;
+      state.filteredProducts = action.payload;
+    },
+
     // UPDATE FILTER
     rdxSetFilter(state, action) {
       const newFilter = action.payload;
-      state.filter = { ...state.filter, ...newFilter };
+      state.rdxFilter = { ...state.rdxFilter, ...newFilter };
     },
 
     // HAS ERROR
@@ -74,7 +86,7 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-export const { rdxSetFilter } = slice.actions;
+export const { rdxSetFilter, rdxSetProducts } = slice.actions;
 
 // ----------------------------------------------------------------------
 
