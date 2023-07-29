@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 
+import { Box } from '@mui/material';
 import Link from '@mui/material/Link';
 import Masonry from '@mui/lab/Masonry';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Collapse from '@mui/material/Collapse';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
-import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import { alpha, styled } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button, { buttonClasses } from '@mui/material/Button';
@@ -53,13 +54,26 @@ export default function Footer() {
   const isHome = pathname === '/';
 
   const simpleFooter = (
-    <Container sx={{ py: 3, textAlign: 'center' }}>
-      <Logo />
+    <Box sx={{ borderTop: (theme) => `solid 1px ${theme.palette.divider}` }}>
+      <Container
+        sx={{
+          py: 3,
+          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ mb: 1 }}>
+          <Logo single />
+        </Box>
 
-      <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-        Kojak Building © 2023. All rights reserved
-      </Typography>
-    </Container>
+        <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
+          Kojak Building © 2023. All rights reserved
+        </Typography>
+      </Container>
+    </Box>
   );
 
   const mainFooter = (
@@ -186,7 +200,8 @@ export default function Footer() {
     </>
   );
 
-  return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
+  // return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
+  return <footer>{simpleFooter}</footer>;
 }
 
 // ----------------------------------------------------------------------

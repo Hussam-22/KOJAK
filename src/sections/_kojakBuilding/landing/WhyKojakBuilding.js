@@ -39,9 +39,12 @@ export default function WhyKojakBuilding() {
         backgroundColor: 'secondary.main',
         zIndex: -2,
         position: 'relative',
+        backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           top: -80,
@@ -50,7 +53,7 @@ export default function WhyKojakBuilding() {
         }}
       >
         <Image src="/assets/kojak-building/shape/layered-waves.svg" width={1} />
-      </Box>
+      </Box> */}
       <Container maxWidth="xl">
         <Stack
           spacing={3}

@@ -14,7 +14,7 @@ export default function LandingView() {
       <WhatWeOffer />
       <FAQs />
       <LatestPosts posts={blogPosts.slice(0, 6)} />
-      <ContactUs />
+      {/* <ContactUs /> */}
     </>
   );
 }

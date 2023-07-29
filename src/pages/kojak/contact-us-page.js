@@ -1,15 +1,15 @@
 import { Helmet } from 'react-helmet-async';
 
-import AboutView from 'src/sections/_kojakBuilding/views/about-view';
+import ContactUsView from 'src/sections/_kojakBuilding/views/contact-us-view';
 
 export default function KojakBuildingAboutPage() {
   return (
     <>
       <Helmet>
-        <title>About</title>
+        <title>Contact Us</title>
       </Helmet>
 
-      <AboutView />
+      <ContactUsView />
     </>
   );
 }

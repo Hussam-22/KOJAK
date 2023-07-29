@@ -8,7 +8,7 @@ export default function CareerPostPage() {
   return (
     <>
       <Helmet>
-        <title>Post Item View</title>
+        <title>Blog</title>
       </Helmet>
 
       <BlogItemView />

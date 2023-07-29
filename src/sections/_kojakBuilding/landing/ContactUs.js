@@ -73,8 +73,8 @@ export default function ContactUs() {
                   <Iconify icon="carbon:email" width={24} sx={{ mr: 1 }} /> Email
                 </Stack>
 
-                <Link color="inherit" variant="body2" href="mailto:hello@example.com">
-                  hello@example.com
+                <Link color="inherit" variant="body2" href="mailto:hello@kojak-building.com">
+                  hello@kojak-building.com
                 </Link>
               </Stack>
 
@@ -83,7 +83,7 @@ export default function ContactUs() {
                   <Iconify icon="carbon:mobile" width={24} sx={{ mr: 1 }} /> Phone
                 </Stack>
 
-                <Typography variant="body2">(907) 555-0101</Typography>
+                <Typography variant="body2">052 9242728</Typography>
               </Stack>
 
               <Stack spacing={1}>
@@ -92,7 +92,13 @@ export default function ContactUs() {
                 </Stack>
 
                 <Typography variant="body2">
-                  Industrial Area 4, Sharjah, United Arab Emirates
+                  <Link
+                    href="https://www.google.com/maps/place/Kojak+Group+of+Companies/@25.3253059,55.4046755,15z/data=!4m6!3m5!1s0x3e5f57dbcabe0c49:0x67452d730806d23a!8m2!3d25.3253059!4d55.4046755!16s%2Fg%2F11bbwn0zxl?entry=ttu"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Industrial Area 4, Sharjah, United Arab Emirates
+                  </Link>
                 </Typography>
               </Stack>
 
@@ -101,7 +107,7 @@ export default function ContactUs() {
                   <Iconify icon="mingcute:time-line" width={24} sx={{ mr: 1 }} /> Working Hours
                 </Stack>
 
-                <Typography variant="body2">8 AM to 8 PM - Saturday to Thursday</Typography>
+                <Typography variant="body2">8 AM to 6 PM - Saturday to Thursday</Typography>
               </Stack>
 
               <Stack spacing={1}>

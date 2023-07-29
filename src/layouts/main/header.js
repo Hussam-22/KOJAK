@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 import { HEADER } from '../config-layout';
 import Searchbar from '../common/searchbar';
@@ -27,11 +28,9 @@ import { navConfig } from './config-navigation';
 
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
-
   const offset = useOffSetTop();
-
   const mdUp = useResponsive('up', 'md');
-
+  const navigate = useNavigate();
   return (
     <AppBar>
       <Toolbar
@@ -85,21 +84,19 @@ export default function Header({ headerOnDark }) {
           {mdUp && <NavDesktop data={navConfig} />}
 
           <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-            <Stack spacing={1} direction="row" alignItems="center">
+            {/* <Stack spacing={1} direction="row" alignItems="center">
               <Searchbar />
 
               <SettingsButton />
-            </Stack>
+            </Stack> */}
 
             {mdUp && (
               <Button
                 variant="contained"
-                color="inherit"
-                href={paths.zoneStore}
-                target="_blank"
-                rel="noopener"
+                color="primary"
+                onClick={() => navigate(paths.website.properties)}
               >
-                Buy Now
+                Explore Available Properties
               </Button>
             )}
           </Stack>

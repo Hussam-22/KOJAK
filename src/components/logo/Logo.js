@@ -113,10 +113,10 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
   return (
     <Link
       component={RouterLink}
-      to="/kojak/landing"
+      to="/"
       color="inherit"
       aria-label="go to homepage"
-      sx={{ lineHeight: 0 }}
+      sx={{ lineHeight: 0, '&:hover': { textDecoration: 'unset' } }}
     >
       <Stack direction="row" spacing={1} alignItems="center">
         <Box
@@ -131,10 +131,10 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
           {single ? singleLogo : fullLogo}
         </Box>
         <Stack direction="column">
-          <Typography variant="h5" color="primary" sx={{ lineHeight: 1 }}>
+          <Typography variant="h4" color="secondary" sx={{ lineHeight: 1, fontWeight: '700' }}>
             KOJAK
           </Typography>
-          <Typography variant="h5" color="primary" sx={{ lineHeight: 1 }}>
+          <Typography variant="body1" color="secondary" sx={{ lineHeight: 1 }}>
             BUILDING
           </Typography>
         </Stack>

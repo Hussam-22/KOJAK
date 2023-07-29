@@ -40,23 +40,23 @@ export default function KojakBuildingLandingHero() {
         overflow: 'hidden',
         zIndex: 9,
         position: 'relative',
+        height: { md: `100vh`, xs: '80vh' },
       }}
     >
       <Container
         sx={{
-          ...bgGradient({
-            direction: '115deg',
-            startColor: `${alpha(theme.palette.common.white, 0.15)} 30%`,
-            endColor: `${alpha(theme.palette.primary.lighter, 0.1)} 70%`,
-          }),
+          // ...bgGradient({
+          //   direction: '115deg',
+          //   startColor: `${alpha(theme.palette.common.white, 0.15)} 30%`,
+          //   endColor: `${alpha(theme.palette.primary.lighter, 0.1)} 70%`,
+          // }),
           border: 'solid 2px #000000',
           width: { xs: '90vw' },
           borderRadius: 1,
-          py: { md: 15, xs: 8 },
+          py: { md: 10, xs: 8 },
           mt: { md: 12, xs: 8 },
           display: { md: 'flex' },
           alignItems: { md: 'center' },
-          height: { md: `80vh`, xs: '80vh' },
         }}
         maxWidth="xl"
       >
@@ -102,7 +102,7 @@ export default function KojakBuildingLandingHero() {
                 size="large"
                 onClick={() => navigate(paths.website.properties)}
               >
-                Explore Available Spaces
+                Explore Available Properties
               </Button>
             </Stack>
           </Grid>

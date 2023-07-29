@@ -18,8 +18,8 @@ export default function ContactUsForm() {
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string().required('Mobile number is required'),
     email: Yup.string().email('That is not an email'),
-    subject: Yup.string().required('That is not an email'),
-    message: Yup.string().required('That is not an email'),
+    subject: Yup.string().required('Subject is required'),
+    messageText: Yup.string().required('Message is required'),
   });
 
   const defaultValues = {
@@ -27,7 +27,7 @@ export default function ContactUsForm() {
     mobile: '',
     email: '',
     subject: '',
-    message: '',
+    messageText: '',
   };
 
   const methods = useForm({
@@ -70,53 +70,31 @@ export default function ContactUsForm() {
   });
 
   return (
-    <>
-      <Stack
-        spacing={2}
-        sx={{
-          mb: 5,
-          textAlign: { xs: 'center', md: 'left' },
-        }}
-      >
-        <Typography
-          variant="h2"
-          sx={{ textAlign: { xs: 'center', md: 'left' }, color: 'common.black' }}
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <Stack spacing={2.5} alignItems="flex-start">
+        <RHFTextField name="fullName" label="Full name" />
+
+        <RHFTextField name="mobile" label="Contact Number" type="number" />
+
+        <RHFTextField name="email" label="Email" />
+
+        <RHFTextField name="subject" label="Subject" />
+
+        <RHFTextField name="messageText" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
+
+        <LoadingButton
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={isSubmitting}
+          sx={{
+            mx: { xs: 'auto !important', md: 'unset !important' },
+          }}
         >
-          Contact Us
-        </Typography>
-        <Typography sx={{ color: 'common.black', textAlign: { md: 'left', xs: 'center' } }}>
-          We&#39;re here to assist you. If you have any questions, feedback, or need support, please
-          don&#39;t hesitate to reach out to us. Our dedicated team is ready to help you in any way
-          we can.
-        </Typography>
+          Send Request
+        </LoadingButton>
       </Stack>
-
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField name="fullName" label="Full name" />
-
-          <RHFTextField name="mobile" label="Contact Number" type="number" />
-
-          <RHFTextField name="email" label="Email" />
-
-          <RHFTextField name="subject" label="Subject" />
-
-          <RHFTextField name="message" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
-
-          <LoadingButton
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-            sx={{
-              mx: { xs: 'auto !important', md: 'unset !important' },
-            }}
-          >
-            Send Request
-          </LoadingButton>
-        </Stack>
-      </FormProvider>
-    </>
+    </FormProvider>
   );
 }
 

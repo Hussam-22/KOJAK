@@ -265,14 +265,14 @@ export function AuthProvider({ children }) {
 
   // add new request-callback form
   const addNewFormGeneralSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-general/`));
+    const newDocRef = doc(collection(DB, `/websites/building/form-contact-us/`));
     const date = new Date();
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
       ...payload,
       id: newDocRef.id,
       createdAt: dateTime,
-      to: 'hussam.alkhudari@gmail.com',
+      to: payload.email,
       message: {
         subject: 'Hello from firebase',
         text: 'this is some random text',

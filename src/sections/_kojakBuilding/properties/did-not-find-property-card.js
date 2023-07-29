@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router';
+
 import { Box, Stack, Button, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function DidNotFindWhatYouAreLookingFor() {
+  const navigate = useNavigate();
   return (
     <Box>
       <Stack
@@ -31,6 +35,7 @@ export default function DidNotFindWhatYouAreLookingFor() {
             variant="contained"
             color="primary"
             endIcon={<Iconify icon="iconamoon:send-duotone" />}
+            onClick={() => navigate(paths.website.contactUs)}
           >
             Drop us a message
           </Button>
