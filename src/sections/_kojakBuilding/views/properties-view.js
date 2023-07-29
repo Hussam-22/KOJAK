@@ -25,62 +25,41 @@ export default function PropertiesView() {
   }, [loading]);
 
   return (
-    <>
-      <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
+    <Container>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{
+          py: 5,
+        }}
+      >
+        <Typography variant="h2">Properties</Typography>
+
+        <Button
+          color="inherit"
+          variant="contained"
+          startIcon={<Iconify icon="carbon:filter" width={18} />}
+          onClick={mobileOpen.onTrue}
           sx={{
-            py: 5,
+            display: { md: 'none' },
           }}
         >
-          <Typography variant="h2">Properties</Typography>
+          Filters
+        </Button>
+      </Stack>
 
-          <Button
-            color="inherit"
-            variant="contained"
-            startIcon={<Iconify icon="carbon:filter" width={18} />}
-            onClick={mobileOpen.onTrue}
-            sx={{
-              display: { md: 'none' },
-            }}
-          >
-            Filters
-          </Button>
-        </Stack>
-
-        {/* <Stack direction={{ xs: 'column', md: 'row' }}>
-          <Stack spacing={3} sx={{ width: { md: `calc(47% - ${280}px)` } }}>
+      <Grid container spacing={5}>
+        <Grid md={3}>
+          <Stack spacing={3}>
             <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
             <DidNotFindWhatYouAreLookingFor />
           </Stack>
-
-          <Box
-            sx={{
-              flexGrow: 1,
-              pl: { md: 8 },
-              width: { md: `calc(100% - ${280}px)` },
-            }}
-          >
-            <PropertiesList courses={_courses} loading={loading.value} />
-          </Box>
-        </Stack> */}
-
-        <Grid container spacing={5}>
-          <Grid md={3}>
-            <Stack spacing={3}>
-              <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-              <DidNotFindWhatYouAreLookingFor />
-            </Stack>
-          </Grid>
-          <Grid md={9}>
-            <PropertiesList courses={_courses} loading={loading.value} />
-          </Grid>
         </Grid>
-      </Container>
-
-      {/* <ElearningNewsletter /> */}
-    </>
+        <Grid md={9}>
+          <PropertiesList courses={_courses} loading={loading.value} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
@@ -10,6 +10,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { rdxSetFilter } from 'src/redux/slices/properties';
 
 import FilterFee from './filter-fee';
 import FilterLevel from './filter-level';
@@ -20,31 +21,33 @@ import FilterCategories from './filter-categories';
 
 // ----------------------------------------------------------------------
 
-const defaultValues = {
-  filterDuration: [],
-  filterCategories: [],
-  filterRating: null,
-  filterFee: [],
-  filterLevel: [],
-  filterLanguage: [],
+const filterValues = {
+  type: ['residential', 'commercial'],
+  bedrooms: [1, 2, 3, 'office space', 'studio'],
+  bathrooms: [1, 2, 3],
+  city: ['sharjah', 'dubai'],
+  isAvailable: [true, false],
 };
 
 export default function WebsiteFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
-  const product = useSelector((state) => state.properties);
+  const rdxFilter = useSelector((state) => state.properties.filter);
+  const dispatch = useDispatch();
 
-  console.log(product);
+  console.log(rdxFilter);
 
   const [filters, setFilters] = useState(defaultValues);
 
   const handleChangeRating = useCallback(
     (event) => {
-      setFilters({
-        ...filters,
-        filterRating: event.target.value,
-      });
+      dispatch(
+        rdxSetFilter({
+          ...rdxFilter,
+          filterRating: event.target.value,
+        })
+      );
     },
-    [filters]
+    [dispatch, rdxFilter]
   );
 
   const handleChangeCategory = useCallback(

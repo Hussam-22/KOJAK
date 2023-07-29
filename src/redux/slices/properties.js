@@ -9,6 +9,13 @@ const initialState = {
   isLoading: false,
   error: null,
   products: ['Hussam'],
+  filter: {
+    type: undefined,
+    bedrooms: undefined,
+    bathrooms: undefined,
+    city: undefined,
+    isAvailable: undefined,
+  },
 };
 
 const slice = createSlice({
@@ -18,6 +25,12 @@ const slice = createSlice({
     // START LOADING
     startLoading(state) {
       state.isLoading = true;
+    },
+
+    // UPDATE FILTER
+    rdxSetFilter(state, action) {
+      const newFilter = action.payload;
+      state.filter = { ...state.filter, ...newFilter };
     },
 
     // HAS ERROR
@@ -60,6 +73,8 @@ const slice = createSlice({
 
 // Reducer
 export default slice.reducer;
+
+export const { rdxSetFilter } = slice.actions;
 
 // ----------------------------------------------------------------------
 
