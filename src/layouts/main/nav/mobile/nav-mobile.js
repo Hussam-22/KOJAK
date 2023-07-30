@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
@@ -8,6 +9,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 
 import Logo from 'src/components/logo';
+import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
@@ -21,7 +23,7 @@ import NavList from './nav-list';
 
 export default function NavMobile({ data }) {
   const pathname = usePathname();
-
+  const navigate = useNavigate();
   const mobileOpen = useBoolean();
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function NavMobile({ data }) {
         }}
       >
         <Scrollbar>
-          <Logo sx={{ mx: 2.5, my: 3 }} />
+          <Logo sx={{ mx: 2.5, my: 3 }} single />
 
           <List component="nav" disablePadding>
             {data.map((link) => (
@@ -57,8 +59,12 @@ export default function NavMobile({ data }) {
           </List>
 
           <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button fullWidth variant="contained" color="inherit">
-              Buy Now
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate(paths.website.properties)}
+            >
+              Explore Available Properties
             </Button>
           </Stack>
         </Scrollbar>

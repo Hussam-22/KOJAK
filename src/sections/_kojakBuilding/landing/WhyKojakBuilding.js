@@ -10,6 +10,7 @@ import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import CountUp from 'src/components/count-up/count-up';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +44,7 @@ const SUMMARY = [
 
 export default function WhyKojakBuilding() {
   const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Box
@@ -88,17 +90,19 @@ export default function WhyKojakBuilding() {
       </Box>
 
       <Grid container spacing={4}>
-        <Grid md={6} sx={{ p: 10 }}>
-          <Image
-            src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            ratio="3/4"
-            sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
-          />
-        </Grid>
-        <Grid md={6}>
+        {mdUp && (
+          <Grid xs={12} md={6} sx={{ p: 10 }}>
+            <Image
+              src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              ratio="3/4"
+              sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
+            />
+          </Grid>
+        )}
+        <Grid xs={12} md={6}>
           <Stack
             spacing={3}
-            direction={{ xs: 'row', md: 'column' }}
+            direction="column"
             justifyContent={{ md: 'space-between' }}
             sx={{
               my: 10,

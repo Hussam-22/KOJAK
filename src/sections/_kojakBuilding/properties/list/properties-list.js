@@ -20,9 +20,6 @@ export default function PropertiesList({ courses, loading }) {
   const { getAllSpacesInfo, addNewSpace } = useAuthContext();
   const { rdxFilter } = useSelector((state) => state.properties);
 
-  console.log(filteredProperties);
-  console.log(rdxFilter);
-
   // const addListing = async () => {
   //   const data = await addNewSpace();
   //   console.log(data);

@@ -5,6 +5,7 @@ import { Box, Stack, Button, Container, Typography, Unstable_Grid2 as Grid } fro
 import { _courses } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useResponsive } from 'src/hooks/use-responsive';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/website-filters';
 import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properties/did-not-find-property-card';
@@ -14,6 +15,7 @@ import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properti
 export default function PropertiesView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
+  const mdUp = useResponsive('up', 'md');
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -52,11 +54,12 @@ export default function PropertiesView() {
         <Grid md={3}>
           <Stack spacing={3}>
             <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-            <DidNotFindWhatYouAreLookingFor />
+            {mdUp && <DidNotFindWhatYouAreLookingFor />}
           </Stack>
         </Grid>
         <Grid md={9}>
           <PropertiesList courses={_courses} loading={loading.value} />
+          {!mdUp && <DidNotFindWhatYouAreLookingFor />}
         </Grid>
       </Grid>
     </Container>

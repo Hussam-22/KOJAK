@@ -57,7 +57,7 @@ export default function WhatWeOffer() {
           }}
         >
           <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '650px' }}>
-            <Typography variant="h2">Featured Projects</Typography>
+            <Typography variant="h2">Featured Properties</Typography>
             <Typography>
               At{' '}
               <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
@@ -84,7 +84,7 @@ export default function WhatWeOffer() {
             onPrev={carousel.onPrev}
             leftButtonProps={{
               sx: {
-                left: -16,
+                left: -5,
                 opacity: 1,
                 color: 'common.white',
                 bgcolor: 'primary.main',
@@ -94,7 +94,7 @@ export default function WhatWeOffer() {
             }}
             rightButtonProps={{
               sx: {
-                right: -16,
+                right: -5,
                 opacity: 1,
                 color: 'common.white',
                 bgcolor: 'primary.main',
@@ -115,7 +115,6 @@ export default function WhatWeOffer() {
                       pb: { xs: 10, md: 15 },
                     }}
                   >
-                    {/* <ElearningCourseItem course={course} vertical /> */}
                     <PropertyCard key={property.id} space={property} vertical />
                   </Box>
                 ))}

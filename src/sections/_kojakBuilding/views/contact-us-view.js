@@ -82,7 +82,7 @@ export default function ContactUsView() {
           md={4}
           sx={{
             p: 3,
-            px: { md: 5, xs: 0 },
+            px: 5,
           }}
         >
           <Stack spacing={3} alignItems="flex-start">
@@ -142,7 +142,12 @@ export default function ContactUsView() {
             </Stack>
           </Stack>
         </Grid>
-        <Grid xs={12} md={8}>
+        <Grid xs={12} md={8} sx={{ textAlign: { xs: 'center' } }}>
+          {!isMdUp && (
+            <Typography variant="h2" sx={{ my: 3 }}>
+              Drop us a message
+            </Typography>
+          )}
           <ContactUsForm />
         </Grid>
       </Grid>

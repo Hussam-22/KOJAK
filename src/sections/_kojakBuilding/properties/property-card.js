@@ -70,11 +70,11 @@ export default function PropertyCard({ space, vertical }) {
           sx={{
             height: 1,
             objectFit: 'cover',
-            width: { sm: 240 },
+            width: { sm: 240, xs: 1 },
             ...(vertical && {
-              width: { sm: 1 },
+              width: { xs: 1 },
             }),
-            filter: !isAvailable && 'grayscale(1) blur(3px)',
+            filter: !isAvailable && 'grayscale(1) blur(1px)',
           }}
         />
       </Box>

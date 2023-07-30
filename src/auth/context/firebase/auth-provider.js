@@ -253,10 +253,10 @@ export function AuthProvider({ children }) {
       ...payload,
       id: newDocRef.id,
       createdAt: dateTime,
-      to: 'hussam@hotmail.co.uk',
+      to: [payload.email, 'info.kgmarketing@gmail.com', 'querieskb@kojak-group.com'],
       message: {
-        subject: 'Hello from firebase',
-        text: 'this is some random text',
+        subject: 'Hello from Kojak Building',
+        text: 'this is a test email',
         html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
       },
     });

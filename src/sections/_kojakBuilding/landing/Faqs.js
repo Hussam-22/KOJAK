@@ -63,11 +63,6 @@ export default function FAQs() {
   return (
     <Box
       sx={{
-        // ...bgGradient({
-        //   direction: '125deg',
-        //   startColor: `${alpha(theme.palette.secondary.light, 1)} 30%`,
-        //   endColor: `${alpha(theme.palette.secondary.dark, 1)} 70%`,
-        // }),
         backgroundColor: theme.palette.secondary.main,
         backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
         backgroundSize: 'cover',
@@ -80,7 +75,7 @@ export default function FAQs() {
         }}
       >
         <Stack
-          direction="row"
+          direction={{ md: 'row', xs: 'column' }}
           spacing={2}
           sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
         >
@@ -127,7 +122,10 @@ export default function FAQs() {
                 borderRadius: 1,
               }}
             >
-              <Typography variant="h5" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant={mdUp ? 'h5' : 'h6'}
+                sx={{ flexGrow: 1, textAlign: { xs: 'center', md: 'left' } }}
+              >
                 {faq.question}
               </Typography>
 
