@@ -10,83 +10,118 @@ import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
+import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
 
 // ----------------------------------------------------------------------
 export default function WhatWeOffer() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
-  const [spaces, setSpaces] = useState([]);
+  const [properties, setProperties] = useState([]);
   const { getAllSpacesInfo } = useAuthContext();
 
   useEffect(() => {
     (async () => {
-      setSpaces(await getAllSpacesInfo());
+      setProperties(await getAllSpacesInfo());
     })();
   }, [getAllSpacesInfo]);
 
-  const commercialSpaces = useCallback(
-    () => spaces.filter((space) => space.type.toLowerCase() === 'commercial'),
-    [spaces]
-  );
-
-  const residentialSpaces = useCallback(
-    () => spaces.filter((space) => space.type.toLowerCase() === 'residential'),
-    [spaces]
-  );
+  const carousel = useCarousel({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: theme.breakpoints.values.lg,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: theme.breakpoints.values.md,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  });
 
   return (
-    <Box
-      sx={{
-        overflow: 'hidden',
-        bgcolor: 'background.neutral',
-        py: 8,
-      }}
-    >
+    <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
         sx={{
-          display: { md: 'flex' },
-          alignItems: { md: 'center' },
+          pt: { xs: 5, md: 10 },
         }}
         maxWidth="xl"
       >
-        <Grid container spacing={10}>
-          <Grid xs={12} md={12}>
-            <Stack spacing={2} id="scrollHere">
-              <Typography variant="h2" color="secondary" sx={{ textTransform: 'capitalize' }}>
-                We offer a variety of residential and commercial spaces
-              </Typography>
-
-              <Typography>
-                At{' '}
-                <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                  Kojak Building
-                </Box>{' '}
-                , we take pride in offering an extensive selection of both commercial and
-                residential spaces that cater to all your needs. Whether you&#39;re looking to
-                upgrade your business headquarters or find a cozy abode to call home, we&#39;ve got
-                you covered.
-              </Typography>
-            </Stack>
-          </Grid>
-
-          <Grid xs={12} md={12}>
-            <Typography variant="h4" sx={{ mb: 3 }}>
-              Featured Properties
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={{ md: 'flex-end' }}
+          sx={{
+            textAlign: { xs: 'center', md: 'unset' },
+          }}
+        >
+          <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '650px' }}>
+            <Typography variant="h2">Featured Projects</Typography>
+            <Typography>
+              At{' '}
+              <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                Kojak Building
+              </Box>{' '}
+              , we take pride in offering an extensive selection of both commercial and residential
+              spaces that cater to all your needs. Whether you&#39;re looking to upgrade your
+              business headquarters or find a cozy abode to call home, we&#39;ve got you covered.
             </Typography>
-            <Stack direction="row" spacing={4}>
-              {spaces.length !== 0 &&
-                residentialSpaces()
-                  .slice(0, 1)
-                  .map((space) => <PropertyCard key={space.id} space={space} />)}
+          </Stack>
 
-              {spaces.length !== 0 &&
-                commercialSpaces()
-                  .slice(0, 1)
-                  .map((space) => <PropertyCard key={space.id} space={space} />)}
-            </Stack>
-          </Grid>
-        </Grid>
+          {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+        </Stack>
+
+        <Box
+          sx={{
+            position: 'relative',
+            ml: { md: -2 },
+            width: { md: 'calc(100% + 32px)' },
+          }}
+        >
+          <CarouselArrows
+            onNext={carousel.onNext}
+            onPrev={carousel.onPrev}
+            leftButtonProps={{
+              sx: {
+                left: -16,
+                opacity: 1,
+                color: 'common.white',
+                bgcolor: 'primary.main',
+                '&:hover': { bgcolor: 'primary.dark' },
+                ...(mdUp && { display: 'none' }),
+              },
+            }}
+            rightButtonProps={{
+              sx: {
+                right: -16,
+                opacity: 1,
+                color: 'common.white',
+                bgcolor: 'primary.main',
+                '&:hover': { bgcolor: 'primary.dark' },
+                ...(mdUp && { display: 'none' }),
+              },
+            }}
+          >
+            <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+              {properties
+                .filter((property) => property.isAvailable)
+                .map((property) => (
+                  <Box
+                    key={property.id}
+                    sx={{
+                      px: 2,
+                      pt: { xs: 8, md: 10 },
+                      pb: { xs: 10, md: 15 },
+                    }}
+                  >
+                    {/* <ElearningCourseItem course={course} vertical /> */}
+                    <PropertyCard key={property.id} space={property} vertical />
+                  </Box>
+                ))}
+            </Carousel>
+          </CarouselArrows>
+        </Box>
       </Container>
     </Box>
   );

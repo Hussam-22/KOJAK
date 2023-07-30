@@ -71,7 +71,7 @@ function ElearningHeroIllustration({ sx, ...other }) {
       <Box sx={{ position: 'absolute', right: 18, bottom: 28, zIndex: 8 }}>
         <Image
           visibleByDefault
-          disabledEffect
+          disabledEffectmkn
           alt="teacher"
           src="/assets/images/course/course_teacher_hero.png"
           sx={{ width: 546, height: 650 }}

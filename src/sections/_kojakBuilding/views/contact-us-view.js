@@ -44,8 +44,25 @@ export default function ContactUsView() {
           maxWidth: 860,
           textAlign: 'center',
           pb: { xs: 5, md: 10 },
+          position: 'relative',
+          zIndex: 10,
         }}
       >
+        {/* <Box
+          sx={{
+            position: 'absolute',
+            fontSize: '7rem',
+            lineHeight: 1,
+            left: 0,
+            right: 0,
+            mx: 'auto',
+            top: -30,
+            zIndex: -1,
+            color: theme.palette.grey[50],
+          }}
+        >
+          CONTACT US
+        </Box> */}
         <Typography variant="h1">Contact Us</Typography>
 
         <Typography sx={{ color: 'text.secondary' }}>

@@ -61,7 +61,18 @@ export default function FAQs() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box
+      sx={{
+        // ...bgGradient({
+        //   direction: '125deg',
+        //   startColor: `${alpha(theme.palette.secondary.light, 1)} 30%`,
+        //   endColor: `${alpha(theme.palette.secondary.dark, 1)} 70%`,
+        // }),
+        backgroundColor: theme.palette.secondary.main,
+        backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
+        backgroundSize: 'cover',
+      }}
+    >
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
@@ -71,7 +82,7 @@ export default function FAQs() {
         <Stack
           direction="row"
           spacing={2}
-          sx={{ mb: 5, textAlign: 'center', alignItems: 'center' }}
+          sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
         >
           <Box>
             <Typography variant="overline" color="text.disabled">

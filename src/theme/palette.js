@@ -6,6 +6,7 @@ import { alpha } from '@mui/material/styles';
 
 const GREY = {
   0: '#FFFFFF',
+  50: '#F6F6F6',
   100: '#F8F8F8',
   200: '#CCCCCC',
   300: '#B5B5B5',
