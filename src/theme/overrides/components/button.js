@@ -71,8 +71,14 @@ export function button(theme) {
       ...(ownerState.color === color && {
         // CONTAINED
         ...(containedVariant && {
+          backgroundImage: `linear-gradient(to right, ${theme.palette[color].main} 0%, ${theme.palette[color].dark}  100%)`,
+          fontWeight: '500',
+          transform: 'translateY(0px)',
+          transition: 'transform 0.5s',
           '&:hover': {
-            boxShadow: theme.customShadows[color],
+            // boxShadow: theme.customShadows[color],
+            transform: 'translateY(-2px)',
+            transition: 'transform 0.5s',
           },
         }),
         // SOFT

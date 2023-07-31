@@ -39,7 +39,7 @@ export default function LatestPosts({ posts }) {
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
-          pb: 10,
+          pb: 5,
         }}
         // maxWidth="xl"
       >
@@ -102,7 +102,7 @@ export default function LatestPosts({ posts }) {
         </Box>
 
         {!mdUp && (
-          <Stack alignItems="center" sx={{ mt: 8 }}>
+          <Stack alignItems="center" sx={{ mt: 4 }}>
             {viewAllBtn}
           </Stack>
         )}

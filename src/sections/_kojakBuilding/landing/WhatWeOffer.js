@@ -69,7 +69,7 @@ export default function WhatWeOffer() {
             </Typography>
           </Stack>
 
-          {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+          {/* {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />} */}
         </Stack>
 
         <Box
@@ -89,7 +89,7 @@ export default function WhatWeOffer() {
                 color: 'common.white',
                 bgcolor: 'primary.main',
                 '&:hover': { bgcolor: 'primary.dark' },
-                ...(mdUp && { display: 'none' }),
+                // ...(mdUp && { display: 'none' }),
               },
             }}
             rightButtonProps={{
@@ -99,7 +99,7 @@ export default function WhatWeOffer() {
                 color: 'common.white',
                 bgcolor: 'primary.main',
                 '&:hover': { bgcolor: 'primary.dark' },
-                ...(mdUp && { display: 'none' }),
+                // ...(mdUp && { display: 'none' }),
               },
             }}
           >

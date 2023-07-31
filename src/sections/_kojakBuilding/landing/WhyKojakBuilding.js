@@ -34,10 +34,10 @@ const CORE_VALUES = [
 ];
 
 const SUMMARY = [
-  { name: 'Apartments', number: 220 },
-  { name: 'Happy Tenants', number: 1192 },
-  { name: 'Years of Experience', number: 22 },
-  { name: 'Total Leases processed', number: 12482 },
+  { label: 'Apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
+  { label: 'Happy Tenants', value: 1192, color: 'success', icon: 'ion:happy-outline' },
+  { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
+  { label: 'Total Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
 ];
 
 // ----------------------------------------------------------------------
@@ -47,44 +47,33 @@ export default function WhyKojakBuilding() {
   const mdUp = useResponsive('up', 'md');
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
+      {/* <Stack direction="row" spacing={{ xs: 3, sm: 10 }} justifyContent="center"> */}
       <Box
         sx={{
-          rowGap: 5,
-          columnGap: 3,
           display: 'grid',
-          textAlign: 'center',
-          gridTemplateColumns: {
-            xs: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
-          },
-          my: 4,
-          mb: 10,
-          py: 4,
-          ...bgGradient({
-            direction: '125deg',
-            startColor: `${alpha(theme.palette.primary.dark, 1)} 20%`,
-            endColor: `${alpha(theme.palette.primary.darker, 1)} 50%`,
-          }),
-          color: 'common.white',
-          borderRadius: 1,
-          boxShadow: '10px 10px 0 0 #000',
+          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+          mx: 'auto',
+          gap: 4,
+          my: 5,
         }}
       >
-        {SUMMARY.map((value) => (
-          <Stack key={value.name} spacing={1}>
-            <Typography variant="h2">
-              <CountUp
-                start={value.number / 5}
-                end={value.number}
-                formattingFn={(newValue) => newValue}
-              />
-
-              <Typography variant="h4" component="span" sx={{ verticalAlign: 'top' }}>
-                +
-              </Typography>
-            </Typography>
-
-            <Typography variant="h6">{value.name}</Typography>
+        {SUMMARY.map((item) => (
+          <Stack
+            key={item.value}
+            spacing={0.5}
+            sx={{
+              position: 'relative',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              py: 5,
+              boxShadow: `5px 5px 2px 2px ${theme.palette.primary.lighter}`,
+              borderRadius: 2,
+            }}
+          >
+            <Iconify icon={item.icon} width={48} />
+            <Typography variant="h3">{item.value}+</Typography>
+            <Typography variant="h6">{item.label}</Typography>
           </Stack>
         ))}
       </Box>

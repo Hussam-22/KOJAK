@@ -1,17 +1,15 @@
 import { useState, useCallback } from 'react';
 
 import { Box } from '@mui/material';
+import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { alpha, useTheme } from '@mui/system';
 import Container from '@mui/material/Container';
 import Accordion from '@mui/material/Accordion';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
 import Image from 'src/components/image';
-import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -111,11 +109,6 @@ export default function FAQs() {
           >
             <AccordionSummary
               sx={{
-                // ...bgGradient({
-                //   direction: '115deg',
-                //   startColor: `${alpha(theme.palette.common.white, 1)} 30%`,
-                //   endColor: `${alpha(theme.palette.primary.lighter, 0.9)} 120%`,
-                // }),
                 backgroundColor: 'common.white',
                 mb: 2,
                 px: 2,

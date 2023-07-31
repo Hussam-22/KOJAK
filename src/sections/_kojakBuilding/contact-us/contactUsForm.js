@@ -86,12 +86,13 @@ export default function ContactUsForm() {
           size="large"
           type="submit"
           variant="contained"
+          color="secondary"
           loading={isSubmitting}
           sx={{
             mx: { xs: 'auto !important', md: 'unset !important' },
           }}
         >
-          Send Request
+          Send Message
         </LoadingButton>
       </Stack>
     </FormProvider>
