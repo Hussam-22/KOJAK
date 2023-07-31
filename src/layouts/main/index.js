@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { Fab } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useTheme } from '@mui/system';
 
 import { usePathname } from 'src/routes/hooks';
-import Iconify from 'src/components/iconify/Iconify';
-import getVariant from 'src/sections/examples/animate-view/get-variant';
+import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 
 import { HEADER } from '../config-layout';
 
@@ -28,8 +25,6 @@ const spacingLayout = [
 
 export default function MainLayout({ children }) {
   const pathname = usePathname();
-  const theme = useTheme();
-
   const actionPage = (arr) => arr.some((path) => pathname === path);
 
   return (
@@ -50,12 +45,7 @@ export default function MainLayout({ children }) {
 
         <Footer />
       </Box>
-      <Fab
-        aria-label="whatsapp"
-        sx={{ position: 'fixed', bottom: 15, right: 15, width: 55, height: 55 }}
-      >
-        <Iconify icon="logos:whatsapp-icon" width={45} />
-      </Fab>
+      <WhatsAppForm />
     </>
   );
 }
