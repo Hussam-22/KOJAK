@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
+import { useAuthContext } from 'src/auth/hooks';
 import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
@@ -12,6 +13,8 @@ export default function WhatsAppForm() {
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const textRef = useRef();
+  const mobileNumberRef = useRef();
+  const { addNewWhatsAppSubmit } = useAuthContext();
 
   const openWhatsAppForm = () => {
     setIsOpen(true);
@@ -19,6 +22,7 @@ export default function WhatsAppForm() {
 
   const onSendMessage = () => {
     const message = textRef.current.value;
+    const CustomerMobileNumber = mobileNumberRef.current.value;
 
     const number = '+971529242548';
 
@@ -26,6 +30,8 @@ export default function WhatsAppForm() {
     const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(
       message
     )}&app_absent=0`;
+
+    addNewWhatsAppSubmit({ customerMessage: message, CustomerMobileNumber, sentTo: number });
 
     window.location.href = url;
 
@@ -49,7 +55,7 @@ export default function WhatsAppForm() {
           {...getVariant('fadeInUp')}
           sx={{
             width: { md: 310, xs: 275 },
-            height: 365,
+            height: 395,
             position: 'fixed',
             bottom: 15,
             right: 15,
@@ -69,7 +75,13 @@ export default function WhatsAppForm() {
               <Typography variant="h5" sx={{ mt: 1 }}>
                 How can we help you ?
               </Typography>
-              <TextField multiline rows={6} fullWidth label="Message" inputRef={textRef} />
+              <TextField
+                fullWidth
+                label="Your Mobile Number"
+                inputRef={mobileNumberRef}
+                type="number"
+              />
+              <TextField multiline rows={4} fullWidth label="Message" inputRef={textRef} />
               <Box>
                 <Button variant="contained" color="primary" onClick={onSendMessage}>
                   Send
