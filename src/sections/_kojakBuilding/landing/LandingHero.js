@@ -34,12 +34,6 @@ export default function KojakBuildingLandingHero() {
         overflow: 'hidden',
         zIndex: 9,
         // position: 'relative',
-        height: { md: `100vh`, xs: '80vh' },
-        ...bgGradient({
-          direction: '125deg',
-          startColor: `${alpha(theme.palette.primary.light, 0.15)} 30%`,
-          endColor: `${alpha(theme.palette.primary.lighter, 0.1)} 70%`,
-        }),
       }}
     >
       <Container
@@ -52,6 +46,10 @@ export default function KojakBuildingLandingHero() {
           display: { md: 'flex' },
           alignItems: { md: 'center' },
           position: 'relative',
+          backgroundImage: 'url(/assets/kojak-building/hero/hero-img-2.webp)',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          height: '100vh',
         }}
         maxWidth="xl"
       >
@@ -112,18 +110,18 @@ export default function KojakBuildingLandingHero() {
             </Stack>
           </Grid>
 
-          {mdUp && (
+          {/* {mdUp && (
             <Grid xs={12} md={7}>
               <Box component={m.div} {...getVariant('fadeInUp')}>
                 <Image
                   visibleByDefault
                   disabledEffect
                   alt="marketing market"
-                  src="/assets/kojak-building/hero/hero-img-1.png"
+                  src="/assets/kojak-building/hero/hero-img-2.jpg"
                 />
               </Box>
             </Grid>
-          )}
+          )} */}
         </Grid>
       </Container>
     </Box>

@@ -91,7 +91,7 @@ export default function WhyKojakBuilding() {
           {mdUp && (
             <Grid xs={12} md={6} sx={{ p: 10 }}>
               <Image
-                src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src="/assets/kojak-building/images/tower-1.webp"
                 ratio="3/4"
                 sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
               />
