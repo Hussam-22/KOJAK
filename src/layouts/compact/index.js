@@ -3,30 +3,27 @@ import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
+import Logo from 'src/components/logo/Logo';
+
 import Header from '../common/header-simple';
 
 // ----------------------------------------------------------------------
 
 export default function CompactLayout({ children }) {
   return (
-    <>
-      <Header />
-
-      <Container component="main">
-        <Stack
-          sx={{
-            py: 12,
-            m: 'auto',
-            maxWidth: 400,
-            minHeight: '100vh',
-            textAlign: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          {children}
-        </Stack>
-      </Container>
-    </>
+    <Container component="main">
+      <Stack
+        sx={{
+          m: 'auto',
+          maxWidth: 400,
+          minHeight: '100vh',
+          textAlign: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {children}
+      </Stack>
+    </Container>
   );
 }
 

@@ -1,9 +1,11 @@
 import { m } from 'framer-motion';
 
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import Image from 'src/components/image';
+import Logo from 'src/components/logo/Logo';
 import CompactLayout from 'src/layouts/compact';
 import { RouterLink } from 'src/routes/components';
 import { varBounce, MotionContainer } from 'src/components/animate';
@@ -14,6 +16,11 @@ export default function NotFoundView() {
   return (
     <CompactLayout>
       <MotionContainer>
+        <Box
+          sx={{ display: 'flex', justifyContent: 'center', mb: 2, borderBottom: 'dashed 1px #999' }}
+        >
+          <Logo />
+        </Box>
         <m.div variants={varBounce().in}>
           <Typography variant="h3" paragraph>
             Page Not Found!
