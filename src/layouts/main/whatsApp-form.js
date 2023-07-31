@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
+import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
 
@@ -37,23 +38,25 @@ export default function WhatsAppForm() {
         <Fab
           aria-label="whatsapp"
           onClick={openWhatsAppForm}
-          sx={{ position: 'fixed', bottom: 15, right: 15, width: 55, height: 55 }}
+          sx={{ position: 'fixed', bottom: 15, right: 15, width: 55, height: 55, zIndex: 98 }}
         >
           <Iconify icon="logos:whatsapp-icon" width={45} />
         </Fab>
       )}
       {isOpen && (
-        <Box component={m.div} {...getVariant('fadeInUp')}>
-          <Card
-            sx={{
-              width: { md: 310, xs: 275 },
-              height: 365,
-              p: 3,
-              position: 'fixed',
-              bottom: 15,
-              right: 15,
-            }}
-          >
+        <Box
+          component={m.div}
+          {...getVariant('fadeInUp')}
+          sx={{
+            width: { md: 310, xs: 275 },
+            height: 365,
+            position: 'fixed',
+            bottom: 15,
+            right: 15,
+            zIndex: 99,
+          }}
+        >
+          <Card sx={{ p: 3 }}>
             <IconButton
               aria-label="delete"
               sx={{ position: 'absolute', top: 5, right: 5 }}

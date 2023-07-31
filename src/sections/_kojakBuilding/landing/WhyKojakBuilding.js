@@ -104,11 +104,11 @@ export default function WhyKojakBuilding() {
                 textAlign: 'center',
               }}
             >
-              <Typography variant="h2" sx={{ textTransform: 'capitalize', zIndex: 2 }}>
+              <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
                 why you should choose us
               </Typography>
 
-              <Typography sx={{ zIndex: 2 }}>
+              <Typography>
                 Choosing the right partner for your space-hunting journey can make all the
                 difference. At{' '}
                 <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
