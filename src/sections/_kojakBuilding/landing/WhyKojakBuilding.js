@@ -1,3 +1,5 @@
+import { m } from 'framer-motion';
+
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
@@ -11,6 +13,8 @@ import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import CountUp from 'src/components/count-up/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { varFade, MotionViewport } from 'src/components/animate';
+import getVariant from 'src/sections/examples/animate-view/get-variant';
 
 // ----------------------------------------------------------------------
 
@@ -47,94 +51,97 @@ export default function WhyKojakBuilding() {
   const mdUp = useResponsive('up', 'md');
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
-      {/* <Stack direction="row" spacing={{ xs: 3, sm: 10 }} justifyContent="center"> */}
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
-          mx: 'auto',
-          gap: 4,
-          my: 5,
-        }}
-      >
-        {SUMMARY.map((item) => (
-          <Stack
-            key={item.value}
-            spacing={0.5}
-            sx={{
-              position: 'relative',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              py: 5,
-              boxShadow: `5px 5px 2px 2px ${theme.palette.primary.lighter}`,
-              borderRadius: 2,
-            }}
-          >
-            <Iconify icon={item.icon} width={48} />
-            <Typography variant="h3">{item.value}+</Typography>
-            <Typography variant="h6">{item.label}</Typography>
-          </Stack>
-        ))}
-      </Box>
+      <MotionViewport disableAnimatedMobile>
+        <Box
+          component={m.div}
+          variants={varFade().inRight}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+            mx: 'auto',
+            gap: 4,
+            my: 5,
+          }}
+        >
+          {SUMMARY.map((item) => (
+            <Stack
+              key={item.value}
+              spacing={0.5}
+              sx={{
+                position: 'relative',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                py: 5,
+                boxShadow: `5px 5px 2px 2px ${theme.palette.primary.lighter}`,
+                borderRadius: 2,
+              }}
+            >
+              <Iconify icon={item.icon} width={48} />
+              <Typography variant="h3">{item.value}+</Typography>
+              <Typography variant="h6">{item.label}</Typography>
+            </Stack>
+          ))}
+        </Box>
 
-      <Grid container spacing={4}>
-        {mdUp && (
-          <Grid xs={12} md={6} sx={{ p: 10 }}>
-            <Image
-              src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              ratio="3/4"
-              sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
-            />
-          </Grid>
-        )}
-        <Grid xs={12} md={6}>
-          <Stack
-            spacing={3}
-            direction="column"
-            justifyContent={{ md: 'space-between' }}
-            sx={{
-              my: 10,
-              textAlign: 'center',
-            }}
-          >
-            <Typography variant="h2" sx={{ textTransform: 'capitalize', zIndex: 2 }}>
-              why you should choose us
-            </Typography>
+        <Grid container spacing={4} component={m.div} variants={varFade().inLeft}>
+          {mdUp && (
+            <Grid xs={12} md={6} sx={{ p: 10 }}>
+              <Image
+                src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                ratio="3/4"
+                sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
+              />
+            </Grid>
+          )}
+          <Grid xs={12} md={6}>
+            <Stack
+              spacing={3}
+              direction="column"
+              justifyContent={{ md: 'space-between' }}
+              sx={{
+                my: 10,
+                textAlign: 'center',
+              }}
+            >
+              <Typography variant="h2" sx={{ textTransform: 'capitalize', zIndex: 2 }}>
+                why you should choose us
+              </Typography>
 
-            <Typography sx={{ zIndex: 2 }}>
-              Choosing the right partner for your space-hunting journey can make all the difference.
-              At{' '}
-              <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                Kojak Building
-              </Box>{' '}
-              , we stand out as the ultimate destination for finding your ideal residential or
-              commercial space. Here&#39;s why you should choose us
-            </Typography>
-          </Stack>
+              <Typography sx={{ zIndex: 2 }}>
+                Choosing the right partner for your space-hunting journey can make all the
+                difference. At{' '}
+                <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                  Kojak Building
+                </Box>{' '}
+                , we stand out as the ultimate destination for finding your ideal residential or
+                commercial space. Here&#39;s why you should choose us
+              </Typography>
+            </Stack>
 
-          <Grid container spacing={4}>
-            {CORE_VALUES.map((value) => (
-              <Grid
-                key={value.title}
-                xs={12}
-                md={4}
-                sx={{
-                  textAlign: 'center',
-                }}
-              >
-                <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
+            <Grid container spacing={4}>
+              {CORE_VALUES.map((value) => (
+                <Grid
+                  key={value.title}
+                  xs={12}
+                  md={4}
+                  sx={{
+                    textAlign: 'center',
+                  }}
+                >
+                  <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
 
-                <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
-                  {value.title}
-                </Typography>
+                  <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
+                    {value.title}
+                  </Typography>
 
-                <Typography>{value.description}</Typography>
-              </Grid>
-            ))}
+                  <Typography>{value.description}</Typography>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </MotionViewport>
     </Container>
   );
 }

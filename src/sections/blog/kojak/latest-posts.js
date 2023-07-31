@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -11,6 +12,7 @@ import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { varFade, MotionViewport } from 'src/components/animate';
 
 import PostItemMobile from '../common/post-item-mobile';
 
@@ -35,13 +37,14 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Box>
+    <MotionViewport disableAnimatedMobile>
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
           pb: 5,
         }}
-        // maxWidth="xl"
+        component={m.div}
+        variants={varFade().inLeft}
       >
         <Stack
           direction="row"
@@ -107,7 +110,7 @@ export default function LatestPosts({ posts }) {
           </Stack>
         )}
       </Container>
-    </Box>
+    </MotionViewport>
   );
 }
 

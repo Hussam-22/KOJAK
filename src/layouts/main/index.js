@@ -6,6 +6,7 @@ import { useTheme } from '@mui/system';
 
 import { usePathname } from 'src/routes/hooks';
 import Iconify from 'src/components/iconify/Iconify';
+import getVariant from 'src/sections/examples/animate-view/get-variant';
 
 import { HEADER } from '../config-layout';
 
@@ -40,11 +41,6 @@ export default function MainLayout({ children }) {
           component="main"
           sx={{
             flexGrow: 1,
-            // ...bgGradient({
-            //   direction: 'to bottom',
-            //   startColor: `${alpha(theme.palette.common.white, 0.8)} 50%`,
-            //   endColor: `${alpha(theme.palette.grey[600], 0.1)} 90%`,
-            // }),
           }}
         >
           {!actionPage(spacingLayout) && <Spacing />}
