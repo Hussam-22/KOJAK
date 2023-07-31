@@ -23,7 +23,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { pageLinks, navConfig } from './config-navigation';
+import {  navConfig } from './config-navigation';
 
 // ----------------------------------------------------------------------
 
@@ -45,11 +45,11 @@ export default function Footer() {
 
   const pathname = usePathname();
 
-  const mobileList = navConfig.find((i) => i.title === 'Pages')?.children || [];
+  // const mobileList = navConfig.find((i) => i.title === 'Pages')?.children || [];
 
-  const desktopList = pageLinks.sort((listA, listB) => Number(listA.order) - Number(listB.order));
+  // const desktopList = pageLinks.sort((listA, listB) => Number(listA.order) - Number(listB.order));
 
-  const renderLists = mdUp ? desktopList : mobileList;
+  // const renderLists = mdUp ? desktopList : mobileList;
 
   const isHome = pathname === '/';
 
@@ -155,7 +155,7 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          <Grid xs={12} md={6}>
+          {/* <Grid xs={12} md={6}>
             {mdUp ? (
               <Masonry columns={4} spacing={2} defaultColumns={4} defaultSpacing={2}>
                 {renderLists.map((list) => (
@@ -169,7 +169,7 @@ export default function Footer() {
                 ))}
               </Stack>
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
 

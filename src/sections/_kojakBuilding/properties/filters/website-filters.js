@@ -12,12 +12,8 @@ import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxSetFilter } from 'src/redux/slices/properties';
 
-import FilterFee from './filter-fee';
 import FilterType from './filter-type';
 import FilterLevel from './filter-level';
-import FilterRating from './filter-rating';
-import FilterLanguage from './filter-language';
-import FilterCategories from './filter-categories';
 
 // ----------------------------------------------------------------------
 

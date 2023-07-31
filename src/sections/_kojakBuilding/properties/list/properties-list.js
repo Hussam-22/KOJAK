@@ -9,12 +9,9 @@ import { useAuthContext } from 'src/auth/hooks';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
 import PropertyCardSkeleton from 'src/sections/_kojakBuilding/properties/property-card-skeleton';
 
-import ElearningCourseItem from './property-item';
-import ElearningCourseItemSkeleton from './property-item-skeleton';
-
 // ----------------------------------------------------------------------
 
-export default function PropertiesList({ courses, loading }) {
+export default function PropertiesList() {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const { getAllSpacesInfo, addNewSpace } = useAuthContext();
@@ -85,7 +82,3 @@ export default function PropertiesList({ courses, loading }) {
   );
 }
 
-PropertiesList.propTypes = {
-  courses: PropTypes.array,
-  loading: PropTypes.bool,
-};
