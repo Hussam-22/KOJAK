@@ -1,3 +1,5 @@
+// require('typeface-public-sans');
+require('typeface-barlow');
 // ----------------------------------------------------------------------
 
 export function remToPx(value) {
@@ -22,16 +24,17 @@ export function responsiveFontSizes({ sm, md, lg }) {
   };
 }
 
-const primaryFont = 'Public Sans, sans-serif';
+// const primaryFont = 'Public Sans, sans-serif';
+const primaryFont = 'Barlow, sans-serif';
 const secondaryFont = 'Barlow, sans-serif';
 
 // ----------------------------------------------------------------------
 
 export const typography = {
   fontFamily: primaryFont,
-  fontWeightRegular: 400,
-  fontWeightMedium: 500,
-  fontWeightSemiBold: 600,
+  fontWeightRegular: 500,
+  fontWeightMedium: 600,
+  fontWeightSemiBold: 700,
   fontWeightBold: 700,
   h1: {
     fontWeight: 700,
