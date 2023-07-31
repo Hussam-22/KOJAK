@@ -45,90 +45,89 @@ export default function WhatWeOffer() {
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <MotionViewport disableAnimatedMobile>
-        <Container
+      {/* <MotionViewport disableAnimatedMobile> */}
+      <Container
+        sx={{
+          pt: { xs: 5, md: 10 },
+        }}
+        maxWidth="xl"
+        // component={m.div}
+        // variants={varFade().inRight}
+      >
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={{ md: 'flex-end' }}
           sx={{
-            pt: { xs: 5, md: 10 },
+            textAlign: { xs: 'center', md: 'unset' },
           }}
-          maxWidth="xl"
-          component={m.div}
-          variants={varFade().inRight}
         >
-          <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            alignItems={{ md: 'flex-end' }}
-            sx={{
-              textAlign: { xs: 'center', md: 'unset' },
-            }}
-          >
-            <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '650px' }}>
-              <Typography variant="h2">Featured Properties</Typography>
-              <Typography>
-                At{' '}
-                <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                  Kojak Building
-                </Box>{' '}
-                , we take pride in offering an extensive selection of both commercial and
-                residential spaces that cater to all your needs. Whether you&#39;re looking to
-                upgrade your business headquarters or find a cozy abode to call home, we&#39;ve got
-                you covered.
-              </Typography>
-            </Stack>
-
-            {/* {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />} */}
+          <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '650px' }}>
+            <Typography variant="h2">Featured Properties</Typography>
+            <Typography>
+              At{' '}
+              <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                Kojak Building
+              </Box>{' '}
+              , we take pride in offering an extensive selection of both commercial and residential
+              spaces that cater to all your needs. Whether you&#39;re looking to upgrade your
+              business headquarters or find a cozy abode to call home, we&#39;ve got you covered.
+            </Typography>
           </Stack>
 
-          <Box
-            sx={{
-              position: 'relative',
-              ml: { md: -2 },
-              width: { md: 'calc(100% + 32px)' },
+          {/* {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />} */}
+        </Stack>
+
+        <Box
+          sx={{
+            position: 'relative',
+            ml: { md: -2 },
+            width: { md: 'calc(100% + 32px)' },
+          }}
+        >
+          <CarouselArrows
+            onNext={carousel.onNext}
+            onPrev={carousel.onPrev}
+            leftButtonProps={{
+              sx: {
+                left: -5,
+                opacity: 1,
+                color: 'common.white',
+                bgcolor: 'primary.main',
+                '&:hover': { bgcolor: 'primary.dark' },
+                // ...(mdUp && { display: 'none' }),
+              },
+            }}
+            rightButtonProps={{
+              sx: {
+                right: -5,
+                opacity: 1,
+                color: 'common.white',
+                bgcolor: 'primary.main',
+                '&:hover': { bgcolor: 'primary.dark' },
+                // ...(mdUp && { display: 'none' }),
+              },
             }}
           >
-            <CarouselArrows
-              onNext={carousel.onNext}
-              onPrev={carousel.onPrev}
-              leftButtonProps={{
-                sx: {
-                  left: -5,
-                  opacity: 1,
-                  color: 'common.white',
-                  bgcolor: 'primary.main',
-                  '&:hover': { bgcolor: 'primary.dark' },
-                  // ...(mdUp && { display: 'none' }),
-                },
-              }}
-              rightButtonProps={{
-                sx: {
-                  right: -5,
-                  opacity: 1,
-                  color: 'common.white',
-                  bgcolor: 'primary.main',
-                  '&:hover': { bgcolor: 'primary.dark' },
-                  // ...(mdUp && { display: 'none' }),
-                },
-              }}
-            >
-              <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-                {properties
-                  .filter((property) => property.isAvailable)
-                  .map((property) => (
-                    <Box
-                      key={property.id}
-                      sx={{
-                        px: 2,
-                        pt: { xs: 8, md: 10 },
-                        pb: { xs: 10, md: 15 },
-                      }}
-                    >
-                      <PropertyCard key={property.id} space={property} vertical />
-                    </Box>
-                  ))}
-              </Carousel>
-            </CarouselArrows>
-          </Box>
-        </Container>
-      </MotionViewport>
+            <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+              {properties
+                .filter((property) => property.isAvailable)
+                .map((property) => (
+                  <Box
+                    key={property.id}
+                    sx={{
+                      px: 2,
+                      pt: { xs: 8, md: 10 },
+                      pb: { xs: 10, md: 15 },
+                    }}
+                  >
+                    <PropertyCard key={property.id} space={property} vertical />
+                  </Box>
+                ))}
+            </Carousel>
+          </CarouselArrows>
+        </Box>
+      </Container>
+      {/* </MotionViewport> */}
     </Box>
   );
 }

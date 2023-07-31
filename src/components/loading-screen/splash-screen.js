@@ -21,7 +21,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
   zIndex: 9999,
   position: 'fixed',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

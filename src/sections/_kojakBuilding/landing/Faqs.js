@@ -62,11 +62,12 @@ export default function FAQs() {
 
   return (
     <Box
-      sx={{
-        backgroundColor: theme.palette.secondary.main,
-        backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
-        backgroundSize: 'cover',
-      }}
+      sx={{ backgroundColor: theme.palette.secondary.main }}
+      // sx={{
+      //   backgroundColor: theme.palette.secondary.main,
+      //   backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
+      //   backgroundSize: 'cover',
+      // }}
     >
       <MotionViewport disableAnimatedMobile>
         <Container
@@ -101,6 +102,13 @@ export default function FAQs() {
                 alt="faqs"
                 src="/assets/kojak-building/illustration/Question_Flatline.svg"
                 // ratio="16/9"
+                sx={{
+                  backgroundColor: theme.palette.secondary.main,
+                  backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
               />
             </Box>
           </Stack>
