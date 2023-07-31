@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -12,7 +13,9 @@ import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up/count-up';
+import { MotionContainer } from 'src/components/animate';
 import { useResponsive } from 'src/hooks/use-responsive';
+import getVariant from 'src/sections/examples/animate-view/get-variant';
 
 // ----------------------------------------------------------------------
 
@@ -67,15 +70,25 @@ export default function KojakBuildingLandingHero() {
 
             <Typography variant="h1" sx={{ mb: 3, textTransform: 'capitalize' }}>
               Find Your Perfect Space for Living or Business Thriving with{' '}
-              <Box
-                component="span"
-                sx={{
-                  color: 'primary.main',
-                }}
-              >
-                KOJAK!
-              </Box>
             </Typography>
+            <MotionContainer
+              component={m.h1}
+              sx={{
+                typography: 'h1',
+                display: 'flex',
+                overflow: 'hidden',
+                lineHeight: 1,
+                mt: -2,
+                color: 'primary.main',
+                justifyContent: { xs: 'center', md: 'unset' },
+              }}
+            >
+              {'KOJAK'.split('').map((letter, index) => (
+                <m.span key={index} variants={getVariant('fadeIn')}>
+                  {letter}
+                </m.span>
+              ))}
+            </MotionContainer>
 
             <Typography sx={{ color: 'text.secondary' }}>
               {`Your ideal residential or commercial space awaits, Let's find your perfect space together!`}
@@ -101,12 +114,14 @@ export default function KojakBuildingLandingHero() {
 
           {mdUp && (
             <Grid xs={12} md={7}>
-              <Image
-                visibleByDefault
-                disabledEffect
-                alt="marketing market"
-                src="/assets/kojak-building/hero/hero-img-1.png"
-              />
+              <Box component={m.div} {...getVariant('fadeInUp')}>
+                <Image
+                  visibleByDefault
+                  disabledEffect
+                  alt="marketing market"
+                  src="/assets/kojak-building/hero/hero-img-1.png"
+                />
+              </Box>
             </Grid>
           )}
         </Grid>

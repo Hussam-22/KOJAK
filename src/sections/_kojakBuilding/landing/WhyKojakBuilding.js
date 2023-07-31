@@ -1,3 +1,5 @@
+import { m } from 'framer-motion';
+
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
@@ -11,6 +13,8 @@ import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import CountUp from 'src/components/count-up/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { varFade, MotionViewport } from 'src/components/animate';
+import getVariant from 'src/sections/examples/animate-view/get-variant';
 
 // ----------------------------------------------------------------------
 
@@ -34,10 +38,10 @@ const CORE_VALUES = [
 ];
 
 const SUMMARY = [
-  { name: 'Apartments', number: 220 },
-  { name: 'Happy Tenants', number: 1192 },
-  { name: 'Years of Experience', number: 22 },
-  { name: 'Total Leases processed', number: 12482 },
+  { label: 'Apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
+  { label: 'Happy Tenants', value: 1192, color: 'success', icon: 'ion:happy-outline' },
+  { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
+  { label: 'Total Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
 ];
 
 // ----------------------------------------------------------------------
@@ -47,105 +51,100 @@ export default function WhyKojakBuilding() {
   const mdUp = useResponsive('up', 'md');
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
-      <Box
-        sx={{
-          rowGap: 5,
-          columnGap: 3,
-          display: 'grid',
-          textAlign: 'center',
-          gridTemplateColumns: {
-            xs: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
-          },
-          my: 4,
-          mb: 10,
-          py: 4,
-          ...bgGradient({
-            direction: '125deg',
-            startColor: `${alpha(theme.palette.primary.dark, 1)} 20%`,
-            endColor: `${alpha(theme.palette.primary.darker, 1)} 50%`,
-          }),
-          color: 'common.white',
-          borderRadius: 1,
-          boxShadow: '10px 10px 0 0 #000',
-        }}
-      >
-        {SUMMARY.map((value) => (
-          <Stack key={value.name} spacing={1}>
-            <Typography variant="h2">
-              <CountUp
-                start={value.number / 5}
-                end={value.number}
-                formattingFn={(newValue) => newValue}
+      <MotionViewport disableAnimatedMobile>
+        <Box
+          component={m.div}
+          variants={varFade().inRight}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+            mx: 'auto',
+            gap: 4,
+            my: 5,
+          }}
+        >
+          {SUMMARY.map((item) => (
+            <Stack
+              key={item.value}
+              spacing={0.5}
+              sx={{
+                position: 'relative',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                py: 5,
+                borderRadius: 2,
+                backgroundImage: `url(/assets/kojak-building/shape/blob.svg)`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              <Iconify icon={item.icon} width={48} sx={{ color: 'primary.main' }} />
+              <Typography variant="h3">{item.value}+</Typography>
+              <Typography variant="h6">{item.label}</Typography>
+            </Stack>
+          ))}
+        </Box>
+
+        <Grid container spacing={4} component={m.div} variants={varFade().inLeft}>
+          {mdUp && (
+            <Grid xs={12} md={6} sx={{ p: 10 }}>
+              <Image
+                src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                ratio="3/4"
+                sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
               />
-
-              <Typography variant="h4" component="span" sx={{ verticalAlign: 'top' }}>
-                +
+            </Grid>
+          )}
+          <Grid xs={12} md={6}>
+            <Stack
+              spacing={3}
+              direction="column"
+              justifyContent={{ md: 'space-between' }}
+              sx={{
+                my: 10,
+                textAlign: 'center',
+              }}
+            >
+              <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+                why you should choose us
               </Typography>
-            </Typography>
 
-            <Typography variant="h6">{value.name}</Typography>
-          </Stack>
-        ))}
-      </Box>
+              <Typography>
+                Choosing the right partner for your space-hunting journey can make all the
+                difference. At{' '}
+                <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                  Kojak Building
+                </Box>{' '}
+                , we stand out as the ultimate destination for finding your ideal residential or
+                commercial space. Here&#39;s why you should choose us
+              </Typography>
+            </Stack>
 
-      <Grid container spacing={4}>
-        {mdUp && (
-          <Grid xs={12} md={6} sx={{ p: 10 }}>
-            <Image
-              src="https://images.pexels.com/photos/3769312/pexels-photo-3769312.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              ratio="3/4"
-              sx={{ borderRadius: 3, border: `solid 6px ${theme.palette.primary.main}` }}
-            />
-          </Grid>
-        )}
-        <Grid xs={12} md={6}>
-          <Stack
-            spacing={3}
-            direction="column"
-            justifyContent={{ md: 'space-between' }}
-            sx={{
-              my: 10,
-              textAlign: 'center',
-            }}
-          >
-            <Typography variant="h2" sx={{ textTransform: 'capitalize', zIndex: 2 }}>
-              why you should choose us
-            </Typography>
+            <Grid container spacing={4}>
+              {CORE_VALUES.map((value) => (
+                <Grid
+                  key={value.title}
+                  xs={12}
+                  md={4}
+                  sx={{
+                    textAlign: 'center',
+                  }}
+                >
+                  <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
 
-            <Typography sx={{ zIndex: 2 }}>
-              Choosing the right partner for your space-hunting journey can make all the difference.
-              At{' '}
-              <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                Kojak Building
-              </Box>{' '}
-              , we stand out as the ultimate destination for finding your ideal residential or
-              commercial space. Here&#39;s why you should choose us
-            </Typography>
-          </Stack>
+                  <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
+                    {value.title}
+                  </Typography>
 
-          <Grid container spacing={4}>
-            {CORE_VALUES.map((value) => (
-              <Grid
-                key={value.title}
-                xs={12}
-                md={4}
-                sx={{
-                  textAlign: 'center',
-                }}
-              >
-                <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
-
-                <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
-                  {value.title}
-                </Typography>
-
-                <Typography>{value.description}</Typography>
-              </Grid>
-            ))}
+                  <Typography>{value.description}</Typography>
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </MotionViewport>
     </Container>
   );
 }

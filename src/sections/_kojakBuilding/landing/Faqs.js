@@ -1,19 +1,19 @@
+import { m } from 'framer-motion';
 import { useState, useCallback } from 'react';
 
 import { Box } from '@mui/material';
+import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { alpha, useTheme } from '@mui/system';
 import Container from '@mui/material/Container';
 import Accordion from '@mui/material/Accordion';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
 import Image from 'src/components/image';
-import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -68,77 +68,76 @@ export default function FAQs() {
         backgroundSize: 'cover',
       }}
     >
-      <Container
-        sx={{
-          pt: { xs: 5, md: 10 },
-          pb: { xs: 10, md: 15 },
-        }}
-      >
-        <Stack
-          direction={{ md: 'row', xs: 'column' }}
-          spacing={2}
-          sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
+      <MotionViewport disableAnimatedMobile>
+        <Container
+          sx={{
+            pt: { xs: 5, md: 10 },
+            pb: { xs: 10, md: 15 },
+          }}
+          component={m.div}
+          variants={varFade().inRight}
         >
-          <Box>
-            <Typography variant="overline" color="text.disabled">
-              Find Answers to Your Space-Hunting Queries
-            </Typography>
-
-            <Typography variant="h2">Frequently Asked Questions</Typography>
-            <Typography sx={{ textAlign: 'center' }}>
-              Our FAQ section is where we address common questions and provide helpful answers.
-              We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
-              you&#39;ll find information on various topics to assist you in getting the answers you
-              need.
-            </Typography>
-          </Box>
-
-          <Box sx={{ textAlign: 'center', width: 1 }}>
-            <Image
-              alt="faqs"
-              src="/assets/kojak-building/illustration/Question_Flatline.svg"
-              // ratio="16/9"
-            />
-          </Box>
-        </Stack>
-
-        {FAQ.map((faq, index) => (
-          <Accordion
-            key={index}
-            expanded={expanded === faq.question}
-            onChange={handleChangeExpanded(faq.question)}
-            sx={{ '&:before': { backgroundColor: 'unset' } }}
+          <Stack
+            direction={{ md: 'row', xs: 'column' }}
+            spacing={2}
+            sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
           >
-            <AccordionSummary
-              sx={{
-                // ...bgGradient({
-                //   direction: '115deg',
-                //   startColor: `${alpha(theme.palette.common.white, 1)} 30%`,
-                //   endColor: `${alpha(theme.palette.primary.lighter, 0.9)} 120%`,
-                // }),
-                backgroundColor: 'common.white',
-                mb: 2,
-                px: 2,
-                borderRadius: 1,
-              }}
-            >
-              <Typography
-                variant={mdUp ? 'h5' : 'h6'}
-                sx={{ flexGrow: 1, textAlign: { xs: 'center', md: 'left' } }}
-              >
-                {faq.question}
+            <Box>
+              <Typography variant="overline" color="text.disabled">
+                Find Answers to Your Space-Hunting Queries
               </Typography>
 
-              <Iconify
-                width={24}
-                icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-              />
-            </AccordionSummary>
+              <Typography variant="h2">Frequently Asked Questions</Typography>
+              <Typography sx={{ textAlign: 'center' }}>
+                Our FAQ section is where we address common questions and provide helpful answers.
+                We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
+                you&#39;ll find information on various topics to assist you in getting the answers
+                you need.
+              </Typography>
+            </Box>
 
-            <AccordionDetails>{faq.answer}</AccordionDetails>
-          </Accordion>
-        ))}
-      </Container>
+            <Box sx={{ textAlign: 'center', width: 1 }}>
+              <Image
+                alt="faqs"
+                src="/assets/kojak-building/illustration/Question_Flatline.svg"
+                // ratio="16/9"
+              />
+            </Box>
+          </Stack>
+
+          {FAQ.map((faq, index) => (
+            <Accordion
+              key={index}
+              expanded={expanded === faq.question}
+              onChange={handleChangeExpanded(faq.question)}
+              sx={{ '&:before': { backgroundColor: 'unset' } }}
+            >
+              <AccordionSummary
+                sx={{
+                  backgroundColor: 'common.white',
+                  mb: 2,
+                  px: 2,
+                  borderRadius: 1,
+                }}
+              >
+                <Typography
+                  variant={mdUp ? 'h5' : 'h6'}
+                  sx={{ flexGrow: 1, textAlign: { xs: 'center', md: 'left' } }}
+                >
+                  {faq.question}
+                </Typography>
+
+                <Iconify
+                  width={24}
+                  icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
+                />
+              </AccordionSummary>
+
+              <AccordionDetails>{faq.answer}</AccordionDetails>
+            </Accordion>
+          ))}
+        </Container>
+      </MotionViewport>
     </Box>
   );
 }

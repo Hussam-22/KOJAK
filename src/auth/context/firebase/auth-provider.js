@@ -263,7 +263,7 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
-  // add new request-callback form
+  // add new form-contact-us form
   const addNewFormGeneralSubmit = useCallback(async (payload) => {
     const newDocRef = doc(collection(DB, `/websites/building/form-contact-us/`));
     const date = new Date();
@@ -278,6 +278,19 @@ export function AuthProvider({ children }) {
         text: 'this is some random text',
         html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
       },
+    });
+    return newDocRef.id;
+  }, []);
+
+  // add new WhatsApp form
+  const addNewWhatsAppSubmit = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/building/form-whatsApp/`));
+    const date = new Date();
+    const dateTime = date.toDateString();
+    setDoc(newDocRef, {
+      ...payload,
+      id: newDocRef.id,
+      createdAt: dateTime,
     });
     return newDocRef.id;
   }, []);
@@ -319,6 +332,7 @@ export function AuthProvider({ children }) {
       addNewSpace,
       addNewFromCallbackSubmit,
       addNewFormGeneralSubmit,
+      addNewWhatsAppSubmit,
       fsGetImgDownloadUrl,
     }),
     [
@@ -339,6 +353,7 @@ export function AuthProvider({ children }) {
       addNewSpace,
       addNewFromCallbackSubmit,
       addNewFormGeneralSubmit,
+      addNewWhatsAppSubmit,
       fsGetImgDownloadUrl,
     ]
   );

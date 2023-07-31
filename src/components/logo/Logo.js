@@ -125,6 +125,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
             lineHeight: 0,
             cursor: 'pointer',
             display: 'inline-flex',
+            p: 0.75,
             ...sx,
           }}
         >
