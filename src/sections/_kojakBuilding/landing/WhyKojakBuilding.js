@@ -73,11 +73,14 @@ export default function WhyKojakBuilding() {
                 alignItems: 'center',
                 textAlign: 'center',
                 py: 5,
-                boxShadow: `5px 5px 2px 2px ${theme.palette.primary.lighter}`,
                 borderRadius: 2,
+                backgroundImage: `url(/assets/kojak-building/shape/blob.svg)`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
               }}
             >
-              <Iconify icon={item.icon} width={48} />
+              <Iconify icon={item.icon} width={48} sx={{ color: 'primary.main' }} />
               <Typography variant="h3">{item.value}+</Typography>
               <Typography variant="h6">{item.label}</Typography>
             </Stack>
