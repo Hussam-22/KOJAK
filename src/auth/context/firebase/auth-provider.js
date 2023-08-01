@@ -255,9 +255,17 @@ export function AuthProvider({ children }) {
       createdAt: dateTime,
       to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
-        subject: 'Hello from Kojak Building',
+        subject: 'Kojak Building - Callback Request',
         text: 'this is a test email',
-        html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
+        html: `<h4>Someone has requested a call back !!</h4>
+        <br />
+        <p>${payload.building}</p>
+        <p>${payload.fullName}</p>
+        <p>${payload.mobile}</p>
+        <p>${payload.email}</p>
+        <p>${dateTime.toLocaleString()}</p>
+        <p>${newDocRef.id}</p>
+        `,
       },
     });
     return newDocRef.id;
@@ -274,9 +282,18 @@ export function AuthProvider({ children }) {
       createdAt: dateTime,
       to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
-        subject: 'Hello from firebase',
+        subject: 'Kojak Building - Get in Touch Request',
         text: 'this is some random text',
-        html: `<img src='https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x300' alt='logo' /> <h4>Thank you for your purchase</h4>`,
+        html: `<h4>Someone has submitted a Get in Touch Request !!</h4>
+        <br />
+        <p>${payload.fullName}</p>
+        <p>${payload.mobile}</p>
+        <p>${payload.email}</p>
+        <p>${payload.subject}</p>
+        <p>${payload.messageText}</p>
+        <p>${dateTime.toLocaleString()}</p>
+        <p>${newDocRef.id}</p>
+        `,
       },
     });
     return newDocRef.id;

@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,11 +9,24 @@ import { Card, Stack, Typography } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
 // ----------------------------------------------------------------------
+const DIALOG_TEXT = 'We have received your request !!';
+const DIALOG_CONTENT =
+  'Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!';
 
 export default function ContactUsForm() {
   const { addNewFormGeneralSubmit } = useAuthContext();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
@@ -54,7 +68,7 @@ export default function ContactUsForm() {
       };
 
       // Add Form Submit to Slack Channel
-      const response = await fetch(url, requestOptions);
+      await fetch(url, requestOptions);
 
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,
@@ -62,7 +76,12 @@ export default function ContactUsForm() {
       // });
 
       await addNewFormGeneralSubmit(formData);
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          handleClickOpen();
+          return resolve();
+        }, 500)
+      );
       reset();
     } catch (error) {
       console.error(error);
@@ -70,32 +89,40 @@ export default function ContactUsForm() {
   });
 
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={2.5} alignItems="flex-start">
-        <RHFTextField name="fullName" label="Full name" />
+    <>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2.5} alignItems="flex-start">
+          <RHFTextField name="fullName" label="Full name" />
 
-        <RHFTextField name="mobile" label="Contact Number" type="number" />
+          <RHFTextField name="mobile" label="Contact Number" type="number" />
 
-        <RHFTextField name="email" label="Email" />
+          <RHFTextField name="email" label="Email" />
 
-        <RHFTextField name="subject" label="Subject" />
+          <RHFTextField name="subject" label="Subject" />
 
-        <RHFTextField name="messageText" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
+          <RHFTextField name="messageText" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
 
-        <LoadingButton
-          size="large"
-          type="submit"
-          variant="contained"
-          color="secondary"
-          loading={isSubmitting}
-          sx={{
-            mx: { xs: 'auto !important', md: 'unset !important' },
-          }}
-        >
-          Send Message
-        </LoadingButton>
-      </Stack>
-    </FormProvider>
+          <LoadingButton
+            size="large"
+            type="submit"
+            variant="contained"
+            color="secondary"
+            loading={isSubmitting}
+            sx={{
+              mx: { xs: 'auto !important', md: 'unset !important' },
+            }}
+          >
+            Send Message
+          </LoadingButton>
+        </Stack>
+      </FormProvider>
+      <ConfirmationDialog
+        title={DIALOG_TEXT}
+        content={DIALOG_CONTENT}
+        open={open}
+        handleClose={handleClose}
+      />
+    </>
   );
 }
 
