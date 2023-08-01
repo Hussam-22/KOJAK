@@ -253,7 +253,7 @@ export function AuthProvider({ children }) {
       ...payload,
       id: newDocRef.id,
       createdAt: dateTime,
-      to: [payload.email, 'info.kgmarketing@gmail.com', 'querieskb@kojak-group.com'],
+      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
         subject: 'Hello from Kojak Building',
         text: 'this is a test email',
@@ -272,7 +272,7 @@ export function AuthProvider({ children }) {
       ...payload,
       id: newDocRef.id,
       createdAt: dateTime,
-      to: payload.email,
+      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
         subject: 'Hello from firebase',
         text: 'this is some random text',
