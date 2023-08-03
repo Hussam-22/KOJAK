@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
+import { doc, setDoc, getDoc, getDocs, collection, getFirestore } from 'firebase/firestore';
 import {
   getAuth,
   signOut,
@@ -15,27 +16,6 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  doc,
-  where,
-  query,
-  setDoc,
-  getDoc,
-  getDocs,
-  Timestamp,
-  increment,
-  deleteDoc,
-  updateDoc,
-  onSnapshot,
-  writeBatch,
-  arrayUnion,
-  collection,
-  deleteField,
-  arrayRemove,
-  getFirestore,
-  collectionGroup,
-  getCountFromServer,
-} from 'firebase/firestore';
 
 // config
 import { FIREBASE_API } from 'src/config-global';
@@ -259,10 +239,13 @@ export function AuthProvider({ children }) {
         text: 'this is a test email',
         html: `<h4>Someone has requested a call back !!</h4>
         <br />
+        <p>---------------------------</p>
         <p>${payload.building}</p>
         <p>${payload.fullName}</p>
         <p>${payload.mobile}</p>
         <p>${payload.email}</p>
+        <p>${payload.inquiry}</p>
+        <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>
         <p>${newDocRef.id}</p>
         `,
