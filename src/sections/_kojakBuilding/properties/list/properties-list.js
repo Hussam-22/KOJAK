@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import Stack from '@mui/material/Stack';
-import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { useAuthContext } from 'src/auth/hooks';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
@@ -29,24 +27,26 @@ export default function PropertiesList() {
   }, [getAllSpacesInfo]);
 
   useEffect(() => {
+    let propertiesToFilter = properties;
+
     if (rdxFilter.type.length !== 0) {
-      setFilteredProperties(
-        properties.filter((property) => rdxFilter.type.includes(property.type))
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.type.includes(property.type)
       );
     }
     if (rdxFilter.bedrooms.length !== 0) {
-      setFilteredProperties(
-        properties.filter((property) => rdxFilter.bedrooms.includes(property.features.bedrooms))
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.bedrooms.includes(property.features.bedrooms)
       );
     }
     if (rdxFilter.city.length !== 0) {
-      setFilteredProperties(
-        properties.filter((property) => rdxFilter.city.includes(property.city.toLowerCase()))
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.city.includes(property.city.toLowerCase())
       );
     }
     if (rdxFilter.isAvailable.length !== 0) {
-      setFilteredProperties(
-        properties.filter((property) => rdxFilter.isAvailable.includes(property.isAvailable))
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.isAvailable.includes(property.isAvailable)
       );
     }
 
@@ -55,8 +55,11 @@ export default function PropertiesList() {
       rdxFilter.bedrooms.length === 0 &&
       rdxFilter.city.length === 0 &&
       rdxFilter.isAvailable.length === 0
-    )
+    ) {
       setFilteredProperties(properties);
+    } else {
+      setFilteredProperties(propertiesToFilter);
+    }
   }, [properties, rdxFilter.bedrooms, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
 
   return (
@@ -81,4 +84,3 @@ export default function PropertiesList() {
     </>
   );
 }
-
