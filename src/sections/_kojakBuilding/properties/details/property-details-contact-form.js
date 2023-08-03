@@ -33,12 +33,14 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string().required('Mobile number is required'),
     email: Yup.string().email('That is not an email'),
+    inquiry: Yup.string().required('Inquiry message is required'),
   });
 
   const defaultValues = {
     fullName: '',
     mobile: '',
     email: '',
+    inquiry: '',
   };
 
   const methods = useForm({
@@ -66,7 +68,7 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         credentials: 'omit', // This is equivalent to withCredentials: false in Axios
       };
 
-      const response = await fetch(url, requestOptions);
+      await fetch(url, requestOptions);
 
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,
@@ -101,6 +103,8 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
             <RHFTextField name="mobile" label="Mobile" />
 
             <RHFTextField name="email" label="Email" />
+
+            <RHFTextField name="inquiry" multiline rows={4} label="Message" />
 
             <Stack alignItems="center" width={1}>
               <LoadingButton
