@@ -5,7 +5,6 @@ import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
 

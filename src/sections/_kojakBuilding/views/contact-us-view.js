@@ -1,11 +1,8 @@
 // @mui
-import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import { LoadingButton } from '@mui/lab';
+import { Link as RouterLink } from 'react-router-dom';
+
 import {
-  Box,
   Link,
   Stack,
   Divider,
@@ -19,11 +16,9 @@ import {
 import { _socials } from 'src/_mock';
 // components
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
+// components
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
-// components
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
 
 export default function ContactUsView() {
@@ -134,9 +129,17 @@ export default function ContactUsView() {
               <Typography variant="overline">Follow Us</Typography>
               <Stack direction="row">
                 {_socials.map((social) => (
-                  <IconButton key={social.value} color="inherit">
-                    <Iconify icon={social.icon} />
-                  </IconButton>
+                  <Link
+                    key={social.value}
+                    component={RouterLink}
+                    href={social.path}
+                    noWrap
+                    underline="none"
+                  >
+                    <IconButton color="inherit">
+                      <Iconify icon={social.icon} />
+                    </IconButton>
+                  </Link>
                 ))}
               </Stack>
             </Stack>
