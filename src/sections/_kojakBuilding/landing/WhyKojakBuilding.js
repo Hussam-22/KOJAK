@@ -55,14 +55,10 @@ export default function WhyKojakBuilding() {
             why you should choose us
           </Typography>
 
-          <Typography>
+          <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
             Choosing the right partner for your space-hunting journey can make all the difference.
-            At{' '}
-            <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-              Kojak Building
-            </Box>{' '}
-            , we stand out as the ultimate destination for finding your ideal residential or
-            commercial space. Here&#39;s why you should choose us
+            At Kojak Building , we stand out as the ultimate destination for finding your ideal
+            residential or commercial space. Here&#39;s why you should choose us
           </Typography>
         </Stack>
 
@@ -91,7 +87,9 @@ export default function WhyKojakBuilding() {
                 {value.title}
               </Typography>
 
-              <Typography>{value.description}</Typography>
+              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                {value.description}
+              </Typography>
             </Card>
           ))}
         </Box>

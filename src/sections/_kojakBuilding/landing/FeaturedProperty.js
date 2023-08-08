@@ -2,6 +2,7 @@ import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
+import { Masonry } from '@mui/lab';
 import { useTheme } from '@mui/system';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -10,6 +11,14 @@ import { Box, Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 import Image from 'src/components/image/Image';
 import Iconify from 'src/components/iconify/Iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
+
+const IMAGES = [
+  'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F7_800x800.webp?alt=media&token=61abc91b-8c56-41fd-b155-ccdea058eb9b',
+  'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F0_800x800.webp?alt=media&token=c0c61571-7806-445f-88b7-1bb1fccf1e1e',
+  'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F2_800x800.webp?alt=media&token=80fbc453-f963-43f3-958c-ea7bb8957558',
+  'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F14_800x800.webp?alt=media&token=04f8f006-3c7f-43bd-9fee-0f880ae8f736',
+  'https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F8_800x800.webp?alt=media&token=d8d0e537-2ffe-48e8-a4cb-9b4eff691793',
+];
 
 export default function FeaturedProperty() {
   const theme = useTheme();
@@ -31,15 +40,18 @@ export default function FeaturedProperty() {
           variants={varFade().inRight}
           maxWidth="xl"
         >
-          <Typography variant="h2" sx={{ color: 'common.white' }}>
-            Currently Available
+          <Typography variant="h2" sx={{ color: 'common.white', mb: 3 }}>
+            Hot Deal Property
           </Typography>
-          <Typography variant="h6" sx={{ color: 'common.white' }}>
+          <Typography
+            variant="h6"
+            sx={{ color: 'common.white', fontWeight: theme.typography.fontWeightLight }}
+          >
             Expand your business with 5000 sqft at our commercial shop space in Motor City, Dubai
           </Typography>
 
           <Grid container columnSpacing={12}>
-            <Grid md={7} xs={12}>
+            <Grid md={6} xs={12}>
               <Box
                 sx={{
                   rowGap: 2.5,
@@ -47,7 +59,7 @@ export default function FeaturedProperty() {
                   display: 'grid',
                   gridTemplateColumns: {
                     xs: 'repeat(2, 1fr)',
-                    md: 'repeat(4, 1fr)',
+                    md: 'repeat(3, 1fr)',
                   },
                   my: 6,
                 }}
@@ -56,7 +68,7 @@ export default function FeaturedProperty() {
                 <OverviewItem icon="carbon:location" label="Location" text="Dubai, Motor City" />
                 <OverviewItem icon="tabler:ruler-measure" label="Total Area" text="5000 sqft" />
                 {/* <OverviewItem icon="mdi:tape-measure" label="Rent per sq Ft" text="300/AED" /> */}
-                {/* <OverviewItem icon="carbon:floorplan" label="Layout" text="Shops" /> */}
+                <OverviewItem icon="carbon:floorplan" label="Layout" text="Shops" />
                 <OverviewItem icon="iconoir:air-conditioner" label="AC Type" text="Emicool" />
                 <OverviewItem icon="tabler:parking" label="Parking" text="100 Open Space" />
                 <OverviewItem icon="bx:cctv" label="CCTV" text="Available" />
@@ -71,9 +83,17 @@ export default function FeaturedProperty() {
                   text="4-6 Cheques"
                 />
               </Box>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
+                onClick={() => navigate('/properties/C1001-1')}
+              >
+                Check out property
+              </Button>
             </Grid>
-            <Grid md={5} xs={12} sx={{ my: 6, zIndex: 9 }}>
-              <Box
+            <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
+              {/* <Box
                 sx={{
                   boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
                   borderRadius: 1,
@@ -85,17 +105,20 @@ export default function FeaturedProperty() {
                   ratio="4/3"
                   sx={{ borderRadius: 1 }}
                 />
-              </Box>
+              </Box> */}
+
+              <Masonry columns={{ xs: 1, md: 2 }} spacing={3}>
+                {IMAGES.map((url, index) => (
+                  <Image
+                    key={index}
+                    src={url}
+                    // ratio="4/3"
+                    sx={{ borderRadius: 1, boxShadow: `8px 8px 0 0 ${theme.palette.common.black}` }}
+                  />
+                ))}
+              </Masonry>
             </Grid>
           </Grid>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
-            onClick={() => navigate('/properties/C1001-1')}
-          >
-            Check out property
-          </Button>
         </Container>
       </MotionViewport>
     </Box>

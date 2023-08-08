@@ -59,7 +59,7 @@ export default function Header({ headerOnDark }) {
           maxWidth="xl"
         >
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
-            <Logo single />
+            <Logo small />
 
             {/* <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
               <Label

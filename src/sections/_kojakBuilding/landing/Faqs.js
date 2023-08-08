@@ -3,9 +3,9 @@ import { useState, useCallback } from 'react';
 
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { Box, Card } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { Box, Card, Button } from '@mui/material';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import { varFade, MotionViewport } from 'src/components/animate';
@@ -67,15 +67,13 @@ export default function FAQs() {
           maxWidth="xl"
         >
           <Stack direction="column" spacing={5}>
-            <Box sx={{ width: '60%' }}>
-              <Typography variant="overline" color="common.black">
-                Find Answers to Your Space-Hunting Queries
-              </Typography>
-
-              <Typography variant="h2" sx={{ color: 'common.black' }}>
+            <Box sx={{ width: { md: '60%', xs: 'unset' } }}>
+              <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
                 Frequently Asked Questions
               </Typography>
-              <Typography sx={{ color: 'common.black' }}>
+              <Typography
+                sx={{ color: 'common.black', fontWeight: theme.typography.fontWeightLight }}
+              >
                 Our FAQ section is where we address common questions and provide helpful answers.
                 We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
                 you&#39;ll find information on various topics to assist you in getting the answers
@@ -95,18 +93,33 @@ export default function FAQs() {
               }}
             >
               {FAQ.map((faq, index) => (
-                <Card sx={{ p: 3 }}>
+                <Card sx={{ p: 3 }} key={index}>
                   <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
                     {faq.question}
                   </Typography>
 
-                  <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: 'center', fontWeight: theme.typography.fontWeightLight }}
+                  >
                     {faq.answer}
                   </Typography>
                 </Card>
               ))}
             </Box>
           </Stack>
+
+          <Box sx={{ mt: 10, textAlign: 'center' }}>
+            <Typography variant="h2">Join 842+ Happy Tenants</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{ px: 4, typography: 'h4', mt: 2 }}
+            >
+              Browse Properties
+            </Button>
+          </Box>
         </Container>
       </MotionViewport>
     </Box>

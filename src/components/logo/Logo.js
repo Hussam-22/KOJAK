@@ -8,7 +8,7 @@ import { Box, Link, Stack, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-function Logo({ single = false, sx }) {
+function Logo({ small = false, sx }) {
   const theme = useTheme();
 
   const PRIMARY_MAIN = theme.palette.common.black;
@@ -91,7 +91,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
       <Stack direction="row" spacing={1} alignItems="center">
         <Box
           sx={{
-            width: single ? 64 : 125,
+            width: small ? 64 : 125,
             lineHeight: 0,
             cursor: 'pointer',
             display: 'inline-flex',
@@ -115,7 +115,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
 }
 
 Logo.propTypes = {
-  single: PropTypes.bool,
+  small: PropTypes.bool,
   sx: PropTypes.object,
 };
 

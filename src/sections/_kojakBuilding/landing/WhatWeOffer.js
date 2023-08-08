@@ -57,7 +57,7 @@ export default function WhatWeOffer() {
         >
           <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '60%' }}>
             <Typography variant="h2">Properties</Typography>
-            <Typography>
+            <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
               At Kojak Building , we take pride in offering an extensive selection of both
               commercial and residential spaces that cater to all your needs. Whether you&#39;re
               looking to upgrade your business headquarters or find a cozy abode to call home,
