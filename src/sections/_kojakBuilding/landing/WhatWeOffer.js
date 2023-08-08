@@ -55,7 +55,11 @@ export default function WhatWeOffer() {
             textAlign: { xs: 'center', md: 'unset' },
           }}
         >
-          <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '60%' }}>
+          <Stack
+            spacing={3}
+            flexGrow={1}
+            sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
+          >
             <Typography variant="h2">Properties</Typography>
             <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
               At Kojak Building , we take pride in offering an extensive selection of both

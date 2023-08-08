@@ -126,7 +126,7 @@ export default function Footer() {
       <Container
         sx={{
           overflow: 'hidden',
-          py: { xs: 8, md: 3 },
+          py: { xs: 1.5, md: 3 },
         }}
         maxWidth="xl"
       >
@@ -168,7 +168,23 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          <Grid xs={12} md={2}>
+          {!mdUp && (
+            <Grid xs={7} md={2}>
+              <Typography variant="h6">Kojak Group of Companies</Typography>
+              <Stack spacing={2} sx={{ mt: 2 }}>
+                {GROUPS.map((group) => (
+                  <Typography key={group.title} variant="body2">
+                    {/* <Link component={RouterLink} href={list.path} rel="noopener">
+                      {list.title}
+                    </Link> */}
+                    {group.title}
+                  </Typography>
+                ))}
+              </Stack>
+            </Grid>
+          )}
+
+          <Grid xs={5} md={2}>
             <Typography variant="h6">Sitemap</Typography>
             <Stack spacing={2} sx={{ mt: 2 }}>
               {navConfig.map((list) => (
@@ -241,7 +257,7 @@ export default function Footer() {
         <Divider sx={{ p: 1 }} />
 
         <Stack
-          spacing={2.5}
+          spacing={1}
           direction={{ xs: 'column', md: 'row' }}
           justifyContent="space-between"
           sx={{ py: 1, textAlign: 'center' }}
@@ -250,15 +266,9 @@ export default function Footer() {
             © 2023. All rights reserved - Kojak Group of Companies
           </Typography>
 
-          <Stack direction="row" spacing={3} justifyContent="center">
-            <Link
-              href="mailto:hello@prozeffect.com"
-              variant="caption"
-              sx={{ color: 'primary.main' }}
-            >
-              Designed by ProzEffect | hello@prozeffect.com
-            </Link>
-          </Stack>
+          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'primary.main' }}>
+            Designed by ProzEffect | hello@prozeffect.com
+          </Link>
         </Stack>
       </Container>
     </Box>

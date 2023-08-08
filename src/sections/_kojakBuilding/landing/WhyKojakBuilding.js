@@ -48,7 +48,8 @@ export default function WhyKojakBuilding() {
           justifyContent={{ md: 'space-between' }}
           sx={{
             my: 8,
-            maxWidth: '60%',
+            maxWidth: { md: '60%', xs: '100%' },
+            textAlign: { md: 'left', xs: 'center' },
           }}
         >
           <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>

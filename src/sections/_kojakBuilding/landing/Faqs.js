@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router';
 
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Box, Card, Button } from '@mui/material';
 
-import { useResponsive } from 'src/hooks/use-responsive';
+import { paths } from 'src/routes/paths';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
@@ -43,20 +43,11 @@ const FAQ = [
 // ----------------------------------------------------------------------
 
 export default function FAQs() {
-  const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
-
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChangeExpanded = useCallback(
-    (panel) => (event, isExpanded) => {
-      setExpanded(isExpanded ? panel : false);
-    },
-    []
-  );
+  const navigate = useNavigate();
 
   return (
-    <Box sx={{ backgroundColor: theme.palette.primary.lighter }}>
+    <Box sx={{ backgroundColor: theme.palette.primary.lighter, overflow: 'hidden' }}>
       <MotionViewport disableAnimatedMobile>
         <Container
           sx={{
@@ -67,7 +58,9 @@ export default function FAQs() {
           maxWidth="xl"
         >
           <Stack direction="column" spacing={5}>
-            <Box sx={{ width: { md: '60%', xs: 'unset' } }}>
+            <Box
+              sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
+            >
               <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
                 Frequently Asked Questions
               </Typography>
@@ -87,7 +80,7 @@ export default function FAQs() {
                 columnGap: 3,
                 display: 'grid',
                 gridTemplateColumns: {
-                  xs: 'repeat(2, 1fr)',
+                  xs: 'repeat(1, 1fr)',
                   md: 'repeat(3, 1fr)',
                 },
               }}
@@ -116,6 +109,7 @@ export default function FAQs() {
               color="primary"
               size="large"
               sx={{ px: 4, typography: 'h4', mt: 2 }}
+              onClick={() => navigate(paths.website.properties)}
             >
               Browse Properties
             </Button>

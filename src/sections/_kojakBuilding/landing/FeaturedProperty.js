@@ -10,6 +10,7 @@ import { Box, Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 import Iconify from 'src/components/iconify/Iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 const IMAGES = [
@@ -23,6 +24,7 @@ const IMAGES = [
 export default function FeaturedProperty() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const isMdUp = useResponsive('up', 'md');
 
   return (
     <Box
@@ -35,6 +37,7 @@ export default function FeaturedProperty() {
         <Container
           sx={{
             py: 10,
+            textAlign: { md: 'left', xs: 'center' },
           }}
           component={m.div}
           variants={varFade().inRight}
@@ -49,6 +52,23 @@ export default function FeaturedProperty() {
           >
             Expand your business with 5000 sqft at our commercial shop space in Motor City, Dubai
           </Typography>
+
+          {!isMdUp && (
+            <Box
+              sx={{
+                boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
+                borderRadius: 1,
+                mt: 4,
+              }}
+            >
+              <Image
+                src="https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F7_800x800.webp?alt=media&token=61abc91b-8c56-41fd-b155-ccdea058eb9b"
+                alt="property-img-1"
+                ratio="4/3"
+                sx={{ borderRadius: 1 }}
+              />
+            </Box>
+          )}
 
           <Grid container columnSpacing={12}>
             <Grid md={6} xs={12}>
@@ -89,35 +109,26 @@ export default function FeaturedProperty() {
                 sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
                 onClick={() => navigate('/properties/C1001-1')}
               >
-                Check out property
+                Contact our agent
               </Button>
             </Grid>
-            <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
-              {/* <Box
-                sx={{
-                  boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
-                  borderRadius: 1,
-                }}
-              >
-                <Image
-                  src="https://firebasestorage.googleapis.com/v0/b/kojak-building/o/C1001-1%2F7_800x800.webp?alt=media&token=61abc91b-8c56-41fd-b155-ccdea058eb9b"
-                  alt="property-img-1"
-                  ratio="4/3"
-                  sx={{ borderRadius: 1 }}
-                />
-              </Box> */}
-
-              <Masonry columns={{ xs: 1, md: 2 }} spacing={3}>
-                {IMAGES.map((url, index) => (
-                  <Image
-                    key={index}
-                    src={url}
-                    // ratio="4/3"
-                    sx={{ borderRadius: 1, boxShadow: `8px 8px 0 0 ${theme.palette.common.black}` }}
-                  />
-                ))}
-              </Masonry>
-            </Grid>
+            {isMdUp && (
+              <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
+                <Masonry columns={{ xs: 1, md: 2 }} spacing={3}>
+                  {IMAGES.map((url, index) => (
+                    <Image
+                      key={index}
+                      src={url}
+                      // ratio="4/3"
+                      sx={{
+                        borderRadius: 1,
+                        boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
+                      }}
+                    />
+                  ))}
+                </Masonry>
+              </Grid>
+            )}
           </Grid>
         </Container>
       </MotionViewport>
@@ -129,14 +140,22 @@ export default function FeaturedProperty() {
 
 function OverviewItem({ icon, label, text = '-' }) {
   const theme = useTheme();
+  const isMdUp = useResponsive('up', 'md');
+
   return (
-    <Box sx={{ border: `solid 2px ${theme.palette.primary.main}`, p: 3, borderRadius: 2 }}>
+    <Box
+      sx={{
+        border: `solid 2px ${theme.palette.primary.main}`,
+        p: isMdUp ? 3 : 1.5,
+        borderRadius: 2,
+      }}
+    >
       <Stack spacing={1.5} direction="column" alignItems="center">
-        <Iconify icon={icon} width={65} color="common.white" />
-        <Typography variant="h5" sx={{ color: 'common.white' }}>
+        <Iconify icon={icon} width={isMdUp ? 65 : 32} color="common.white" />
+        <Typography sx={{ color: 'common.white', typography: { md: 'h5', xs: 'body1' } }}>
           {label}
         </Typography>
-        <Typography variant="h6" sx={{ color: 'common.white' }}>
+        <Typography sx={{ color: 'common.white', typography: { md: 'h5', xs: 'body1' } }}>
           {text}
         </Typography>
       </Stack>
