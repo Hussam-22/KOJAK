@@ -1,7 +1,5 @@
 // @mui
 
-import { Link as RouterLink } from 'react-router-dom';
-
 import {
   Link,
   Stack,
@@ -131,10 +129,10 @@ export default function ContactUsView() {
                 {_socials.map((social) => (
                   <Link
                     key={social.value}
-                    component={RouterLink}
                     href={social.path}
                     noWrap
                     underline="none"
+                    target="_blank"
                   >
                     <IconButton color="inherit">
                       <Iconify icon={social.icon} />
