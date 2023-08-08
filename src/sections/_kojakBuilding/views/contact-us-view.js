@@ -1,11 +1,6 @@
 // @mui
-import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import { LoadingButton } from '@mui/lab';
 import {
-  Box,
   Link,
   Stack,
   Divider,
@@ -19,11 +14,9 @@ import {
 import { _socials } from 'src/_mock';
 // components
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
+// components
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
-// components
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
 
 export default function ContactUsView() {
@@ -101,7 +94,7 @@ export default function ContactUsView() {
                 <Iconify icon="carbon:mobile" width={24} sx={{ mr: 1 }} /> Phone
               </Stack>
 
-              <Typography variant="body2">052 9242728</Typography>
+              <Typography variant="body2">052 924 2623</Typography>
             </Stack>
 
             <Stack spacing={1}>
@@ -134,9 +127,17 @@ export default function ContactUsView() {
               <Typography variant="overline">Follow Us</Typography>
               <Stack direction="row">
                 {_socials.map((social) => (
-                  <IconButton key={social.value} color="inherit">
-                    <Iconify icon={social.icon} />
-                  </IconButton>
+                  <Link
+                    key={social.value}
+                    href={social.path}
+                    noWrap
+                    underline="none"
+                    target="_blank"
+                  >
+                    <IconButton color="inherit">
+                      <Iconify icon={social.icon} />
+                    </IconButton>
+                  </Link>
                 ))}
               </Stack>
             </Stack>

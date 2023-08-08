@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useCallback } from 'react';
 
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import Fade from '@mui/material/Fade';
 import Stack from '@mui/material/Stack';
-import Portal from '@mui/material/Portal';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import Image from 'src/components/image';
 import Label from 'src/components/label';
@@ -16,7 +12,7 @@ import { RouterLink } from 'src/routes/components';
 import { useActiveLink } from 'src/routes/hooks/use-active-link';
 
 import { NavItem } from './nav-item';
-import { StyledMenu, StyledSubheader } from './styles';
+import { StyledSubheader } from './styles';
 
 // ----------------------------------------------------------------------
 
@@ -49,58 +45,14 @@ export default function NavList({ item }) {
   }, [item.children, menuOpen]);
 
   return (
-    <>
-      <NavItem
-        item={item}
-        active={active}
-        open={menuOpen.value}
-        externalLink={externalLink}
-        onMouseEnter={handleOpenMenu}
-        onMouseLeave={menuOpen.onFalse}
-      />
-
-      {!!item.children && menuOpen.value && (
-        <Portal>
-          <Fade in={menuOpen.value}>
-            <StyledMenu onMouseEnter={handleOpenMenu} onMouseLeave={menuOpen.onFalse}>
-              <Grid container columns={15}>
-                <Grid xs={12}>
-                  <Box
-                    gap={5}
-                    display="grid"
-                    gridTemplateColumns="repeat(5, 1fr)"
-                    sx={{
-                      p: 5,
-                      height: 1,
-                      position: 'relative',
-                      bgcolor: 'background.neutral',
-                    }}
-                  >
-                    {mainList.map((list) => (
-                      <NavSubList
-                        key={list.subheader}
-                        subheader={list.subheader}
-                        cover={list.cover}
-                        items={list.items}
-                        isNew={list.isNew}
-                      />
-                    ))}
-                  </Box>
-                </Grid>
-
-                {commonList && (
-                  <Grid xs={3}>
-                    <Box sx={{ bgcolor: 'background.default', p: 5 }}>
-                      <NavSubList subheader={commonList.subheader} items={commonList.items} />
-                    </Box>
-                  </Grid>
-                )}
-              </Grid>
-            </StyledMenu>
-          </Fade>
-        </Portal>
-      )}
-    </>
+    <NavItem
+      item={item}
+      active={active}
+      open={menuOpen.value}
+      externalLink={externalLink}
+      onMouseEnter={handleOpenMenu}
+      onMouseLeave={menuOpen.onFalse}
+    />
   );
 }
 

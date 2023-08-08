@@ -4,6 +4,7 @@ import LatestPosts from 'src/sections/blog/kojak/latest-posts';
 import LandingHero from 'src/sections/_kojakBuilding/landing/LandingHero';
 import WhatWeOffer from 'src/sections/_kojakBuilding/landing/WhatWeOffer';
 import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
+import FeaturedProperty from 'src/sections/_kojakBuilding/landing/FeaturedProperty';
 
 export default function LandingView() {
   return (
@@ -11,6 +12,7 @@ export default function LandingView() {
       <LandingHero />
       <WhyKojakBuilding />
       <WhatWeOffer />
+      <FeaturedProperty />
       <FAQs />
       <LatestPosts posts={blogPosts.slice(0, 6)} />
     </>

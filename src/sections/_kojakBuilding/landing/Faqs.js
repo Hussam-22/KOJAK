@@ -1,18 +1,13 @@
 import { m } from 'framer-motion';
-import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router';
 
-import { Box } from '@mui/material';
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Accordion from '@mui/material/Accordion';
 import Typography from '@mui/material/Typography';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { Box, Card, Button } from '@mui/material';
 
-import Image from 'src/components/image';
-import Iconify from 'src/components/iconify';
-import { useResponsive } from 'src/hooks/use-responsive';
+import { paths } from 'src/routes/paths';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
@@ -48,48 +43,30 @@ const FAQ = [
 // ----------------------------------------------------------------------
 
 export default function FAQs() {
-  const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
-
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChangeExpanded = useCallback(
-    (panel) => (event, isExpanded) => {
-      setExpanded(isExpanded ? panel : false);
-    },
-    []
-  );
+  const navigate = useNavigate();
 
   return (
-    <Box
-      sx={{ backgroundColor: theme.palette.secondary.main }}
-      // sx={{
-      //   backgroundColor: theme.palette.secondary.main,
-      //   backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
-      //   backgroundSize: 'cover',
-      // }}
-    >
+    <Box sx={{ backgroundColor: theme.palette.primary.lighter, overflow: 'hidden' }}>
       <MotionViewport disableAnimatedMobile>
         <Container
           sx={{
-            pt: { xs: 5, md: 10 },
-            pb: { xs: 10, md: 15 },
+            py: 10,
           }}
           component={m.div}
           variants={varFade().inRight}
+          maxWidth="xl"
         >
-          <Stack
-            direction={{ md: 'row', xs: 'column' }}
-            spacing={2}
-            sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
-          >
-            <Box>
-              <Typography variant="overline" color="text.disabled">
-                Find Answers to Your Space-Hunting Queries
+          <Stack direction="column" spacing={5}>
+            <Box
+              sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
+            >
+              <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
+                Frequently Asked Questions
               </Typography>
-
-              <Typography variant="h2">Frequently Asked Questions</Typography>
-              <Typography sx={{ textAlign: 'center' }}>
+              <Typography
+                sx={{ color: 'common.black', fontWeight: theme.typography.fontWeightLight }}
+              >
                 Our FAQ section is where we address common questions and provide helpful answers.
                 We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
                 you&#39;ll find information on various topics to assist you in getting the answers
@@ -97,53 +74,46 @@ export default function FAQs() {
               </Typography>
             </Box>
 
-            <Box sx={{ textAlign: 'center', width: 1 }}>
-              <Image
-                alt="faqs"
-                src="/assets/kojak-building/illustration/Question_Flatline.svg"
-                // ratio="16/9"
-                sx={{
-                  backgroundColor: theme.palette.secondary.main,
-                  backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              />
+            <Box
+              sx={{
+                rowGap: 2.5,
+                columnGap: 3,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: 'repeat(1, 1fr)',
+                  md: 'repeat(3, 1fr)',
+                },
+              }}
+            >
+              {FAQ.map((faq, index) => (
+                <Card sx={{ p: 3 }} key={index}>
+                  <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+                    {faq.question}
+                  </Typography>
+
+                  <Typography
+                    variant="body2"
+                    sx={{ textAlign: 'center', fontWeight: theme.typography.fontWeightLight }}
+                  >
+                    {faq.answer}
+                  </Typography>
+                </Card>
+              ))}
             </Box>
           </Stack>
 
-          {FAQ.map((faq, index) => (
-            <Accordion
-              key={index}
-              expanded={expanded === faq.question}
-              onChange={handleChangeExpanded(faq.question)}
-              sx={{ '&:before': { backgroundColor: 'unset' } }}
+          <Box sx={{ mt: 10, textAlign: 'center' }}>
+            <Typography variant="h2">Join 842+ Happy Tenants</Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{ px: 4, typography: 'h4', mt: 2 }}
+              onClick={() => navigate(paths.website.properties)}
             >
-              <AccordionSummary
-                sx={{
-                  backgroundColor: 'common.white',
-                  mb: 2,
-                  px: 2,
-                  borderRadius: 1,
-                }}
-              >
-                <Typography
-                  variant={mdUp ? 'h5' : 'h6'}
-                  sx={{ flexGrow: 1, textAlign: { xs: 'center', md: 'left' } }}
-                >
-                  {faq.question}
-                </Typography>
-
-                <Iconify
-                  width={24}
-                  icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-                />
-              </AccordionSummary>
-
-              <AccordionDetails>{faq.answer}</AccordionDetails>
-            </Accordion>
-          ))}
+              Browse Properties
+            </Button>
+          </Box>
         </Container>
       </MotionViewport>
     </Box>

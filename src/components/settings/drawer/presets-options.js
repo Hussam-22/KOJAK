@@ -53,7 +53,7 @@ export default function PresetsOptions({ value, onChange }) {
   const presetsOption = presetOptions.map((color) => ({
     name: color.name,
     primary: color.primary.main,
-    secondary: color.secondary.main,
+    secondary: color.common.black,
   }));
 
   return (

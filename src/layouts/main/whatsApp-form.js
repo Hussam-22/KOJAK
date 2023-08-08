@@ -5,7 +5,6 @@ import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
 
@@ -24,7 +23,7 @@ export default function WhatsAppForm() {
     const message = textRef.current.value;
     const CustomerMobileNumber = mobileNumberRef.current.value;
 
-    const number = '+971529242548';
+    const number = '+971529242623';
 
     // Appending the phone number & Message to the URL
     const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(

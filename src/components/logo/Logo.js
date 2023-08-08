@@ -8,10 +8,10 @@ import { Box, Link, Stack, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-function Logo({ single = false, sx }) {
+function Logo({ small = false, sx }) {
   const theme = useTheme();
 
-  const PRIMARY_MAIN = theme.palette.secondary.main;
+  const PRIMARY_MAIN = theme.palette.common.black;
 
   const singleLogo = (
     <svg
@@ -91,7 +91,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
       <Stack direction="row" spacing={1} alignItems="center">
         <Box
           sx={{
-            width: single ? 64 : 125,
+            width: small ? 64 : 125,
             lineHeight: 0,
             cursor: 'pointer',
             display: 'inline-flex',
@@ -102,10 +102,10 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
           {singleLogo}
         </Box>
         <Stack direction="column">
-          <Typography variant="h4" color="secondary" sx={{ lineHeight: 1, fontWeight: '700' }}>
+          <Typography variant="h4" sx={{ lineHeight: 1, fontWeight: '700' }}>
             KOJAK
           </Typography>
-          <Typography variant="body1" color="secondary" sx={{ lineHeight: 1 }}>
+          <Typography variant="body1" color="primary" sx={{ lineHeight: 1 }}>
             BUILDING
           </Typography>
         </Stack>
@@ -115,7 +115,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
 }
 
 Logo.propTypes = {
-  single: PropTypes.bool,
+  small: PropTypes.bool,
   sx: PropTypes.object,
 };
 

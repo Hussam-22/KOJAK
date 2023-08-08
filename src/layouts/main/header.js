@@ -16,9 +16,7 @@ import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import { HEADER } from '../config-layout';
-import Searchbar from '../common/searchbar';
 import HeaderShadow from '../common/header-shadow';
-import SettingsButton from '../common/settings-button';
 
 import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';
@@ -58,9 +56,10 @@ export default function Header({ headerOnDark }) {
       >
         <Container
           sx={{ height: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+          maxWidth="xl"
         >
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
-            <Logo single />
+            <Logo small />
 
             {/* <Link href="https://zone-docs.vercel.app/changelog" target="_blank" rel="noopener">
               <Label
@@ -81,9 +80,8 @@ export default function Header({ headerOnDark }) {
             </Link> */}
           </Box>
 
-          {mdUp && <NavDesktop data={navConfig} />}
-
           <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
+            {mdUp && <NavDesktop data={navConfig} />}
             {/* <Stack spacing={1} direction="row" alignItems="center">
               <Searchbar />
 
@@ -92,11 +90,11 @@ export default function Header({ headerOnDark }) {
 
             {mdUp && (
               <Button
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 onClick={() => navigate(paths.website.properties)}
               >
-                Explore Available Properties
+                Explore Properties
               </Button>
             )}
           </Stack>
