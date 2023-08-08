@@ -94,7 +94,7 @@ export default function ContactUsView() {
                 <Iconify icon="carbon:mobile" width={24} sx={{ mr: 1 }} /> Phone
               </Stack>
 
-              <Typography variant="body2">052 9242728</Typography>
+              <Typography variant="body2">052 924 2623</Typography>
             </Stack>
 
             <Stack spacing={1}>
