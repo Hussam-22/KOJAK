@@ -19,8 +19,8 @@ export const StyledNavItem = styled(ListItemButton, {
   };
 
   return {
-    ...theme.typography.body2,
-    fontWeight: theme.typography.fontWeightMedium,
+    ...theme.typography.body1,
+    fontWeight: theme.typography.fontWeightLight,
     padding: 0,
     height: '100%',
     transition: theme.transitions.create('opacity', {

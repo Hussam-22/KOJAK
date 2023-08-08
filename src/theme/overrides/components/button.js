@@ -68,6 +68,14 @@ export function button(theme) {
     };
 
     const colorStyle = COLORS.map((color) => ({
+      // OUTLINED
+      ...(outlinedVariant && {
+        border: 'solid 2px',
+        '&:hover': {
+          border: 'solid 3px',
+          backgroundColor: theme.palette.action.hover,
+        },
+      }),
       ...(ownerState.color === color && {
         // CONTAINED
         ...(containedVariant && {

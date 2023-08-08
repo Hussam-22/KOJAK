@@ -14,7 +14,7 @@ function Shape({ ...other }) {
 
   const SECONDARY_LIGHT = theme.palette.secondary.light;
 
-  const SECONDARY_MAIN = theme.palette.secondary.main;
+  const SECONDARY_MAIN = theme.palette.common.black;
 
   return (
     <Box {...other}>

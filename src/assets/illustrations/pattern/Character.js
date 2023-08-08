@@ -15,7 +15,7 @@ function Character({ front = false, ...other }) {
 
   const PRIMARY_DARKER = theme.palette.primary.darker;
 
-  const SECONDARY_MAIN = theme.palette.secondary.main;
+  const SECONDARY_MAIN = theme.palette.common.black;
 
   const SECONDARY_DARK = theme.palette.secondary.dark;
 

@@ -100,7 +100,7 @@ export default function PropertyCard({ space, vertical }) {
             px: 1,
             borderRadius: 0.75,
             typography: 'subtitle2',
-            bgcolor: 'secondary.main',
+            bgcolor: 'common.black',
             color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
           }}
         >

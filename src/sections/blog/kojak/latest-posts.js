@@ -45,6 +45,7 @@ export default function LatestPosts({ posts }) {
         }}
         component={m.div}
         variants={varFade().inLeft}
+        maxWidth="xl"
       >
         <Stack
           direction="row"

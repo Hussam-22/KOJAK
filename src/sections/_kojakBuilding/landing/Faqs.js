@@ -1,17 +1,12 @@
 import { m } from 'framer-motion';
 import { useState, useCallback } from 'react';
 
-import { Box } from '@mui/material';
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
+import { Box, Card } from '@mui/material';
 import Container from '@mui/material/Container';
-import Accordion from '@mui/material/Accordion';
 import Typography from '@mui/material/Typography';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
 
-import Image from 'src/components/image';
-import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { varFade, MotionViewport } from 'src/components/animate';
 
@@ -61,35 +56,26 @@ export default function FAQs() {
   );
 
   return (
-    <Box
-      sx={{ backgroundColor: theme.palette.secondary.main }}
-      // sx={{
-      //   backgroundColor: theme.palette.secondary.main,
-      //   backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
-      //   backgroundSize: 'cover',
-      // }}
-    >
+    <Box sx={{ backgroundColor: theme.palette.primary.lighter }}>
       <MotionViewport disableAnimatedMobile>
         <Container
           sx={{
-            pt: { xs: 5, md: 10 },
-            pb: { xs: 10, md: 15 },
+            py: 10,
           }}
           component={m.div}
           variants={varFade().inRight}
+          maxWidth="xl"
         >
-          <Stack
-            direction={{ md: 'row', xs: 'column' }}
-            spacing={2}
-            sx={{ mb: 5, textAlign: 'center', alignItems: 'center', color: 'common.white' }}
-          >
-            <Box>
-              <Typography variant="overline" color="text.disabled">
+          <Stack direction="column" spacing={5}>
+            <Box sx={{ width: '60%' }}>
+              <Typography variant="overline" color="common.black">
                 Find Answers to Your Space-Hunting Queries
               </Typography>
 
-              <Typography variant="h2">Frequently Asked Questions</Typography>
-              <Typography sx={{ textAlign: 'center' }}>
+              <Typography variant="h2" sx={{ color: 'common.black' }}>
+                Frequently Asked Questions
+              </Typography>
+              <Typography sx={{ color: 'common.black' }}>
                 Our FAQ section is where we address common questions and provide helpful answers.
                 We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
                 you&#39;ll find information on various topics to assist you in getting the answers
@@ -97,53 +83,30 @@ export default function FAQs() {
               </Typography>
             </Box>
 
-            <Box sx={{ textAlign: 'center', width: 1 }}>
-              <Image
-                alt="faqs"
-                src="/assets/kojak-building/illustration/Question_Flatline.svg"
-                // ratio="16/9"
-                sx={{
-                  backgroundColor: theme.palette.secondary.main,
-                  backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              />
+            <Box
+              sx={{
+                rowGap: 2.5,
+                columnGap: 3,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: 'repeat(2, 1fr)',
+                  md: 'repeat(3, 1fr)',
+                },
+              }}
+            >
+              {FAQ.map((faq, index) => (
+                <Card sx={{ p: 3 }}>
+                  <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+                    {faq.question}
+                  </Typography>
+
+                  <Typography variant="body2" sx={{ textAlign: 'center' }}>
+                    {faq.answer}
+                  </Typography>
+                </Card>
+              ))}
             </Box>
           </Stack>
-
-          {FAQ.map((faq, index) => (
-            <Accordion
-              key={index}
-              expanded={expanded === faq.question}
-              onChange={handleChangeExpanded(faq.question)}
-              sx={{ '&:before': { backgroundColor: 'unset' } }}
-            >
-              <AccordionSummary
-                sx={{
-                  backgroundColor: 'common.white',
-                  mb: 2,
-                  px: 2,
-                  borderRadius: 1,
-                }}
-              >
-                <Typography
-                  variant={mdUp ? 'h5' : 'h6'}
-                  sx={{ flexGrow: 1, textAlign: { xs: 'center', md: 'left' } }}
-                >
-                  {faq.question}
-                </Typography>
-
-                <Iconify
-                  width={24}
-                  icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-                />
-              </AccordionSummary>
-
-              <AccordionDetails>{faq.answer}</AccordionDetails>
-            </Accordion>
-          ))}
         </Container>
       </MotionViewport>
     </Box>

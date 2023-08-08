@@ -1,17 +1,13 @@
-import { m } from 'framer-motion';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
+import { Stack } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
-import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { varFade, MotionViewport } from 'src/components/animate';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
@@ -51,8 +47,6 @@ export default function WhatWeOffer() {
           pt: { xs: 5, md: 10 },
         }}
         maxWidth="xl"
-        // component={m.div}
-        // variants={varFade().inRight}
       >
         <Stack
           direction={{ xs: 'column', md: 'row' }}
@@ -61,16 +55,13 @@ export default function WhatWeOffer() {
             textAlign: { xs: 'center', md: 'unset' },
           }}
         >
-          <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '650px' }}>
-            <Typography variant="h2">Featured Properties</Typography>
+          <Stack spacing={3} flexGrow={1} sx={{ maxWidth: '60%' }}>
+            <Typography variant="h2">Properties</Typography>
             <Typography>
-              At{' '}
-              <Box component="span" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                Kojak Building
-              </Box>{' '}
-              , we take pride in offering an extensive selection of both commercial and residential
-              spaces that cater to all your needs. Whether you&#39;re looking to upgrade your
-              business headquarters or find a cozy abode to call home, we&#39;ve got you covered.
+              At Kojak Building , we take pride in offering an extensive selection of both
+              commercial and residential spaces that cater to all your needs. Whether you&#39;re
+              looking to upgrade your business headquarters or find a cozy abode to call home,
+              we&#39;ve got you covered.
             </Typography>
           </Stack>
 
