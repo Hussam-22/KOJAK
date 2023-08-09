@@ -14,7 +14,6 @@ import Button, { buttonClasses } from '@mui/material/Button';
 
 import { _socials } from 'src/_mock';
 import Logo from 'src/components/logo';
-import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -80,11 +79,7 @@ export default function Footer() {
   const renderOverlay = (
     <Box
       sx={{
-        ...bgGradient({
-          startColor: `${alpha('#000000', 0)} 100%`,
-          endColor: `${'#000000'} 100%`,
-        }),
-        backgroundColor: alpha('#000000', 0.44),
+        backgroundColor: alpha('#000000', 0.45),
         top: 0,
         left: 0,
         zIndex: -1,
@@ -203,7 +198,7 @@ export default function Footer() {
                 sx={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(3,1fr)',
-                  columnGap: 3,
+                  columnGap: 1,
                   height: '100%',
                 }}
               >
@@ -217,12 +212,10 @@ export default function Footer() {
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                       backgroundPosition: 'center',
-                      // position: 'relative',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-end',
                       textAlign: 'center',
-                      boxShadow: `7px 7px 0 0 ${mUItheme.palette.common.black}`,
                     }}
                   >
                     <Box sx={{ mb: 2 }}>
