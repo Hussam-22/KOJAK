@@ -36,19 +36,19 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
 
 const GROUPS = [
   {
-    title: 'KOJAK K-Exclusive',
+    title: 'K-Exclusive',
     text: 'Buy your dream Mercedes',
     url: 'www.kojak-k-exclusive.com',
     image: 'k-exclusive',
   },
   {
-    title: 'KOJAK Spare Parts',
+    title: 'Spare Parts',
     text: 'Geniun spare parts for your Mercedes',
     url: 'www.kojak-spare-parts.com',
     image: 'spare-parts',
   },
   {
-    title: 'KOJAK Auto Maintenance',
+    title: 'Auto Maintenance',
     text: 'Fix your Mercedes by experts',
     url: 'kojak-auto-maintenance',
     image: 'auto-main',
@@ -125,10 +125,10 @@ export default function Footer() {
         }}
         maxWidth="xl"
       >
-        <Logo small />
         <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
           <Grid xs={12} md={5}>
             <Stack spacing={2}>
+              <Logo small />
               <Typography
                 variant="body2"
                 sx={{ color: 'text.secondary', fontWeight: mUItheme.typography.fontWeightLight }}
@@ -194,19 +194,22 @@ export default function Footer() {
 
           {mdUp && (
             <Grid xs={12} md={5}>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Kojak Group of Companies
+              </Typography>
               <Box
                 sx={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(3,1fr)',
                   columnGap: 1,
-                  height: '100%',
+                  height: '90%',
                 }}
               >
                 {GROUPS.map((group, index) => (
                   <Card
                     key={index}
                     sx={{
-                      borderRadius: 1,
+                      borderRadius: 0.5,
                       p: 1,
                       backgroundImage: `url(/assets/kojak-building/group/${group.image}.jpg)`,
                       backgroundSize: 'cover',
@@ -218,7 +221,7 @@ export default function Footer() {
                       textAlign: 'center',
                     }}
                   >
-                    <Box sx={{ mb: 2 }}>
+                    <Box sx={{ my: 'auto' }}>
                       <Typography
                         variant="h6"
                         sx={{
@@ -236,7 +239,15 @@ export default function Footer() {
                         {group.text}
                       </Typography>
                     </Box>
-                    <Button variant="contained" color="primary" sx={{ m: 2 }}>
+                    <Button
+                      variant="text"
+                      sx={{
+                        m: 2,
+                        color: 'common.white',
+                        fontWeight: mUItheme.typography.fontWeightLight,
+                      }}
+                      endIcon={<Iconify icon="quill:link-out" />}
+                    >
                       Visit Website
                     </Button>
                     {renderOverlay}
