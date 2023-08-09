@@ -18,7 +18,7 @@ export default function PropertiesView() {
   const mdUp = useResponsive('up', 'md');
   const { addNewSpace } = useAuthContext();
 
-  const addSpaceHandler = async () => addNewSpace();
+  // const addSpaceHandler = async () => addNewSpace();
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -39,7 +39,7 @@ export default function PropertiesView() {
         }}
       >
         <Typography variant="h2">Properties</Typography>
-        <Button onClick={addSpaceHandler}>Add Space</Button>
+        {/* <Button onClick={addSpaceHandler}>Add Space</Button> */}
 
         <Button
           color="inherit"
