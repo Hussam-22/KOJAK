@@ -44,7 +44,17 @@ export default function FeaturedProperty() {
           maxWidth="xl"
         >
           <Typography variant="h2" sx={{ color: 'common.white', mb: 3 }}>
-            Hot Deal Property
+            <Iconify icon="noto:fire" width={54} /> Hot Deal Property{' '}
+            <Box
+              component="span"
+              sx={{ typography: 'h4', color: 'primary.light', textDecorationLine: 'line-through' }}
+            >
+              175,000/y
+            </Box>{' '}
+            -{' '}
+            <Box component="span" sx={{ typography: 'h4' }}>
+              150,000/y
+            </Box>
           </Typography>
           <Typography
             variant="h6"
