@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { paths } from 'src/routes/paths';
-import { bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const SUMMARY = [
@@ -18,33 +17,12 @@ const SUMMARY = [
   { label: 'Total Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
 ];
 
-const renderOverlay = (
-  <Box
-    sx={{
-      ...bgGradient({
-        startColor: `${alpha('#000000', 0)} 100%`,
-        endColor: `${'#000000'} 100%`,
-      }),
-      backgroundColor: alpha('#000000', 0.44),
-      top: 0,
-      left: 0,
-      zIndex: -1,
-      width: 1,
-      height: 1,
-      position: 'absolute',
-    }}
-  />
-);
 // ----------------------------------------------------------------------
 
 export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
-
-  // const scrollToElement = () => {
-  //   document.getElementById('scrollHere').scrollIntoView({ behavior: 'smooth' });
-  // };
 
   return (
     <Box

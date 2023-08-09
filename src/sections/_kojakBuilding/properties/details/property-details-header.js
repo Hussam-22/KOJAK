@@ -13,10 +13,11 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
   const {
     id,
     type,
+    spaceType,
     rent,
     city,
     location,
-    buildingName,
+    description,
     listingDate,
     isAvailable,
     features: { bedrooms },
@@ -36,20 +37,9 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
           mb: 2,
         }}
       >
-        {type === 'commercial' && (
-          <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-            {`Office Space - ${buildingName}`}
-          </Typography>
-        )}
-        {type === 'residential' && (
-          <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-            {bedrooms === 0 ? `Studio - ${buildingName}` : `${bedrooms} Bedroom - ${buildingName}`}
-          </Typography>
-        )}
-
-        {/* <Stack direction="row" alignItems="center" flexShrink={0}>
-          <Iconify icon="carbon:share" />
-        </Stack> */}
+        <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+          {spaceType} - {description}
+        </Typography>
       </Stack>
 
       <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
@@ -76,10 +66,11 @@ PropertyDetailsHeader.propTypes = {
   spaceInfo: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
+    spaceType: PropTypes.string,
     rent: PropTypes.number,
     city: PropTypes.string,
     location: PropTypes.string,
-    buildingName: PropTypes.string,
+    description: PropTypes.string,
     listingDate: PropTypes.object,
     isAvailable: PropTypes.bool,
 

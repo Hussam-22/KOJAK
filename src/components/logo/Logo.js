@@ -8,7 +8,7 @@ import { Box, Link, Stack, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
-function Logo({ small = false, sx }) {
+function Logo({ small = false, light = false, sx }) {
   const theme = useTheme();
 
   const PRIMARY_MAIN = theme.palette.common.black;
@@ -23,7 +23,7 @@ function Logo({ small = false, sx }) {
     >
       <g
         transform="translate(0.000000,239.000000) scale(0.100000,-0.100000)"
-        fill="#000000"
+        fill={light ? '#FFFFFF' : '#000000'}
         stroke="none"
       >
         <path
@@ -95,14 +95,17 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
             lineHeight: 0,
             cursor: 'pointer',
             display: 'inline-flex',
-            p: 0.75,
+            p: { my: 0.75, xs: 1 },
             ...sx,
           }}
         >
           {singleLogo}
         </Box>
         <Stack direction="column">
-          <Typography variant="h4" sx={{ lineHeight: 1, fontWeight: '700' }}>
+          <Typography
+            variant="h4"
+            sx={{ lineHeight: 1, fontWeight: '700', color: light ? 'common.white' : 'unset' }}
+          >
             KOJAK
           </Typography>
           <Typography variant="body1" color="primary" sx={{ lineHeight: 1 }}>
@@ -116,6 +119,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
 
 Logo.propTypes = {
   small: PropTypes.bool,
+  light: PropTypes.bool,
   sx: PropTypes.object,
 };
 

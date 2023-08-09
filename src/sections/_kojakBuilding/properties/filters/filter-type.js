@@ -10,7 +10,6 @@ import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 // ----------------------------------------------------------------------
 
 export default function FilterType({ filterType, onChangeType, filters, selectedAllText }) {
-  console.log(filterType);
   return (
     <FormControl fullWidth hiddenLabel>
       <Select

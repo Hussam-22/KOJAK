@@ -49,11 +49,11 @@ export default function FeaturedProperty() {
               component="span"
               sx={{ typography: 'h4', color: 'primary.light', textDecorationLine: 'line-through' }}
             >
-              175,000/y
+              1,610,000/y
             </Box>{' '}
             -{' '}
             <Box component="span" sx={{ typography: 'h4' }}>
-              150,000/y
+              1,500,000/y
             </Box>
           </Typography>
           <Typography

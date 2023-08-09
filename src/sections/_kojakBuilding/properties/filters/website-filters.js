@@ -57,7 +57,7 @@ export default function WebsiteFilters({ open, onClose }) {
         />
       </Block>
 
-      <Block title="Space/Room Options">
+      <Block title="Location">
         <FilterType
           filterType={rdxFilter.city}
           onChangeType={(e) => handleChangeType(e, 'city')}
@@ -66,12 +66,12 @@ export default function WebsiteFilters({ open, onClose }) {
         />
       </Block>
 
-      <Block title="Space/Room Options">
+      <Block title="Space Type">
         <FilterType
-          filterType={rdxFilter.bedrooms}
-          onChangeType={(e) => handleChangeType(e, 'bedrooms')}
-          filters={filterDefaultValues.bedrooms}
-          selectedAllText="All Space/Room Options"
+          filterType={rdxFilter.spaceType}
+          onChangeType={(e) => handleChangeType(e, 'spaceType')}
+          filters={filterDefaultValues.spaceType}
+          selectedAllText="All Space Types"
         />
       </Block>
 

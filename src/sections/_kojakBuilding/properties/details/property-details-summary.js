@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
@@ -9,10 +10,9 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function PropertyDetailsSummary({ spaceFeatures, type }) {
+export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
   const { area, bedrooms, bathrooms, ac, parking, cctv, security, healthClub, chequesNo } =
     spaceFeatures;
-
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
@@ -30,18 +30,9 @@ export default function PropertyDetailsSummary({ spaceFeatures, type }) {
         >
           <OverviewItem icon="tabler:ruler-measure" label="Area" text={`${area} sqft`} />
 
-          {type === 'residential' && (
-            <OverviewItem
-              icon="carbon:floorplan"
-              label="Bedrooms"
-              text={bedrooms === 0 ? 'Studio' : `${bedrooms}`}
-            />
-          )}
+          <OverviewItem icon="carbon:floorplan" label="Space Type" text={spaceType} />
 
-          {type === 'commercial' && (
-            <OverviewItem icon="carbon:floorplan" label="Office Space" text="Office Space" />
-          )}
-
+          <OverviewItem icon="fluent:bed-24-regular" label="Bedrooms" text={`${bedrooms}`} />
           <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
 
           <OverviewItem icon="iconoir:air-conditioner" label="AC Type" text={ac} />
@@ -141,7 +132,7 @@ export default function PropertyDetailsSummary({ spaceFeatures, type }) {
 }
 
 PropertyDetailsSummary.propTypes = {
-  type: PropTypes.string,
+  spaceType: PropTypes.string,
   spaceFeatures: PropTypes.shape({
     area: PropTypes.string,
     bedrooms: PropTypes.number,
@@ -151,18 +142,22 @@ PropertyDetailsSummary.propTypes = {
     cctv: PropTypes.bool,
     security: PropTypes.bool,
     healthClub: PropTypes.bool,
-    chequesNo: PropTypes.number,
+    chequesNo: PropTypes.string,
   }),
 };
 
 // ----------------------------------------------------------------------
 
 function OverviewItem({ icon, label, text = '-' }) {
+  const theme = useTheme();
   return (
     <Stack spacing={1.5} direction="row" alignItems="flex-start">
       <Iconify icon={icon} width={24} />
       <Stack spacing={0.5}>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.secondary', fontWeight: theme.typography.fontWeightLight }}
+        >
           {label}
         </Typography>
         <Typography>{text}</Typography>

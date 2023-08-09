@@ -32,6 +32,8 @@ export default function PropertyCard({ space, vertical }) {
     coverImgID,
     type,
     isAvailable,
+    spaceType,
+    description,
     features: { bedrooms, bathrooms, area },
   } = space;
   const navigate = useNavigate();
@@ -125,18 +127,9 @@ export default function PropertyCard({ space, vertical }) {
         </Typography>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
-          {type === 'commercial' && (
-            <Typography variant="h6" sx={{ textDecoration: 'underline' }}>
-              {`Office Space - ${buildingName}`}
-            </Typography>
-          )}
-          {type === 'residential' && (
-            <Typography variant="h6" sx={{ textDecoration: 'underline' }}>
-              {bedrooms === 0
-                ? `Studio - ${buildingName}`
-                : `${bedrooms} Bedroom - ${buildingName}`}
-            </Typography>
-          )}
+          <Typography variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+            {spaceType} - {description}
+          </Typography>
         </Link>
 
         <Stack
@@ -146,28 +139,28 @@ export default function PropertyCard({ space, vertical }) {
           sx={{ alignItems: 'center' }}
         >
           <Box>
-            <Iconify icon="carbon:floorplan" width={18} sx={{ mr: 1 }} />
+            <Iconify icon="tabler:ruler-measure" width={18} sx={{ mr: 1 }} />
             {area}
           </Box>
 
-          {type === 'residential' && (
+          <Box sx={{ alignItems: 'center' }}>
+            <Iconify icon="carbon:floorplan" width={18} sx={{ mr: 1 }} />
+            {spaceType}
+          </Box>
+
+          {bedrooms !== 0 && (
             <Box sx={{ alignItems: 'center' }}>
               <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mr: 1 }} />
-              {bedrooms === 0 ? 'Studio' : `${bedrooms}`}
+              {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
             </Box>
           )}
 
-          {type === 'commercial' && (
+          {bathrooms !== 0 && (
             <Box sx={{ alignItems: 'center' }}>
-              <Iconify icon="ph:office-chair-duotone" width={18} sx={{ mr: 1 }} />
-              Office Space
+              <Iconify icon="cil:shower" width={18} sx={{ mr: 1 }} />
+              {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
             </Box>
           )}
-
-          <Box sx={{ alignItems: 'center' }}>
-            <Iconify icon="cil:shower" width={18} sx={{ mr: 1 }} />
-            {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
-          </Box>
         </Stack>
 
         {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
@@ -198,6 +191,8 @@ PropertyCard.propTypes = {
   vertical: PropTypes.bool,
   space: PropTypes.shape({
     id: PropTypes.string,
+    spaceType: PropTypes.string,
+    description: PropTypes.string,
     bucketID: PropTypes.string,
     coverImgID: PropTypes.string,
     listingDate: PropTypes.object,

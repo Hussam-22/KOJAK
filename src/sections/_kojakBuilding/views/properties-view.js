@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
-import { Box, Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
+import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
@@ -15,6 +16,9 @@ export default function PropertiesView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
   const mdUp = useResponsive('up', 'md');
+  const { addNewSpace } = useAuthContext();
+
+  const addSpaceHandler = async () => addNewSpace();
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -35,6 +39,7 @@ export default function PropertiesView() {
         }}
       >
         <Typography variant="h2">Properties</Typography>
+        <Button onClick={addSpaceHandler}>Add Space</Button>
 
         <Button
           color="inherit"
@@ -57,7 +62,7 @@ export default function PropertiesView() {
           </Stack>
         </Grid>
         <Grid md={9}>
-          <PropertiesList  />
+          <PropertiesList />
           {!mdUp && <DidNotFindWhatYouAreLookingFor />}
         </Grid>
       </Grid>

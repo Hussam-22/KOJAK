@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
@@ -15,8 +14,6 @@ import Button, { buttonClasses } from '@mui/material/Button';
 import { _socials } from 'src/_mock';
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
-import { usePathname } from 'src/routes/hooks';
-import { useBoolean } from 'src/hooks/use-boolean';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
@@ -27,8 +24,8 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
   flexShrink: 0,
   padding: '5px 12px',
   color: theme.palette.common.white,
-  border: `solid 1px ${alpha(theme.palette.common.black, 0.24)}`,
-  background: `linear-gradient(180deg, ${theme.palette.grey[900]} 0%, ${theme.palette.common.black} 100%)`,
+  border: `solid 1px ${alpha(theme.palette.common.white, 0.24)}`,
+  background: `linear-gradient(180deg, ${theme.palette.grey[900]} 0%, ${theme.palette.common.white} 100%)`,
   [`& .${buttonClasses.startIcon}`]: {
     marginLeft: 0,
   },
@@ -115,7 +112,7 @@ export default function Footer() {
   );
 
   const mainFooter = (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box sx={{ bgcolor: 'common.black' }}>
       <Divider />
 
       <Container
@@ -128,10 +125,10 @@ export default function Footer() {
         <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
           <Grid xs={12} md={5}>
             <Stack spacing={2}>
-              <Logo small />
+              <Logo small light />
               <Typography
                 variant="body2"
-                sx={{ color: 'text.secondary', fontWeight: mUItheme.typography.fontWeightLight }}
+                sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
               >
                 Kojak stands as a multifaceted group of companies, each specializing in a unique
                 facet that collectively shapes a comprehensive automotive ecosystem. its presence in
@@ -165,10 +162,12 @@ export default function Footer() {
 
           {!mdUp && (
             <Grid xs={7} md={2}>
-              <Typography variant="h6">Kojak Group of Companies</Typography>
+              <Typography variant="h6" sx={{ color: 'common.white' }}>
+                Kojak Group of Companies
+              </Typography>
               <Stack spacing={2} sx={{ mt: 2 }}>
                 {GROUPS.map((group) => (
-                  <Typography key={group.title} variant="body2">
+                  <Typography key={group.title} variant="body2" sx={{ color: 'primary.main' }}>
                     {/* <Link component={RouterLink} href={list.path} rel="noopener">
                       {list.title}
                     </Link> */}
@@ -180,7 +179,9 @@ export default function Footer() {
           )}
 
           <Grid xs={5} md={2}>
-            <Typography variant="h6">Sitemap</Typography>
+            <Typography variant="h6" sx={{ color: 'common.white' }}>
+              Sitemap
+            </Typography>
             <Stack spacing={2} sx={{ mt: 2 }}>
               {navConfig.map((list) => (
                 <Typography key={list.title} variant="body2">
@@ -194,7 +195,7 @@ export default function Footer() {
 
           {mdUp && (
             <Grid xs={12} md={5}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
+              <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
                 Kojak Group of Companies
               </Typography>
               <Box
@@ -266,11 +267,14 @@ export default function Footer() {
           justifyContent="space-between"
           sx={{ py: 1, textAlign: 'center' }}
         >
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+          <Typography
+            variant="caption"
+            sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
+          >
             © 2023. All rights reserved - Kojak Group of Companies
           </Typography>
 
-          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'primary.main' }}>
+          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'error.main' }}>
             Designed by ProzEffect | hello@prozeffect.com
           </Link>
         </Stack>
@@ -284,119 +288,22 @@ export default function Footer() {
 
 // ----------------------------------------------------------------------
 
-export function ListDesktop({ list }) {
-  const pathname = usePathname();
-
-  return (
-    <Stack spacing={1.5} alignItems="flex-start">
-      <Typography variant="subtitle2">{list.subheader}</Typography>
-
-      {list.items?.map((link) => {
-        const active = pathname === link.path || pathname === `${link.path}/`;
-
-        return (
-          <Link
-            component={RouterLink}
-            key={link.title}
-            href={link.path}
-            variant="caption"
-            sx={{
-              color: 'text.secondary',
-              '&:hover': {
-                color: 'text.primary',
-              },
-              ...(active && {
-                color: 'text.primary',
-                fontWeight: 'fontWeightSemiBold',
-              }),
-            }}
-          >
-            {link.title}
-          </Link>
-        );
-      })}
-    </Stack>
-  );
-}
-
-ListDesktop.propTypes = {
-  list: PropTypes.shape({
-    items: PropTypes.array,
-    subheader: PropTypes.string,
-  }),
-};
-
-// ----------------------------------------------------------------------
-
-export function ListMobile({ list }) {
-  const pathname = usePathname();
-
-  const listExpand = useBoolean();
-
-  return (
-    <Stack spacing={1.5} alignItems="flex-start">
-      <Typography
-        variant="subtitle2"
-        onClick={listExpand.onToggle}
-        sx={{
-          cursor: 'pointer',
-          display: 'inline-flex',
-          alignItems: 'center',
-        }}
-      >
-        {list.subheader}
-        <Iconify
-          width={16}
-          icon={listExpand.value ? 'carbon:chevron-down' : 'carbon:chevron-right'}
-          sx={{ ml: 0.5 }}
-        />
-      </Typography>
-
-      <Collapse in={listExpand.value} unmountOnExit sx={{ width: 1 }}>
-        <Stack spacing={1.5} alignItems="flex-start">
-          {list.items?.map((link) => (
-            <Link
-              component={RouterLink}
-              key={link.title}
-              href={link.path}
-              variant="caption"
-              sx={{
-                color: 'text.secondary',
-                '&:hover': {
-                  color: 'text.primary',
-                },
-                ...(pathname === `${link.path}/` && {
-                  color: 'text.primary',
-                  fontWeight: 'fontWeightSemiBold',
-                }),
-              }}
-            >
-              {link.title}
-            </Link>
-          ))}
-        </Stack>
-      </Collapse>
-    </Stack>
-  );
-}
-
-ListMobile.propTypes = {
-  list: PropTypes.shape({
-    items: PropTypes.array,
-    subheader: PropTypes.string,
-  }),
-};
-
-// ----------------------------------------------------------------------
-
 function ContactItem({ linkHref, text, icon }) {
   const theme = useTheme();
   return (
     <Stack direction="row" alignItems="center">
-      <Iconify icon={icon} width={24} sx={{ mr: 1 }} />{' '}
-      <Typography variant="body2" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+      <Iconify icon={icon} width={24} sx={{ mr: 1, color: 'common.white' }} />{' '}
+      <Typography
+        variant="body2"
+        sx={{ fontWeight: theme.typography.fontWeightLight, color: 'common.white' }}
+      >
         {!!linkHref && (
-          <Link href={linkHref} target="_blank" rel="noopener">
+          <Link
+            href={linkHref}
+            target="_blank"
+            rel="noopener"
+            sx={{ color: 'primary.light', textDecorationLine: 'underline' }}
+          >
             {text}
           </Link>
         )}

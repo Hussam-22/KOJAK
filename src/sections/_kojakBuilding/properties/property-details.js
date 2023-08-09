@@ -1,12 +1,12 @@
 import { useParams } from 'react-router';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Stack } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 
-import { _tours } from 'src/_mock';
+import { paths } from 'src/routes/paths';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
@@ -58,7 +58,10 @@ export default function PropertyDetails() {
   return (
     <Container sx={{ overflow: 'hidden' }}>
       <CustomBreadcrumbs
-        links={[{ name: 'Home', href: '/' }, { name: spaceInfo.buildingName }]}
+        links={[
+          { name: 'Properties', href: paths.website.properties },
+          { name: `${spaceInfo.buildingName} - ${spaceInfo.spaceType} - ${spaceInfo.description}` },
+        ]}
         sx={{ mt: 3, mb: 5 }}
       />
 
@@ -78,7 +81,10 @@ export default function PropertyDetails() {
 
             <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-            <PropertyDetailsSummary spaceFeatures={spaceInfo.features} type={spaceInfo.type} />
+            <PropertyDetailsSummary
+              spaceFeatures={spaceInfo.features}
+              spaceType={spaceInfo.spaceType}
+            />
           </Grid>
         </Grid>
       )}

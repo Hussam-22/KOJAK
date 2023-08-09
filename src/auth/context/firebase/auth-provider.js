@@ -187,33 +187,35 @@ export function AuthProvider({ children }) {
 
   // add new space
   const addNewSpace = useCallback(async () => {
-    const data = await setDoc(doc(DB, '/websites/building/spaces/', 'C1001-3'), {
-      type: 'commercial'.toLowerCase(),
-      id: 'C1001-3',
+    const id = 'C1003-3';
+    const data = await setDoc(doc(DB, '/websites/building/spaces/', id), {
+      id,
       bucketID: 'C1001-1',
+      type: 'commercial'.toLowerCase(),
+      spaceType: 'Offices',
+      description: 'Second Floor - Office Space',
       city: 'Dubai',
       location: 'Motor City',
-      buildingName: 'Kojak Building - Ground Floor - Option 3',
-      rent: 88000,
+      buildingName: 'Kojak',
+      rent: 0,
       rentSale: 0,
-      coverImgID: '2',
-      imagesIDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      coverImgID: '1',
+      imagesIDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
       isAvailable: false,
       features: {
-        area: '5000',
-        isOfficeSpace: true,
+        area: '400-4000',
         bedrooms: 0,
-        bathrooms: 3,
-        ac: 'Ducted',
+        bathrooms: 0,
+        ac: 'Emicool',
         parking: 100,
         healthClub: false,
         security: true,
         cctv: true,
-        chequesNo: 4,
+        chequesNo: '4-6',
       },
       contactDetails: {
         email: 'mohamed@kojak-group.com',
-        mobile: '0501234567',
+        mobile: '0529242623',
         fullName: 'Mohamed',
       },
       listingDate: {

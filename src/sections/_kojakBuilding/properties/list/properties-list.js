@@ -34,9 +34,9 @@ export default function PropertiesList() {
         rdxFilter.type.includes(property.type)
       );
     }
-    if (rdxFilter.bedrooms.length !== 0) {
+    if (rdxFilter.spaceType.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.bedrooms.includes(property.features.bedrooms)
+        rdxFilter.spaceType.includes(property.spaceType.toLowerCase())
       );
     }
     if (rdxFilter.city.length !== 0) {
@@ -52,7 +52,7 @@ export default function PropertiesList() {
 
     if (
       rdxFilter.type.length === 0 &&
-      rdxFilter.bedrooms.length === 0 &&
+      rdxFilter.spaceType.length === 0 &&
       rdxFilter.city.length === 0 &&
       rdxFilter.isAvailable.length === 0
     ) {
@@ -60,7 +60,7 @@ export default function PropertiesList() {
     } else {
       setFilteredProperties(propertiesToFilter);
     }
-  }, [properties, rdxFilter.bedrooms, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
+  }, [properties, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
 
   return (
     <>

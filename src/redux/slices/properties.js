@@ -9,13 +9,13 @@ const initialState = {
   filteredProducts: [],
   filterDefaultValues: {
     type: ['residential', 'commercial'],
-    bedrooms: [1, 2, 3, 0],
+    spaceType: ['flat', 'showrooms', 'gym', 'labour camp', 'shops', 'restaurant', 'offices'],
     city: ['sharjah', 'dubai'],
     isAvailable: [true, false],
   },
   rdxFilter: {
     type: [],
-    bedrooms: [],
+    spaceType: [],
     city: [],
     isAvailable: [],
   },
@@ -44,7 +44,7 @@ const slice = createSlice({
     rdxClearFilter(state) {
       state.rdxFilter = {
         type: [],
-        bedrooms: [],
+        spaceType: [],
         city: [],
         isAvailable: [],
       };
