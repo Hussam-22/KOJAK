@@ -91,7 +91,7 @@ export default function Header({ headerOnDark }) {
             {mdUp && (
               <Button
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 onClick={() => navigate(paths.website.properties)}
               >
                 Explore Properties

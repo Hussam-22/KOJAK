@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -14,7 +15,7 @@ const SUMMARY = [
   { label: 'Apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
   { label: 'Happy Tenants', value: 1192, color: 'success', icon: 'ion:happy-outline' },
   { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
-  { label: 'Total Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
+  { label: 'Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
 ];
 
 // ----------------------------------------------------------------------
@@ -29,23 +30,27 @@ export default function KojakBuildingLandingHero() {
       sx={{
         height: '100dvh',
         overflow: 'hidden',
-        backgroundImage: {
-          md: 'url(/assets/kojak-building/hero/hero-img-4.webp)',
-          xs: 'url(/assets/kojak-building/hero/hero-img-3.webp)',
-        },
+        backgroundImage: 'url(/assets/kojak-building/hero/hero-img-1.webp)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
+        pt: 5,
       }}
     >
       <Container maxWidth="xl">
         <Box
           sx={{
-            width: { md: '60dvw', xs: '100%' },
-            textAlign: { md: 'left', xs: 'center' },
+            width: { md: '65%', xs: '100%' },
+            textAlign: 'center',
+            background: alpha('#FFFFFF', 0.5),
+            p: 5,
+            pt: { md: 10, xs: 3 },
+            m: 'auto',
+            borderRadius: 2,
+            ...bgBlur({ color: theme.palette.common.white, blur: 15, opacity: 0.25 }),
           }}
         >
           <Stack>
@@ -62,7 +67,7 @@ export default function KojakBuildingLandingHero() {
               sx={{
                 mb: 3,
                 textTransform: 'capitalize',
-                fontSize: '6dvh',
+                fontSize: { md: '2.75rem', xs: '1.75rem' },
                 lineHeight: 1.25,
                 fontWeight: theme.typography.fontWeightBold,
               }}
@@ -80,7 +85,7 @@ export default function KojakBuildingLandingHero() {
                 size="large"
                 onClick={() => navigate(paths.website.properties)}
               >
-                Explore Available Properties
+                Explore Properties
               </Button>
             </Box>
 
@@ -88,10 +93,9 @@ export default function KojakBuildingLandingHero() {
               sx={{
                 display: 'grid',
                 gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
-                backgroundColor: mdUp ? 'unset' : alpha('#000000', 0.5),
+                // backgroundColor: mdUp ? 'unset' : alpha('#000000', 0.5),
                 borderRadius: 1,
                 mt: mdUp ? 'unset' : 2,
-                width: { md: '75%' },
               }}
             >
               {SUMMARY.map((item) => (

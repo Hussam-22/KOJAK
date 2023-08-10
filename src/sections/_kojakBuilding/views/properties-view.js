@@ -8,7 +8,6 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/website-filters';
-import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properties/did-not-find-property-card';
 
 // ----------------------------------------------------------------------
 
@@ -58,12 +57,10 @@ export default function PropertiesView() {
         <Grid md={3}>
           <Stack spacing={3}>
             <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-            {mdUp && <DidNotFindWhatYouAreLookingFor />}
           </Stack>
         </Grid>
         <Grid md={9}>
           <PropertiesList />
-          {!mdUp && <DidNotFindWhatYouAreLookingFor />}
         </Grid>
       </Grid>
     </Container>

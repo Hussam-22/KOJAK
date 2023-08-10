@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
+import { Box } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'src/auth/hooks';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
 import PropertyCardSkeleton from 'src/sections/_kojakBuilding/properties/property-card-skeleton';
+import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properties/did-not-find-property-card';
 
 // ----------------------------------------------------------------------
 
@@ -65,10 +67,17 @@ export default function PropertiesList() {
   return (
     <>
       <Stack spacing={4} sx={{ mb: 6 }}>
-        {filteredProperties.length === 0 &&
+        {properties.length === 0 &&
           [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
         {filteredProperties.length !== 0 &&
           filteredProperties.map((property) => <PropertyCard key={property.id} space={property} />)}
+        {filteredProperties.length === 0 && (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ height: { md: '50%', xs: 'unset' }, width: { md: '50%', xs: 'unset' } }}>
+              <DidNotFindWhatYouAreLookingFor />
+            </Box>
+          </Box>
+        )}
       </Stack>
 
       {/* <Pagination

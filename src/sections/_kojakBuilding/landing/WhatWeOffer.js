@@ -105,7 +105,7 @@ export default function WhatWeOffer() {
           >
             <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
               {properties
-                .filter((property) => property.isAvailable)
+                .filter((property) => property.isAvailable && property.bucketID !== '')
                 .map((property) => (
                   <Box
                     key={property.id}
