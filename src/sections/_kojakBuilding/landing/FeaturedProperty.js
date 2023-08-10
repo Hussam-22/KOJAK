@@ -66,8 +66,9 @@ export default function FeaturedProperty() {
           {!isMdUp && (
             <Box
               sx={{
-                boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
                 borderRadius: 1,
+                border: `solid 3px ${theme.palette.primary.main}`,
+                p: 1,
                 mt: 4,
               }}
             >
@@ -117,14 +118,14 @@ export default function FeaturedProperty() {
                 variant="contained"
                 size="large"
                 sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
-                onClick={() => navigate('/properties/C1001-1')}
+                onClick={() => navigate('/properties/C1003-1')}
               >
                 Contact our agent
               </Button>
             </Grid>
             {isMdUp && (
               <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
-                <Masonry columns={{ xs: 1, md: 2 }} spacing={3}>
+                <Masonry columns={{ xs: 1, md: 2 }} spacing={0.5}>
                   {IMAGES.map((url, index) => (
                     <Image
                       key={index}
@@ -132,7 +133,9 @@ export default function FeaturedProperty() {
                       // ratio="4/3"
                       sx={{
                         borderRadius: 1,
-                        boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
+                        border: `solid 3px ${theme.palette.primary.main}`,
+                        p: 1,
+                        // boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
                       }}
                     />
                   ))}
@@ -156,13 +159,13 @@ function OverviewItem({ icon, label, text = '-' }) {
     <Box
       sx={{
         border: `solid 2px ${theme.palette.primary.main}`,
-        p: isMdUp ? 3 : 1.5,
+        p: isMdUp ? 2 : 1.5,
         borderRadius: 2,
       }}
     >
       <Stack spacing={1.5} direction="column" alignItems="center">
-        <Iconify icon={icon} width={isMdUp ? 65 : 32} color="common.white" />
-        <Typography sx={{ color: 'common.white', typography: { md: 'h5', xs: 'body1' } }}>
+        <Iconify icon={icon} width={isMdUp ? 55 : 32} color="primary.light" />
+        <Typography sx={{ color: 'primary.light', typography: { md: 'h6', xs: 'body1' } }}>
           {label}
         </Typography>
         <Typography sx={{ color: 'common.white', typography: { md: 'h5', xs: 'body1' } }}>

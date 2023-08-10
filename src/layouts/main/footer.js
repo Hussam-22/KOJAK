@@ -69,23 +69,11 @@ const CONTACT = [
 
 // ----------------------------------------------------------------------
 
+const THIS_YEAR = new Date().getFullYear();
+
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
   const mUItheme = useTheme();
-
-  const renderOverlay = (
-    <Box
-      sx={{
-        backgroundColor: alpha('#000000', 0.45),
-        top: 0,
-        left: 0,
-        zIndex: -1,
-        width: 1,
-        height: 1,
-        position: 'absolute',
-      }}
-    />
-  );
 
   const simpleFooter = (
     <Box sx={{ borderTop: (theme) => `solid 1px ${theme.palette.divider}` }}>
@@ -102,7 +90,7 @@ export default function Footer() {
         <Logo single />
 
         <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-          Kojak Group of Companies © 2023. All rights reserved | www.kojak-group.com
+          Kojak Group of Companies © {THIS_YEAR}. All rights reserved | www.kojak-group.com
         </Typography>
         <Typography variant="caption" component="div" sx={{ color: 'primary.main' }}>
           Designed by ProzEffect | hello@prozeffect.com
@@ -151,7 +139,7 @@ export default function Footer() {
                   <Stack direction="row" alignItems="center" sx={{ ml: -1 }}>
                     {_socials.map((social) => (
                       <IconButton key={social.value} color="primary">
-                        <Iconify icon={social.icon} />
+                        <Iconify icon={social.icon} sx={{ color: 'primary.light' }} />
                       </IconButton>
                     ))}
                   </Stack>
@@ -185,7 +173,12 @@ export default function Footer() {
             <Stack spacing={2} sx={{ mt: 2 }}>
               {navConfig.map((list) => (
                 <Typography key={list.title} variant="body2">
-                  <Link component={RouterLink} href={list.path} rel="noopener">
+                  <Link
+                    component={RouterLink}
+                    href={list.path}
+                    rel="noopener"
+                    sx={{ color: 'primary.light' }}
+                  >
                     {list.title}
                   </Link>
                 </Typography>
@@ -195,66 +188,7 @@ export default function Footer() {
 
           {mdUp && (
             <Grid xs={12} md={5}>
-              <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
-                Kojak Group of Companies
-              </Typography>
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3,1fr)',
-                  columnGap: 1,
-                  height: '90%',
-                }}
-              >
-                {GROUPS.map((group, index) => (
-                  <Card
-                    key={index}
-                    sx={{
-                      borderRadius: 0.5,
-                      p: 1,
-                      backgroundImage: `url(/assets/kojak-building/group/${group.image}.jpg)`,
-                      backgroundSize: 'cover',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'flex-end',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <Box sx={{ my: 'auto' }}>
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: 'common.white',
-                        }}
-                      >
-                        {group.title}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          color: 'common.white',
-                          fontWeight: mUItheme.typography.fontWeightLight,
-                        }}
-                      >
-                        {group.text}
-                      </Typography>
-                    </Box>
-                    <Button
-                      variant="text"
-                      sx={{
-                        m: 2,
-                        color: 'common.white',
-                        fontWeight: mUItheme.typography.fontWeightLight,
-                      }}
-                      endIcon={<Iconify icon="quill:link-out" />}
-                    >
-                      Visit Website
-                    </Button>
-                    {renderOverlay}
-                  </Card>
-                ))}
-              </Box>
+              <GroupsCard />
             </Grid>
           )}
         </Grid>
@@ -271,10 +205,14 @@ export default function Footer() {
             variant="caption"
             sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
           >
-            © 2023. All rights reserved - Kojak Group of Companies
+            © {THIS_YEAR}. All rights reserved - Kojak Group of Companies
           </Typography>
 
-          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'error.main' }}>
+          <Link
+            href="mailto:hello@prozeffect.com"
+            variant="caption"
+            sx={{ color: 'primary.light' }}
+          >
             Designed by ProzEffect | hello@prozeffect.com
           </Link>
         </Stack>
@@ -318,3 +256,87 @@ ContactItem.propTypes = {
   text: PropTypes.string,
   icon: PropTypes.string,
 };
+
+// --------------------------------------------------------------------------------------
+
+function GroupsCard() {
+  const theme = useTheme();
+  const renderOverlay = (
+    <Box
+      sx={{
+        backgroundColor: alpha('#000000', 0.45),
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        width: 1,
+        height: 1,
+        position: 'absolute',
+      }}
+    />
+  );
+
+  return (
+    <>
+      <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
+        Kojak Group of Companies
+      </Typography>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3,1fr)',
+          columnGap: 1,
+          height: '90%',
+        }}
+      >
+        {GROUPS.map((group, index) => (
+          <Card
+            key={index}
+            sx={{
+              borderRadius: 0.5,
+              p: 1,
+              backgroundImage: `url(/assets/kojak-building/group/${group.image}.webp)`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              textAlign: 'center',
+            }}
+          >
+            <Box sx={{ my: 'auto' }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'common.white',
+                }}
+              >
+                {group.title}
+              </Typography>
+              <Typography
+                sx={{
+                  color: 'common.white',
+                  fontWeight: theme.typography.fontWeightLight,
+                }}
+              >
+                {group.text}
+              </Typography>
+            </Box>
+            <Button
+              variant="text"
+              sx={{
+                m: 2,
+                color: 'common.white',
+                fontWeight: theme.typography.fontWeightLight,
+              }}
+              endIcon={<Iconify icon="quill:link-out" />}
+            >
+              Visit Website
+            </Button>
+            {renderOverlay}
+          </Card>
+        ))}
+      </Box>
+    </>
+  );
+}

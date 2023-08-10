@@ -30,8 +30,8 @@ export default function KojakBuildingLandingHero() {
         height: '100dvh',
         overflow: 'hidden',
         backgroundImage: {
-          md: 'url(/assets/kojak-building/hero/hero-img-4.jpg)',
-          xs: 'url(/assets/kojak-building/hero/hero-img-3.jpg)',
+          md: 'url(/assets/kojak-building/hero/hero-img-4.webp)',
+          xs: 'url(/assets/kojak-building/hero/hero-img-3.webp)',
         },
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

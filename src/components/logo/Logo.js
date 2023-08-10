@@ -108,7 +108,11 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
           >
             KOJAK
           </Typography>
-          <Typography variant="body1" color="primary" sx={{ lineHeight: 1 }}>
+          <Typography
+            variant="body1"
+            color="primary"
+            sx={{ lineHeight: 1, fontWeight: '700', color: 'primary.main' }}
+          >
             BUILDING
           </Typography>
         </Stack>
