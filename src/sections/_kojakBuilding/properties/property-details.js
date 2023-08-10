@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 
 import { Stack } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
@@ -66,6 +67,14 @@ export default function PropertyDetails() {
       />
 
       {galleryURLs.length !== 0 && <PropertyDetailsGallery images={galleryURLs} />}
+      {spaceInfo.bucketID === '' && galleryURLs.length === 0 && (
+        <Image
+          src="/assets/kojak-building/no_preview.jpg"
+          alt="no-preview"
+          width={400}
+          height={400}
+        />
+      )}
 
       {spaceInfo.id && (
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">

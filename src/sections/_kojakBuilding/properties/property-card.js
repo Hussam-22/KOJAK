@@ -44,7 +44,7 @@ export default function PropertyCard({ space, vertical }) {
 
   useEffect(() => {
     (async () => {
-      setCoverImgURL(await fsGetImgDownloadUrl(bucketID, coverImgID));
+      if (bucketID !== '') setCoverImgURL(await fsGetImgDownloadUrl(bucketID, coverImgID));
     })();
   }, [coverImgID, fsGetImgDownloadUrl, bucketID]);
 
@@ -67,7 +67,7 @@ export default function PropertyCard({ space, vertical }) {
       <Box sx={{ flexShrink: { sm: 0 } }}>
         <Image
           alt={buildingName}
-          src={coverImgURL}
+          src={coverImgURL === '' ? '/assets/kojak-building/no_preview.jpg' : coverImgURL}
           ratio="4/3"
           sx={{
             height: 1,
