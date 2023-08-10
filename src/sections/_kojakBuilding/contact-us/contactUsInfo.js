@@ -9,32 +9,26 @@ import Iconify from 'src/components/iconify/Iconify';
 export default function ContactUsInfo({ light, small }) {
   return (
     <Stack
-      spacing={small ? 1.5 : 3}
+      spacing={small ? 2.5 : 5}
       alignItems="flex-start"
       sx={{ color: light ? 'common.white' : 'unset' }}
     >
-      <Stack spacing={1}>
-        <Stack direction="row" alignItems="center">
-          <Iconify icon="carbon:email" width={24} sx={{ mr: 1 }} /> Email
-        </Stack>
-
+      <Stack spacing={1} direction="row">
+        <Iconify icon="carbon:email" width={24} />
         <Link color="inherit" variant="body2" href="mailto:querieskb@kojak-group.com">
           querieskb@kojak-group.com
         </Link>
       </Stack>
 
       <Stack spacing={1}>
-        <Stack direction="row" alignItems="center">
-          <Iconify icon="carbon:mobile" width={24} sx={{ mr: 1 }} /> Phone
+        <Stack direction="row" spacing={1}>
+          <Iconify icon="carbon:mobile" width={24} />
+          <Typography variant="body2">052 924 2623</Typography>
         </Stack>
-
-        <Typography variant="body2">052 924 2623</Typography>
       </Stack>
 
-      <Stack spacing={1}>
-        <Stack direction="row" alignItems="center">
-          <Iconify icon="carbon:location" width={24} sx={{ mr: 1 }} /> Address
-        </Stack>
+      <Stack spacing={1} direction="row">
+        <Iconify icon="carbon:location" width={24} />
 
         <Typography variant="body2">
           <Link
@@ -48,10 +42,8 @@ export default function ContactUsInfo({ light, small }) {
         </Typography>
       </Stack>
 
-      <Stack spacing={1}>
-        <Stack direction="row" alignItems="center">
-          <Iconify icon="mingcute:time-line" width={24} sx={{ mr: 1 }} /> Working Hours
-        </Stack>
+      <Stack direction="row" spacing={1}>
+        <Iconify icon="mingcute:time-line" width={24} />
 
         <Typography variant="body2">8 AM to 6 PM - Saturday to Thursday</Typography>
       </Stack>

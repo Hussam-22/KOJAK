@@ -62,7 +62,7 @@ export default function ContactUsView() {
       >
         <Grid
           xs={12}
-          md={4}
+          md={5}
           sx={{
             p: 3,
             px: 5,
@@ -70,7 +70,7 @@ export default function ContactUsView() {
         >
           <ContactUsInfo />
         </Grid>
-        <Grid xs={12} md={8} sx={{ textAlign: { xs: 'center' } }}>
+        <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
           {!isMdUp && (
             <Typography variant="h2" sx={{ my: 3 }}>
               Drop us a message

@@ -91,6 +91,7 @@ export default function KojakBuildingLandingHero() {
                 backgroundColor: mdUp ? 'unset' : alpha('#000000', 0.5),
                 borderRadius: 1,
                 mt: mdUp ? 'unset' : 2,
+                width: { md: '75%' },
               }}
             >
               {SUMMARY.map((item) => (
