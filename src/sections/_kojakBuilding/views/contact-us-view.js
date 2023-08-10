@@ -65,7 +65,7 @@ export default function ContactUsView() {
           md={5}
           sx={{
             p: 3,
-            px: 5,
+            px: { md: 5, xs: 2 },
           }}
         >
           <ContactUsInfo />

@@ -99,7 +99,7 @@ export default function Footer() {
           </Grid>
 
           {!mdUp && (
-            <Grid xs={7} md={2}>
+            <Grid xs={6} md={2}>
               <Typography variant="h6" sx={{ color: 'common.white' }}>
                 Kojak Group of Companies
               </Typography>
@@ -116,11 +116,11 @@ export default function Footer() {
             </Grid>
           )}
 
-          <Grid xs={5} md={2}>
+          <Grid xs={6} md={2}>
             <Typography variant="h6" sx={{ color: 'common.white' }}>
               Sitemap
             </Typography>
-            <Stack spacing={2} sx={{ mt: 2 }}>
+            <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
               {navConfig.map((list) => (
                 <Typography key={list.title} variant="body2">
                   <Link
