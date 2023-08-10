@@ -16,6 +16,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import { fCurrency } from 'src/utils/format-number';
+import TextMaxLine from 'src/components/text-max-line/text-max-line';
 
 // ----------------------------------------------------------------------
 
@@ -101,8 +102,8 @@ export default function PropertyCard({ space, vertical }) {
           sx={{
             px: 1,
             borderRadius: 0.75,
-            typography: 'subtitle2',
-            bgcolor: 'common.black',
+            typography: 'h5',
+            bgcolor: 'primary.main',
             color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
           }}
         >
@@ -127,9 +128,12 @@ export default function PropertyCard({ space, vertical }) {
         </Typography>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
-          <Typography variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+          {/* <Typography variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
             {spaceType} - {description}
-          </Typography>
+          </Typography> */}
+          <TextMaxLine line={1} variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+            {spaceType} - {description}
+          </TextMaxLine>
         </Link>
 
         <Stack
@@ -174,8 +178,8 @@ export default function PropertyCard({ space, vertical }) {
             alignItems="center"
             sx={{ typography: 'body2', color: 'text.disabled' }}
           >
-            <Box>Listed on: {listingDateTime}</Box>
-            <Box>
+            <Typography variant="caption">Listed on: {listingDateTime}</Typography>
+            <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
               <Button variant="contained" color="secondary" onClick={openSpaceCard}>
                 More details
               </Button>

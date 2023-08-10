@@ -1,35 +1,21 @@
-import PropTypes from 'prop-types';
-
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import { Box, Card, useTheme } from '@mui/material';
-import { alpha, styled } from '@mui/material/styles';
-import Button, { buttonClasses } from '@mui/material/Button';
 
-import { _socials } from 'src/_mock';
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
+import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo';
 
 // ----------------------------------------------------------------------
-
-const StyledAppStoreButton = styled(Button)(({ theme }) => ({
-  flexShrink: 0,
-  padding: '5px 12px',
-  color: theme.palette.common.white,
-  border: `solid 1px ${alpha(theme.palette.common.white, 0.24)}`,
-  background: `linear-gradient(180deg, ${theme.palette.grey[900]} 0%, ${theme.palette.common.white} 100%)`,
-  [`& .${buttonClasses.startIcon}`]: {
-    marginLeft: 0,
-  },
-}));
 
 const GROUPS = [
   {
@@ -51,22 +37,6 @@ const GROUPS = [
     image: 'auto-main',
   },
 ];
-
-const CONTACT = [
-  {
-    link: 'mailto:hello@kojak-building.com',
-    icon: 'carbon:email',
-    text: 'hello@kojak-building.com',
-  },
-  { link: '', icon: 'carbon:mobile', text: '052 924 2623' },
-  {
-    link: 'https://www.google.com/maps/place/Kojak+Group+of+Companies/@25.3253059,55.4046755,15z/data=!4m6!3m5!1s0x3e5f57dbcabe0c49:0x67452d730806d23a!8m2!3d25.3253059!4d55.4046755!16s%2Fg%2F11bbwn0zxl?entry=ttu',
-    icon: 'carbon:location',
-    text: ' Industrial Area 4, Sharjah, United Arab Emirates',
-  },
-  { link: '', icon: 'mingcute:time-line', text: '8 AM to 6 PM - Saturday to Thursday' },
-];
-
 // ----------------------------------------------------------------------
 
 const THIS_YEAR = new Date().getFullYear();
@@ -124,27 +94,7 @@ export default function Footer() {
                 Mercedes cars, and the versatile realm of space leasing and renting.
               </Typography>
 
-              <Stack spacing={1}>
-                {CONTACT.map((item) => (
-                  <ContactItem
-                    key={item.icon}
-                    linkHref={item.link}
-                    icon={item.icon}
-                    text={item.text}
-                  />
-                ))}
-
-                <Stack spacing={0}>
-                  <Typography variant="h6">Social</Typography>
-                  <Stack direction="row" alignItems="center" sx={{ ml: -1 }}>
-                    {_socials.map((social) => (
-                      <IconButton key={social.value} color="primary">
-                        <Iconify icon={social.icon} sx={{ color: 'primary.light' }} />
-                      </IconButton>
-                    ))}
-                  </Stack>
-                </Stack>
-              </Stack>
+              <ContactUsInfo light small />
             </Stack>
           </Grid>
 
@@ -223,41 +173,6 @@ export default function Footer() {
   // return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
   return <footer>{mainFooter}</footer>;
 }
-
-// ----------------------------------------------------------------------
-
-function ContactItem({ linkHref, text, icon }) {
-  const theme = useTheme();
-  return (
-    <Stack direction="row" alignItems="center">
-      <Iconify icon={icon} width={24} sx={{ mr: 1, color: 'common.white' }} />{' '}
-      <Typography
-        variant="body2"
-        sx={{ fontWeight: theme.typography.fontWeightLight, color: 'common.white' }}
-      >
-        {!!linkHref && (
-          <Link
-            href={linkHref}
-            target="_blank"
-            rel="noopener"
-            sx={{ color: 'primary.light', textDecorationLine: 'underline' }}
-          >
-            {text}
-          </Link>
-        )}
-        {!linkHref && text}
-      </Typography>
-    </Stack>
-  );
-}
-
-ContactItem.propTypes = {
-  linkHref: PropTypes.string,
-  text: PropTypes.string,
-  icon: PropTypes.string,
-};
-
-// --------------------------------------------------------------------------------------
 
 function GroupsCard() {
   const theme = useTheme();

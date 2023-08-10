@@ -38,16 +38,35 @@ export default function KojakBuildingLandingHero() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
       }}
     >
       <Container maxWidth="xl">
-        <Box sx={{ width: { md: '50%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}>
+        <Box
+          sx={{
+            width: { md: '60dvw', xs: '100%' },
+            textAlign: { md: 'left', xs: 'center' },
+          }}
+        >
           <Stack>
-            <Typography variant="overline" sx={{ color: 'common.black' }}>
+            <Typography
+              variant="overline"
+              sx={{
+                color: 'common.black',
+              }}
+            >
               Looking for residential or commercial space ?
             </Typography>
 
-            <Typography variant="h1" sx={{ mb: 3, textTransform: 'capitalize' }}>
+            <Typography
+              sx={{
+                mb: 3,
+                textTransform: 'capitalize',
+                fontSize: '6dvh',
+                lineHeight: 1.25,
+                fontWeight: theme.typography.fontWeightBold,
+              }}
+            >
               Find Your Perfect Space for Living or Business Thriving with{' '}
               <Box component="span" sx={{ color: 'primary.main' }}>
                 KOJAK
