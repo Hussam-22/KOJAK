@@ -65,31 +65,22 @@ export default function PropertiesList() {
   }, [properties, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
 
   return (
-    <>
-      <Stack spacing={4} sx={{ mb: 6 }}>
-        {properties.length === 0 &&
-          [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
-        {filteredProperties.length !== 0 &&
-          filteredProperties.map((property) => <PropertyCard key={property.id} space={property} />)}
-        {filteredProperties.length === 0 && (
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Box sx={{ height: { md: '50%', xs: 'unset' }, width: { md: '50%', xs: 'unset' } }}>
-              <DidNotFindWhatYouAreLookingFor />
-            </Box>
-          </Box>
-        )}
-      </Stack>
+    <Stack spacing={4} sx={{ mb: 6 }}>
+      {properties.length === 0 &&
+        [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
 
-      {/* <Pagination
-        count={10}
-        color="primary"
-        sx={{
-          my: 10,
-          [`& .${paginationClasses.ul}`]: {
-            justifyContent: 'center',
-          },
-        }}
-      /> */}
-    </>
+      {filteredProperties.length !== 0 &&
+        filteredProperties
+          .sort((a, b) => b.isAvailable - a.isAvailable)
+          .map((property) => <PropertyCard key={property.id} space={property} />)}
+
+      {filteredProperties.length === 0 && (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ height: { md: '50%', xs: 'unset' }, width: { md: '50%', xs: 'unset' } }}>
+            <DidNotFindWhatYouAreLookingFor />
+          </Box>
+        </Box>
+      )}
+    </Stack>
   );
 }

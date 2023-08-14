@@ -77,7 +77,7 @@ export default function PropertyDetails() {
       )}
 
       {spaceInfo.id && (
-        <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
+        <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mb: 8 }}>
           <Grid xs={12} md={5} lg={4}>
             <Stack spacing={3}>
               <PropertyDetailsContactCard contactInfo={spaceInfo.contactDetails} />

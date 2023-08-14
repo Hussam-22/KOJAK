@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import Link from '@mui/material/Link';
+import Card from '@mui/material/Card';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -14,8 +14,8 @@ import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
+import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
-import { fCurrency } from 'src/utils/format-number';
 import TextMaxLine from 'src/components/text-max-line/text-max-line';
 
 // ----------------------------------------------------------------------
@@ -115,10 +115,10 @@ export default function PropertyCard({ space, vertical }) {
                 mr: 0.5,
               }}
             >
-              {fCurrency(rentSale)}
+              {fNumber(rentSale)}
             </Box>
           )}
-          {isAvailable ? fCurrency(rent) : 'Not Available'}
+          {isAvailable ? `${rent} AED` : 'Not Available'}
         </Stack>
       </Stack>
 

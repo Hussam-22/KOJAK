@@ -11,8 +11,19 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
-  const { area, bedrooms, bathrooms, ac, parking, cctv, security, healthClub, chequesNo } =
-    spaceFeatures;
+  const {
+    area,
+    bedrooms,
+    bathrooms,
+    ac,
+    parking,
+    cctv,
+    security,
+    healthClub,
+    chequesNo,
+    mezzanine,
+    kitchen = 0,
+  } = spaceFeatures;
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
@@ -29,11 +40,23 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
           }}
         >
           <OverviewItem icon="tabler:ruler-measure" label="Area" text={`${area} sqft`} />
-
           <OverviewItem icon="carbon:floorplan" label="Space Type" text={spaceType} />
-
-          <OverviewItem icon="fluent:bed-24-regular" label="Bedrooms" text={`${bedrooms}`} />
-          <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
+          {bedrooms !== 0 && (
+            <OverviewItem icon="fluent:bed-24-regular" label="Bedrooms" text={`${bedrooms}`} />
+          )}
+          {bathrooms !== 0 && (
+            <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
+          )}
+          {kitchen !== 0 && (
+            <OverviewItem icon="tabler:tools-kitchen-2" label="Kitchen" text={kitchen} />
+          )}
+          {mezzanine && (
+            <OverviewItem
+              icon="lucide:m-square"
+              label="Mezzanine Floor"
+              text={mezzanine && 'Available'}
+            />
+          )}
 
           <OverviewItem icon="iconoir:air-conditioner" label="AC Type" text={ac} />
 
@@ -139,9 +162,11 @@ PropertyDetailsSummary.propTypes = {
     bathrooms: PropTypes.number,
     ac: PropTypes.string,
     parking: PropTypes.number,
+    kitchen: PropTypes.number,
     cctv: PropTypes.bool,
     security: PropTypes.bool,
     healthClub: PropTypes.bool,
+    mezzanine: PropTypes.bool,
     chequesNo: PropTypes.string,
   }),
 };

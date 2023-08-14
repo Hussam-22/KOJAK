@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
-import { fCurrency } from 'src/utils/format-number';
+import { fNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
         <Stack spacing={0.5} direction="row" alignItems="center">
           <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
-          {isAvailable && <Box sx={{ typography: 'h6' }}>{fCurrency(rent)}</Box>}
+          {isAvailable && <Box sx={{ typography: 'h6' }}>{fNumber(rent)} AED</Box>}
           {!isAvailable && <Box sx={{ typography: 'h6' }}>Not Available</Box>}
         </Stack>
 
@@ -67,7 +67,7 @@ PropertyDetailsHeader.propTypes = {
     id: PropTypes.string,
     type: PropTypes.string,
     spaceType: PropTypes.string,
-    rent: PropTypes.number,
+    rent: PropTypes.string,
     city: PropTypes.string,
     location: PropTypes.string,
     description: PropTypes.string,

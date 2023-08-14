@@ -20,11 +20,14 @@ export default function ContactUsInfo({ light, small }) {
         </Link>
       </Stack>
 
-      <Stack spacing={1}>
-        <Stack direction="row" spacing={1}>
-          <Iconify icon="carbon:mobile" width={24} />
-          <Typography variant="body2">052 924 2623</Typography>
-        </Stack>
+      <Stack direction="row" spacing={1}>
+        <Iconify icon="carbon:mobile" width={24} />
+        <Typography variant="body2">052 924 2623</Typography>
+      </Stack>
+
+      <Stack direction="row" spacing={1}>
+        <Iconify icon="tabler:device-landline-phone" width={24} />
+        <Typography variant="body2">06 5334 312 EXT. 220</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
@@ -48,7 +51,7 @@ export default function ContactUsInfo({ light, small }) {
       <Stack direction="row" spacing={1}>
         <Iconify icon="mingcute:time-line" width={24} />
 
-        <Typography variant="body2">8 AM to 6 PM - Saturday to Thursday</Typography>
+        <Typography variant="body2">9 AM to 6 PM - Saturday to Thursday</Typography>
       </Stack>
 
       {/* <Divider sx={{ border: 'dashed 1px #CCCCCC' }} flexItem /> */}
