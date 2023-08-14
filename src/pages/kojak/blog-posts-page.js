@@ -6,7 +6,7 @@ export default function KojakBuildingNewsPage() {
   return (
     <>
       <Helmet>
-        <title>Blog</title>
+        <title>Kojak Building | Blog</title>
       </Helmet>
 
       <BlogPostsView />

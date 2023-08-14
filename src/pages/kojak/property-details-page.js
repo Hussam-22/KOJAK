@@ -8,7 +8,7 @@ export default function PropertyDetailsPage() {
   return (
     <>
       <Helmet>
-        <title>Properties</title>
+        <title>Kojak Building | Property Details</title>
       </Helmet>
 
       <PropertyDetailsView />

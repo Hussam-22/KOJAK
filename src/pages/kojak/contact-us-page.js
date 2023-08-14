@@ -6,7 +6,7 @@ export default function KojakBuildingAboutPage() {
   return (
     <>
       <Helmet>
-        <title>Contact Us</title>
+        <title>Kojak Building | Contact Us</title>
       </Helmet>
 
       <ContactUsView />
