@@ -2,7 +2,17 @@ import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
-import { doc, setDoc, getDoc, getDocs, collection, getFirestore } from 'firebase/firestore';
+import {
+  doc,
+  query,
+  where,
+  setDoc,
+  getDoc,
+  getDocs,
+  collection,
+  getFirestore,
+  collectionGroup,
+} from 'firebase/firestore';
 import {
   getAuth,
   signOut,
@@ -178,6 +188,16 @@ export function AuthProvider({ children }) {
     return dataArr;
   }, []);
 
+  // get featured property
+  const fsGetFeaturedProperty = useCallback(async () => {
+    const docRef = query(collectionGroup(DB, 'spaces'), where('isFeatured', '==', true));
+    const querySnapshot = await getDocs(docRef);
+    const dataArr = [];
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    console.log(dataArr);
+    return dataArr[0];
+  }, []);
+
   // get space info
   const getSpaceInfo = useCallback(async (spaceID) => {
     const docRef = doc(DB, `/websites/building/spaces/${spaceID}`);
@@ -331,6 +351,7 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      fsGetFeaturedProperty,
       addNewSpace,
       addNewFromCallbackSubmit,
       addNewFormGeneralSubmit,
@@ -352,6 +373,7 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      fsGetFeaturedProperty,
       addNewSpace,
       addNewFromCallbackSubmit,
       addNewFormGeneralSubmit,
