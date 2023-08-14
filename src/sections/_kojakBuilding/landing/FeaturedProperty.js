@@ -58,11 +58,15 @@ export default function FeaturedProperty() {
           maxWidth="xl"
         >
           <Typography variant="h2" sx={{ color: 'common.white', mb: 3 }}>
-            <Iconify icon="noto:fire" width={54} /> Hot Deal Property{' '}
+            Hot Deal Property{' '}
             <Box component="span" sx={{ typography: 'h4' }}>
-              {featuredProperty.rent}/y
+              <Iconify icon="noto:fire" width={54} /> {featuredProperty.rent}/y
             </Box>
           </Typography>
+          <Typography
+            variant="h5"
+            sx={{ color: 'common.white' }}
+          >{`${featuredProperty.description} - ${featuredProperty.spaceType} at ${featuredProperty.location}, ${featuredProperty.city}`}</Typography>
 
           {!isMdUp && (
             <Box
@@ -136,19 +140,34 @@ export default function FeaturedProperty() {
 function PropertyFeatures({ featuredPropertyInfo }) {
   return (
     <>
-      <OverviewItem icon="icomoon-free:office" label="Type" text={featuredPropertyInfo.type} />
+      {/* <OverviewItem icon="icomoon-free:office" label="Type" text={featuredPropertyInfo.type} /> */}
+
+      {featuredPropertyInfo.features.bedrooms !== 0 && (
+        <OverviewItem
+          icon="fluent:bed-24-regular"
+          label="Bedrooms"
+          text={`${featuredPropertyInfo.features.bedrooms}`}
+        />
+      )}
+
       <OverviewItem
+        icon="cil:shower"
+        label="Bathrooms"
+        text={`${featuredPropertyInfo.features.bathrooms}`}
+      />
+
+      {/* <OverviewItem
         icon="carbon:location"
         label="Location"
         text={`${featuredPropertyInfo.city}, ${featuredPropertyInfo.location}`}
-      />
+      /> */}
       <OverviewItem
         icon="tabler:ruler-measure"
         label="Total Area"
         text={`${featuredPropertyInfo.features.area} sqft`}
       />
 
-      <OverviewItem icon="carbon:floorplan" label="Layout" text={featuredPropertyInfo.spaceType} />
+      {/* <OverviewItem icon="carbon:floorplan" label="Layout" text={featuredPropertyInfo.spaceType} /> */}
 
       <OverviewItem
         icon="iconoir:air-conditioner"

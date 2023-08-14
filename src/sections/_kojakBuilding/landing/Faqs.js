@@ -111,7 +111,7 @@ export default function FAQs() {
               sx={{ px: 4, typography: 'h4', mt: 2 }}
               onClick={() => navigate(paths.website.properties)}
             >
-              Browse Properties
+              Explore Properties
             </Button>
           </Box>
         </Container>

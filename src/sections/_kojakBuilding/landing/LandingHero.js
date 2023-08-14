@@ -3,19 +3,20 @@ import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { alpha, useTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const SUMMARY = [
   { label: 'Apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
-  { label: 'Happy Tenants', value: 1192, color: 'success', icon: 'ion:happy-outline' },
-  { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
+  { label: 'Happy Tenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
   { label: 'Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
+  // { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
 ];
 
 // ----------------------------------------------------------------------
@@ -28,96 +29,95 @@ export default function KojakBuildingLandingHero() {
   return (
     <Box
       sx={{
-        height: '100dvh',
+        height: '80dvh',
         overflow: 'hidden',
-        backgroundImage: 'url(/assets/kojak-building/hero/hero-img-1.webp)',
-        backgroundSize: 'cover',
+        backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
         backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        pt: 5,
+        pt: 15,
       }}
     >
+      {/* <Box
+        sx={{
+          position: 'absolute',
+          right: 0,
+          top: 0,
+          zIndex: -1,
+        }}
+      >
+        <Image src="/assets/kojak-building/shape/blob-2.svg" />
+      </Box> */}
       <Container maxWidth="xl">
-        <Box
-          sx={{
-            width: { md: '65%', xs: '100%' },
-            textAlign: 'center',
-            background: alpha('#FFFFFF', 0.5),
-            p: 5,
-            pt: { md: 10, xs: 3 },
-            m: 'auto',
-            borderRadius: 2,
-            ...bgBlur({ color: theme.palette.common.white, blur: 15, opacity: 0.25 }),
-          }}
-        >
-          <Stack>
-            <Typography
-              variant="overline"
-              sx={{
-                color: 'common.black',
-              }}
-            >
-              Looking for residential or commercial space ?
-            </Typography>
-
-            <Typography
-              sx={{
-                mb: 3,
-                textTransform: 'capitalize',
-                fontSize: { md: '2.75rem', xs: '1.75rem' },
-                lineHeight: 1.25,
-                fontWeight: theme.typography.fontWeightBold,
-              }}
-            >
-              Find Your Perfect Space for Living or Business Thriving with{' '}
-              <Box component="span" sx={{ color: 'primary.main' }}>
-                KOJAK
-              </Box>
-            </Typography>
-
-            <Box>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                onClick={() => navigate(paths.website.properties)}
+        <Grid container sx={{ alignItems: 'center' }}>
+          <Grid md={5} xs={12}>
+            <Stack sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+              <Typography
+                variant="overline"
+                sx={{
+                  color: 'common.black',
+                }}
               >
-                Explore Properties
-              </Button>
-            </Box>
+                Looking for residential or commercial space ?
+              </Typography>
 
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
-                // backgroundColor: mdUp ? 'unset' : alpha('#000000', 0.5),
-                borderRadius: 1,
-                mt: mdUp ? 'unset' : 2,
-              }}
-            >
-              {SUMMARY.map((item) => (
-                <Stack
-                  key={item.value}
-                  spacing={0.5}
-                  sx={{
-                    position: 'relative',
-                    py: mdUp ? 5 : 2,
-                  }}
+              <Typography
+                sx={{
+                  mb: 3,
+                  textTransform: 'capitalize',
+                  fontSize: { lg: '3.25rem', md: '2.55rem', xs: '2.35rem' },
+                  lineHeight: 1.25,
+                  fontWeight: theme.typography.fontWeightBold,
+                }}
+              >
+                Find Your Perfect Space for Living or Business Thriving with{' '}
+                <Box component="span" sx={{ color: 'primary.main' }}>
+                  KOJAK
+                </Box>
+              </Typography>
+
+              <Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  onClick={() => navigate(paths.website.properties)}
                 >
-                  <Typography variant="h4" sx={{ color: mdUp ? 'unset' : 'common.white' }}>
-                    {item.value}+
-                  </Typography>
-                  <Typography variant="body1" sx={{ color: mdUp ? 'unset' : 'common.white' }}>
-                    {item.label}
-                  </Typography>
-                </Stack>
-              ))}
-            </Box>
-          </Stack>
-        </Box>
+                  Explore Properties
+                </Button>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+                  borderRadius: 1,
+                  mt: mdUp ? 'unset' : 2,
+                }}
+              >
+                {SUMMARY.map((item) => (
+                  <Stack
+                    key={item.value}
+                    spacing={0.5}
+                    sx={{
+                      position: 'relative',
+                      py: mdUp ? 5 : 2,
+                    }}
+                  >
+                    <Typography variant="h4">{item.value}+</Typography>
+                    <Typography variant="body1">{item.label}</Typography>
+                  </Stack>
+                ))}
+              </Box>
+            </Stack>
+          </Grid>
+          <Grid md={7}>
+            <Image src="/assets/kojak-building/hero/hero-charecter.svg" ratio="4/3" />
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );
