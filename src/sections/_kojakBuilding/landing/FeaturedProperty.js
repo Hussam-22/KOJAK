@@ -105,7 +105,7 @@ export default function FeaturedProperty() {
                 sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
                 onClick={() => navigate(`/properties/${featuredProperty.id}`)}
               >
-                Contact our agent
+                Check Property
               </Button>
             </Grid>
             {isMdUp && (
