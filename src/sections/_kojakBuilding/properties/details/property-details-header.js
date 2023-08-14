@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
-import { fNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
@@ -46,7 +45,7 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
         <Stack spacing={0.5} direction="row" alignItems="center">
           <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
-          {isAvailable && <Box sx={{ typography: 'h6' }}>{fNumber(rent)} AED</Box>}
+          {isAvailable && <Box sx={{ typography: 'h6' }}>{rent} AED</Box>}
           {!isAvailable && <Box sx={{ typography: 'h6' }}>Not Available</Box>}
         </Stack>
 
