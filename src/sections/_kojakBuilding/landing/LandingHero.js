@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -25,6 +26,9 @@ export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
+  const { translate, currentLang } = useLocales();
+
+  console.log(currentLang);
 
   return (
     <Box
@@ -63,6 +67,7 @@ export default function KojakBuildingLandingHero() {
               >
                 Looking for residential or commercial space ?
               </Typography>
+              <Typography variant="h1">{translate('test')}</Typography>
 
               <Typography
                 sx={{

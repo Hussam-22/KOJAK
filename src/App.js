@@ -1,5 +1,8 @@
+// i18n
 import 'src/global.css';
 import { AuthProvider } from 'src/auth/context/firebase';
+
+import './locales/i18n';
 
 // ----------------------------------------------------------------------
 
