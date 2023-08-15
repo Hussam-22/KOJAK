@@ -1,11 +1,10 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { Stack } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Card, Stack, Typography } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
@@ -76,6 +75,7 @@ export default function ContactUsForm() {
       // });
 
       await addNewFormGeneralSubmit(formData);
+
       await new Promise((resolve) =>
         setTimeout(() => {
           handleClickOpen();

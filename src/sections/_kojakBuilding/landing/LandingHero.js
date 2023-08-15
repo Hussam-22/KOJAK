@@ -26,9 +26,10 @@ export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
-  const { translate, currentLang } = useLocales();
+  const { translate, onChangeLang, currentLang } = useLocales();
 
-  console.log(currentLang);
+  const toggleLanguageHandler = () =>
+    currentLang.value === 'en' ? onChangeLang('ar') : onChangeLang('en');
 
   return (
     <Box
@@ -89,7 +90,8 @@ export default function KojakBuildingLandingHero() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => navigate(paths.website.properties)}
+                  // onClick={() => navigate(paths.website.properties)}
+                  onClick={() => toggleLanguageHandler()}
                 >
                   Explore Properties
                 </Button>

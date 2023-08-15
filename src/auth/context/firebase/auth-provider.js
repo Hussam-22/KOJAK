@@ -194,7 +194,6 @@ export function AuthProvider({ children }) {
     const querySnapshot = await getDocs(docRef);
     const dataArr = [];
     querySnapshot.forEach((document) => dataArr.push(document.data()));
-    console.log(dataArr);
     return dataArr[0];
   }, []);
 

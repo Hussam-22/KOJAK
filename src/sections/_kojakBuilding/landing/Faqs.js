@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Card, Button } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import { varFade, MotionViewport } from 'src/components/animate';
+import { varFade } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -48,74 +48,72 @@ export default function FAQs() {
 
   return (
     <Box sx={{ backgroundColor: theme.palette.primary.lighter, overflow: 'hidden' }}>
-      <MotionViewport disableAnimatedMobile>
-        <Container
-          sx={{
-            py: 10,
-          }}
-          component={m.div}
-          variants={varFade().inRight}
-          maxWidth="xl"
-        >
-          <Stack direction="column" spacing={5}>
-            <Box
-              sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
+      <Container
+        sx={{
+          py: 10,
+        }}
+        component={m.div}
+        variants={varFade().inRight}
+        maxWidth="xl"
+      >
+        <Stack direction="column" spacing={5}>
+          <Box
+            sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
+          >
+            <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
+              Frequently Asked Questions
+            </Typography>
+            <Typography
+              sx={{ color: 'common.black', fontWeight: theme.typography.fontWeightLight }}
             >
-              <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
-                Frequently Asked Questions
-              </Typography>
-              <Typography
-                sx={{ color: 'common.black', fontWeight: theme.typography.fontWeightLight }}
-              >
-                Our FAQ section is where we address common questions and provide helpful answers.
-                We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
-                you&#39;ll find information on various topics to assist you in getting the answers
-                you need.
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                rowGap: 2.5,
-                columnGap: 3,
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  md: 'repeat(3, 1fr)',
-                },
-              }}
-            >
-              {FAQ.map((faq, index) => (
-                <Card sx={{ p: 3 }} key={index}>
-                  <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
-                    {faq.question}
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    sx={{ textAlign: 'center', fontWeight: theme.typography.fontWeightLight }}
-                  >
-                    {faq.answer}
-                  </Typography>
-                </Card>
-              ))}
-            </Box>
-          </Stack>
-
-          <Box sx={{ mt: 10, textAlign: 'center' }}>
-            <Typography variant="h2">Join 842+ Happy Tenants</Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              sx={{ px: 4, typography: 'h4', mt: 2 }}
-              onClick={() => navigate(paths.website.properties)}
-            >
-              Explore Properties
-            </Button>
+              Our FAQ section is where we address common questions and provide helpful answers.
+              We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
+              you&#39;ll find information on various topics to assist you in getting the answers you
+              need.
+            </Typography>
           </Box>
-        </Container>
-      </MotionViewport>
+
+          <Box
+            sx={{
+              rowGap: 2.5,
+              columnGap: 3,
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: 'repeat(1, 1fr)',
+                md: 'repeat(3, 1fr)',
+              },
+            }}
+          >
+            {FAQ.map((faq, index) => (
+              <Card sx={{ p: 3 }} key={index}>
+                <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+                  {faq.question}
+                </Typography>
+
+                <Typography
+                  variant="body2"
+                  sx={{ textAlign: 'center', fontWeight: theme.typography.fontWeightLight }}
+                >
+                  {faq.answer}
+                </Typography>
+              </Card>
+            ))}
+          </Box>
+        </Stack>
+
+        <Box sx={{ mt: 10, textAlign: 'center' }}>
+          <Typography variant="h2">Join 842+ Happy Tenants</Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{ px: 4, typography: 'h4', mt: 2 }}
+            onClick={() => navigate(paths.website.properties)}
+          >
+            Explore Properties
+          </Button>
+        </Box>
+      </Container>
     </Box>
   );
 }

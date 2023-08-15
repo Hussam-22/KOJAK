@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import Image from 'src/components/image/Image';
-import { MotionViewport } from 'src/components/animate';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
@@ -41,60 +40,58 @@ export default function WhyKojakBuilding() {
   const mdUp = useResponsive('up', 'md');
   return (
     <Container maxWidth="xl" sx={{ my: 15 }}>
-      <MotionViewport disableAnimatedMobile>
-        <Stack
-          spacing={3}
-          direction="column"
-          justifyContent={{ md: 'space-between' }}
-          sx={{
-            my: 8,
-            maxWidth: { md: '60%', xs: '100%' },
-            textAlign: { md: 'left', xs: 'center' },
-          }}
-        >
-          <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
-            why you should choose us
-          </Typography>
+      <Stack
+        spacing={3}
+        direction="column"
+        justifyContent={{ md: 'space-between' }}
+        sx={{
+          my: 8,
+          maxWidth: { md: '60%', xs: '100%' },
+          textAlign: { md: 'left', xs: 'center' },
+        }}
+      >
+        <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+          why you should choose us
+        </Typography>
 
-          <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-            Choosing the right partner for your space-hunting journey can make all the difference.
-            At Kojak Building , we stand out as the ultimate destination for finding your ideal
-            residential or commercial space. Here&#39;s why you should choose us
-          </Typography>
-        </Stack>
+        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          Choosing the right partner for your space-hunting journey can make all the difference. At
+          Kojak Building , we stand out as the ultimate destination for finding your ideal
+          residential or commercial space. Here&#39;s why you should choose us
+        </Typography>
+      </Stack>
 
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-            gap: 3,
-          }}
-        >
-          {CORE_VALUES.map((value) => (
-            <Card
-              key={value.title}
-              sx={{
-                textAlign: 'center',
-                p: 3,
-                bgcolor: 'primary.lighter',
-              }}
-            >
-              <Image
-                src={`/assets/kojak-building/illustration/${value.image}.svg`}
-                alt={value.image}
-              />
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+          gap: 3,
+        }}
+      >
+        {CORE_VALUES.map((value) => (
+          <Card
+            key={value.title}
+            sx={{
+              textAlign: 'center',
+              p: 3,
+              bgcolor: 'primary.lighter',
+            }}
+          >
+            <Image
+              src={`/assets/kojak-building/illustration/${value.image}.svg`}
+              alt={value.image}
+            />
 
-              <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
-                {value.title}
-              </Typography>
+            <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
+              {value.title}
+            </Typography>
 
-              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-                {value.description}
-              </Typography>
-            </Card>
-          ))}
-        </Box>
-      </MotionViewport>
+            <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+              {value.description}
+            </Typography>
+          </Card>
+        ))}
+      </Box>
     </Container>
   );
 }

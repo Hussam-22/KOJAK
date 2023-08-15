@@ -1,14 +1,16 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
+import { useBoolean } from 'src/hooks/use-boolean';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 
 import { HEADER } from '../config-layout';
 
-import Header from './header';
 import Footer from './footer';
+import Header from './header';
 
 // ----------------------------------------------------------------------
 

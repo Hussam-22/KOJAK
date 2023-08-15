@@ -6,11 +6,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import localStorageAvailable from '../utils/localStorageAvailable';
 
 import arLocales from './langs/ar';
-import viLocales from './langs/vi';
 //
 import enLocales from './langs/en';
-import frLocales from './langs/fr';
-import cnLocales from './langs/cn';
 //
 import { defaultLang } from './config-lang';
 
@@ -30,9 +27,6 @@ i18n
   .init({
     resources: {
       en: { translations: enLocales },
-      fr: { translations: frLocales },
-      vi: { translations: viLocales },
-      cn: { translations: cnLocales },
       ar: { translations: arLocales },
     },
     lng,

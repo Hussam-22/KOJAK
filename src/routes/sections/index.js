@@ -22,15 +22,10 @@ export default function Router() {
           </Suspense>
         </MainLayout>
       ),
-      children: [
-        { element: <IndexPage />, index: true },
-
-        ..._websiteRouts,
-      ],
+      children: [{ element: <IndexPage />, index: true }, ..._websiteRouts],
     },
 
     ...errorRoutes,
-
 
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);

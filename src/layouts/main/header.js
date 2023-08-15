@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import { IconButton } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -27,8 +29,14 @@ import { navConfig } from './config-navigation';
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
   const offset = useOffSetTop();
+
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
+  const { currentLang, onChangeLang } = useLocales();
+
+  const toggleLanguageHandler = async () =>
+    currentLang.value === 'en' ? onChangeLang('ar') : onChangeLang('en');
+
   return (
     <AppBar>
       <Toolbar
@@ -89,13 +97,31 @@ export default function Header({ headerOnDark }) {
             </Stack> */}
 
             {mdUp && (
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => navigate(paths.website.properties)}
-              >
-                Explore Properties
-              </Button>
+              <Stack direction="row" spacing={1}>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => navigate(paths.website.properties)}
+                >
+                  Explore Properties
+                </Button>
+                <IconButton
+                  color="primary"
+                  size="small"
+                  sx={{
+                    backgroundColor: 'secondary.main',
+                    color: 'common.white',
+                    px: 1.25,
+                    '&:hover': {
+                      color: 'common.black',
+                      backgroundColor: 'common.white',
+                    },
+                  }}
+                  onClick={toggleLanguageHandler}
+                >
+                  {currentLang.value === 'en' ? 'Ar' : 'En'}
+                </IconButton>
+              </Stack>
             )}
           </Stack>
 

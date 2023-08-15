@@ -11,9 +11,9 @@ import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
+import { varFade } from 'src/components/animate';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { varFade, MotionViewport } from 'src/components/animate';
 
 import PostItemMobile from '../common/post-item-mobile';
 
@@ -39,83 +39,81 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <MotionViewport disableAnimatedMobile>
-      <Container
+    <Container
+      sx={{
+        pt: { xs: 5, md: 10 },
+        pb: 5,
+      }}
+      component={m.div}
+      variants={varFade().inLeft}
+      maxWidth="xl"
+    >
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent={{ xs: 'center', md: 'space-between' }}
         sx={{
-          pt: { xs: 5, md: 10 },
-          pb: 5,
+          mb: { xs: 8, md: 10 },
+          textAlign: { xs: 'center', md: 'left' },
         }}
-        component={m.div}
-        variants={varFade().inLeft}
-        maxWidth="xl"
       >
         <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent={{ xs: 'center', md: 'space-between' }}
           sx={{
-            mb: { xs: 8, md: 10 },
-            textAlign: { xs: 'center', md: 'left' },
+            maxWidth: { md: '60%', xs: 'unset' },
           }}
         >
-          <Stack
-            sx={{
-              maxWidth: { md: '60%', xs: 'unset' },
-            }}
+          <Typography variant="h2" sx={{ mb: 3 }}>
+            Check out our Blog
+          </Typography>
+
+          <Typography
+            sx={{ color: 'text.secondary', fontWeight: theme.typography.fontWeightLight }}
           >
-            <Typography variant="h2" sx={{ mb: 3 }}>
-              Check out our Blog
-            </Typography>
-
-            <Typography
-              sx={{ color: 'text.secondary', fontWeight: theme.typography.fontWeightLight }}
-            >
-              Your go-to resource for all things related to property renting and leasing. Whether
-              you&#39;re a seasoned tenant or a first-time renter, a property owner, or a curious
-              observer of the real estate market, our blog is designed to provide you with valuable
-              information, tips, and industry insights
-            </Typography>
-          </Stack>
-
-          {mdUp && viewAllBtn}
+            Your go-to resource for all things related to property renting and leasing. Whether
+            you&#39;re a seasoned tenant or a first-time renter, a property owner, or a curious
+            observer of the real estate market, our blog is designed to provide you with valuable
+            information, tips, and industry insights
+          </Typography>
         </Stack>
 
-        <Box
-          sx={{
-            display: 'grid',
-            gap: { xs: 3, md: 4 },
-            gridTemplateColumns: {
-              xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
-            },
-          }}
-        >
-          {mdUp ? (
-            <>
-              <LatestPostItem post={latestPost} largePost />
+        {mdUp && viewAllBtn}
+      </Stack>
 
-              <Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
-                {posts.slice(1, 5).map((post, index) => (
-                  <LatestPostItem key={post.id} post={post} order={index % 2} />
-                ))}
-              </Masonry>
-            </>
-          ) : (
-            <>
-              {posts.slice(0, 5).map((post) => (
-                <PostItemMobile key={post.id} post={post} />
+      <Box
+        sx={{
+          display: 'grid',
+          gap: { xs: 3, md: 4 },
+          gridTemplateColumns: {
+            xs: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
+          },
+        }}
+      >
+        {mdUp ? (
+          <>
+            <LatestPostItem post={latestPost} largePost />
+
+            <Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
+              {posts.slice(1, 5).map((post, index) => (
+                <LatestPostItem key={post.id} post={post} order={index % 2} />
               ))}
-            </>
-          )}
-        </Box>
-
-        {!mdUp && (
-          <Stack alignItems="center" sx={{ mt: 4 }}>
-            {viewAllBtn}
-          </Stack>
+            </Masonry>
+          </>
+        ) : (
+          <>
+            {posts.slice(0, 5).map((post) => (
+              <PostItemMobile key={post.id} post={post} />
+            ))}
+          </>
         )}
-      </Container>
-    </MotionViewport>
+      </Box>
+
+      {!mdUp && (
+        <Stack alignItems="center" sx={{ mt: 4 }}>
+          {viewAllBtn}
+        </Stack>
+      )}
+    </Container>
   );
 }
 

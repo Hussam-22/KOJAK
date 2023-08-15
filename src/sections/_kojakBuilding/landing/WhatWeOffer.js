@@ -19,6 +19,7 @@ export default function WhatWeOffer() {
   const { getAllSpacesInfo } = useAuthContext();
 
   useEffect(() => {
+    console.log('RENDER');
     (async () => {
       setProperties(await getAllSpacesInfo());
     })();
@@ -41,7 +42,6 @@ export default function WhatWeOffer() {
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      {/* <MotionViewport disableAnimatedMobile> */}
       <Container
         sx={{
           pt: { xs: 5, md: 10 },
@@ -122,7 +122,6 @@ export default function WhatWeOffer() {
           </CarouselArrows>
         </Box>
       </Container>
-      {/* </MotionViewport> */}
     </Box>
   );
 }
