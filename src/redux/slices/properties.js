@@ -30,6 +30,11 @@ const slice = createSlice({
       state.isLoading = true;
     },
 
+    // STOP LOADING
+    stopLoading(state) {
+      state.isLoading = false;
+    },
+
     rdxSetProducts(state, action) {
       state.products = action.payload;
       state.filteredProducts = action.payload;
@@ -61,4 +66,5 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-export const { rdxSetFilter, rdxSetProducts, rdxClearFilter } = slice.actions;
+export const { startLoading, stopLoading, rdxSetFilter, rdxSetProducts, rdxClearFilter } =
+  slice.actions;

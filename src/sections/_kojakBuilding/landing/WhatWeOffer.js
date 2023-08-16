@@ -22,7 +22,7 @@ export default function WhatWeOffer() {
 
   useEffect(() => {
     (async () => {
-      setProperties(await getAllSpacesInfo());
+      setProperties(await getAllSpacesInfo(true));
     })();
   }, [getAllSpacesInfo]);
 

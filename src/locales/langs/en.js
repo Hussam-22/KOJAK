@@ -6,6 +6,13 @@
 // ----------------------------------------------------------------------
 
 const en = {
+  header: {
+    home: 'Home',
+    properties: 'Properties',
+    blog: 'Blog',
+    about: 'About',
+    contactUs: 'Contact us',
+  },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
     title: `Find Your Perfect Space for Living or Business Thriving with `,
@@ -39,17 +46,20 @@ const en = {
     },
   },
   properties: {
-    title: 'Properties',
+    title: 'Available Properties',
     subTitle: `At Kojak Building , we take pride in offering an extensive selection of both
     commercial and residential spaces that cater to all your needs. Whether you're
     looking to upgrade your business headquarters or find a cozy abode to call home,
     we've got you covered.`,
   },
-  featuredProperty: {},
+  featuredProperty: {
+    title: `Hot Deal Property `,
+  },
   faq: {},
 
   common: {
     kojak: 'KOJAK',
+    building: 'Building',
     exploreProperties: 'Explore Properties',
     moreDetails: 'More Details',
   },
@@ -61,13 +71,22 @@ const en = {
     dubai: 'dubai',
     flat: 'flat',
     showrooms: 'showrooms',
-    gym: 'gym',
-    labourCamp: 'labour camp',
+    gym: 'Health Club / Swimming Pool',
+    labourcamp: 'labour camp',
     shops: 'shops',
     restaurant: 'restaurant',
     offices: 'offices',
     available: 'available',
     notAvailable: 'not available',
+    noDesc: 'No Available Description',
+    cctv: 'CCTV',
+    security: 'Security',
+    bathrooms: 'Bathrooms',
+    bedrooms: 'Bedrooms',
+    totalArea: 'Total Area',
+    ac: 'AC Type',
+    payment: 'Payment Term',
+    kitchen: 'Kitchen',
   },
 };
 

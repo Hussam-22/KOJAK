@@ -6,6 +6,13 @@
 // ----------------------------------------------------------------------
 
 const ar = {
+  header: {
+    home: 'الرئيسية',
+    properties: 'العقارات',
+    blog: 'المدونة',
+    about: 'من نحن',
+    contactUs: 'تواصل معنا',
+  },
   hero: {
     overlineText: 'هل تبحث عن مساحة سكنية أو تجارية؟',
     title: `ابحث عن المساحة المثالية للعيش أو ازدهار أعمالك مع `,
@@ -43,17 +50,45 @@ const ar = {
   },
 
   properties: {
-    title: 'العقارات',
+    title: 'العقارات المتوفرة',
     subTitle:
       'في كوجاك، نفتخر بتقديم مجموعة واسعة من المساحات التجارية والسكنية التي تلبي جميع احتياجاتك. سواء كنت تبحث عن ترقية مقر أعمالك أو العثور على منزل مريح للإقامة، نحن هنا لنلبي احتياجاتك.',
   },
-  featuredProperty: {},
+  featuredProperty: {
+    title: `عرض لايفوت `,
+  },
   faq: {},
 
   common: {
     kojak: 'كوجاك',
+    building: 'العقارية',
     exploreProperties: 'اكتشف العقارات',
     moreDetails: 'مزيد من المعلومات',
+  },
+
+  propertyCard: {
+    residential: 'سكني',
+    commercial: 'تجاري',
+    sharjah: 'الشارقة',
+    dubai: 'دبي',
+    flat: 'شقة',
+    showrooms: 'معرض',
+    gym: 'نادي صحي / مسبح',
+    labourcamp: 'سكن عمال',
+    shops: 'محلات',
+    restaurant: 'مطعم',
+    offices: 'مكاتب',
+    available: 'متوفر',
+    notAvailable: 'غير متوفر',
+    noDesc: 'لا يوجد وصف للعقار',
+    cctv: 'كاميرات مراقبة',
+    security: 'حارس أمن',
+    bathrooms: '',
+    bedrooms: '',
+    totalArea: '',
+    ac: '',
+    payment: '',
+    kitchen: '',
   },
 };
 

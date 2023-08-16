@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Box, Stack, Button, Unstable_Grid2 as Grid } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { varFade } from 'src/components/animate';
@@ -22,6 +23,7 @@ function FeaturedProperty() {
   const { fsGetFeaturedProperty, fsGetImgDownloadUrl } = useAuthContext();
   const [images, setImages] = useState([]);
   const [featuredProperty, setFeaturedProperty] = useState([]);
+  const { translate } = useLocales();
 
   useEffect(() => {
     (async () => {
@@ -43,7 +45,7 @@ function FeaturedProperty() {
   return (
     <Box
       sx={{
-        background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.darker} 100%)`,
+        // backgroundColor: 'secondary.main',
         overflow: 'hidden',
       }}
     >
@@ -56,78 +58,82 @@ function FeaturedProperty() {
         variants={varFade().inRight}
         maxWidth="xl"
       >
-        <Typography variant="h2" sx={{ color: 'common.white', mb: 3 }}>
-          Hot Deal Property{' '}
-          <Box component="span" sx={{ typography: 'h4' }}>
-            <Iconify icon="noto:fire" width={54} /> {featuredProperty.rent}/y
-          </Box>
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{ color: 'common.white' }}
-        >{`${featuredProperty.description} - ${featuredProperty.spaceType} at ${featuredProperty.location}, ${featuredProperty.city}`}</Typography>
+        <Box
+          sx={{
+            backgroundColor: 'secondary.main',
+            borderRadius: 3,
+            p: 10,
+          }}
+        >
+          <Typography variant="h2" sx={{ color: 'common.white', mb: 3 }}>
+            {translate('featuredProperty.title')}
+            <Box component="span" sx={{ typography: 'h4' }}>
+              <Iconify icon="noto:fire" width={54} /> {featuredProperty.rent}/y
+            </Box>
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{ color: 'common.white' }}
+          >{`${featuredProperty.description} - ${featuredProperty.spaceType} at ${featuredProperty.location}, ${featuredProperty.city}`}</Typography>
 
-        {!isMdUp && (
-          <Box
-            sx={{
-              borderRadius: 1,
-              border: `solid 3px ${theme.palette.primary.main}`,
-              p: 1,
-              mt: 4,
-            }}
-          >
-            <Image src={images[0]} alt="property-img-1" ratio="4/3" sx={{ borderRadius: 1 }} />
-          </Box>
-        )}
-
-        <Grid container columnSpacing={12}>
-          <Grid md={6} xs={12}>
+          {!isMdUp && (
             <Box
               sx={{
-                rowGap: 2.5,
-                columnGap: 3,
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: 'repeat(2, 1fr)',
-                  md: 'repeat(3, 1fr)',
-                },
-                my: 6,
+                borderRadius: 1,
+                border: `solid 3px ${theme.palette.primary.main}`,
+                p: 1,
+                mt: 4,
               }}
             >
-              {featuredProperty.id !== undefined && (
-                <PropertyFeatures featuredPropertyInfo={featuredProperty} />
-              )}
+              <Image src={images[0]} alt="property-img-1" ratio="4/3" sx={{ borderRadius: 1 }} />
             </Box>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
-              onClick={() => navigate(`/properties/${featuredProperty.id}`)}
-            >
-              Check Property
-            </Button>
-          </Grid>
-          {isMdUp && (
-            <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
-              <Masonry columns={{ xs: 1, md: 2 }} spacing={0.5}>
-                {images.length !== 0 &&
-                  images.map((url, index) => (
-                    <Image
-                      key={index}
-                      src={url}
-                      // ratio="4/3"
-                      sx={{
-                        borderRadius: 1,
-                        border: `solid 3px ${theme.palette.primary.main}`,
-                        p: 1,
-                        // boxShadow: `8px 8px 0 0 ${theme.palette.common.black}`,
-                      }}
-                    />
-                  ))}
-              </Masonry>
-            </Grid>
           )}
-        </Grid>
+
+          <Grid container columnSpacing={12}>
+            <Grid md={6} xs={12}>
+              <Box
+                sx={{
+                  rowGap: 2.5,
+                  columnGap: 3,
+                  display: 'grid',
+                  gridTemplateColumns: {
+                    xs: 'repeat(2, 1fr)',
+                    md: 'repeat(3, 1fr)',
+                  },
+                  my: 6,
+                }}
+              >
+                {featuredProperty.id !== undefined && (
+                  <PropertyFeatures featuredPropertyInfo={featuredProperty} />
+                )}
+              </Box>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ backgroundColor: 'common.white', color: 'primary.main' }}
+                onClick={() => navigate(`/properties/${featuredProperty.id}`)}
+              >
+                {translate('common.moreDetails')}
+              </Button>
+            </Grid>
+            {isMdUp && (
+              <Grid md={6} xs={12} sx={{ my: 6, zIndex: 9 }}>
+                <Masonry columns={{ xs: 1, md: 2 }} spacing={2}>
+                  {images.length !== 0 &&
+                    images.map((url, index) => (
+                      <Image
+                        key={index}
+                        src={url}
+                        sx={{
+                          borderRadius: 1,
+                        }}
+                      />
+                    ))}
+                </Masonry>
+              </Grid>
+            )}
+          </Grid>
+        </Box>
       </Container>
     </Box>
   );
@@ -218,14 +224,12 @@ function OverviewItem({ icon, label, text = '-' }) {
   return (
     <Box
       sx={{
-        border: `solid 2px ${theme.palette.primary.main}`,
-        p: isMdUp ? 2 : 1.5,
-        borderRadius: 2,
+        p: 1,
       }}
     >
-      <Stack spacing={1.5} direction="column" alignItems="center">
-        <Iconify icon={icon} width={isMdUp ? 55 : 32} color="primary.light" />
-        <Typography sx={{ color: 'primary.light', typography: { md: 'h6', xs: 'body1' } }}>
+      <Stack spacing={1.5} direction="column" alignItems="left">
+        <Iconify icon={icon} width={isMdUp ? 55 : 32} color="secondary.lighter" />
+        <Typography sx={{ color: 'secondary.light', typography: { md: 'h6', xs: 'body1' } }}>
           {label}
         </Typography>
         <Typography sx={{ color: 'common.white', typography: { md: 'h5', xs: 'body1' } }}>

@@ -180,10 +180,19 @@ export function AuthProvider({ children }) {
     return docSnap.data();
   }, []);
 
-  // get all spaces info
-  const getAllSpacesInfo = useCallback(async () => {
+  // get all spaces info (switch for available only or ALL)
+  const getAllSpacesInfo = useCallback(async (isAvailableOnly = false) => {
+    // const dataArr = [];
+    // const querySnapshot = await getDocs(collection(DB, 'websites', 'building', 'spaces'));
+    // querySnapshot.forEach((document) => dataArr.push(document.data()));
+    // return dataArr;
+
+    const docRef = query(
+      collectionGroup(DB, 'spaces'),
+      where('isAvailable', 'in', isAvailableOnly ? [true] : [true, false])
+    );
+    const querySnapshot = await getDocs(docRef);
     const dataArr = [];
-    const querySnapshot = await getDocs(collection(DB, 'websites', 'building', 'spaces'));
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;
   }, []);

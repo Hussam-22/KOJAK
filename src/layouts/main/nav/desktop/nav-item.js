@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 
 import Link from '@mui/material/Link';
 
+import { useLocales } from 'src/locales';
 import { RouterLink } from 'src/routes/components';
 
 import { StyledNavItem } from './styles';
@@ -11,6 +12,7 @@ import { StyledNavItem } from './styles';
 
 export const NavItem = forwardRef(
   ({ item, open, active, subItem, externalLink, ...other }, ref) => {
+    const { translate } = useLocales();
     const renderContent = (
       <StyledNavItem
         ref={ref}
@@ -20,7 +22,7 @@ export const NavItem = forwardRef(
         open={open}
         {...other}
       >
-        {item.title}
+        {translate(`header.${item.title}`)}
       </StyledNavItem>
     );
 

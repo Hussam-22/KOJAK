@@ -43,7 +43,7 @@ export default function PropertyCard({ space, vertical }) {
   const { fsGetImgDownloadUrl } = useAuthContext();
   const { translate, currentLang } = useLocales();
 
-  console.log(currentLang);
+  const language = currentLang.value;
 
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
 
@@ -61,12 +61,10 @@ export default function PropertyCard({ space, vertical }) {
     <Card
       sx={{
         display: { sm: 'flex' },
-        '&:hover': {
-          boxShadow: (theme) => theme.customShadows.z24,
-        },
         ...(vertical && {
           flexDirection: 'column',
         }),
+        borderRadius: 1,
       }}
     >
       <Box sx={{ flexShrink: { sm: 0 } }}>
@@ -86,7 +84,7 @@ export default function PropertyCard({ space, vertical }) {
         />
       </Box>
 
-      <Stack
+      {/* <Stack
         direction="row"
         alignItems="center"
         justifyContent="space-between"
@@ -100,7 +98,7 @@ export default function PropertyCard({ space, vertical }) {
           position: 'absolute',
         }}
       >
-        <Stack
+         <Stack
           spacing={0.5}
           direction="row"
           sx={{
@@ -116,27 +114,28 @@ export default function PropertyCard({ space, vertical }) {
               sx={{
                 color: 'grey.200',
                 textDecoration: 'line-through',
-                mr: 0.5,
+                mx: 0.5,
               }}
             >
               {fNumber(rentSale)}
             </Box>
           )}
           {isAvailable ? `${rent} AED` : 'Not Available'}
-        </Stack>
-      </Stack>
+        </Stack> 
+      </Stack> */}
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {`${city} - ${location}`}
-        </Typography>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {`${city} - ${location}`}
+          </Typography>
+
+          <Typography>{isAvailable ? `${rent} AED` : 'Not Available'}</Typography>
+        </Stack>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
-          {/* <Typography variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-            {spaceType} - {description}
-          </Typography> */}
-          <TextMaxLine line={1} variant="h5" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-            {spaceType} - {description}
+          <TextMaxLine line={1} variant="h5" sx={{ flexGrow: 1 }}>
+            {description === '' ? translate('propertyCard.noDesc') : description}
           </TextMaxLine>
         </Link>
 
@@ -147,25 +146,25 @@ export default function PropertyCard({ space, vertical }) {
           sx={{ alignItems: 'center' }}
         >
           <Box>
-            <Iconify icon="tabler:ruler-measure" width={18} sx={{ mr: 1 }} />
+            <Iconify icon="tabler:ruler-measure" width={18} sx={{ mx: 1 }} />
             {area}
           </Box>
 
-          <Box sx={{ alignItems: 'center' }}>
-            <Iconify icon="carbon:floorplan" width={18} sx={{ mr: 1 }} />
-            {spaceType}
+          <Box sx={{ alignItems: 'center', textTransform: 'capitalize' }}>
+            <Iconify icon="carbon:floorplan" width={18} sx={{ mx: 1 }} />
+            {translate(`propertyCard.${spaceType.toLowerCase().replaceAll(' ', '')}`)}
           </Box>
 
           {bedrooms !== 0 && (
             <Box sx={{ alignItems: 'center' }}>
-              <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mr: 1 }} />
+              <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mx: 1 }} />
               {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
             </Box>
           )}
 
           {bathrooms !== 0 && (
             <Box sx={{ alignItems: 'center' }}>
-              <Iconify icon="cil:shower" width={18} sx={{ mr: 1 }} />
+              <Iconify icon="cil:shower" width={18} sx={{ mx: 1 }} />
               {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
             </Box>
           )}
@@ -182,10 +181,9 @@ export default function PropertyCard({ space, vertical }) {
             alignItems="center"
             sx={{ typography: 'body2', color: 'text.disabled' }}
           >
-            <Typography variant="caption">Listed on: {listingDateTime}</Typography>
-            <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
+            <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
               <Button variant="contained" color="secondary" onClick={openSpaceCard}>
-                More details
+                {translate('common.moreDetails')}
               </Button>
             </Box>
           </Stack>

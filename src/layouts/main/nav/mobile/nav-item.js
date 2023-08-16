@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 
 import Link from '@mui/material/Link';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 
@@ -12,11 +13,12 @@ import { StyledNavItem } from './styles';
 // ----------------------------------------------------------------------
 
 export default function NavItem({ item, open, active, externalLink, ...other }) {
+  const { translate } = useLocales();
   const renderContent = (
     <StyledNavItem active={active} {...other}>
       <ListItemIcon> {item.icon} </ListItemIcon>
 
-      <ListItemText disableTypography primary={item.title} />
+      <ListItemText disableTypography primary={translate(`header.${item.title}`)} />
 
       {!!item.children && (
         <Iconify

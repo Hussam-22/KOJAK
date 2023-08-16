@@ -1,4 +1,8 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+import { stopLoading, startLoading } from 'src/redux/slices/properties';
 
 // components
 import { useSettingsContext } from '../components/settings';
@@ -12,7 +16,6 @@ import { allLangs, defaultLang } from './config-lang';
 
 export default function useLocales() {
   const { i18n, t: translate } = useTranslation();
-
   const { onChangeDirectionByLang } = useSettingsContext();
 
   const storageAvailable = localStorageAvailable();

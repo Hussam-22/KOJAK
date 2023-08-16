@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
+import { SplashScreen } from 'src/components/loading-screen';
 
 import { HEADER } from '../config-layout';
 
@@ -28,6 +30,7 @@ const spacingLayout = [
 export default function MainLayout({ children }) {
   const pathname = usePathname();
   const actionPage = (arr) => arr.some((path) => pathname === path);
+  const { isLoading } = useSelector((state) => state.properties);
 
   return (
     <>
@@ -41,7 +44,7 @@ export default function MainLayout({ children }) {
           }}
         >
           {!actionPage(spacingLayout) && <Spacing />}
-
+          {isLoading && <SplashScreen />}
           {children}
         </Box>
 

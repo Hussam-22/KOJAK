@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { useTheme, Backdrop, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
@@ -21,10 +23,12 @@ import NavList from './nav-list';
 
 // ----------------------------------------------------------------------
 
-export default function NavMobile({ data }) {
+export default function NavMobile({ data, toggleLanguage }) {
+  const theme = useTheme();
   const pathname = usePathname();
   const navigate = useNavigate();
   const mobileOpen = useBoolean();
+  const { translate, currentLang, onChangeLang } = useLocales();
 
   useEffect(() => {
     if (mobileOpen.value) {
@@ -35,9 +39,28 @@ export default function NavMobile({ data }) {
 
   return (
     <>
-      <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
-        <Iconify icon="carbon:menu" />
-      </IconButton>
+      <Stack direction="row" spacing={0}>
+        <IconButton
+          disableFocusRipple
+          disableTouchRipple
+          disableRipple
+          color="primary"
+          size="small"
+          sx={{
+            bgcolor: 'common.black',
+            color: 'common.white',
+            p: 0.75,
+            px: currentLang.value === 'en' ? 1.5 : 0.75,
+          }}
+          onClick={toggleLanguage}
+        >
+          {currentLang.value === 'en' ? 'ع' : 'En'}
+        </IconButton>
+
+        <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
+          <Iconify icon="carbon:menu" />
+        </IconButton>
+      </Stack>
 
       <Drawer
         open={mobileOpen.value}
@@ -64,7 +87,7 @@ export default function NavMobile({ data }) {
               color="primary"
               onClick={() => navigate(paths.website.properties)}
             >
-              Explore Available Properties
+              {translate('common.exploreProperties')}
             </Button>
           </Stack>
         </Scrollbar>
@@ -75,4 +98,5 @@ export default function NavMobile({ data }) {
 
 NavMobile.propTypes = {
   data: PropTypes.array,
+  toggleLanguage: PropTypes.func,
 };

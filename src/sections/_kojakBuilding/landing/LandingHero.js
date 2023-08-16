@@ -36,7 +36,9 @@ export default function KojakBuildingLandingHero() {
       sx={{
         height: { md: '80dvh', xs: '95dvh' },
         overflow: 'hidden',
-        backgroundImage: 'url(/assets/kojak-building/shape/bbblurry.svg)',
+        backgroundImage: `url(/assets/kojak-building/hero/hero-img-${
+          currentLang.value === 'en' ? '5' : '6'
+        }.webp)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         display: 'flex',
@@ -58,7 +60,7 @@ export default function KojakBuildingLandingHero() {
       </Box> */}
       <Container maxWidth="xl">
         <Grid container sx={{ alignItems: 'center' }}>
-          <Grid md={5} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
+          <Grid md={8} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
             <Stack sx={{ textAlign: { md: 'left', xs: 'center' } }}>
               <Typography
                 variant="overline"
@@ -99,9 +101,10 @@ export default function KojakBuildingLandingHero() {
               <Box
                 sx={{
                   display: 'grid',
-                  gridTemplateColumns: { md: 'repeat(3,1fr)', xs: 'repeat(3,1fr)' },
+                  gridTemplateColumns: 'repeat(3,1fr)',
                   borderRadius: 1,
                   mt: mdUp ? 'unset' : 2,
+                  width: { md: '50%', xs: 'unset' },
                 }}
               >
                 {SUMMARY.map((item, index) => (
@@ -120,9 +123,9 @@ export default function KojakBuildingLandingHero() {
               </Box>
             </Stack>
           </Grid>
-          <Grid md={7} xs={12}>
+          {/* <Grid md={7} xs={12}>
             <Image src="/assets/kojak-building/hero/hero-charecter.svg" ratio="4/3" />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Box>

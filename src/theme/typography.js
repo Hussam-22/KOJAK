@@ -26,8 +26,8 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'barlow, tajawal';
-const secondaryFont = 'barlow, tajawal';
+const primaryFont = 'Barlow, Tajawal';
+const secondaryFont = 'Barlow, Tajawal';
 
 // ----------------------------------------------------------------------
 
