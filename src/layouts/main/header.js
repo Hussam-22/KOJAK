@@ -111,7 +111,7 @@ export default function Header({ headerOnDark }) {
                   sx={{
                     backgroundColor: 'secondary.main',
                     color: 'common.white',
-                    px: 1.25,
+                    px: currentLang.value === 'en' ? 1.75 : 1.15,
                     '&:hover': {
                       color: 'common.black',
                       backgroundColor: 'common.white',
@@ -119,7 +119,7 @@ export default function Header({ headerOnDark }) {
                   }}
                   onClick={toggleLanguageHandler}
                 >
-                  {currentLang.value === 'en' ? 'Ar' : 'En'}
+                  {currentLang.value === 'en' ? 'ع' : 'En'}
                 </IconButton>
               </Stack>
             )}

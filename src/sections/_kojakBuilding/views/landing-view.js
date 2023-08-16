@@ -12,9 +12,9 @@ export default function LandingView() {
       <LandingHero />
       <WhyKojakBuilding />
       <WhatWeOffer />
-      {/* <FeaturedProperty />
+      <FeaturedProperty />
       <FAQs />
-      <LatestPosts posts={blogPosts.slice(0, 6)} /> */}
+      <LatestPosts posts={blogPosts.slice(0, 6)} />
     </>
   );
 }

@@ -19,7 +19,6 @@ export default function WhatWeOffer() {
   const { getAllSpacesInfo } = useAuthContext();
 
   useEffect(() => {
-    console.log('RENDER');
     (async () => {
       setProperties(await getAllSpacesInfo());
     })();
