@@ -26,13 +26,7 @@ export default function App() {
     <AuthProvider>
       <ReduxProvider store={store}>
         <LocalizationProvider>
-          <SettingsProvider
-          // defaultSettings={{
-          //   themeMode: 'light', // 'light' | 'dark'
-          //   themeDirection: 'ltr', //  'rtl' | 'ltr'
-          //   themeColorPresets: 'preset04', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-          // }}
-          >
+          <SettingsProvider>
             <ThemeProvider>
               <ThemeSettings>
                 <MotionLazy>

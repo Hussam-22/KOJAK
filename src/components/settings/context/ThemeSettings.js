@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-//
 import ThemeRtlLayout from './ThemeRtlLayout';
 
 // ----------------------------------------------------------------------
