@@ -4,40 +4,24 @@ import { Card, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
 const CORE_VALUES = [
-  {
-    title: 'Transparent Transactions',
-    description:
-      'Our commitment to transparent transactions ensures that you have a clear understanding of all the terms and conditions, empowering you to make decisions with confidence',
-    image: 'Transparent_Transactions',
-  },
-  {
-    title: 'Customer Satisfaction',
-    description: `Over the years, we've built a reputation for excellence, and our countless satisfied clients stand as a testament to our commitment to customer happiness`,
-    image: 'Customer_Satisfaction',
-  },
-  {
-    title: 'Prime Locations',
-    description: `Our portfolio includes spaces in prime and sought-after locations, offering you the benefits of accessibility, convenience, and a thriving community`,
-    image: 'Prime_Locations',
-  },
-  {
-    title: 'Unbeatable Prices',
-    description: `Our priority is to provide you with exceptional value. We understand that finding a quality rental at a great price is essential, and we're committed to making that a reality for you.`,
-    image: 'Unbeatable_Prices',
-  },
+  'Transparent_Transactions',
+  'Customer_Satisfaction',
+  'Prime_Locations',
+  'Unbeatable_Prices',
 ];
 
 // ----------------------------------------------------------------------
 
 export default function WhyKojakBuilding() {
   const theme = useTheme();
-  const mdUp = useResponsive('up', 'md');
+  const { translate } = useLocales();
   return (
     <Container maxWidth="xl" sx={{ my: 15 }}>
       <Stack
@@ -51,13 +35,11 @@ export default function WhyKojakBuilding() {
         }}
       >
         <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
-          why you should choose us
+          {translate('why.title')}
         </Typography>
 
-        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-          Choosing the right partner for your space-hunting journey can make all the difference. At
-          Kojak Building , we stand out as the ultimate destination for finding your ideal
-          residential or commercial space. Here&#39;s why you should choose us
+        <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          {translate('why.subTitle')}
         </Typography>
       </Stack>
 
@@ -68,7 +50,7 @@ export default function WhyKojakBuilding() {
           gap: 3,
         }}
       >
-        {CORE_VALUES.map((value) => (
+        {CORE_VALUES.map((value, index) => (
           <Card
             key={value.title}
             sx={{
@@ -77,17 +59,14 @@ export default function WhyKojakBuilding() {
               bgcolor: 'primary.lighter',
             }}
           >
-            <Image
-              src={`/assets/kojak-building/illustration/${value.image}.svg`}
-              alt={value.image}
-            />
+            <Image src={`/assets/kojak-building/illustration/${value}.svg`} alt={value} />
 
             <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
-              {value.title}
+              {translate(`why.cards.${index + 1}.title`)}
             </Typography>
 
             <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-              {value.description}
+              {translate(`why.cards.${index + 1}.subTitle`)}
             </Typography>
           </Card>
         ))}

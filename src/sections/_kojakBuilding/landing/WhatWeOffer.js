@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
@@ -17,6 +18,7 @@ export default function WhatWeOffer() {
   const mdUp = useResponsive('up', 'md');
   const [properties, setProperties] = useState([]);
   const { getAllSpacesInfo } = useAuthContext();
+  const { translate } = useLocales();
 
   useEffect(() => {
     (async () => {
@@ -59,16 +61,11 @@ export default function WhatWeOffer() {
             flexGrow={1}
             sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
           >
-            <Typography variant="h2">Properties</Typography>
-            <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-              At Kojak Building , we take pride in offering an extensive selection of both
-              commercial and residential spaces that cater to all your needs. Whether you&#39;re
-              looking to upgrade your business headquarters or find a cozy abode to call home,
-              we&#39;ve got you covered.
+            <Typography variant="h2">{translate('properties.title')}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+              {translate('properties.subTitle')}
             </Typography>
           </Stack>
-
-          {/* {mdUp && <CarouselArrows spacing={2} onNext={carousel.onNext} onPrev={carousel.onPrev} />} */}
         </Stack>
 
         <Box

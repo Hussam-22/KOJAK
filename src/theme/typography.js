@@ -1,5 +1,6 @@
 // require('typeface-public-sans');
 require('typeface-barlow');
+require('typeface-tajawal');
 // ----------------------------------------------------------------------
 
 export function remToPx(value) {
@@ -25,8 +26,8 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Barlow, sans-serif';
-const secondaryFont = 'Barlow, sans-serif';
+const primaryFont = 'barlow, tajawal';
+const secondaryFont = 'barlow, tajawal';
 
 // ----------------------------------------------------------------------
 

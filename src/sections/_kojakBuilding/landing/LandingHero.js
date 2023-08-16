@@ -14,9 +14,9 @@ import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const SUMMARY = [
-  { label: 'Apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
-  { label: 'Happy Tenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
-  { label: 'Leases processed', value: 12482, color: 'info', icon: 'solar:document-outline' },
+  { label: 'apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
+  { label: 'happyTenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
+  { label: 'leasesProcessed', value: 12482, color: 'info', icon: 'solar:document-outline' },
   // { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
 ];
 
@@ -66,9 +66,8 @@ export default function KojakBuildingLandingHero() {
                   color: 'common.black',
                 }}
               >
-                Looking for residential or commercial space ?
+                {translate('hero.overlineText')}
               </Typography>
-              <Typography variant="h1">{translate('test')}</Typography>
 
               <Typography
                 sx={{
@@ -79,9 +78,9 @@ export default function KojakBuildingLandingHero() {
                   fontWeight: theme.typography.fontWeightBold,
                 }}
               >
-                Find Your Perfect Space for Living or Business Thriving with{' '}
+                {translate('hero.title')}
                 <Box component="span" sx={{ color: 'primary.main' }}>
-                  KOJAK
+                  {translate('common.kojak')}
                 </Box>
               </Typography>
 
@@ -93,7 +92,7 @@ export default function KojakBuildingLandingHero() {
                   // onClick={() => navigate(paths.website.properties)}
                   onClick={() => toggleLanguageHandler()}
                 >
-                  Explore Properties
+                  {translate('common.exploreProperties')}
                 </Button>
               </Box>
 
@@ -115,7 +114,7 @@ export default function KojakBuildingLandingHero() {
                     }}
                   >
                     <Typography variant="h4">{item.value}+</Typography>
-                    <Typography variant="body1">{item.label}</Typography>
+                    <Typography variant="body1">{translate(`hero.${item.label}`)}</Typography>
                   </Stack>
                 ))}
               </Box>
