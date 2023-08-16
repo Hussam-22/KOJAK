@@ -104,7 +104,7 @@ export default function KojakBuildingLandingHero() {
                   mt: mdUp ? 'unset' : 2,
                 }}
               >
-                {SUMMARY.map((item) => (
+                {SUMMARY.map((item, index) => (
                   <Stack
                     key={item.value}
                     spacing={0.5}

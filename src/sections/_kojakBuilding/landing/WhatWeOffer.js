@@ -100,20 +100,21 @@ export default function WhatWeOffer() {
             }}
           >
             <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-              {properties
-                .filter((property) => property.isAvailable && property.bucketID !== '')
-                .map((property) => (
-                  <Box
-                    key={property.id}
-                    sx={{
-                      px: 2,
-                      pt: { xs: 8, md: 10 },
-                      pb: { xs: 10, md: 15 },
-                    }}
-                  >
-                    <PropertyCard key={property.id} space={property} vertical />
-                  </Box>
-                ))}
+              {properties.length !== 0 &&
+                properties
+                  .filter((property) => property.isAvailable && property.bucketID !== '')
+                  .map((property) => (
+                    <Box
+                      key={property.id}
+                      sx={{
+                        px: 2,
+                        pt: { xs: 8, md: 10 },
+                        pb: { xs: 10, md: 15 },
+                      }}
+                    >
+                      <PropertyCard key={property.id} space={property} vertical />
+                    </Box>
+                  ))}
             </Carousel>
           </CarouselArrows>
         </Box>

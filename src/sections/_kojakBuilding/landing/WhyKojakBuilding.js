@@ -52,7 +52,7 @@ export default function WhyKojakBuilding() {
       >
         {CORE_VALUES.map((value, index) => (
           <Card
-            key={value.title}
+            key={value}
             sx={{
               textAlign: 'center',
               p: 3,

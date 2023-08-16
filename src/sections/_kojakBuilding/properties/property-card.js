@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import Link from '@mui/material/Link';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
@@ -40,6 +41,9 @@ export default function PropertyCard({ space, vertical }) {
   const navigate = useNavigate();
   const [coverImgURL, setCoverImgURL] = useState('');
   const { fsGetImgDownloadUrl } = useAuthContext();
+  const { translate, currentLang } = useLocales();
+
+  console.log(currentLang);
 
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
 
