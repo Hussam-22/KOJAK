@@ -55,7 +55,39 @@ const en = {
   featuredProperty: {
     title: `Hot Deal Property `,
   },
-  faq: {},
+  faq: {
+    title: 'Frequently Asked Questions',
+    subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
+    We've compiled a list of inquiries that customers frequently ask us. Below,
+    you'll find information on various topics to assist you in getting the answers you
+    need.`,
+    join: 'Join 842+ Happy Tenants',
+    1: {
+      question: 'What types of spaces do you offer for lease?',
+      answer: `We offer a wide range of spaces for lease, including residential properties such as apartments, houses, condos, and townhouses. Additionally, we provide commercial spaces like offices, retail stores, warehouses, and more.
+    `,
+    },
+    2: {
+      question: `Can I schedule a viewing of the properties I'm interested in?`,
+      answer: `Of course! Once you find a property that interests you, you can easily schedule a viewing through our website. Our team will coordinate with you to arrange a suitable time for the visit.`,
+    },
+    3: {
+      question: `How can I get assistance during the leasing process?`,
+      answer: `Our team of real estate experts is here to assist you throughout the entire leasing process. Whether you have questions about a property, need guidance on the paperwork, or require negotiation support, we're just a phone call or email away.`,
+    },
+    4: {
+      question: `Are there any additional fees or hidden costs during the leasing process?`,
+      answer: `We believe in transparency, and we strive to present all costs associated with leasing upfront. There are no hidden fees, and any additional charges will be clearly communicated to you.`,
+    },
+    5: {
+      question: `What lease terms do you offer for residential and commercial spaces?`,
+      answer: `We offer a variety of lease terms to accommodate different needs. These may include short-term leases, long-term leases, and flexible lease options. You can choose the term that best suits your requirements.`,
+    },
+    6: {
+      question: `How do I initiate the leasing process once I find the ideal space?`,
+      answer: `Once you've found the perfect space, simply get in touch with our team, and we'll guide you through the leasing process, helping you complete all the necessary paperwork and formalities.`,
+    },
+  },
 
   common: {
     kojak: 'KOJAK',

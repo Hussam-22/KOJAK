@@ -106,14 +106,14 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
             variant="h4"
             sx={{ lineHeight: 1, fontWeight: '700', color: light ? 'common.white' : 'unset' }}
           >
-            KOJAK
+            {theme.direction === 'ltr' ? 'KOJAK' : 'كوجاك'}
           </Typography>
           <Typography
             variant="body1"
             color="primary"
-            sx={{ lineHeight: 1, fontWeight: '700', color: 'primary.main' }}
+            sx={{ lineHeight: 1.25, fontWeight: '700', color: 'primary.main' }}
           >
-            BUILDING
+            {theme.direction === 'ltr' ? 'BUILDING' : 'العقارية'}
           </Typography>
         </Stack>
       </Stack>
