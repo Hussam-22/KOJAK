@@ -10,7 +10,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
+export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideSummery = false }) {
   const {
     area,
     bedrooms,
@@ -24,6 +24,7 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
     mezzanine,
     kitchen = 0,
   } = spaceFeatures;
+
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
@@ -94,68 +95,72 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType }) {
 
       <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <Stack spacing={4}>
-        <Stack>
-          <Typography variant="h5">Maintenance Excellence</Typography>
-          <Typography>
-            With our space leasing services, you can bid farewell to the worries of maintaining your
-            leased property. Our team of skilled professionals is committed to providing you with an
-            immaculate and well-kept environment. Regular inspections, prompt repairs, and scheduled
-            maintenance ensure that your leased space remains in optimal condition. Focus on your
-            core activities while we take care of the upkeep.
-          </Typography>
-        </Stack>
+      {!hideSummery && (
+        <Stack spacing={4}>
+          <Stack>
+            <Typography variant="h5">Maintenance Excellence</Typography>
+            <Typography>
+              With our space leasing services, you can bid farewell to the worries of maintaining
+              your leased property. Our team of skilled professionals is committed to providing you
+              with an immaculate and well-kept environment. Regular inspections, prompt repairs, and
+              scheduled maintenance ensure that your leased space remains in optimal condition.
+              Focus on your core activities while we take care of the upkeep.
+            </Typography>
+          </Stack>
 
-        <Stack>
-          <Typography variant="h5">Security</Typography>
-          <Typography>
-            Your safety and the security of your assets are paramount to us. We&#39;ve integrated
-            cutting-edge security measures into all our leased spaces. From advanced surveillance
-            systems and access control to round-the-clock security personnel, we leave no stone
-            unturned in safeguarding your interests. Rest easy knowing that your valuable belongings
-            are protected within our secure premises.
-          </Typography>
-        </Stack>
+          <Stack>
+            <Typography variant="h5">Security</Typography>
+            <Typography>
+              Your safety and the security of your assets are paramount to us. We&#39;ve integrated
+              cutting-edge security measures into all our leased spaces. From advanced surveillance
+              systems and access control to round-the-clock security personnel, we leave no stone
+              unturned in safeguarding your interests. Rest easy knowing that your valuable
+              belongings are protected within our secure premises.
+            </Typography>
+          </Stack>
 
-        <Stack>
-          <Typography variant="h5"> Customized Payment Schedules:</Typography>
-          <Typography>
-            We recognize that every business operates on its own timeline. With our flexible payment
-            terms, you have the freedom to choose a payment schedule that aligns perfectly with your
-            financial planning. Whether you prefer monthly, quarterly, or annual payments, our team
-            will work with you to create a plan that suits your budget and business cycle.
-          </Typography>
-        </Stack>
+          <Stack>
+            <Typography variant="h5"> Customized Payment Schedules:</Typography>
+            <Typography>
+              We recognize that every business operates on its own timeline. With our flexible
+              payment terms, you have the freedom to choose a payment schedule that aligns perfectly
+              with your financial planning. Whether you prefer monthly, quarterly, or annual
+              payments, our team will work with you to create a plan that suits your budget and
+              business cycle.
+            </Typography>
+          </Stack>
 
-        <Stack>
-          <Typography variant="h5">Customizable Spaces</Typography>
-          <Typography>
-            We understand that one size doesn&#39;t fit all. That&#39;s why our space leasing
-            services offer unparalleled flexibility. Whether you need a compact office space, a
-            sprawling industrial unit, or a specialized workspace, we have a variety of options to
-            suit your requirements. Customize your leased space to match your unique vision and
-            operational needs. Our dedicated team will work closely with you to create an
-            environment that fosters productivity and innovation.
-          </Typography>
-        </Stack>
+          <Stack>
+            <Typography variant="h5">Customizable Spaces</Typography>
+            <Typography>
+              We understand that one size doesn&#39;t fit all. That&#39;s why our space leasing
+              services offer unparalleled flexibility. Whether you need a compact office space, a
+              sprawling industrial unit, or a specialized workspace, we have a variety of options to
+              suit your requirements. Customize your leased space to match your unique vision and
+              operational needs. Our dedicated team will work closely with you to create an
+              environment that fosters productivity and innovation.
+            </Typography>
+          </Stack>
 
-        <Stack>
-          <Typography variant="h5">Prime Locations</Typography>
-          <Typography>
-            Location is key to any successful venture, and we understand its significance. Our
-            portfolio of leased spaces spans across prime locations, providing you with easy access
-            to essential amenities and a thriving business community. Enjoy the convenience of a
-            strategic location that will amplify your business prospects and enhance your
-            professional network.
-          </Typography>
+          <Stack>
+            <Typography variant="h5">Prime Locations</Typography>
+            <Typography>
+              Location is key to any successful venture, and we understand its significance. Our
+              portfolio of leased spaces spans across prime locations, providing you with easy
+              access to essential amenities and a thriving business community. Enjoy the convenience
+              of a strategic location that will amplify your business prospects and enhance your
+              professional network.
+            </Typography>
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </Stack>
   );
 }
 
 PropertyDetailsSummary.propTypes = {
   spaceType: PropTypes.string,
+  hideSummery: PropTypes.bool,
   spaceFeatures: PropTypes.shape({
     area: PropTypes.string,
     bedrooms: PropTypes.number,
