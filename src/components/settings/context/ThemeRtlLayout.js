@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-// rtl
-import { prefixer } from 'stylis';
 import PropTypes from 'prop-types';
 // emotion
 import createCache from '@emotion/cache';
+// rtl
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 
@@ -25,8 +24,7 @@ export default function ThemeRtlLayout({ children }) {
 
   const cacheRtl = createCache({
     key: theme.direction === 'rtl' ? 'rtl' : 'css',
-    // https://github.com/styled-components/stylis-plugin-rtl/issues/35
-    stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [],
+    stylisPlugins: theme.direction === 'rtl' ? [rtlPlugin] : [],
   });
 
   return <CacheProvider value={cacheRtl}>{children}</CacheProvider>;

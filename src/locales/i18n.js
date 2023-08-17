@@ -8,6 +8,7 @@ import localStorageAvailable from '../utils/localStorageAvailable';
 import arLocales from './langs/ar';
 //
 import enLocales from './langs/en';
+import frLocales from './langs/fr';
 //
 import { defaultLang } from './config-lang';
 
@@ -28,6 +29,7 @@ i18n
     resources: {
       en: { translations: enLocales },
       ar: { translations: arLocales },
+      fr: { translations: frLocales },
     },
     lng,
     fallbackLng: defaultLang.value,

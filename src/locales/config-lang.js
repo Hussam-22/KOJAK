@@ -1,5 +1,5 @@
 // @mui
-import { enUS, arSA } from '@mui/material/locale';
+import { enUS, arSA, frFR } from '@mui/material/locale';
 
 // PLEASE REMOVE `LOCAL STORAGE` WHEN YOU CHANGE SETTINGS.
 // ----------------------------------------------------------------------
@@ -15,6 +15,12 @@ export const allLangs = [
     label: 'Arabic (Sudan)',
     value: 'ar',
     systemValue: arSA,
+    icon: '/assets/icons/flags/ic_flag_sa.svg',
+  },
+  {
+    label: 'French',
+    value: 'fr',
+    systemValue: frFR,
     icon: '/assets/icons/flags/ic_flag_sa.svg',
   },
 ];
