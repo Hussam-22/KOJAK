@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import { bgBlur } from 'src/theme/css';
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -38,15 +38,33 @@ export default function KojakBuildingLandingHero() {
         backgroundImage: `url(/assets/kojak-building/shape/bbblurry.svg)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        position: 'relative',
       }}
     >
+      {mdUp && (
+        <Box
+          sx={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }}
+        >
+          <Typography
+            sx={{
+              fontSize: '25dvw',
+              WebkitTextStroke: `2px ${alpha(theme.palette.primary.main, 0.1)}`,
+              color: alpha('#000000', 0),
+            }}
+          >
+            KOJAK
+          </Typography>
+        </Box>
+      )}
       <Box
         sx={{
           height: { md: '80dvh', xs: '95dvh' },
           overflow: 'hidden',
-          backgroundImage: `url(/assets/kojak-building/hero/hero-img-${
-            currentLang.value === 'en' ? 'right' : 'left'
-          }.png)`,
+          backgroundImage: mdUp
+            ? `url(/assets/kojak-building/hero/hero-img-${
+                currentLang.value === 'en' ? 'right' : 'left'
+              }.png)`
+            : `url(/assets/kojak-building/hero/hero-img-mobile.png)`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           display: 'flex',
