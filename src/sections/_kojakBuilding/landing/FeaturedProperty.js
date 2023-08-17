@@ -49,56 +49,46 @@ function FeaturedProperty() {
   return (
     <Box
       sx={{
-        backgroundColor: 'secondary.main',
+        border: `solid 3px ${theme.palette.primary.main}`,
+        borderRadius: 3,
+        bgcolor: 'common.white',
+        p: { md: 5, xs: 2 },
       }}
     >
-      <Container
-        sx={{
-          py: 5,
-        }}
+      <Stack
+        direction={{ md: 'row', xs: 'column' }}
+        justifyContent="space-between"
+        textAlign={{ md: 'unset', xs: 'center' }}
+        alignItems="center"
+        sx={{ mb: 3 }}
       >
-        <Box
-          sx={{
-            border: `solid 3px #000000`,
-            borderRadius: 3,
-            bgcolor: 'common.white',
-            p: { md: 10, xs: 3 },
-          }}
+        <Typography variant="h2" sx={{ mb: 3 }}>
+          {translate('featuredProperty.title')}
+          <Iconify icon="noto:fire" width={54} />
+        </Typography>
+
+        <Button
+          variant="soft"
+          color="primary"
+          onClick={() => navigate(`/properties/${featuredProperty.id}`)}
         >
-          <Stack
-            direction={{ md: 'row', xs: 'column' }}
-            justifyContent="space-between"
-            textAlign={{ md: 'unset', xs: 'center' }}
-            alignItems="center"
-            sx={{ mb: 3 }}
-          >
-            <Typography variant="h2" sx={{ mb: 3 }}>
-              {translate('featuredProperty.title')}
-              <Iconify icon="noto:fire" width={54} />
-            </Typography>
+          {translate('common.moreDetails')}
+        </Button>
+      </Stack>
 
-            <Button variant="text" onClick={() => navigate(`/properties/${featuredProperty.id}`)}>
-              {translate('common.moreDetails')}
-            </Button>
-          </Stack>
+      {images.length !== 0 && <PropertyDetailsGallery images={images} />}
 
-          {images.length !== 0 && <PropertyDetailsGallery images={images} />}
+      {featuredProperty.id !== undefined && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
-          {featuredProperty.id !== undefined && (
-            <PropertyDetailsHeader spaceInfo={featuredProperty} />
-          )}
+      <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-          <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
-
-          {featuredProperty.id !== undefined && (
-            <PropertyDetailsSummary
-              spaceFeatures={featuredProperty.features}
-              spaceType={featuredProperty.spaceType}
-              hideSummery
-            />
-          )}
-        </Box>
-      </Container>
+      {featuredProperty.id !== undefined && (
+        <PropertyDetailsSummary
+          spaceFeatures={featuredProperty.features}
+          spaceType={featuredProperty.spaceType}
+          hideSummery
+        />
+      )}
     </Box>
   );
 }

@@ -215,7 +215,7 @@ function OverviewItem({ icon, label, text = '-' }) {
 OverviewItem.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   label: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 // ----------------------------------------------------------------------

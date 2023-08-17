@@ -45,7 +45,7 @@ const en = {
     },
   },
   properties: {
-    title: 'Available Properties',
+    title: 'Popular Properties',
     subTitle: `At Kojak Building , we take pride in offering an extensive selection of both
     commercial and residential spaces that cater to all your needs. Whether you're
     looking to upgrade your business headquarters or find a cozy abode to call home,

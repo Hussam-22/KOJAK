@@ -128,7 +128,7 @@ export default function PropertyCard({ space, vertical }) {
         <Typography variant="body2">{`${city} - ${location}`}</Typography>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
-          <TextMaxLine line={1} variant="h3">
+          <TextMaxLine line={1} variant="h6">
             {description === '' ? translate('propertyCard.noDesc') : description}
           </TextMaxLine>
         </Link>
@@ -139,29 +139,29 @@ export default function PropertyCard({ space, vertical }) {
           divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
           sx={{ alignItems: 'center' }}
         >
-          <Box>
-            <Iconify icon="tabler:ruler-measure" width={18} sx={{ mx: 1 }} />
+          <Typography variant="caption">
+            <Iconify icon="tabler:ruler-measure" width={14} sx={{ mx: 1 }} />
             {area}
-          </Box>
+          </Typography>
 
-          <Box sx={{ alignItems: 'center', textTransform: 'capitalize' }}>
-            <Iconify icon="carbon:floorplan" width={18} sx={{ mx: 1 }} />
+          <Typography variant="caption">
+            <Iconify icon="carbon:floorplan" width={14} sx={{ mx: 1 }} />
             {translate(`propertyCard.${spaceType.toLowerCase().replaceAll(' ', '')}`)}
-          </Box>
+          </Typography>
 
-          {bedrooms !== 0 && (
-            <Box sx={{ alignItems: 'center' }}>
-              <Iconify icon="fluent:bed-24-regular" width={18} sx={{ mx: 1 }} />
-              {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
-            </Box>
+          {/* {bedrooms !== 0 && (
+            <Typography variant="caption">
+              <Iconify icon="fluent:bed-24-regular" width={14} sx={{ mx: 1 }} />
+              {bedrooms}
+            </Typography>
           )}
 
           {bathrooms !== 0 && (
-            <Box sx={{ alignItems: 'center' }}>
-              <Iconify icon="cil:shower" width={18} sx={{ mx: 1 }} />
-              {bathrooms === 0 ? 'N/A' : `${bathrooms}`}
-            </Box>
-          )}
+            <Typography variant="caption">
+              <Iconify icon="cil:shower" width={14} sx={{ mx: 1 }} />
+              {bathrooms}
+            </Typography>
+          )} */}
         </Stack>
 
         {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
@@ -180,7 +180,7 @@ export default function PropertyCard({ space, vertical }) {
                 {translate('common.moreDetails')}
               </Button>
             </Box>
-            <Typography variant="h4" color="primary">
+            <Typography variant="h6" color="primary">
               {rent.length > 7 ? `AED ${rent}` : `AED ${fNumber(rent)}`}
             </Typography>
           </Stack>

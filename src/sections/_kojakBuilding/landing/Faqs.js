@@ -19,7 +19,7 @@ export default function FAQs() {
   const { translate } = useLocales();
 
   return (
-    <Box sx={{ backgroundColor: theme.palette.primary.lighter, overflow: 'hidden' }}>
+    <Box sx={{ bgcolor: 'background.neutral', overflow: 'hidden' }}>
       <Container
         sx={{
           py: 10,

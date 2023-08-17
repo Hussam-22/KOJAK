@@ -49,8 +49,8 @@ export default function NavMobile({ data, toggleLanguage }) {
           sx={{
             bgcolor: 'common.black',
             color: 'common.white',
-            p: 0.75,
-            px: currentLang.value === 'en' ? 1.5 : 0.75,
+            // p: 0.75,
+            px: currentLang.value === 'en' ? 1.75 : 1,
           }}
           onClick={toggleLanguage}
         >
