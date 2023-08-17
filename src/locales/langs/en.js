@@ -20,7 +20,6 @@ const en = {
     happyTenants: 'Happy Tenants',
     leasesProcessed: 'Leases processed',
   },
-
   why: {
     title: `why you should choose us`,
     subTitle: `Choosing the right partner for your space-hunting journey can make all the difference. At
@@ -88,12 +87,21 @@ const en = {
       answer: `Once you've found the perfect space, simply get in touch with our team, and we'll guide you through the leasing process, helping you complete all the necessary paperwork and formalities.`,
     },
   },
+  blog: {
+    title: 'Check out our Blog',
+    subTitle: `Your go-to resource for all things related to property renting and leasing. Whether you're a seasoned tenant or a first-time renter, a property owner, or a curious observer of the real estate market, our blog is designed to provide you with valuable information, tips, and industry insights`,
+  },
 
   common: {
     kojak: 'KOJAK',
     building: 'Building',
     exploreProperties: 'Explore Properties',
     moreDetails: 'More Details',
+    viewAll: 'View All',
+    dialog: {
+      title: `We have received your request !!`,
+      subTitle: `Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!`,
+    },
   },
 
   propertyCard: {
@@ -119,6 +127,56 @@ const en = {
     ac: 'AC Type',
     payment: 'Payment Term',
     kitchen: 'Kitchen',
+    spaceType: 'Space Type',
+    mezzanine: 'Mezzanine Floor',
+    parking: 'Parking',
+    cheques: 'Cheques',
+    propertyFeatures: 'Property Features',
+    agentHeader: 'Agent Contact Details',
+    // ---------------------------
+    summery: {
+      maintenance: {
+        title: 'Maintenance Excellence',
+        text: `With our space leasing services, you can bid farewell to the worries of maintaining
+      your leased property. Our team of skilled professionals is committed to providing you
+      with an immaculate and well-kept environment. Regular inspections, prompt repairs, and
+      scheduled maintenance ensure that your leased space remains in optimal condition.
+      Focus on your core activities while we take care of the upkeep.`,
+      },
+      security: {
+        title: 'Security',
+        text: `Your safety and the security of your assets are paramount to us. We've integrated
+      cutting-edge security measures into all our leased spaces. From advanced surveillance
+      systems and access control to round-the-clock security personnel, we leave no stone
+      unturned in safeguarding your interests. Rest easy knowing that your valuable
+      belongings are protected within our secure premises.`,
+      },
+      payment: {
+        title: 'Customized Payment Schedules',
+        text: `We recognize that every business operates on its own timeline. With our flexible
+      payment terms, you have the freedom to choose a payment schedule that aligns perfectly
+      with your financial planning. Whether you prefer monthly, quarterly, or annual
+      payments, our team will work with you to create a plan that suits your budget and
+      business cycle.`,
+      },
+      spaces: {
+        title: 'Customizable Spaces',
+        text: `We understand that one size doesn't fit all. That's why our space leasing
+      services offer unparalleled flexibility. Whether you need a compact office space, a
+      sprawling industrial unit, or a specialized workspace, we have a variety of options to
+      suit your requirements. Customize your leased space to match your unique vision and
+      operational needs. Our dedicated team will work closely with you to create an
+      environment that fosters productivity and innovation.`,
+      },
+      locations: {
+        title: 'Prime Locations',
+        text: `Location is key to any successful venture, and we understand its significance. Our
+      portfolio of leased spaces spans across prime locations, providing you with easy
+      access to essential amenities and a thriving business community. Enjoy the convenience
+      of a strategic location that will amplify your business prospects and enhance your
+      professional network.`,
+      },
+    },
   },
 };
 

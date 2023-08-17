@@ -98,13 +98,13 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
 
         <FormProvider methods={methods} onSubmit={onSubmit}>
           <Stack spacing={2.5}>
-            <RHFTextField name="fullName" label="Full name" />
+            {/* <RHFTextField name="fullName" label="Full name" /> */}
 
             <RHFTextField name="mobile" label="Mobile" />
 
-            <RHFTextField name="email" label="Email" />
+            {/* <RHFTextField name="email" label="Email" /> */}
 
-            <RHFTextField name="inquiry" multiline rows={4} label="Message" />
+            {/* <RHFTextField name="inquiry" multiline rows={4} label="Message" /> */}
 
             <Stack alignItems="center" width={1}>
               <LoadingButton

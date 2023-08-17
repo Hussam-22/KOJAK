@@ -3,20 +3,21 @@ import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
+import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const SUMMARY = [
-  { label: 'apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
   { label: 'happyTenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
   { label: 'leasesProcessed', value: 12482, color: 'info', icon: 'solar:document-outline' },
+  { label: 'apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
   // { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
 ];
 
@@ -48,20 +49,19 @@ export default function KojakBuildingLandingHero() {
         pt: 15,
       }}
     >
-      {/* <Box
-        sx={{
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          zIndex: -1,
-        }}
-      >
-        <Image src="/assets/kojak-building/shape/blob-2.svg" />
-      </Box> */}
       <Container maxWidth="xl">
         <Grid container sx={{ alignItems: 'center' }}>
-          <Grid md={8} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
-            <Stack sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+          <Grid md={7} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
+            <Stack
+              sx={{
+                textAlign: { md: 'left', xs: 'center' },
+                // bgcolor: { md: 'unset', xs: 'common.white' },
+                p: { md: 'unset', xs: 3 },
+                borderRadius: { md: 'unset', xs: 2 },
+                ...(mdUp ? {} : bgBlur({ color: '#FFFFFF' })),
+              }}
+              spacing={{ md: 1, xs: 2 }}
+            >
               <Typography
                 variant="overline"
                 sx={{
@@ -104,7 +104,7 @@ export default function KojakBuildingLandingHero() {
                   gridTemplateColumns: 'repeat(3,1fr)',
                   borderRadius: 1,
                   mt: mdUp ? 'unset' : 2,
-                  width: { md: '50%', xs: 'unset' },
+                  width: { md: '60%', xs: 'unset' },
                 }}
               >
                 {SUMMARY.map((item, index) => (
@@ -123,9 +123,6 @@ export default function KojakBuildingLandingHero() {
               </Box>
             </Stack>
           </Grid>
-          {/* <Grid md={7} xs={12}>
-            <Image src="/assets/kojak-building/hero/hero-charecter.svg" ratio="4/3" />
-          </Grid> */}
         </Grid>
       </Container>
     </Box>

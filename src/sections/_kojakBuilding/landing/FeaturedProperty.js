@@ -65,7 +65,13 @@ function FeaturedProperty() {
             p: { md: 10, xs: 3 },
           }}
         >
-          <Stack direction={{ md: 'row', xs: 'column' }} justifyContent="space-between">
+          <Stack
+            direction={{ md: 'row', xs: 'column' }}
+            justifyContent="space-between"
+            textAlign={{ md: 'unset', xs: 'center' }}
+            alignItems="center"
+            sx={{ mb: 3 }}
+          >
             <Typography variant="h2" sx={{ mb: 3 }}>
               {translate('featuredProperty.title')}
               <Iconify icon="noto:fire" width={54} />

@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import { Stack } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -19,6 +21,7 @@ export default function WhatWeOffer() {
   const [properties, setProperties] = useState([]);
   const { getAllSpacesInfo } = useAuthContext();
   const { translate } = useLocales();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -56,15 +59,19 @@ export default function WhatWeOffer() {
             textAlign: { xs: 'center', md: 'unset' },
           }}
         >
-          <Stack
-            spacing={3}
-            flexGrow={1}
-            sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
-          >
+          <Stack spacing={3} flexGrow={1} sx={{ textAlign: { md: 'left', xs: 'center' } }}>
             <Typography variant="h2">{translate('properties.title')}</Typography>
-            <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-              {translate('properties.subTitle')}
-            </Typography>
+
+            <Stack direction={{ md: 'row', xs: 'column' }} justifyContent="space-between">
+              <Box sx={{ width: { md: '60%', xs: 'unset' } }}>
+                <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                  {translate('properties.subTitle')}
+                </Typography>
+              </Box>
+              <Button variant="text" onClick={() => navigate(paths.website.properties)}>
+                Explore All
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
 
@@ -102,7 +109,7 @@ export default function WhatWeOffer() {
             <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
               {properties.length !== 0 &&
                 properties
-                  .filter((property) => property.isAvailable && property.bucketID !== '')
+                  .filter((property) => property.bucketID !== '')
                   .map((property) => (
                     <Box
                       key={property.id}

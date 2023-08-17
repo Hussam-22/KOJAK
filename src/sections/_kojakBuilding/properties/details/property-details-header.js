@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
@@ -21,13 +22,15 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
     isAvailable,
     features: { bedrooms },
   } = spaceInfo;
-
+  const { translate } = useLocales();
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
+
+  console.log(spaceType.toLowerCase());
 
   return (
     <>
       <Typography variant="caption" sx={{ textTransform: 'capitalize' }}>
-        {type}
+        {translate(`propertyCard.${type}`)}
       </Typography>
       <Stack
         spacing={3}
@@ -36,9 +39,9 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
           mb: 2,
         }}
       >
-        <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-          {spaceType} - {description}
-        </Typography>
+        {/* <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+          {translate(`propertyCard.${spaceType.toLowerCase()}`)} - {description}
+        </Typography> */}
       </Stack>
 
       <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
@@ -46,11 +49,14 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
           <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
           {isAvailable && <Box sx={{ typography: 'h6' }}>{rent} AED</Box>}
-          {!isAvailable && <Box sx={{ typography: 'h6' }}>Not Available</Box>}
+          {!isAvailable && (
+            <Box sx={{ typography: 'h6' }}>{translate(`propertyCard.notAvailable`)}</Box>
+          )}
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> {`${city} - ${location}`}
+          <Iconify icon="carbon:location" sx={{ mr: 0.5 }} />
+          {translate(`propertyCard.${city.toLowerCase()}`)} - {location}
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
@@ -66,7 +72,7 @@ PropertyDetailsHeader.propTypes = {
     id: PropTypes.string,
     type: PropTypes.string,
     spaceType: PropTypes.string,
-    rent: PropTypes.string,
+    rent: PropTypes.any,
     city: PropTypes.string,
     location: PropTypes.string,
     description: PropTypes.string,

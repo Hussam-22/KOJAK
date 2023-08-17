@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
@@ -25,10 +26,12 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
     kitchen = 0,
   } = spaceFeatures;
 
+  const { translate } = useLocales();
+
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
-        <Typography variant="h5">Space Features</Typography>
+        <Typography variant="h5">{translate('propertyCard.propertyFeatures')}</Typography>
         <Box
           sx={{
             rowGap: 2.5,
@@ -40,117 +43,130 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
             },
           }}
         >
-          <OverviewItem icon="tabler:ruler-measure" label="Area" text={`${area} sqft`} />
-          <OverviewItem icon="carbon:floorplan" label="Space Type" text={spaceType} />
+          <OverviewItem
+            icon="tabler:ruler-measure"
+            label={translate('propertyCard.totalArea')}
+            text={`${area} sqft`}
+          />
+          <OverviewItem
+            icon="carbon:floorplan"
+            label={translate('propertyCard.spaceType')}
+            text={translate(`propertyCard.${spaceType.toLowerCase()}`)}
+          />
           {bedrooms !== 0 && (
-            <OverviewItem icon="fluent:bed-24-regular" label="Bedrooms" text={`${bedrooms}`} />
+            <OverviewItem
+              icon="fluent:bed-24-regular"
+              label={translate('propertyCard.bedrooms')}
+              text={bedrooms}
+            />
           )}
           {bathrooms !== 0 && (
-            <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
+            <OverviewItem
+              icon="cil:shower"
+              label={translate('propertyCard.bathrooms')}
+              text={`${bathrooms}`}
+            />
           )}
           {kitchen !== 0 && (
-            <OverviewItem icon="tabler:tools-kitchen-2" label="Kitchen" text={kitchen} />
+            <OverviewItem
+              icon="tabler:tools-kitchen-2"
+              label={translate('propertyCard.kitchen')}
+              text={kitchen}
+            />
           )}
           {mezzanine && (
             <OverviewItem
               icon="lucide:m-square"
-              label="Mezzanine Floor"
-              text={mezzanine && 'Available'}
+              label={translate('propertyCard.mezzanine')}
+              text={translate('propertyCard.available')}
             />
           )}
 
-          <OverviewItem icon="iconoir:air-conditioner" label="AC Type" text={ac} />
+          <OverviewItem
+            icon="iconoir:air-conditioner"
+            label={translate('propertyCard.ac')}
+            text={ac}
+          />
 
           <OverviewItem
             icon="tabler:parking"
-            label="Parking"
-            text={parking === 0 ? 'Not Available' : `${parking}`}
+            label={translate('propertyCard.parking')}
+            text={parking === 0 ? translate('propertyCard.notAvailable') : `${parking}`}
           />
 
           <OverviewItem
             icon="bx:cctv"
-            label="CCTV"
-            text={cctv === true ? 'Available' : 'Not Available'}
+            label={translate('propertyCard.cctv')}
+            text={
+              cctv === true
+                ? translate('propertyCard.available')
+                : translate('propertyCard.notAvailable')
+            }
           />
 
           <OverviewItem
             icon="healthicons:security-worker-outline"
-            label="Security"
-            text={security === true ? 'Available' : 'Not Available'}
+            label={translate('propertyCard.security')}
+            text={
+              security === true
+                ? translate('propertyCard.available')
+                : translate('propertyCard.notAvailable')
+            }
           />
 
           <OverviewItem
             icon="iconoir:gym"
-            label="GYM / Swimming Pool"
-            text={healthClub === true ? 'Available' : 'Not Available'}
+            label={translate('propertyCard.gym')}
+            text={
+              healthClub === true
+                ? translate('propertyCard.available')
+                : translate('propertyCard.notAvailable')
+            }
           />
 
           <OverviewItem
             icon="material-symbols:payments-outline"
-            label="Payment Terms"
-            text={`${chequesNo} Cheques`}
+            label={translate('propertyCard.payment')}
+            text={`${chequesNo} ${translate('propertyCard.cheques')}`}
           />
         </Box>
       </Stack>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+      {!hideSummery && <Divider sx={{ borderStyle: 'dashed' }} />}
 
       {!hideSummery && (
         <Stack spacing={4}>
           <Stack>
-            <Typography variant="h5">Maintenance Excellence</Typography>
-            <Typography>
-              With our space leasing services, you can bid farewell to the worries of maintaining
-              your leased property. Our team of skilled professionals is committed to providing you
-              with an immaculate and well-kept environment. Regular inspections, prompt repairs, and
-              scheduled maintenance ensure that your leased space remains in optimal condition.
-              Focus on your core activities while we take care of the upkeep.
+            <Typography variant="h5">
+              {translate('propertyCard.summery.maintenance.title')}
             </Typography>
+            <Typography>{translate('propertyCard.summery.maintenance.text')}</Typography>
           </Stack>
 
           <Stack>
-            <Typography variant="h5">Security</Typography>
-            <Typography>
-              Your safety and the security of your assets are paramount to us. We&#39;ve integrated
-              cutting-edge security measures into all our leased spaces. From advanced surveillance
-              systems and access control to round-the-clock security personnel, we leave no stone
-              unturned in safeguarding your interests. Rest easy knowing that your valuable
-              belongings are protected within our secure premises.
+            <Typography variant="h5">
+              {' '}
+              {translate('propertyCard.summery.security.title')}
             </Typography>
+            <Typography>{translate('propertyCard.summery.security.text')}</Typography>
           </Stack>
 
           <Stack>
-            <Typography variant="h5"> Customized Payment Schedules:</Typography>
-            <Typography>
-              We recognize that every business operates on its own timeline. With our flexible
-              payment terms, you have the freedom to choose a payment schedule that aligns perfectly
-              with your financial planning. Whether you prefer monthly, quarterly, or annual
-              payments, our team will work with you to create a plan that suits your budget and
-              business cycle.
-            </Typography>
+            <Typography variant="h5"> {translate('propertyCard.summery.payment.title')}</Typography>
+            <Typography>{translate('propertyCard.summery.payment.text')}</Typography>
           </Stack>
 
           <Stack>
-            <Typography variant="h5">Customizable Spaces</Typography>
-            <Typography>
-              We understand that one size doesn&#39;t fit all. That&#39;s why our space leasing
-              services offer unparalleled flexibility. Whether you need a compact office space, a
-              sprawling industrial unit, or a specialized workspace, we have a variety of options to
-              suit your requirements. Customize your leased space to match your unique vision and
-              operational needs. Our dedicated team will work closely with you to create an
-              environment that fosters productivity and innovation.
-            </Typography>
+            <Typography variant="h5"> {translate('propertyCard.summery.spaces.title')}</Typography>
+            <Typography>{translate('propertyCard.summery.spaces.text')}</Typography>
           </Stack>
 
           <Stack>
-            <Typography variant="h5">Prime Locations</Typography>
-            <Typography>
-              Location is key to any successful venture, and we understand its significance. Our
-              portfolio of leased spaces spans across prime locations, providing you with easy
-              access to essential amenities and a thriving business community. Enjoy the convenience
-              of a strategic location that will amplify your business prospects and enhance your
-              professional network.
+            <Typography variant="h5">
+              {' '}
+              {translate('propertyCard.summery.locations.title')}
             </Typography>
+            <Typography>{translate('propertyCard.summery.locations.text')}</Typography>
           </Stack>
         </Stack>
       )}

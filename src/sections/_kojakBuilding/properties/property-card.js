@@ -125,16 +125,10 @@ export default function PropertyCard({ space, vertical }) {
       </Stack> */}
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            {`${city} - ${location}`}
-          </Typography>
-
-          <Typography>{isAvailable ? `${rent} AED` : 'Not Available'}</Typography>
-        </Stack>
+        <Typography variant="body2">{`${city} - ${location}`}</Typography>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
-          <TextMaxLine line={1} variant="h5" sx={{ flexGrow: 1 }}>
+          <TextMaxLine line={1} variant="h3">
             {description === '' ? translate('propertyCard.noDesc') : description}
           </TextMaxLine>
         </Link>
@@ -177,15 +171,18 @@ export default function PropertyCard({ space, vertical }) {
             flexGrow={1}
             spacing={3}
             direction="row"
-            justifyContent="space-between"
+            justifyContent="space-around"
             alignItems="center"
             sx={{ typography: 'body2', color: 'text.disabled' }}
           >
-            <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+            <Box sx={{ flexGrow: 1 }}>
               <Button variant="contained" color="secondary" onClick={openSpaceCard}>
                 {translate('common.moreDetails')}
               </Button>
             </Box>
+            <Typography variant="h4" color="primary">
+              {rent.length > 7 ? `AED ${rent}` : `AED ${fNumber(rent)}`}
+            </Typography>
           </Stack>
         </Stack>
       </Stack>

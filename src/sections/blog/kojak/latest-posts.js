@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { varFade } from 'src/components/animate';
@@ -24,6 +25,7 @@ import LatestPostItem from './latest-post-item';
 export default function LatestPosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
+  const { translate } = useLocales();
 
   const latestPost = posts[5];
 
@@ -32,9 +34,13 @@ export default function LatestPosts({ posts }) {
       component={RouterLink}
       href={paths.website.blogPosts}
       color="inherit"
-      endIcon={<Iconify icon="carbon:chevron-right" />}
+      endIcon={
+        <Iconify
+          icon={theme.direction === 'ltr' ? 'carbon:chevron-right' : 'carbon:chevron-left'}
+        />
+      }
     >
-      View All
+      {translate('common.viewAll')}
     </Button>
   );
 
@@ -63,16 +69,13 @@ export default function LatestPosts({ posts }) {
           }}
         >
           <Typography variant="h2" sx={{ mb: 3 }}>
-            Check out our Blog
+            {translate('blog.title')}
           </Typography>
 
           <Typography
             sx={{ color: 'text.secondary', fontWeight: theme.typography.fontWeightLight }}
           >
-            Your go-to resource for all things related to property renting and leasing. Whether
-            you&#39;re a seasoned tenant or a first-time renter, a property owner, or a curious
-            observer of the real estate market, our blog is designed to provide you with valuable
-            information, tips, and industry insights
+            {translate('blog.subTitle')}
           </Typography>
         </Stack>
 

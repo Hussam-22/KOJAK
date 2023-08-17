@@ -23,7 +23,6 @@ export default function PropertyDetails() {
   const loading = useBoolean(true);
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
-
   const { fsGetImgDownloadUrl, getSpaceInfo } = useAuthContext();
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export default function PropertyDetails() {
         />
       )}
 
-      {spaceInfo.id && (
+      {spaceInfo?.id !== undefined && (
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mb: 8 }}>
           <Grid xs={12} md={5} lg={4}>
             <Stack spacing={3}>
