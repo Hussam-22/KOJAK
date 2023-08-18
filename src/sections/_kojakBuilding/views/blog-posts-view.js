@@ -3,12 +3,14 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, Typography } from '@mui/material';
 
 import { blogPosts } from 'src/_mock';
+import { useLocales } from 'src/locales';
 
 import PostsMasonry from '../../blog/kojak/posts-masonry';
 
 // ----------------------------------------------------------------------
 
 export default function BlogPostsView() {
+  const { translate } = useLocales();
   return (
     <Container
       sx={{
@@ -19,12 +21,8 @@ export default function BlogPostsView() {
       <Grid container spacing={{ md: 8 }}>
         <Grid xs={12} md={12}>
           <Stack spacing={3} textAlign="center" sx={{ mb: 5 }}>
-            <Typography variant="h1">Blog Posts</Typography>
-            <Typography>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum corrupti suscipit
-              quae expedita dignissimos dolorum, in labore, animi praesentium veniam consequuntur
-              nemo? Eaque autem sed, officiis quam ipsum amet natus!
-            </Typography>
+            <Typography variant="h1">{translate('blog.title')}</Typography>
+            <Typography>{translate('blog.subTitle')}</Typography>
           </Stack>
           <PostsMasonry posts={blogPosts} />
         </Grid>

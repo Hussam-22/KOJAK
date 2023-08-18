@@ -10,7 +10,6 @@ export default function AboutView() {
       <AboutUs />
       <CoreValues />
       <AboutTestimonial testimonials={_testimonials} />
-      <JoinNewsletter />
     </>
   );
 }

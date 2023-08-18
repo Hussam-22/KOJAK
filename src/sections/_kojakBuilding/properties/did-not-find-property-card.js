@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router';
 
 import { Box, Stack, Button, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function DidNotFindWhatYouAreLookingFor() {
   const navigate = useNavigate();
+  const { translate } = useLocales();
   return (
     <Box>
       <Stack
@@ -21,7 +23,7 @@ export default function DidNotFindWhatYouAreLookingFor() {
       >
         <Image src="/assets/kojak-building/illustration/house-property.svg" width="80%" />
 
-        <Typography variant="h5">Did not find what you are looking for ?</Typography>
+        <Typography variant="h5">{translate('properties.didNotFind')}</Typography>
         <Box>
           {/* <Button
               variant="contained"
@@ -37,7 +39,7 @@ export default function DidNotFindWhatYouAreLookingFor() {
             endIcon={<Iconify icon="iconamoon:send-duotone" />}
             onClick={() => navigate(paths.website.contactUs)}
           >
-            Drop us a message
+            {translate('common.dropMessage')}
           </Button>
         </Box>
       </Stack>

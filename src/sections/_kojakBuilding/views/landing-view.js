@@ -4,8 +4,9 @@ import { blogPosts } from 'src/_mock';
 import FAQs from 'src/sections/_kojakBuilding/landing/Faqs';
 import LatestPosts from 'src/sections/blog/kojak/latest-posts';
 import LandingHero from 'src/sections/_kojakBuilding/landing/LandingHero';
-import FeaturedProperty from 'src/sections/_kojakBuilding/landing/FeaturedProperty';
+import JoinNewsletter from 'src/sections/_kojakBuilding/about/join-newsletter';
 import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
+import FeaturedProperty from 'src/sections/_kojakBuilding/landing/FeaturedProperty';
 import PopularProperties from 'src/sections/_kojakBuilding/landing/PopularProperties';
 
 export default function LandingView() {
@@ -16,6 +17,7 @@ export default function LandingView() {
       <PopularProperties />
       <FAQs />
       <LatestPosts posts={blogPosts.slice(0, 6)} />
+      <JoinNewsletter />
     </>
   );
 }

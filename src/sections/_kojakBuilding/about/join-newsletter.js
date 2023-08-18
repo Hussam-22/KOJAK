@@ -7,10 +7,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 
 // ----------------------------------------------------------------------
 
 export default function JoinNewsletter() {
+  const { translate } = useLocales();
   return (
     <Box
       sx={{
@@ -28,20 +30,17 @@ export default function JoinNewsletter() {
           direction={{ xs: 'column-reverse', md: 'row' }}
         >
           <Grid xs={12} md={5} sx={{ textAlign: 'center', color: 'grey.800' }}>
-            <Typography variant="h3">Stay Ahead, Never Miss an Available Lease Again!</Typography>
+            <Typography variant="h3">{translate('newsLetter.title')}</Typography>
 
-            <Typography sx={{ mt: 2.5, mb: 5 }}>
-              Be the First to Know: Register Your Interest, and Our Team Will Notify You Promptly
-              When a Lease Becomes Available!
-            </Typography>
+            <Typography sx={{ mt: 2.5, mb: 5 }}>{translate('newsLetter.subTitle')}</Typography>
 
             <InputBase
               fullWidth
-              placeholder="Enter your email"
+              placeholder={translate('form.email')}
               endAdornment={
                 <InputAdornment position="end">
                   <Button color="primary" size="large" variant="contained">
-                    Register
+                    {translate('form.register')}
                   </Button>
                 </InputAdornment>
               }

@@ -9,7 +9,7 @@ const initialState = {
   filteredProducts: [],
   filterDefaultValues: {
     type: ['residential', 'commercial'],
-    spaceType: ['flat', 'showrooms', 'gym', 'labour camp', 'shops', 'restaurant', 'offices'],
+    spaceType: ['flat', 'showrooms', 'gym', 'labourcamp', 'shops', 'restaurant', 'offices'],
     city: ['sharjah', 'dubai'],
     isAvailable: [true, false],
   },

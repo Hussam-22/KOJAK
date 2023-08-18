@@ -3,19 +3,56 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
 import { TestimonialItemContent, TestimonialItemThumbnail } from './about-testimonial-item';
+
+const REVIEWS = [
+  {
+    arabic: 'الخدمة التي تلقيتها من فريق التأجير لديكم كانت ممتازة...',
+    english: 'The service I received from your leasing team was excellent...',
+  },
+  {
+    arabic: 'أنا سعيد جداً بتجربتي معكم في تأجير العقارات...',
+    english: 'I am extremely pleased with my experience with you in property leasing...',
+  },
+  {
+    arabic: 'أردت أن أشكركم على خدمتكم الممتازة في تأجير المكاتب التجارية...',
+    english: 'I wanted to thank you for your excellent service in leasing commercial offices...',
+  },
+  {
+    arabic: 'تجربتي مع فريق التأجير كانت مذهلة...',
+    english: 'My experience with the leasing team was amazing...',
+  },
+  {
+    arabic: 'لا يمكنني سوى تقديم الإشادة بجودة الخدمة التي حصلت عليها من موقعكم...',
+    english: 'I can only praise the quality of service I received from your website...',
+  },
+  {
+    arabic: 'شكرًا لكم على جهودكم في مساعدتي على العثور على منزل مريح وجميل...',
+    english: 'Thank you for your efforts in helping me find a comfortable and beautiful home...',
+  },
+  {
+    arabic: 'لا يمكنني التعبير عن مدى سعادتي بالشقة التي استأجرتها...',
+    english: "I can't express how happy I am with the apartment I rented...",
+  },
+  {
+    arabic: 'تجربة تأجيري معكم كانت ممتازة وسهلة للغاية...',
+    english: 'My leasing experience with you was excellent and very easy...',
+  },
+];
 
 // ----------------------------------------------------------------------
 
 export default function AboutTestimonial({ testimonials }) {
   const theme = useTheme();
+  const { translate } = useLocales();
 
   const carouselLarge = useCarousel({
     slidesToShow: 1,
@@ -62,7 +99,7 @@ export default function AboutTestimonial({ testimonials }) {
         <Grid container spacing={3} justifyContent="center">
           <Grid xs={12} md={6}>
             <Typography variant="h2" sx={{ mb: 5 }}>
-              What Our Customer Say
+              {translate('testimonial.title')}
             </Typography>
 
             <CarouselArrows
@@ -80,8 +117,8 @@ export default function AboutTestimonial({ testimonials }) {
                 asNavFor={carouselThumb.nav}
                 ref={carouselLarge.carouselRef}
               >
-                {testimonials.map((testimonial) => (
-                  <TestimonialItemContent key={testimonial.id} testimonial={testimonial} />
+                {testimonials.map((_, index) => (
+                  <TestimonialItemContent key={index} review={REVIEWS[index]} />
                 ))}
               </Carousel>
 

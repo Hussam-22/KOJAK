@@ -27,7 +27,12 @@ function FeaturedProperty() {
   const { fsGetFeaturedProperty, fsGetImgDownloadUrl } = useAuthContext();
   const [images, setImages] = useState([]);
   const [featuredProperty, setFeaturedProperty] = useState([]);
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
+
+  const descriptionValue =
+    currentLang.value === 'ar'
+      ? featuredProperty.descriptionAr?.ar || ''
+      : featuredProperty.description;
 
   useEffect(() => {
     (async () => {
@@ -60,7 +65,6 @@ function FeaturedProperty() {
         justifyContent="space-between"
         textAlign={{ md: 'unset', xs: 'center' }}
         alignItems="center"
-        sx={{ mb: 3 }}
       >
         <Typography variant="h2" sx={{ mb: 3 }}>
           {translate('featuredProperty.title')}
@@ -75,6 +79,10 @@ function FeaturedProperty() {
           {translate('common.moreDetails')}
         </Button>
       </Stack>
+
+      <Typography variant="h4" sx={{ mb: 3 }}>
+        {descriptionValue}
+      </Typography>
 
       {images.length !== 0 && <PropertyDetailsGallery images={images} />}
 

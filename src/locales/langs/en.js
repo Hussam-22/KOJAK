@@ -50,6 +50,7 @@ const en = {
     commercial and residential spaces that cater to all your needs. Whether you're
     looking to upgrade your business headquarters or find a cozy abode to call home,
     we've got you covered.`,
+    didNotFind: 'Did not find what you are looking for ?',
   },
   featuredProperty: {
     title: `Hot Deal Property `,
@@ -92,6 +93,56 @@ const en = {
     subTitle: `Your go-to resource for all things related to property renting and leasing. Whether you're a seasoned tenant or a first-time renter, a property owner, or a curious observer of the real estate market, our blog is designed to provide you with valuable information, tips, and industry insights`,
   },
 
+  about: {
+    aboutUs: {
+      title: 'About Us',
+      subTitle: `At Kojak  we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak   offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements.`,
+      subTitle2: `Quality is the foundation of everything we do at Kojak Building. From selecting the
+      finest properties to maintaining them to the highest standards, we are dedicated to
+      delivering excellence in every aspect of our service.`,
+    },
+    vision: 'Our Vision',
+    visionText: `Our vision is to enrich lives and empower businesses by providing them with spaces
+    that inspire creativity, productivity, and growth. We strive to be the preferred
+    choice for individuals and enterprises seeking top-notch residential and commercial
+    properties that reflect their aspirations and contribute to their success.`,
+    mission: 'Our Mission',
+    missionText: `At Kojak Building, our mission is to create lasting impressions and enrich lives by
+    providing exceptional residential and commercial spaces that inspire, elevate, and
+    empower individuals and businesses alike.`,
+    coreValues: {
+      title: 'Core Values',
+      subTitle: `Join us on this transformative journey as we shape the future of living and workspaces.
+      Together, we will create lasting impressions and unlock the true potential of every
+      space we touch.`,
+      items: {
+        1: {
+          title: 'Customer Satisfaction',
+          description:
+            ' Our customers are at the heart of everything we do. We are committed to understanding their unique needs and preferences, and we strive to exceed their expectations with personalized and attentive service',
+        },
+        2: {
+          title: 'Quality and Excellence',
+          description:
+            'We believe in delivering the highest standards of quality and excellence in every aspect of our properties and services. From meticulous design and construction to efficient management, we ensure that our spaces stand as symbols of enduring craftsmanship and pride',
+        },
+        3: {
+          title: 'Integrity and Transparency',
+          description:
+            'Trust is the cornerstone of our relationships with customers, partners, and employees. We uphold the highest ethical standards, ensuring transparency in all our dealings and fostering an atmosphere of mutual respect and honesty',
+        },
+      },
+    },
+  },
+
+  testimonial: { title: 'What Our Customer Say' },
+
+  newsLetter: {
+    title: 'Stay Ahead, Never Miss an Available Property Again!',
+    subTitle: `Be the First to Know: Register Your Interest, and Our Team Will Notify You Promptly
+    When a Property Becomes Available!`,
+  },
+
   common: {
     kojak: 'KOJAK',
     building: 'Building',
@@ -101,6 +152,49 @@ const en = {
     dialog: {
       title: `We have received your request !!`,
       subTitle: `Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!`,
+    },
+    search: 'Search',
+    clearSearch: 'Clear Search',
+    dropMessage: 'Drop us a message',
+    aed: 'AED',
+  },
+
+  form: {
+    name: 'Full Name',
+    mobile: 'Mobile',
+    email: 'Email',
+    subject: 'Subject',
+    message: 'Message',
+    sendMsg: 'Send Message',
+    register: 'Register',
+    whatsApp: {
+      howCanWeHelpYou: 'How can we help you ?',
+      workingHours: 'Our working hours from 9 AM to 6 PM, Saturday to Thursday',
+    },
+  },
+
+  websiteFilter: {
+    all: { type: 'All Types', cities: 'All Cities', spaceTypes: 'All Space Types', all: 'All' },
+    type: {
+      propertyType: 'Property Type',
+      location: 'Location',
+      spaceType: 'Space Type',
+      availability: 'Availability',
+    },
+    filterDefaultValues: {
+      residential: 'residential',
+      commercial: 'commercial',
+      sharjah: 'sharjah',
+      dubai: 'dubai',
+      flat: 'flat',
+      showrooms: 'showrooms',
+      gym: 'Health Club / Swimming Pool',
+      labourcamp: 'labour camp',
+      shops: 'shops',
+      restaurant: 'restaurant',
+      offices: 'offices',
+      available: 'available',
+      notAvailable: 'not available',
     },
   },
 
@@ -133,6 +227,7 @@ const en = {
     cheques: 'Cheques',
     propertyFeatures: 'Property Features',
     agentHeader: 'Agent Contact Details',
+    requestCallBack: 'Request Callback',
     // ---------------------------
     summery: {
       maintenance: {

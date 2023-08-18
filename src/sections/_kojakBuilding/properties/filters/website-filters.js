@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxSetFilter, rdxClearFilter } from 'src/redux/slices/properties';
 
@@ -18,6 +19,7 @@ export default function WebsiteFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
   const { rdxFilter, filterDefaultValues } = useSelector((state) => state.properties);
   const dispatch = useDispatch();
+  const { translate } = useLocales();
 
   const clearFilter = () => {
     dispatch(rdxClearFilter());
@@ -48,44 +50,44 @@ export default function WebsiteFilters({ open, onClose }) {
         }
       }
     >
-      <Block title="Property Type">
+      <Block title={translate('websiteFilter.type.propertyType')}>
         <FilterType
           filterType={rdxFilter.type}
           onChangeType={(e) => handleChangeType(e, 'type')}
           filters={filterDefaultValues.type}
-          selectedAllText="All Types"
+          selectedAllText={translate('websiteFilter.all.type')}
         />
       </Block>
 
-      <Block title="Location">
+      <Block title={translate('websiteFilter.type.location')}>
         <FilterType
           filterType={rdxFilter.city}
           onChangeType={(e) => handleChangeType(e, 'city')}
           filters={filterDefaultValues.city}
-          selectedAllText="All Cities"
+          selectedAllText={translate('websiteFilter.all.cities')}
         />
       </Block>
 
-      <Block title="Space Type">
+      <Block title={translate('websiteFilter.type.spaceType')}>
         <FilterType
           filterType={rdxFilter.spaceType}
           onChangeType={(e) => handleChangeType(e, 'spaceType')}
           filters={filterDefaultValues.spaceType}
-          selectedAllText="All Space Types"
+          selectedAllText={translate('websiteFilter.all.spaceTypes')}
         />
       </Block>
 
-      <Block title="Space/Room Availability">
+      <Block title={translate('websiteFilter.type.availability')}>
         <FilterType
           filterType={rdxFilter.isAvailable}
           onChangeType={(e) => handleChangeType(e, 'isAvailable')}
           filters={filterDefaultValues.isAvailable}
-          selectedAllText="All Space/Room"
+          selectedAllText={translate('websiteFilter.all.all')}
         />
       </Block>
 
       <Button variant="contained" onClick={clearFilter}>
-        Clear Filter
+        {translate('common.clearSearch')}
       </Button>
     </Stack>
   );

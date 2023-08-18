@@ -4,12 +4,13 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export function TestimonialItemContent({ testimonial }) {
-  const { review } = testimonial;
+export function TestimonialItemContent({ review }) {
+  const { currentLang } = useLocales();
 
   return (
     <Stack alignItems="center">
@@ -27,16 +28,14 @@ export function TestimonialItemContent({ testimonial }) {
           fontFamily: (theme) => theme.typography.h1.fontFamily,
         }}
       >
-        {review}
+        {currentLang.value === 'ar' ? review.arabic : review.english}
       </Typography>
     </Stack>
   );
 }
 
 TestimonialItemContent.propTypes = {
-  testimonial: PropTypes.shape({
-    review: PropTypes.string,
-  }),
+  review: PropTypes.object,
 };
 
 // ----------------------------------------------------------------------

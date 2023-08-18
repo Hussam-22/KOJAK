@@ -18,19 +18,20 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
     city,
     location,
     description,
+    descriptionAr,
     listingDate,
     isAvailable,
     features: { bedrooms },
   } = spaceInfo;
-  const { translate } = useLocales();
   const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
+  const { translate, currentLang } = useLocales();
 
-  console.log(spaceType.toLowerCase());
+  const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description || '';
 
   return (
     <>
       <Typography variant="caption" sx={{ textTransform: 'capitalize' }}>
-        {translate(`propertyCard.${type}`)}
+        {`${translate(`propertyCard.${type}`)} - ${descriptionValue}`}
       </Typography>
       <Stack
         spacing={3}
@@ -48,7 +49,11 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
         <Stack spacing={0.5} direction="row" alignItems="center">
           <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
 
-          {isAvailable && <Box sx={{ typography: 'h6' }}>{rent} AED</Box>}
+          {isAvailable && (
+            <Box sx={{ typography: 'h6' }}>
+              {translate('common.aed')} {rent}
+            </Box>
+          )}
           {!isAvailable && (
             <Box sx={{ typography: 'h6' }}>{translate(`propertyCard.notAvailable`)}</Box>
           )}
@@ -76,6 +81,7 @@ PropertyDetailsHeader.propTypes = {
     city: PropTypes.string,
     location: PropTypes.string,
     description: PropTypes.string,
+    descriptionAr: PropTypes.object,
     listingDate: PropTypes.object,
     isAvailable: PropTypes.bool,
 

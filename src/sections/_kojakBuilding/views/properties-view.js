@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -16,6 +17,7 @@ export default function PropertiesView() {
   const loading = useBoolean(true);
   const mdUp = useResponsive('up', 'md');
   const { addNewSpace } = useAuthContext();
+  const { translate } = useLocales();
 
   // const addSpaceHandler = async () => addNewSpace();
 
@@ -37,7 +39,7 @@ export default function PropertiesView() {
           py: 5,
         }}
       >
-        <Typography variant="h2">Properties</Typography>
+        <Typography variant="h2">{translate('header.properties')}</Typography>
         {/* <Button onClick={addSpaceHandler}>Add Space</Button> */}
 
         <Button
@@ -49,7 +51,7 @@ export default function PropertiesView() {
             display: { md: 'none' },
           }}
         >
-          Filters
+          {translate('common.search')}
         </Button>
       </Stack>
 

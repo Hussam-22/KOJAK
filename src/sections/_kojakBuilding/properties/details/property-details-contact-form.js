@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Card, Stack, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFCheckbox, RHFTextField } from 'src/components/hook-form';
@@ -20,6 +21,7 @@ const DIALOG_CONTENT =
 export default function PropertyDetailsContactForm({ spaceInfo }) {
   const { addNewFromCallbackSubmit } = useAuthContext();
   const [open, setOpen] = useState(false);
+  const { translate } = useLocales();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -93,18 +95,18 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
     <>
       <Card sx={{ p: 3 }}>
         <Typography variant="h4" sx={{ mb: 3 }}>
-          Request a Callback
+          {translate('propertyCard.requestCallBack')}
         </Typography>
 
         <FormProvider methods={methods} onSubmit={onSubmit}>
           <Stack spacing={2.5}>
-            <RHFTextField name="fullName" label="Full name" />
+            <RHFTextField name="fullName" label={translate('form.name')} />
 
-            <RHFTextField name="mobile" label="Mobile" />
+            <RHFTextField name="mobile" label={translate('form.mobile')} />
 
-            <RHFTextField name="email" label="Email" />
+            <RHFTextField name="email" label={translate('form.email')} />
 
-            <RHFTextField name="inquiry" multiline rows={4} label="Message" />
+            <RHFTextField name="inquiry" multiline rows={4} label={translate('form.message')} />
 
             <Stack alignItems="center" width={1}>
               <LoadingButton
@@ -114,7 +116,7 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
                 color="secondary"
                 loading={isSubmitting}
               >
-                Request Callback
+                {translate('propertyCard.requestCallBack')}
               </LoadingButton>
             </Stack>
           </Stack>

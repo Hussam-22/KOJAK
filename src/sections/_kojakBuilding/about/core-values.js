@@ -4,34 +4,17 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-const CORE_VALUES = [
-  {
-    title: 'Customer Satisfaction',
-    description:
-      ' Our customers are at the heart of everything we do. We are committed to understanding their unique needs and preferences, and we strive to exceed their expectations with personalized and attentive service',
-    icon: 'carbon:chat-bot',
-  },
-  {
-    title: 'Quality and Excellence',
-    description:
-      'We believe in delivering the highest standards of quality and excellence in every aspect of our properties and services. From meticulous design and construction to efficient management, we ensure that our spaces stand as symbols of enduring craftsmanship and pride',
-    icon: 'carbon:3d-curve-auto-colon',
-  },
-  {
-    title: 'Integrity and Transparency',
-    description:
-      'Trust is the cornerstone of our relationships with customers, partners, and employees. We uphold the highest ethical standards, ensuring transparency in all our dealings and fostering an atmosphere of mutual respect and honesty',
-    icon: 'carbon:airport-location',
-  },
-];
+const CORE_VALUES = ['carbon:chat-bot', 'carbon:3d-curve-auto-colon', 'carbon:airport-location'];
 
 // ----------------------------------------------------------------------
 
 export default function CoreValues() {
+  const { translate } = useLocales();
   return (
     <Box
       sx={{
@@ -50,32 +33,32 @@ export default function CoreValues() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          <Typography variant="h2">Core Values</Typography>
+          <Typography variant="h2">{translate('about.coreValues.title')}</Typography>
 
           <Typography sx={{ color: 'text.secondary', maxWidth: { md: 540 } }}>
-            Join us on this transformative journey as we shape the future of living and workspaces.
-            Together, we will create lasting impressions and unlock the true potential of every
-            space we touch.
+            {translate('about.coreValues.subTitle')}
           </Typography>
         </Stack>
 
         <Grid container spacing={8}>
-          {CORE_VALUES.map((value) => (
+          {CORE_VALUES.map((value, index) => (
             <Grid
-              key={value.title}
+              key={value}
               xs={12}
               md={4}
               sx={{
                 textAlign: { xs: 'center', md: 'left' },
               }}
             >
-              <Iconify icon={value.icon} width={48} sx={{ color: 'primary.main' }} />
+              <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
 
               <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
-                {value.title}
+                {translate(`about.coreValues.items.${index + 1}.title`)}
               </Typography>
 
-              <Typography sx={{ color: 'text.secondary' }}> {value.description} </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>
+                {translate(`about.coreValues.items.${index + 1}.description`)}
+              </Typography>
             </Grid>
           ))}
         </Grid>

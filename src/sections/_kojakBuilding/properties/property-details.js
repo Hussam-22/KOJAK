@@ -1,11 +1,12 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 
-import { Stack } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import { Stack, useTheme } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
@@ -13,10 +14,10 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
-import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
 import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/details/property-details-gallery';
-import PropertyDetailsContactForm from 'src/sections/_kojakBuilding/properties/details/property-details-contact-form';
+import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
 import PropertyDetailsContactCard from 'src/sections/_kojakBuilding/properties/details/property-details-contact-card';
+import PropertyDetailsContactForm from 'src/sections/_kojakBuilding/properties/details/property-details-contact-form';
 
 export default function PropertyDetails() {
   const { propertyID } = useParams();
@@ -24,6 +25,13 @@ export default function PropertyDetails() {
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
   const { fsGetImgDownloadUrl, getSpaceInfo } = useAuthContext();
+  const { translate, currentLang } = useLocales();
+
+  // eslint-disable-next-line dot-notation
+  console.log(spaceInfo['descriptionAr']);
+
+  const description =
+    currentLang.value === 'ar' ? spaceInfo?.descriptionAr?.ar || '' : spaceInfo?.description || '';
 
   useEffect(() => {
     (async () => {
@@ -59,8 +67,10 @@ export default function PropertyDetails() {
     <Container sx={{ overflow: 'hidden' }}>
       <CustomBreadcrumbs
         links={[
-          { name: 'Properties', href: paths.website.properties },
-          { name: `${spaceInfo.buildingName} - ${spaceInfo.spaceType} - ${spaceInfo.description}` },
+          { name: translate('header.properties'), href: paths.website.properties },
+          {
+            name: `${description}`,
+          },
         ]}
         sx={{ mt: 3, mb: 5 }}
       />

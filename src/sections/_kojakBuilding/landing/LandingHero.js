@@ -53,7 +53,7 @@ export default function KojakBuildingLandingHero() {
               color: alpha('#000000', 0),
             }}
           >
-            KOJAK
+            {currentLang.value === 'en' ? 'KOJAK' : 'كوجاك'}
           </Typography>
         </Box>
       )}

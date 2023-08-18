@@ -36,6 +36,7 @@ export default function PropertyCard({ space, vertical }) {
     isAvailable,
     spaceType,
     description,
+    descriptionAr,
     features: { bedrooms, bathrooms, area },
   } = space;
   const navigate = useNavigate();
@@ -43,9 +44,7 @@ export default function PropertyCard({ space, vertical }) {
   const { fsGetImgDownloadUrl } = useAuthContext();
   const { translate, currentLang } = useLocales();
 
-  const language = currentLang.value;
-
-  const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
+  const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description;
 
   useEffect(() => {
     (async () => {
@@ -125,11 +124,13 @@ export default function PropertyCard({ space, vertical }) {
       </Stack> */}
 
       <Stack spacing={2} direction="column" sx={{ p: 2.5, flexGrow: 1 }}>
-        <Typography variant="body2">{`${city} - ${location}`}</Typography>
+        <Typography variant="body2">
+          {translate(`propertyCard.${city.toLowerCase()}`)} {` - ${location}`}
+        </Typography>
 
         <Link component={RouterLink} href={paths.website.propertyDetails + id} color="inherit">
           <TextMaxLine line={1} variant="h6">
-            {description === '' ? translate('propertyCard.noDesc') : description}
+            {descriptionValue === '' ? translate('propertyCard.noDesc') : descriptionValue}
           </TextMaxLine>
         </Link>
 
@@ -181,7 +182,9 @@ export default function PropertyCard({ space, vertical }) {
               </Button>
             </Box>
             <Typography variant="h6" color="primary">
-              {rent.length > 7 ? `AED ${rent}` : `AED ${fNumber(rent)}`}
+              {rent.length > 7
+                ? `${translate('common.aed')}${rent}`
+                : `${translate('common.aed')} ${fNumber(rent)}`}
             </Typography>
           </Stack>
         </Stack>
@@ -196,6 +199,7 @@ PropertyCard.propTypes = {
     id: PropTypes.string,
     spaceType: PropTypes.string,
     description: PropTypes.string,
+    descriptionAr: PropTypes.object,
     bucketID: PropTypes.string,
     coverImgID: PropTypes.string,
     listingDate: PropTypes.object,

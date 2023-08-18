@@ -1,3 +1,5 @@
+import { locales } from 'numeral';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -5,10 +7,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { _mock } from 'src/_mock';
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
 import CountUp from 'src/components/count-up';
-import { fShortenNumber } from 'src/utils/format-number';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { fShortenNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
@@ -17,16 +20,17 @@ const IMAGES = [...Array(4)].map(
 );
 
 const SUMMARY = [
-  { name: 'Apartments', number: 220 },
-  { name: 'Happy Tenants', number: 1192 },
-  { name: 'Years of Experience', number: 22 },
-  { name: 'Total Leases processed', number: 12482 },
+  { label: 'happyTenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
+  { label: 'leasesProcessed', value: 12482, color: 'info', icon: 'solar:document-outline' },
+  { label: 'apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
+  // { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AboutUs() {
   const smUp = useResponsive('up', 'sm');
+  const { translate } = useLocales();
 
   return (
     <Container
@@ -44,14 +48,10 @@ export default function AboutUs() {
           pb: { xs: 5, md: 10 },
         }}
       >
-        <Typography variant="h1">About Us</Typography>
+        <Typography variant="h1">{translate('about.aboutUs.title')}</Typography>
 
         <Typography sx={{ color: 'text.secondary' }}>
-          At Kojak Building, we are more than just a property rental company – we are your partners
-          in finding the perfect space that aligns with your lifestyle and business needs. Whether
-          you are searching for your dream home or a strategic location for your business, Kojak
-          Building offers a diverse portfolio of residential and commercial spaces tailored to cater
-          to your unique requirements.
+          {translate('about.aboutUs.subTitle')}
         </Typography>
       </Stack>
 
@@ -69,21 +69,18 @@ export default function AboutUs() {
           columnGap: 3,
           display: 'grid',
           textAlign: 'center',
-          gridTemplateColumns: {
-            xs: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
-          },
+          gridTemplateColumns: 'repeat(3, 1fr)',
           pt: { xs: 3, md: 7 },
           pb: 10,
         }}
       >
         {SUMMARY.map((value) => (
-          <Stack key={value.name} spacing={1}>
+          <Stack key={value.label} spacing={1}>
             <Typography variant="h2">
               <CountUp
-                start={value.number / 5}
-                end={value.number}
-                formattingFn={(newValue) => fShortenNumber(newValue)}
+                start={value.value / 5}
+                end={value.value}
+                formattingFn={(newValue) => newValue}
               />
 
               <Typography
@@ -96,7 +93,7 @@ export default function AboutUs() {
             </Typography>
 
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {value.name}
+              {translate(`hero.${value.label}`)}
             </Typography>
           </Stack>
         ))}
@@ -121,37 +118,28 @@ export default function AboutUs() {
               mx: { xs: 'auto', md: 0 },
             }}
           />
-          <Typography variant="h4">
-            Quality is the foundation of everything we do at Kojak Building. From selecting the
-            finest properties to maintaining them to the highest standards, we are dedicated to
-            delivering excellence in every aspect of our service.
-          </Typography>
+          <Typography variant="h4">{translate('about.aboutUs.subTitle2')}</Typography>
         </Grid>
 
         <Grid xs={12} md={6} lg={6}>
           <Stack spacing={3}>
             <Box>
               <Typography variant="h4" color="primary">
-                Our Vision
+                {translate('about.vision')}
               </Typography>
 
               <Typography sx={{ color: 'text.secondary' }} paragraph>
-                Our vision is to enrich lives and empower businesses by providing them with spaces
-                that inspire creativity, productivity, and growth. We strive to be the preferred
-                choice for individuals and enterprises seeking top-notch residential and commercial
-                properties that reflect their aspirations and contribute to their success.
+                {translate('about.visionText')}
               </Typography>
             </Box>
 
             <Box>
               <Typography variant="h4" color="primary">
-                Our Mission
+                {translate('about.mission')}
               </Typography>
 
               <Typography sx={{ color: 'text.secondary' }} paragraph>
-                At Kojak Building, our mission is to create lasting impressions and enrich lives by
-                providing exceptional residential and commercial spaces that inspire, elevate, and
-                empower individuals and businesses alike.
+                {translate('about.missionText')}
               </Typography>
             </Box>
           </Stack>

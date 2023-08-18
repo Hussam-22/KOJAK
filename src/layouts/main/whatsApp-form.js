@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
@@ -14,6 +15,7 @@ export default function WhatsAppForm() {
   const textRef = useRef();
   const mobileNumberRef = useRef();
   const { addNewWhatsAppSubmit } = useAuthContext();
+  const { translate } = useLocales();
 
   const openWhatsAppForm = () => {
     setIsOpen(true);
@@ -72,22 +74,28 @@ export default function WhatsAppForm() {
 
             <Stack spacing={2}>
               <Typography variant="h5" sx={{ mt: 1 }}>
-                How can we help you ?
+                {translate('form.whatsApp.howCanWeHelpYou')}
               </Typography>
               <TextField
                 fullWidth
-                label="Your Mobile Number"
+                label={translate('form.mobile')}
                 inputRef={mobileNumberRef}
                 type="number"
               />
-              <TextField multiline rows={4} fullWidth label="Message" inputRef={textRef} />
+              <TextField
+                multiline
+                rows={4}
+                fullWidth
+                label={translate('form.message')}
+                inputRef={textRef}
+              />
               <Box>
                 <Button variant="contained" color="primary" onClick={onSendMessage}>
-                  Send
+                  {translate('form.sendMsg')}
                 </Button>
               </Box>
               <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-                Our working hours from 8 AM to 6 PM, Saturday to Thursday
+                {translate('form.whatsApp.workingHours')}
               </Typography>
             </Stack>
           </Card>
