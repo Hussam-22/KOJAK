@@ -135,6 +135,32 @@ const en = {
     },
   },
 
+  contactUs: {
+    title: 'Contact Us',
+    subTitle: ` We're here to assist you. If you have any questions, feedback, or need support, please
+    don't hesitate to reach out to us. Our dedicated team is ready to help you in any way
+    we can.`,
+    details: {
+      number: '06 5334 312 EXT. 220',
+      location: 'Industrial Area 4, Sharjah, United Arab Emirates',
+      hours: '9 AM to 6 PM - Saturday to Thursday',
+      follow: 'FOLLOW US',
+    },
+  },
+
+  footer: {
+    about:
+      'Kojak stands as a multifaceted group of companies, each specializing in a unique facet that collectively shapes a comprehensive automotive ecosystem. its presence in four distinct domains: car spare-parts, auto maintenance, the exclusive sale of Mercedes cars, and the versatile realm of space leasing and renting.',
+    groupTitle: 'Kojak Group of Companies',
+    exclusive: { title: 'K-Exclusive', text: 'Buy your dream Mercedes' },
+    spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
+    auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
+    visitWebsite: 'Visit Website',
+    allRights: '© 2023. All rights reserved - Kojak Group of Companies',
+    designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
+    sitemap: 'Sitemap',
+  },
+
   testimonial: { title: 'What Our Customer Say' },
 
   newsLetter: {

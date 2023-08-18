@@ -6,18 +6,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Stack } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
 // ----------------------------------------------------------------------
-const DIALOG_TEXT = 'We have received your request !!';
-const DIALOG_CONTENT =
-  'Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!';
+const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
+const DIALOG_CONTENT = {
+  ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
+  en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
+};
 
 export default function ContactUsForm() {
   const { addNewFormGeneralSubmit } = useAuthContext();
   const [open, setOpen] = useState(false);
+  const { translate, currentLang } = useLocales();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -92,15 +96,21 @@ export default function ContactUsForm() {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField name="fullName" label="Full name" />
+          <RHFTextField name="fullName" label={translate('form.name')} />
 
-          <RHFTextField name="mobile" label="Contact Number" type="number" />
+          <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
 
-          <RHFTextField name="email" label="Email" />
+          <RHFTextField name="email" label={translate('form.email')} />
 
-          <RHFTextField name="subject" label="Subject" />
+          <RHFTextField name="subject" label={translate('form.subject')} />
 
-          <RHFTextField name="messageText" multiline rows={4} label="Message" sx={{ pb: 2.5 }} />
+          <RHFTextField
+            name="messageText"
+            multiline
+            rows={4}
+            label={translate('form.message')}
+            sx={{ pb: 2.5 }}
+          />
 
           <LoadingButton
             size="large"
@@ -112,13 +122,13 @@ export default function ContactUsForm() {
               mx: { xs: 'auto !important', md: 'unset !important' },
             }}
           >
-            Send Message
+            {translate('form.sendMsg')}
           </LoadingButton>
         </Stack>
       </FormProvider>
       <ConfirmationDialog
-        title={DIALOG_TEXT}
-        content={DIALOG_CONTENT}
+        title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}
+        content={currentLang.value === 'ar' ? DIALOG_CONTENT.ar : DIALOG_CONTENT.en}
         open={open}
         handleClose={handleClose}
       />

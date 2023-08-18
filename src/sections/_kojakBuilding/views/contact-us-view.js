@@ -3,15 +3,16 @@
 import { Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 // components
-// components
+import { useLocales } from 'src/locales';
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
 import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo';
+import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
 
 export default function ContactUsView() {
   const theme = useTheme();
   const isMdUp = useResponsive('up', 'md');
+  const { translate } = useLocales();
 
   return (
     <Container
@@ -46,13 +47,9 @@ export default function ContactUsView() {
         >
           CONTACT US
         </Box> */}
-        <Typography variant="h1">Contact Us</Typography>
+        <Typography variant="h1">{translate('contactUs.title')}</Typography>
 
-        <Typography sx={{ color: 'text.secondary' }}>
-          We&#39;re here to assist you. If you have any questions, feedback, or need support, please
-          don&#39;t hesitate to reach out to us. Our dedicated team is ready to help you in any way
-          we can.
-        </Typography>
+        <Typography sx={{ color: 'text.secondary' }}>{translate('contactUs.subTitle')}</Typography>
       </Stack>
       <Grid
         container
@@ -71,11 +68,6 @@ export default function ContactUsView() {
           <ContactUsInfo />
         </Grid>
         <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
-          {!isMdUp && (
-            <Typography variant="h2" sx={{ my: 3 }}>
-              Drop us a message
-            </Typography>
-          )}
           <ContactUsForm />
         </Grid>
       </Grid>

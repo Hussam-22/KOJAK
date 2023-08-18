@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
 
+import { useLocales } from 'src/locales';
+
 export default function ConfirmationDialog({ title, content, open, handleClose }) {
+  const { currentLang } = useLocales();
   return (
     <Dialog
       maxWidth="md"
@@ -22,7 +25,7 @@ export default function ConfirmationDialog({ title, content, open, handleClose }
         <DialogContentText id="alert-dialog-description">{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
+        <Button onClick={handleClose}>{currentLang.value === 'ar' ? 'اغلاق' : 'Close'}</Button>
       </DialogActions>
     </Dialog>
   );

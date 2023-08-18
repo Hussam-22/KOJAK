@@ -3,12 +3,13 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Box, Card, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -19,20 +20,17 @@ import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo'
 
 const GROUPS = [
   {
-    title: 'K-Exclusive',
-    text: 'Buy your dream Mercedes',
+    title: 'exclusive',
     url: 'www.kojak-k-exclusive.com',
     image: 'k-exclusive',
   },
   {
-    title: 'Spare Parts',
-    text: 'Geniun spare parts for your Mercedes',
+    title: 'spareParts',
     url: 'www.kojak-spare-parts.com',
     image: 'spare-parts',
   },
   {
-    title: 'Auto Maintenance',
-    text: 'Fix your Mercedes by experts',
+    title: 'auto',
     url: 'kojak-auto-maintenance',
     image: 'auto-main',
   },
@@ -44,30 +42,7 @@ const THIS_YEAR = new Date().getFullYear();
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
   const mUItheme = useTheme();
-
-  const simpleFooter = (
-    <Box sx={{ borderTop: (theme) => `solid 1px ${theme.palette.divider}` }}>
-      <Container
-        sx={{
-          py: 1,
-          textAlign: 'left',
-          display: 'flex',
-          justifyContent: 'left',
-          flexDirection: 'column',
-          alignItems: 'left',
-        }}
-      >
-        <Logo single />
-
-        <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-          Kojak Group of Companies © {THIS_YEAR}. All rights reserved | www.kojak-group.com
-        </Typography>
-        <Typography variant="caption" component="div" sx={{ color: 'primary.main' }}>
-          Designed by ProzEffect | hello@prozeffect.com
-        </Typography>
-      </Container>
-    </Box>
-  );
+  const { translate } = useLocales();
 
   const mainFooter = (
     <Box sx={{ bgcolor: 'common.black' }}>
@@ -88,10 +63,7 @@ export default function Footer() {
                 variant="body2"
                 sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
               >
-                Kojak stands as a multifaceted group of companies, each specializing in a unique
-                facet that collectively shapes a comprehensive automotive ecosystem. its presence in
-                four distinct domains: car spare-parts, auto maintenance, the exclusive sale of
-                Mercedes cars, and the versatile realm of space leasing and renting.
+                {translate('footer.about')}
               </Typography>
 
               <ContactUsInfo light small />
@@ -101,7 +73,7 @@ export default function Footer() {
           {!mdUp && (
             <Grid xs={6} md={2}>
               <Typography variant="h6" sx={{ color: 'common.white' }}>
-                Kojak Group of Companies
+                {translate('footer.groupTitle')}
               </Typography>
               <Stack spacing={2} sx={{ mt: 2 }}>
                 {GROUPS.map((group) => (
@@ -109,7 +81,7 @@ export default function Footer() {
                     {/* <Link component={RouterLink} href={list.path} rel="noopener">
                       {list.title}
                     </Link> */}
-                    {group.title}
+                    {translate(`footer.${group.title}.title`)}
                   </Typography>
                 ))}
               </Stack>
@@ -118,7 +90,7 @@ export default function Footer() {
 
           <Grid xs={6} md={2}>
             <Typography variant="h6" sx={{ color: 'common.white' }}>
-              Sitemap
+              {translate('footer.sitemap')}
             </Typography>
             <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
               {navConfig.map((list) => (
@@ -129,7 +101,7 @@ export default function Footer() {
                     rel="noopener"
                     sx={{ color: 'primary.light' }}
                   >
-                    {list.title}
+                    {translate(`header.${list.title}`)}
                   </Link>
                 </Typography>
               ))}
@@ -145,17 +117,12 @@ export default function Footer() {
 
         <Divider sx={{ p: 1 }} />
 
-        <Stack
-          spacing={1}
-          direction={{ xs: 'column', md: 'row' }}
-          justifyContent="space-between"
-          sx={{ py: 1, textAlign: 'center' }}
-        >
+        <Stack spacing={1} direction="column" sx={{ pt: 1, textAlign: 'center' }}>
           <Typography
             variant="caption"
             sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
           >
-            © {THIS_YEAR}. All rights reserved - Kojak Group of Companies
+            {translate('footer.allRights')}
           </Typography>
 
           <Link
@@ -163,7 +130,7 @@ export default function Footer() {
             variant="caption"
             sx={{ color: 'primary.light' }}
           >
-            Designed by ProzEffect | hello@prozeffect.com
+            {translate('footer.designedBy')}
           </Link>
         </Stack>
       </Container>
@@ -175,6 +142,7 @@ export default function Footer() {
 }
 
 function GroupsCard() {
+  const { translate } = useLocales();
   const theme = useTheme();
   const renderOverlay = (
     <Box
@@ -193,7 +161,7 @@ function GroupsCard() {
   return (
     <>
       <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
-        Kojak Group of Companies
+        {translate(`footer.groupTitle`)}
       </Typography>
       <Box
         sx={{
@@ -226,7 +194,7 @@ function GroupsCard() {
                   color: 'common.white',
                 }}
               >
-                {group.title}
+                {translate(`footer.${group.title}.title`)}
               </Typography>
               <Typography
                 sx={{
@@ -234,7 +202,7 @@ function GroupsCard() {
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {group.text}
+                {translate(`footer.${group.title}.text`)}
               </Typography>
             </Box>
             <Button
@@ -246,7 +214,7 @@ function GroupsCard() {
               }}
               endIcon={<Iconify icon="quill:link-out" />}
             >
-              Visit Website
+              {translate(`footer.visitWebsite`)}
             </Button>
             {renderOverlay}
           </Card>

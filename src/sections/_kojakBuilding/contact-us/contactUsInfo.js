@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Link, Stack, IconButton, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
+  const { translate } = useLocales();
   return (
     <Stack
       spacing={small ? 2.5 : 5}
@@ -27,7 +29,7 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography variant="body2">06 5334 312 EXT. 220</Typography>
+        <Typography variant="body2">{translate('contactUs.details.number')}</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
@@ -43,7 +45,7 @@ export default function ContactUsInfo({ light, small }) {
               textDecorationLine: 'underline',
             }}
           >
-            Industrial Area 4, Sharjah, United Arab Emirates
+            {translate('contactUs.details.location')}
           </Link>
         </Typography>
       </Stack>
@@ -51,13 +53,13 @@ export default function ContactUsInfo({ light, small }) {
       <Stack direction="row" spacing={1}>
         <Iconify icon="mingcute:time-line" width={24} />
 
-        <Typography variant="body2">9 AM to 6 PM - Saturday to Thursday</Typography>
+        <Typography variant="body2">{translate('contactUs.details.hours')}</Typography>
       </Stack>
 
       {/* <Divider sx={{ border: 'dashed 1px #CCCCCC' }} flexItem /> */}
 
       <Stack spacing={1}>
-        <Typography variant="overline">Follow Us</Typography>
+        <Typography variant="overline">{translate('contactUs.details.follow')}</Typography>
         <Stack direction="row">
           {_socials.map((social) => (
             <Link key={social.value} href={social.path} noWrap underline="none" target="_blank">
