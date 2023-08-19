@@ -63,6 +63,7 @@ export function TestimonialItemThumbnail({ testimonial, selected }) {
             transform: 'scale(2)',
           }),
         }}
+        alt={testimonial.name}
       />
     </Stack>
   );
@@ -72,5 +73,6 @@ TestimonialItemThumbnail.propTypes = {
   selected: PropTypes.bool,
   testimonial: PropTypes.shape({
     avatarUrl: PropTypes.string,
+    name: PropTypes.string,
   }),
 };

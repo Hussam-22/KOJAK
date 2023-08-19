@@ -21,7 +21,11 @@ export default function DidNotFindWhatYouAreLookingFor() {
           textAlign: 'center',
         }}
       >
-        <Image src="/assets/kojak-building/illustration/house-property.svg" width="80%" />
+        <Image
+          src="/assets/kojak-building/illustration/house-property.svg"
+          width="80%"
+          alt="did-not-find-what-you-are-looking-for"
+        />
 
         <Typography variant="h5">{translate('properties.didNotFind')}</Typography>
         <Box>

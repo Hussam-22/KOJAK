@@ -1,6 +1,5 @@
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -21,23 +20,21 @@ import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo'
 const GROUPS = [
   {
     title: 'exclusive',
-    url: 'www.kojak-k-exclusive.com',
+    url: 'www.kojak-spareparts.com',
     image: 'k-exclusive',
   },
   {
     title: 'spareParts',
-    url: 'www.kojak-spare-parts.com',
+    url: 'www.kojak-spareparts.com',
     image: 'spare-parts',
   },
   {
     title: 'auto',
-    url: 'kojak-auto-maintenance',
+    url: 'www.kojak-auto-maintenance.com',
     image: 'auto-main',
   },
 ];
 // ----------------------------------------------------------------------
-
-const THIS_YEAR = new Date().getFullYear();
 
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
@@ -77,12 +74,9 @@ export default function Footer() {
               </Typography>
               <Stack spacing={2} sx={{ mt: 2 }}>
                 {GROUPS.map((group) => (
-                  <Typography key={group.title} variant="body2" sx={{ color: 'primary.main' }}>
-                    {/* <Link component={RouterLink} href={list.path} rel="noopener">
-                      {list.title}
-                    </Link> */}
+                  <Link href={group.url} target="_blank" rel="noopener" key={group.title}>
                     {translate(`footer.${group.title}.title`)}
-                  </Typography>
+                  </Link>
                 ))}
               </Stack>
             </Grid>
@@ -205,17 +199,18 @@ function GroupsCard() {
                 {translate(`footer.${group.title}.text`)}
               </Typography>
             </Box>
-            <Button
-              variant="text"
+            <Link
+              href={group.url}
+              target="_blank"
+              rel="noopener"
               sx={{
                 m: 2,
                 color: 'common.white',
                 fontWeight: theme.typography.fontWeightLight,
               }}
-              endIcon={<Iconify icon="quill:link-out" />}
             >
-              {translate(`footer.visitWebsite`)}
-            </Button>
+              {translate(`footer.visitWebsite`)} <Iconify icon="quill:link-out" />
+            </Link>
             {renderOverlay}
           </Card>
         ))}
