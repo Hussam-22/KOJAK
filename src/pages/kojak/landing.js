@@ -9,6 +9,15 @@ export default function KojakBuildingLandingPage() {
     <>
       <Helmet>
         <title>Kojak Building</title>
+        <meta
+          name="description"
+          content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"
+        />
+        <meta
+          name="keywords"
+          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+        />
+        <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
       </Helmet>
 
       <LandingView />

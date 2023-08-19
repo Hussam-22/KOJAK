@@ -107,9 +107,11 @@ export default function AboutTestimonial({ testimonials }) {
               onPrev={carouselThumb.onPrev}
               leftButtonProps={{
                 sx: { display: { xs: 'none', md: 'inline-flex' } },
+                'aria-label': 'Left Arrow',
               }}
               rightButtonProps={{
                 sx: { display: { xs: 'none', md: 'inline-flex' } },
+                'aria-label': 'Right Arrow',
               }}
             >
               <Carousel

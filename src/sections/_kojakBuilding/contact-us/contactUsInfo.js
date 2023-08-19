@@ -62,8 +62,15 @@ export default function ContactUsInfo({ light, small }) {
         <Typography variant="overline">{translate('contactUs.details.follow')}</Typography>
         <Stack direction="row">
           {_socials.map((social) => (
-            <Link key={social.value} href={social.path} noWrap underline="none" target="_blank">
-              <IconButton color="inherit">
+            <Link
+              key={social.value}
+              href={social.path}
+              noWrap
+              underline="none"
+              target="_blank"
+              aria-label={social.value}
+            >
+              <IconButton color="inherit" aria-label={social.value}>
                 <Iconify icon={social.icon} sx={{ color: light ? 'primary.light' : 'unset' }} />
               </IconButton>
             </Link>
