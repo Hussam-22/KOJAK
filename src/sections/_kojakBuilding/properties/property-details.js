@@ -19,13 +19,19 @@ import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/detai
 import PropertyDetailsContactForm from 'src/sections/_kojakBuilding/properties/details/property-details-contact-form';
 import PropertyDetailsContactCard from 'src/sections/_kojakBuilding/properties/details/property-details-contact-card';
 
+const PAGE_NAME = 'PROPERTY-DETAILS';
+
 export default function PropertyDetails() {
   const { propertyID } = useParams();
   const loading = useBoolean(true);
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
-  const { fsGetImgDownloadUrl, getSpaceInfo } = useAuthContext();
+  const { fsGetImgDownloadUrl, getSpaceInfo, updatePageAnalytic } = useAuthContext();
   const { translate, currentLang } = useLocales();
+
+  useEffect(() => {
+    (async () => updatePageAnalytic(PAGE_NAME, propertyID))();
+  }, [propertyID, updatePageAnalytic]);
 
   const description =
     currentLang.value === 'ar' ? spaceInfo?.descriptionAr?.ar || '' : spaceInfo?.description || '';

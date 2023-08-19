@@ -4,11 +4,12 @@ import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
 import {
   doc,
-  query,
   where,
-  setDoc,
+  query,
   getDoc,
+  setDoc,
   getDocs,
+  Timestamp,
   collection,
   getFirestore,
   collectionGroup,
@@ -263,7 +264,7 @@ export function AuthProvider({ children }) {
     setDoc(newDocRef, {
       ...payload,
       id: newDocRef.id,
-      createdAt: dateTime,
+      createdAt: Timestamp.fromDate(new Date()),
       to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
         subject: 'Kojak Building - New Form Submitted',
@@ -284,6 +285,17 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
+  // add new request-callback form
+  const updatePageAnalytic = useCallback(async (page, pageDetails = '') => {
+    const newDocRef = doc(collection(DB, `/websites/building/analytics/`));
+    setDoc(newDocRef, {
+      id: newDocRef.id,
+      createdAt: Timestamp.fromDate(new Date()),
+      page,
+      pageDetails,
+    });
+    return newDocRef.id;
+  }, []);
   // ------------------ | Get image Download URL | ------------------
   const fsGetImgDownloadUrl = useCallback(async (projectID, imgID) => {
     // getDownloadURL(ref(STORAGE, `${state.user.id}/menusCover/${dataObj.cover.id}_800x800.webp`))
@@ -321,6 +333,7 @@ export function AuthProvider({ children }) {
       fsGetFeaturedProperty,
       addNewSpace,
       addNewForm,
+      updatePageAnalytic,
       fsGetImgDownloadUrl,
     }),
     [
@@ -341,6 +354,7 @@ export function AuthProvider({ children }) {
       fsGetFeaturedProperty,
       addNewSpace,
       addNewForm,
+      updatePageAnalytic,
       fsGetImgDownloadUrl,
     ]
   );

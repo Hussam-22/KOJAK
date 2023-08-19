@@ -1,33 +1,34 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { Link } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
+import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { fDate } from 'src/utils/format-time';
-import Markdown from 'src/components/markdown';
 import Image from 'src/components/image/Image';
-import { _posts, _socials, blogPosts } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
+import { _socials, blogPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 import PostTimeBlock from '../../blog/common/post-time-block';
 
 // ----------------------------------------------------------------------
+const PAGE_NAME = 'BLOG-ITEM';
 
 export default function BlogItemView() {
   const { postTitle } = useParams();
+  const { updatePageAnalytic } = useAuthContext();
   const { title, description, duration, createdAt, favorited, author, tags, content } =
     blogPosts.find((post) => post.title.replaceAll(' ', '-') === postTitle);
 
@@ -40,6 +41,11 @@ export default function BlogItemView() {
   const handleClose = useCallback(() => {
     setOpen(null);
   }, []);
+
+  useEffect(() => {
+    console.log(PAGE_NAME);
+    (async () => updatePageAnalytic(PAGE_NAME, postTitle))();
+  }, [postTitle, updatePageAnalytic]);
 
   return (
     <>

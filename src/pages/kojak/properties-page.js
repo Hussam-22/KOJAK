@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
+import { useAuthContext } from 'src/auth/hooks';
 import PropertiesView from 'src/sections/_kojakBuilding/views/properties-view';
 
 // ----------------------------------------------------------------------
+const PAGE_NAME = 'PROPERTIES';
 
 export default function PropertiesPage() {
+  const { updatePageAnalytic } = useAuthContext();
+
+  useEffect(() => {
+    (async () => updatePageAnalytic(PAGE_NAME))();
+  }, [updatePageAnalytic]);
+
   return (
     <>
       <Helmet>
