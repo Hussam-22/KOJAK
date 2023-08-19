@@ -19,7 +19,7 @@ const DIALOG_CONTENT = {
 };
 
 export default function ContactUsForm() {
-  const { addNewFormGeneralSubmit } = useAuthContext();
+  const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
 
@@ -78,7 +78,11 @@ export default function ContactUsForm() {
       //   transformRequest: [(data, Headers) => data],
       // });
 
-      await addNewFormGeneralSubmit(formData);
+      addNewForm({
+        ...formData,
+        source: 'Contact Us',
+        inquiry: formData.messageText,
+      });
 
       await new Promise((resolve) =>
         setTimeout(() => {

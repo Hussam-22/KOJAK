@@ -9,19 +9,20 @@ import { Card, Stack, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
-import FormProvider, { RHFSelect, RHFCheckbox, RHFTextField } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
-const DIALOG_TEXT = 'We have received your request !!';
-const DIALOG_CONTENT =
-  'Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!';
-
+const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
+const DIALOG_CONTENT = {
+  ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
+  en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
+};
 export default function PropertyDetailsContactForm({ spaceInfo }) {
-  const { addNewFromCallbackSubmit } = useAuthContext();
+  const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -77,7 +78,12 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
       //   transformRequest: [(data, Headers) => data],
       // });
 
-      await addNewFromCallbackSubmit({ ...formData, building: spaceInfo.buildingName });
+      addNewForm({
+        ...formData,
+        source: 'Call Back',
+        subject: spaceInfo.description,
+      });
+
       await new Promise((resolve) =>
         setTimeout(() => {
           handleClickOpen();
@@ -123,8 +129,8 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         </FormProvider>
       </Card>
       <ConfirmationDialog
-        title={DIALOG_TEXT}
-        content={DIALOG_CONTENT}
+        title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}
+        content={currentLang.value === 'ar' ? DIALOG_CONTENT.ar : DIALOG_CONTENT.en}
         open={open}
         handleClose={handleClose}
       />

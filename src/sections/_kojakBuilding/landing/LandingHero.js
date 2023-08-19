@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -11,8 +10,6 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
-import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const SUMMARY = [

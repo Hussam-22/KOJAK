@@ -51,7 +51,7 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
           <OverviewItem
             icon="carbon:floorplan"
             label={translate('propertyCard.spaceType')}
-            text={translate(`propertyCard.${spaceType.toLowerCase()}`)}
+            text={translate(`propertyCard.${spaceType.toLowerCase().replace(' ', '')}`)}
           />
           {bedrooms !== 0 && (
             <OverviewItem

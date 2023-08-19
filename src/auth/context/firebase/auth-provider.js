@@ -240,6 +240,7 @@ export function AuthProvider({ children }) {
         security: true,
         cctv: true,
         chequesNo: '4-6',
+        kitchen: 0,
       },
       contactDetails: {
         email: 'mohamed@kojak-group.com',
@@ -255,8 +256,8 @@ export function AuthProvider({ children }) {
   }, []);
 
   // add new request-callback form
-  const addNewFromCallbackSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-callback/`));
+  const addNewForm = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/building/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
@@ -265,62 +266,20 @@ export function AuthProvider({ children }) {
       createdAt: dateTime,
       to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
-        subject: 'Kojak Building - Callback Request',
-        text: 'this is a test email',
-        html: `<h4>Someone has requested a call back !!</h4>
-        <br />
-        <p>---------------------------</p>
-        <p>${payload.building}</p>
-        <p>${payload.fullName}</p>
-        <p>${payload.mobile}</p>
-        <p>${payload.email}</p>
-        <p>${payload.inquiry}</p>
+        subject: 'Kojak Building - New Form Submitted',
+        text: payload.subject,
+        html: `
+        <p>Source: ${payload.source}</p>
+        <p>Name: ${payload.fullName}</p>
+        <p>Mobile: ${payload.mobile}</p>
+        <p>Email: ${payload.email}</p>
+        <p>Subject: ${payload.subject}</p>
+        <p>Inquiry: ${payload.inquiry}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>
         <p>${newDocRef.id}</p>
         `,
       },
-    });
-    return newDocRef.id;
-  }, []);
-
-  // add new form-contact-us form
-  const addNewFormGeneralSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-contact-us/`));
-    const date = new Date();
-    const dateTime = date.toDateString();
-    setDoc(newDocRef, {
-      ...payload,
-      id: newDocRef.id,
-      createdAt: dateTime,
-      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
-      message: {
-        subject: 'Kojak Building - Get in Touch Request',
-        text: 'this is some random text',
-        html: `<h4>Someone has submitted a Get in Touch Request !!</h4>
-        <br />
-        <p>${payload.fullName}</p>
-        <p>${payload.mobile}</p>
-        <p>${payload.email}</p>
-        <p>${payload.subject}</p>
-        <p>${payload.messageText}</p>
-        <p>${dateTime.toLocaleString()}</p>
-        <p>${newDocRef.id}</p>
-        `,
-      },
-    });
-    return newDocRef.id;
-  }, []);
-
-  // add new WhatsApp form
-  const addNewWhatsAppSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-whatsApp/`));
-    const date = new Date();
-    const dateTime = date.toDateString();
-    setDoc(newDocRef, {
-      ...payload,
-      id: newDocRef.id,
-      createdAt: dateTime,
     });
     return newDocRef.id;
   }, []);
@@ -361,9 +320,7 @@ export function AuthProvider({ children }) {
       getSpaceInfo,
       fsGetFeaturedProperty,
       addNewSpace,
-      addNewFromCallbackSubmit,
-      addNewFormGeneralSubmit,
-      addNewWhatsAppSubmit,
+      addNewForm,
       fsGetImgDownloadUrl,
     }),
     [
@@ -383,9 +340,7 @@ export function AuthProvider({ children }) {
       getSpaceInfo,
       fsGetFeaturedProperty,
       addNewSpace,
-      addNewFromCallbackSubmit,
-      addNewFormGeneralSubmit,
-      addNewWhatsAppSubmit,
+      addNewForm,
       fsGetImgDownloadUrl,
     ]
   );

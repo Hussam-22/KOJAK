@@ -1,7 +1,6 @@
 import { m } from 'framer-motion';
 import { useRef, useState } from 'react';
 
-import { useTheme } from '@mui/system';
 import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
 
 import { useLocales } from 'src/locales';
@@ -10,11 +9,10 @@ import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/sections/examples/animate-view/get-variant';
 
 export default function WhatsAppForm() {
-  const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const textRef = useRef();
   const mobileNumberRef = useRef();
-  const { addNewWhatsAppSubmit } = useAuthContext();
+  const { addNewForm } = useAuthContext();
   const { translate } = useLocales();
 
   const openWhatsAppForm = () => {
@@ -32,7 +30,15 @@ export default function WhatsAppForm() {
       message
     )}&app_absent=0`;
 
-    addNewWhatsAppSubmit({ customerMessage: message, CustomerMobileNumber, sentTo: number });
+    addNewForm({
+      source: 'WhatsApp',
+      fullName: '',
+      mobile: CustomerMobileNumber,
+      email: '',
+      subject: '',
+      inquiry: message,
+      sentTo: number,
+    });
 
     window.location.href = url;
 

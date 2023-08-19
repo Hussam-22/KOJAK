@@ -1,4 +1,3 @@
-import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 
 import { useTheme } from '@mui/system';
@@ -9,7 +8,6 @@ import Typography from '@mui/material/Typography';
 
 import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
-import { varFade } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
