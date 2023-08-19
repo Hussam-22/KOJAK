@@ -27,9 +27,6 @@ export default function KojakBuildingLandingHero() {
   const navigate = useNavigate();
   const { translate, onChangeLang, currentLang } = useLocales();
 
-  const toggleLanguageHandler = () =>
-    currentLang.value === 'en' ? onChangeLang('ar') : onChangeLang('en');
-
   return (
     <Box
       sx={{
@@ -114,8 +111,7 @@ export default function KojakBuildingLandingHero() {
                     variant="contained"
                     color="primary"
                     size="large"
-                    // onClick={() => navigate(paths.website.properties)}
-                    onClick={() => toggleLanguageHandler()}
+                    onClick={() => navigate(paths.website.properties)}
                   >
                     {translate('common.exploreProperties')}
                   </Button>
