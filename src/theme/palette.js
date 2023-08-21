@@ -125,12 +125,8 @@ export function palette(mode) {
     },
     background: {
       paper: '#FFFFFF',
-<<<<<<< HEAD
       default: '#121212',
-=======
-      default: '#111111',
->>>>>>> 02060fa29a65d027ec41b0d1af049516f2d05b2c
-      neutral: GREY[100],
+      neutral: alpha(GREY[500], 0.12),
       peach: SUCCESS.lighter,
     },
     action: {
@@ -151,7 +147,6 @@ export function palette(mode) {
       paper: GREY[800],
       default: GREY[900],
       neutral: alpha(GREY[500], 0.12),
-      peach: alpha(GREY[500], 0.12),
     },
     action: {
       ...COMMON.action,

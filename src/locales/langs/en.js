@@ -24,10 +24,8 @@ const en = {
     leasesProcessed: 'Leases processed',
   },
   why: {
-    title: `why you should choose us`,
-    subTitle: `Choosing the right partner for your space-hunting journey can make all the difference. At
-    Kojak Building , we stand out as the ultimate destination for finding your ideal
-    residential or commercial space. Here's why you should choose us`,
+    title: `We are Mercedes-Benz Experts`,
+    subTitle: `Founded in 2001, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
     cards: {
       1: {
         title: `Transparent Transactions`,

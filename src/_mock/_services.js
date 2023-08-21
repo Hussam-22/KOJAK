@@ -4,18 +4,18 @@ const AutoRepairServices = [
   {
     serviceName: 'Oil Change',
     description: 'Regular oil changes are essential to keep your engine running smoothly.',
-    icon: 'wheel',
+    icon: 'oil',
   },
-  {
-    serviceName: 'Tire Rotation and Balancing',
-    description: 'This helps extend the life of your tires and ensures even wear.',
-    icon: 'wheel',
-  },
+  // {
+  //   serviceName: 'Tire Rotation and Balancing',
+  //   description: 'This helps extend the life of your tires and ensures even wear.',
+  //   icon: 'wheel',
+  // },
   {
     serviceName: 'Brake Service',
     description:
       'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
-    icon: 'wheel',
+    icon: 'break',
   },
   {
     serviceName: 'Wheel Alignment',
@@ -27,99 +27,93 @@ const AutoRepairServices = [
     serviceName: 'Transmission Service',
     description:
       'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
-    icon: 'wheel',
+    icon: 'gear',
   },
   {
     serviceName: 'Engine Tune-Up',
     description:
       'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
-    icon: 'wheel',
+    icon: 'engine',
   },
-  {
-    serviceName: 'Exhaust System Repair',
-    description:
-      'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Suspension Repair',
-    description:
-      'Services may involve replacing shocks, struts, control arms, or other suspension components.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Electrical System Repair',
-    description:
-      "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
-    icon: 'wheel',
-  },
+  // {
+  //   serviceName: 'Exhaust System Repair',
+  //   description:
+  //     'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Suspension Repair',
+  //   description:
+  //     'Services may involve replacing shocks, struts, control arms, or other suspension components.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Electrical System Repair',
+  //   description:
+  //     "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
+  //   icon: 'power',
+  // },
   {
     serviceName: 'Air Conditioning Service',
     description:
       'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
-    icon: 'wheel',
+    icon: 'ac',
   },
-  {
-    serviceName: 'Heating System Repair',
-    description:
-      'Issues with the heating system can be addressed by repairing or replacing the heater core, blower motor, or thermostat.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Cooling System Service',
-    description:
-      'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Fuel System Service',
-    description:
-      'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Check Engine Light Diagnosis',
-    description:
-      'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Battery Replacement',
-    description: 'When your battery no longer holds a charge, it needs to be replaced.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Tire Repair and Replacement',
-    description:
-      'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
-    icon: 'wheel',
-  },
-  {
-    serviceName: 'Steering System Repair',
-    description:
-      'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
-    icon: 'wheel',
-  },
+  // {
+  //   serviceName: 'Cooling System Service',
+  //   description:
+  //     'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Fuel System Service',
+  //   description:
+  //     'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Check Engine Light Diagnosis',
+  //   description:
+  //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Battery Replacement',
+  //   description: 'When your battery no longer holds a charge, it needs to be replaced.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Tire Repair and Replacement',
+  //   description:
+  //     'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Steering System Repair',
+  //   description:
+  //     'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
+  //   icon: 'wheel',
+  // },
   {
     serviceName: 'Radiator and Cooling System Repair',
     description: 'Services for addressing issues related to overheating and coolant leaks.',
-    icon: 'wheel',
+    icon: 'radiator',
   },
-  {
-    serviceName: 'Emission System Repair',
-    description: 'To ensure your vehicle complies with emission regulations.',
-    icon: 'wheel',
-  },
+  // {
+  //   serviceName: 'Emission System Repair',
+  //   description: 'To ensure your vehicle complies with emission regulations.',
+  //   icon: 'wheel',
+  // },
   {
     serviceName: 'Exterior and Interior Detailing',
     description: "Not a repair per se, but it can help maintain your car's appearance and value.",
-    icon: 'wheel',
+    icon: 'detailing',
   },
   {
     serviceName: 'Diagnostics and Computerized Testing',
     description:
       'Using specialized tools to identify and diagnose various issues in modern vehicles.',
-    icon: 'wheel',
+    icon: 'chip',
   },
 ];
 

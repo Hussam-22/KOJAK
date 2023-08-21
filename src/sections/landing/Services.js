@@ -6,7 +6,7 @@ import ServiceItem from 'src/sections/services/service-item';
 export default function Services() {
   const theme = useTheme();
   return (
-    <Container maxWidth="xl" sx={{ py: 15 }}>
+    <Container maxWidth="xl" sx={{ pt: 15 }}>
       <Stack spacing={1} sx={{ width: '60dvw' }}>
         <Typography variant="h2">Auto Repair Services</Typography>
         <Typography
@@ -19,9 +19,11 @@ export default function Services() {
         ))}
       </Box>
 
-      <Button variant="contained" color="secondary" size="large">
-        Check full list of services
-      </Button>
+      <Box sx={{ textAlign: 'center' }}>
+        <Button variant="contained" color="primary" size="large">
+          Check full list of services
+        </Button>
+      </Box>
     </Container>
   );
 }
