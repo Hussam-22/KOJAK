@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { useAuthContext } from 'src/auth/hooks';
-import ContactUsView from 'src/sections/_kojakBuilding/views/contact-us-view';
+import ContactUsView from 'src/sections/views/contact-us-view';
 
 const PAGE_NAME = 'CONTACT-US';
 

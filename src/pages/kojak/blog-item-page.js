@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import BlogItemView from 'src/sections/_kojakBuilding/views/blog-item-view';
+import BlogItemView from 'src/sections/views/blog-item-view';
 
 // ----------------------------------------------------------------------
 

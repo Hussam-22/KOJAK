@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import { Stack, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
@@ -13,9 +13,9 @@ import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
-import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
+import PropertyCard from 'src/sections/properties/property-card';
+import FeaturedProperty from 'src/sections/landing/FeaturedProperty';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
-import FeaturedProperty from 'src/sections/_kojakBuilding/landing/FeaturedProperty';
 
 // ----------------------------------------------------------------------
 export default function PopularProperties() {

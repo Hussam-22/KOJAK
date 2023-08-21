@@ -13,11 +13,11 @@ import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { SplashScreen } from 'src/components/loading-screen';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
-import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
-import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/details/property-details-gallery';
-import PropertyDetailsContactForm from 'src/sections/_kojakBuilding/properties/details/property-details-contact-form';
-import PropertyDetailsContactCard from 'src/sections/_kojakBuilding/properties/details/property-details-contact-card';
+import PropertyDetailsHeader from 'src/sections/properties/details/property-details-header';
+import PropertyDetailsSummary from 'src/sections/properties/details/property-details-summary';
+import PropertyDetailsGallery from 'src/sections/properties/details/property-details-gallery';
+import PropertyDetailsContactForm from 'src/sections/properties/details/property-details-contact-form';
+import PropertyDetailsContactCard from 'src/sections/properties/details/property-details-contact-card';
 
 const PAGE_NAME = 'PROPERTY-DETAILS';
 

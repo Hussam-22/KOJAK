@@ -5,9 +5,9 @@ import { Box } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'src/auth/hooks';
-import PropertyCard from 'src/sections/_kojakBuilding/properties/property-card';
-import PropertyCardSkeleton from 'src/sections/_kojakBuilding/properties/property-card-skeleton';
-import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properties/did-not-find-property-card';
+import PropertyCard from 'src/sections/properties/property-card';
+import PropertyCardSkeleton from 'src/sections/properties/property-card-skeleton';
+import DidNotFindWhatYouAreLookingFor from 'src/sections/properties/did-not-find-property-card';
 
 // ----------------------------------------------------------------------
 

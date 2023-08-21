@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import PropertyDetailsView from 'src/sections/_kojakBuilding/views/property-details-view';
+import PropertyDetailsView from 'src/sections/views/property-details-view';
 
 // ----------------------------------------------------------------------
 

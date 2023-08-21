@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { useAuthContext } from 'src/auth/hooks';
-import AboutView from 'src/sections/_kojakBuilding/views/about-view';
+import AboutView from 'src/sections/views/about-view';
 
 const PAGE_NAME = 'ABOUT';
 

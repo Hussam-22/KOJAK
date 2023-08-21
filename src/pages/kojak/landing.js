@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { useAuthContext } from 'src/auth/hooks';
-import LandingView from 'src/sections/_kojakBuilding/views/landing-view';
+import LandingView from 'src/sections/views/landing-view';
 
 // ----------------------------------------------------------------------
 

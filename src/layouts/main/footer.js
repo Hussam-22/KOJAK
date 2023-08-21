@@ -13,7 +13,7 @@ import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
-import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo';
+import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
 // ----------------------------------------------------------------------
 

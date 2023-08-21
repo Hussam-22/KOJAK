@@ -6,8 +6,8 @@ import { Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '
 import { useLocales } from 'src/locales';
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo';
-import ContactUsForm from 'src/sections/_kojakBuilding/contact-us/contactUsForm';
+import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 
 export default function ContactUsView() {
   const theme = useTheme();
