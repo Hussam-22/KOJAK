@@ -10,7 +10,7 @@ import { _websiteRouts } from './_websiteRouts';
 // ----------------------------------------------------------------------
 
 // const IndexPage = lazy(() => import('src/pages/home'));
-const IndexPage = lazy(() => import('src/pages/kojak/landing'));
+const IndexPage = lazy(() => import('src/pages/landing'));
 
 export default function Router() {
   return useRoutes([

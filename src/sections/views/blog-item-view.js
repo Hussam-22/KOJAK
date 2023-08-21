@@ -21,7 +21,7 @@ import { useAuthContext } from 'src/auth/hooks';
 import { _socials, blogPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import PostTimeBlock from '../../blog/common/post-time-block';
+import PostTimeBlock from '../blog/common/post-time-block';
 
 // ----------------------------------------------------------------------
 const PAGE_NAME = 'BLOG-ITEM';

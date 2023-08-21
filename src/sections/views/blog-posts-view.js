@@ -5,7 +5,7 @@ import { Stack, Typography } from '@mui/material';
 import { blogPosts } from 'src/_mock';
 import { useLocales } from 'src/locales';
 
-import PostsMasonry from '../../blog/kojak/posts-masonry';
+import PostsMasonry from '../blog/posts-masonry';
 
 // ----------------------------------------------------------------------
 

@@ -99,7 +99,7 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.exploreProperties')}
                   </Button>
-                  <IconButton
+                  {/* <IconButton
                     color="primary"
                     size="small"
                     sx={{
@@ -114,7 +114,7 @@ export default function Header({ headerOnDark }) {
                     onClick={toggleLanguageHandler}
                   >
                     {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton>
+                  </IconButton> */}
                 </Stack>
               )}
             </Stack>

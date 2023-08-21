@@ -5,9 +5,9 @@ import { Box } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
 import { useAuthContext } from 'src/auth/hooks';
-import PropertyCard from 'src/sections/properties/property-card';
-import PropertyCardSkeleton from 'src/sections/properties/property-card-skeleton';
-import DidNotFindWhatYouAreLookingFor from 'src/sections/properties/did-not-find-property-card';
+import PropertyCard from 'src/sections/product/property-card';
+import PropertyCardSkeleton from 'src/sections/product/property-card-skeleton';
+import DidNotFindWhatYouAreLookingFor from 'src/sections/product/did-not-find-property-card';
 
 // ----------------------------------------------------------------------
 

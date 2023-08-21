@@ -7,8 +7,8 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
-import PropertiesList from 'src/sections/properties/list/properties-list';
-import WebsiteFilters from 'src/sections/properties/filters/website-filters';
+import PropertiesList from 'src/sections/product/list/properties-list';
+import WebsiteFilters from 'src/sections/product/filters/website-filters';
 
 // ----------------------------------------------------------------------
 

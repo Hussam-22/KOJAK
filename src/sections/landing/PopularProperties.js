@@ -13,7 +13,7 @@ import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
-import PropertyCard from 'src/sections/properties/property-card';
+import PropertyCard from 'src/sections/product/property-card';
 import FeaturedProperty from 'src/sections/landing/FeaturedProperty';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 

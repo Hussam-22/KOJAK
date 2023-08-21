@@ -1,4 +1,4 @@
-import PropertyDetails from 'src/sections/properties/property-details';
+import PropertyDetails from 'src/sections/product/property-details';
 
 export default function PropertyDetailsView() {
   return <PropertyDetails />;

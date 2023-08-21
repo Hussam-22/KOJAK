@@ -9,16 +9,15 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { varFade } from 'src/components/animate';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import PostItemMobile from '../common/post-item-mobile';
-
 import LatestPostItem from './latest-post-item';
+import PostItemMobile from './common/post-item-mobile';
 
 // ----------------------------------------------------------------------
 

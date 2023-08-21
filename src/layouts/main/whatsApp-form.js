@@ -6,7 +6,7 @@ import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
-import getVariant from 'src/sections/examples/animate-view/get-variant';
+import getVariant from 'src/components/animate/variants/get-variant';
 
 export default function WhatsAppForm() {
   const [isOpen, setIsOpen] = useState(false);

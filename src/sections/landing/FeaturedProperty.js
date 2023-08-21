@@ -16,9 +16,9 @@ import { useAuthContext } from 'src/auth/hooks';
 import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import PropertyDetailsHeader from 'src/sections/properties/details/property-details-header';
-import PropertyDetailsSummary from 'src/sections/properties/details/property-details-summary';
-import PropertyDetailsGallery from 'src/sections/properties/details/property-details-gallery';
+import PropertyDetailsHeader from 'src/sections/product/details/property-details-header';
+import PropertyDetailsSummary from 'src/sections/product/details/property-details-summary';
+import PropertyDetailsGallery from 'src/sections/product/details/property-details-gallery';
 
 function FeaturedProperty() {
   const theme = useTheme();

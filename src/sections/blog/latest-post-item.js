@@ -11,7 +11,7 @@ import { fDate } from 'src/utils/format-time';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
 
-import PostTimeBlock from '../common/post-time-block';
+import PostTimeBlock from './common/post-time-block';
 
 // ----------------------------------------------------------------------
 

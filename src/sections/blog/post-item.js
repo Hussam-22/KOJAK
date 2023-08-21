@@ -10,7 +10,7 @@ import Image from 'src/components/image';
 import { fDate } from 'src/utils/format-time';
 import { RouterLink } from 'src/routes/components';
 
-import PostTimeBlock from '../common/post-time-block';
+import PostTimeBlock from './common/post-time-block';
 
 // ----------------------------------------------------------------------
 
