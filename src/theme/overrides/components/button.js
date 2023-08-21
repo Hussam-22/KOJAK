@@ -83,6 +83,7 @@ export function button(theme) {
           fontWeight: '500',
           transform: 'translateY(0px)',
           transition: 'transform 0.5s',
+          borderRadius: 3,
           '&:hover': {
             // boxShadow: theme.customShadows[color],
             transform: 'translateY(-2px)',
@@ -129,10 +130,10 @@ export function button(theme) {
         }),
       }),
       ...(largeSize && {
-        height: 48,
+        height: 55,
         fontSize: 15,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: 22,
+        paddingRight: 22,
         ...(textVariant && {
           paddingLeft: 10,
           paddingRight: 10,
