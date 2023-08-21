@@ -1,5 +1,8 @@
+// i18n
 import 'src/global.css';
 import { AuthProvider } from 'src/auth/context/firebase';
+
+import './locales/i18n';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +15,7 @@ import { LocalizationProvider } from 'src/locales';
 import ProgressBar from 'src/components/progress-bar';
 import MotionLazy from 'src/components/animate/motion-lazy';
 import { useScrollToTop } from 'src/hooks/use-scroll-to-top';
-import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
+import { ThemeSettings, SettingsDrawer, SettingsProvider } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
@@ -23,19 +26,15 @@ export default function App() {
     <AuthProvider>
       <ReduxProvider store={store}>
         <LocalizationProvider>
-          <SettingsProvider
-            defaultSettings={{
-              themeMode: 'light', // 'light' | 'dark'
-              themeDirection: 'ltr', //  'rtl' | 'ltr'
-              themeColorPresets: 'preset04', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-            }}
-          >
+          <SettingsProvider>
             <ThemeProvider>
-              <MotionLazy>
-                <ProgressBar />
-                <SettingsDrawer />
-                <Router />
-              </MotionLazy>
+              <ThemeSettings>
+                <MotionLazy>
+                  <ProgressBar />
+                  <SettingsDrawer />
+                  <Router />
+                </MotionLazy>
+              </ThemeSettings>
             </ThemeProvider>
           </SettingsProvider>
         </LocalizationProvider>

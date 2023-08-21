@@ -2,7 +2,18 @@ import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
 import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
-import { doc, setDoc, getDoc, getDocs, collection, getFirestore } from 'firebase/firestore';
+import {
+  doc,
+  where,
+  query,
+  getDoc,
+  setDoc,
+  getDocs,
+  Timestamp,
+  collection,
+  getFirestore,
+  collectionGroup,
+} from 'firebase/firestore';
 import {
   getAuth,
   signOut,
@@ -170,12 +181,30 @@ export function AuthProvider({ children }) {
     return docSnap.data();
   }, []);
 
-  // get all spaces info
-  const getAllSpacesInfo = useCallback(async () => {
+  // get all spaces info (switch for available only or ALL)
+  const getAllSpacesInfo = useCallback(async (isAvailableOnly = false) => {
+    // const dataArr = [];
+    // const querySnapshot = await getDocs(collection(DB, 'websites', 'building', 'spaces'));
+    // querySnapshot.forEach((document) => dataArr.push(document.data()));
+    // return dataArr;
+
+    const docRef = query(
+      collectionGroup(DB, 'spaces'),
+      where('isAvailable', 'in', isAvailableOnly ? [true] : [true, false])
+    );
+    const querySnapshot = await getDocs(docRef);
     const dataArr = [];
-    const querySnapshot = await getDocs(collection(DB, 'websites', 'building', 'spaces'));
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;
+  }, []);
+
+  // get featured property
+  const fsGetFeaturedProperty = useCallback(async () => {
+    const docRef = query(collectionGroup(DB, 'spaces'), where('isFeatured', '==', true));
+    const querySnapshot = await getDocs(docRef);
+    const dataArr = [];
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    return dataArr[0];
   }, []);
 
   // get space info
@@ -212,6 +241,7 @@ export function AuthProvider({ children }) {
         security: true,
         cctv: true,
         chequesNo: '4-6',
+        kitchen: 0,
       },
       contactDetails: {
         email: 'mohamed@kojak-group.com',
@@ -227,26 +257,25 @@ export function AuthProvider({ children }) {
   }, []);
 
   // add new request-callback form
-  const addNewFromCallbackSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-callback/`));
+  const addNewForm = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/building/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
       ...payload,
       id: newDocRef.id,
-      createdAt: dateTime,
+      createdAt: Timestamp.fromDate(new Date()),
       to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
       message: {
-        subject: 'Kojak Building - Callback Request',
-        text: 'this is a test email',
-        html: `<h4>Someone has requested a call back !!</h4>
-        <br />
-        <p>---------------------------</p>
-        <p>${payload.building}</p>
-        <p>${payload.fullName}</p>
-        <p>${payload.mobile}</p>
-        <p>${payload.email}</p>
-        <p>${payload.inquiry}</p>
+        subject: 'Kojak Building - New Form Submitted',
+        text: payload.subject,
+        html: `
+        <p>Source: ${payload.source}</p>
+        <p>Name: ${payload.fullName}</p>
+        <p>Mobile: ${payload.mobile}</p>
+        <p>Email: ${payload.email}</p>
+        <p>Subject: ${payload.subject}</p>
+        <p>Inquiry: ${payload.inquiry}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>
         <p>${newDocRef.id}</p>
@@ -256,47 +285,17 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
-  // add new form-contact-us form
-  const addNewFormGeneralSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-contact-us/`));
-    const date = new Date();
-    const dateTime = date.toDateString();
+  // add new request-callback form
+  const updatePageAnalytic = useCallback(async (page, pageDetails = '') => {
+    const newDocRef = doc(collection(DB, `/websites/building/analytics/`));
     setDoc(newDocRef, {
-      ...payload,
       id: newDocRef.id,
-      createdAt: dateTime,
-      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
-      message: {
-        subject: 'Kojak Building - Get in Touch Request',
-        text: 'this is some random text',
-        html: `<h4>Someone has submitted a Get in Touch Request !!</h4>
-        <br />
-        <p>${payload.fullName}</p>
-        <p>${payload.mobile}</p>
-        <p>${payload.email}</p>
-        <p>${payload.subject}</p>
-        <p>${payload.messageText}</p>
-        <p>${dateTime.toLocaleString()}</p>
-        <p>${newDocRef.id}</p>
-        `,
-      },
+      createdAt: Timestamp.fromDate(new Date()),
+      page,
+      pageDetails,
     });
     return newDocRef.id;
   }, []);
-
-  // add new WhatsApp form
-  const addNewWhatsAppSubmit = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/form-whatsApp/`));
-    const date = new Date();
-    const dateTime = date.toDateString();
-    setDoc(newDocRef, {
-      ...payload,
-      id: newDocRef.id,
-      createdAt: dateTime,
-    });
-    return newDocRef.id;
-  }, []);
-
   // ------------------ | Get image Download URL | ------------------
   const fsGetImgDownloadUrl = useCallback(async (projectID, imgID) => {
     // getDownloadURL(ref(STORAGE, `${state.user.id}/menusCover/${dataObj.cover.id}_800x800.webp`))
@@ -331,10 +330,10 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      fsGetFeaturedProperty,
       addNewSpace,
-      addNewFromCallbackSubmit,
-      addNewFormGeneralSubmit,
-      addNewWhatsAppSubmit,
+      addNewForm,
+      updatePageAnalytic,
       fsGetImgDownloadUrl,
     }),
     [
@@ -352,10 +351,10 @@ export function AuthProvider({ children }) {
       getWebsiteInfo,
       getAllSpacesInfo,
       getSpaceInfo,
+      fsGetFeaturedProperty,
       addNewSpace,
-      addNewFromCallbackSubmit,
-      addNewFormGeneralSubmit,
-      addNewWhatsAppSubmit,
+      addNewForm,
+      updatePageAnalytic,
       fsGetImgDownloadUrl,
     ]
   );

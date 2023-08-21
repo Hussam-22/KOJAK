@@ -9,7 +9,7 @@ const initialState = {
   filteredProducts: [],
   filterDefaultValues: {
     type: ['residential', 'commercial'],
-    spaceType: ['flat', 'showrooms', 'gym', 'labour camp', 'shops', 'restaurant', 'offices'],
+    spaceType: ['flat', 'showrooms', 'gym', 'labourcamp', 'shops', 'restaurant', 'offices'],
     city: ['sharjah', 'dubai'],
     isAvailable: [true, false],
   },
@@ -28,6 +28,11 @@ const slice = createSlice({
     // START LOADING
     startLoading(state) {
       state.isLoading = true;
+    },
+
+    // STOP LOADING
+    stopLoading(state) {
+      state.isLoading = false;
     },
 
     rdxSetProducts(state, action) {
@@ -61,4 +66,5 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-export const { rdxSetFilter, rdxSetProducts, rdxClearFilter } = slice.actions;
+export const { startLoading, stopLoading, rdxSetFilter, rdxSetProducts, rdxClearFilter } =
+  slice.actions;

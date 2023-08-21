@@ -45,7 +45,7 @@ export const _socials = [
     label: 'TikTok',
     icon: 'ic:baseline-tiktok',
     color: '#007EBB',
-    path: '',
+    path: 'https://www.tiktok.com/en/',
   },
   {
     value: 'twitter',

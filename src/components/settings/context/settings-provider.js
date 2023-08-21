@@ -8,7 +8,13 @@ import { SettingsContext } from './settings-context';
 
 // ----------------------------------------------------------------------
 
-export function SettingsProvider({ children, defaultSettings }) {
+const defaultSettings = {
+  themeMode: 'light',
+  themeDirection: 'ltr',
+  themeColorPresets: 'default',
+};
+
+export function SettingsProvider({ children }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const [settings, setSettings] = useLocalStorage('settings', defaultSettings);
@@ -34,7 +40,7 @@ export function SettingsProvider({ children, defaultSettings }) {
   // Reset
   const onReset = useCallback(() => {
     setSettings(defaultSettings);
-  }, [defaultSettings, setSettings]);
+  }, [setSettings]);
 
   // Drawer
   const onToggleDrawer = useCallback(() => {
@@ -78,5 +84,5 @@ export function SettingsProvider({ children, defaultSettings }) {
 
 SettingsProvider.propTypes = {
   children: PropTypes.node,
-  defaultSettings: PropTypes.object,
+  // defaultSettings: PropTypes.object,
 };

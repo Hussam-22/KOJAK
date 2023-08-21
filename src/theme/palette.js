@@ -20,20 +20,20 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#f4f5ff',
-  light: '#B195FE',
-  main: '#673DE6',
-  dark: '#5025d1',
-  darker: '#4027B6',
-  contrastText: '#FFFFFF',
+  lighter: '#fff7da',
+  light: '#FFE98B',
+  main: '#FFDC45',
+  dark: '#FFCF00',
+  darker: '#D8AF00',
+  contrastText: '#000000',
 };
 
 const SECONDARY = {
-  lighter: '#E6DBFE',
-  light: '#B195FE',
-  main: '#754FFE',
-  dark: '#4027B6',
-  darker: '#1C0F79',
+  lighter: '#999999',
+  light: '#555555',
+  main: '#222222',
+  dark: '#111111',
+  darker: '#000000',
   contrastText: '#FFFFFF',
 };
 
@@ -119,13 +119,17 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: '#000000',
+      primary: '#FFFFFF',
       secondary: GREY[600],
       disabled: GREY[500],
     },
     background: {
       paper: '#FFFFFF',
+<<<<<<< HEAD
       default: '#121212',
+=======
+      default: '#111111',
+>>>>>>> 02060fa29a65d027ec41b0d1af049516f2d05b2c
       neutral: GREY[100],
       peach: SUCCESS.lighter,
     },
