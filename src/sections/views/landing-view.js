@@ -1,4 +1,5 @@
 import FAQs from 'src/sections/landing/Faqs';
+import Services from 'src/sections/landing/Services';
 import { blogPosts, _testimonials } from 'src/_mock';
 import LatestPosts from 'src/sections/blog/latest-posts';
 import LandingHero from 'src/sections/landing/LandingHero';
@@ -10,6 +11,7 @@ export default function LandingView() {
   return (
     <>
       <LandingHero />
+      <Services />
       <WhyKojakBuilding />
       <AboutTestimonial testimonials={_testimonials} />
       <FAQs />
