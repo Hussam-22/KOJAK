@@ -8,14 +8,17 @@
 const en = {
   header: {
     home: 'Home',
-    properties: 'Properties',
+    properties: 'Services',
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    title: `Find Your Perfect Space for Living or Business Thriving with `,
+    heroText: 'Get 20% discount on Labour Charges, ',
+    title: `Free AC Gas Refill and Full Diagnostic Report `,
+    subText:
+      'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
     apartments: 'Apartments',
     happyTenants: 'Happy Tenants',
     leasesProcessed: 'Leases processed',
@@ -172,7 +175,7 @@ const en = {
   common: {
     kojak: 'KOJAK',
     building: 'Building',
-    exploreProperties: 'Explore Properties',
+    exploreProperties: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',
     dialog: {
