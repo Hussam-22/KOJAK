@@ -25,7 +25,7 @@ export default function LandingAbout() {
     <Container maxWidth="xl" sx={{ py: 15 }}>
       <Box
         sx={{
-          width: '85%',
+          // width: '85%',
           borderLeft: `solid 4px ${theme.palette.primary.main}`,
           mx: 'auto',
           position: 'relative',

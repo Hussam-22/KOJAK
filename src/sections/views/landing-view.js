@@ -1,11 +1,12 @@
 import FAQs from 'src/sections/landing/Faqs';
-import Services from 'src/sections/landing/Services';
+import GroupAd from 'src/sections/landing/GroupAd';
 import { blogPosts, _testimonials } from 'src/_mock';
+import Services from 'src/sections/landing/Services';
 import LatestPosts from 'src/sections/blog/latest-posts';
 import LandingHero from 'src/sections/landing/LandingHero';
 import LandingAbout from 'src/sections/landing/LandingAbout';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
-import AboutTestimonial from 'src/sections/testimonial/about-testimonial';
+import LandingTestimonial from 'src/sections/testimonial/about-testimonial';
 
 export default function LandingView() {
   return (
@@ -13,8 +14,10 @@ export default function LandingView() {
       <LandingHero />
       <Services />
       <LandingAbout />
-      {/* <AboutTestimonial testimonials={_testimonials} />
-      <FAQs />
+      <GroupAd />
+      <LandingTestimonial />
+      {/* <FAQs /> */}
+      {/* 
       <LatestPosts posts={blogPosts.slice(0, 6)} />
       <JoinNewsletter /> */}
     </>

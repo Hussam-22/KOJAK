@@ -1,164 +1,122 @@
-import { useEffect } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Unstable_Grid2';
-import Container from '@mui/material/Container';
+// @mui
 import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import { Box, Card, Stack, Rating, Container, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
-import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
+// components
+import { _testimonials } from 'src/_mock';
+import Carousel from 'src/components/carousel';
+// utils
 
-import { TestimonialItemContent, TestimonialItemThumbnail } from './about-testimonial-item';
+export default function LandingTestimonial() {
+  const carouselRef = useRef(null);
 
-const REVIEWS = [
-  {
-    arabic: 'الخدمة التي تلقيتها من فريق التأجير لديكم كانت ممتازة...',
-    english: 'The service I received from your leasing team was excellent...',
-  },
-  {
-    arabic: 'أنا سعيد جداً بتجربتي معكم في تأجير العقارات...',
-    english: 'I am extremely pleased with my experience with you in property leasing...',
-  },
-  {
-    arabic: 'أردت أن أشكركم على خدمتكم الممتازة في تأجير المكاتب التجارية...',
-    english: 'I wanted to thank you for your excellent service in leasing commercial offices...',
-  },
-  {
-    arabic: 'تجربتي مع فريق التأجير كانت مذهلة...',
-    english: 'My experience with the leasing team was amazing...',
-  },
-  {
-    arabic: 'لا يمكنني سوى تقديم الإشادة بجودة الخدمة التي حصلت عليها من موقعكم...',
-    english: 'I can only praise the quality of service I received from your website...',
-  },
-  {
-    arabic: 'شكرًا لكم على جهودكم في مساعدتي على العثور على منزل مريح وجميل...',
-    english: 'Thank you for your efforts in helping me find a comfortable and beautiful home...',
-  },
-  {
-    arabic: 'لا يمكنني التعبير عن مدى سعادتي بالشقة التي استأجرتها...',
-    english: "I can't express how happy I am with the apartment I rented...",
-  },
-  {
-    arabic: 'تجربة تأجيري معكم كانت ممتازة وسهلة للغاية...',
-    english: 'My leasing experience with you was excellent and very easy...',
-  },
-];
-
-// ----------------------------------------------------------------------
-
-export default function AboutTestimonial({ testimonials }) {
   const theme = useTheme();
-  const { translate } = useLocales();
 
-  const carouselLarge = useCarousel({
-    slidesToShow: 1,
-    draggable: false,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-  });
-
-  const carouselThumb = useCarousel({
-    autoplay: true,
-    slidesToShow: 5,
+  const carouselSettings = {
+    slidesToShow: 3,
     centerMode: true,
-    swipeToSlide: true,
-    autoplaySpeed: 3000,
-    focusOnSelect: true,
-    centerPadding: '0px',
+    centerPadding: '60px',
+    autoplay: true,
+    speed: 6000,
+    autoplaySpeed: 6000,
+    cssEase: 'linear',
+    infinite: true,
+    pauseOnHover: false,
+    slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
-
     responsive: [
       {
-        breakpoint: theme.breakpoints.values.sm,
-        settings: {
-          slidesToShow: 3,
-        },
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 600,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1, centerPadding: '0' },
       },
     ],
-  });
-
-  useEffect(() => {
-    carouselLarge.onSetNav();
-    carouselThumb.onSetNav();
-  }, [carouselLarge, carouselThumb]);
+  };
 
   return (
-    <Box
-      sx={{
-        bgcolor: 'background.paper',
-        textAlign: 'center',
-        overflow: 'hidden',
-        py: { xs: 10, md: 15 },
-      }}
-    >
-      <Container sx={{ position: 'relative' }}>
-        <Grid container spacing={3} justifyContent="center">
-          <Grid xs={12} md={6}>
-            <Typography variant="h2" sx={{ mb: 5 }}>
-              {translate('testimonial.title')}
-            </Typography>
-
-            <CarouselArrows
-              onNext={carouselThumb.onNext}
-              onPrev={carouselThumb.onPrev}
-              leftButtonProps={{
-                sx: { display: { xs: 'none', md: 'inline-flex' } },
-                'aria-label': 'Left Arrow',
-              }}
-              rightButtonProps={{
-                sx: { display: { xs: 'none', md: 'inline-flex' } },
-                'aria-label': 'Right Arrow',
-              }}
-            >
-              <Carousel
-                {...carouselLarge.carouselSettings}
-                asNavFor={carouselThumb.nav}
-                ref={carouselLarge.carouselRef}
-              >
-                {testimonials.map((_, index) => (
-                  <TestimonialItemContent key={index} review={REVIEWS[index]} />
-                ))}
-              </Carousel>
-
-              <Box sx={{ mb: 3, mx: 'auto', maxWidth: { xs: 360, sm: 420 } }}>
-                <Carousel
-                  {...carouselThumb.carouselSettings}
-                  asNavFor={carouselLarge.nav}
-                  ref={carouselThumb.carouselRef}
-                >
-                  {testimonials.map((testimonial, index) => (
-                    <TestimonialItemThumbnail
-                      key={testimonial.id}
-                      testimonial={testimonial}
-                      selected={carouselLarge.currentIndex === index}
-                    />
-                  ))}
-                </Carousel>
-              </Box>
-            </CarouselArrows>
-
-            {testimonials.map(
-              (testimonial, index) =>
-                carouselLarge.currentIndex === index && (
-                  <Stack key={testimonial.id} spacing={0.5}>
-                    <Typography variant="h6">{testimonial.name}</Typography>
-                    {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      {testimonial.role}
-                    </Typography> */}
-                  </Stack>
-                )
-            )}
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+    <Container maxWidth="xl" sx={{ pb: 15 }}>
+      <Stack
+        spacing={2}
+        sx={{ width: { md: '66%', xs: 'auto' }, textAlign: { md: 'left', xs: 'center' }, mb: 5 }}
+      >
+        <Typography variant="h2" sx={{ zIndex: 9, color: 'common.white' }}>
+          Don&#39;t Take Our Word for Granted
+        </Typography>
+        <Typography variant="h6" sx={{ zIndex: 9, fontWeight: theme.typography.fontWeightLight }}>
+          At KOJAK, we take immense pride in providing top-notch services for Mercedes car owners.
+          But don&#39;t just take our word for it – here&#39;s what our valued customers have to say
+          about their experiences with us:
+        </Typography>
+      </Stack>
+      <Carousel ref={carouselRef} {...carouselSettings}>
+        {_testimonials.slice(0, 6).map((testimonial) => (
+          <Box key={testimonial.id} sx={{ px: 1 }}>
+            <TestimonialItem key={testimonial.id} testimonial={testimonial} />
+          </Box>
+        ))}
+      </Carousel>
+    </Container>
   );
 }
 
-AboutTestimonial.propTypes = {
-  testimonials: PropTypes.array,
+LandingTestimonial.propTypes = {
+  data: PropTypes.array,
+};
+
+// ----------------------------------------------------------------------
+
+function TestimonialItem({ testimonial, index, sx, ...other }) {
+  const { name, review, rating } = testimonial;
+  const theme = useTheme();
+
+  return (
+    <Card
+      sx={{
+        p: 2,
+        bgcolor: 'background.neutral',
+      }}
+    >
+      <Stack
+        alignItems="center"
+        sx={{
+          textAlign: 'center',
+          ...sx,
+        }}
+        {...other}
+      >
+        <Rating value={5} readOnly />
+
+        <Typography
+          sx={{
+            my: 3,
+            lineHeight: 1.75,
+            color: 'common.white',
+            fontWeight: theme.typography.fontWeightLight,
+          }}
+        >
+          {review}
+        </Typography>
+
+        <Typography variant="h6" color="primary">
+          {name}
+        </Typography>
+      </Stack>
+    </Card>
+  );
+}
+
+TestimonialItem.propTypes = {
+  sx: PropTypes.object,
+  testimonial: PropTypes.object,
+  index: PropTypes.number,
 };
