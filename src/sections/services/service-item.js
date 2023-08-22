@@ -17,7 +17,9 @@ export default function ServiceItem({ service }) {
           <Typography variant="h6" color="primary">
             {serviceName}
           </Typography>
-          <Typography>{description}</Typography>
+          <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+            {description}
+          </Typography>
         </Stack>
 
         <Box

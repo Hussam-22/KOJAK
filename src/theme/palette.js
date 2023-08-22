@@ -83,8 +83,8 @@ const CUSTOM = {
   bluishPurple: '#7A77A4',
   bluishPurpleDark: '#626082',
   purple: '#674188',
-  orange: '#FFB84C',
-  red: '#F16767',
+  gold: '#AD8E6A',
+  red: '#B71D18',
   green: '#AACB73',
   contrastText: '#FFFFFF',
 };

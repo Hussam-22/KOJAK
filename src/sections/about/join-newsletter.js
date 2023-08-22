@@ -107,7 +107,7 @@ export default function JoinNewsletter() {
               justifyContent={{ md: 'space-between' }}
               direction={{ xs: 'column-reverse', md: 'row' }}
             >
-              <Grid xs={12} md={5} sx={{ textAlign: 'center', color: 'grey.800' }}>
+              <Grid xs={12} md={5} sx={{ textAlign: 'center' }}>
                 <Typography variant="h3">{translate('newsLetter.title')}</Typography>
 
                 <Typography sx={{ mt: 2.5, mb: 5 }}>{translate('newsLetter.subTitle')}</Typography>

@@ -1,13 +1,25 @@
 import { useNavigate } from 'react-router';
+import { useState, useCallback } from 'react';
 
 import { useTheme } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import { Box, Card, Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Card,
+  Button,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Unstable_Grid2 as Grid,
+  accordionSummaryClasses,
+} from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
+import Iconify from 'src/components/iconify/Iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -16,69 +28,91 @@ export default function FAQs() {
   const navigate = useNavigate();
   const { translate } = useLocales();
 
-  return (
-    <Box sx={{ bgcolor: 'background.neutral', overflow: 'hidden' }}>
-      <Container
-        sx={{
-          py: 10,
-        }}
-        maxWidth="xl"
-      >
-        <Stack direction="column" spacing={5}>
-          <Box
-            sx={{ maxWidth: { md: '60%', xs: '100%' }, textAlign: { md: 'left', xs: 'center' } }}
-          >
-            <Typography variant="h2" sx={{ color: 'common.black', mb: 3 }}>
-              {translate('faq.title')}
-            </Typography>
-            <Typography
-              sx={{ color: 'common.black', fontWeight: theme.typography.fontWeightLight }}
-            >
-              {translate('faq.subTitle')}
-            </Typography>
-          </Box>
+  const mdUp = useResponsive('up', 'md');
 
-          <Box
-            sx={{
-              rowGap: 2.5,
-              columnGap: 3,
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: 'repeat(1, 1fr)',
-                md: 'repeat(3, 1fr)',
-              },
-            }}
-          >
-            {[...Array(6)].map((_, index) => (
-              <Card sx={{ p: 3 }} key={index}>
-                <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChangeExpanded = useCallback(
+    (panel) => (event, isExpanded) => {
+      setExpanded(isExpanded ? panel : false);
+    },
+    []
+  );
+
+  return (
+    <Container
+      sx={{
+        py: 10,
+      }}
+      maxWidth="xl"
+    >
+      <Grid container spacing={4}>
+        <Grid md={6} xs={12}>
+          {[...Array(6)].map((_, index) => (
+            <Accordion
+              key={index}
+              expanded={expanded === translate(`faq.${index + 1}.question`)}
+              onChange={handleChangeExpanded(translate(`faq.${index + 1}.question`))}
+            >
+              <AccordionSummary
+                sx={{
+                  minHeight: 64,
+                  [`& .${accordionSummaryClasses.content}`]: {
+                    p: 0,
+                    m: 0,
+                  },
+                  [`&.${accordionSummaryClasses.expanded}`]: {
+                    backgroundColor: 'common.black',
+                    color: 'primary.main',
+                  },
+                }}
+              >
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
                   {translate(`faq.${index + 1}.question`)}
                 </Typography>
 
-                <Typography
-                  variant="body2"
-                  sx={{ textAlign: 'center', fontWeight: theme.typography.fontWeightLight }}
-                >
-                  {translate(`faq.${index + 1}.answer`)}
-                </Typography>
-              </Card>
-            ))}
-          </Box>
-        </Stack>
+                <Iconify
+                  width={24}
+                  icon={
+                    expanded === translate(`faq.${index + 1}.question`)
+                      ? 'carbon:subtract'
+                      : 'carbon:add'
+                  }
+                />
+              </AccordionSummary>
 
-        <Box sx={{ mt: 10, textAlign: 'center' }}>
-          <Typography variant="h2">{translate('faq.join')}</Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            sx={{ px: 4, typography: 'h4', mt: 2 }}
-            onClick={() => navigate(paths.website.properties)}
-          >
-            {translate('common.exploreProperties')}
-          </Button>
-        </Box>
-      </Container>
-    </Box>
+              <AccordionDetails sx={{ bgcolor: 'common.black' }}>
+                {translate(`faq.${index + 1}.answer`)}
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Grid>
+
+        <Grid md={6} xs={12}>
+          <Stack direction="column" spacing={5} sx={{ pl: 4 }}>
+            <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+              <Typography variant="h2" sx={{ mb: 3 }}>
+                {translate('faq.title')}
+              </Typography>
+              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                {translate('faq.subTitle')}
+              </Typography>
+            </Box>
+
+            <Box>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                sx={{ px: 4, typography: 'h4', mt: 2 }}
+                onClick={() => navigate(paths.website.properties)}
+              >
+                {translate('common.exploreProperties')}
+              </Button>
+            </Box>
+          </Stack>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

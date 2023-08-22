@@ -14,12 +14,13 @@ export default function LandingView() {
       <LandingHero />
       <Services />
       <LandingAbout />
-      <GroupAd />
       <LandingTestimonial />
-      {/* <FAQs /> */}
+      <FAQs />
+      <GroupAd />
       {/* 
       <LatestPosts posts={blogPosts.slice(0, 6)} />
-      <JoinNewsletter /> */}
+    */}
+      <JoinNewsletter />
     </>
   );
 }

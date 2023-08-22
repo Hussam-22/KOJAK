@@ -19,9 +19,9 @@ const en = {
     title: `Free AC Gas Refill and Full Diagnostic Report `,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
-    apartments: 'Apartments',
-    happyTenants: 'Happy Tenants',
-    leasesProcessed: 'Leases processed',
+    experience: 'Years of Experience',
+    happyCustomers: 'Happy Customers',
+    carsRepaired: 'Cars Repaired',
   },
   why: {
     title: `We are Mercedes-Benz Experts`,
@@ -165,9 +165,8 @@ const en = {
   testimonial: { title: 'What Our Customer Say' },
 
   newsLetter: {
-    title: 'Stay Ahead, Never Miss an Available Property Again!',
-    subTitle: `Be the First to Know: Register Your Interest, and Our Team Will Notify You Promptly
-    When a Property Becomes Available!`,
+    title: 'Stay Tuned, Never Miss an Offer Again!',
+    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
   },
 
   common: {
