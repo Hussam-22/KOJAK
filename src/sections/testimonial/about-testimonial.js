@@ -13,37 +13,7 @@ import Iconify from 'src/components/iconify/Iconify';
 // utils
 
 export default function LandingTestimonial() {
-  const carouselRef = useRef(null);
-
   const theme = useTheme();
-
-  const carouselSettings = {
-    slidesToShow: 3,
-    centerMode: true,
-    centerPadding: '60px',
-    autoplay: true,
-    speed: 6000,
-    autoplaySpeed: 6000,
-    cssEase: 'linear',
-    infinite: true,
-    pauseOnHover: false,
-    slidesToScroll: 1,
-    rtl: Boolean(theme.direction === 'rtl'),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 600,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
-        settings: { slidesToShow: 1, centerPadding: '0' },
-      },
-    ],
-  };
 
   return (
     <Container maxWidth="xl" sx={{ py: 10 }}>

@@ -44,54 +44,54 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Container
-      sx={{
-        pt: { xs: 5, md: 10 },
-        pb: 5,
-      }}
-      component={m.div}
-      variants={varFade().inLeft}
-      maxWidth="xl"
-    >
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent={{ xs: 'center', md: 'space-between' }}
+    <Box sx={{ bgcolor: 'background.neutral' }}>
+      <Container
         sx={{
-          mb: { xs: 8, md: 10 },
-          textAlign: { xs: 'center', md: 'left' },
+          pt: 10,
+          pb: 15,
+          mt: 5,
         }}
+        component={m.div}
+        variants={varFade().inLeft}
+        maxWidth="xl"
       >
         <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent={{ xs: 'center', md: 'space-between' }}
           sx={{
-            maxWidth: { md: '60%', xs: 'unset' },
+            mb: 5,
+            textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          <Typography variant="h2" sx={{ mb: 3 }}>
-            {translate('blog.title')}
-          </Typography>
-
-          <Typography
-            sx={{ color: 'text.secondary', fontWeight: theme.typography.fontWeightLight }}
+          <Stack
+            sx={{
+              maxWidth: { md: '60%', xs: 'unset' },
+            }}
           >
-            {translate('blog.subTitle')}
-          </Typography>
+            <Typography variant="h2" sx={{ mb: 3 }}>
+              {translate('blog.title')}
+            </Typography>
+
+            <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+              {translate('blog.subTitle')}
+            </Typography>
+          </Stack>
+
+          {mdUp && viewAllBtn}
         </Stack>
 
-        {mdUp && viewAllBtn}
-      </Stack>
-
-      <Box
-        sx={{
-          display: 'grid',
-          gap: { xs: 3, md: 4 },
-          gridTemplateColumns: {
-            xs: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-          },
-        }}
-      >
-        {mdUp ? (
+        <Box
+          sx={{
+            display: 'grid',
+            gap: { xs: 3, md: 4 },
+            gridTemplateColumns: {
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(3, 1fr)',
+            },
+          }}
+        >
+          {/* {mdUp ? (
           <>
             <LatestPostItem post={latestPost} largePost />
 
@@ -107,15 +107,19 @@ export default function LatestPosts({ posts }) {
               <PostItemMobile key={post.id} post={post} />
             ))}
           </>
-        )}
-      </Box>
+        )} */}
+          {posts.slice(0, 5).map((post) => (
+            <PostItemMobile key={post.id} post={post} />
+          ))}
+        </Box>
 
-      {!mdUp && (
-        <Stack alignItems="center" sx={{ mt: 4 }}>
-          {viewAllBtn}
-        </Stack>
-      )}
-    </Container>
+        {!mdUp && (
+          <Stack alignItems="center" sx={{ mt: 4 }}>
+            {viewAllBtn}
+          </Stack>
+        )}
+      </Container>
+    </Box>
   );
 }
 

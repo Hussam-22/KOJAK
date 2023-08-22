@@ -37,10 +37,7 @@ export default function GroupAd() {
   return (
     <Box
       sx={{
-        // bgcolor: 'background.neutral',
-        m: 10,
-        pt: 5,
-        pb: 15,
+        py: 10,
         backgroundImage: 'url(/assets/shape/bbblurry.svg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -51,7 +48,7 @@ export default function GroupAd() {
         <Stack spacing={3}>
           <Typography variant="h2">Experience the Difference</Typography>
           <Typography
-            sx={{ fontWeight: theme.typography.fontWeightLight }}
+            sx={{ fontWeight: theme.typography.fontWeightLight, mb: 4 }}
           >{`At KOJAK, we're more than an auto repair shop; we're your automotive partners. Whether you need maintenance, repairs, spare parts, or a new Mercedes, you can trust us to deliver excellence and dedication. Visit us today and explore our Mercedes spare parts and car sales showroom. Discover why Mercedes-Benz enthusiasts choose KOJAK as their trusted partner in all things Mercedes-Benz.`}</Typography>
 
           <Grid container spacing={5} sx={{ height: 600 }}>
