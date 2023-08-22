@@ -104,7 +104,6 @@ export default function FAQs() {
                 variant="contained"
                 color="primary"
                 size="large"
-                sx={{ px: 4, typography: 'h4', mt: 2 }}
                 onClick={() => navigate(paths.website.properties)}
               >
                 {translate('common.exploreProperties')}

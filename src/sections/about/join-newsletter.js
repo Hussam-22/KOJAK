@@ -96,7 +96,7 @@ export default function JoinNewsletter() {
           sx={{
             py: { xs: 5, md: 10 },
             overflow: 'hidden',
-            bgcolor: 'background.neutral',
+            // bgcolor: 'background.neutral',
           }}
         >
           <Container>
