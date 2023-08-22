@@ -95,7 +95,6 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             py: { xs: 5, md: 10 },
-            overflow: 'hidden',
             // bgcolor: 'background.neutral',
           }}
         >

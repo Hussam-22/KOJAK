@@ -17,9 +17,9 @@ export default function LandingView() {
       <LandingTestimonial />
       <FAQs />
       <GroupAd />
-      {/* 
-      <LatestPosts posts={blogPosts.slice(0, 6)} />
-    */}
+
+      {/* <LatestPosts posts={blogPosts.slice(0, 6)} /> */}
+
       <JoinNewsletter />
     </>
   );
