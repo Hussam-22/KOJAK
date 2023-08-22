@@ -62,7 +62,7 @@ export default function FAQs() {
                     m: 0,
                   },
                   [`&.${accordionSummaryClasses.expanded}`]: {
-                    backgroundColor: 'common.black',
+                    backgroundColor: 'background.default',
                     color: 'primary.main',
                   },
                 }}
@@ -81,7 +81,7 @@ export default function FAQs() {
                 />
               </AccordionSummary>
 
-              <AccordionDetails sx={{ bgcolor: 'common.black' }}>
+              <AccordionDetails sx={{ bgcolor: 'background.default' }}>
                 {translate(`faq.${index + 1}.answer`)}
               </AccordionDetails>
             </Accordion>

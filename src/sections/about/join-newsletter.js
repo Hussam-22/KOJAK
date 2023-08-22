@@ -3,11 +3,12 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
-import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import { Stack, useTheme } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { useLocales } from 'src/locales';
@@ -28,6 +29,7 @@ export default function JoinNewsletter() {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
+  const theme = useTheme();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,49 +96,32 @@ export default function JoinNewsletter() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
-            py: { xs: 5, md: 10 },
-            // bgcolor: 'background.neutral',
+            py: 5,
+            bgcolor: 'primary.main',
           }}
         >
-          <Container>
-            <Grid
-              container
-              spacing={{ xs: 5, md: 3 }}
-              alignItems={{ md: 'center' }}
-              justifyContent={{ md: 'space-between' }}
-              direction={{ xs: 'column-reverse', md: 'row' }}
-            >
-              <Grid xs={12} md={5} sx={{ textAlign: 'center' }}>
-                <Typography variant="h3">{translate('newsLetter.title')}</Typography>
+          <Container maxWidth="md">
+            <Stack direction="column" spacing={2} sx={{ color: 'common.black' }}>
+              <Typography variant="h3">{translate('newsLetter.title')}</Typography>
+              <Typography>{translate('newsLetter.subTitle')}</Typography>
 
-                <Typography sx={{ mt: 2.5, mb: 5 }}>{translate('newsLetter.subTitle')}</Typography>
+              <Stack direction="row" spacing={1}>
+                <RHFTextField name="email" label={translate('form.email')} />
 
-                <Stack direction="row" spacing={1}>
-                  <RHFTextField name="email" label={translate('form.email')} />
-
-                  <LoadingButton
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                    color="secondary"
-                    loading={isSubmitting}
-                    sx={{
-                      mx: { xs: 'auto !important', md: 'unset !important' },
-                    }}
-                  >
-                    {translate('form.register')}
-                  </LoadingButton>
-                </Stack>
-              </Grid>
-
-              <Grid xs={12} md={5}>
-                <Image
-                  alt="newsletter"
-                  src="/assets/illustrations/illustration_newsletter.svg"
-                  sx={{ maxWidth: 366, mx: 'auto' }}
-                />
-              </Grid>
-            </Grid>
+                <LoadingButton
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  loading={isSubmitting}
+                  sx={{
+                    mx: { xs: 'auto !important', md: 'unset !important' },
+                  }}
+                >
+                  {translate('form.register')}
+                </LoadingButton>
+              </Stack>
+            </Stack>
           </Container>
         </Box>
       </FormProvider>

@@ -16,17 +16,17 @@ import Iconify from 'src/components/iconify/Iconify';
 
 const GROUPS = [
   {
-    title: 'KOJAK Exclusive',
+    title: 'Exclusive',
     description: `At KOJAK, we're proud to offer more than just exceptional auto repair and maintenance services. Our commitment to enhancing your automotive journey extends to providing you with an exquisite collection of Mercedes cars that embody luxury, performance, and sophistication`,
     img: 'car-6',
   },
   {
-    title: 'KOJAK Spare Parts',
+    title: 'Spare Parts',
     description: `At KOJAK, we're not just your trusted destination for automotive repairs and services; we're also your go-to source for genuine Mercedes spare parts. We believe in offering our valued customers a comprehensive solution that encompasses both top-notch auto care and access to the finest Mercedes-Benz components`,
     img: 'car-7',
   },
   {
-    title: 'KOJAK Auto Maintenance',
+    title: 'Auto Maintenance',
     description: `ipsum dolor sit amet consectetur adipisicing elit. Delectus rerum illum odit eveniet, eum aliquid repellendus rem, accusantium maiores, debitis asperiores culpa tenetur. Sint unde accusamus veniam architecto odit dolor.`,
     img: 'car-1',
   },
@@ -81,9 +81,12 @@ function GroupCard({ title, description, img }) {
       }}
     >
       <Stack direction="column" sx={{ flexGrow: 1, p: 3 }} spacing={2}>
-        <Typography variant="h3" sx={{ color: 'primary.main' }}>
-          {title}
-        </Typography>
+        <Box>
+          <Typography variant="overline">KOJAK</Typography>
+          <Typography variant="h3" sx={{ color: 'primary.main' }}>
+            {title}
+          </Typography>
+        </Box>
         <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>
         <Box>
           <Button
