@@ -7,9 +7,9 @@ import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
 import Container from '@mui/material/Container';
-import { Stack, useTheme } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { Stack, SvgIcon, useTheme } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
@@ -101,27 +101,34 @@ export default function JoinNewsletter() {
           }}
         >
           <Container maxWidth="md">
-            <Stack direction="column" spacing={2} sx={{ color: 'common.black' }}>
-              <Typography variant="h3">{translate('newsLetter.title')}</Typography>
-              <Typography>{translate('newsLetter.subTitle')}</Typography>
+            <Grid container spacing={3}>
+              <Grid md={8} xs={12} sx={{ my: 'auto' }}>
+                <Stack direction="column" spacing={2} sx={{ color: 'common.black' }}>
+                  <Typography variant="h3">{translate('newsLetter.title')}</Typography>
+                  <Typography>{translate('newsLetter.subTitle')}</Typography>
 
-              <Stack direction="row" spacing={1}>
-                <RHFTextField name="email" label={translate('form.email')} />
+                  <Stack direction="row" spacing={1}>
+                    <RHFTextField name="email" label={translate('form.email')} />
 
-                <LoadingButton
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  loading={isSubmitting}
-                  sx={{
-                    mx: { xs: 'auto !important', md: 'unset !important' },
-                  }}
-                >
-                  {translate('form.register')}
-                </LoadingButton>
-              </Stack>
-            </Stack>
+                    <LoadingButton
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      color="secondary"
+                      loading={isSubmitting}
+                      sx={{
+                        mx: { xs: 'auto !important', md: 'unset !important' },
+                      }}
+                    >
+                      {translate('form.register')}
+                    </LoadingButton>
+                  </Stack>
+                </Stack>
+              </Grid>
+              <Grid md={4} xs={12} sx={{ p: 7 }}>
+                <Image src="/assets/illustrations/mail.svg" />
+              </Grid>
+            </Grid>
           </Container>
         </Box>
       </FormProvider>

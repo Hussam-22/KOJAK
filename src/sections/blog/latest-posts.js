@@ -49,7 +49,7 @@ export default function LatestPosts({ posts }) {
         sx={{
           pt: 10,
           pb: 15,
-          mt: 5,
+          mt: 10,
         }}
         component={m.div}
         variants={varFade().inLeft}

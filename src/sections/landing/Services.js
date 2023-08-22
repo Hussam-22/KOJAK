@@ -1,7 +1,7 @@
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { _autoRepairServices } from 'src/_mock';
-import ServiceItem from 'src/sections/services/service-item';
+import ServiceItem from 'src/sections/components/service-item';
 
 export default function Services() {
   const theme = useTheme();

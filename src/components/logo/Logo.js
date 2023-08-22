@@ -23,7 +23,7 @@ function Logo({ small = false, light = false, sx }) {
     >
       <g
         transform="translate(0.000000,239.000000) scale(0.100000,-0.100000)"
-        fill={light ? '#FFFFFF' : '#000000'}
+        fill={light ? '#000000' : '#FFFFFF'}
         stroke="none"
       >
         <path
