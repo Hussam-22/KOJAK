@@ -97,13 +97,13 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             py: 5,
-            bgcolor: 'primary.main',
+            bgcolor: 'secondary.dark',
           }}
         >
           <Container maxWidth="md">
             <Grid container spacing={3}>
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
-                <Stack direction="column" spacing={2} sx={{ color: 'common.black' }}>
+                <Stack direction="column" spacing={2} sx={{ color: 'common.white' }}>
                   <Typography variant="h3">{translate('newsLetter.title')}</Typography>
                   <Typography>{translate('newsLetter.subTitle')}</Typography>
 
@@ -114,7 +114,7 @@ export default function JoinNewsletter() {
                       size="large"
                       type="submit"
                       variant="contained"
-                      color="secondary"
+                      color="primary"
                       loading={isSubmitting}
                       sx={{
                         mx: { xs: 'auto !important', md: 'unset !important' },

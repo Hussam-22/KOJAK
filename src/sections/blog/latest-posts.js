@@ -26,8 +26,6 @@ export default function LatestPosts({ posts }) {
   const theme = useTheme();
   const { translate } = useLocales();
 
-  const latestPost = posts[5];
-
   const viewAllBtn = (
     <Button
       component={RouterLink}
@@ -108,7 +106,7 @@ export default function LatestPosts({ posts }) {
             ))}
           </>
         )} */}
-          {posts.slice(0, 5).map((post) => (
+          {posts.slice(0, 6).map((post) => (
             <PostItemMobile key={post.id} post={post} />
           ))}
         </Box>

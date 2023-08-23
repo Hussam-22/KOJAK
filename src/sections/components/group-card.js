@@ -14,7 +14,7 @@ function GroupCard({ title, description, img }) {
         height: 1,
         display: 'flex',
         flexDirection: 'column',
-        boxShadow: `-5px 5px 0 0 ${theme.palette.primary.main}`,
+        boxShadow: `-3px 3px 0 0 ${theme.palette.primary.main}`,
         p: 3,
       }}
     >

@@ -15,8 +15,8 @@ const en = {
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Get 20% discount on Labour Charges, ',
-    title: `Free AC Gas Refill and Full Diagnostic Report `,
+    heroText: 'Performance Meets Precision: ',
+    title: `Your Mercedes, Our Expertise`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
     experience: 'Years of Experience',
@@ -62,36 +62,48 @@ const en = {
     We've compiled a list of inquiries that customers frequently ask us. Below,
     you'll find information on various topics to assist you in getting the answers you
     need.`,
-    join: 'Join 842+ Happy Tenants',
+
     1: {
-      question: 'What types of spaces do you offer for lease?',
-      answer: `We offer a wide range of spaces for lease, including residential properties such as apartments, houses, condos, and townhouses. Additionally, we provide commercial spaces like offices, retail stores, warehouses, and more.
-    `,
+      question: 'What Types of Services Do You Offer for Mercedes Vehicles?',
+      answer:
+        "We offer a comprehensive range of services for Mercedes-Benz vehicles, including routine maintenance (oil changes, brake inspections, tire rotations), major repairs, engine diagnostics, and performance tuning. Whether it's a minor service or a complex repair, we have you covered.",
     },
     2: {
-      question: `Can I schedule a viewing of the properties I'm interested in?`,
-      answer: `Of course! Once you find a property that interests you, you can easily schedule a viewing through our website. Our team will coordinate with you to arrange a suitable time for the visit.`,
+      question: 'How Can I Schedule an Appointment for Service?',
+      answer:
+        "Scheduling an appointment is easy. You can give us a call, visit our website, or use our online appointment booking system. Just select a date and time that works for you, and we'll be ready to provide your Mercedes with top-notch service.",
+      buttonText: 'Book An Appointment',
     },
     3: {
-      question: `How can I get assistance during the leasing process?`,
-      answer: `Our team of real estate experts is here to assist you throughout the entire leasing process. Whether you have questions about a property, need guidance on the paperwork, or require negotiation support, we're just a phone call or email away.`,
+      question: 'What Are the Benefits of Using Genuine Mercedes Parts?',
+      answer:
+        "Genuine Mercedes parts are designed and manufactured specifically for your vehicle, ensuring the highest quality and performance. They fit perfectly, maintain your car's authenticity, and often come with warranties, providing peace of mind.",
+      buttonText: 'Visit Kojak Spare-Parts Website',
     },
     4: {
-      question: `Are there any additional fees or hidden costs during the leasing process?`,
-      answer: `We believe in transparency, and we strive to present all costs associated with leasing upfront. There are no hidden fees, and any additional charges will be clearly communicated to you.`,
+      question: 'How Can I Keep My Mercedes-Benz Running at Its Best Between Services?',
+      answer:
+        "Regular maintenance is key. In addition, follow your manufacturer's recommended service schedule, drive gently, keep an eye on fluid levels, and address any unusual sounds or issues promptly. Our blog and newsletter also provide valuable tips for Mercedes-Benz owners.",
     },
     5: {
-      question: `What lease terms do you offer for residential and commercial spaces?`,
-      answer: `We offer a variety of lease terms to accommodate different needs. These may include short-term leases, long-term leases, and flexible lease options. You can choose the term that best suits your requirements.`,
+      question: 'Is Your Mercedes Auto Repair Shop Equipped with the Latest Diagnostic Technology?',
+      answer:
+        'Yes, we invest in state-of-the-art diagnostic equipment designed specifically for Mercedes-Benz vehicles. This technology allows us to accurately diagnose issues and perform precise repairs, ensuring your car receives the best care.',
     },
     6: {
-      question: `How do I initiate the leasing process once I find the ideal space?`,
-      answer: `Once you've found the perfect space, simply get in touch with our team, and we'll guide you through the leasing process, helping you complete all the necessary paperwork and formalities.`,
+      question: 'How Do Your Prices Compare to Other Auto Repair Shops?',
+      answer:
+        'While pricing can vary depending on the service required, we offer competitive rates for the specialized expertise and genuine Mercedes parts we provide. Our focus is on quality and reliability, ensuring that you receive excellent value for your investment in your Mercedes-Benz.',
+    },
+    7: {
+      question: 'Do You Offer a Warranty on Your Repairs and Services?',
+      answer:
+        "Yes, we stand behind the quality of our work. We offer warranties on our repairs and services, giving you added peace of mind. If you encounter any issues related to our service, simply reach out to us, and we'll address them promptly.",
     },
   },
   blog: {
-    title: 'Check out our Blog',
-    subTitle: `Your go-to resource for all things related to property renting and leasing. Whether you're a seasoned tenant or a first-time renter, a property owner, or a curious observer of the real estate market, our blog is designed to provide you with valuable information, tips, and industry insights`,
+    title: 'Maintenance Matters Blog',
+    subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
   },
 
   about: {

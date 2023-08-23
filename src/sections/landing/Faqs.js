@@ -82,7 +82,23 @@ export default function FAQs() {
               </AccordionSummary>
 
               <AccordionDetails sx={{ bgcolor: 'background.default' }}>
-                {translate(`faq.${index + 1}.answer`)}
+                <Stack direction="column" spacing={2}>
+                  {translate(`faq.${index + 1}.answer`)}
+                  {index === 2 && (
+                    <Box>
+                      <Button variant="contained" color="primary">
+                        {translate(`faq.${index + 1}.buttonText`)}
+                      </Button>
+                    </Box>
+                  )}
+                  {index === 1 && (
+                    <Box>
+                      <Button variant="contained" color="primary">
+                        {translate(`faq.${index + 1}.buttonText`)}
+                      </Button>
+                    </Box>
+                  )}
+                </Stack>
               </AccordionDetails>
             </Accordion>
           ))}
