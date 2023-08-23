@@ -1,5 +1,6 @@
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
+import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
 
@@ -19,11 +20,14 @@ export default function Services() {
           </Button>
         </Stack>
       </Stack>
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3, my: 6 }}>
+      <Box sx={{ p: 10 }}>
+        <Image src="/assets/images/hero/car-services-2.png" sx={{ borderRadius: 3 }} />
+      </Box>
+      {/* <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3, my: 6 }}>
         {_autoRepairServices.map((service) => (
           <ServiceItem service={service} key={service.id} />
         ))}
-      </Box>
+      </Box> */}
     </Container>
   );
 }
