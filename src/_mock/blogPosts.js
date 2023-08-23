@@ -24,7 +24,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `Your Mercedes-Benz deserves the best care, and a specialized Mercedes auto repair shop provides the expertise and precision your luxury vehicle demands.`,
-        imageURL: '/assets/images/cars/car-4.webp',
+        // imageURL: '/assets/images/cars/car-4.webp',
       },
     ],
     author: {
@@ -58,7 +58,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `Don't compromise on the performance, safety, and longevity of your Mercedes-Benz. Choose a Mercedes auto repair shop for regular maintenance and servicing.`,
-        imageURL: '/assets/images/cars/car-8.webp',
+        // imageURL: '/assets/images/cars/car-8.webp',
       },
     ],
     author: {
@@ -92,7 +92,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `Your Mercedes-Benz is a testament to engineering excellence. Ensure it continues to perform at its best by choosing a Mercedes auto repair shop for all your service needs.`,
-        imageURL: '/assets/images/cars/car-10.webp',
+        // imageURL: '/assets/images/cars/car-10.webp',
       },
     ],
     author: {
@@ -126,7 +126,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `Your Mercedes-Benz is built to last, and with the right care, it can continue to delight you for many miles and years.`,
-        imageURL: '/assets/images/cars/car-13.webp',
+        // imageURL: '/assets/images/cars/car-13.webp',
       },
     ],
     author: {
@@ -160,7 +160,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `The engine is the heart of your Mercedes-Benz, and it deserves the specialized care only a Mercedes auto repair shop can provide.`,
-        imageURL: '/assets/images/cars/car-27.webp',
+        // imageURL: '/assets/images/cars/car-27.webp',
       },
     ],
     author: {
@@ -194,7 +194,7 @@ export const blogPosts = [
       {
         title: 'Conclusion',
         text: `Don't compromise on safety. Prioritize brake service at a Mercedes auto repair shop to ensure your peace of mind and safety on the road.`,
-        imageURL: '/assets/images/cars/car-19.webp',
+        // imageURL: '/assets/images/cars/car-19.webp',
       },
     ],
     author: {

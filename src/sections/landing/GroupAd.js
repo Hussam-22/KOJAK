@@ -42,15 +42,15 @@ export default function GroupAd() {
       }}
     >
       <Container maxWidth="xl">
-        <Stack spacing={3}>
+        <Stack>
           <Typography variant="h2">Experience the Difference</Typography>
           <Typography
             sx={{ fontWeight: theme.typography.fontWeightLight, mb: 4 }}
           >{`At KOJAK, we're more than an auto repair shop; we're your automotive partners. Whether you need maintenance, repairs, spare parts, or a new Mercedes, you can trust us to deliver excellence and dedication. Visit us today and explore our Mercedes spare parts and car sales showroom. Discover why Mercedes-Benz enthusiasts choose KOJAK as their trusted partner in all things Mercedes-Benz.`}</Typography>
 
-          <Grid container spacing={5} sx={{ height: 600 }}>
+          <Grid container spacing={5} sx={{ height: 600, px: 10 }}>
             {GROUPS.map((group) => (
-              <Grid md={4} xs={12} key={group.title}>
+              <Grid md={4} xs={12} key={group.title} sx={{ px: 2 }}>
                 <GroupCard title={group.title} description={group.description} img={group.img} />
               </Grid>
             ))}

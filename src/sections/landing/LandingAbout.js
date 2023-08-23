@@ -45,6 +45,7 @@ export default function LandingAbout() {
             my: 8,
             maxWidth: { md: '55%', xs: '100%' },
             textAlign: { md: 'left', xs: 'center' },
+            ml: 4,
           }}
         >
           <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>

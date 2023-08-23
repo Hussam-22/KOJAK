@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { useState, useEffect, useCallback } from 'react';
 
-import { Link } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
-import Container from '@mui/material/Container';
+import { Link, useTheme } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
@@ -66,7 +66,7 @@ export default function BlogItemView() {
             <Typography variant="h2" component="h1">
               {title}
             </Typography>
-
+            {/* 
             <Stack direction="row" justifyContent="space-between" spacing={1.5} sx={{ my: 5 }}>
               <Avatar src={author.avatarUrl} sx={{ width: 48, height: 48 }} />
 
@@ -82,7 +82,7 @@ export default function BlogItemView() {
               <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
                 <Iconify icon="carbon:share" />
               </IconButton>
-            </Stack>
+            </Stack> */}
 
             <Typography variant="h5" sx={{ mb: 5 }}>
               {description}
@@ -122,6 +122,7 @@ export default function BlogItemView() {
 
 function ContentMarkdown({ content, postTitle }) {
   const { title, text, imageURL } = content;
+  const theme = useTheme();
   return (
     <Stack spacing={3}>
       {title.length !== 0 && (
@@ -130,11 +131,18 @@ function ContentMarkdown({ content, postTitle }) {
         </Typography>
       )}
       {text.length !== 0 && (
-        <Typography variant="body1" sx={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: 'justify',
+            whiteSpace: 'pre-line',
+            fontWeight: theme.typography.fontWeightLight,
+          }}
+        >
           {text}
         </Typography>
       )}
-      {imageURL.length !== 0 && (
+      {imageURL?.length !== undefined && imageURL?.length !== 0 && (
         <Image src={imageURL} alt="postTitle" ratio="4/3" sx={{ borderRadius: 1 }} />
       )}
     </Stack>
