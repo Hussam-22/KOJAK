@@ -36,6 +36,8 @@ export default function Header({ headerOnDark }) {
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
 
+  const openAppointmentModal = () => {};
+
   const toggleLanguageHandler = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -92,11 +94,7 @@ export default function Header({ headerOnDark }) {
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => navigate(paths.website.properties)}
-                  >
+                  <Button variant="contained" color="primary" onClick={openAppointmentModal}>
                     {translate('common.exploreProperties')}
                   </Button>
                   {/* <IconButton

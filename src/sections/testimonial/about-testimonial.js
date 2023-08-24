@@ -4,19 +4,23 @@ import PropTypes from 'prop-types';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Card, Stack, Avatar, Rating, Container, Typography } from '@mui/material';
+import { Box, Card, Stack, Button, Rating, Avatar, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 // components
 import { _testimonials } from 'src/_mock';
 import Carousel from 'src/components/carousel';
 import Iconify from 'src/components/iconify/Iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
 // utils
 
 export default function LandingTestimonial() {
   const theme = useTheme();
+  const { translate } = useLocales();
+  const mdUp = useResponsive('up', 'md');
 
   return (
-    <Container maxWidth="xl" sx={{ py: 10 }}>
+    <Container maxWidth="xl" sx={{ py: 8 }}>
       <Grid container spacing={3}>
         <Grid md={5} xs={12}>
           <Typography variant="h2" sx={{ zIndex: 9, color: 'common.white', mb: 2 }}>
@@ -27,10 +31,22 @@ export default function LandingTestimonial() {
             But don&#39;t just take our word for it – here&#39;s what our valued customers have to
             say about their experiences with us:
           </Typography>
+
+          {mdUp && (
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{ mt: 2 }}
+              // onClick={() => navigate(paths.website.properties)}
+            >
+              {translate('common.exploreProperties')}
+            </Button>
+          )}
         </Grid>
 
         <Grid md={7} xs={12}>
-          <Stack direction="row" spacing={4}>
+          <Stack direction={{ md: 'row', xs: 'column' }} spacing={4}>
             <Stack
               spacing={2}
               sx={{ p: 3, borderRadius: 1, bgcolor: 'primary.main', color: 'common.black' }}
@@ -63,6 +79,20 @@ export default function LandingTestimonial() {
               </Stack>
             </Stack>
           </Stack>
+
+          {!mdUp && (
+            <Box sx={{ textAlign: 'center' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                sx={{ mt: 4 }}
+                // onClick={() => navigate(paths.website.properties)}
+              >
+                {translate('common.exploreProperties')}
+              </Button>
+            </Box>
+          )}
         </Grid>
       </Grid>
 

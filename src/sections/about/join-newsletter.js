@@ -6,14 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Stack, SvgIcon, useTheme } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
@@ -25,11 +26,11 @@ const DIALOG_TEXT = {
 // ----------------------------------------------------------------------
 
 export default function JoinNewsletter() {
-  const emailRef = useRef();
+  const theme = useTheme();
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
-  const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,36 +60,36 @@ export default function JoinNewsletter() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    try {
-      const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
-      const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({ text: dataToSend }),
-        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-      };
-      // Add Form Submit to Slack Channel
-      await fetch(url, requestOptions);
-      addNewForm({
-        source: 'newsletter',
-        fullName: '',
-        mobile: '',
-        email: formData.email,
-        subject: '',
-        inquiry: '',
-        sentTo: '',
-      });
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          handleClickOpen();
-          return resolve();
-        }, 500)
-      );
-      reset();
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
+    //   const url =
+    //     'https://hooks.slack.com/services/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';
+    //   const requestOptions = {
+    //     method: 'POST',
+    //     body: JSON.stringify({ text: dataToSend }),
+    //     credentials: 'omit', // This is equivalent to withCredentials: false in Axios
+    //   };
+    //   // Add Form Submit to Slack Channel
+    //   await fetch(url, requestOptions);
+    //   addNewForm({
+    //     source: 'newsletter',
+    //     fullName: '',
+    //     mobile: '',
+    //     email: formData.email,
+    //     subject: '',
+    //     inquiry: '',
+    //     sentTo: '',
+    //   });
+    //   await new Promise((resolve) =>
+    //     setTimeout(() => {
+    //       handleClickOpen();
+    //       return resolve();
+    //     }, 500)
+    //   );
+    //   reset();
+    // } catch (error) {
+    //   console.error(error);
+    // }
   });
 
   return (
@@ -102,6 +103,10 @@ export default function JoinNewsletter() {
         >
           <Container maxWidth="md">
             <Grid container spacing={3}>
+              <Grid md={4} xs={12} sx={{ p: { md: 7, xs: 2 }, textAlign: 'center' }}>
+                <Image src="/assets/illustrations/mail.svg" width={!mdUp ? '40%' : 'unset'} />
+              </Grid>
+
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
                 <Stack direction="column" spacing={2} sx={{ color: 'common.white' }}>
                   <Typography variant="h3">{translate('newsLetter.title')}</Typography>
@@ -124,9 +129,6 @@ export default function JoinNewsletter() {
                     </LoadingButton>
                   </Stack>
                 </Stack>
-              </Grid>
-              <Grid md={4} xs={12} sx={{ p: 7 }}>
-                <Image src="/assets/illustrations/mail.svg" />
               </Grid>
             </Grid>
           </Container>

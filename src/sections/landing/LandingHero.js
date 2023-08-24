@@ -21,12 +21,29 @@ export default function KojakBuildingLandingHero() {
   const navigate = useNavigate();
   const { translate, onChangeLang, currentLang } = useLocales();
 
+  const openAppointmentModal = () => {};
+
+  const renderOverlay = (
+    <Box
+      sx={{
+        backgroundColor: alpha('#000000', 0.45),
+        top: 0,
+        left: 0,
+        // zIndex: -1,
+        width: 1,
+        height: 1,
+        position: 'absolute',
+      }}
+    />
+  );
+
   return (
     <Box
       sx={{
         position: 'relative',
-        height: { md: '80dvh', xs: '95dvh' },
+        height: '100dvh',
         overflow: 'hidden',
+        minHeight: '-webkit-fill-available',
       }}
     >
       <Box
@@ -38,11 +55,12 @@ export default function KojakBuildingLandingHero() {
       >
         <Image
           src={`/assets/images/hero/hero-${currentLang.value === 'en' ? 'left' : 'right'}.png`}
-          height="90dvh"
+          height="100dvh"
         />
       </Box>
+      {!mdUp && renderOverlay}
 
-      <Container maxWidth="xl" sx={{ height: { md: '100dvh', xs: '95dvh' } }}>
+      <Container maxWidth="xl" sx={{ height: 1 }}>
         <Grid
           container
           sx={{
@@ -101,7 +119,7 @@ export default function KojakBuildingLandingHero() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => navigate(paths.website.properties)}
+                  onClick={openAppointmentModal}
                 >
                   {translate('common.exploreProperties')}
                 </Button>

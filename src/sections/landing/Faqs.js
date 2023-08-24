@@ -42,12 +42,12 @@ export default function FAQs() {
   return (
     <Container
       sx={{
-        py: 10,
+        py: 8,
       }}
       maxWidth="xl"
     >
       <Grid container spacing={4}>
-        <Grid md={6} xs={12}>
+        <Grid md={6} xs={12} sx={{ order: mdUp ? 1 : 2 }}>
           {[...Array(6)].map((_, index) => (
             <Accordion
               key={index}
@@ -67,7 +67,11 @@ export default function FAQs() {
                   },
                 }}
               >
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="h6"
+                  color="primary"
+                  sx={{ flexGrow: 1, fontWeight: theme.typography.fontWeightLight }}
+                >
                   {translate(`faq.${index + 1}.question`)}
                 </Typography>
 
@@ -83,7 +87,10 @@ export default function FAQs() {
 
               <AccordionDetails sx={{ bgcolor: 'background.default' }}>
                 <Stack direction="column" spacing={2}>
-                  {translate(`faq.${index + 1}.answer`)}
+                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                    {translate(`faq.${index + 1}.answer`)}
+                  </Typography>
+
                   {index === 2 && (
                     <Box>
                       <Button variant="contained" color="primary">
@@ -104,26 +111,15 @@ export default function FAQs() {
           ))}
         </Grid>
 
-        <Grid md={6} xs={12}>
-          <Stack direction="column" spacing={5} sx={{ pl: 4 }}>
-            <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+        <Grid md={6} xs={12} sx={{ order: mdUp ? 2 : 1 }}>
+          <Stack direction="column" spacing={5} sx={{ pl: { md: 4 } }}>
+            <Box sx={{ textAlign: 'left' }}>
               <Typography variant="h2" sx={{ mb: 3 }}>
                 {translate('faq.title')}
               </Typography>
               <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
                 {translate('faq.subTitle')}
               </Typography>
-            </Box>
-
-            <Box>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                onClick={() => navigate(paths.website.properties)}
-              >
-                {translate('common.exploreProperties')}
-              </Button>
             </Box>
           </Stack>
         </Grid>

@@ -20,27 +20,27 @@ export default function WhatsAppForm() {
   };
 
   const onSendMessage = () => {
-    const message = textRef.current.value;
-    const CustomerMobileNumber = mobileNumberRef.current.value;
+    // const message = textRef.current.value;
+    // const CustomerMobileNumber = mobileNumberRef.current.value;
 
-    const number = '+971529242623';
+    // const number = '+971529242623';
 
-    // Appending the phone number & Message to the URL
-    const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(
-      message
-    )}&app_absent=0`;
+    // // Appending the phone number & Message to the URL
+    // const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(
+    //   message
+    // )}&app_absent=0`;
 
-    addNewForm({
-      source: 'WhatsApp',
-      fullName: '',
-      mobile: CustomerMobileNumber,
-      email: '',
-      subject: '',
-      inquiry: message,
-      sentTo: number,
-    });
+    // addNewForm({
+    //   source: 'WhatsApp',
+    //   fullName: '',
+    //   mobile: CustomerMobileNumber,
+    //   email: '',
+    //   subject: '',
+    //   inquiry: message,
+    //   sentTo: number,
+    // });
 
-    window.location.href = url;
+    // window.location.href = url;
 
     setIsOpen(false);
   };
@@ -69,7 +69,7 @@ export default function WhatsAppForm() {
             zIndex: 99,
           }}
         >
-          <Card sx={{ p: 3 }}>
+          <Card sx={{ p: 3, bgcolor: 'background.default' }}>
             <IconButton
               aria-label="delete"
               sx={{ position: 'absolute', top: 5, right: 5 }}

@@ -10,8 +10,10 @@ import { Box, Card, useTheme } from '@mui/material';
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
+import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
+import GroupCard from 'src/sections/components/group-card';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
@@ -34,6 +36,7 @@ const GROUPS = [
     image: 'auto-main',
   },
 ];
+
 // ----------------------------------------------------------------------
 
 export default function Footer() {
@@ -53,7 +56,7 @@ export default function Footer() {
         maxWidth="xl"
       >
         <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
-          <Grid xs={12} md={5}>
+          <Grid xs={12} md={4}>
             <Stack spacing={2}>
               <Logo small light />
               <Typography
@@ -67,20 +70,18 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          {!mdUp && (
-            <Grid xs={6} md={2}>
-              <Typography variant="h6" sx={{ color: 'common.white' }}>
-                {translate('footer.groupTitle')}
-              </Typography>
-              <Stack spacing={2} sx={{ mt: 2 }}>
-                {GROUPS.map((group) => (
-                  <Link href={group.url} target="_blank" rel="noopener" key={group.title}>
-                    {translate(`footer.${group.title}.title`)}
-                  </Link>
-                ))}
-              </Stack>
-            </Grid>
-          )}
+          <Grid xs={6} md={2}>
+            <Typography variant="h6" sx={{ color: 'common.white' }}>
+              {translate('footer.groupTitle')}
+            </Typography>
+            <Stack spacing={2} sx={{ mt: 2 }}>
+              {GROUPS.map((group) => (
+                <Link href={group.url} target="_blank" rel="noopener" key={group.title}>
+                  {translate(`footer.${group.title}.title`)}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
 
           <Grid xs={6} md={2}>
             <Typography variant="h6" sx={{ color: 'common.white' }}>
@@ -102,11 +103,18 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          {mdUp && (
-            <Grid xs={12} md={5}>
-              <GroupsCard />
-            </Grid>
-          )}
+          <Grid md={2} xs={6}>
+            <Typography vvariant="h6" sx={{ color: 'common.white' }}>
+              Auto Repair Services
+            </Typography>
+            <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
+              {_autoRepairServices.map((service) => (
+                <Typography key={service.serviceName} variant="body2">
+                  {service.serviceName}
+                </Typography>
+              ))}
+            </Stack>
+          </Grid>
         </Grid>
 
         <Divider sx={{ p: 1 }} />
