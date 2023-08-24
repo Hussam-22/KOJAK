@@ -124,7 +124,7 @@ export function palette(mode) {
       disabled: GREY[500],
     },
     background: {
-      paper: '#FFFFFF',
+      paper: GREY[900],
       default: '#121212',
       neutral: alpha(GREY[500], 0.12),
       peach: SUCCESS.lighter,
@@ -145,7 +145,7 @@ export function palette(mode) {
     },
     background: {
       paper: GREY[800],
-      default: GREY[900],
+      default: '#121212',
       neutral: alpha(GREY[500], 0.12),
     },
     action: {

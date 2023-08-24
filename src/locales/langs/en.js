@@ -15,8 +15,8 @@ const en = {
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Performance Meets Precision: ',
-    title: `Your Mercedes, Our Expertise`,
+    heroText: 'Experience Unmatched Mercedes Mastery ',
+    title: `in Every Repair`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
     experience: 'Years of Experience',

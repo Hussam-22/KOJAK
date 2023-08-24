@@ -10,6 +10,7 @@ export const paths = {
     propertyDetails: '/properties/',
     blogPosts: '/blog-posts',
     blogItem: '/blog-posts/',
+    bookAppointment: '/book-appointment',
   },
   page404: '/404',
   page500: '/500',

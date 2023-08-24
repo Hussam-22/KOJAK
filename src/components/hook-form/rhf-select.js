@@ -84,7 +84,7 @@ export function RHFMultiSelect({
   const { control } = useFormContext();
 
   const renderValues = (selectedIds) => {
-    const selectedItems = options.filter((item) => selectedIds.includes(item.value));
+    const selectedItems = options.filter((item) => selectedIds?.includes(item.value));
 
     if (!selectedItems.length && placeholder) {
       return (
@@ -98,7 +98,7 @@ export function RHFMultiSelect({
       return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
           {selectedItems.map((item) => (
-            <Chip key={item.value} size="small" label={item.label} />
+            <Chip key={item.value} size="small" label={item.label} color="primary" />
           ))}
         </Box>
       );

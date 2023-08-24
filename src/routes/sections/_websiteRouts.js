@@ -8,6 +8,7 @@ const KojakBuildingAboutPage = lazy(() => import('src/pages/about'));
 const ContactUsPage = lazy(() => import('src/pages/contact-us-page'));
 const BlogPostsPage = lazy(() => import('src/pages/blog-posts-page'));
 const BlogItemPage = lazy(() => import('src/pages/blog-item-page'));
+const BookAppointmentPage = lazy(() => import('src/pages/book-appointment-page'));
 // ----------------------------------------------------------------------
 
 export const _websiteRouts = [
@@ -15,12 +16,14 @@ export const _websiteRouts = [
     path: '/',
     children: [
       { element: <KojakBuildingLandingPage />, index: true },
-      { path: 'properties', element: <PropertiesPage /> },
-      { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
+      // { path: 'services', element: <PropertiesPage /> },
+      // { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'contact-us', element: <ContactUsPage /> },
       { path: 'blog-posts', element: <BlogPostsPage /> },
       { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
+      { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
+      { path: 'book-appointment', element: <BookAppointmentPage /> },
       // { path: 'job', element: <JobPage /> },
       // { path: 'posts', element: <BlogPage /> },
       // { path: 'post', element: <PostPage /> },
