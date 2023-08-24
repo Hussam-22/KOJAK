@@ -58,7 +58,7 @@ export default function Footer() {
         <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
           <Grid xs={12} md={4}>
             <Stack spacing={2}>
-              <Logo small light />
+              <Logo small />
               <Typography
                 variant="body2"
                 sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}

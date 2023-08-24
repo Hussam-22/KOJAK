@@ -40,7 +40,7 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        <IconButton
+        {/* <IconButton
           disableFocusRipple
           disableTouchRipple
           disableRipple
@@ -55,7 +55,7 @@ export default function NavMobile({ data, toggleLanguage }) {
           onClick={toggleLanguage}
         >
           {currentLang.value === 'en' ? 'ع' : 'En'}
-        </IconButton>
+        </IconButton> */}
 
         <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
           <Iconify icon="carbon:menu" />
@@ -82,11 +82,7 @@ export default function NavMobile({ data, toggleLanguage }) {
           </List>
 
           <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => navigate(paths.website.properties)}
-            >
+            <Button variant="contained" color="primary" onClick={() => navigate('#')}>
               {translate('common.exploreProperties')}
             </Button>
           </Stack>
