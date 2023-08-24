@@ -18,7 +18,7 @@ export default function KojakBuildingLandingPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Building</title>
+        <title>Kojak Auto Maintenance</title>
         <meta
           name="description"
           content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"
