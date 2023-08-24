@@ -13,7 +13,6 @@ import { useLocales } from 'src/locales';
 import BookAppointmentForm from 'src/components/Dialog/bookAppointmentForm';
 
 export default function BookAppointmentDialog({ open, handleClose }) {
-  const { currentLang } = useLocales();
   return (
     <Dialog
       maxWidth="md"
