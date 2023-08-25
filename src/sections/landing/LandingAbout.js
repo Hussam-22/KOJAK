@@ -12,8 +12,9 @@ import { useResponsive } from 'src/hooks/use-responsive';
 // ----------------------------------------------------------------------
 
 const SUMMARY = [
-  { label: 'happyCustomers', value: 2800, icon: 'ion:happy-outline' },
   { label: 'carsRepaired', value: 3200, icon: 'solar:document-outline' },
+  { label: 'happyCustomers', value: 2800, icon: 'ion:happy-outline' },
+  { label: 'technicians', value: 22, icon: 'bx:building-house' },
   { label: 'experience', value: 12, icon: 'bx:building-house' },
 ];
 
@@ -61,7 +62,7 @@ export default function LandingAbout() {
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: { md: 'repeat(3,1fr)', xs: 'repeat(2,1fr)' },
+              gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
               gap: 4,
             }}
           >

@@ -23,6 +23,7 @@ const en = {
     experience: 'Years of Experience',
     happyCustomers: 'Happy Customers',
     carsRepaired: 'Cars Repaired',
+    technicians: 'Expert Technicians',
   },
   why: {
     title: `We are Mercedes-Benz Experts`,
