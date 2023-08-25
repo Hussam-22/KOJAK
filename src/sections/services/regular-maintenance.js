@@ -1,6 +1,9 @@
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
+import { useNavigate } from 'react-router';
 
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 
 const REGULAR_MAINTENANCE = [
@@ -40,6 +43,7 @@ const REGULAR_MAINTENANCE = [
 
 export default function RegularMaintenance() {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -88,6 +92,16 @@ export default function RegularMaintenance() {
                   </Stack>
                 </Box>
               ))}
+            </Box>
+            <Box sx={{ textAlign: 'center', mb: 4 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={() => navigate(paths.website.contactUs)}
+              >
+                Contact us for Quote
+              </Button>
             </Box>
           </Container>
         </Grid>
