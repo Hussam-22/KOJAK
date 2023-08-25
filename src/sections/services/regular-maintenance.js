@@ -52,7 +52,7 @@ export default function RegularMaintenance() {
       <Grid container>
         <Grid md={7} xs={12}>
           <Container maxWidth="md">
-            <Stack sx={{ px: 7, pt: 7, pb: 3 }}>
+            <Stack sx={{ px: 7, pt: 7 }}>
               <Typography variant="h2">
                 We Offer Comprehensive Regular Maintenance Services
               </Typography>
