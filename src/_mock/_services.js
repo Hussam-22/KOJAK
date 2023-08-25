@@ -10,20 +10,13 @@ const AutoRepairServices = [
   {
     serviceName: 'Tire Rotation and Balancing',
     description: 'This helps extend the life of your tires and ensures even wear.',
-    icon: 'wheel',
+    icon: 'tirebalance',
   },
   {
     serviceName: 'Brake Service',
     description:
       'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
     icon: 'break',
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Wheel Alignment',
-    description:
-      "Proper alignment ensures that your vehicle's wheels are correctly positioned, improving handling and tire life.",
-    icon: 'wheel',
     isDisabled: false,
   },
   {
@@ -40,20 +33,20 @@ const AutoRepairServices = [
     icon: 'engine',
     isDisabled: false,
   },
-  // {
-  //   serviceName: 'Exhaust System Repair',
-  //   description:
-  //     'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
-  //   icon: 'wheel',
-  // isDisabled: false,
-  // },
-  // {
-  //   serviceName: 'Suspension Repair',
-  //   description:
-  //     'Services may involve replacing shocks, struts, control arms, or other suspension components.',
-  //   icon: 'wheel',
-  // isDisabled: false,
-  // },
+  {
+    serviceName: 'Exhaust System Repair',
+    description:
+      'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
+    icon: 'exhaust',
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Suspension Repair',
+    description:
+      'Services may involve replacing shocks, struts, control arms, or other suspension components.',
+    icon: 'suspension',
+    isDisabled: false,
+  },
   // {
   //   serviceName: 'Electrical System Repair',
   //   description:
@@ -86,11 +79,11 @@ const AutoRepairServices = [
   //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
   //   icon: 'wheel',
   // },
-  // {
-  //   serviceName: 'Battery Replacement',
-  //   description: 'When your battery no longer holds a charge, it needs to be replaced.',
-  //   icon: 'wheel',
-  // },
+  {
+    serviceName: 'Battery Replacement',
+    description: 'When your battery no longer holds a charge, it needs to be replaced.',
+    icon: 'batterylight',
+  },
   // {
   //   serviceName: 'Tire Repair and Replacement',
   //   description:
@@ -109,14 +102,9 @@ const AutoRepairServices = [
     icon: 'radiator',
     isDisabled: false,
   },
-  // {
-  //   serviceName: 'Emission System Repair',
-  //   description: 'To ensure your vehicle complies with emission regulations.',
-  //   icon: 'wheel',
-  // },
   {
     serviceName: 'Exterior and Interior Detailing',
-    description: "Not a repair per se, but it can help maintain your car's appearance and value.",
+    description: "Enhances your vehicle's exterior brilliance and restores its interior freshness",
     icon: 'detailing',
     isDisabled: false,
   },

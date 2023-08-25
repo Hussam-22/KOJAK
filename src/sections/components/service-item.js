@@ -9,7 +9,7 @@ export default function ServiceItem({ service }) {
   const theme = useTheme();
   return (
     <Box>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1} sx={{ height: 1 }}>
         <Stack
           direction="column"
           sx={{ width: '80%', bgcolor: 'secondary.main', p: 2, borderRadius: '10px 0 0 10px' }}

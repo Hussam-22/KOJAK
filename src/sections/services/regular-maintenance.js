@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, useTheme, Typography } from '@mui/material';
+import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 
@@ -50,46 +50,53 @@ export default function RegularMaintenance() {
       }}
     >
       <Grid container>
-        <Grid md={6}>
-          <Stack sx={{ px: 7, pt: 7, pb: 3 }}>
-            <Typography variant="h2">
-              We Offer Comprehensive Regular Maintenance Services
-            </Typography>
-            <Typography>{`We specialize in providing top-notch regular maintenance services tailored to your vehicle's specific needs. Our team of skilled technicians uses the latest diagnostic tools and follows manufacturer-recommended service schedules to ensure your car receives the care it deserves.`}</Typography>
-          </Stack>
+        <Grid md={7} xs={12}>
+          <Container maxWidth="md">
+            <Stack sx={{ px: 7, pt: 7, pb: 3 }}>
+              <Typography variant="h2">
+                We Offer Comprehensive Regular Maintenance Services
+              </Typography>
+              <Typography>{`We specialize in providing top-notch regular maintenance services tailored to your vehicle's specific needs. Our team of skilled technicians uses the latest diagnostic tools and follows manufacturer-recommended service schedules to ensure your car receives the care it deserves.`}</Typography>
+            </Stack>
 
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2,1fr)',
-              gap: 4,
-              p: 7,
-            }}
-          >
-            {REGULAR_MAINTENANCE.map((maintenance) => (
-              <Box sx={{ border: 'solid 2px #121212', p: 2, borderRadius: 2 }}>
-                <Stack spacing={1} textAlign="center">
-                  <Box>
-                    <Image
-                      src={`/assets/images/service-icons/${maintenance.icon}.svg`}
-                      width={65}
-                    />
-                  </Box>
-                  <Typography sx={{ fontWeight: theme.typography.fontWeightBold }}>
-                    {maintenance.service}
-                  </Typography>
-                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-                    {maintenance.description}
-                  </Typography>
-                </Stack>
-              </Box>
-            ))}
-          </Box>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
+                gap: 4,
+                p: 7,
+              }}
+            >
+              {REGULAR_MAINTENANCE.map((maintenance) => (
+                <Box
+                  key={maintenance.service}
+                  sx={{ border: 'solid 2px #121212', p: 2, borderRadius: 1 }}
+                >
+                  <Stack spacing={1} textAlign="center">
+                    <Box>
+                      <Image
+                        src={`/assets/images/service-icons/${maintenance.icon}.svg`}
+                        width={65}
+                      />
+                    </Box>
+                    <Typography sx={{ fontWeight: theme.typography.fontWeightBold }}>
+                      {maintenance.service}
+                    </Typography>
+                    <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                      {maintenance.description}
+                    </Typography>
+                  </Stack>
+                </Box>
+              ))}
+            </Box>
+          </Container>
         </Grid>
-        <Grid md={6}>
+        <Grid md={5}>
           <Image src="/assets/images/repair/repair-img-2.jpg" ratio="3/4" />
         </Grid>
       </Grid>
     </Box>
   );
 }
+
+// ['4/3', '3/4', '6/4', '4/6', '16/9', '9/16', '21/9', '9/21', '1/1']
