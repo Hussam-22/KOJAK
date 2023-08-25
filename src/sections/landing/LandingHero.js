@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -10,7 +9,6 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
@@ -21,8 +19,6 @@ export default function KojakBuildingLandingHero() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const { translate, onChangeLang, currentLang } = useLocales();
-
-  const openAppointmentModal = () => {};
 
   const renderOverlay = (
     <Box

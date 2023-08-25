@@ -157,7 +157,7 @@ const en = {
     details: {
       number: '06 5334 312 EXT. 220',
       location: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '9 AM to 6 PM - Saturday to Thursday',
+      hours: '9 AM to 8 PM - Saturday to Thursday',
       follow: 'FOLLOW US',
     },
   },

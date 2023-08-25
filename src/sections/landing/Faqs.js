@@ -7,7 +7,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import {
   Box,
-  Card,
   Button,
   Accordion,
   AccordionDetails,
@@ -67,11 +66,7 @@ export default function FAQs() {
                   },
                 }}
               >
-                <Typography
-                  variant="h6"
-                  color="primary"
-                  sx={{ flexGrow: 1, fontWeight: theme.typography.fontWeightLight }}
-                >
+                <Typography variant="h6" color="primary" sx={{ flexGrow: 1 }}>
                   {translate(`faq.${index + 1}.question`)}
                 </Typography>
 

@@ -49,7 +49,7 @@ export default function ContactUsView() {
         </Box> */}
         <Typography variant="h1">{translate('contactUs.title')}</Typography>
 
-        <Typography sx={{ color: 'text.secondary' }}>{translate('contactUs.subTitle')}</Typography>
+        <Typography>{translate('contactUs.subTitle')}</Typography>
       </Stack>
       <Grid
         container

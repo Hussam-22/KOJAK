@@ -263,6 +263,7 @@ export function AuthProvider({ children }) {
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
       ...payload,
+      website: 'auto maintenance',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
       to: payload.source === 'newsletter' ? [] : ['hussam@hotmail.co.uk'],

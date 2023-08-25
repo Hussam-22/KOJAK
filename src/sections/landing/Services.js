@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router';
+
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
-import Image from 'src/components/image/Image';
+import { paths } from 'src/routes/paths';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
 
 export default function Services() {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
     <Container maxWidth="xl" sx={{ my: 8 }}>
       <Stack spacing={1} sx={{ mb: 4 }}>
@@ -24,7 +27,13 @@ export default function Services() {
             Mercedes-driving experience.
           </Typography>
 
-          <Button variant="outlined" color="primary" size="large" sx={{ width: { md: '18%' } }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            sx={{ width: { md: '18%' } }}
+            onClick={() => navigate(paths.website.services)}
+          >
             Full list of services
           </Button>
         </Stack>
