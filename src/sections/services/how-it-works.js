@@ -47,7 +47,7 @@ const TIMELINES = [
   },
   {
     step: 'STEP 5',
-    title: 'Receive & Payment',
+    title: 'Payment',
     description:
       "Your vehicle is ready! We'll call you to confirm. Inspect, test drive, and then settle the bill with our convenient payment options.",
     icon: 'tdesign:money',

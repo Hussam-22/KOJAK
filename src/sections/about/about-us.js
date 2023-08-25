@@ -1,150 +1,144 @@
-import { locales } from 'numeral';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { alpha, styled } from '@mui/material/styles';
 
-import { _mock } from 'src/_mock';
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { fShortenNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-const IMAGES = [...Array(4)].map(
-  (_, index) => `/assets/kojak-building/images/about-${index + 1}.webp`
-);
-
 const SUMMARY = [
-  { label: 'happyTenants', value: 842, color: 'success', icon: 'ion:happy-outline' },
-  { label: 'leasesProcessed', value: 12482, color: 'info', icon: 'solar:document-outline' },
-  { label: 'apartments', value: 220, color: 'warning', icon: 'bx:building-house' },
-  // { label: 'Years of Experience', value: 22, color: 'error', icon: 'ri:shield-star-line' },
+  { name: 'carsRepaired', number: 3200 },
+  { name: 'happyCustomers', number: 2800 },
+  { name: 'technicians', number: 22 },
+  { name: 'experience', number: 12 },
 ];
 
 // ----------------------------------------------------------------------
 
-export default function AboutUs() {
-  const smUp = useResponsive('up', 'sm');
-  const { translate } = useLocales();
+const StyledSection = styled('div')(({ theme }) => ({
+  overflow: 'hidden',
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius * 2,
+  marginTop: theme.spacing(5),
+  [theme.breakpoints.up('md')]: {
+    marginTop: theme.spacing(10),
+  },
+}));
 
+const StyledOverlay = styled('div')(({ theme }) => ({
+  ...bgGradient({
+    startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
+    endColor: `${theme.palette.common.black} 75%`,
+  }),
+  top: 0,
+  left: 0,
+  zIndex: 8,
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  [theme.breakpoints.up('md')]: {
+    right: 0,
+    width: '75%',
+    left: 'auto',
+  },
+  [theme.breakpoints.up('lg')]: {
+    width: '50%',
+  },
+}));
+
+// ----------------------------------------------------------------------
+
+export default function CareerAbout() {
   return (
     <Container
       sx={{
-        overflow: 'hidden',
-        py: 5,
+        pt: 5,
+        pb: { xs: 5, md: 10 },
       }}
     >
+      <Typography variant="h1" sx={{ textAlign: 'center' }}>
+        We Make The Best For All Our Customers.
+      </Typography>
+
+      <Section />
+    </Container>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+function Section() {
+  const { translate } = useLocales();
+  return (
+    <StyledSection>
       <Stack
-        spacing={3}
         sx={{
-          mx: 'auto',
-          maxWidth: 860,
-          textAlign: 'center',
-          pb: { xs: 5, md: 10 },
+          py: 10,
+          zIndex: 9,
+          ml: 'auto',
+          position: 'relative',
+          px: { xs: 2.5, md: 10 },
+          width: { md: 0.75, lg: 0.5 },
         }}
       >
-        <Typography variant="h1">{translate('about.aboutUs.title')}</Typography>
+        <Stack
+          sx={{
+            mb: 5,
+            color: 'common.white',
+            textAlign: { xs: 'center', md: 'left' },
+          }}
+        >
+          <Typography variant="h2" paragraph>
+            The numbers speaks itself
+          </Typography>
+          <Typography>
+            {` Founded in 2001, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`}
+          </Typography>
+        </Stack>
 
-        <Typography sx={{ color: 'text.secondary' }}>
-          {translate('about.aboutUs.subTitle')}
-        </Typography>
+        <Box
+          sx={{
+            gap: 5,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            textAlign: { xs: 'center', md: 'left' },
+          }}
+        >
+          {SUMMARY.map((value) => (
+            <Stack key={value.name} spacing={1}>
+              <Typography variant="h2" sx={{ color: 'primary.main' }}>
+                <CountUp
+                  start={value.number / 5}
+                  end={value.number}
+                  formattingFn={(newValue) => fShortenNumber(newValue)}
+                />
+
+                <Typography variant="h3" component="span" sx={{ verticalAlign: 'top', ml: 0.5 }}>
+                  +
+                </Typography>
+              </Typography>
+
+              <Typography>{translate(`hero.${value.name}`)}</Typography>
+            </Stack>
+          ))}
+        </Box>
       </Stack>
 
-      <Grid container spacing={3}>
-        {(smUp ? IMAGES : IMAGES.slice(0, 1)).map((img, index) => (
-          <Grid key={img} xs={12} sm={6} md={index === 0 ? 6 : 2}>
-            <Image alt={img} src={img} sx={{ height: 350, borderRadius: 2, width: 1 }} />
-          </Grid>
-        ))}
-      </Grid>
+      <StyledOverlay />
 
-      <Box
-        sx={{
-          rowGap: 5,
-          columnGap: 3,
-          display: 'grid',
-          textAlign: 'center',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          pt: { xs: 3, md: 7 },
-          pb: 10,
-        }}
-      >
-        {SUMMARY.map((value) => (
-          <Stack key={value.label} spacing={1}>
-            <Typography variant="h2">
-              <CountUp
-                start={value.value / 5}
-                end={value.value}
-                formattingFn={(newValue) => newValue}
-              />
-
-              <Typography
-                variant="h4"
-                component="span"
-                sx={{ verticalAlign: 'top', ml: 0.5, color: 'primary.main' }}
-              >
-                +
-              </Typography>
-            </Typography>
-
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {translate(`hero.${value.label}`)}
-            </Typography>
-          </Stack>
-        ))}
+      <Box sx={{ position: 'absolute', width: 1, height: 1, top: 0 }}>
+        <Image
+          alt="career about"
+          src="/assets/images/repair/repair-img-2.jpg"
+          sx={{ width: 1, height: 1 }}
+        />
       </Box>
-
-      <Grid
-        container
-        spacing={{ xs: 5, md: 3 }}
-        justifyContent="space-between"
-        sx={{
-          textAlign: { xs: 'center', md: 'left' },
-        }}
-      >
-        <Grid xs={12} md={6} lg={5}>
-          <Box
-            sx={{
-              mb: 2,
-              width: 24,
-              height: 3,
-              borderRadius: 3,
-              bgcolor: 'primary.main',
-              mx: { xs: 'auto', md: 0 },
-            }}
-          />
-          <Typography variant="h4">{translate('about.aboutUs.subTitle2')}</Typography>
-        </Grid>
-
-        <Grid xs={12} md={6} lg={6}>
-          <Stack spacing={3}>
-            <Box>
-              <Typography variant="h4" color="primary">
-                {translate('about.vision')}
-              </Typography>
-
-              <Typography sx={{ color: 'text.secondary' }} paragraph>
-                {translate('about.visionText')}
-              </Typography>
-            </Box>
-
-            <Box>
-              <Typography variant="h4" color="primary">
-                {translate('about.mission')}
-              </Typography>
-
-              <Typography sx={{ color: 'text.secondary' }} paragraph>
-                {translate('about.missionText')}
-              </Typography>
-            </Box>
-          </Stack>
-        </Grid>
-      </Grid>
-    </Container>
+    </StyledSection>
   );
 }
