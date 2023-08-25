@@ -5,59 +5,68 @@ const AutoRepairServices = [
     serviceName: 'Oil Change',
     description: 'Regular oil changes are essential to keep your engine running smoothly.',
     icon: 'oil',
+    isDisabled: false,
   },
-  // {
-  //   serviceName: 'Tire Rotation and Balancing',
-  //   description: 'This helps extend the life of your tires and ensures even wear.',
-  //   icon: 'wheel',
-  // },
+  {
+    serviceName: 'Tire Rotation and Balancing',
+    description: 'This helps extend the life of your tires and ensures even wear.',
+    icon: 'wheel',
+  },
   {
     serviceName: 'Brake Service',
     description:
       'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
     icon: 'break',
+    isDisabled: false,
   },
   {
     serviceName: 'Wheel Alignment',
     description:
       "Proper alignment ensures that your vehicle's wheels are correctly positioned, improving handling and tire life.",
     icon: 'wheel',
+    isDisabled: false,
   },
   {
     serviceName: 'Transmission Service',
     description:
       'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
     icon: 'gear',
+    isDisabled: false,
   },
   {
     serviceName: 'Engine Tune-Up',
     description:
       'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
     icon: 'engine',
+    isDisabled: false,
   },
   // {
   //   serviceName: 'Exhaust System Repair',
   //   description:
   //     'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
   //   icon: 'wheel',
+  // isDisabled: false,
   // },
   // {
   //   serviceName: 'Suspension Repair',
   //   description:
   //     'Services may involve replacing shocks, struts, control arms, or other suspension components.',
   //   icon: 'wheel',
+  // isDisabled: false,
   // },
   // {
   //   serviceName: 'Electrical System Repair',
   //   description:
   //     "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
   //   icon: 'power',
+  // isDisabled: false,
   // },
   {
     serviceName: 'Air Conditioning Service',
     description:
       'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
     icon: 'ac',
+    isDisabled: false,
   },
   // {
   //   serviceName: 'Cooling System Service',
@@ -98,6 +107,7 @@ const AutoRepairServices = [
     serviceName: 'Radiator and Cooling System Repair',
     description: 'Services for addressing issues related to overheating and coolant leaks.',
     icon: 'radiator',
+    isDisabled: false,
   },
   // {
   //   serviceName: 'Emission System Repair',
@@ -108,12 +118,46 @@ const AutoRepairServices = [
     serviceName: 'Exterior and Interior Detailing',
     description: "Not a repair per se, but it can help maintain your car's appearance and value.",
     icon: 'detailing',
+    isDisabled: false,
   },
   {
     serviceName: 'Diagnostics and Computerized Testing',
     description:
       'Using specialized tools to identify and diagnose various issues in modern vehicles.',
     icon: 'chip',
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Car Inspection',
+    description: 'get free car inspection prior booking online',
+    icon: 'solar:clipboard-check-outline',
+    price: 'Free',
+    isOffer: true,
+    isDisabled: false,
+  },
+  {
+    serviceName: 'AC Gas Refill',
+    description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
+    icon: 'ph:fan',
+    price: '80 AED',
+    isOffer: true,
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Break Replacement',
+    description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
+    icon: 'icon-park-twotone:brake-pads',
+    price: '320 AED',
+    isOffer: true,
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Computer Diagnosis',
+    description: 'diagnosis your car computer for any errors and get full report',
+    icon: 'solar:cpu-linear',
+    price: '100 AED',
+    isOffer: true,
+    isDisabled: false,
   },
 ];
 
@@ -122,4 +166,7 @@ export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
   serviceName: service.serviceName,
   description: service.description,
   icon: service.icon,
+  isOffer: service?.isOffer || false,
+  price: service?.price || undefined,
+  isDisabled: service.isDisabled,
 }));

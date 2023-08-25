@@ -151,103 +151,113 @@ export default function BookAppointmentView() {
           <Image src="/assets/illustrations/schedule.svg" width="25%" />
           <Typography variant="h2">Book an Appointment</Typography>
         </Box>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2.5}>
-            <RHFTextField name="fullName" label={translate('form.name')} />
+        <Box sx={{ bgcolor: 'background.neutral', borderRadius: 1, p: 3 }}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={2.5}>
+              <RHFTextField name="fullName" label={translate('form.name')} />
 
-            <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
+              <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
 
-            <RHFTextField name="email" label={translate('form.email')} />
+              <RHFTextField name="email" label={translate('form.email')} />
 
-            {/* <RHFTextField name="subject" label={translate('form.subject')} /> */}
+              {/* <RHFTextField name="subject" label={translate('form.subject')} /> */}
 
-            <RHFSelect name="class" label="Mercedes Class">
-              <MenuItem value="">None</MenuItem>
-              <Divider sx={{ borderStyle: 'dashed' }} />
-              {_mercedesClasses.map((option) => (
-                <MenuItem key={option.class} value={option.class}>
-                  {option.class}
-                </MenuItem>
-              ))}
-            </RHFSelect>
-
-            {values.class !== '' && (
-              <RHFSelect name="year" label="Year">
+              <RHFSelect name="class" label="Mercedes Class">
                 <MenuItem value="">None</MenuItem>
                 <Divider sx={{ borderStyle: 'dashed' }} />
-                {_mercedesClasses
-                  .find((item) => item.class === values.class)
-                  .models.map((option) => (
-                    <MenuItem key={option.productionYears} value={option.productionYears}>
-                      {option.productionYears}
-                    </MenuItem>
-                  ))}
+                {_mercedesClasses.map((option) => (
+                  <MenuItem key={option.class} value={option.class}>
+                    {option.class}
+                  </MenuItem>
+                ))}
               </RHFSelect>
-            )}
 
-            <RHFMultiSelect
-              chip
-              checkbox
-              fullWidth
-              name="service"
-              label="Service Type"
-              options={_autoRepairServices.map((service) => ({
-                value: service.serviceName,
-                label: service.serviceName,
-              }))}
-            />
-
-            <Typography variant="caption">
-              Our working hours from 9 AM to 8 PM - Saturday to Thursday (Friday off)
-            </Typography>
-
-            <Controller
-              name="appointmentDate"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <DatePicker
-                  {...field}
-                  disablePast
-                  views={['day']}
-                  maxDate={maxDate}
-                  shouldDisableDate={isFriday}
-                  label="Appointment Date"
-                  format="dd/MM/yyyy"
-                  slotProps={{
-                    textField: {
-                      fullWidth: true,
-                      error: !!error,
-                      helperText: error?.message,
-                    },
-                  }}
-                />
+              {values.class !== '' && (
+                <RHFSelect name="year" label="Year">
+                  <MenuItem value="">None</MenuItem>
+                  <Divider sx={{ borderStyle: 'dashed' }} />
+                  {_mercedesClasses
+                    .find((item) => item.class === values.class)
+                    .models.map((option) => (
+                      <MenuItem key={option.productionYears} value={option.productionYears}>
+                        {option.productionYears}
+                      </MenuItem>
+                    ))}
+                </RHFSelect>
               )}
-            />
 
-            <RHFTextField
-              name="messageText"
-              multiline
-              rows={4}
-              label="Issue Description"
-              sx={{ pb: 2.5 }}
-            />
+              <RHFMultiSelect
+                chip
+                checkbox
+                fullWidth
+                name="service"
+                label="Service Type"
+                options={_autoRepairServices
+                  .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                  .sort((a, b) => b.isOffer - a.isOffer)
+                  .map((service) => ({
+                    isOffer: service.isOffer,
+                    value: service.isOffer
+                      ? `${service.serviceName} - ${service.price}`
+                      : service.serviceName,
+                    label: service.isOffer
+                      ? `${service.serviceName} - ${service.price}`
+                      : service.serviceName,
+                  }))}
+              />
 
-            <Box sx={{ textAlign: 'center' }}>
-              <LoadingButton
-                size="large"
-                type="submit"
-                variant="contained"
-                color="primary"
-                loading={isSubmitting}
-                sx={{
-                  mx: { xs: 'auto !important', md: 'unset !important' },
-                }}
-              >
-                Book Appointment
-              </LoadingButton>
-            </Box>
-          </Stack>
-        </FormProvider>
+              <Typography variant="caption">
+                Our working hours from 9 AM to 8 PM - Saturday to Thursday (Friday off)
+              </Typography>
+
+              <Controller
+                name="appointmentDate"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <DatePicker
+                    {...field}
+                    disablePast
+                    views={['day']}
+                    maxDate={maxDate}
+                    shouldDisableDate={isFriday}
+                    label="Appointment Date"
+                    format="dd/MM/yyyy"
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        error: !!error,
+                        helperText: error?.message,
+                      },
+                    }}
+                  />
+                )}
+              />
+
+              <RHFTextField
+                name="messageText"
+                multiline
+                rows={4}
+                label="Issue Description"
+                sx={{ pb: 2.5 }}
+              />
+
+              <Box sx={{ textAlign: 'center' }}>
+                <LoadingButton
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  loading={isSubmitting}
+                  sx={{
+                    mx: { xs: 'auto !important', md: 'unset !important' },
+                  }}
+                >
+                  Book Appointment
+                </LoadingButton>
+              </Box>
+            </Stack>
+          </FormProvider>
+        </Box>
       </Container>
       <ConfirmationDialog
         title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}

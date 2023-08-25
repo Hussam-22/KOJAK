@@ -134,7 +134,11 @@ export function RHFMultiSelect({
               const selected = field.value.includes(option.value);
 
               return (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem
+                  key={option.value}
+                  value={option.value}
+                  sx={{ color: option.isOffer && 'primary.main' }}
+                >
                   {checkbox && <Checkbox size="small" disableRipple checked={selected} />}
 
                   {option.label}

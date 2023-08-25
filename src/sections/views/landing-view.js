@@ -14,19 +14,9 @@ import JoinNewsletter from 'src/sections/about/join-newsletter';
 import LandingTestimonial from 'src/sections/testimonial/about-testimonial';
 
 export default function LandingView() {
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    console.log('clicked');
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <>
-      <LandingHero openAppointmentDialog={handleClickOpen} />
+      <LandingHero />
       <Services />
       <Offers />
       <LandingAbout />

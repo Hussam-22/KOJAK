@@ -43,9 +43,11 @@ export default function Services() {
           my: 6,
         }}
       >
-        {_autoRepairServices.map((service) => (
-          <ServiceItem service={service} key={service.id} />
-        ))}
+        {_autoRepairServices
+          .filter((service) => !service.isOffer)
+          .map((service) => (
+            <ServiceItem service={service} key={service.id} />
+          ))}
       </Box>
     </Container>
   );

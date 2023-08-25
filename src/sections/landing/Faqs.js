@@ -100,7 +100,11 @@ export default function FAQs() {
                   )}
                   {index === 1 && (
                     <Box>
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => navigate(paths.website.bookAppointment)}
+                      >
                         {translate(`faq.${index + 1}.buttonText`)}
                       </Button>
                     </Box>

@@ -16,7 +16,7 @@ import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
+export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
@@ -120,7 +120,7 @@ export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={openAppointmentDialog}
+                  onClick={() => navigate(paths.website.bookAppointment)}
                 >
                   {translate('common.exploreProperties')}
                 </Button>
@@ -132,8 +132,3 @@ export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
     </Box>
   );
 }
-
-KojakBuildingLandingHero.propTypes = {
-  // open: PropTypes.bool,
-  openAppointmentDialog: PropTypes.func,
-};

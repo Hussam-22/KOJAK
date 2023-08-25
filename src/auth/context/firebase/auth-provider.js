@@ -267,7 +267,7 @@ export function AuthProvider({ children }) {
       createdAt: Timestamp.fromDate(new Date()),
       to: ['hussam@hotmail.co.uk'],
       message: {
-        subject: 'New Appointment Was Submitted - 1',
+        subject: 'New Appointment Was Submitted',
         // text: 'New Appointment Was Submitted - 2',
         html: `
         <p>Source: ${payload.source}</p>
