@@ -8,10 +8,11 @@
 const en = {
   header: {
     home: 'Home',
-    properties: 'Services',
+    services: 'Services',
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',
+    bookAppointment: 'Book an Appointment',
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,

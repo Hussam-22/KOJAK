@@ -2,8 +2,7 @@ import { lazy } from 'react';
 
 // ----------------------------------------------------------------------
 const KojakBuildingLandingPage = lazy(() => import('src/pages/landing'));
-const PropertiesPage = lazy(() => import('src/pages/properties-page'));
-const PropertyDetailsPage = lazy(() => import('src/pages/property-details-page'));
+const ServicesPage = lazy(() => import('src/pages/services-page'));
 const KojakBuildingAboutPage = lazy(() => import('src/pages/about'));
 const ContactUsPage = lazy(() => import('src/pages/contact-us-page'));
 const BlogPostsPage = lazy(() => import('src/pages/blog-posts-page'));
@@ -16,7 +15,7 @@ export const _websiteRouts = [
     path: '/',
     children: [
       { element: <KojakBuildingLandingPage />, index: true },
-      // { path: 'services', element: <PropertiesPage /> },
+      { path: 'services', element: <ServicesPage /> },
       // { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'contact-us', element: <ContactUsPage /> },

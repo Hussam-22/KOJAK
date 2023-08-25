@@ -265,18 +265,17 @@ export function AuthProvider({ children }) {
       ...payload,
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to: ['hussam@hotmail.co.uk'],
+      to: payload.source === 'newsletter' ? [] : ['hussam@hotmail.co.uk'],
       message: {
         subject: 'New Appointment Was Submitted',
-        // text: 'New Appointment Was Submitted - 2',
         html: `
         <p>Source: ${payload.source}</p>
+        <p>Email: ${payload.email}</p>
         <p>Name: ${payload.fullName}</p>
         <p>Mobile: ${payload.mobile}</p>
-        <p>Email: ${payload.email}</p>
         <p>Car Class: ${payload.class}</p>
         <p>Year: ${payload.year}</p>
-        <p>Service Required: ${payload.service.join(', ')}</p>
+        <p>Service Required: ${payload?.service?.join(', ') || ''}</p>
         <p>Appointment Date: ${payload.appointmentDate}</p>
         <p>Inquiry: ${payload.messageText}</p>
         <p>---------------------------</p>

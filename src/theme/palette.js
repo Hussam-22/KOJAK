@@ -30,7 +30,7 @@ const PRIMARY = {
 
 const SECONDARY = {
   lighter: '#999999',
-  light: '#555555',
+  light: '#282828',
   main: '#222222',
   dark: '#111111',
   darker: '#000000',
@@ -127,7 +127,7 @@ export function palette(mode) {
       paper: GREY[900],
       default: '#121212',
       neutral: alpha(GREY[500], 0.12),
-      peach: SUCCESS.lighter,
+      secondary: SECONDARY.light,
     },
     action: {
       ...COMMON.action,

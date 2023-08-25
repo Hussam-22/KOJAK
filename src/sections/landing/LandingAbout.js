@@ -1,9 +1,9 @@
-import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Card, Button, useTheme } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
@@ -52,7 +52,7 @@ export default function LandingAbout() {
             {translate('why.title')}
           </Typography>
 
-          {!mdUp && <Image src="/assets/images/advisor/advisor-1.png" />}
+          {!mdUp && <Image src="/assets/images/repair/advisor-1.png" />}
 
           <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
             {translate('why.subTitle')}
@@ -91,7 +91,7 @@ export default function LandingAbout() {
             ))}
           </Box>
         </Stack>
-        {mdUp && <Image src="/assets/images/advisor/advisor-1.png" />}
+        {mdUp && <Image src="/assets/images/repair/advisor-1.png" />}
       </Box>
     </Container>
   );

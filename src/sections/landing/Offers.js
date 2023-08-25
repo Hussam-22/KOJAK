@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router';
+
 import { Box, Card, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
 import Iconify from 'src/components/iconify/Iconify';
@@ -8,6 +11,7 @@ import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
 export default function Offers() {
   const mdUp = useResponsive('up', 'md');
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -31,6 +35,16 @@ export default function Offers() {
           ) : (
             <MobileCarousel />
           )}
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              size="large"
+              onClick={() => navigate(paths.website.bookAppointment)}
+            >
+              Book an Appointment
+            </Button>
+          </Box>
         </Stack>
       </Container>
     </Box>
@@ -67,9 +81,9 @@ function OffersCard() {
             {offer.description}
           </Typography>
 
-          <Button variant="contained" color="secondary" size="large">
+          {/* <Button variant="contained" color="secondary" size="large">
             Book your offer now!
-          </Button>
+          </Button> */}
 
           <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
             valid until 29-Aug-2023

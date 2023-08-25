@@ -23,18 +23,6 @@ const DIALOG_CONTENT = {
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
-const OPTIONS = [
-  { value: 'option 1', label: 'Option 1' },
-  { value: 'option 2', label: 'Option 2' },
-  { value: 'option 3', label: 'Option 3' },
-  { value: 'option 4', label: 'Option 4' },
-  { value: 'option 5', label: 'Option 5' },
-  { value: 'option 6', label: 'Option 6' },
-  { value: 'option 7', label: 'Option 7' },
-  { value: 'option 8', label: 'Option 8' },
-];
-// -------------------------------------------------------------------
-
 // const today = dayjs();
 // const yesterday = dayjs().subtract(1, 'day');
 
@@ -100,8 +88,6 @@ export default function BookAppointmentView() {
     watch,
     formState: { isSubmitting, errors },
   } = methods;
-
-  console.log(errors);
 
   const values = watch();
 

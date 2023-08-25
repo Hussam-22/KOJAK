@@ -7,12 +7,6 @@ import BlogPostsView from 'src/sections/views/blog-posts-view';
 const PAGE_NAME = 'BLOG';
 
 export default function KojakBuildingNewsPage() {
-  const { updatePageAnalytic } = useAuthContext();
-
-  useEffect(() => {
-    (async () => updatePageAnalytic(PAGE_NAME))();
-  }, [updatePageAnalytic]);
-
   return (
     <>
       <Helmet>

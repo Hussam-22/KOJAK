@@ -60,36 +60,37 @@ export default function JoinNewsletter() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    // try {
-    //   const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-    //   const url =
-    //     'https://hooks.slack.com/services/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';
-    //   const requestOptions = {
-    //     method: 'POST',
-    //     body: JSON.stringify({ text: dataToSend }),
-    //     credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-    //   };
-    //   // Add Form Submit to Slack Channel
-    //   await fetch(url, requestOptions);
-    //   addNewForm({
-    //     source: 'newsletter',
-    //     fullName: '',
-    //     mobile: '',
-    //     email: formData.email,
-    //     subject: '',
-    //     inquiry: '',
-    //     sentTo: '',
-    //   });
-    //   await new Promise((resolve) =>
-    //     setTimeout(() => {
-    //       handleClickOpen();
-    //       return resolve();
-    //     }, 500)
-    //   );
-    //   reset();
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      /* const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
+      const url =
+        'https://hooks.slack.com/services/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';
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({ text: dataToSend }),
+        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
+      };
+      // Add Form Submit to Slack Channel
+      await fetch(url, requestOptions); */
+
+      addNewForm({
+        source: 'newsletter',
+        fullName: '',
+        mobile: '',
+        email: formData.email,
+        subject: '',
+        inquiry: '',
+        sentTo: '',
+      });
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          handleClickOpen();
+          return resolve();
+        }, 500)
+      );
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   return (
