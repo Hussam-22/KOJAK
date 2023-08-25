@@ -261,14 +261,18 @@ export function AuthProvider({ children }) {
     const newDocRef = doc(collection(DB, `/websites/automain/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
+    const appointmentDate = new Date(payload.appointmentDate).toLocaleDateString();
     setDoc(newDocRef, {
       ...payload,
-      website: 'auto maintenance',
+      website: 'auto-maintenance',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to: payload.source === 'newsletter' ? [] : ['hussam@hotmail.co.uk'],
+      to:
+        payload.source === 'newsletter'
+          ? []
+          : ['hussam@hotmail.co.uk', 'queriesksp@kojak-group.com', 'info.kgmarketing@gmail.com'],
       message: {
-        subject: 'New Appointment Was Submitted',
+        subject: 'New Form Was Submitted',
         html: `
         <p>Source: ${payload.source}</p>
         <p>Email: ${payload.email}</p>
@@ -277,7 +281,7 @@ export function AuthProvider({ children }) {
         <p>Car Class: ${payload.class}</p>
         <p>Year: ${payload.year}</p>
         <p>Service Required: ${payload?.service?.join(', ') || ''}</p>
-        <p>Appointment Date: ${payload.appointmentDate}</p>
+        <p>Appointment Date: ${appointmentDate}</p>
         <p>Inquiry: ${payload.messageText}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>

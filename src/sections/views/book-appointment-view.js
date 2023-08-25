@@ -1,13 +1,12 @@
 // import dayjs from 'dayjs';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
 
+import { DatePicker } from '@mui/x-date-pickers';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { DatePicker, DateTimePicker } from '@mui/x-date-pickers';
-import { Box, Card, Stack, Divider, MenuItem, Container, Typography } from '@mui/material';
+import { Box, Stack, Divider, MenuItem, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
@@ -97,17 +96,22 @@ export default function BookAppointmentView() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      // const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      // const url =
-      //   'https://hooks.slack.com/services/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';
-      // const requestOptions = {
-      //   method: 'POST',
-      //   body: JSON.stringify({ text: dataToSend }),
-      //   credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-      // };
+      const dataToSend = Object.entries({
+        ...formData,
+        appointment: new Date(formData.appointmentDate).toLocaleDateString(),
+      })
+        .join('\r\n')
+        .replaceAll(',', ': ');
+      const url =
+        'https://hooks.slack.com/services/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';
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({ text: dataToSend }),
+        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
+      };
 
       // Add Form Submit to Slack Channel
-      // await fetch(url, requestOptions);
+      await fetch(url, requestOptions);
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,
       //   transformRequest: [(data, Headers) => data],
