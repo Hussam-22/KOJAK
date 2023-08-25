@@ -132,19 +132,24 @@ const en = {
       space we touch.`,
       items: {
         1: {
-          title: 'Customer Satisfaction',
+          title: 'Specialization',
           description:
-            ' Our customers are at the heart of everything we do. We are committed to understanding their unique needs and preferences, and we strive to exceed their expectations with personalized and attentive service',
+            'We live and breathe Mercedes-Benz. Our specialized knowledge and experience mean we understand the unique intricacies of these vehicles, allowing us to diagnose and resolve issues with unparalleled precision',
         },
         2: {
-          title: 'Quality and Excellence',
+          title: 'Cutting-Edge Technology',
           description:
-            'We believe in delivering the highest standards of quality and excellence in every aspect of our properties and services. From meticulous design and construction to efficient management, we ensure that our spaces stand as symbols of enduring craftsmanship and pride',
+            'We exclusively use genuine Mercedes-Benz parts to maintain the authenticity and performance of your vehicle.',
         },
         3: {
-          title: 'Integrity and Transparency',
+          title: 'Genuine Parts',
           description:
             'Trust is the cornerstone of our relationships with customers, partners, and employees. We uphold the highest ethical standards, ensuring transparency in all our dealings and fostering an atmosphere of mutual respect and honesty',
+        },
+        4: {
+          title: 'Dedication to Excellence',
+          description:
+            'Our commitment to excellence is unwavering. Every repair and service we perform is carried out to the highest standards, and we never compromise on quality',
         },
       },
     },

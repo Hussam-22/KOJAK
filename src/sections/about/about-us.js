@@ -62,10 +62,14 @@ export default function CareerAbout() {
         pb: { xs: 5, md: 10 },
       }}
     >
-      <Typography variant="h1" sx={{ textAlign: 'center' }}>
+      <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
         We Make The Best For All Our Customers.
       </Typography>
-
+      <Typography sx={{ textAlign: 'center' }}>
+        Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for
+        precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts
+        in UAE seeking top-notch service and care for their luxury vehicles.
+      </Typography>
       <Section />
     </Container>
   );

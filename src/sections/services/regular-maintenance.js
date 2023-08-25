@@ -54,7 +54,7 @@ export default function RegularMaintenance() {
       }}
     >
       <Grid container>
-        <Grid md={7} xs={12}>
+        <Grid md={6} xs={12}>
           <Container maxWidth="md">
             <Stack sx={{ px: 7, pt: 7 }}>
               <Typography variant="h2">
@@ -105,8 +105,11 @@ export default function RegularMaintenance() {
             </Box>
           </Container>
         </Grid>
-        <Grid md={5}>
-          <Image src="/assets/images/repair/repair-img-2.jpg" ratio="3/4" />
+        <Grid md={6}>
+          <video height="100%" muted loop autoPlay playsInline>
+            <source src="/assets/demo-video.mp4" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
         </Grid>
       </Grid>
     </Box>
