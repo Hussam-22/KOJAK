@@ -1,39 +1,17 @@
+import { useNavigate } from 'react-router';
+
 import { Box, Card, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
+import { _autoRepairServices } from 'src/_mock';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
-const OFFERS = [
-  {
-    title: 'Car Inspection',
-    description: 'get free car inspection prior booking online',
-    icon: 'solar:clipboard-check-outline',
-    price: 'Free',
-  },
-  {
-    title: 'AC Gas Refill',
-    description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
-    icon: 'ph:fan',
-    price: '80 AED',
-  },
-  {
-    title: 'Break Replacement',
-    description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
-    icon: 'icon-park-twotone:brake-pads',
-    price: '320 AED',
-  },
-  {
-    title: 'Computer Diagnosis',
-    description: 'diagnosis your car computer for any errors and get full report',
-    icon: 'solar:cpu-linear',
-    price: '100 AED',
-  },
-];
-
 export default function Offers() {
   const mdUp = useResponsive('up', 'md');
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -57,6 +35,16 @@ export default function Offers() {
           ) : (
             <MobileCarousel />
           )}
+          <Box sx={{ textAlign: 'center' }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              size="large"
+              onClick={() => navigate(paths.website.bookAppointment)}
+            >
+              Book an Appointment
+            </Button>
+          </Box>
         </Stack>
       </Container>
     </Box>
@@ -65,42 +53,44 @@ export default function Offers() {
 
 function OffersCard() {
   const theme = useTheme();
-  return OFFERS.map((offer) => (
-    <Card
-      sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
-      key={offer.title}
-    >
-      <Stack spacing={1}>
-        <Iconify icon={offer.icon} width={64} />
-        <Typography variant="h4">{offer.title}</Typography>
-        <Typography
-          variant="h1"
-          sx={{
-            WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
-            color: alpha(theme.palette.background.default, 0),
-          }}
-        >
-          {offer.price}
-        </Typography>
-        <Typography
-          sx={{
-            textTransform: 'capitalize',
-            fontWeight: theme.typography.fontWeightLight,
-          }}
-        >
-          {offer.description}
-        </Typography>
+  return _autoRepairServices
+    .filter((service) => service.isOffer)
+    .map((offer) => (
+      <Card
+        sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
+        key={offer.id}
+      >
+        <Stack spacing={1}>
+          <Iconify icon={offer.icon} width={64} />
+          <Typography variant="h4">{offer.serviceName}</Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
+              color: alpha(theme.palette.background.default, 0),
+            }}
+          >
+            {offer.price}
+          </Typography>
+          <Typography
+            sx={{
+              textTransform: 'capitalize',
+              fontWeight: theme.typography.fontWeightLight,
+            }}
+          >
+            {offer.description}
+          </Typography>
 
-        <Button variant="contained" color="secondary" size="large">
-          Book your offer now!
-        </Button>
+          {/* <Button variant="contained" color="secondary" size="large">
+            Book your offer now!
+          </Button> */}
 
-        <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-          valid until 29-Aug-2023
-        </Typography>
-      </Stack>
-    </Card>
-  ));
+          <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
+            valid until 29-Aug-2023
+          </Typography>
+        </Stack>
+      </Card>
+    ));
 }
 
 function MobileCarousel() {
@@ -150,41 +140,45 @@ function MobileCarousel() {
         }}
       >
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-          {OFFERS.map((offer) => (
-            <Box key={offer.title} sx={{ p: 2 }}>
-              <Card sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}>
-                <Stack spacing={1}>
-                  <Iconify icon={offer.icon} width={64} />
-                  <Typography variant="h4">{offer.title}</Typography>
-                  <Typography
-                    variant="h1"
-                    sx={{
-                      WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
-                      color: alpha(theme.palette.background.default, 0),
-                    }}
-                  >
-                    {offer.price}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      textTransform: 'capitalize',
-                      fontWeight: theme.typography.fontWeightLight,
-                    }}
-                  >
-                    {offer.description}
-                  </Typography>
+          {_autoRepairServices
+            .filter((service) => service.isOffer)
+            .map((offer) => (
+              <Box key={offer.id} sx={{ p: 2 }}>
+                <Card
+                  sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
+                >
+                  <Stack spacing={1}>
+                    <Iconify icon={offer.icon} width={64} />
+                    <Typography variant="h4">{offer.serviceName}</Typography>
+                    <Typography
+                      variant="h1"
+                      sx={{
+                        WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
+                        color: alpha(theme.palette.background.default, 0),
+                      }}
+                    >
+                      {offer.price}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        textTransform: 'capitalize',
+                        fontWeight: theme.typography.fontWeightLight,
+                      }}
+                    >
+                      {offer.description}
+                    </Typography>
 
-                  <Button variant="contained" color="secondary" size="large">
-                    Book your offer now!
-                  </Button>
+                    <Button variant="contained" color="secondary" size="large">
+                      Book your offer now!
+                    </Button>
 
-                  <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-                    valid until 29-Aug-2023
-                  </Typography>
-                </Stack>
-              </Card>
-            </Box>
-          ))}
+                    <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
+                      valid until 29-Aug-2023
+                    </Typography>
+                  </Stack>
+                </Card>
+              </Box>
+            ))}
         </Carousel>
       </CarouselArrows>
     </Box>

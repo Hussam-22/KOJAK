@@ -1,11 +1,13 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 
 // @mui
 import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Card, Stack, Button, Rating, Avatar, Container, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 // components
 import { _testimonials } from 'src/_mock';
@@ -18,6 +20,7 @@ export default function LandingTestimonial() {
   const theme = useTheme();
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
+  const navigate = useNavigate();
 
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
@@ -38,7 +41,7 @@ export default function LandingTestimonial() {
               color="primary"
               size="large"
               sx={{ mt: 2 }}
-              // onClick={() => navigate(paths.website.properties)}
+              onClick={() => navigate(paths.website.bookAppointment)}
             >
               {translate('common.exploreProperties')}
             </Button>

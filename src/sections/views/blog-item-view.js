@@ -4,48 +4,26 @@ import { useState, useEffect, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Popover from '@mui/material/Popover';
 import Divider from '@mui/material/Divider';
+import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useTheme } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
+import { blogPosts } from 'src/_mock';
 import { paths } from 'src/routes/paths';
-import Iconify from 'src/components/iconify';
-import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image/Image';
-import { useAuthContext } from 'src/auth/hooks';
-import { _socials, blogPosts } from 'src/_mock';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import PostTimeBlock from '../blog/common/post-time-block';
-
 // ----------------------------------------------------------------------
-const PAGE_NAME = 'BLOG-ITEM';
-
 export default function BlogItemView() {
   const { postTitle } = useParams();
-  const { updatePageAnalytic } = useAuthContext();
-  const { title, description, duration, createdAt, favorited, author, tags, content } =
-    blogPosts.find((post) => post.title.replaceAll(' ', '-') === postTitle);
-
-  const [open, setOpen] = useState(null);
-
-  const handleOpen = useCallback((event) => {
-    setOpen(event.currentTarget);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setOpen(null);
-  }, []);
-
-  useEffect(() => {
-    console.log(PAGE_NAME);
-    (async () => updatePageAnalytic(PAGE_NAME, postTitle))();
-  }, [postTitle, updatePageAnalytic]);
+  const { title, description, content } = blogPosts.find(
+    (post) => post.title.replaceAll(' ', '-') === postTitle
+  );
 
   return (
     <>
@@ -66,23 +44,6 @@ export default function BlogItemView() {
             <Typography variant="h2" component="h1">
               {title}
             </Typography>
-            {/* 
-            <Stack direction="row" justifyContent="space-between" spacing={1.5} sx={{ my: 5 }}>
-              <Avatar src={author.avatarUrl} sx={{ width: 48, height: 48 }} />
-
-              <Stack spacing={0.5} flexGrow={1}>
-                <Typography variant="subtitle2">{author.name}</Typography>
-
-                <PostTimeBlock createdAt={fDate(createdAt)} duration={duration} />
-                <Link href={author.url} target="_blank" rel="noopener" underline="none">
-                  Visit Original Post
-                </Link>
-              </Stack>
-
-              <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
-                <Iconify icon="carbon:share" />
-              </IconButton>
-            </Stack> */}
 
             <Typography variant="h5" sx={{ mb: 5 }}>
               {description}
@@ -96,26 +57,6 @@ export default function BlogItemView() {
           </Grid>
         </Grid>
       </Container>
-
-      <Popover
-        open={!!open}
-        onClose={handleClose}
-        anchorEl={open}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        slotProps={{
-          paper: {
-            sx: { width: 220 },
-          },
-        }}
-      >
-        {_socials.map((social) => (
-          <MenuItem key={social.value} onClick={handleClose}>
-            <Iconify icon={social.icon} width={24} sx={{ mr: 1, color: social.color }} />
-            Share via {social.label}
-          </MenuItem>
-        ))}
-      </Popover>
     </>
   );
 }

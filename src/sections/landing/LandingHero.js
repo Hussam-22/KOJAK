@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
@@ -10,19 +9,16 @@ import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
+export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const { translate, onChangeLang, currentLang } = useLocales();
-
-  const openAppointmentModal = () => {};
 
   const renderOverlay = (
     <Box
@@ -120,7 +116,7 @@ export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={openAppointmentDialog}
+                  onClick={() => navigate(paths.website.bookAppointment)}
                 >
                   {translate('common.exploreProperties')}
                 </Button>
@@ -132,8 +128,3 @@ export default function KojakBuildingLandingHero({ openAppointmentDialog }) {
     </Box>
   );
 }
-
-KojakBuildingLandingHero.propTypes = {
-  // open: PropTypes.bool,
-  openAppointmentDialog: PropTypes.func,
-};

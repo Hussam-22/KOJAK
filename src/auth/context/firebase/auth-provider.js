@@ -258,24 +258,31 @@ export function AuthProvider({ children }) {
 
   // add new request-callback form
   const addNewForm = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/building/forms/`));
+    const newDocRef = doc(collection(DB, `/websites/automain/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
+    const appointmentDate = new Date(payload.appointmentDate).toLocaleDateString();
     setDoc(newDocRef, {
       ...payload,
+      website: 'auto-maintenance',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
+      to:
+        payload.source === 'newsletter'
+          ? []
+          : ['hussam@hotmail.co.uk', 'queriesksp@kojak-group.com', 'info.kgmarketing@gmail.com'],
       message: {
-        subject: 'Kojak Building - New Form Submitted',
-        text: payload.subject,
+        subject: 'New Form Was Submitted',
         html: `
         <p>Source: ${payload.source}</p>
+        <p>Email: ${payload.email}</p>
         <p>Name: ${payload.fullName}</p>
         <p>Mobile: ${payload.mobile}</p>
-        <p>Email: ${payload.email}</p>
-        <p>Subject: ${payload.subject}</p>
-        <p>Inquiry: ${payload.inquiry}</p>
+        <p>Car Class: ${payload.class}</p>
+        <p>Year: ${payload.year}</p>
+        <p>Service Required: ${payload?.service?.join(', ') || ''}</p>
+        <p>Appointment Date: ${appointmentDate}</p>
+        <p>Inquiry: ${payload.messageText}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>
         <p>${newDocRef.id}</p>

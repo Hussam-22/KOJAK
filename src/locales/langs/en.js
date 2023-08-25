@@ -8,20 +8,22 @@
 const en = {
   header: {
     home: 'Home',
-    properties: 'Services',
+    services: 'Services',
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',
+    bookAppointment: 'Book an Appointment',
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Performance Meets Precision: ',
-    title: `Your Mercedes, Our Expertise`,
+    heroText: 'Experience Unmatched Mercedes Mastery ',
+    title: `in Every Repair`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
     experience: 'Years of Experience',
     happyCustomers: 'Happy Customers',
     carsRepaired: 'Cars Repaired',
+    technicians: 'Expert Technicians',
   },
   why: {
     title: `We are Mercedes-Benz Experts`,
@@ -130,19 +132,24 @@ const en = {
       space we touch.`,
       items: {
         1: {
-          title: 'Customer Satisfaction',
+          title: 'Specialization',
           description:
-            ' Our customers are at the heart of everything we do. We are committed to understanding their unique needs and preferences, and we strive to exceed their expectations with personalized and attentive service',
+            'We live and breathe Mercedes-Benz. Our specialized knowledge and experience mean we understand the unique intricacies of these vehicles, allowing us to diagnose and resolve issues with unparalleled precision',
         },
         2: {
-          title: 'Quality and Excellence',
+          title: 'Cutting-Edge Technology',
           description:
-            'We believe in delivering the highest standards of quality and excellence in every aspect of our properties and services. From meticulous design and construction to efficient management, we ensure that our spaces stand as symbols of enduring craftsmanship and pride',
+            'We exclusively use genuine Mercedes-Benz parts to maintain the authenticity and performance of your vehicle.',
         },
         3: {
-          title: 'Integrity and Transparency',
+          title: 'Genuine Parts',
           description:
             'Trust is the cornerstone of our relationships with customers, partners, and employees. We uphold the highest ethical standards, ensuring transparency in all our dealings and fostering an atmosphere of mutual respect and honesty',
+        },
+        4: {
+          title: 'Dedication to Excellence',
+          description:
+            'Our commitment to excellence is unwavering. Every repair and service we perform is carried out to the highest standards, and we never compromise on quality',
         },
       },
     },
@@ -156,7 +163,7 @@ const en = {
     details: {
       number: '06 5334 312 EXT. 220',
       location: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '9 AM to 6 PM - Saturday to Thursday',
+      hours: '9 AM to 8 PM - Saturday to Thursday',
       follow: 'FOLLOW US',
     },
   },

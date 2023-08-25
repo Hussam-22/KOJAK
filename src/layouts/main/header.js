@@ -94,7 +94,11 @@ export default function Header({ headerOnDark }) {
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
-                  <Button variant="contained" color="primary" onClick={openAppointmentModal}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate(paths.website.bookAppointment)}
+                  >
                     {translate('common.exploreProperties')}
                   </Button>
                   {/* <IconButton

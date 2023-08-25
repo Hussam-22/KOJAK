@@ -31,28 +31,28 @@ export const _socials = [
     label: 'FaceBook',
     icon: 'carbon:logo-facebook',
     color: '#1877F2',
-    path: 'https://www.facebook.com/KojakBuilding',
+    path: 'https://www.facebook.com/KojakAutoMaintenance',
   },
   {
     value: 'instagram',
     label: 'Instagram',
     icon: 'carbon:logo-instagram',
     color: '#E02D69',
-    path: 'https://www.instagram.com/kojakbuilding/',
+    path: 'https://www.instagram.com/kojak.automaintenance/',
   },
   {
     value: 'tikTok',
     label: 'TikTok',
     icon: 'ic:baseline-tiktok',
     color: '#007EBB',
-    path: 'https://www.tiktok.com/en/',
+    path: 'https://www.tiktok.com/en/kojakautomaintenance',
   },
   {
     value: 'twitter',
     label: 'Twitter',
     icon: 'ri:twitter-x-fill',
     color: '#00AAEC',
-    path: 'https://twitter.com/Buildingkojak',
+    path: 'https://twitter.com/kojakworkshop',
   },
 ];
 

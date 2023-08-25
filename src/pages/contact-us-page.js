@@ -4,15 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useAuthContext } from 'src/auth/hooks';
 import ContactUsView from 'src/sections/views/contact-us-view';
 
-const PAGE_NAME = 'CONTACT-US';
-
 export default function KojakBuildingAboutPage() {
-  const { updatePageAnalytic } = useAuthContext();
-
-  useEffect(() => {
-    (async () => updatePageAnalytic(PAGE_NAME))();
-  }, [updatePageAnalytic]);
-
   return (
     <>
       <Helmet>

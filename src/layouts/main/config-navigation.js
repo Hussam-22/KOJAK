@@ -3,17 +3,18 @@ import { paths } from 'src/routes/paths';
 // ----------------------------------------------------------------------
 
 export const navConfig = [
-  // { title: 'home', path: '/' },
-  // { title: 'properties', path: paths.website.properties },
-  // { title: 'blog', path: paths.website.blogPosts },
-  // { title: 'about', path: paths.website.about },
-  // { title: 'contactUs', path: paths.website.contactUs },
-
   { title: 'home', path: '/' },
-  { title: 'properties', path: '#' },
-  { title: 'blog', path: '#' },
-  { title: 'about', path: '#' },
-  { title: 'contactUs', path: '#' },
+  { title: 'services', path: paths.website.services },
+  { title: 'blog', path: paths.website.blogPosts },
+  { title: 'about', path: paths.website.about },
+  { title: 'contactUs', path: paths.website.contactUs },
+  // { title: 'bookAppointment', path: paths.website.bookAppointment },
+
+  // { title: 'home', path: '/' },
+  // { title: 'properties', path: '#' },
+  // { title: 'blog', path: '#' },
+  // { title: 'about', path: '#' },
+  // { title: 'contactUs', path: '#' },
   // {
   //   title: 'Pages',
   //   path: paths.pages,
