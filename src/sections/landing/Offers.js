@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import { Box, Card, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -145,7 +144,12 @@ function MobileCarousel() {
             .map((offer) => (
               <Box key={offer.id} sx={{ p: 2 }}>
                 <Card
-                  sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
+                  sx={{
+                    bgcolor: 'primary.main',
+                    color: 'common.black',
+                    p: 3,
+                    borderRadius: 1,
+                  }}
                 >
                   <Stack spacing={1}>
                     <Iconify icon={offer.icon} width={64} />
@@ -167,10 +171,6 @@ function MobileCarousel() {
                     >
                       {offer.description}
                     </Typography>
-
-                    <Button variant="contained" color="secondary" size="large">
-                      Book your offer now!
-                    </Button>
 
                     <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
                       valid until 29-Aug-2023
