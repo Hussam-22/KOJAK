@@ -295,19 +295,19 @@ const en = {
         title: 'Customized Payment Schedules',
         text: `We recognize that every business operates on its own timeline. With our flexible
       payment terms, you have the freedom to choose a payment schedule that aligns perfectly
-      with your financial planning. Whether you prefer monthly, quarterly, or annual
+      with your financial planning. Whether you prefer quarterly, or annual
       payments, our team will work with you to create a plan that suits your budget and
       business cycle.`,
       },
-      spaces: {
-        title: 'Customizable Spaces',
-        text: `We understand that one size doesn't fit all. That's why our space leasing
-      services offer unparalleled flexibility. Whether you need a compact office space, a
-      sprawling industrial unit, or a specialized workspace, we have a variety of options to
-      suit your requirements. Customize your leased space to match your unique vision and
-      operational needs. Our dedicated team will work closely with you to create an
-      environment that fosters productivity and innovation.`,
-      },
+      // spaces: {
+      //   title: 'Customizable Spaces',
+      //   text: `We understand that one size doesn't fit all. That's why our space leasing
+      // services offer unparalleled flexibility. Whether you need a compact office space, a
+      // sprawling industrial unit, or a specialized workspace, we have a variety of options to
+      // suit your requirements. Customize your leased space to match your unique vision and
+      // operational needs. Our dedicated team will work closely with you to create an
+      // environment that fosters productivity and innovation.`,
+      // },
       locations: {
         title: 'Prime Locations',
         text: `Location is key to any successful venture, and we understand its significance. Our
