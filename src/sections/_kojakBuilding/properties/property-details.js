@@ -26,12 +26,8 @@ export default function PropertyDetails() {
   const loading = useBoolean(true);
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
-  const { fsGetImgDownloadUrl, getSpaceInfo, updatePageAnalytic } = useAuthContext();
+  const { fsGetImgDownloadUrl, getSpaceInfo } = useAuthContext();
   const { translate, currentLang } = useLocales();
-
-  useEffect(() => {
-    (async () => updatePageAnalytic(PAGE_NAME, propertyID))();
-  }, [propertyID, updatePageAnalytic]);
 
   const description =
     currentLang.value === 'ar' ? spaceInfo?.descriptionAr?.ar || '' : spaceInfo?.description || '';
