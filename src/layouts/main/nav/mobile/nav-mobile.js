@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { useTheme, Backdrop, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
@@ -82,7 +82,11 @@ export default function NavMobile({ data, toggleLanguage }) {
           </List>
 
           <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button variant="contained" color="primary" onClick={() => navigate('#')}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate(paths.website.bookAppointment)}
+            >
               {translate('common.exploreProperties')}
             </Button>
           </Stack>

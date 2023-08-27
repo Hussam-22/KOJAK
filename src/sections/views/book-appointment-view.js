@@ -15,15 +15,14 @@ import { _mercedesClasses, _autoRepairServices } from 'src/_mock';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFTextField, RHFMultiSelect } from 'src/components/hook-form';
 
+const thisYear = new Date().getFullYear();
+const yearsDiff = thisYear - 2014;
 // -------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
   ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
-
-// const today = dayjs();
-// const yesterday = dayjs().subtract(1, 'day');
 
 export default function BookAppointmentView() {
   const { addNewForm } = useAuthContext();
@@ -103,7 +102,7 @@ export default function BookAppointmentView() {
         .join('\r\n')
         .replaceAll(',', ': ');
       const url =
-        'https://hooks.slack.com/services/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';
+        'https://hooks.slack.com/services/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';
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -166,13 +165,11 @@ export default function BookAppointmentView() {
                 <RHFSelect name="year" label="Year">
                   <MenuItem value="">None</MenuItem>
                   <Divider sx={{ borderStyle: 'dashed' }} />
-                  {_mercedesClasses
-                    .find((item) => item.class === values.class)
-                    .models.map((option) => (
-                      <MenuItem key={option.productionYears} value={option.productionYears}>
-                        {option.productionYears}
-                      </MenuItem>
-                    ))}
+                  {[...Array(yearsDiff + 1)].map((_, index) => (
+                    <MenuItem key={thisYear - index} value={thisYear - index}>
+                      {thisYear - index}
+                    </MenuItem>
+                  ))}
                 </RHFSelect>
               )}
 
@@ -196,9 +193,7 @@ export default function BookAppointmentView() {
                   }))}
               />
 
-              <Typography variant="caption">
-                Our working hours from 9 AM to 8 PM - Saturday to Thursday (Friday off)
-              </Typography>
+              <Typography variant="caption">{translate('contactUs.details.hours')}</Typography>
 
               <Controller
                 name="appointmentDate"

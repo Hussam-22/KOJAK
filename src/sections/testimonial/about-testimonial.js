@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
@@ -10,8 +9,6 @@ import { Box, Card, Stack, Button, Rating, Avatar, Container, Typography } from 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 // components
-import { _testimonials } from 'src/_mock';
-import Carousel from 'src/components/carousel';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 // utils
@@ -56,9 +53,7 @@ export default function LandingTestimonial() {
             >
               <Iconify icon="carbon:quotes" sx={{ width: 48, height: 48, color: 'common.black' }} />
               <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, illo! Aperiam,
-                inventore iste culpa explicabo fuga ipsam atque cupiditate corrupti laudantium nisi
-                ab odio fugiat quae eaque eligendi, exercitationem repudiandae.
+                {` Exceptional Service! I've been a loyal customer of KOjak for years, and I couldn't be happier with the level of expertise and care they provide for my Mercedes. From routine maintenance to complex repairs, their team of skilled technicians always goes above and beyond. My car runs like a dream, thanks to Kojak. I wouldn't trust anyone else with my Mercedes!`}
               </Typography>
               <Stack direction="row" alignItems="center">
                 <Avatar src="/assets/images/avatar/avatar_8.svg" sx={{ width: 48, height: 48 }} />
@@ -72,9 +67,7 @@ export default function LandingTestimonial() {
             >
               <Iconify icon="carbon:quotes" sx={{ width: 48, height: 48, color: 'common.black' }} />
               <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, illo! Aperiam,
-                inventore iste culpa explicabo fuga ipsam atque cupiditate corrupti laudantium nisi
-                ab odio fugiat quae eaque eligendi, exercitationem repudiandae.
+                {`I can't express how grateful I am for Kojak. Their Mercedes expertise is unmatched, and their dedication to customer satisfaction is truly commendable. They took the time to explain the issues with my car and provided a transparent breakdown of the costs. The repairs were done quickly, and my Mercedes feels brand new. I highly recommend Kojak to all Mercedes owners`}
               </Typography>
               <Stack direction="row" alignItems="center">
                 <Avatar src="/assets/images/avatar/avatar_7.svg" sx={{ width: 48, height: 48 }} />

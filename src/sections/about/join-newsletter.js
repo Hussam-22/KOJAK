@@ -1,18 +1,17 @@
 import * as Yup from 'yup';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Stack, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import { Stack, SvgIcon, useTheme } from '@mui/material';
 
-import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
@@ -63,7 +62,7 @@ export default function JoinNewsletter() {
     try {
       /* const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
       const url =
-        'https://hooks.slack.com/services/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';
+        'https://hooks.slack.com/services/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';
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -99,7 +98,7 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             py: 5,
-            bgcolor: 'secondary.dark',
+            bgcolor: 'secondary.main',
           }}
         >
           <Container maxWidth="md">

@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
+import { Box, useTheme, Container } from '@mui/material';
 
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
@@ -9,7 +9,7 @@ export default function OurServices() {
   const theme = useTheme();
   return (
     <>
-      <Container sx={{ py: 5 }}>
+      {/* <Container sx={{ py: 5 }}>
         <Stack spacing={3} sx={{ textAlign: 'center' }}>
           <Typography variant="h1">Our Services & How it works</Typography>
           <Typography>
@@ -19,26 +19,40 @@ export default function OurServices() {
             and maintenance services to keep your vehicle in top condition.
           </Typography>
         </Stack>
-      </Container>
+      </Container> */}
       <Container maxWidth="xl" sx={{ pb: 8 }}>
         <Grid container spacing={4}>
           <Grid md={8} xs={12}>
-            <Stack spacing={2}>
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
-                  gap: 3,
-                  my: 6,
-                }}
-              >
-                {_autoRepairServices
-                  .filter((service) => !service.isOffer)
-                  .map((service) => (
-                    <ServiceItem service={service} key={service.id} />
-                  ))}
-              </Box>
-            </Stack>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
+                gap: 3,
+                my: 6,
+              }}
+            >
+              {_autoRepairServices
+                .filter((service) => !service.isOffer && ['minor', 'major'].includes(service.icon))
+                .map((service) => (
+                  <ServiceItem service={service} key={service.id} major />
+                ))}
+            </Box>
+
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
+                gap: 3,
+                my: 6,
+              }}
+            >
+              {_autoRepairServices
+                .filter((service) => !service.isOffer && !['minor', 'major'].includes(service.icon))
+                .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                .map((service) => (
+                  <ServiceItem service={service} key={service.id} />
+                ))}
+            </Box>
           </Grid>
           <Grid md={4} xs={12} sx={{ mt: 2 }}>
             <ServicesHowItWork />

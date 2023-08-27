@@ -13,7 +13,6 @@ import Iconify from 'src/components/iconify';
 import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
-import GroupCard from 'src/sections/components/group-card';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
@@ -66,25 +65,31 @@ export default function Footer() {
                 {translate('footer.about')}
               </Typography>
 
-              <ContactUsInfo light small />
+              <ContactUsInfo small />
             </Stack>
           </Grid>
 
-          <Grid xs={6} md={2}>
-            <Typography variant="h6" sx={{ color: 'common.white' }}>
+          <Grid xs={12} md={2}>
+            <Typography variant="h6" sx={{ color: 'primary.main' }}>
               {translate('footer.groupTitle')}
             </Typography>
             <Stack spacing={2} sx={{ mt: 2 }}>
               {GROUPS.map((group) => (
-                <Link href={group.url} target="_blank" rel="noopener" key={group.title}>
+                <Link
+                  href={group.url}
+                  target="_blank"
+                  rel="noopener"
+                  key={group.title}
+                  sx={{ color: 'common.white' }}
+                >
                   {translate(`footer.${group.title}.title`)}
                 </Link>
               ))}
             </Stack>
-          </Grid>
 
-          <Grid xs={6} md={2}>
-            <Typography variant="h6" sx={{ color: 'common.white' }}>
+            <Divider sx={{ my: 2 }} />
+
+            <Typography variant="h6" sx={{ color: 'primary.main' }}>
               {translate('footer.sitemap')}
             </Typography>
             <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
@@ -94,7 +99,7 @@ export default function Footer() {
                     component={RouterLink}
                     href={list.path}
                     rel="noopener"
-                    sx={{ color: 'primary.light' }}
+                    sx={{ color: 'common.white' }}
                   >
                     {translate(`header.${list.title}`)}
                   </Link>
@@ -103,17 +108,17 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          <Grid md={2} xs={6}>
-            <Typography vvariant="h6" sx={{ color: 'common.white' }}>
+          <Grid md={4} xs={12}>
+            <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
               Auto Repair Services
             </Typography>
-            <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
               {_autoRepairServices.map((service) => (
                 <Typography key={service.serviceName} variant="body2">
                   {service.serviceName}
                 </Typography>
               ))}
-            </Stack>
+            </Box>
           </Grid>
         </Grid>
 
@@ -127,11 +132,7 @@ export default function Footer() {
             {translate('footer.allRights')}
           </Typography>
 
-          <Link
-            href="mailto:hello@prozeffect.com"
-            variant="caption"
-            sx={{ color: 'primary.light' }}
-          >
+          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'error.main' }}>
             {translate('footer.designedBy')}
           </Link>
         </Stack>
