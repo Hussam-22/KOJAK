@@ -15,32 +15,21 @@ import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function KojakBuildingLandingHero() {
-  const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
+
+  return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+}
+
+function RenderDesktopHero() {
+  const theme = useTheme();
   const navigate = useNavigate();
   const { translate, onChangeLang, currentLang } = useLocales();
-
-  const renderOverlay = (
-    <Box
-      sx={{
-        backgroundColor: alpha('#000000', 0.45),
-        top: 0,
-        left: 0,
-        // zIndex: -1,
-        width: 1,
-        height: 1,
-        position: 'absolute',
-      }}
-    />
-  );
-
   return (
     <Box
       sx={{
         position: 'relative',
         height: '100dvh',
         overflow: 'hidden',
-        minHeight: '-webkit-fill-available',
       }}
     >
       <Box
@@ -51,11 +40,10 @@ export default function KojakBuildingLandingHero() {
         }}
       >
         <Image
-          src={`/assets/images/hero/hero-${currentLang.value === 'en' ? 'left' : 'right'}.png`}
+          src={`/assets/images/hero/hero-${currentLang.value === 'en' ? 'left' : 'right'}.webp`}
           height="100dvh"
         />
       </Box>
-      {!mdUp && renderOverlay}
 
       <Container maxWidth="xl" sx={{ height: 1 }}>
         <Grid
@@ -69,26 +57,24 @@ export default function KojakBuildingLandingHero() {
           <Grid md={6} xs={12} />
 
           <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            {mdUp && (
-              <Box
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%,-50%)',
+              }}
+            >
+              <Typography
                 sx={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  transform: 'translate(-50%,-50%)',
+                  fontSize: '19dvw',
+                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.1)}`,
+                  color: alpha(theme.palette.background.default, 0),
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: '19dvw',
-                    WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.1)}`,
-                    color: alpha(theme.palette.background.default, 0),
-                  }}
-                >
-                  {currentLang.value === 'en' ? 'KOJAK' : 'كوجاك'}
-                </Typography>
-              </Box>
-            )}
+                {currentLang.value === 'en' ? 'KOJAK' : 'كوجاك'}
+              </Typography>
+            </Box>
             <Stack
               sx={{
                 textAlign: { md: 'left', xs: 'center' },
@@ -125,6 +111,50 @@ export default function KojakBuildingLandingHero() {
           </Grid>
         </Grid>
       </Container>
+    </Box>
+  );
+}
+
+// -------------------------------------------------------
+
+function RenderMobileHero() {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const { translate, onChangeLang, currentLang } = useLocales();
+  return (
+    <Box
+      sx={{
+        height: '100dvh',
+        display: 'flex',
+        // backgroundImage: ,
+        // backgroundSize: 'contain',
+        // backgroundPosition: 'center',
+        // backgroundRepeat: 'no-repeat',
+        position: 'relative',
+      }}
+    >
+      <Image
+        src="/assets/images/hero/hero-mobile.png"
+        sx={{ position: 'absolute', bottom: 0, left: 0 }}
+      />
+      <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 10 }}>
+        <Typography variant="h1" color="primary">
+          {translate('hero.heroText')}
+        </Typography>
+        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          {translate('hero.subText')}
+        </Typography>
+        <Box>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => navigate(paths.website.bookAppointment)}
+          >
+            {translate('common.exploreProperties')}
+          </Button>
+        </Box>
+      </Stack>
     </Box>
   );
 }

@@ -46,13 +46,7 @@ const AutoRepairServices = [
     icon: 'engine',
     isDisabled: false,
   },
-  {
-    serviceName: 'Exhaust System Repair',
-    description:
-      'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
-    icon: 'exhaust',
-    isDisabled: false,
-  },
+
   {
     serviceName: 'Suspension Repair',
     description:
@@ -60,13 +54,13 @@ const AutoRepairServices = [
     icon: 'suspension',
     isDisabled: false,
   },
-  // {
-  //   serviceName: 'Electrical System Repair',
-  //   description:
-  //     "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
-  //   icon: 'power',
-  // isDisabled: false,
-  // },
+  {
+    serviceName: 'Electrical System Repair',
+    description:
+      "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
+    icon: 'power',
+    isDisabled: false,
+  },
   {
     serviceName: 'Air Conditioning Service',
     description:
@@ -74,53 +68,20 @@ const AutoRepairServices = [
     icon: 'ac',
     isDisabled: false,
   },
-  // {
-  //   serviceName: 'Cooling System Service',
-  //   description:
-  //     'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Fuel System Service',
-  //   description:
-  //     'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Check Engine Light Diagnosis',
-  //   description:
-  //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
-  //   icon: 'wheel',
-  // },
+
   {
     serviceName: 'Battery Replacement',
     description: 'When your battery no longer holds a charge, it needs to be replaced.',
     icon: 'batterylight',
   },
-  // {
-  //   serviceName: 'Tire Repair and Replacement',
-  //   description:
-  //     'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Steering System Repair',
-  //   description:
-  //     'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
-  //   icon: 'wheel',
-  // },
+
   {
     serviceName: 'Radiator and Cooling System Repair',
     description: 'Services for addressing issues related to overheating and coolant leaks.',
     icon: 'radiator',
     isDisabled: false,
   },
-  {
-    serviceName: 'Exterior and Interior Detailing',
-    description: "Enhances your vehicle's exterior brilliance and restores its interior freshness",
-    icon: 'detailing',
-    isDisabled: false,
-  },
+
   {
     serviceName: 'Diagnostics and Computerized Testing',
     description:
@@ -160,6 +121,51 @@ const AutoRepairServices = [
     isOffer: true,
     isDisabled: false,
   },
+  // {
+  //   serviceName: 'Exhaust System Repair',
+  //   description:
+  //     'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
+  //   icon: 'exhaust',
+  //   isDisabled: false,
+  // },
+
+  // {
+  //   serviceName: 'Tire Repair and Replacement',
+  //   description:
+  //     'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Steering System Repair',
+  //   description:
+  //     'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Exterior and Interior Detailing',
+  //   description: "Enhances your vehicle's exterior brilliance and restores its interior freshness",
+  //   icon: 'detailing',
+  //   isDisabled: false,
+  // },
+
+  // {
+  //   serviceName: 'Cooling System Service',
+  //   description:
+  //     'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Fuel System Service',
+  //   description:
+  //     'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
+  //   icon: 'wheel',
+  // },
+  // {
+  //   serviceName: 'Check Engine Light Diagnosis',
+  //   description:
+  //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
+  //   icon: 'wheel',
+  // },
 ];
 
 export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
