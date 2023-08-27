@@ -62,7 +62,7 @@ export default function ContactUsForm() {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
       const url =
-        'https://hooks.slack.com/services/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';
+        'https://hooks.slack.com/services/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';
 
       const requestOptions = {
         method: 'POST',

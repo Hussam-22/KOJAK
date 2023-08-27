@@ -7,7 +7,7 @@ export const StyledNavItem = styled(ListItemButton, {
   shouldForwardProp: (prop) => prop !== 'active',
 })(({ active, theme }) => ({
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.primary,
   height: 40,
   // Active
   ...(active && {
