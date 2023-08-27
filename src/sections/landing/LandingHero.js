@@ -106,7 +106,7 @@ export default function KojakBuildingLandingHero() {
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {translate('hero.heroText')}
                 </Box>
-                {translate('hero.title')}
+                {/* {translate('hero.title')} */}
               </Typography>
 
               <Typography>{translate('hero.subText')}</Typography>

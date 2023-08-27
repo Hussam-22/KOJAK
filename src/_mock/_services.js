@@ -2,6 +2,19 @@ import { _mock } from 'src/_mock/_mock';
 
 const AutoRepairServices = [
   {
+    serviceName: 'Major Service',
+    description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, including engine oil, oil filter, transmission oil, transmission filter & gasket, spark plugs, A/C filter, and air filter. Our experienced technicians ensure top-quality service, all backed by transparent labor charges. Trust us to keep your Mercedes running at its best.`,
+    icon: 'major',
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Minor Service',
+    description: `Our Minor Service at [Your Shop Name] is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. It's the meticulous care your Mercedes needs for peak performance.`,
+    icon: 'minor',
+    isDisabled: false,
+  },
+  // --------------------------------------------------------
+  {
     serviceName: 'Oil Change',
     description: 'Regular oil changes are essential to keep your engine running smoothly.',
     icon: 'oil',

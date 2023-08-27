@@ -196,9 +196,7 @@ export default function BookAppointmentView() {
                   }))}
               />
 
-              <Typography variant="caption">
-                Our working hours from 9 AM to 8 PM - Saturday to Thursday (Friday off)
-              </Typography>
+              <Typography variant="caption">{translate('contactUs.details.hours')}</Typography>
 
               <Controller
                 name="appointmentDate"

@@ -101,7 +101,7 @@ export default function WhatsAppForm() {
                 </Button>
               </Box>
               <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-                {translate('form.whatsApp.workingHours')}
+                {translate('contactUs.details.hours')}
               </Typography>
             </Stack>
           </Card>

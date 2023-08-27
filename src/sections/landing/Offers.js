@@ -14,7 +14,7 @@ export default function Offers() {
   return (
     <Box
       sx={{
-        pb: 8,
+        py: 8,
         position: 'relative',
       }}
     >

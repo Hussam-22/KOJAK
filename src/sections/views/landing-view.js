@@ -1,7 +1,3 @@
-import { useState } from 'react';
-
-import { Container } from '@mui/material';
-
 import { blogPosts } from 'src/_mock';
 import FAQs from 'src/sections/landing/Faqs';
 import Offers from 'src/sections/landing/Offers';
@@ -17,8 +13,8 @@ export default function LandingView() {
   return (
     <>
       <LandingHero />
-      <Services />
       <Offers />
+      <Services />
       <LandingAbout />
       <LandingTestimonial />
       <FAQs />

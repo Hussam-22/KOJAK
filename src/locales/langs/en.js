@@ -16,7 +16,7 @@ const en = {
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Experience Unmatched Mercedes Mastery ',
+    heroText: 'Specialized in Mercedes-Benz since 2007',
     title: `in Every Repair`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
@@ -163,7 +163,7 @@ const en = {
     details: {
       number: '06 5334 312 EXT. 220',
       location: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '9 AM to 8 PM - Saturday to Thursday',
+      hours: '9 AM to 1 PM - 4 PM to 8 PM (Saturday to Thursday)',
       follow: 'FOLLOW US',
     },
   },
