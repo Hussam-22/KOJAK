@@ -8,6 +8,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -22,6 +23,7 @@ const CORE_VALUES = [
 
 export default function CoreValues() {
   const { translate } = useLocales();
+  const isMobile = useResponsive('down', 'md');
   const theme = useTheme();
   return (
     <Box
@@ -52,7 +54,7 @@ export default function CoreValues() {
           <Grid md={4}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
               {CORE_VALUES.slice(0, 2).map((value, index) => (
-                <Box>
+                <Box sx={{ textAlign: { md: 'left', xs: 'center' } }} key={value}>
                   <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
 
                   <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
@@ -81,7 +83,7 @@ export default function CoreValues() {
           <Grid md={4}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
               {CORE_VALUES.slice(0, 2).map((value, index) => (
-                <Box sx={{ textAlign: 'right' }}>
+                <Box sx={{ textAlign: { md: 'right', xs: 'center' } }} key={value}>
                   <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
 
                   <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
