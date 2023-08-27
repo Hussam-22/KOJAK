@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router';
 
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
 
@@ -27,7 +26,7 @@ export default function Services() {
             Mercedes-driving experience.
           </Typography>
 
-          <Button
+          {/* <Button
             variant="outlined"
             color="primary"
             size="large"
@@ -35,7 +34,7 @@ export default function Services() {
             onClick={() => navigate(paths.website.services)}
           >
             Full list of services
-          </Button>
+          </Button> */}
         </Stack>
       </Stack>
 
@@ -50,7 +49,7 @@ export default function Services() {
         {_autoRepairServices
           .filter((service) => !service.isOffer && ['minor', 'major'].includes(service.icon))
           .map((service) => (
-            <ServiceItem service={service} key={service.id} />
+            <ServiceItem service={service} key={service.id} major />
           ))}
       </Box>
 
@@ -64,6 +63,7 @@ export default function Services() {
       >
         {_autoRepairServices
           .filter((service) => !service.isOffer && !['minor', 'major'].includes(service.icon))
+          .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
           .map((service) => (
             <ServiceItem service={service} key={service.id} />
           ))}

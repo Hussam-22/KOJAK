@@ -15,15 +15,14 @@ import { _mercedesClasses, _autoRepairServices } from 'src/_mock';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFTextField, RHFMultiSelect } from 'src/components/hook-form';
 
+const thisYear = new Date().getFullYear();
+const yearsDiff = thisYear - 2014;
 // -------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
   ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
-
-// const today = dayjs();
-// const yesterday = dayjs().subtract(1, 'day');
 
 export default function BookAppointmentView() {
   const { addNewForm } = useAuthContext();
@@ -166,13 +165,11 @@ export default function BookAppointmentView() {
                 <RHFSelect name="year" label="Year">
                   <MenuItem value="">None</MenuItem>
                   <Divider sx={{ borderStyle: 'dashed' }} />
-                  {_mercedesClasses
-                    .find((item) => item.class === values.class)
-                    .models.map((option) => (
-                      <MenuItem key={option.productionYears} value={option.productionYears}>
-                        {option.productionYears}
-                      </MenuItem>
-                    ))}
+                  {[...Array(yearsDiff + 1)].map((_, index) => (
+                    <MenuItem key={thisYear - index} value={thisYear - index}>
+                      {thisYear - index}
+                    </MenuItem>
+                  ))}
                 </RHFSelect>
               )}
 

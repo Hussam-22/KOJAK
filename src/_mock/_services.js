@@ -3,13 +3,13 @@ import { _mock } from 'src/_mock/_mock';
 const AutoRepairServices = [
   {
     serviceName: 'Major Service',
-    description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, including engine oil, oil filter, transmission oil, transmission filter & gasket, spark plugs, A/C filter, and air filter. Our experienced technicians ensure top-quality service, all backed by transparent labor charges. Trust us to keep your Mercedes running at its best.`,
+    description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
     icon: 'major',
     isDisabled: false,
   },
   {
     serviceName: 'Minor Service',
-    description: `Our Minor Service at [Your Shop Name] is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. It's the meticulous care your Mercedes needs for peak performance.`,
+    description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
     icon: 'minor',
     isDisabled: false,
   },
@@ -121,13 +121,13 @@ const AutoRepairServices = [
     isOffer: true,
     isDisabled: false,
   },
-  // {
-  //   serviceName: 'Exhaust System Repair',
-  //   description:
-  //     'This includes fixing or replacing mufflers, catalytic converters, and exhaust pipes.',
-  //   icon: 'exhaust',
-  //   isDisabled: false,
-  // },
+  {
+    serviceName: 'Engine Installation',
+    description:
+      'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+    icon: 'engine-replace',
+    isDisabled: false,
+  },
 
   // {
   //   serviceName: 'Tire Repair and Replacement',

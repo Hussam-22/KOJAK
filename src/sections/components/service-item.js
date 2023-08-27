@@ -3,18 +3,39 @@ import PropTypes from 'prop-types';
 import { Box, Stack, useTheme, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
-export default function ServiceItem({ service }) {
+export default function ServiceItem({ service, major }) {
+  const isMobile = useResponsive('down', 'md');
   const { serviceName, description, icon } = service;
   const theme = useTheme();
+
   return (
-    <Box>
-      <Stack direction="row" spacing={1} sx={{ height: 1 }}>
+    <Box
+      sx={{
+        ...(major && {
+          borderRadius: 2,
+        }),
+      }}
+    >
+      <Stack direction={isMobile ? 'column' : 'row'} sx={{ height: 1 }}>
         <Stack
           direction="column"
-          sx={{ width: '80%', bgcolor: 'secondary.main', p: 2, borderRadius: '10px 0 0 10px' }}
+          sx={{
+            width: isMobile ? '100%' : '80%',
+            bgcolor: 'secondary.main',
+            p: 2,
+            borderRadius: '10px 0 0 10px',
+          }}
         >
-          <Typography variant="h6" color="primary">
+          {isMobile && (
+            <Image
+              src={`/assets/images/service-icons/${icon}.svg`}
+              width="25%"
+              sx={{ mb: 2, bgcolor: major && 'primary.main', borderRadius: major && 2 }}
+            />
+          )}
+          <Typography variant={major ? 'h4' : 'h6'} color="primary">
             {serviceName}
           </Typography>
           <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
@@ -22,19 +43,21 @@ export default function ServiceItem({ service }) {
           </Typography>
         </Stack>
 
-        <Box
-          sx={{
-            width: '20%',
-            p: 1,
-            bgcolor: theme.palette.grey[600],
-            borderRadius: '0 10px 10px 0',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Image src={`/assets/images/service-icons/${icon}.svg`} width={65} />
-        </Box>
+        {!isMobile && (
+          <Box
+            sx={{
+              width: '21%',
+              p: 2,
+              bgcolor: major ? 'primary.main' : theme.palette.grey[600],
+              borderRadius: '0 5px 5px 0',
+              backgroundImage: `url(/assets/images/service-icons/${icon}.svg)`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundOrigin: 'content-box',
+            }}
+          />
+        )}
       </Stack>
     </Box>
   );
@@ -46,4 +69,5 @@ ServiceItem.propTypes = {
     description: PropTypes.string,
     icon: PropTypes.string,
   }),
+  major: PropTypes.bool,
 };

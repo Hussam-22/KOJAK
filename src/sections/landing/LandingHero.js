@@ -126,18 +126,14 @@ function RenderMobileHero() {
       sx={{
         height: '100dvh',
         display: 'flex',
-        // backgroundImage: ,
-        // backgroundSize: 'contain',
-        // backgroundPosition: 'center',
-        // backgroundRepeat: 'no-repeat',
         position: 'relative',
       }}
     >
       <Image
-        src="/assets/images/hero/hero-mobile.png"
+        src="/assets/images/hero/hero-mobile.webp"
         sx={{ position: 'absolute', bottom: 0, left: 0 }}
       />
-      <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 10 }}>
+      <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
         <Typography variant="h1" color="primary">
           {translate('hero.heroText')}
         </Typography>
