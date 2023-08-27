@@ -23,11 +23,7 @@ export default function WhatsAppForm() {
     const message = textRef.current.value;
     const CustomerMobileNumber = mobileNumberRef.current.value;
 
-<<<<<<< HEAD
-    const number = '+971529242623';
-=======
     const number = '+9715529242557';
->>>>>>> staging-auto-maintenance
 
     // Appending the phone number & Message to the URL
     const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(
