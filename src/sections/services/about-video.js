@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router';
 
+import { Masonry } from '@mui/lab';
 import { Stack, useTheme, Container, Typography } from '@mui/material';
+
+import Image from 'src/components/image/Image';
 
 const REGULAR_MAINTENANCE = [
   {
@@ -56,11 +59,23 @@ export default function AboutVideo() {
         justifyContent="center"
         sx={{ position: 'relative', width: 1, borderRadius: 2, overflow: 'hidden' }}
       >
-        <video width="100%" height="25%" muted loop autoPlay playsInline>
+        {/* <video width="100%" height="25%" muted loop autoPlay playsInline>
           <source src="/assets/demo-video.mp4" type="video/webm" />
           Your browser does not support the video tag.
-        </video>
-        {/* <Player controls url="/assets/videos/students_class.mp4" /> */}
+        </video> */}
+        <Masonry
+          columns={{ xs: 1, sm: 2, md: 3 }}
+          spacing={1}
+          defaultColumns={1}
+          defaultSpacing={4}
+          sx={{
+            mx: { xs: 'unset', sm: 0 },
+          }}
+        >
+          {[...Array(6)].map((_, index) => (
+            <Image src={`/assets/images/original/${index + 1}.webp`} />
+          ))}
+        </Masonry>
       </Stack>
     </Container>
   );
