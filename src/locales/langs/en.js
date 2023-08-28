@@ -16,7 +16,7 @@ const en = {
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Specialized in Mercedes-Benz since 2007',
+    heroText: 'Specialized in Mercedes-Benz since 1986',
     title: `in Every Repair`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
@@ -27,7 +27,7 @@ const en = {
   },
   why: {
     title: `We are Mercedes-Benz Experts`,
-    subTitle: `Founded in 2001, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+    subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
     cards: {
       1: {
         title: `Transparent Transactions`,
@@ -163,7 +163,7 @@ const en = {
     details: {
       number: '06 5334 312 EXT. 220',
       location: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '9 AM to 1 PM - 4 PM to 8 PM (Saturday to Thursday)',
+      hours: '8 AM to 1 PM - 4 PM to 8 PM (Saturday to Thursday)',
       follow: 'FOLLOW US',
     },
   },
