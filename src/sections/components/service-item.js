@@ -31,6 +31,7 @@ export default function ServiceItem({ service, major }) {
           {isMobile && (
             <Image
               src={`/assets/images/service-icons/${icon}.svg`}
+              alt={serviceName}
               width="25%"
               sx={{ mb: 2, bgcolor: major && 'primary.main', borderRadius: major && 2 }}
             />

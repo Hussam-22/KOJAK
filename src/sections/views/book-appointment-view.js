@@ -137,7 +137,7 @@ export default function BookAppointmentView() {
     <>
       <Container maxWidth="md" sx={{ mb: 8 }}>
         <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Image src="/assets/illustrations/schedule.svg" width="25%" />
+          <Image src="/assets/illustrations/schedule.svg" width="25%" alt="schedule-illustration" />
           <Typography variant="h2">Book an Appointment</Typography>
         </Box>
         <Box sx={{ bgcolor: 'background.neutral', borderRadius: 1, p: 3 }}>

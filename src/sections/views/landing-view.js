@@ -1,6 +1,5 @@
 import { blogPosts } from 'src/_mock';
 import FAQs from 'src/sections/landing/Faqs';
-import Offers from 'src/sections/landing/Offers';
 import GroupAd from 'src/sections/landing/GroupAd';
 import Services from 'src/sections/landing/Services';
 import LatestPosts from 'src/sections/blog/latest-posts';
@@ -13,7 +12,7 @@ export default function LandingView() {
   return (
     <>
       <LandingHero />
-      <Offers />
+      {/* <Offers /> */}
       <Services />
       <LandingAbout />
       <LandingTestimonial />
