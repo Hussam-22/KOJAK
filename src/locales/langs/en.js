@@ -49,6 +49,135 @@ const en = {
       },
     },
   },
+  service: {
+    title: '',
+    description: '',
+    services: {
+      serviceName: 'Major Service',
+      description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
+      icon: 'major',
+      isDisabled: false,
+    items:{
+      1:{
+      serviceName: 'Minor Service',
+      description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
+    },
+    // --------------------------------------------------------
+   2: {
+      serviceName: 'Oil Change',
+      description: 'Regular oil changes are essential to keep your engine running smoothly.',
+      icon: 'oil',
+      isDisabled: false,
+    },
+   3: {
+      serviceName: 'Tire Rotation and Balancing',
+      description: 'This helps extend the life of your tires and ensures even wear.',
+    },
+    4:{
+      serviceName: 'Brake Service',
+      description:
+        'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
+      icon: 'break',
+      isDisabled: false,
+    },
+   5: {
+      serviceName: 'Transmission Service',
+      description:
+        'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
+      icon: 'gear',
+      isDisabled: false,
+    },
+   6: {
+      serviceName: 'Engine Tune-Up',
+      description:
+        'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
+      icon: 'engine',
+      isDisabled: false,
+    },
+  
+    7:{
+      serviceName: 'Suspension Repair',
+      description:
+        'Services may involve replacing shocks, struts, control arms, or other suspension components.',
+      icon: 'suspension',
+      isDisabled: false,
+    },
+   8: {
+      serviceName: 'Electrical System Repair',
+      description:
+        "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
+      icon: 'power',
+      isDisabled: false,
+    },
+   9: {
+      serviceName: 'Air Conditioning Service',
+      description:
+        'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
+      icon: 'ac',
+      isDisabled: false,
+    },
+  
+   10: {
+      serviceName: 'Battery Replacement',
+      description: 'When your battery no longer holds a charge, it needs to be replaced.',
+      icon: 'batterylight',
+    },
+  
+   11: {
+      serviceName: 'Radiator and Cooling System Repair',
+      description: 'Services for addressing issues related to overheating and coolant leaks.',
+      icon: 'radiator',
+      isDisabled: false,
+    },
+  
+   12: {
+      serviceName: 'Diagnostics and Computerized Testing',
+      description:
+        'Using specialized tools to identify and diagnose various issues in modern vehicles.',
+      icon: 'chip',
+      isDisabled: false,
+    },
+   13: {
+      serviceName: 'Car Inspection',
+      description: 'get free car inspection prior booking online',
+      icon: 'solar:clipboard-check-outline',
+      price: 'Free',
+      isOffer: true,
+      isDisabled: false,
+    },
+   14: {
+      serviceName: 'AC Gas Refill',
+      description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
+      icon: 'ph:fan',
+      price: '80 AED',
+      isOffer: true,
+      isDisabled: false,
+    },
+   15: {
+      serviceName: 'Break Replacement',
+      description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
+      icon: 'icon-park-twotone:brake-pads',
+      price: '320 AED',
+      isOffer: true,
+      isDisabled: false,
+    },
+   16: {
+      serviceName: 'Computer Diagnosis',
+      description: 'diagnosis your car computer for any errors and get full report',
+      icon: 'solar:cpu-linear',
+      price: '100 AED',
+      isOffer: true,
+      isDisabled: false,
+    },
+   17: {
+      serviceName: 'Engine Installation',
+      description:
+        'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+      icon: 'engine-replace',
+      isDisabled: false,
+    },
+  },
+
   why: {
     title: `We are Mercedes-Benz Experts`,
     subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,

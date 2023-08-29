@@ -54,16 +54,17 @@ export default function Offers() {
 
 function OffersCard() {
   const theme = useTheme();
+  const { translate } = useLocales();
   return _autoRepairServices
     .filter((service) => service.isOffer)
-    .map((offer) => (
+    .map((offer, index) => (
       <Card
         sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
         key={offer.id}
       >
         <Stack spacing={1}>
           <Iconify icon={offer.icon} width={64} />
-          <Typography variant="h4">{offer.serviceName}</Typography>
+          <Typography variant="h4">{translate(`hotOffers.cards.${index + 1}.title`)}</Typography>
           <Typography
             variant="h1"
             sx={{
@@ -71,7 +72,7 @@ function OffersCard() {
               color: alpha(theme.palette.background.default, 0),
             }}
           >
-            {offer.price}
+            {translate(`hotOffers.cards.${index + 1}.price`)}
           </Typography>
           <Typography
             sx={{
@@ -79,7 +80,7 @@ function OffersCard() {
               fontWeight: theme.typography.fontWeightLight,
             }}
           >
-            {offer.description}
+            {translate(`hotOffers.cards.${index + 1}.description`)}
           </Typography>
 
           {/* <Button variant="contained" color="secondary" size="large">
@@ -87,7 +88,7 @@ function OffersCard() {
           </Button> */}
 
           <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-            valid until 29-Aug-2023
+            {translate(`hotOffers.cards.${index + 1}.endDate`)}
           </Typography>
         </Stack>
       </Card>
@@ -95,6 +96,7 @@ function OffersCard() {
 }
 
 function MobileCarousel() {
+  const { translate } = useLocales();
   const theme = useTheme();
   const carousel = useCarousel({
     centerMode: true,
@@ -143,7 +145,7 @@ function MobileCarousel() {
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
           {_autoRepairServices
             .filter((service) => service.isOffer)
-            .map((offer) => (
+            .map((offer, index) => (
               <Box key={offer.id} sx={{ p: 2 }}>
                 <Card
                   sx={{
@@ -155,7 +157,9 @@ function MobileCarousel() {
                 >
                   <Stack spacing={1}>
                     <Iconify icon={offer.icon} width={64} />
-                    <Typography variant="h4">{offer.serviceName}</Typography>
+                    <Typography variant="h4">
+                      {translate(`hotOffers.cards.${index + 1}.title`)}
+                    </Typography>
                     <Typography
                       variant="h1"
                       sx={{
@@ -163,7 +167,7 @@ function MobileCarousel() {
                         color: alpha(theme.palette.background.default, 0),
                       }}
                     >
-                      {offer.price}
+                      {translate(`hotOffers.cards.${index + 1}.price`)}
                     </Typography>
                     <Typography
                       sx={{
@@ -171,11 +175,15 @@ function MobileCarousel() {
                         fontWeight: theme.typography.fontWeightLight,
                       }}
                     >
-                      {offer.description}
+                      {translate(`hotOffers.cards.${index + 1}.description`)}
                     </Typography>
 
+                    {/* <Button variant="contained" color="secondary" size="large">
+            Book your offer now!
+          </Button> */}
+
                     <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-                      valid until 29-Aug-2023
+                      {translate(`hotOffers.cards.${index + 1}.endDate`)}
                     </Typography>
                   </Stack>
                 </Card>

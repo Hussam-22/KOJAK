@@ -21,11 +21,6 @@ const AutoRepairServices = [
     isDisabled: false,
   },
   {
-    serviceName: 'Tire Rotation and Balancing',
-    description: 'This helps extend the life of your tires and ensures even wear.',
-    icon: 'tirebalance',
-  },
-  {
     serviceName: 'Brake Service',
     description:
       'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
@@ -128,44 +123,6 @@ const AutoRepairServices = [
     icon: 'engine-replace',
     isDisabled: false,
   },
-
-  // {
-  //   serviceName: 'Tire Repair and Replacement',
-  //   description:
-  //     'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Steering System Repair',
-  //   description:
-  //     'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Exterior and Interior Detailing',
-  //   description: "Enhances your vehicle's exterior brilliance and restores its interior freshness",
-  //   icon: 'detailing',
-  //   isDisabled: false,
-  // },
-
-  // {
-  //   serviceName: 'Cooling System Service',
-  //   description:
-  //     'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Fuel System Service',
-  //   description:
-  //     'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Check Engine Light Diagnosis',
-  //   description:
-  //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
-  //   icon: 'wheel',
-  // },
 ];
 
 export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
