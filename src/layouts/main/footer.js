@@ -1,15 +1,13 @@
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Box, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import { Box, Card, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
-import Iconify from 'src/components/iconify';
 import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -110,14 +108,16 @@ export default function Footer() {
 
           <Grid md={4} xs={12}>
             <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
-              Auto Repair Services
+              {translate(`services.title`)}
             </Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
-              {_autoRepairServices.map((service) => (
-                <Typography key={service.serviceName} variant="body2">
-                  {service.serviceName}
-                </Typography>
-              ))}
+              {_autoRepairServices
+                .filter((service) => !service.isDisabled && !service.isOffer)
+                .map((service) => (
+                  <Typography key={service.serviceName} variant="body2">
+                    {translate(`services.items.${service.icon}.serviceName`)}
+                  </Typography>
+                ))}
             </Box>
           </Grid>
         </Grid>
@@ -132,7 +132,7 @@ export default function Footer() {
             {translate('footer.allRights')}
           </Typography>
 
-          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'error.main' }}>
+          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'primary.main' }}>
             {translate('footer.designedBy')}
           </Link>
         </Stack>
@@ -142,88 +142,4 @@ export default function Footer() {
 
   // return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
   return <footer>{mainFooter}</footer>;
-}
-
-function GroupsCard() {
-  const { translate } = useLocales();
-  const theme = useTheme();
-  const renderOverlay = (
-    <Box
-      sx={{
-        backgroundColor: alpha('#000000', 0.45),
-        top: 0,
-        left: 0,
-        zIndex: -1,
-        width: 1,
-        height: 1,
-        position: 'absolute',
-      }}
-    />
-  );
-
-  return (
-    <>
-      <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
-        {translate(`footer.groupTitle`)}
-      </Typography>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3,1fr)',
-          columnGap: 1,
-          height: '90%',
-        }}
-      >
-        {GROUPS.map((group, index) => (
-          <Card
-            key={index}
-            sx={{
-              borderRadius: 0.5,
-              p: 1,
-              backgroundImage: `url(/assets/kojak-building/group/${group.image}.webp)`,
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              textAlign: 'center',
-            }}
-          >
-            <Box sx={{ my: 'auto' }}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'common.white',
-                }}
-              >
-                {translate(`footer.${group.title}.title`)}
-              </Typography>
-              <Typography
-                sx={{
-                  color: 'common.white',
-                  fontWeight: theme.typography.fontWeightLight,
-                }}
-              >
-                {translate(`footer.${group.title}.text`)}
-              </Typography>
-            </Box>
-            <Link
-              href={group.url}
-              target="_blank"
-              rel="noopener"
-              sx={{
-                m: 2,
-                color: 'common.white',
-                fontWeight: theme.typography.fontWeightLight,
-              }}
-            >
-              {translate(`footer.visitWebsite`)} <Iconify icon="quill:link-out" />
-            </Link>
-            {renderOverlay}
-          </Card>
-        ))}
-      </Box>
-    </>
-  );
 }

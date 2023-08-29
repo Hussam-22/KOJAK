@@ -99,7 +99,7 @@ export default function Header({ headerOnDark }) {
                     color="primary"
                     onClick={() => navigate(paths.website.bookAppointment)}
                   >
-                    {translate('common.exploreProperties')}
+                    {translate('common.bookAppointment')}
                   </Button>
                   <Divider
                     orientation="vertical"

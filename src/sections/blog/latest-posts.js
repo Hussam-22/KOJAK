@@ -2,7 +2,6 @@ import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-import Masonry from '@mui/lab/Masonry';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -16,7 +15,6 @@ import { varFade } from 'src/components/animate';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import LatestPostItem from './latest-post-item';
 import PostItemMobile from './common/post-item-mobile';
 
 // ----------------------------------------------------------------------
@@ -89,23 +87,6 @@ export default function LatestPosts({ posts }) {
             },
           }}
         >
-          {/* {mdUp ? (
-          <>
-            <LatestPostItem post={latestPost} largePost />
-
-            <Masonry columns={{ xs: 1, md: 2 }} spacing={4}>
-              {posts.slice(1, 5).map((post, index) => (
-                <LatestPostItem key={post.id} post={post} order={index % 2} />
-              ))}
-            </Masonry>
-          </>
-        ) : (
-          <>
-            {posts.slice(0, 5).map((post) => (
-              <PostItemMobile key={post.id} post={post} />
-            ))}
-          </>
-        )} */}
           {posts.slice(0, 6).map((post) => (
             <PostItemMobile key={post.id} post={post} />
           ))}

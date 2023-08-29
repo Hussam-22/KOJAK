@@ -22,7 +22,7 @@ export default function Offers() {
     >
       <Container maxWidth="xl">
         <Stack spacing={4}>
-          <Typography variant="h2">HOT OFFERS</Typography>
+          <Typography variant="h2">{translate('hotOffers.title')}</Typography>
           {mdUp ? (
             <Box
               sx={{

@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 
 import { Box, Stack, useTheme, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function ServiceItem({ service, major }) {
-  const isMobile = useResponsive('down', 'md');
   const { serviceName, description, icon } = service;
   const theme = useTheme();
+  const isMobile = useResponsive('down', 'md');
+  const { translate } = useLocales();
 
   return (
     <Box
@@ -37,10 +39,10 @@ export default function ServiceItem({ service, major }) {
             />
           )}
           <Typography variant={major ? 'h4' : 'h6'} color="primary">
-            {serviceName}
+            {translate(`services.items.${icon}.serviceName`)}
           </Typography>
           <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-            {description}
+            {translate(`services.items.${icon}.description`)}
           </Typography>
         </Stack>
 

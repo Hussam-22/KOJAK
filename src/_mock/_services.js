@@ -43,6 +43,14 @@ const AutoRepairServices = [
   },
 
   {
+    serviceName: 'Engine Installation',
+    description:
+      'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+    icon: 'engine-replace',
+    isDisabled: false,
+  },
+
+  {
     serviceName: 'Suspension Repair',
     description:
       'Services may involve replacing shocks, struts, control arms, or other suspension components.',
@@ -68,6 +76,7 @@ const AutoRepairServices = [
     serviceName: 'Battery Replacement',
     description: 'When your battery no longer holds a charge, it needs to be replaced.',
     icon: 'batterylight',
+    isDisabled: false,
   },
 
   {
@@ -82,6 +91,12 @@ const AutoRepairServices = [
     description:
       'Using specialized tools to identify and diagnose various issues in modern vehicles.',
     icon: 'chip',
+    isDisabled: false,
+  },
+  {
+    serviceName: 'Tire Rotation and Balancing',
+    description: 'This helps extend the life of your tires and ensures even wear.',
+    icon: 'tirebalance',
     isDisabled: false,
   },
   {
@@ -114,13 +129,6 @@ const AutoRepairServices = [
     icon: 'solar:cpu-linear',
     price: '100 AED',
     isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Engine Installation',
-    description:
-      'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
-    icon: 'engine-replace',
     isDisabled: false,
   },
 ];

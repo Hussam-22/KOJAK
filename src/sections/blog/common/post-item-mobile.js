@@ -38,7 +38,9 @@ export default function PostItemMobile({ post, onSiderbar }) {
           href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
         >
-          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>{post.title}</TextMaxLine>
+          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'} color="primary">
+            {post.title}
+          </TextMaxLine>
         </Link>
 
         <PostTimeBlock createdAt={fDate(post.createdAt)} duration={post.duration} />

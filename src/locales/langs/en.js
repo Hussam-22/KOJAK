@@ -1,10 +1,3 @@
-// ----------------------------------------------------------------------
-
-// IF THIS TRANSLATION IS INCORRECT PLEASE IGNORE THIS AS THIS TRANSLATION IS FOR DEMO PURPOSES ONLY
-// We are happy if you can help improve the translation by sending an email to support@minimals.cc.
-
-// ----------------------------------------------------------------------
-
 const en = {
   header: {
     home: 'Home',
@@ -49,132 +42,106 @@ const en = {
       },
     },
   },
-  service: {
-    title: '',
-    description: '',
-    services: {
-      serviceName: 'Major Service',
-      description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
-      icon: 'major',
-      isDisabled: false,
-    items:{
-      1:{
-      serviceName: 'Minor Service',
-      description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
-    },
-    // --------------------------------------------------------
-   2: {
-      serviceName: 'Oil Change',
-      description: 'Regular oil changes are essential to keep your engine running smoothly.',
-      icon: 'oil',
-      isDisabled: false,
-    },
-   3: {
-      serviceName: 'Tire Rotation and Balancing',
-      description: 'This helps extend the life of your tires and ensures even wear.',
-    },
-    4:{
-      serviceName: 'Brake Service',
-      description:
-        'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
-      icon: 'break',
-      isDisabled: false,
-    },
-   5: {
-      serviceName: 'Transmission Service',
-      description:
-        'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
-      icon: 'gear',
-      isDisabled: false,
-    },
-   6: {
-      serviceName: 'Engine Tune-Up',
-      description:
-        'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
-      icon: 'engine',
-      isDisabled: false,
-    },
-  
-    7:{
-      serviceName: 'Suspension Repair',
-      description:
-        'Services may involve replacing shocks, struts, control arms, or other suspension components.',
-      icon: 'suspension',
-      isDisabled: false,
-    },
-   8: {
-      serviceName: 'Electrical System Repair',
-      description:
-        "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
-      icon: 'power',
-      isDisabled: false,
-    },
-   9: {
-      serviceName: 'Air Conditioning Service',
-      description:
-        'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
-      icon: 'ac',
-      isDisabled: false,
-    },
-  
-   10: {
-      serviceName: 'Battery Replacement',
-      description: 'When your battery no longer holds a charge, it needs to be replaced.',
-      icon: 'batterylight',
-    },
-  
-   11: {
-      serviceName: 'Radiator and Cooling System Repair',
-      description: 'Services for addressing issues related to overheating and coolant leaks.',
-      icon: 'radiator',
-      isDisabled: false,
-    },
-  
-   12: {
-      serviceName: 'Diagnostics and Computerized Testing',
-      description:
-        'Using specialized tools to identify and diagnose various issues in modern vehicles.',
-      icon: 'chip',
-      isDisabled: false,
-    },
-   13: {
-      serviceName: 'Car Inspection',
-      description: 'get free car inspection prior booking online',
-      icon: 'solar:clipboard-check-outline',
-      price: 'Free',
-      isOffer: true,
-      isDisabled: false,
-    },
-   14: {
-      serviceName: 'AC Gas Refill',
-      description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
-      icon: 'ph:fan',
-      price: '80 AED',
-      isOffer: true,
-      isDisabled: false,
-    },
-   15: {
-      serviceName: 'Break Replacement',
-      description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
-      icon: 'icon-park-twotone:brake-pads',
-      price: '320 AED',
-      isOffer: true,
-      isDisabled: false,
-    },
-   16: {
-      serviceName: 'Computer Diagnosis',
-      description: 'diagnosis your car computer for any errors and get full report',
-      icon: 'solar:cpu-linear',
-      price: '100 AED',
-      isOffer: true,
-      isDisabled: false,
-    },
-   17: {
-      serviceName: 'Engine Installation',
-      description:
-        'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
-      icon: 'engine-replace',
-      isDisabled: false,
+  services: {
+    title: 'Auto Repair Services',
+    description: `Our expert technicians are dedicated to providing top-notch care for your Mercedes vehicle. From routine maintenance to intricate repairs, we have the knowledge and experience to keep your Mercedes running at its best. We use cutting-edge technology and genuine Mercedes parts to ensure the highest quality service. Experience the luxury of specialized care for your Mercedes-Benz. Drive in today and let us elevate your Mercedes-driving experience.`,
+    items: {
+      major: {
+        serviceName: 'Major Service',
+        description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
+        icon: 'major',
+        isDisabled: false,
+      },
+      minor: {
+        serviceName: 'Minor Service',
+        description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
+        icon: 'minor',
+        isDisabled: false,
+      },
+      // --------------------------------------------------------
+      oil: {
+        serviceName: 'Oil Change',
+        description: 'Regular oil changes are essential to keep your engine running smoothly.',
+        icon: 'oil',
+        isDisabled: false,
+      },
+      break: {
+        serviceName: 'Brake Service',
+        description:
+          'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
+        icon: 'break',
+        isDisabled: false,
+      },
+      gear: {
+        serviceName: 'Transmission Service',
+        description:
+          'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
+        icon: 'gear',
+        isDisabled: false,
+      },
+      tirebalance: {
+        serviceName: 'Tire Rotation and Balancing',
+        description: 'This helps extend the life of your tires and ensures even wear.',
+        icon: 'tirebalance',
+        isDisabled: false,
+      },
+      engine: {
+        serviceName: 'Engine Tune-Up',
+        description:
+          'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
+        icon: 'engine',
+        isDisabled: false,
+      },
+
+      suspension: {
+        serviceName: 'Suspension Repair',
+        description:
+          'Services may involve replacing shocks, struts, control arms, or other suspension components.',
+        icon: 'suspension',
+        isDisabled: false,
+      },
+      power: {
+        serviceName: 'Electrical System Repair',
+        description:
+          "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
+        icon: 'power',
+        isDisabled: false,
+      },
+      ac: {
+        serviceName: 'Air Conditioning Service',
+        description:
+          'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
+        icon: 'ac',
+        isDisabled: false,
+      },
+
+      batterylight: {
+        serviceName: 'Battery Replacement',
+        description: 'When your battery no longer holds a charge, it needs to be replaced.',
+        icon: 'batterylight',
+      },
+
+      radiator: {
+        serviceName: 'Radiator and Cooling System Repair',
+        description: 'Services for addressing issues related to overheating and coolant leaks.',
+        icon: 'radiator',
+        isDisabled: false,
+      },
+
+      chip: {
+        serviceName: 'Diagnostics and Computerized Testing',
+        description:
+          'Using specialized tools to identify and diagnose various issues in modern vehicles.',
+        icon: 'chip',
+        isDisabled: false,
+      },
+      'engine-replace': {
+        serviceName: 'Engine Installation',
+        description:
+          'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+        icon: 'engine-replace',
+        isDisabled: false,
+      },
     },
   },
 
@@ -185,29 +152,88 @@ const en = {
     happyCustomers: 'Happy Customers',
     carsRepaired: 'Cars Repaired',
     technicians: 'Expert Technicians',
-    cards: {
-      1: {
-        title: `Transparent Transactions`,
-        subTitle: `Our commitment to transparent transactions ensures that you have a clear understanding of all the terms and conditions, empowering you to make decisions with confidence`,
-      },
-      2: {
-        title: `Customer Satisfaction`,
-        subTitle: `Over the years, we've built a reputation for excellence, and our countless satisfied clients stand as a testament to our commitment to customer happiness`,
-      },
-      3: {
-        title: `Prime Locations`,
-        subTitle: `Our portfolio includes spaces in prime and sought-after locations, offering you the benefits of accessibility, convenience, and a thriving community`,
-      },
-      4: {
-        title: `Unbeatable Prices`,
-        subTitle: `Our priority is to provide you with exceptional value. We understand that finding a quality rental at a great price is essential, and we're committed to making that a reality for you.`,
-      },
+  },
+
+  testimonial: {
+    title: 'What Our Customers Say',
+    description: `At KOJAK, we take immense pride in providing top-notch services for Mercedes car owners. But don't just take our word for it – here's what our valued customers have to say about their experiences with us:`,
+    testimonialOne: {
+      text: `Exceptional Service! I've been a loyal customer of KOjak for years, and I couldn't be happier with the level of expertise and care they provide for my Mercedes. From routine maintenance to complex repairs, their team of skilled technicians always goes above and beyond. My car runs like a dream, thanks to Kojak. I wouldn't trust anyone else with my Mercedes!`,
+      author: 'Rashed Mohamed',
+    },
+    testimonialTwo: {
+      text: `I can't express how grateful I am for Kojak. Their Mercedes expertise is unmatched, and their dedication to customer satisfaction is truly commendable. They took the time to explain the issues with my car and provided a transparent breakdown of the costs. The repairs were done quickly, and my Mercedes feels brand new. I highly recommend Kojak to all Mercedes owners`,
+      author: 'Moza Ahmad',
+    },
+  },
+
+  faq: {
+    title: 'Frequently Asked Questions',
+    subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
+    We've compiled a list of inquiries that customers frequently ask us. Below,
+    you'll find information on various topics to assist you in getting the answers you
+    need.`,
+
+    1: {
+      question: 'What Types of Services Do You Offer for Mercedes Vehicles?',
+      answer:
+        "We offer a comprehensive range of services for Mercedes-Benz vehicles, including routine maintenance (oil changes, brake inspections, tire rotations), major repairs, engine diagnostics, and performance tuning. Whether it's a minor service or a complex repair, we have you covered.",
+    },
+    2: {
+      question: 'How Can I Schedule an Appointment for Service?',
+      answer:
+        "Scheduling an appointment is easy. You can give us a call, visit our website, or use our online appointment booking system. Just select a date and time that works for you, and we'll be ready to provide your Mercedes with top-notch service.",
+      buttonText: 'Book An Appointment',
+    },
+    3: {
+      question: 'What Are the Benefits of Using Genuine Mercedes Parts?',
+      answer:
+        "Genuine Mercedes parts are designed and manufactured specifically for your vehicle, ensuring the highest quality and performance. They fit perfectly, maintain your car's authenticity, and often come with warranties, providing peace of mind.",
+      buttonText: 'Visit Kojak Spare-Parts Website',
+    },
+    4: {
+      question: 'How Can I Keep My Mercedes-Benz Running at Its Best Between Services?',
+      answer:
+        "Regular maintenance is key. In addition, follow your manufacturer's recommended service schedule, drive gently, keep an eye on fluid levels, and address any unusual sounds or issues promptly. Our blog and newsletter also provide valuable tips for Mercedes-Benz owners.",
+    },
+    5: {
+      question: 'Is Your Mercedes Auto Repair Shop Equipped with the Latest Diagnostic Technology?',
+      answer:
+        'Yes, we invest in state-of-the-art diagnostic equipment designed specifically for Mercedes-Benz vehicles. This technology allows us to accurately diagnose issues and perform precise repairs, ensuring your car receives the best care.',
+    },
+    6: {
+      question: 'How Do Your Prices Compare to Other Auto Repair Shops?',
+      answer:
+        'While pricing can vary depending on the service required, we offer competitive rates for the specialized expertise and genuine Mercedes parts we provide. Our focus is on quality and reliability, ensuring that you receive excellent value for your investment in your Mercedes-Benz.',
+    },
+    7: {
+      question: 'Do You Offer a Warranty on Your Repairs and Services?',
+      answer:
+        "Yes, we stand behind the quality of our work. We offer warranties on our repairs and services, giving you added peace of mind. If you encounter any issues related to our service, simply reach out to us, and we'll address them promptly.",
+    },
+  },
+
+  groupAd: {
+    title: 'Experience the Difference',
+    description: `At KOJAK, we're more than an auto repair shop; we're your automotive partners. Whether you need maintenance, repairs, spare parts, or a new Mercedes, you can trust us to deliver excellence and dedication. Visit us today and explore our Mercedes spare parts and car sales showroom. Discover why Mercedes-Benz enthusiasts choose KOJAK as their trusted partner in all things Mercedes-Benz.`,
+    0: {
+      title: 'KOJAK Exclusive',
+      description: 'Looking to buy a new Mercedes ?, check our Mercedes show room website',
+    },
+    1: {
+      title: 'KOJAK Spare Parts',
+      description: `Looking for spear parts for your Mercedes ? check our spare parts website`,
     },
   },
 
   blog: {
     title: 'Maintenance Matters Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
+  },
+
+  newsLetter: {
+    title: 'Stay Tuned, Never Miss an Offer Again!',
+    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
   },
 
   about: {
@@ -283,13 +309,6 @@ const en = {
     sitemap: 'Sitemap',
   },
 
-  testimonial: { title: 'What Our Customer Say' },
-
-  newsLetter: {
-    title: 'Stay Tuned, Never Miss an Offer Again!',
-    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
-  },
-
   common: {
     kojak: 'KOJAK',
     autoMaintenance: 'Auto Maintenance',
@@ -302,6 +321,7 @@ const en = {
     },
     dropMessage: 'Drop us a message',
     aed: 'AED',
+    visitWebsite: 'Visit Website',
   },
 
   form: {
