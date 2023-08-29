@@ -9,7 +9,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
@@ -101,22 +101,14 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.exploreProperties')}
                   </Button>
-                  {/* <IconButton
-                    color="primary"
-                    size="small"
-                    sx={{
-                      backgroundColor: 'secondary.main',
-                      color: 'common.white',
-                      px: currentLang.value === 'en' ? 1.75 : 1.15,
-                      '&:hover': {
-                        color: 'common.black',
-                        backgroundColor: 'common.white',
-                      },
-                    }}
-                    onClick={toggleLanguageHandler}
-                  >
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
+                  />
+                  <IconButton disableRipple color="primary" onClick={toggleLanguageHandler}>
                     {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton> */}
+                  </IconButton>
                 </Stack>
               )}
             </Stack>

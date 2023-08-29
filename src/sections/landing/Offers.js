@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 
 import { Box, Card, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import { _autoRepairServices } from 'src/_mock';
 import Iconify from 'src/components/iconify/Iconify';
@@ -11,6 +12,7 @@ import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 export default function Offers() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
+  const { translate } = useLocales();
   return (
     <Box
       sx={{
@@ -41,7 +43,7 @@ export default function Offers() {
               size="large"
               onClick={() => navigate(paths.website.bookAppointment)}
             >
-              Book an Appointment
+              {translate('common.bookAppointment')}
             </Button>
           </Box>
         </Stack>

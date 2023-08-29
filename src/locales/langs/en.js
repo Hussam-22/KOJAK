@@ -12,22 +12,50 @@ const en = {
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',
-    bookAppointment: 'Book an Appointment',
   },
   hero: {
-    overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Specialized in Mercedes-Benz since 1986',
-    title: `in Every Repair`,
+    // overlineText: `Looking for residential or commercial space ?`,
+    heroText: 'Specialized in Mercedes-Benz ',
+    title: `Since 1986`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
-    experience: 'Years of Experience',
-    happyCustomers: 'Happy Customers',
-    carsRepaired: 'Cars Repaired',
-    technicians: 'Expert Technicians',
+  },
+  hotOffers: {
+    title: 'HOT OFFERS',
+    cards: {
+      1: {
+        title: 'Car Inspection',
+        price: 'Free',
+        description: 'Get Free Car Inspection Prior Booking Online',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      2: {
+        title: 'AC Gas Refill',
+        price: '80 AED',
+        description: 'Get Cool Air In This Hot Summer, Inspect Your AC & Get Gas Refill',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      3: {
+        title: 'Break Replacement',
+        price: '320 AED',
+        description: 'Breaks Inspection, Replacement & Resurfacing Of Break Pads',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      4: {
+        title: 'Computer Diagnosis',
+        price: '100 AED',
+        description: 'Diagnosis Your Car Computer For Any Errors And Get Full Report',
+        endDate: 'valid until 29-Aug-2023',
+      },
+    },
   },
   why: {
     title: `We are Mercedes-Benz Experts`,
     subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+    experience: 'Years of Experience',
+    happyCustomers: 'Happy Customers',
+    carsRepaired: 'Cars Repaired',
+    technicians: 'Expert Technicians',
     cards: {
       1: {
         title: `Transparent Transactions`,
@@ -47,62 +75,7 @@ const en = {
       },
     },
   },
-  properties: {
-    title: 'Popular Properties',
-    subTitle: `At Kojak Building , we take pride in offering an extensive selection of both
-    commercial and residential spaces that cater to all your needs. Whether you're
-    looking to upgrade your business headquarters or find a cozy abode to call home,
-    we've got you covered.`,
-    didNotFind: 'Did not find what you are looking for ?',
-  },
-  featuredProperty: {
-    title: `Hot Deal Property `,
-  },
-  faq: {
-    title: 'Frequently Asked Questions',
-    subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
-    We've compiled a list of inquiries that customers frequently ask us. Below,
-    you'll find information on various topics to assist you in getting the answers you
-    need.`,
 
-    1: {
-      question: 'What Types of Services Do You Offer for Mercedes Vehicles?',
-      answer:
-        "We offer a comprehensive range of services for Mercedes-Benz vehicles, including routine maintenance (oil changes, brake inspections, tire rotations), major repairs, engine diagnostics, and performance tuning. Whether it's a minor service or a complex repair, we have you covered.",
-    },
-    2: {
-      question: 'How Can I Schedule an Appointment for Service?',
-      answer:
-        "Scheduling an appointment is easy. You can give us a call, visit our website, or use our online appointment booking system. Just select a date and time that works for you, and we'll be ready to provide your Mercedes with top-notch service.",
-      buttonText: 'Book An Appointment',
-    },
-    3: {
-      question: 'What Are the Benefits of Using Genuine Mercedes Parts?',
-      answer:
-        "Genuine Mercedes parts are designed and manufactured specifically for your vehicle, ensuring the highest quality and performance. They fit perfectly, maintain your car's authenticity, and often come with warranties, providing peace of mind.",
-      buttonText: 'Visit Kojak Spare-Parts Website',
-    },
-    4: {
-      question: 'How Can I Keep My Mercedes-Benz Running at Its Best Between Services?',
-      answer:
-        "Regular maintenance is key. In addition, follow your manufacturer's recommended service schedule, drive gently, keep an eye on fluid levels, and address any unusual sounds or issues promptly. Our blog and newsletter also provide valuable tips for Mercedes-Benz owners.",
-    },
-    5: {
-      question: 'Is Your Mercedes Auto Repair Shop Equipped with the Latest Diagnostic Technology?',
-      answer:
-        'Yes, we invest in state-of-the-art diagnostic equipment designed specifically for Mercedes-Benz vehicles. This technology allows us to accurately diagnose issues and perform precise repairs, ensuring your car receives the best care.',
-    },
-    6: {
-      question: 'How Do Your Prices Compare to Other Auto Repair Shops?',
-      answer:
-        'While pricing can vary depending on the service required, we offer competitive rates for the specialized expertise and genuine Mercedes parts we provide. Our focus is on quality and reliability, ensuring that you receive excellent value for your investment in your Mercedes-Benz.',
-    },
-    7: {
-      question: 'Do You Offer a Warranty on Your Repairs and Services?',
-      answer:
-        "Yes, we stand behind the quality of our work. We offer warranties on our repairs and services, giving you added peace of mind. If you encounter any issues related to our service, simply reach out to us, and we'll address them promptly.",
-    },
-  },
   blog: {
     title: 'Maintenance Matters Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
@@ -190,16 +163,14 @@ const en = {
 
   common: {
     kojak: 'KOJAK',
-    building: 'Building',
-    exploreProperties: 'Book an Appointment',
+    autoMaintenance: 'Auto Maintenance',
+    bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',
     dialog: {
       title: `We have received your request !!`,
       subTitle: `Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!`,
     },
-    search: 'Search',
-    clearSearch: 'Clear Search',
     dropMessage: 'Drop us a message',
     aed: 'AED',
   },
@@ -215,107 +186,6 @@ const en = {
     whatsApp: {
       howCanWeHelpYou: 'How can we help you ?',
       workingHours: 'Our working hours from 9 AM to 6 PM, Saturday to Thursday',
-    },
-  },
-
-  websiteFilter: {
-    all: { type: 'All Types', cities: 'All Cities', spaceTypes: 'All Space Types', all: 'All' },
-    type: {
-      propertyType: 'Property Type',
-      location: 'Location',
-      spaceType: 'Space Type',
-      availability: 'Availability',
-    },
-    filterDefaultValues: {
-      residential: 'residential',
-      commercial: 'commercial',
-      sharjah: 'sharjah',
-      dubai: 'dubai',
-      flat: 'flat',
-      showrooms: 'showrooms',
-      gym: 'Health Club / Swimming Pool',
-      labourcamp: 'labour camp',
-      shops: 'shops',
-      restaurant: 'restaurant',
-      offices: 'offices',
-      available: 'available',
-      notAvailable: 'not available',
-    },
-  },
-
-  propertyCard: {
-    residential: 'residential',
-    commercial: 'commercial',
-    sharjah: 'sharjah',
-    dubai: 'dubai',
-    flat: 'flat',
-    showrooms: 'showrooms',
-    gym: 'Health Club / Swimming Pool',
-    labourcamp: 'labour camp',
-    shops: 'shops',
-    restaurant: 'restaurant',
-    offices: 'offices',
-    available: 'available',
-    notAvailable: 'not available',
-    noDesc: 'No Available Description',
-    cctv: 'CCTV',
-    security: 'Security',
-    bathrooms: 'Bathrooms',
-    bedrooms: 'Bedrooms',
-    totalArea: 'Total Area',
-    ac: 'AC Type',
-    payment: 'Payment Term',
-    kitchen: 'Kitchen',
-    spaceType: 'Space Type',
-    mezzanine: 'Mezzanine Floor',
-    parking: 'Parking',
-    cheques: 'Cheques',
-    propertyFeatures: 'Property Features',
-    agentHeader: 'Agent Contact Details',
-    requestCallBack: 'Request Callback',
-    // ---------------------------
-    summery: {
-      maintenance: {
-        title: 'Maintenance Excellence',
-        text: `With our space leasing services, you can bid farewell to the worries of maintaining
-      your leased property. Our team of skilled professionals is committed to providing you
-      with an immaculate and well-kept environment. Regular inspections, prompt repairs, and
-      scheduled maintenance ensure that your leased space remains in optimal condition.
-      Focus on your core activities while we take care of the upkeep.`,
-      },
-      security: {
-        title: 'Security',
-        text: `Your safety and the security of your assets are paramount to us. We've integrated
-      cutting-edge security measures into all our leased spaces. From advanced surveillance
-      systems and access control to round-the-clock security personnel, we leave no stone
-      unturned in safeguarding your interests. Rest easy knowing that your valuable
-      belongings are protected within our secure premises.`,
-      },
-      payment: {
-        title: 'Customized Payment Schedules',
-        text: `We recognize that every business operates on its own timeline. With our flexible
-      payment terms, you have the freedom to choose a payment schedule that aligns perfectly
-      with your financial planning. Whether you prefer monthly, quarterly, or annual
-      payments, our team will work with you to create a plan that suits your budget and
-      business cycle.`,
-      },
-      spaces: {
-        title: 'Customizable Spaces',
-        text: `We understand that one size doesn't fit all. That's why our space leasing
-      services offer unparalleled flexibility. Whether you need a compact office space, a
-      sprawling industrial unit, or a specialized workspace, we have a variety of options to
-      suit your requirements. Customize your leased space to match your unique vision and
-      operational needs. Our dedicated team will work closely with you to create an
-      environment that fosters productivity and innovation.`,
-      },
-      locations: {
-        title: 'Prime Locations',
-        text: `Location is key to any successful venture, and we understand its significance. Our
-      portfolio of leased spaces spans across prime locations, providing you with easy
-      access to essential amenities and a thriving business community. Enjoy the convenience
-      of a strategic location that will amplify your business prospects and enhance your
-      professional network.`,
-      },
     },
   },
 };
