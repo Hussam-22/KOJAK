@@ -104,7 +104,11 @@ export default function JoinNewsletter() {
           <Container maxWidth="md">
             <Grid container spacing={3}>
               <Grid md={4} xs={12} sx={{ p: { md: 7, xs: 2 }, textAlign: 'center' }}>
-                <Image src="/assets/illustrations/mail.svg" width={!mdUp ? '40%' : 'unset'} />
+                <Image
+                  src="/assets/illustrations/mail.svg"
+                  width={!mdUp ? '40%' : 'unset'}
+                  alt="newsletter-illustration"
+                />
               </Grid>
 
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>

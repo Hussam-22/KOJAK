@@ -57,7 +57,11 @@ export default function NavMobile({ data, toggleLanguage }) {
           {currentLang.value === 'en' ? 'ع' : 'En'}
         </IconButton> */}
 
-        <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
+        <IconButton
+          onClick={mobileOpen.onTrue}
+          sx={{ ml: 1, color: 'inherit' }}
+          aria-label="open-menu"
+        >
           <Iconify icon="carbon:menu" />
         </IconButton>
       </Stack>

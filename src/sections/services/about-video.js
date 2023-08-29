@@ -73,7 +73,10 @@ export default function AboutVideo() {
           }}
         >
           {[...Array(6)].map((_, index) => (
-            <Image src={`/assets/images/original/${index + 1}.webp`} />
+            <Image
+              src={`/assets/images/original/${index + 1}.webp`}
+              alt={`service-page-image-${index + 1}`}
+            />
           ))}
         </Masonry>
       </Stack>

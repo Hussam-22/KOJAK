@@ -53,7 +53,7 @@ export default function LandingAbout() {
             {translate('why.title')}
           </Typography>
 
-          {!mdUp && <Image src="/assets/images/repair/advisor-1.png" />}
+          {!mdUp && <Image src="/assets/images/repair/advisor-1.png" alt="kojak-about-img" />}
 
           <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
             {translate('why.subTitle')}
@@ -92,7 +92,7 @@ export default function LandingAbout() {
             ))}
           </Box>
         </Stack>
-        {mdUp && <Image src="/assets/images/repair/advisor-1.png" />}
+        {mdUp && <Image src="/assets/images/repair/advisor-1.png" alt="kojak-about-img" />}
       </Box>
     </Container>
   );

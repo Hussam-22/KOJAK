@@ -42,6 +42,9 @@ function RenderDesktopHero() {
         <Image
           src={`/assets/images/hero/hero-${currentLang.value === 'en' ? 'left' : 'right'}.webp`}
           height="100dvh"
+          visibleByDefault
+          disabledEffect
+          alt="kojak-auto-maintenance-hero-img"
         />
       </Box>
 
@@ -132,6 +135,7 @@ function RenderMobileHero() {
       <Image
         src="/assets/images/hero/hero-mobile.webp"
         sx={{ position: 'absolute', bottom: 0, left: 0 }}
+        alt="kojak-auto-maintenance-hero-img"
       />
       <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
         <Typography variant="h1" color="primary">

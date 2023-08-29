@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { useState, useEffect, useCallback } from 'react';
 
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
+import { useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Popover from '@mui/material/Popover';
-import MenuItem from '@mui/material/MenuItem';
-import { Link, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 import { blogPosts } from 'src/_mock';

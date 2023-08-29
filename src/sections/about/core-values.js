@@ -70,14 +70,8 @@ export default function CoreValues() {
           </Grid>
           <Grid md={4} sx={{ p: 2 }}>
             <Stack spacing={2} sx={{ mt: 2 }}>
-              <Image
-                src="https://kojak-group.com/wp-content/uploads/2022/04/bodywork-800x475.jpg"
-                sx={{ borderRadius: 2 }}
-              />
-              <Image
-                src="https://kojak-group.com/wp-content/uploads/2022/04/suspension-800x486.jpg"
-                sx={{ borderRadius: 2 }}
-              />
+              <Image src="/assets/images/original/6.webp" sx={{ borderRadius: 2 }} />
+              <Image src="/assets/images/original/4.webp" sx={{ borderRadius: 2 }} />
             </Stack>
           </Grid>
           <Grid md={4}>

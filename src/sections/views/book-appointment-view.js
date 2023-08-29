@@ -1,8 +1,8 @@
 // import dayjs from 'dayjs';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { DatePicker } from '@mui/x-date-pickers';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -11,6 +11,7 @@ import { Box, Stack, Divider, MenuItem, Container, Typography } from '@mui/mater
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
+import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import { _mercedesClasses, _autoRepairServices } from 'src/_mock';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFTextField, RHFMultiSelect } from 'src/components/hook-form';
@@ -101,8 +102,8 @@ export default function BookAppointmentView() {
       })
         .join('\r\n')
         .replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
+      // const url =
+      //   'https://hooks.slack.com/services/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';
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -110,7 +111,7 @@ export default function BookAppointmentView() {
       };
 
       // Add Form Submit to Slack Channel
-      await fetch(url, requestOptions);
+      await fetch(SLACK_WEBHOOK_URL, requestOptions);
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,
       //   transformRequest: [(data, Headers) => data],
@@ -137,7 +138,7 @@ export default function BookAppointmentView() {
     <>
       <Container maxWidth="md" sx={{ mb: 8 }}>
         <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Image src="/assets/illustrations/schedule.svg" width="25%" />
+          <Image src="/assets/illustrations/schedule.svg" width="25%" alt="schedule-illustration" />
           <Typography variant="h2">Book an Appointment</Typography>
         </Box>
         <Box sx={{ bgcolor: 'background.neutral', borderRadius: 1, p: 3 }}>
