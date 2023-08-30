@@ -203,6 +203,7 @@ export default function BookAppointmentView() {
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <DatePicker
+                    // TODO: Fix mobile action buttons color
                     {...field}
                     disablePast
                     views={['day']}
