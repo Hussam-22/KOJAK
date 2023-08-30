@@ -89,6 +89,7 @@ export function button(theme) {
         // CONTAINED
         ...(containedVariant && {
           // backgroundImage: `linear-gradient(to right, ${theme.palette[color].main} 0%, ${theme.palette[color].dark}  100%)`,
+
           backgroundColor: theme.palette[color].main,
           fontWeight: '400',
           // transform: 'translateY(0px)',

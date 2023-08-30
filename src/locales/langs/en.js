@@ -44,7 +44,38 @@ const en = {
   },
   services: {
     title: 'Auto Repair Services',
+    howItWork: 'Our Services & How it works',
     description: `Our expert technicians are dedicated to providing top-notch care for your Mercedes vehicle. From routine maintenance to intricate repairs, we have the knowledge and experience to keep your Mercedes running at its best. We use cutting-edge technology and genuine Mercedes parts to ensure the highest quality service. Experience the luxury of specialized care for your Mercedes-Benz. Drive in today and let us elevate your Mercedes-driving experience.`,
+    howItWorksSteps: {
+      stepOne: {
+        step: 'Step One',
+        title: 'Book an Appointment',
+        description: 'Use our user-friendly online booking or give us a call.',
+      },
+      stepTwo: {
+        step: 'Step Two',
+        title: 'Evaluation',
+        description:
+          'Our experienced technicians conduct a comprehensive car evaluation to identifying issues.',
+      },
+      stepThree: {
+        step: 'Step Three',
+        title: 'Quote',
+        description:
+          'After evaluation, get a detailed quote. Understand the work, costs, and time before proceeding.',
+      },
+      stepFour: {
+        step: 'Step Four',
+        title: 'Repair',
+        description:
+          'With your approval, our skilled technicians get to work using top-notch equipment and parts.',
+      },
+      stepFive: {
+        step: 'Step Five',
+        title: 'Payment',
+        description: `Your vehicle is ready! We'll call you to confirm. Inspect, test drive, and then settle the bill with our convenient payment options.`,
+      },
+    },
     items: {
       major: {
         serviceName: 'Major Service',
@@ -250,27 +281,16 @@ const en = {
   },
 
   about: {
-    aboutUs: {
-      title: 'About Us',
-      subTitle: `At Kojak  we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak   offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements.`,
-      subTitle2: `Quality is the foundation of everything we do at Kojak Building. From selecting the
-      finest properties to maintaining them to the highest standards, we are dedicated to
-      delivering excellence in every aspect of our service.`,
-    },
-    vision: 'Our Vision',
-    visionText: `Our vision is to enrich lives and empower businesses by providing them with spaces
-    that inspire creativity, productivity, and growth. We strive to be the preferred
-    choice for individuals and enterprises seeking top-notch residential and commercial
-    properties that reflect their aspirations and contribute to their success.`,
+    title: 'We Make The Best For All Our Customers.',
+    description: `Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts in UAE seeking top-notch service and care for their luxury vehicles.`,
+
+    numbers: 'The numbers speak for themselves',
+    history: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+
     mission: 'Our Mission',
-    missionText: `At Kojak Building, our mission is to create lasting impressions and enrich lives by
-    providing exceptional residential and commercial spaces that inspire, elevate, and
-    empower individuals and businesses alike.`,
+    missionText: `Our mission is clear: to keep your Mercedes-Benz running flawlessly, ensuring that every drive is a truly luxurious experience. We're not just here to fix cars; we're here to preserve and enhance the performance, safety, and beauty of your Mercedes.`,
+
     coreValues: {
-      title: 'Core Values',
-      subTitle: `Join us on this transformative journey as we shape the future of living and workspaces.
-      Together, we will create lasting impressions and unlock the true potential of every
-      space we touch.`,
       items: {
         1: {
           title: 'Specialization',
@@ -346,6 +366,11 @@ const en = {
     message: 'Message',
     sendMsg: 'Send Message',
     register: 'Register',
+    class: 'Mercedes Class',
+    year: 'Year',
+    serviceType: 'Service Type',
+    appointmentDate: 'Appointment Date',
+    issue: 'Issue Description',
     whatsApp: {
       howCanWeHelpYou: 'How can we help you ?',
       workingHours: 'Our working hours from 9 AM to 6 PM, Saturday to Thursday',

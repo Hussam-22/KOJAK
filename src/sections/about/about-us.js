@@ -54,7 +54,8 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function CareerAbout() {
+export default function AboutUs() {
+  const { translate } = useLocales();
   return (
     <Container
       sx={{
@@ -63,13 +64,9 @@ export default function CareerAbout() {
       }}
     >
       <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
-        We Make The Best For All Our Customers.
+        {translate('about.title')}
       </Typography>
-      <Typography sx={{ textAlign: 'center' }}>
-        Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for
-        precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts
-        in UAE seeking top-notch service and care for their luxury vehicles.
-      </Typography>
+      <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
       <Section />
     </Container>
   );
@@ -99,11 +96,9 @@ function Section() {
           }}
         >
           <Typography variant="h2" paragraph>
-            The numbers speaks itself
+            {translate('about.numbers')}
           </Typography>
-          <Typography>
-            {` Founded in 2001, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`}
-          </Typography>
+          <Typography>{translate('about.history')}</Typography>
         </Stack>
 
         <Box
@@ -128,7 +123,7 @@ function Section() {
                 </Typography>
               </Typography>
 
-              <Typography>{translate(`hero.${value.name}`)}</Typography>
+              <Typography>{translate(`why.${value.name}`)}</Typography>
             </Stack>
           ))}
         </Box>

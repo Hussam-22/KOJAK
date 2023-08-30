@@ -21,7 +21,7 @@ const yearsDiff = thisYear - 2014;
 // -------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
-  ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
+  ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
@@ -139,7 +139,7 @@ export default function BookAppointmentView() {
       <Container maxWidth="md" sx={{ mb: 8 }}>
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Image src="/assets/illustrations/schedule.svg" width="25%" alt="schedule-illustration" />
-          <Typography variant="h2">Book an Appointment</Typography>
+          <Typography variant="h2">{translate('common.bookAppointment')}</Typography>
         </Box>
         <Box sx={{ bgcolor: 'background.neutral', borderRadius: 1, p: 3 }}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -152,7 +152,7 @@ export default function BookAppointmentView() {
 
               {/* <RHFTextField name="subject" label={translate('form.subject')} /> */}
 
-              <RHFSelect name="class" label="Mercedes Class">
+              <RHFSelect name="class" label={translate('form.class')}>
                 <MenuItem value="">None</MenuItem>
                 <Divider sx={{ borderStyle: 'dashed' }} />
                 {_mercedesClasses.map((option) => (
@@ -162,35 +162,37 @@ export default function BookAppointmentView() {
                 ))}
               </RHFSelect>
 
-              {values.class !== '' && (
-                <RHFSelect name="year" label="Year">
-                  <MenuItem value="">None</MenuItem>
-                  <Divider sx={{ borderStyle: 'dashed' }} />
-                  {[...Array(yearsDiff + 1)].map((_, index) => (
-                    <MenuItem key={thisYear - index} value={thisYear - index}>
-                      {thisYear - index}
-                    </MenuItem>
-                  ))}
-                </RHFSelect>
-              )}
+              <RHFSelect name="year" label={translate('form.year')}>
+                <MenuItem value="">None</MenuItem>
+                <Divider sx={{ borderStyle: 'dashed' }} />
+                {[...Array(yearsDiff + 1)].map((_, index) => (
+                  <MenuItem key={thisYear - index} value={thisYear - index}>
+                    {thisYear - index}
+                  </MenuItem>
+                ))}
+              </RHFSelect>
 
               <RHFMultiSelect
                 chip
                 checkbox
                 fullWidth
                 name="service"
-                label="Service Type"
+                label={translate('form.serviceType')}
                 options={_autoRepairServices
                   .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
                   .sort((a, b) => b.isOffer - a.isOffer)
-                  .map((service) => ({
+                  .map((service, index) => ({
                     isOffer: service.isOffer,
                     value: service.isOffer
-                      ? `${service.serviceName} - ${service.price}`
-                      : service.serviceName,
+                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
+                          `hotOffers.cards.${index + 1}.price`
+                        )}`
+                      : translate(`services.items.${service.icon}.serviceName`),
                     label: service.isOffer
-                      ? `${service.serviceName} - ${service.price}`
-                      : service.serviceName,
+                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
+                          `hotOffers.cards.${index + 1}.price`
+                        )}`
+                      : translate(`services.items.${service.icon}.serviceName`),
                   }))}
               />
 
@@ -206,7 +208,7 @@ export default function BookAppointmentView() {
                     views={['day']}
                     maxDate={maxDate}
                     shouldDisableDate={isFriday}
-                    label="Appointment Date"
+                    label={translate('form.appointmentDate')}
                     format="dd/MM/yyyy"
                     slotProps={{
                       textField: {
@@ -223,7 +225,7 @@ export default function BookAppointmentView() {
                 name="messageText"
                 multiline
                 rows={4}
-                label="Issue Description"
+                label={translate('form.issue')}
                 sx={{ pb: 2.5 }}
               />
 
@@ -238,7 +240,7 @@ export default function BookAppointmentView() {
                     mx: { xs: 'auto !important', md: 'unset !important' },
                   }}
                 >
-                  Book Appointment
+                  {translate('common.bookAppointment')}
                 </LoadingButton>
               </Box>
             </Stack>

@@ -15,7 +15,7 @@ import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
-  ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
+  ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 

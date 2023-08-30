@@ -6,10 +6,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Box, Link, Stack, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
+
 // ----------------------------------------------------------------------
 
 function Logo({ small = false, light = false, sx }) {
   const theme = useTheme();
+  const { translate } = useLocales();
 
   const PRIMARY_MAIN = theme.palette.common.black;
 
@@ -106,14 +109,14 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
             variant="h4"
             sx={{ lineHeight: 1, fontWeight: '700', color: light ? 'common.white' : 'unset' }}
           >
-            {theme.direction === 'ltr' ? 'KOJAK' : 'كوجاك'}
+            {translate('common.kojak')}
           </Typography>
           <Typography
             variant="body1"
             color="primary"
             sx={{ lineHeight: 1.25, fontWeight: '700', color: 'primary.main' }}
           >
-            AUTO-MAINTENANCE
+            {translate('common.autoMaintenance')}
           </Typography>
         </Stack>
       </Stack>

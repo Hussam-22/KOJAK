@@ -40,22 +40,16 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        {/* <IconButton
+        <IconButton
           disableFocusRipple
           disableTouchRipple
           disableRipple
-          color="primary"
+          color="inherit"
           size="small"
-          sx={{
-            bgcolor: 'common.black',
-            color: 'common.white',
-            // p: 0.75,
-            px: currentLang.value === 'en' ? 1.75 : 1,
-          }}
           onClick={toggleLanguage}
         >
           {currentLang.value === 'en' ? 'ع' : 'En'}
-        </IconButton> */}
+        </IconButton>
 
         <IconButton
           onClick={mobileOpen.onTrue}

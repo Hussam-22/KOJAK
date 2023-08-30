@@ -8,7 +8,6 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
-import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -23,7 +22,6 @@ const CORE_VALUES = [
 
 export default function CoreValues() {
   const { translate } = useLocales();
-  const isMobile = useResponsive('down', 'md');
   const theme = useTheme();
   return (
     <Box
@@ -43,11 +41,9 @@ export default function CoreValues() {
             textAlign: { xs: 'center', md: 'left' },
           }}
         >
-          <Typography variant="h2">Our Mission</Typography>
+          <Typography variant="h2">{translate('about.mission')}</Typography>
 
-          <Typography sx={{ maxWidth: { md: 800 } }}>
-            {`Our mission is clear: to keep your Mercedes-Benz running flawlessly, ensuring that every drive is a truly luxurious experience. We're not just here to fix cars; we're here to preserve and enhance the performance, safety, and beauty of your Mercedes.`}
-          </Typography>
+          <Typography sx={{ maxWidth: { md: 800 } }}>{translate('about.missionText')}</Typography>
         </Stack>
 
         <Grid container>
