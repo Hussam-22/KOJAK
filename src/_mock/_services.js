@@ -3,14 +3,35 @@ import { _mock } from 'src/_mock/_mock';
 const AutoRepairServices = [
   {
     serviceName: 'Major Service',
-    description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
+    description: `Mercedes-Benz Major Maintenance Service, is a comprehensive and thorough maintenance procedure designed to address the more extensive needs of your Mercedes-Benz vehicle. This service is typically recommended at longer intervals than minor services and aims to ensure the vehicle's continued reliability, safety, and performance.`,
     icon: 'major',
+    serviceItems: [
+      { serviceName: 'engineOil', icon: 'oil' },
+      { serviceName: 'transmissionOil', icon: 'gear' },
+      { serviceName: 'gasket', icon: 'gasket' },
+      { serviceName: 'sparkPlug', icon: 'spark' },
+      { serviceName: 'cabinFilter', icon: 'filter' },
+      { serviceName: 'airFilter', icon: 'filter' },
+      { serviceName: 'tire', icon: 'tire' },
+      { serviceName: 'break', icon: 'break' },
+      { serviceName: 'battery', icon: 'batterylight' },
+      { serviceName: 'inspect', icon: 'inspection' },
+      { serviceName: 'Indicator', icon: 'indicator' },
+    ],
     isDisabled: false,
   },
   {
     serviceName: 'Minor Service',
-    description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
+    description: `A Mercedes Minor Service is a routine maintenance service specifically designed for Mercedes-Benz vehicles to ensure their optimal performance, safety, and longevity.`,
     icon: 'minor',
+    serviceItems: [
+      { serviceName: 'engineOil', icon: 'oil' },
+      { serviceName: 'tire', icon: 'tire' },
+      { serviceName: 'break', icon: 'break' },
+      { serviceName: 'battery', icon: 'batterylight' },
+      { serviceName: 'inspect', icon: 'inspection' },
+      { serviceName: 'Indicator', icon: 'indicator' },
+    ],
     isDisabled: false,
   },
   // --------------------------------------------------------
@@ -141,4 +162,5 @@ export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
   isOffer: service?.isOffer || false,
   price: service?.price || undefined,
   isDisabled: service.isDisabled,
+  serviceItems: service.serviceItems || [],
 }));

@@ -38,7 +38,7 @@ export default function GroupAd() {
 
           <Grid container spacing={5}>
             {GROUPS.map((group, index) => (
-              <Grid md={6} xs={12} key={group.title} sx={{ px: 2 }}>
+              <Grid md={6} xs={12} key={group.img} sx={{ px: 2 }}>
                 <GroupCard
                   title={group.title}
                   description={group.description}

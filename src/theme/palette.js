@@ -124,7 +124,7 @@ export function palette(mode) {
       disabled: GREY[500],
     },
     background: {
-      paper: GREY[900],
+      paper: GREY[700],
       default: '#121212',
       neutral: alpha(GREY[500], 0.12),
       secondary: SECONDARY.light,

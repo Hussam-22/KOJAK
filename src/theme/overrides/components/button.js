@@ -33,6 +33,8 @@ export function button(theme) {
         ...(containedVariant && {
           color: isLight ? theme.palette.common.white : theme.palette.grey[800],
           backgroundColor: isLight ? theme.palette.grey[800] : theme.palette.common.white,
+          fontWeight: theme.typography.fontWeightLight,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: isLight ? theme.palette.grey[700] : theme.palette.grey[400],
           },
@@ -40,12 +42,16 @@ export function button(theme) {
         // OUTLINED
         ...(outlinedVariant && {
           borderColor: alpha(theme.palette.grey[500], 0.32),
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
         }),
         // TEXT
         ...(textVariant && {
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
@@ -54,12 +60,15 @@ export function button(theme) {
         ...(softVariant && {
           color: theme.palette.text.primary,
           backgroundColor: alpha(theme.palette.grey[500], 0.08),
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: alpha(theme.palette.grey[500], 0.24),
           },
         }),
       }),
       ...(outlinedVariant && {
+        fontWeight: theme.typography.fontWeightRegular,
         '&:hover': {
           borderColor: 'currentColor',
           boxShadow: '0 0 0 0.5px currentColor',
