@@ -1,21 +1,23 @@
 import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
 import { useMemo, useCallback } from 'react';
-import { doc, setDoc, Timestamp, collection, getFirestore } from 'firebase/firestore';
+import {
+  doc,
+  where,
+  query,
+  setDoc,
+  getDocs,
+  Timestamp,
+  collection,
+  getFirestore,
+  collectionGroup,
+} from 'firebase/firestore';
 
 // config
 import { FIREBASE_API } from 'src/config-global';
 
 //
 import { AuthContext } from './auth-context';
-
-// ----------------------------------------------------------------------
-
-// NOTE:
-// We only build demo at basic level.
-// Customer will need to do some extra handling yourself if you want to extend the logic and other features...
-
-// ----------------------------------------------------------------------
 
 const firebaseApp = initializeApp(FIREBASE_API);
 const DB = getFirestore(firebaseApp);
@@ -25,7 +27,7 @@ const DB = getFirestore(firebaseApp);
 export function AuthProvider({ children }) {
   // add new request-callback form
   const addNewForm = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/automain/forms/`));
+    const newDocRef = doc(collection(DB, `/websites/autoMaintenance/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
     const appointmentDate = new Date(payload.appointmentDate).toLocaleDateString();
@@ -64,11 +66,45 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
+  // GET OFFERS
+  const getOffers = useCallback(async () => {
+    const docRef = query(
+      collectionGroup(DB, 'offers'),
+      where('isActive', '==', true),
+      where('validTill', '<=', new Date())
+    );
+    const querySnapshot = await getDocs(docRef);
+    const documents = [];
+
+    querySnapshot.forEach((document) => documents.push(document.data()));
+
+    return documents;
+  }, []);
+
+  const addOffer = useCallback(() => {
+    const docRef = doc(collection(DB, `/websites/autoMaintenance/offers/`));
+    setDoc(docRef, {
+      id: docRef.id,
+      icon: 'ph:fan',
+      validTill: new Date(),
+      isActive: false,
+      isFree: false,
+      offerDetails: {
+        service: 'Computer Diagnosis',
+        description: 'Diagnosis your car computer for any errors and get full report',
+        price: '100 AED',
+      },
+    });
+  }, []);
+
+  // --------------------------------------------------------------------
   const memoizedValue = useMemo(
     () => ({
       addNewForm,
+      getOffers,
+      addOffer,
     }),
-    [addNewForm]
+    [addNewForm, getOffers, addOffer]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

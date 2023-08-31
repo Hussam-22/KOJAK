@@ -85,7 +85,7 @@ export default function NavMobile({ data, toggleLanguage }) {
               color="primary"
               onClick={() => navigate(paths.website.bookAppointment)}
             >
-              {translate('common.exploreProperties')}
+              {translate('common.bookAppointment')}
             </Button>
           </Stack>
         </Scrollbar>

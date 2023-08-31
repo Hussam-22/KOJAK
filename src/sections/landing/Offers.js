@@ -1,10 +1,22 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 
-import { Box, Card, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  alpha,
+  Stack,
+  Button,
+  Skeleton,
+  useTheme,
+  Container,
+  Typography,
+} from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
-import { _autoRepairServices } from 'src/_mock';
+import { useLocales } from 'src/locales';
+import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
@@ -13,6 +25,17 @@ export default function Offers() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const { translate } = useLocales();
+  const { addOffer, getOffers } = useAuthContext();
+  const [offers, setOffers] = useState([]);
+
+  console.log(offers);
+
+  useEffect(() => {
+    (async () => {
+      setOffers(await getOffers());
+    })();
+  }, [getOffers]);
+
   return (
     <Box
       sx={{
@@ -23,7 +46,7 @@ export default function Offers() {
       <Container maxWidth="xl">
         <Stack spacing={4}>
           <Typography variant="h2">{translate('hotOffers.title')}</Typography>
-          {mdUp ? (
+          {mdUp && (
             <Box
               sx={{
                 display: 'grid',
@@ -31,10 +54,27 @@ export default function Offers() {
                 gap: 4,
               }}
             >
-              <OffersCard />
+              {offers.length === 0 &&
+                [...Array(4)].map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    variant="rectangular"
+                    height={300}
+                    sx={{ borderRadius: 2 }}
+                  />
+                ))}
+              {offers.length !== 0 && <OffersCard offers={offers} />}
             </Box>
-          ) : (
-            <MobileCarousel />
+          )}
+
+          {!mdUp && (
+            <Box>
+              {offers.length === 0 && (
+                <Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} />
+              )}
+
+              {offers.length !== 0 && <MobileCarousel offers={offers} />}
+            </Box>
           )}
           <Box sx={{ textAlign: 'center' }}>
             <Button
@@ -42,6 +82,7 @@ export default function Offers() {
               color="primary"
               size="large"
               onClick={() => navigate(paths.website.bookAppointment)}
+              // onClick={() => addOffer()}
             >
               {translate('common.bookAppointment')}
             </Button>
@@ -52,51 +93,57 @@ export default function Offers() {
   );
 }
 
-function OffersCard() {
+function OffersCard({ offers }) {
   const theme = useTheme();
-  const { translate } = useLocales();
-  return _autoRepairServices
-    .filter((service) => service.isOffer)
-    .map((offer, index) => (
-      <Card
-        sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
-        key={offer.id}
-      >
-        <Stack spacing={1}>
-          <Iconify icon={offer.icon} width={64} />
-          <Typography variant="h4">{translate(`hotOffers.cards.${index + 1}.title`)}</Typography>
-          <Typography
-            variant="h1"
-            sx={{
-              WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
-              color: alpha(theme.palette.background.default, 0),
-            }}
-          >
-            {translate(`hotOffers.cards.${index + 1}.price`)}
-          </Typography>
-          <Typography
-            sx={{
-              textTransform: 'capitalize',
-              fontWeight: theme.typography.fontWeightLight,
-            }}
-          >
-            {translate(`hotOffers.cards.${index + 1}.description`)}
-          </Typography>
+  const { currentLang } = useLocales();
+  return offers.map((offer, index) => (
+    <Card
+      sx={{ bgcolor: 'primary.main', color: 'common.black', p: 3, borderRadius: 1 }}
+      key={offer.id}
+    >
+      <Stack spacing={1}>
+        <Iconify icon={offer.icon} width={64} />
+        <Typography variant="h4">
+          {currentLang.value === 'en' ? offer.offerDetails.service : offer.translated.service.ar}
+        </Typography>
+        <Typography
+          variant="h1"
+          sx={{
+            WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
+            color: alpha(theme.palette.background.default, 0),
+          }}
+        >
+          {offer.isFree && (currentLang.value === 'en' ? 'FREE' : 'مجاناً')}
+          {!offer.isFree &&
+            (currentLang.value === 'en' ? offer.offerDetails.price : offer.translated.price.ar)}
+        </Typography>
+        <Typography
+          sx={{
+            textTransform: 'capitalize',
+            fontWeight: theme.typography.fontWeightLight,
+          }}
+        >
+          {currentLang.value === 'en'
+            ? offer.offerDetails.description
+            : offer.translated.description.ar}
+        </Typography>
 
-          {/* <Button variant="contained" color="secondary" size="large">
-            Book your offer now!
-          </Button> */}
-
-          <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-            {translate(`hotOffers.cards.${index + 1}.endDate`)}
-          </Typography>
-        </Stack>
-      </Card>
-    ));
+        <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
+          {new Date(offer.validTill.seconds * 1000).toDateString()}
+        </Typography>
+      </Stack>
+    </Card>
+  ));
 }
 
-function MobileCarousel() {
-  const { translate } = useLocales();
+OffersCard.propTypes = {
+  offers: PropTypes.array,
+};
+
+// -----------------------------------------------------
+
+function MobileCarousel({ offers }) {
+  const { currentLang } = useLocales();
   const theme = useTheme();
   const carousel = useCarousel({
     centerMode: true,
@@ -143,54 +190,60 @@ function MobileCarousel() {
         }}
       >
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-          {_autoRepairServices
-            .filter((service) => service.isOffer)
-            .map((offer, index) => (
-              <Box key={offer.id} sx={{ p: 2 }}>
-                <Card
-                  sx={{
-                    bgcolor: 'primary.main',
-                    color: 'common.black',
-                    p: 3,
-                    borderRadius: 1,
-                  }}
-                >
-                  <Stack spacing={1}>
-                    <Iconify icon={offer.icon} width={64} />
-                    <Typography variant="h4">
-                      {translate(`hotOffers.cards.${index + 1}.title`)}
-                    </Typography>
-                    <Typography
-                      variant="h1"
-                      sx={{
-                        WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
-                        color: alpha(theme.palette.background.default, 0),
-                      }}
-                    >
-                      {translate(`hotOffers.cards.${index + 1}.price`)}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textTransform: 'capitalize',
-                        fontWeight: theme.typography.fontWeightLight,
-                      }}
-                    >
-                      {translate(`hotOffers.cards.${index + 1}.description`)}
-                    </Typography>
+          {offers.map((offer, index) => (
+            <Box key={offer.id} sx={{ p: 2 }}>
+              <Card
+                sx={{
+                  bgcolor: 'primary.main',
+                  color: 'common.black',
+                  p: 3,
+                  borderRadius: 1,
+                }}
+              >
+                <Stack spacing={1}>
+                  <Iconify icon={offer.icon} width={64} />
+                  <Typography variant="h4">
+                    {currentLang.value === 'en'
+                      ? offer.offerDetails.service
+                      : offer.translated.service.ar}
+                  </Typography>
+                  <Typography
+                    variant="h1"
+                    sx={{
+                      WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
+                      color: alpha(theme.palette.background.default, 0),
+                    }}
+                  >
+                    {offer.isFree && (currentLang.value === 'en' ? 'FREE' : 'مجاناً')}
+                    {!offer.isFree &&
+                      (currentLang.value === 'en'
+                        ? offer.offerDetails.price
+                        : offer.translated.price.ar)}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      textTransform: 'capitalize',
+                      fontWeight: theme.typography.fontWeightLight,
+                    }}
+                  >
+                    {currentLang.value === 'en'
+                      ? offer.offerDetails.description
+                      : offer.translated.description.ar}
+                  </Typography>
 
-                    {/* <Button variant="contained" color="secondary" size="large">
-            Book your offer now!
-          </Button> */}
-
-                    <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
-                      {translate(`hotOffers.cards.${index + 1}.endDate`)}
-                    </Typography>
-                  </Stack>
-                </Card>
-              </Box>
-            ))}
+                  <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
+                    {new Date(offer.validTill.seconds * 1000).toDateString()}
+                  </Typography>
+                </Stack>
+              </Card>
+            </Box>
+          ))}
         </Carousel>
       </CarouselArrows>
     </Box>
   );
 }
+
+MobileCarousel.propTypes = {
+  offers: PropTypes.array,
+};

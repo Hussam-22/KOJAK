@@ -120,38 +120,6 @@ const AutoRepairServices = [
     icon: 'tirebalance',
     isDisabled: false,
   },
-  {
-    serviceName: 'Car Inspection',
-    description: 'get free car inspection prior booking online',
-    icon: 'solar:clipboard-check-outline',
-    price: 'Free',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'AC Gas Refill',
-    description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
-    icon: 'ph:fan',
-    price: '80 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Break Replacement',
-    description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
-    icon: 'icon-park-twotone:brake-pads',
-    price: '320 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Computer Diagnosis',
-    description: 'diagnosis your car computer for any errors and get full report',
-    icon: 'solar:cpu-linear',
-    price: '100 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
 ];
 
 export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
