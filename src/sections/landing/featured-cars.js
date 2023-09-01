@@ -59,24 +59,28 @@ function RenderDesktopHero() {
         overflow: 'hidden',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          zIndex: 1,
-        }}
-      >
-        {featuredCars.length !== 0 && (
-          <Box
-            component={m.img}
-            src={featuredCars[selectedIndex].coverURL}
-            {...getVariant('fadeIn')}
-            sx={{ width: '100dvw', height: '82dvh', objectFit: 'cover' }}
-            key={featuredCars[selectedIndex].id}
-          />
-        )}
+      <Box sx={{ position: 'absolute', left: '5%', top: '10%', zIndex: 2 }}>
+        <Typography variant="h2" color="primary" sx={{ mixBlendMode: 'darken' }}>
+          Featured Cars
+        </Typography>
       </Box>
+      {featuredCars.length !== 0 && (
+        <Box
+          component={m.img}
+          src={featuredCars[selectedIndex].coverURL}
+          {...getVariant('fadeIn')}
+          sx={{
+            width: '100dvw',
+            height: '82dvh',
+            objectFit: 'cover',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            zIndex: 1,
+          }}
+          key={featuredCars[selectedIndex].id}
+        />
+      )}
       {featuredCars.length !== 0 && (
         <SideBar featuredCars={featuredCars} updateIndex={updateSelectedCarIndexHandler} />
       )}
