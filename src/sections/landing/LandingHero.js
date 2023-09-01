@@ -30,6 +30,7 @@ function RenderDesktopHero() {
         position: 'relative',
         height: '100dvh',
         overflow: 'hidden',
+        scrollSnapAlign: 'start',
       }}
     >
       <Box
@@ -40,7 +41,7 @@ function RenderDesktopHero() {
         }}
       >
         <Image
-          src={`/assets/images/hero/hero-${currentLang.value === 'en' ? 'left' : 'right'}.webp`}
+          src="/assets/images/hero/hero-1.jpg"
           height="100dvh"
           visibleByDefault
           disabledEffect
