@@ -57,6 +57,7 @@ function RenderDesktopHero() {
         position: 'relative',
         height: '100dvh',
         overflow: 'hidden',
+        scrollSnapAlign: 'start',
       }}
     >
       <Box sx={{ position: 'absolute', left: '5%', top: '10%', zIndex: 2 }}>

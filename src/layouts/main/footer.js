@@ -42,7 +42,7 @@ export default function Footer() {
   const { translate } = useLocales();
 
   const mainFooter = (
-    <Box sx={{ bgcolor: 'common.black' }}>
+    <Box sx={{ bgcolor: 'common.black', scrollSnapAlign: 'start' }}>
       <Divider />
 
       <Container

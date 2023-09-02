@@ -1,20 +1,21 @@
 import { useNavigate } from 'react-router';
 
-import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { bgGradient } from 'src/theme/css';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-export default function KojakBuildingLandingHero() {
+export default function LandingHero() {
   const mdUp = useResponsive('up', 'md');
 
   return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
@@ -31,54 +32,28 @@ function RenderDesktopHero() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
+        // backgroundImage: 'url(/assets/images/hero/hero-2.jpg)',
+        // backgroundSize: 'cover',
+        // backgroundPosition: 'center',
+        // backgroundColor: '#FFFFFF',
+        ...bgGradient({
+          direction: 'to right',
+          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
+          endColor: `${alpha(theme.palette.grey[100], 0)}`,
+          imgUrl: '/assets/images/hero/hero-3.jpg',
+        }),
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-        }}
-      >
-        <Image
-          src="/assets/images/hero/hero-1.jpg"
-          height="100dvh"
-          visibleByDefault
-          disabledEffect
-          alt="kojak-auto-maintenance-hero-img"
-        />
-      </Box>
-
       <Container maxWidth="xl" sx={{ height: 1 }}>
         <Grid
           container
           sx={{
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'left',
             height: '100%',
           }}
         >
-          <Grid md={6} xs={12} />
-
           <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Box
-              sx={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%,-50%)',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: '19dvw',
-                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.1)}`,
-                  color: alpha(theme.palette.background.default, 0),
-                }}
-              >
-                {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
-              </Typography>
-            </Box>
             <Stack
               sx={{
                 textAlign: { md: 'left', xs: 'center' },
@@ -93,10 +68,18 @@ function RenderDesktopHero() {
                   fontWeight: theme.typography.fontWeightBold,
                 }}
               >
-                <Box component="span" sx={{ color: 'primary.main' }}>
-                  {translate('hero.heroText')}
+                {translate('hero.heroText')}
+                <Box
+                  component="span"
+                  sx={{
+                    textDecorationLine: 'underline',
+                    textDecorationColor: theme.palette.primary.main,
+                    textDecorationThickness: 10,
+                    textUnderlineOffset: 1,
+                  }}
+                >
+                  {translate('hero.title')}
                 </Box>
-                {translate('hero.title')}
               </Typography>
 
               <Typography>{translate('hero.subText')}</Typography>

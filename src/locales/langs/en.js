@@ -8,10 +8,10 @@ const en = {
   },
   hero: {
     // overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Specialized in Mercedes-Benz ',
-    title: `Since 1986`,
+    heroText: 'Turn Your Dream Mercedes into Reality, ',
+    title: `for Less.`,
     subText:
-      'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
+      'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
   },
   hotOffers: {
     title: 'HOT OFFERS',
@@ -343,8 +343,8 @@ const en = {
   },
 
   common: {
-    kojak: 'KOJAK',
-    autoMaintenance: 'Auto Maintenance',
+    brand: 'KOJAK',
+    brandSpecial: 'Auto Exclusive',
     bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',
