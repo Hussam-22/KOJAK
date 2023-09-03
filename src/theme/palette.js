@@ -74,19 +74,8 @@ const ERROR = {
 };
 
 const CUSTOM = {
-  pink: '#FFACAC',
-  peachLighter: '#FFF8F6',
-  peachLight: '#FFEBE5',
-  peach: '#FFC7C7',
-  bluishPurpleLighter: '#F8F8FF',
-  bluishPurpleLight: '#EDE4FF',
-  bluishPurple: '#7A77A4',
-  bluishPurpleDark: '#626082',
-  purple: '#674188',
-  gold: '#AD8E6A',
-  red: '#B71D18',
-  green: '#AACB73',
-  contrastText: '#FFFFFF',
+  auto: '#FFDC45',
+  spareParts: '#C72C41',
 };
 
 const COMMON = {

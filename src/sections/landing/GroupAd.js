@@ -21,6 +21,7 @@ export default function GroupAd() {
   return (
     <>
       <GroupSection
+        brand="Kojak Auto-Maintenance"
         backgroundURL="/assets/images/group/auto-maintenance.jpg"
         mainText="Looking for Mercedes Auto Repair Shop ?"
         subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
@@ -29,6 +30,7 @@ export default function GroupAd() {
         showServices
       />
       <GroupSection
+        brand="Kojak Spare-Parts"
         backgroundURL="/assets/images/group/spare-parts.jpg"
         mainText="Looking for Mercedes Genuine Spare Parts ?"
         subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
@@ -38,7 +40,7 @@ export default function GroupAd() {
   );
 }
 
-function GroupSection({ backgroundURL, mainText, subText, buttonText, showServices }) {
+function GroupSection({ brand, backgroundURL, mainText, subText, buttonText, showServices }) {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
@@ -73,24 +75,33 @@ function GroupSection({ backgroundURL, mainText, subText, buttonText, showServic
               }}
               spacing={3}
             >
-              <Typography
-                sx={{
-                  textTransform: 'capitalize',
-                  fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
-                  lineHeight: 1.25,
-                  fontWeight: theme.typography.fontWeightBold,
-                }}
-              >
-                {mainText}
-              </Typography>
+              <Box>
+                <Typography variant="overline">{brand}</Typography>
+
+                <Typography
+                  sx={{
+                    textTransform: 'capitalize',
+                    fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
+                    lineHeight: 1.25,
+                    fontWeight: theme.typography.fontWeightBold,
+                  }}
+                >
+                  {mainText}
+                </Typography>
+              </Box>
 
               <Typography>{subText}</Typography>
 
               <Box>
                 <Button
                   variant="contained"
-                  color="primary"
                   size="large"
+                  sx={{
+                    backgroundColor:
+                      brand === 'Kojak Auto-Maintenance'
+                        ? theme.palette.custom.auto
+                        : theme.palette.custom.spareParts,
+                  }}
                   // onClick={() => navigate(paths.website.bookAppointment)}
                 >
                   {buttonText}
@@ -123,6 +134,7 @@ function GroupSection({ backgroundURL, mainText, subText, buttonText, showServic
 }
 
 GroupSection.propTypes = {
+  brand: PropTypes.string,
   backgroundURL: PropTypes.string,
   mainText: PropTypes.string,
   subText: PropTypes.string,

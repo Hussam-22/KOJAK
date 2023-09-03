@@ -17,7 +17,7 @@ import { bgBlur, bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 
-function LandingAbout() {
+function CustomOrder() {
   const theme = useTheme();
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
@@ -104,5 +104,5 @@ function LandingAbout() {
     </Box>
   );
 }
-export default LandingAbout;
-// LandingAbout.propTypes = { tables: PropTypes.array };
+export default CustomOrder;
+// CustomOrder.propTypes = { tables: PropTypes.array };
