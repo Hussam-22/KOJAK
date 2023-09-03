@@ -13,7 +13,9 @@ import {
 
 import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
+import { _autoRepairServices } from 'src/_mock';
 import GroupCard from 'src/sections/components/group-card';
+import ServiceItem from 'src/sections/components/service-item';
 
 export default function GroupAd() {
   return (
@@ -21,19 +23,22 @@ export default function GroupAd() {
       <GroupSection
         backgroundURL="/assets/images/group/auto-maintenance.jpg"
         mainText="Looking for Mercedes Auto Repair Shop ?"
-        subText="Book and Appointment or Visit Kojak Auto-Maintenance Shop and let our expert team
+        subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
                 fix your car with experience since 1986 in Mercedes-Benz Cars"
+        buttonText="Book an Appointment"
+        showServices
       />
       <GroupSection
         backgroundURL="/assets/images/group/spare-parts.jpg"
         mainText="Looking for Mercedes Genuine Spare Parts ?"
         subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
+        buttonText="Search for Parts"
       />
     </>
   );
 }
 
-function GroupSection({ backgroundURL, mainText, subText }) {
+function GroupSection({ backgroundURL, mainText, subText, buttonText, showServices }) {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
@@ -59,6 +64,7 @@ function GroupSection({ backgroundURL, mainText, subText }) {
             justifyContent: 'left',
             height: '100%',
           }}
+          spacing={3}
         >
           <Grid md={6} xs={12} sx={{ position: 'relative' }}>
             <Stack
@@ -87,11 +93,29 @@ function GroupSection({ backgroundURL, mainText, subText }) {
                   size="large"
                   // onClick={() => navigate(paths.website.bookAppointment)}
                 >
-                  {translate('common.bookAppointment')}
+                  {buttonText}
                 </Button>
               </Box>
             </Stack>
           </Grid>
+          {showServices && (
+            <Grid md={6} xs={12}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { md: 'repeat(5,1fr)', xs: 'repeat(1,1fr)' },
+                  gap: 2,
+                  my: 6,
+                }}
+              >
+                {_autoRepairServices
+                  .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                  .map((service) => (
+                    <ServiceItem service={service} key={service.id} />
+                  ))}
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </Container>
     </Box>
@@ -102,4 +126,6 @@ GroupSection.propTypes = {
   backgroundURL: PropTypes.string,
   mainText: PropTypes.string,
   subText: PropTypes.string,
+  buttonText: PropTypes.string,
+  showServices: PropTypes.bool,
 };
