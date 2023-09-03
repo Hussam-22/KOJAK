@@ -1,57 +1,105 @@
-import { Box, Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import PropTypes from 'prop-types';
+
+import {
+  Box,
+  Stack,
+  alpha,
+  Button,
+  useTheme,
+  Container,
+  Typography,
+  Unstable_Grid2 as Grid,
+} from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import { bgGradient } from 'src/theme/css';
 import GroupCard from 'src/sections/components/group-card';
 
-const GROUPS = [
-  {
-    img: 'k-exclusive',
-    imgMobile: 'car-6-sm',
-  },
-  {
-    img: 'spare-parts',
-    imgMobile: 'car-7-sm',
-  },
-];
-
 export default function GroupAd() {
+  return (
+    <>
+      <GroupSection
+        backgroundURL="/assets/images/group/auto-maintenance.jpg"
+        mainText="Looking for Mercedes Auto Repair Shop ?"
+        subText="Book and Appointment or Visit Kojak Auto-Maintenance Shop and let our expert team
+                fix your car with experience since 1986 in Mercedes-Benz Cars"
+      />
+      <GroupSection
+        backgroundURL="/assets/images/group/spare-parts.jpg"
+        mainText="Looking for Mercedes Genuine Spare Parts ?"
+        subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
+      />
+    </>
+  );
+}
+
+function GroupSection({ backgroundURL, mainText, subText }) {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
     <Box
       sx={{
-        py: 8,
-        backgroundImage: 'url(/assets/shape/bbblurry.svg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        position: 'relative',
+        height: '100dvh',
+        overflow: 'hidden',
+        scrollSnapAlign: 'start',
+        ...bgGradient({
+          direction: 'to right',
+          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
+          endColor: `${alpha(theme.palette.grey[100], 0)}`,
+          imgUrl: backgroundURL,
+        }),
       }}
     >
-      <Container maxWidth="xl">
-        <Stack spacing={2}>
-          <Typography variant="h2">{translate('groupAd.title')}</Typography>
-          <Typography
-            sx={{ fontWeight: theme.typography.fontWeightLight, mb: 4, width: { md: '82%' } }}
-          >
-            {translate('groupAd.description')}
-          </Typography>
+      <Container maxWidth="xl" sx={{ height: 1 }}>
+        <Grid
+          container
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'left',
+            height: '100%',
+          }}
+        >
+          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
+            <Stack
+              sx={{
+                textAlign: { md: 'left', xs: 'center' },
+              }}
+              spacing={3}
+            >
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
+                  lineHeight: 1.25,
+                  fontWeight: theme.typography.fontWeightBold,
+                }}
+              >
+                {mainText}
+              </Typography>
 
-          <Grid container spacing={5}>
-            {GROUPS.map((group, index) => (
-              <Grid md={6} xs={12} key={group.img} sx={{ px: 2 }}>
-                <GroupCard
-                  title={group.title}
-                  description={group.description}
-                  img={group.img}
-                  imgMobile={group.imgMobile}
-                  index={index}
-                  horizontal
-                />
-              </Grid>
-            ))}
+              <Typography>{subText}</Typography>
+
+              <Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  // onClick={() => navigate(paths.website.bookAppointment)}
+                >
+                  {translate('common.bookAppointment')}
+                </Button>
+              </Box>
+            </Stack>
           </Grid>
-        </Stack>
+        </Grid>
       </Container>
     </Box>
   );
 }
+
+GroupSection.propTypes = {
+  backgroundURL: PropTypes.string,
+  mainText: PropTypes.string,
+  subText: PropTypes.string,
+};
