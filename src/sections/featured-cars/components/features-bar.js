@@ -24,6 +24,7 @@ function FeaturesBar({ selectedCardInfo }) {
         pt: 2,
         px: 10,
         background: alpha('#FFFFFF', 0.85),
+        zIndex: 2,
       }}
     >
       <Stack sx={{ justifyContent: 'space-between', alignItems: 'center' }} direction="row">
