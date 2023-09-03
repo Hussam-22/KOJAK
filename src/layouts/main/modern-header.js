@@ -51,8 +51,9 @@ export default function ModernHeader() {
         left: '50%',
         transform: 'translate(-50%, 0%)',
         borderRadius: 1,
-        width: { xs: '95dvw', md: '75dvw' },
-        border: `solid 1px ${theme.palette.grey[800]}`,
+        // width: { xs: '95dvw', md: '75dvw' },
+        width: 'fit-content',
+        // border: `solid 1px ${theme.palette.grey[800]}`,
         zIndex: 99,
         ...bgBlur({ color: theme.palette.common.black, blur: 85, opacity: 0.25 }),
         // border: `solid 1px ${theme.palette.common.white}`,
@@ -77,7 +78,7 @@ export default function ModernHeader() {
               target="_blank"
               rel="noopener"
             >
-              Find Spare-part
+              Explore Inventory
             </Button>
           </>
         )}
@@ -120,7 +121,7 @@ export default function ModernHeader() {
 
                 <Box sx={{ px: 3, py: 2 }}>
                   <Button variant="contained" color="primary" onClick={navigateToSearchParts}>
-                    Find Spare-part
+                    Explore Inventory
                   </Button>
                 </Box>
               </Scrollbar>

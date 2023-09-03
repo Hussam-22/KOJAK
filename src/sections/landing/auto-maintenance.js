@@ -17,30 +17,20 @@ import { _autoRepairServices } from 'src/_mock';
 import GroupCard from 'src/sections/components/group-card';
 import ServiceItem from 'src/sections/components/service-item';
 
-export default function GroupAd() {
+export default function AutoMaintenance() {
   return (
-    <>
-      <GroupSection
-        brand="Kojak Auto-Maintenance"
-        backgroundURL="/assets/images/group/auto-maintenance.jpg"
-        mainText="Looking for Mercedes Auto Repair Shop ?"
-        subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
+    <GroupSection
+      brand="Kojak Auto-Maintenance"
+      backgroundURL="/assets/images/group/auto-maintenance.jpg"
+      mainText="Looking for Mercedes Auto Repair Shop ?"
+      subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
                 fix your car with experience since 1986 in Mercedes-Benz Cars"
-        buttonText="Book an Appointment"
-        showServices
-      />
-      <GroupSection
-        brand="Kojak Spare-Parts"
-        backgroundURL="/assets/images/group/spare-parts.jpg"
-        mainText="Looking for Mercedes Genuine Spare Parts ?"
-        subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
-        buttonText="Search for Parts"
-      />
-    </>
+      buttonText="Book an Appointment"
+    />
   );
 }
 
-function GroupSection({ brand, backgroundURL, mainText, subText, buttonText, showServices }) {
+function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
@@ -76,7 +66,9 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText, sho
               spacing={3}
             >
               <Box>
-                <Typography variant="overline">{brand}</Typography>
+                <Typography variant="overline" sx={{ color: 'warning.main' }}>
+                  {brand}
+                </Typography>
 
                 <Typography
                   sx={{
@@ -96,12 +88,7 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText, sho
                 <Button
                   variant="contained"
                   size="large"
-                  sx={{
-                    backgroundColor:
-                      brand === 'Kojak Auto-Maintenance'
-                        ? theme.palette.custom.auto
-                        : theme.palette.custom.spareParts,
-                  }}
+                  color="warning"
                   // onClick={() => navigate(paths.website.bookAppointment)}
                 >
                   {buttonText}
@@ -109,24 +96,22 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText, sho
               </Box>
             </Stack>
           </Grid>
-          {showServices && (
-            <Grid md={6} xs={12}>
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { md: 'repeat(5,1fr)', xs: 'repeat(1,1fr)' },
-                  gap: 2,
-                  my: 6,
-                }}
-              >
-                {_autoRepairServices
-                  .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
-                  .map((service) => (
-                    <ServiceItem service={service} key={service.id} />
-                  ))}
-              </Box>
-            </Grid>
-          )}
+          <Grid md={6} xs={12}>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(5,1fr)', xs: 'repeat(1,1fr)' },
+                gap: 2,
+                my: 6,
+              }}
+            >
+              {_autoRepairServices
+                .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                .map((service) => (
+                  <ServiceItem service={service} key={service.id} />
+                ))}
+            </Box>
+          </Grid>
         </Grid>
       </Container>
     </Box>
@@ -139,5 +124,4 @@ GroupSection.propTypes = {
   mainText: PropTypes.string,
   subText: PropTypes.string,
   buttonText: PropTypes.string,
-  showServices: PropTypes.bool,
 };

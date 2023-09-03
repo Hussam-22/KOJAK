@@ -71,12 +71,12 @@ function RenderDesktopHero() {
                 {translate('hero.heroText')}
                 <Box
                   component="span"
-                  sx={{
-                    textDecorationLine: 'underline',
-                    textDecorationColor: theme.palette.primary.main,
-                    textDecorationThickness: 10,
-                    textUnderlineOffset: 1,
-                  }}
+                  // sx={{
+                  //   textDecorationLine: 'underline',
+                  //   textDecorationColor: theme.palette.primary.main,
+                  //   textDecorationThickness: 10,
+                  //   textUnderlineOffset: 1,
+                  // }}
                 >
                   {translate('hero.title')}
                 </Box>

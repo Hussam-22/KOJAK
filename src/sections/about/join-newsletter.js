@@ -3,15 +3,17 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
+import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
@@ -97,11 +99,19 @@ export default function JoinNewsletter() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
-            py: 5,
-            bgcolor: 'secondary.main',
+            position: 'relative',
+            height: '50dvh',
+            overflow: 'hidden',
+            scrollSnapAlign: 'start',
+            ...bgGradient({
+              direction: 'to right',
+              startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
+              endColor: `${alpha(theme.palette.grey[100], 0)}`,
+            }),
+            display: 'flex',
           }}
         >
-          <Container maxWidth="md">
+          <Container maxWidth="md" sx={{ alignSelf: 'flex-end' }}>
             <Grid container spacing={3}>
               <Grid md={4} xs={12} sx={{ p: { md: 7, xs: 2 }, textAlign: 'center' }}>
                 <Image

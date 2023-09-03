@@ -30,9 +30,9 @@ function LandingAbout() {
         scrollSnapAlign: 'start',
         ...bgGradient({
           direction: 'to right',
-          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
+          startColor: `${alpha(theme.palette.grey[900], 1)}`,
           endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: '/assets/images/hero/custom-order.jpg',
+          imgUrl: '/assets/images/hero/old-mercedes.jpg',
         }),
       }}
     >
@@ -44,61 +44,22 @@ function LandingAbout() {
             justifyContent: 'left',
             height: '100%',
           }}
-          spacing={3}
         >
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Stack
+          <Grid xs={12} sx={{ position: 'relative', px: 3 }}>
+            <Typography
               sx={{
-                textAlign: { md: 'left', xs: 'center' },
+                fontSize: '8dvw',
+                WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.8)}`,
+                color: alpha(theme.palette.background.default, 0),
               }}
-              spacing={3}
             >
-              <Box>
-                <Typography variant="overline">Custom order car</Typography>
-                <Typography
-                  sx={{
-                    textTransform: 'capitalize',
-                    fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
-                    lineHeight: 1.25,
-                    fontWeight: theme.typography.fontWeightBold,
-                  }}
-                >
-                  Crafting Your Dream Mercedes ?
-                </Typography>
-              </Box>
-
-              <Typography>
-                Are you in search of automotive excellence with a touch of personalization? Look no
-                further! We are proud to offer you the opportunity to order custom Mercedes cars
-                directly from Germany
-              </Typography>
-
-              {!mdUp && (
-                <Box>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    // onClick={() => navigate(paths.website.bookAppointment)}
-                  >
-                    Contact Us
-                  </Button>
-                </Box>
-              )}
-            </Stack>
+              40 YEARS
+            </Typography>
+            <Typography variant="h2">About us</Typography>
+            <Typography
+              sx={{ fontSize: '1.5rem', fontWeight: theme.typography.fontWeightLight }}
+            >{`For over four decades, Kojak-Exclusive has proudly served as a trusted destination for Mercedes enthusiasts. With a legacy spanning 40 years, our commitment to excellence in the world of luxury automobiles has only grown stronger. We've witnessed the evolution of Mercedes-Benz vehicles and have been privileged to be part of countless journeys, delivering dreams on wheels to our valued customers. Our enduring experience is a testament to Kojak-Exclusive's dedication to providing exceptional service, expertise, and a passion for all things Mercedes. As we continue this journey, we look forward to another 40 years of bringing the epitome of luxury to our cherished clients.`}</Typography>
           </Grid>
-          {mdUp && (
-            <Grid md={6}>
-              <Box
-                sx={{
-                  ...bgBlur({ color: '#333333', opacity: 0.4, blur: 2 }),
-                  p: 3,
-                  borderRadius: 2,
-                }}
-              >
-                <ContactUsForm />
-              </Box>
-            </Grid>
-          )}
         </Grid>
       </Container>
     </Box>

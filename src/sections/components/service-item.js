@@ -22,7 +22,6 @@ export default function ServiceItem({ service, major }) {
     <>
       <Box
         sx={{
-          // border: 'solid 2px #777',
           ...bgBlur({ color: '#333333', opacity: 0.4 }),
           borderRadius: 1,
         }}

@@ -40,7 +40,7 @@ const SECONDARY = {
 const INFO = {
   lighter: '#CAFDF5',
   light: '#61F3F3',
-  main: '#00B8D9',
+  main: '#49303f',
   dark: '#006C9C',
   darker: '#003768',
   contrastText: '#FFFFFF',
@@ -56,12 +56,12 @@ const SUCCESS = {
 };
 
 const WARNING = {
-  lighter: '#FFF5CC',
-  light: '#FFD666',
-  main: '#FFAB00',
-  dark: '#B76E00',
-  darker: '#7A4100',
-  contrastText: GREY[800],
+  lighter: '#fff7da',
+  light: '#FFE98B',
+  main: '#FFDC45',
+  dark: '#FFCF00',
+  darker: '#D8AF00',
+  contrastText: '#000000',
 };
 
 const ERROR = {
