@@ -6,7 +6,7 @@ export const paths = {
     about: '/about',
     contactUs: '/contact-us',
     services: '/inventory',
-    // propertyDetails: '/properties/',
+    servicesDetails: '/inventory/',
     blogPosts: '/blog-posts',
     blogItem: '/blog-posts/',
   },

@@ -1,19 +1,19 @@
 import { useNavigate } from 'react-router';
 
-import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
+import { alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
-import { bgGradient } from 'src/theme/css';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { bgGradient, textGradient } from 'src/theme/css';
 
 export default function LandingHero() {
   const mdUp = useResponsive('up', 'md');
@@ -71,15 +71,15 @@ function RenderDesktopHero() {
                 {translate('hero.heroText')}
                 <Box
                   component="span"
-                  // sx={{
-                  //   textDecorationLine: 'underline',
-                  //   textDecorationColor: theme.palette.primary.main,
-                  //   textDecorationThickness: 10,
-                  //   textUnderlineOffset: 1,
-                  // }}
+                  sx={{
+                    background: `-webkit-linear-gradient(45deg,${theme.palette.info.light},${theme.palette.primary.main})`,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
                 >
-                  {translate('hero.title')}
+                  {translate('hero.partOne')}
                 </Box>
+                <Box component="span">{translate('hero.partTwo')}</Box>
               </Typography>
 
               <Typography>{translate('hero.subText')}</Typography>

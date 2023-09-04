@@ -36,7 +36,7 @@ function InternationalBusiness() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
-        background: 'linear-gradient(45deg, #000000, #1C4F7C)' /* fallback for old browsers */,
+        background: `linear-gradient(45deg, #000000, ${theme.palette.primary.dark})` /* fallback for old browsers */,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
@@ -54,7 +54,7 @@ function InternationalBusiness() {
           spacing={3}
         >
           <Grid
-            md={6}
+            md={9}
             xs={12}
             sx={{
               position: 'relative',
@@ -76,15 +76,15 @@ function InternationalBusiness() {
                 satisfied customers
               </Typography>
               <Box>
-                <Button variant="contained" size="large" color="info">
+                <Button variant="contained" size="large" color="primary">
                   Explore Inventory
                 </Button>
               </Box>
             </Stack>
           </Grid>
 
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
+          <Grid md={3} xs={12} sx={{ position: 'relative' }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 2 }}>
               {FACTS.map((fact) => (
                 <Stack
                   key={fact.title}
@@ -92,7 +92,7 @@ function InternationalBusiness() {
                   justifyContent="center"
                   textAlign="center"
                   alignItems="center"
-                  sx={{ border: 'solid 1px #FFFFFF', borderRadius: 1, py: 3 }}
+                  sx={{ borderBottom: `dashed 1px ${theme.palette.divider}`, py: 3 }}
                 >
                   <Box>
                     <Iconify icon={fact.icon} width={64} height={64} />

@@ -43,8 +43,8 @@ export default function MainLayout({ children }) {
           overflowY: 'scroll',
         }}
       >
-        {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
-        <ModernHeader />
+        <Header headerOnDark={actionPage(pathsOnDark)} />
+        {/* <ModernHeader /> */}
 
         <Box
           component="main"

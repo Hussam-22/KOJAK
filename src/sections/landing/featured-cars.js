@@ -29,12 +29,14 @@ function RenderDesktopHero() {
   const navigate = useNavigate();
   const { translate, currentLang } = useLocales();
   const { getFeaturedCars, fsGetImgDownloadUrl } = useAuthContext();
-
+  const [index, setIndex] = useState(0);
   const [featuredCars, setFeatureCars] = useState([]);
   const [featuredCarsImages, setFeatureCarsImages] = useState([]);
 
-  const selectedVehicle = (vehicleID) =>
-    console.log(featuredCarsImages.find((item) => item.id === vehicleID));
+  const selectedVehicleHandler = (vehicleID) =>
+    setIndex(featuredCarsImages.findIndex((car) => car.id === vehicleID));
+
+  console.log(featuredCarsImages);
 
   useEffect(() => {
     (async () => {
@@ -43,24 +45,26 @@ function RenderDesktopHero() {
   }, [getFeaturedCars]);
 
   useEffect(() => {
-    (async () => {
-      if (featuredCars.length !== 0)
-        featuredCars.map(async (car) => {
-          const imageUrl = await fsGetImgDownloadUrl(car.id, 0);
-          setFeatureCarsImages((state) => [...state, { id: car.id, url: imageUrl }]);
-        });
-    })();
-  }, [featuredCars, fsGetImgDownloadUrl]);
+    const fetchData = async () => {
+      if (featuredCars.length !== 0) {
+        const newFeatureCarsImages = await Promise.all(
+          featuredCars
+            .filter((car) => car.isFeatured)
+            .map(async (car) => {
+              const imageUrl = await Promise.all(
+                [...Array(4)].map(async (_, i) => fsGetImgDownloadUrl(car.id, i))
+              );
+              return { id: car.id, url: imageUrl };
+            })
+        );
 
-  // useEffect(() => {
-  //   (() => {
-  //     if (featuredCars.length !== 0)
-  //       featuredCars.map(async (car) => {
-  //         const imgUrl = await fsGetImgDownloadUrl(car.bucketID, 0);
-  //         setHeroImages((state) => [...state, imgUrl]);
-  //       });
-  //   })();
-  // }, [featuredCars, fsGetImgDownloadUrl]);
+        // Update state once with all the data
+        setFeatureCarsImages((state) => [...state, ...newFeatureCarsImages]);
+      }
+    };
+
+    fetchData();
+  }, [featuredCars, fsGetImgDownloadUrl]);
 
   return (
     <Box
@@ -71,15 +75,43 @@ function RenderDesktopHero() {
         scrollSnapAlign: 'start',
       }}
     >
-      <Box sx={{ position: 'absolute', left: '5%', top: '10%', zIndex: 2 }}>
-        <Typography variant="h2" color="primary" sx={{ mixBlendMode: 'darken' }}>
-          Featured Cars
-        </Typography>
+      <Box sx={{ position: 'absolute', width: '65%' }}>
+        {featuredCarsImages.length !== 0 && (
+          <Image src={featuredCarsImages[index].url[0]} ratio="6/4" />
+        )}
       </Box>
-      {/* {featuredCars.length !== 0 && (
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '35%',
+          height: 1,
+          right: 0,
+          bgcolor: 'common.white',
+          py: 10,
+          px: 4,
+        }}
+      >
+        <Stack spacing={3}>
+          <Box>
+            <Typography variant="h1" color="secondary" sx={{ mixBlendMode: 'darken' }}>
+              Featured Cars
+            </Typography>
+            <Typography color="secondary">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse
+              voluptate pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea
+              quibusdam modi sit. Molestias modi accusantium architecto suscipit nobis!
+            </Typography>
+          </Box>
+          {featuredCars.length !== 0 && (
+            <SideBar featuredCars={featuredCars} selectedVehicleID={selectedVehicleHandler} />
+          )}
+        </Stack>
+      </Box>
+
+      {/* {featuredCarsImages.length !== 0 && (
         <Box
           component={m.img}
-          src={featuredCars[selectedIndex].coverURL}
+           
           {...getVariant('fadeIn')}
           sx={{
             width: '100dvw',
@@ -89,14 +121,18 @@ function RenderDesktopHero() {
             left: 0,
             top: 0,
             zIndex: 1,
+            // filter: 'grayscale(40%)',
           }}
-          key={featuredCars[selectedIndex].id}
+          key={featuredCarsImages[index].id}
         />
       )} */}
-      {featuredCars.length !== 0 && (
-        <SideBar featuredCars={featuredCars} selectedVehicleID={selectedVehicle} />
+
+      {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
+        <FeaturesBar
+          selectedCardInfo={featuredCars.find((car) => car.id === featuredCarsImages[index].id)}
+          images={featuredCarsImages[index].url}
+        />
       )}
-      {/* {featuredCars.length !== 0 && <FeaturesBar selectedCardInfo={featuredCars[selectedIndex]} />} */}
     </Box>
   );
 }

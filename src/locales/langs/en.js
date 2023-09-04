@@ -8,8 +8,9 @@ const en = {
   },
   hero: {
     // overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Your Dream Mercedes, ',
-    title: `Now More Affordable Than Ever.`,
+    heroText: 'Your Dream Mercedes, Now ',
+    partOne: 'More Affordable',
+    partTwo: 'Than Ever.',
     subText:
       'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
   },

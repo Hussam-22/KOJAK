@@ -14,9 +14,9 @@ export default function LandingView() {
     <>
       <LandingHero />
       <FeaturedCars />
-      <CustomOrder />
-      <InternationalBusiness />
       <LandingAbout />
+      <InternationalBusiness />
+      {/* <CustomOrder /> */}
       <AutoMaintenance />
       <SpareParts />
     </>

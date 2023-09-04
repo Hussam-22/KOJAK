@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 
 import { Box, alpha, Stack, Button, Container, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 
-function FeaturesBar({ selectedCardInfo }) {
-  console.log(selectedCardInfo);
-
+function FeaturesBar({ selectedCardInfo, images }) {
+  const navigate = useNavigate();
   const features = Object.values(selectedCardInfo.features)
     .filter((feature) => ['price', 'year', 'engine type', 'hp'].includes(feature[0]?.toLowerCase()))
     .sort((a, b) => a[0].localeCompare(b[0]));
@@ -27,7 +28,7 @@ function FeaturesBar({ selectedCardInfo }) {
     >
       <Stack sx={{ justifyContent: 'space-between', alignItems: 'center' }} direction="row">
         <Stack direction="column">
-          <Typography variant="h1" color="primary">
+          <Typography variant="h1" color="secondary">
             {selectedCardInfo.brand}
           </Typography>
           <Typography variant="h4" sx={{ color: 'grey.400' }}>
@@ -38,7 +39,7 @@ function FeaturesBar({ selectedCardInfo }) {
         <Stack direction="row" spacing={6}>
           {features.map((feature) => (
             <Stack direction="column" key={feature[0]}>
-              <Typography variant="h5" color="primary">
+              <Typography variant="h5" color="secondary">
                 {feature[0]}
               </Typography>
               <Typography variant="h6" sx={{ color: 'grey.400' }}>
@@ -48,7 +49,7 @@ function FeaturesBar({ selectedCardInfo }) {
           ))}
 
           <Stack direction="column" alignItems="center">
-            <Typography variant="h5" color="primary">
+            <Typography variant="h5" color="secondary">
               Color
             </Typography>
             <Stack direction="row" spacing={1}>
@@ -75,13 +76,18 @@ function FeaturesBar({ selectedCardInfo }) {
         </Stack>
 
         <Stack direction="row" spacing={1}>
-          <Image src="/assets/images/cars/car-1.webp" height="7vh" sx={{ borderRadius: 1 }} />
-          <Image src="/assets/images/cars/car-2.webp" height="7vh" sx={{ borderRadius: 1 }} />
-          <Image src="/assets/images/cars/car-3.webp" height="7vh" sx={{ borderRadius: 1 }} />
+          {images.map(
+            (url, index) =>
+              index !== 0 && <Image src={url} height="10vh" sx={{ borderRadius: 1 }} key={url} />
+          )}
         </Stack>
 
         <Box>
-          <Button variant="contained" size="large">
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => navigate(paths.website.serviceDetails + selectedCardInfo.id)}
+          >
             View Details
           </Button>
         </Box>
@@ -91,4 +97,4 @@ function FeaturesBar({ selectedCardInfo }) {
 }
 export default FeaturesBar;
 
-FeaturesBar.propTypes = { selectedCardInfo: PropTypes.object };
+FeaturesBar.propTypes = { selectedCardInfo: PropTypes.object, images: PropTypes.array };

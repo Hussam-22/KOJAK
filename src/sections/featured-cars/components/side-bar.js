@@ -9,28 +9,16 @@ import { useAuthContext } from 'src/auth/hooks';
 
 function SideBar({ featuredCars, selectedVehicleID }) {
   return (
-    <Box
-      sx={{
-        position: 'absolute',
-        right: 20,
-        top: '40%',
-        zIndex: 2,
-        background: alpha('#000000', 0.15),
-        p: 2,
-        borderRadius: 1,
-      }}
-    >
-      <Stack direction="column" spacing={2}>
-        {featuredCars.map((car, index) => (
-          <Thumbnail
-            key={car.id}
-            vehicleInfo={car}
-            selectedVehicleID={selectedVehicleID}
-            index={index}
-          />
-        ))}
-      </Stack>
-    </Box>
+    <Stack direction="column" spacing={2}>
+      {featuredCars.map((car, index) => (
+        <Stack direction="row" spacing={3} key={car.id} alignItems="center">
+          <Thumbnail vehicleInfo={car} selectedVehicleID={selectedVehicleID} index={index} />
+          <Typography variant="h4" color="secondary">
+            {car.model}
+          </Typography>
+        </Stack>
+      ))}
+    </Stack>
   );
 }
 export default SideBar;
@@ -45,29 +33,20 @@ function Thumbnail({ vehicleInfo, selectedVehicleID, index }) {
 
   useEffect(() => {
     (async () => {
-      setUrl(await fsGetImgDownloadUrl(vehicleInfo.id, 0));
+      setUrl(await fsGetImgDownloadUrl(vehicleInfo.id, 0, true));
     })();
   }, [fsGetImgDownloadUrl, vehicleInfo.id]);
 
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      spacing={2}
-      key={vehicleInfo.id}
-    >
-      <Typography>{vehicleInfo.class}</Typography>
-      {url && (
-        <Image
-          src={url}
-          height="5vh"
-          width="6vw"
-          sx={{ borderRadius: 1, cursor: 'pointer' }}
-          onClick={() => selectedVehicleID(vehicleInfo.id)}
-        />
-      )}
-    </Stack>
+    url && (
+      <Image
+        src={url}
+        height="8vh"
+        width="8vw"
+        sx={{ borderRadius: 1, cursor: 'pointer' }}
+        onClick={() => selectedVehicleID(vehicleInfo.id)}
+      />
+    )
   );
 }
 

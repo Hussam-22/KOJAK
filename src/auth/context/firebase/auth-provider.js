@@ -98,19 +98,19 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'GLS 600',
+      model: 'G 63 AMG',
       qty: 1,
       cover: 0,
       // bucketID: 'test-car-3',
       features: {
         description: 'Special Modified Germany Imported, Export Only',
         year: ['Year', 2023],
-        price: ['Price', '320,000 AED'],
+        price: ['Price', '865,000 AED'],
         hp: ['HP', 667],
         bodyType: ['Body Type', '4X4'],
         engineType: ['Engine Type', 'Petrol-Hybrid'],
         exteriorColor: ['Exterior Color', '#121212'],
-        interiorColor: ['Interior Color', '#925861'],
+        interiorColor: ['Interior Color', '#D73B3B'],
         transmission: ['Transmission', 'Automatic'],
         camera: ['Camera', '360 Camera'],
         wheelSize: ['Wheel Size', '20"'],
@@ -121,19 +121,22 @@ export function AuthProvider({ children }) {
         milage: ['Milage', 0],
         isNew: true,
       },
-      thumbnail: [2, 3, 4],
       isActive: true,
-      isFeatured: true,
+      isFeatured: false,
     });
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
-  const fsGetImgDownloadUrl = useCallback(async (folderID, imgID) => {
+  const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
     const url = await getDownloadURL(
-      ref(STORAGE, `gs://kojak-exclusive/${folderID}/${imgID}_1920x1080.webp`)
+      ref(
+        STORAGE,
+        `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
+      )
     );
     return url;
   }, []);
+
   // ------------------ | Get image Download URL | ------------------
   const fsListAllFolderItems = useCallback(async (folderID) => {
     const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
