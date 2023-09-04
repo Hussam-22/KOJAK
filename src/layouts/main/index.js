@@ -33,7 +33,16 @@ export default function MainLayout({ children }) {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: 1,
+          scrollSnapType: pathname === '/' ? 'y mandatory' : 'none',
+          maxHeight: pathname === '/' ? '100vh' : 'unset',
+          overflowY: 'scroll',
+        }}
+      >
         {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
         <ModernHeader />
 

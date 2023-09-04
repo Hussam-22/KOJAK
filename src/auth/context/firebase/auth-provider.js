@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
 import { useMemo, useCallback } from 'react';
-import { ref, getStorage, getDownloadURL } from 'firebase/storage';
+import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
   where,
@@ -70,11 +70,7 @@ export function AuthProvider({ children }) {
 
   // GET OFFERS
   const getCars = useCallback(async () => {
-    const docRef = query(
-      collectionGroup(DB, 'cars'),
-      where('isActive', '==', true),
-      where('validTill', '<=', new Date())
-    );
+    const docRef = query(collectionGroup(DB, 'cars'), where('isActive', '==', true));
     const querySnapshot = await getDocs(docRef);
     const documents = [];
 
@@ -102,19 +98,19 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'EQS 53 AMG 4MATIC',
+      model: 'GLS 600',
       qty: 1,
       cover: 0,
       // bucketID: 'test-car-3',
       features: {
         description: 'Special Modified Germany Imported, Export Only',
         year: ['Year', 2023],
-        price: ['Price', '860,000 AED'],
+        price: ['Price', '320,000 AED'],
         hp: ['HP', 667],
         bodyType: ['Body Type', '4X4'],
-        engineType: ['Engine Type', 'Electrical'],
+        engineType: ['Engine Type', 'Petrol-Hybrid'],
         exteriorColor: ['Exterior Color', '#121212'],
-        interiorColor: ['Interior Color', '#CE8833'],
+        interiorColor: ['Interior Color', '#925861'],
         transmission: ['Transmission', 'Automatic'],
         camera: ['Camera', '360 Camera'],
         wheelSize: ['Wheel Size', '20"'],
@@ -122,9 +118,11 @@ export function AuthProvider({ children }) {
         light: ['Lights', 'Digital LED'],
         sunroof: ['Sunroof', 'Electric sunroof, glass version'],
         axle: ['axle Steering', 'Rear'],
+        milage: ['Milage', 0],
+        isNew: true,
       },
       thumbnail: [2, 3, 4],
-      isActive: false,
+      isActive: true,
       isFeatured: true,
     });
   }, []);
@@ -136,6 +134,12 @@ export function AuthProvider({ children }) {
     );
     return url;
   }, []);
+  // ------------------ | Get image Download URL | ------------------
+  const fsListAllFolderItems = useCallback(async (folderID) => {
+    const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
+    const res = await listAll(listRef);
+    return res;
+  }, []);
 
   // --------------------------------------------------------------------
   const memoizedValue = useMemo(
@@ -145,8 +149,9 @@ export function AuthProvider({ children }) {
       getFeaturedCars,
       addNewCar,
       fsGetImgDownloadUrl,
+      fsListAllFolderItems,
     }),
-    [addNewForm, getCars, getFeaturedCars, addNewCar, fsGetImgDownloadUrl]
+    [addNewForm, getCars, getFeaturedCars, addNewCar, fsGetImgDownloadUrl, fsListAllFolderItems]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

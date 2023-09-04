@@ -45,14 +45,12 @@ export default function Footer() {
   const { translate } = useLocales();
   const path = useLocation();
 
-  console.log(path);
-
   const mainFooter = (
     <Box
       sx={{
         bgcolor: 'common.black',
         scrollSnapAlign: path.pathname === '/' ? 'start' : 'none',
-        height: '100dvh',
+        height: path.pathname === '/' ? '100dvh' : 'none',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',

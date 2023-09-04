@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 import { alpha } from '@mui/system';
 import { Box, Stack, Button, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
+import { useAuthContext } from 'src/auth/hooks';
 
-function SideBar({ featuredCars, updateIndex }) {
+function SideBar({ featuredCars, selectedVehicleID }) {
   return (
     <Box
       sx={{
@@ -20,22 +22,12 @@ function SideBar({ featuredCars, updateIndex }) {
     >
       <Stack direction="column" spacing={2}>
         {featuredCars.map((car, index) => (
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            spacing={2}
+          <Thumbnail
             key={car.id}
-          >
-            <Typography>{car.class}</Typography>
-            <Image
-              src={car.coverURL.replace('1920x1080', '200x200')}
-              height="5vh"
-              width="6vw"
-              sx={{ borderRadius: 1, cursor: 'pointer' }}
-              onClick={() => updateIndex(index)}
-            />
-          </Stack>
+            vehicleInfo={car}
+            selectedVehicleID={selectedVehicleID}
+            index={index}
+          />
         ))}
       </Stack>
     </Box>
@@ -43,6 +35,44 @@ function SideBar({ featuredCars, updateIndex }) {
 }
 export default SideBar;
 SideBar.propTypes = {
-  updateIndex: PropTypes.func,
+  selectedVehicleID: PropTypes.func,
   featuredCars: PropTypes.array,
+};
+
+function Thumbnail({ vehicleInfo, selectedVehicleID, index }) {
+  const [url, setUrl] = useState('');
+  const { fsGetImgDownloadUrl } = useAuthContext();
+
+  useEffect(() => {
+    (async () => {
+      setUrl(await fsGetImgDownloadUrl(vehicleInfo.id, 0));
+    })();
+  }, [fsGetImgDownloadUrl, vehicleInfo.id]);
+
+  return (
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      spacing={2}
+      key={vehicleInfo.id}
+    >
+      <Typography>{vehicleInfo.class}</Typography>
+      {url && (
+        <Image
+          src={url}
+          height="5vh"
+          width="6vw"
+          sx={{ borderRadius: 1, cursor: 'pointer' }}
+          onClick={() => selectedVehicleID(vehicleInfo.id)}
+        />
+      )}
+    </Stack>
+  );
+}
+
+Thumbnail.propTypes = {
+  selectedVehicleID: PropTypes.func,
+  vehicleInfo: PropTypes.object,
+  index: PropTypes.number,
 };

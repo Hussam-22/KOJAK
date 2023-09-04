@@ -40,7 +40,7 @@ function RenderDesktopHero() {
           direction: 'to right',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
           endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: '/assets/images/hero/hero-3.jpg',
+          imgUrl: '/assets/images/hero/hero-4.jpg',
         }),
       }}
     >

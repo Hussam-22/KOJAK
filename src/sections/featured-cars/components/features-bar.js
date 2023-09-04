@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { Box, alpha, Stack, Button, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
-import { useAuthContext } from 'src/auth/hooks';
 
 function FeaturesBar({ selectedCardInfo }) {
-  const { addNewCar } = useAuthContext();
-  // const addNewCarHandler = async () => addNewCar();
+  console.log(selectedCardInfo);
 
   const features = Object.values(selectedCardInfo.features)
-    .filter((feature) => ['price', 'year', 'engine type', 'hp'].includes(feature[0].toLowerCase()))
+    .filter((feature) => ['price', 'year', 'engine type', 'hp'].includes(feature[0]?.toLowerCase()))
     .sort((a, b) => a[0].localeCompare(b[0]));
 
   return (
@@ -33,7 +31,7 @@ function FeaturesBar({ selectedCardInfo }) {
             {selectedCardInfo.brand}
           </Typography>
           <Typography variant="h4" sx={{ color: 'grey.400' }}>
-            {selectedCardInfo.class}
+            {selectedCardInfo.model}
           </Typography>
         </Stack>
 

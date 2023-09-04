@@ -28,18 +28,29 @@ function RenderDesktopHero() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { translate, currentLang } = useLocales();
-  const { getFeaturedCars } = useAuthContext();
+  const { getFeaturedCars, fsGetImgDownloadUrl } = useAuthContext();
 
   const [featuredCars, setFeatureCars] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [featuredCarsImages, setFeatureCarsImages] = useState([]);
 
-  const updateSelectedCarIndexHandler = (index) => setSelectedIndex(index);
+  const selectedVehicle = (vehicleID) =>
+    console.log(featuredCarsImages.find((item) => item.id === vehicleID));
 
   useEffect(() => {
     (async () => {
       setFeatureCars(await getFeaturedCars());
     })();
   }, [getFeaturedCars]);
+
+  useEffect(() => {
+    (async () => {
+      if (featuredCars.length !== 0)
+        featuredCars.map(async (car) => {
+          const imageUrl = await fsGetImgDownloadUrl(car.id, 0);
+          setFeatureCarsImages((state) => [...state, { id: car.id, url: imageUrl }]);
+        });
+    })();
+  }, [featuredCars, fsGetImgDownloadUrl]);
 
   // useEffect(() => {
   //   (() => {
@@ -65,7 +76,7 @@ function RenderDesktopHero() {
           Featured Cars
         </Typography>
       </Box>
-      {featuredCars.length !== 0 && (
+      {/* {featuredCars.length !== 0 && (
         <Box
           component={m.img}
           src={featuredCars[selectedIndex].coverURL}
@@ -81,78 +92,11 @@ function RenderDesktopHero() {
           }}
           key={featuredCars[selectedIndex].id}
         />
-      )}
+      )} */}
       {featuredCars.length !== 0 && (
-        <SideBar featuredCars={featuredCars} updateIndex={updateSelectedCarIndexHandler} />
+        <SideBar featuredCars={featuredCars} selectedVehicleID={selectedVehicle} />
       )}
-      {featuredCars.length !== 0 && <FeaturesBar selectedCardInfo={featuredCars[selectedIndex]} />}
-
-      {/* <Container maxWidth="xl" sx={{ height: 1 }}>
-        <Grid
-          container
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100%',
-          }}
-        >
-          <Grid md={6} xs={12} />
-
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Box
-              sx={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%,-50%)',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: '19dvw',
-                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.1)}`,
-                  color: alpha(theme.palette.background.default, 0),
-                }}
-              >
-                {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
-              </Typography>
-            </Box>
-            <Stack
-              sx={{
-                textAlign: { md: 'left', xs: 'center' },
-              }}
-              spacing={3}
-            >
-              <Typography
-                sx={{
-                  textTransform: 'capitalize',
-                  fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
-                  lineHeight: 1.25,
-                  fontWeight: theme.typography.fontWeightBold,
-                }}
-              >
-                <Box component="span" sx={{ color: 'primary.main' }}>
-                  {translate('hero.heroText')}
-                </Box>
-                {translate('hero.title')}
-              </Typography>
-
-              <Typography>{translate('hero.subText')}</Typography>
-
-              <Box>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  onClick={() => navigate(paths.website.bookAppointment)}
-                >
-                  {translate('common.bookAppointment')}
-                </Button>
-              </Box>
-            </Stack>
-          </Grid>
-        </Grid>
-      </Container> */}
+      {/* {featuredCars.length !== 0 && <FeaturesBar selectedCardInfo={featuredCars[selectedIndex]} />} */}
     </Box>
   );
 }
