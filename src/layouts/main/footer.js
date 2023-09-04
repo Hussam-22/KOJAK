@@ -1,3 +1,5 @@
+import { useParams, useLocation } from 'react-router';
+
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -12,6 +14,7 @@ import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
+import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
 // ----------------------------------------------------------------------
@@ -40,15 +43,29 @@ export default function Footer() {
   const mdUp = useResponsive('up', 'md');
   const mUItheme = useTheme();
   const { translate } = useLocales();
+  const path = useLocation();
+
+  console.log(path);
 
   const mainFooter = (
-    <Box sx={{ bgcolor: 'common.black', scrollSnapAlign: 'start' }}>
+    <Box
+      sx={{
+        bgcolor: 'common.black',
+        scrollSnapAlign: path.pathname === '/' ? 'start' : 'none',
+        height: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+      }}
+    >
       <Divider />
-
+      <JoinNewsletter />
+      <Divider />
       <Container
         sx={{
           overflow: 'hidden',
           py: { xs: 1.5, md: 3 },
+          alignSelf: 'flex-end',
         }}
         maxWidth="xl"
       >

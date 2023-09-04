@@ -25,7 +25,7 @@ export default function ModernHeader() {
   const isHome = pathname.includes('landing');
 
   const navigateToSearchParts = () => {
-    navigate(paths.website.products);
+    navigate(paths.website.services);
   };
 
   useEffect(() => {
@@ -51,8 +51,8 @@ export default function ModernHeader() {
         left: '50%',
         transform: 'translate(-50%, 0%)',
         borderRadius: 1,
+        // display: 'inline-block',
         // width: { xs: '95dvw', md: '75dvw' },
-        width: 'fit-content',
         // border: `solid 1px ${theme.palette.grey[800]}`,
         zIndex: 99,
         ...bgBlur({ color: theme.palette.common.black, blur: 85, opacity: 0.25 }),
@@ -74,9 +74,8 @@ export default function ModernHeader() {
             <Button
               variant="contained"
               color="primary"
-              // href={paths.zoneStore}
-              target="_blank"
-              rel="noopener"
+              sx={{ whiteSpace: 'nowrap' }}
+              onClick={navigateToSearchParts}
             >
               Explore Inventory
             </Button>

@@ -15,7 +15,7 @@ export const _websiteRouts = [
     path: '/',
     children: [
       { element: <KojakBuildingLandingPage />, index: true },
-      { path: 'services', element: <ServicesPage /> },
+      { path: 'inventory', element: <ServicesPage /> },
       // { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'contact-us', element: <ContactUsPage /> },

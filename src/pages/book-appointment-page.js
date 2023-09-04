@@ -6,10 +6,10 @@ export default function BookAppointmentPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Book an Appointment</title>
+        <title>Kojak Exclusive | Book an Appointment</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta name="author" content="KOJAK GROUP - Auto Maintenance" />
+        <meta name="author" content="KOJAK GROUP - Exclusive" />
       </Helmet>
       <BookAppointmentView />
     </>

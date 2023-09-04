@@ -100,7 +100,6 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             position: 'relative',
-            height: '50dvh',
             overflow: 'hidden',
             scrollSnapAlign: 'start',
             ...bgGradient({

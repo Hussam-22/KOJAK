@@ -6,10 +6,10 @@ export default function ServicesPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Services</title>
+        <title>Kojak Exclusive | Inventory</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta name="author" content="KOJAK GROUP - Auto Maintenance" />
+        <meta name="author" content="KOJAK GROUP - Exclusive" />
       </Helmet>
       <ServicesView />
     </>

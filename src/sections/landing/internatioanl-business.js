@@ -36,7 +36,7 @@ function InternationalBusiness() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
-        background: 'linear-gradient(45deg, #000000, #7f526b)' /* fallback for old browsers */,
+        background: 'linear-gradient(45deg, #000000, #1C4F7C)' /* fallback for old browsers */,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
@@ -87,6 +87,7 @@ function InternationalBusiness() {
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
               {FACTS.map((fact) => (
                 <Stack
+                  key={fact.title}
                   spacing={2}
                   justifyContent="center"
                   textAlign="center"

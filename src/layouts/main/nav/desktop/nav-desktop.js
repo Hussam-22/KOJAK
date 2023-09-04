@@ -15,6 +15,7 @@ export default function NavDesktop({ data, sx }) {
       sx={{
         height: 1,
         ...sx,
+        whiteSpace: 'nowrap',
       }}
     >
       {data.map((link) => (

@@ -1,13 +1,5 @@
-import OurServices from 'src/sections/services/our-services';
-import ServicesAbout from 'src/sections/services/about-video';
-import JoinNewsletter from 'src/sections/about/join-newsletter';
+import VehiclesList from 'src/sections/services/vehicles-list';
 
 export default function ServicesView() {
-  return (
-    <>
-      <ServicesAbout />
-      <OurServices />
-      <JoinNewsletter />
-    </>
-  );
+  return <VehiclesList />;
 }

@@ -1,7 +1,7 @@
 const en = {
   header: {
     home: 'Home',
-    services: 'Services',
+    services: 'Inventory',
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',

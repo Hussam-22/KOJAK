@@ -8,7 +8,7 @@ export default function BlogPostPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Blog Post</title>
+        <title>Kojak Exclusive | Blog Post</title>
       </Helmet>
 
       <BlogItemView />

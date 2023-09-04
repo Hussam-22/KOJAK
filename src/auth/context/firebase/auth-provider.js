@@ -102,10 +102,10 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      class: 'EQS 53 AMG 4MATIC',
+      model: 'EQS 53 AMG 4MATIC',
       qty: 1,
       cover: 0,
-      bucketID: 'test-car-3',
+      // bucketID: 'test-car-3',
       features: {
         description: 'Special Modified Germany Imported, Export Only',
         year: ['Year', 2023],
