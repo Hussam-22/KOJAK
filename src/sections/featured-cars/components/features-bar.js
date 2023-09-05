@@ -18,15 +18,16 @@ function FeaturesBar({ selectedCardInfo, images }) {
         position: 'absolute',
         bottom: 0,
         // right: 0,
-        height: '18dvh',
+        height: '17%',
         width: 1,
         pt: 2,
         px: 10,
-        background: alpha('#FFFFFF', 0.85),
-        zIndex: 2,
+        background: '#FFFFFF',
+        zIndex: 10,
+        borderTop: 'solid 1px #333',
       }}
     >
-      <Stack sx={{ justifyContent: 'space-between', alignItems: 'center' }} direction="row">
+      <Stack sx={{ justifyContent: 'space-evenly', alignItems: 'center' }} direction="row">
         <Stack direction="column">
           <Typography variant="h1" color="secondary">
             {selectedCardInfo.brand}
@@ -75,12 +76,12 @@ function FeaturesBar({ selectedCardInfo, images }) {
           </Stack>
         </Stack>
 
-        <Stack direction="row" spacing={1}>
+        {/* <Stack direction="row" spacing={1}>
           {images.map(
             (url, index) =>
               index !== 0 && <Image src={url} height="10vh" sx={{ borderRadius: 1 }} key={url} />
           )}
-        </Stack>
+        </Stack> */}
 
         <Box>
           <Button
@@ -97,4 +98,7 @@ function FeaturesBar({ selectedCardInfo, images }) {
 }
 export default FeaturesBar;
 
-FeaturesBar.propTypes = { selectedCardInfo: PropTypes.object, images: PropTypes.array };
+FeaturesBar.propTypes = {
+  selectedCardInfo: PropTypes.object,
+  images: PropTypes.array,
+};

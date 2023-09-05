@@ -36,7 +36,7 @@ function InternationalBusiness() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
-        background: `linear-gradient(45deg, #000000, ${theme.palette.primary.dark})` /* fallback for old browsers */,
+        background: `linear-gradient(45deg, ${theme.palette.grey[800]}, #000000)` /* fallback for old browsers */,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>

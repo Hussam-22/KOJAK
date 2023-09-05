@@ -346,6 +346,7 @@ const en = {
   common: {
     brand: 'KOJAK',
     brandSpecial: 'Auto Exclusive',
+    actionButton: 'Explore Inventory',
     bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',

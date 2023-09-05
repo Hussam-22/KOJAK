@@ -89,9 +89,9 @@ function RenderDesktopHero() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => navigate(paths.website.bookAppointment)}
+                  onClick={() => navigate(paths.website.services)}
                 >
-                  {translate('common.bookAppointment')}
+                  {translate('common.actionButton')}
                 </Button>
               </Box>
             </Stack>

@@ -8,9 +8,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -75,57 +76,36 @@ function RenderDesktopHero() {
         scrollSnapAlign: 'start',
       }}
     >
-      <Box sx={{ position: 'absolute', width: '65%' }}>
-        {featuredCarsImages.length !== 0 && (
-          <Image src={featuredCarsImages[index].url[0]} ratio="6/4" />
-        )}
-      </Box>
-      <Box
-        sx={{
-          position: 'absolute',
-          width: '35%',
-          height: 1,
-          right: 0,
-          bgcolor: 'common.white',
-          py: 10,
-          px: 4,
-        }}
-      >
-        <Stack spacing={3}>
-          <Box>
-            <Typography variant="h1" color="secondary" sx={{ mixBlendMode: 'darken' }}>
-              Featured Cars
-            </Typography>
-            <Typography color="secondary">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse
-              voluptate pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea
-              quibusdam modi sit. Molestias modi accusantium architecto suscipit nobis!
-            </Typography>
-          </Box>
-          {featuredCars.length !== 0 && (
-            <SideBar featuredCars={featuredCars} selectedVehicleID={selectedVehicleHandler} />
+      <Grid container sx={{ height: 1 }}>
+        <Grid md={8}>
+          {featuredCarsImages.length !== 0 && (
+            <Box component={m.div} {...getVariant('fadeIn')}>
+              <Image src={featuredCarsImages[index].url[0]} ratio="4/3" />
+            </Box>
           )}
-        </Stack>
-      </Box>
-
-      {/* {featuredCarsImages.length !== 0 && (
-        <Box
-          component={m.img}
-           
-          {...getVariant('fadeIn')}
-          sx={{
-            width: '100dvw',
-            height: '82dvh',
-            objectFit: 'cover',
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            zIndex: 1,
-            // filter: 'grayscale(40%)',
-          }}
-          key={featuredCarsImages[index].id}
-        />
-      )} */}
+        </Grid>
+        <Grid md={4} sx={{ bgcolor: '#FFFFFF', pt: 5 }}>
+          <Stack spacing={3} sx={{ p: 5 }}>
+            <Box>
+              <Typography variant="h1" color="secondary" sx={{ mixBlendMode: 'darken' }}>
+                Featured Cars
+              </Typography>
+              <Typography color="secondary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse
+                voluptate pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea
+                quibusdam modi sit. Molestias modi accusantium architecto suscipit nobis!
+              </Typography>
+            </Box>
+            {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
+              <SideBar
+                featuredCars={featuredCars}
+                selectedVehicleID={selectedVehicleHandler}
+                selectedCarID={featuredCarsImages[index].id}
+              />
+            )}
+          </Stack>
+        </Grid>
+      </Grid>
 
       {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
         <FeaturesBar

@@ -29,14 +29,15 @@ import { navConfig } from './config-navigation';
 
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
-  const offset = useOffSetTop();
+  // const offset = useOffSetTop();
+  const offset = true;
   const [isLoading, setIsLoading] = useState(false);
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
 
-  const openAppointmentModal = () => {};
+  console.log(offset);
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -97,9 +98,9 @@ export default function Header({ headerOnDark }) {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate(paths.website.bookAppointment)}
+                    onClick={() => navigate(paths.website.services)}
                   >
-                    {translate('common.bookAppointment')}
+                    {translate('common.actionButton')}
                   </Button>
                   <Divider
                     orientation="vertical"
