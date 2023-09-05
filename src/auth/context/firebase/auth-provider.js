@@ -4,8 +4,9 @@ import { useMemo, useCallback } from 'react';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  where,
   query,
+  where,
+  getDoc,
   setDoc,
   getDocs,
   Timestamp,
@@ -68,7 +69,14 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
-  // GET OFFERS
+  // ----------------------------------------------------------------------------
+  const getVehicleInfo = useCallback(async (vehicleID) => {
+    const docRef = doc(DB, `/websites/kexclusive/cars/${vehicleID}`);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  }, []);
+
+  // GET Cars List
   const getCars = useCallback(async () => {
     const docRef = query(collectionGroup(DB, 'cars'), where('isActive', '==', true));
     const querySnapshot = await getDocs(docRef);
@@ -138,10 +146,15 @@ export function AuthProvider({ children }) {
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
-  const fsListAllFolderItems = useCallback(async (folderID) => {
+  const fsGetFolderImages = useCallback(async (folderID) => {
     const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
-    const res = await listAll(listRef);
-    return res;
+    const imagesList = await listAll(listRef);
+    const imagesUrl = await Promise.all(
+      imagesList.items.map(async (imageRef) => getDownloadURL(ref(STORAGE, imageRef)))
+    );
+    const thumbnail = imagesUrl.filter((url) => url.includes('200x200'));
+    const largeImage = imagesUrl.filter((url) => url.includes('1920x1080'));
+    return [thumbnail, largeImage];
   }, []);
 
   // --------------------------------------------------------------------
@@ -152,9 +165,18 @@ export function AuthProvider({ children }) {
       getFeaturedCars,
       addNewCar,
       fsGetImgDownloadUrl,
-      fsListAllFolderItems,
+      fsGetFolderImages,
+      getVehicleInfo,
     }),
-    [addNewForm, getCars, getFeaturedCars, addNewCar, fsGetImgDownloadUrl, fsListAllFolderItems]
+    [
+      addNewForm,
+      getCars,
+      getFeaturedCars,
+      addNewCar,
+      fsGetImgDownloadUrl,
+      fsGetFolderImages,
+      getVehicleInfo,
+    ]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

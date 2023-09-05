@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
 import { Box, Card, Stack, Button, Divider, useTheme, Container, Typography } from '@mui/material';
 
-import Label from 'src/components/label/Label';
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
+import Label from 'src/components/label/Label';
 import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
 import Iconify from 'src/components/iconify/Iconify';
@@ -14,7 +16,8 @@ function VehicleCard({ vehicleInfo }) {
   const { brand, model, features, id, isFeatured, qty } = vehicleInfo;
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imageURL, setImageURL] = useState(null);
-  const theme = useTheme();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -26,7 +29,6 @@ function VehicleCard({ vehicleInfo }) {
     <Card
       sx={{
         borderRadius: 1,
-        border: isFeatured && `solid 4px ${theme.palette.warning.main}`,
         position: 'relative',
       }}
     >
@@ -50,7 +52,11 @@ function VehicleCard({ vehicleInfo }) {
             </TextMaxLine>
           </Box>
           <Box>
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate(paths.website.servicesDetails + id)}
+            >
               More Details
             </Button>
           </Box>
@@ -66,6 +72,7 @@ function VehicleCard({ vehicleInfo }) {
             />
           }
           justifyContent="space-evenly"
+          sx={{ borderTop: 'dashed 1px #666', pt: 1 }}
         >
           <VehicleFeature icon="iwwa:year" value={features.year[1]} />
           <VehicleFeature icon="tdesign:money" value={features.price[1]} />
@@ -79,11 +86,15 @@ function VehicleCard({ vehicleInfo }) {
 export default VehicleCard;
 VehicleCard.propTypes = { vehicleInfo: PropTypes.object };
 
+// ----------------------------------------------------------------------------
 function VehicleFeature({ icon, value }) {
+  const theme = useTheme();
   return (
     <Stack justifyContent="center" alignItems="center" spacing={1}>
       <Iconify icon={icon} width={24} height={24} />
-      <Typography>{value}</Typography>
+      <Typography variant="body2" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+        {value}
+      </Typography>
     </Stack>
   );
 }

@@ -37,8 +37,6 @@ export default function Header({ headerOnDark }) {
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
 
-  console.log(offset);
-
   const toggleLanguageHandler = () => {
     setIsLoading(true);
     setTimeout(() => {

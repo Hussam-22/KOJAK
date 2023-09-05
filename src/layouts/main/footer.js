@@ -49,8 +49,9 @@ export default function Footer() {
     <Box
       sx={{
         bgcolor: 'common.black',
-        scrollSnapAlign: path.pathname === '/' ? 'start' : 'none',
-        height: path.pathname === '/' ? '100dvh' : 'none',
+        // scrollSnapAlign: path.pathname === '/' ? 'start' : 'none',
+        // height: path.pathname === '/' ? '100dvh' : 'none',
+        // scrollSnapAlign: 'start',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',

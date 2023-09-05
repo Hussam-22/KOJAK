@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import LandingView from 'src/sections/views/landing-view';

@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 
 import Box from '@mui/material/Box';
 
@@ -38,14 +40,13 @@ export default function MainLayout({ children }) {
           display: 'flex',
           flexDirection: 'column',
           height: 1,
-          scrollSnapType: pathname === '/' ? 'y mandatory' : 'none',
-          maxHeight: pathname === '/' ? '100vh' : 'unset',
-          overflowY: 'scroll',
+          // scrollSnapType: pathname === '/' ? 'y mandatory' : 'none',
+          // maxHeight: pathname === '/' ? '100vh' : 'unset',
+          // overflowY: 'scroll',
         }}
       >
         <Header headerOnDark={actionPage(pathsOnDark)} />
         {/* <ModernHeader /> */}
-
         <Box
           component="main"
           sx={{

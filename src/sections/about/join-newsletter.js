@@ -122,8 +122,10 @@ export default function JoinNewsletter() {
 
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
                 <Stack direction="column" spacing={2} sx={{ color: 'common.white' }}>
-                  <Typography variant="h3">{translate('newsLetter.title')}</Typography>
-                  <Typography>{translate('newsLetter.subTitle')}</Typography>
+                  <Typography variant="h4">{translate('newsLetter.title')}</Typography>
+                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                    {translate('newsLetter.subTitle')}
+                  </Typography>
 
                   <Stack direction="row" spacing={1}>
                     <RHFTextField name="email" label={translate('form.email')} />

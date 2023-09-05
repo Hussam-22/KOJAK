@@ -277,8 +277,8 @@ const en = {
   },
 
   newsLetter: {
-    title: 'Stay Tuned, Never Miss an Offer Again!',
-    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
+    title: 'Stay tuned, never miss a new vehicle becoming available again!',
+    subTitle: `Don't miss out on the opportunity to be a part of our vibrant automotive community. Subscribe now and stay tuned for a thrilling automotive experience!`,
   },
 
   about: {

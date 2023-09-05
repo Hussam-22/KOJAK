@@ -37,8 +37,6 @@ function RenderDesktopHero() {
   const selectedVehicleHandler = (vehicleID) =>
     setIndex(featuredCarsImages.findIndex((car) => car.id === vehicleID));
 
-  console.log(featuredCarsImages);
-
   useEffect(() => {
     (async () => {
       setFeatureCars(await getFeaturedCars());
