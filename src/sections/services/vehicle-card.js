@@ -14,6 +14,7 @@ import TextMaxLine from 'src/components/text-max-line/text-max-line';
 
 function VehicleCard({ vehicleInfo }) {
   const { brand, model, features, id, isFeatured, qty } = vehicleInfo;
+  const theme = useTheme();
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imageURL, setImageURL] = useState(null);
 
@@ -72,7 +73,7 @@ function VehicleCard({ vehicleInfo }) {
             />
           }
           justifyContent="space-evenly"
-          sx={{ borderTop: 'dashed 1px #666', pt: 1 }}
+          sx={{ borderTop: `dashed 1px ${theme.palette.divider}`, pt: 1 }}
         >
           <VehicleFeature icon="iwwa:year" value={features.year[1]} />
           <VehicleFeature icon="tdesign:money" value={features.price[1]} />

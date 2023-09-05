@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
-import { Box, alpha, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Stack, alpha, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 
-function FeaturesBar({ selectedCardInfo, images }) {
+function FeaturesBar({ selectedCardInfo }) {
+  const theme = useTheme();
   const navigate = useNavigate();
   const features = Object.values(selectedCardInfo.features)
     .filter((feature) => ['price', 'year', 'engine type', 'hp'].includes(feature[0]?.toLowerCase()))
@@ -22,17 +23,17 @@ function FeaturesBar({ selectedCardInfo, images }) {
         width: 1,
         pt: 2,
         px: 10,
-        background: '#FFFFFF',
+        background: theme.palette.primary.main,
         zIndex: 10,
         borderTop: 'solid 1px #333',
       }}
     >
       <Stack sx={{ justifyContent: 'space-evenly', alignItems: 'center' }} direction="row">
         <Stack direction="column">
-          <Typography variant="h1" color="secondary">
+          <Typography variant="h1" sx={{ color: 'common.white' }}>
             {selectedCardInfo.brand}
           </Typography>
-          <Typography variant="h4" sx={{ color: 'grey.400' }}>
+          <Typography variant="h4" color="secondary">
             {selectedCardInfo.model}
           </Typography>
         </Stack>
@@ -40,17 +41,17 @@ function FeaturesBar({ selectedCardInfo, images }) {
         <Stack direction="row" spacing={6}>
           {features.map((feature) => (
             <Stack direction="column" key={feature[0]}>
-              <Typography variant="h5" color="secondary">
+              <Typography variant="h5" sx={{ color: 'common.white' }}>
                 {feature[0]}
               </Typography>
-              <Typography variant="h6" sx={{ color: 'grey.400' }}>
+              <Typography variant="h6" color="secondary">
                 {feature[1]}
               </Typography>
             </Stack>
           ))}
 
           <Stack direction="column" alignItems="center">
-            <Typography variant="h5" color="secondary">
+            <Typography variant="h5" sx={{ color: 'common.white' }}>
               Color
             </Typography>
             <Stack direction="row" spacing={1}>
@@ -88,6 +89,7 @@ function FeaturesBar({ selectedCardInfo, images }) {
             variant="contained"
             size="large"
             onClick={() => navigate(paths.website.serviceDetails + selectedCardInfo.id)}
+            sx={{ bgcolor: 'common.white', color: 'common.black' }}
           >
             View Details
           </Button>
@@ -100,5 +102,5 @@ export default FeaturesBar;
 
 FeaturesBar.propTypes = {
   selectedCardInfo: PropTypes.object,
-  images: PropTypes.array,
+  // images: PropTypes.array,
 };

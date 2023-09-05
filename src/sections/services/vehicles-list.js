@@ -23,16 +23,21 @@ function VehiclesList() {
 
   const addCar = async () => addNewCar();
   return (
-    <>
-      <Button onClick={addCar}>Add Car</Button>
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3 }}>
-        {vehiclesList.length === 0
-          ? [...Array(9)].map((_, index) => (
-              <Skeleton key={index} variant="rectangular" width={200} height={200} />
-            ))
-          : vehiclesList.map((vehicle) => <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />)}
-      </Box>
-    </>
+    <Box sx={{ bgcolor: 'background.neutral' }}>
+      <Container
+        maxWidth="xl"
+        sx={{ py: 10, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
+      >
+        <Button onClick={addCar}>Add Car</Button>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3 }}>
+          {vehiclesList.length === 0
+            ? [...Array(9)].map((_, index) => (
+                <Skeleton key={index} variant="rectangular" width={200} height={200} />
+              ))
+            : vehiclesList.map((vehicle) => <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />)}
+        </Box>
+      </Container>
+    </Box>
   );
 }
 export default VehiclesList;

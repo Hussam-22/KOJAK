@@ -31,8 +31,8 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: '#333333',
   light: '#222222',
-  main: '#111111',
-  dark: '#101010',
+  main: '#000000',
+  dark: '#000000',
   darker: '#000000',
   contrastText: '#FFFFFF',
 };
@@ -91,7 +91,7 @@ const COMMON = {
   error: ERROR,
   custom: CUSTOM,
   grey: GREY,
-  divider: alpha(GREY[500], 0.5),
+  divider: alpha(GREY[300], 0.5),
   action: {
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.75),
@@ -108,13 +108,13 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: '#FFFFFF',
+      primary: '#000000',
       secondary: GREY[600],
       disabled: GREY[500],
     },
     background: {
-      paper: GREY[700],
-      default: '#121212',
+      paper: '#FFFFFF',
+      default: '#FFFFFF',
       neutral: alpha(GREY[500], 0.12),
       secondary: SECONDARY.light,
     },

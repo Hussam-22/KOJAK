@@ -29,8 +29,7 @@ import { navConfig } from './config-navigation';
 
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
-  // const offset = useOffSetTop();
-  const offset = true;
+  const offset = useOffSetTop();
   const [isLoading, setIsLoading] = useState(false);
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();

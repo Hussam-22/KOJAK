@@ -40,13 +40,10 @@ export default function MainLayout({ children }) {
           display: 'flex',
           flexDirection: 'column',
           height: 1,
-          // scrollSnapType: pathname === '/' ? 'y mandatory' : 'none',
-          // maxHeight: pathname === '/' ? '100vh' : 'unset',
-          // overflowY: 'scroll',
         }}
       >
-        <Header headerOnDark={actionPage(pathsOnDark)} />
-        {/* <ModernHeader /> */}
+        {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
+        <ModernHeader />
         <Box
           component="main"
           sx={{
