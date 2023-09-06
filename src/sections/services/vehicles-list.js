@@ -1,16 +1,13 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Button, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, Skeleton, Container, Typography } from '@mui/material';
 
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import VehicleCard from 'src/sections/services/vehicle-card';
 
 function VehiclesList() {
   const { addNewCar, getCars, fsListAllFolderItems } = useAuthContext();
   const [vehiclesList, setVehiclesList] = useState([]);
-  const [imagesList, setImagesList] = useState([]);
 
   //   console.log(imagesList?.items?.filter((item) => item._location.path.includes('200x200')));
 
@@ -27,7 +24,7 @@ function VehiclesList() {
       <Container
         maxWidth="xl"
         sx={{
-          py: 15,
+          py: 8,
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
