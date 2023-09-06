@@ -55,9 +55,15 @@ function LandingAbout() {
             >
               40 YEARS
             </Typography>
-            <Typography variant="h2">About us</Typography>
+            <Typography variant="h2" sx={{ color: 'common.white' }}>
+              About us
+            </Typography>
             <Typography
-              sx={{ fontSize: '1.5rem', fontWeight: theme.typography.fontWeightLight }}
+              sx={{
+                fontSize: '1.5rem',
+                fontWeight: theme.typography.fontWeightLight,
+                color: 'common.white',
+              }}
             >{`For over four decades, Kojak-Exclusive has proudly served as a trusted destination for Mercedes enthusiasts. With a legacy spanning 40 years, our commitment to excellence in the world of luxury automobiles has only grown stronger. We've witnessed the evolution of Mercedes-Benz vehicles and have been privileged to be part of countless journeys, delivering dreams on wheels to our valued customers. Our enduring experience is a testament to Kojak-Exclusive's dedication to providing exceptional service, expertise, and a passion for all things Mercedes. As we continue this journey, we look forward to another 40 years of bringing the epitome of luxury to our cherished clients.`}</Typography>
           </Grid>
         </Grid>

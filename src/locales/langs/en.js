@@ -281,6 +281,40 @@ const en = {
     subTitle: `Don't miss out on the opportunity to be a part of our vibrant automotive community. Subscribe now and stay tuned for a thrilling automotive experience!`,
   },
 
+  inventory: {
+    warranty: `At Kojak, we stand behind the exceptional quality and reliability of every Mercedes-Benz we sell. We understand that peace of mind is paramount when investing in a luxury vehicle. That's why we offer comprehensive warranty coverage and top-tier after-sale services to ensure your ownership experience is as hassle-free as possible.
+
+    Warranty Coverage:
+    
+    When you purchase a Mercedes-Benz from us, you're not just acquiring a stunning vehicle; you're gaining access to a robust warranty program designed to protect your investment. Here's what you can expect:
+    
+    New Vehicle Limited Warranty: Every new Mercedes-Benz comes with a comprehensive limited warranty that covers the vehicle for a specified period. This warranty includes coverage for manufacturing defects and ensures that your investment is safeguarded from unforeseen issues.
+    
+    Extended Warranty Options: For added peace of mind, we offer extended warranty options that allow you to extend your coverage beyond the standard warranty period. This option is ideal for those who plan to keep their Mercedes-Benz for an extended duration.
+    
+    Certified Pre-Owned (CPO) Program: If you opt for a certified pre-owned Mercedes-Benz, you benefit from the CPO program, which provides warranty coverage for the vehicle's certified components, giving you confidence in the quality and reliability of your purchase.`,
+
+    export: `At Kojak, we're not limited by borders or boundaries; we bring the pinnacle of Mercedes-Benz excellence to customers around the globe. Our commitment to providing luxurious vehicles extends far beyond the United Arab Emirates (UAE), as we proudly offer our exceptional Mercedes-Benz lineup for export to customers worldwide.
+
+Why Choose Us for Export?
+
+Diverse Selection: Our extensive inventory showcases a broad spectrum of Mercedes-Benz models, each tailored to meet the unique desires and requirements of our international clientele. Whether you're in search of a stylish sedan, a versatile SUV, or a high-performance sports car, we have the perfect vehicle to suit your needs.
+
+Global Reach: We have a proven track record of successfully exporting Mercedes-Benz vehicles to various destinations worldwide. Our experienced export team is well-versed in international regulations, logistics, and paperwork, ensuring a smooth and hassle-free purchasing process for our customers abroad.
+
+Impeccable Quality: Mercedes-Benz is synonymous with uncompromising quality and innovation. Rest assured that the Mercedes-Benz vehicle you purchase from us for export meets the highest standards, delivering the luxury, performance, and safety features you expect.
+
+Competitive Pricing: We offer competitive pricing on all our Mercedes-Benz vehicles for export, providing exceptional value for your investment. Our team is dedicated to assisting you in finding the ideal model within your budget.
+
+Efficient Logistics: We work with trusted logistics partners to ensure your vehicle is transported securely and efficiently to your chosen destination. From shipping arrangements to customs clearance, we handle the details, so you don't have to.
+
+Reliable Support: Our commitment to customer satisfaction knows no borders. Whether you have questions about the export process, require assistance with paperwork, or need post-purchase support, our team is readily available to assist you.
+
+Experience the luxury, performance, and prestige of Mercedes-Benz, no matter where you are in the world. Trust [Your Company Name] to facilitate a seamless export process, ensuring you receive your Mercedes-Benz vehicle with ease and convenience.
+
+To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your location, please contact our dedicated export team. We're excited to bring the Mercedes-Benz experience to your doorstep.`,
+  },
+
   about: {
     title: 'We Make The Best For All Our Customers.',
     description: `Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts in UAE seeking top-notch service and care for their luxury vehicles.`,

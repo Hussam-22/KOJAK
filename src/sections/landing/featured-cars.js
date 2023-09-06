@@ -22,7 +22,8 @@ import FeaturesBar from 'src/sections/featured-cars/components/features-bar';
 export default function FeaturedCars() {
   const mdUp = useResponsive('up', 'md');
 
-  return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+  // return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+  return <RenderDesktopHero />;
 }
 
 function RenderDesktopHero() {
@@ -78,10 +79,15 @@ function RenderDesktopHero() {
         <Grid md={8}>
           {featuredCarsImages.length !== 0 && (
             <Box component={m.div} {...getVariant('fadeIn')}>
-              <Image src={featuredCarsImages[index].url[0]} ratio="4/3" />
+              <Image
+                src={featuredCarsImages[index].url[0]}
+                ratio="4/3"
+                key={featuredCarsImages[index].url[0]}
+              />
             </Box>
           )}
         </Grid>
+
         <Grid md={4} sx={{ bgcolor: '#FFFFFF', pt: 5 }}>
           <Stack spacing={3} sx={{ p: 5 }}>
             <Box>

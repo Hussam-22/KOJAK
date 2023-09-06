@@ -36,7 +36,7 @@ function InternationalBusiness() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
-        background: `linear-gradient(45deg, ${theme.palette.grey[800]}, #000000)` /* fallback for old browsers */,
+        background: `linear-gradient(45deg, ${theme.palette.grey[900]}, ${theme.palette.primary.dark})` /* fallback for old browsers */,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
@@ -62,10 +62,16 @@ function InternationalBusiness() {
             }}
           >
             <Stack spacing={3}>
-              <Typography variant="h2">
+              <Typography variant="h2" sx={{ color: 'common.white' }}>
                 International Destination for Mercedes-Benz automotive
               </Typography>
-              <Typography sx={{ fontSize: '1.5rem', fontWeight: theme.typography.fontWeightLight }}>
+              <Typography
+                sx={{
+                  fontSize: '1.5rem',
+                  fontWeight: theme.typography.fontWeightLight,
+                  color: 'common.white',
+                }}
+              >
                 Catering to discerning customers from over 50 countries worldwide, Kojak-Exclusive
                 has established itself as a global leader in the luxury automotive industry. Our
                 commitment to delivering top-tier Mercedes-Benz vehicles and unrivaled service knows
@@ -95,9 +101,16 @@ function InternationalBusiness() {
                   sx={{ borderBottom: `dashed 1px ${theme.palette.divider}`, py: 3 }}
                 >
                   <Box>
-                    <Iconify icon={fact.icon} width={64} height={64} />
+                    <Iconify
+                      icon={fact.icon}
+                      width={64}
+                      height={64}
+                      sx={{ color: 'common.white' }}
+                    />
                   </Box>
-                  <Typography variant="h4">{fact.title}</Typography>
+                  <Typography variant="h4" sx={{ color: 'common.white' }}>
+                    {fact.title}
+                  </Typography>
                 </Stack>
               ))}
             </Box>

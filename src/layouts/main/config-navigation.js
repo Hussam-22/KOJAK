@@ -4,7 +4,7 @@ import { paths } from 'src/routes/paths';
 
 export const navConfig = [
   { title: 'home', path: '/' },
-  // { title: 'services', path: paths.website.services },
+  { title: 'services', path: paths.website.services },
   { title: 'blog', path: paths.website.blogPosts },
   { title: 'about', path: paths.website.about },
   { title: 'contactUs', path: paths.website.contactUs },

@@ -11,6 +11,7 @@ import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
 import Iconify from 'src/components/iconify/Iconify';
 import TextMaxLine from 'src/components/text-max-line/text-max-line';
+import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 
 function VehicleCard({ vehicleInfo }) {
   const { brand, model, features, id, isFeatured, qty } = vehicleInfo;
@@ -85,21 +86,5 @@ function VehicleCard({ vehicleInfo }) {
   );
 }
 export default VehicleCard;
-VehicleCard.propTypes = { vehicleInfo: PropTypes.object };
 
-// ----------------------------------------------------------------------------
-function VehicleFeature({ icon, value }) {
-  const theme = useTheme();
-  return (
-    <Stack justifyContent="center" alignItems="center" spacing={1}>
-      <Iconify icon={icon} width={24} height={24} />
-      <Typography variant="body2" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-        {value}
-      </Typography>
-    </Stack>
-  );
-}
-VehicleFeature.propTypes = {
-  icon: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
+VehicleCard.propTypes = { vehicleInfo: PropTypes.object };

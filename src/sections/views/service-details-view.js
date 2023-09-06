@@ -3,27 +3,28 @@ import { useState, useEffect } from 'react';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Card, Stack, Divider, useTheme, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { fNumber } from 'src/utils/format-number';
 // import { _products } from 'src/_mock';
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { SplashScreen } from 'src/components/loading-screen';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import VehicleDetailsInfo from 'src/sections/services/details/vehicle-details-info';
-import EcommerceProductDetailsInfo from 'src/sections/_ecommerce/product/details/ecommerce-product-details-info';
-import EcommerceProductDetailsCarousel from 'src/sections/_ecommerce/product/details/ecommerce-product-details-carousel';
-import EcommerceProductDetailsDescription from 'src/sections/_ecommerce/product/details/ecommerce-product-details-description';
-
-// import EcommerceProductDetailsInfo from '../product/details/ecommerce-product-details-info';
-// import EcommerceProductDetailsCarousel from '../product/details/ecommerce-product-details-carousel';
-// import EcommerceProductDetailsDescription from '../product/details/ecommerce-product-details-description';
+import VehicleDetailsInfo from 'src/sections/services/vehicle-details-info';
+import VehicleFeature from 'src/sections/services/components/vehicle-feature';
+import ProductDetailsCarousel from 'src/sections/services/components/product-details-carousel';
 
 // ----------------------------------------------------------------------
 
-const _mockProduct = [];
-
 export default function ServiceDetailsView() {
+  const theme = useTheme();
+  const { translate } = useLocales();
+  const mdUp = useResponsive('up', 'md');
   const loading = useBoolean(true);
   const { vehicleID } = useParams();
   const { getVehicleInfo } = useAuthContext();
@@ -35,50 +36,140 @@ export default function ServiceDetailsView() {
       loading.onFalse();
     };
     fakeLoading();
+  }, [loading]);
 
+  useEffect(() => {
     (async () => {
       setVehicleInfo(await getVehicleInfo(vehicleID));
     })();
-  }, [getVehicleInfo, loading, vehicleID]);
+  }, [getVehicleInfo, vehicleID]);
 
   if (loading.value) {
     return <SplashScreen />;
   }
 
+  console.log(vehicleInfo.features);
+
   return (
     <Box sx={{ bgcolor: 'background.neutral', pt: 5, pb: 10 }}>
-      <Container
-        sx={{ overflow: 'hidden', bgcolor: 'background.paper', py: 3, px: 8, borderRadius: 3 }}
-      >
-        {/* <CustomBreadcrumbs
-        links={[
-          {
-            name: 'Home',
-          },
-          {
-            name: 'Mobile Phones',
-          },
-          {
-            name: 'Apple iPhone 14',
-          },
-        ]}
-        sx={{ my: 5 }}
-      /> */}
+      <Container sx={{ overflow: 'hidden', py: 5, px: { md: 8 }, borderRadius: 3 }}>
+        <CustomBreadcrumbs
+          links={[
+            {
+              name: 'Home',
+              href: '/',
+            },
+            {
+              name: 'Inventory',
+              href: paths.website.services,
+            },
+            {
+              name: `${vehicleInfo?.brand || ''} - ${vehicleInfo?.model || ''}`,
+            },
+          ]}
+          sx={{ my: 2 }}
+        />
 
-        <Stack sx={{ mb: 2 }}>
-          <Typography variant="overline">{vehicleInfo.brand}</Typography>
-          <Typography variant="h2">{vehicleInfo.model}</Typography>
-        </Stack>
+        <Grid container spacing={3}>
+          {vehicleInfo.id && (
+            <Grid xs={12}>
+              <Card sx={{ p: 3 }}>
+                <Stack
+                  direction={{ md: 'row', xs: 'column' }}
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Stack sx={{ mb: 2 }}>
+                    <Typography variant="h2" color="primary">
+                      {vehicleInfo.features.price[1]}
+                    </Typography>
+                    <Stack direction="row" spacing={1}>
+                      <Typography variant="h4">{vehicleInfo.brand}</Typography>
+                      <Typography variant="h4">{vehicleInfo.model}</Typography>
+                    </Stack>
+                    <Typography>{vehicleInfo.features.description}</Typography>
+                  </Stack>
 
-        <Grid container spacing={{ xs: 5, md: 8 }}>
-          <Grid xs={12} md={6} lg={7}>
-            <EcommerceProductDetailsCarousel />
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      width: { md: '35%', xs: '100%' },
+                    }}
+                  >
+                    <VehicleFeature
+                      icon="mdi:car-door"
+                      value={vehicleInfo.features.exteriorColor[1]}
+                      large={!!mdUp}
+                      color
+                    />
+                    <VehicleFeature
+                      icon="mdi:car-seat"
+                      value={vehicleInfo.features.interiorColor[1]}
+                      large={!!mdUp}
+                      color
+                    />
+
+                    <VehicleFeature
+                      icon="uim:calender"
+                      value={vehicleInfo.features.year[1]}
+                      large={!!mdUp}
+                    />
+                    <VehicleFeature
+                      icon="fa-solid:road"
+                      value={`${fNumber(vehicleInfo.features.milage[1])} Km`}
+                      large={!!mdUp}
+                    />
+                    <VehicleFeature
+                      icon="ph:engine"
+                      value={vehicleInfo.features.engineType[1]}
+                      large={!!mdUp}
+                    />
+                  </Box>
+                </Stack>
+              </Card>
+            </Grid>
+          )}
+
+          <Grid xs={12} md={12}>
+            <Card sx={{ p: 3 }}>
+              <ProductDetailsCarousel />
+            </Card>
           </Grid>
 
-          <Grid xs={12} md={6} lg={5} />
+          <Grid xs={12} md={6}>
+            <Card sx={{ p: 3 }}>
+              <Typography variant="h2">Vehicle Details</Typography>
+              <VehicleDetailsInfo vehicleInfo={vehicleInfo} />
+            </Card>
+          </Grid>
 
-          <Grid xs={12} md={6} lg={5}>
-            <VehicleDetailsInfo vehicleInfo={vehicleInfo} />
+          <Grid xs={12} md={6}>
+            <Card sx={{ p: 3, height: 1 }}>
+              <Typography variant="h2" sx={{ mb: 2 }}>
+                Have a Question ?
+              </Typography>
+              <ContactUsForm />
+            </Card>
+          </Grid>
+
+          <Grid xs={12}>
+            <Card sx={{ p: 3 }}>
+              <Stack spacing={3}>
+                <Box>
+                  <Typography variant="h2">Warranty</Typography>
+                  <Typography sx={{ whiteSpace: 'pre-line' }}>
+                    {translate('inventory.warranty')}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="h2">Export</Typography>
+                  <Typography sx={{ whiteSpace: 'pre-line' }}>
+                    {translate('inventory.export')}
+                  </Typography>
+                </Box>
+              </Stack>
+            </Card>
           </Grid>
         </Grid>
       </Container>

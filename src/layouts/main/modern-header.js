@@ -55,7 +55,7 @@ export default function ModernHeader() {
         // width: { xs: '95dvw', md: '75dvw' },
         // border: `solid 1px ${theme.palette.grey[800]}`,
         zIndex: 99,
-        ...bgBlur({ color: theme.palette.common.black, blur: 85, opacity: 0.25 }),
+        ...bgBlur({ color: theme.palette.common.black, blur: 85, opacity: 0.85 }),
         // border: `solid 1px ${theme.palette.common.white}`,
       }}
     >
@@ -71,14 +71,14 @@ export default function ModernHeader() {
         {isMdUp && (
           <>
             <NavDesktop data={navConfig} />
-            <Button
+            {/* <Button
               variant="contained"
               color="primary"
               sx={{ whiteSpace: 'nowrap' }}
               onClick={navigateToSearchParts}
             >
               Explore Inventory
-            </Button>
+            </Button> */}
           </>
         )}
 
@@ -118,11 +118,11 @@ export default function ModernHeader() {
                   ))}
                 </List>
 
-                <Box sx={{ px: 3, py: 2 }}>
+                {/* <Box sx={{ px: 3, py: 2 }}>
                   <Button variant="contained" color="primary" onClick={navigateToSearchParts}>
                     Explore Inventory
                   </Button>
-                </Box>
+                </Box> */}
               </Scrollbar>
             </Drawer>
           </>

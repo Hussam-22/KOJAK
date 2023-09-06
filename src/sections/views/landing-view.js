@@ -14,7 +14,7 @@ export default function LandingView() {
     <Box
       sx={{
         scrollSnapType: 'y mandatory',
-        maxHeight: '100vh',
+        maxHeight: '100dvh',
         overflowY: 'scroll',
       }}
     >

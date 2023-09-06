@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
+import { Skeleton } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
@@ -62,26 +63,27 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function EcommerceProductDetailsCarousel() {
+export default function ProductDetailsCarousel() {
   const theme = useTheme();
-  const { fsGetFolderImages } = useAuthContext();
   const { vehicleID } = useParams();
+  const { fsGetFolderImages } = useAuthContext();
   const [images, setImages] = useState([[], []]);
-  console.log(images);
 
-  useEffect(() => {
-    (async () => {
-      setImages(await fsGetFolderImages(vehicleID));
-    })();
-  }, [fsGetFolderImages, vehicleID]);
+  const largeImages = useMemo(
+    () =>
+      images[1].map((slide) => ({
+        src: slide,
+      })),
+    [images]
+  );
 
-  const largeImages = images[1].map((slide) => ({
-    src: slide,
-  }));
-
-  const thumbnailImages = images[0].map((slide) => ({
-    src: slide,
-  }));
+  const thumbnailImages = useMemo(
+    () =>
+      images[0].map((slide) => ({
+        src: slide,
+      })),
+    [images]
+  );
 
   const lightbox = useLightbox(largeImages);
 
@@ -102,9 +104,17 @@ export default function EcommerceProductDetailsCarousel() {
   });
 
   useEffect(() => {
-    carouselLarge.onSetNav();
-    carouselThumb.onSetNav();
-  }, [carouselLarge, carouselThumb]);
+    (async () => {
+      setImages(await fsGetFolderImages(vehicleID));
+    })();
+  }, [fsGetFolderImages, vehicleID]);
+
+  useEffect(() => {
+    if (images[0].length !== 0) {
+      carouselLarge.onSetNav();
+      carouselThumb.onSetNav();
+    }
+  }, [carouselLarge, carouselThumb, images]);
 
   useEffect(() => {
     if (lightbox.open) {
@@ -133,7 +143,7 @@ export default function EcommerceProductDetailsCarousel() {
               key={slide.src}
               alt="product"
               src={slide.src}
-              ratio="1/1"
+              ratio="16/9"
               onClick={() => lightbox.onOpen(slide.src)}
               sx={{ cursor: 'zoom-in' }}
             />
@@ -183,6 +193,11 @@ export default function EcommerceProductDetailsCarousel() {
           },
         }}
       >
+        {images[0].length === 0 && (
+          <Skeleton width="100%" height="100%" variant="rectangular" sx={{ borderRadius: 3 }}>
+            <Image src="#" ratio="16/9" alt="loading-image" />
+          </Skeleton>
+        )}
         {renderLargeImg}
 
         {renderThumbnails}

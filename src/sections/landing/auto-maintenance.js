@@ -76,13 +76,14 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
                     fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
                     lineHeight: 1.25,
                     fontWeight: theme.typography.fontWeightBold,
+                    color: 'common.white',
                   }}
                 >
                   {mainText}
                 </Typography>
               </Box>
 
-              <Typography>{subText}</Typography>
+              <Typography sx={{ color: 'common.white' }}>{subText}</Typography>
 
               <Box>
                 <Button

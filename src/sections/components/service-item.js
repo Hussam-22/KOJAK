@@ -34,7 +34,9 @@ export default function ServiceItem({ service, major }) {
           sx={{ px: 0.5, py: 1, textAlign: 'center' }}
         >
           <Image src={`/assets/images/service-icons/${icon}.svg`} width="40%" />
-          <Typography>{translate(`services.items.${icon}.serviceName`)}</Typography>
+          <Typography sx={{ color: 'common.white' }}>
+            {translate(`services.items.${icon}.serviceName`)}
+          </Typography>
         </Stack>
       </Box>
       <ServiceDialog open={open} handleClose={handleClose} service={service} />

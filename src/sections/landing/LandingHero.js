@@ -32,10 +32,6 @@ function RenderDesktopHero() {
         height: '100dvh',
         overflow: 'hidden',
         scrollSnapAlign: 'start',
-        // backgroundImage: 'url(/assets/images/hero/hero-2.jpg)',
-        // backgroundSize: 'cover',
-        // backgroundPosition: 'center',
-        // backgroundColor: '#FFFFFF',
         ...bgGradient({
           direction: 'to right',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
@@ -66,6 +62,7 @@ function RenderDesktopHero() {
                   fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
                   lineHeight: 1.25,
                   fontWeight: theme.typography.fontWeightBold,
+                  color: 'common.white',
                 }}
               >
                 {translate('hero.heroText')}
@@ -82,7 +79,7 @@ function RenderDesktopHero() {
                 <Box component="span">{translate('hero.partTwo')}</Box>
               </Typography>
 
-              <Typography>{translate('hero.subText')}</Typography>
+              <Typography sx={{ color: 'common.white' }}>{translate('hero.subText')}</Typography>
 
               <Box>
                 <Button
