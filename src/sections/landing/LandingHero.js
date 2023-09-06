@@ -30,8 +30,6 @@ function RenderDesktopHero() {
       sx={{
         position: 'relative',
         height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
         ...bgGradient({
           direction: 'to right',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,

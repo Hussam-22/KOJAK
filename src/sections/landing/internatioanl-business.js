@@ -33,89 +33,63 @@ function InternationalBusiness() {
     <Box
       sx={{
         position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
-        background: `linear-gradient(45deg, ${theme.palette.grey[900]}, ${theme.palette.primary.dark})` /* fallback for old browsers */,
+        // background: `linear-gradient(45deg, ${theme.palette.grey[900]}, ${theme.palette.primary.dark})` /* fallback for old browsers */,
+        py: 15,
       }}
     >
-      <Container maxWidth="xl" sx={{ height: 1 }}>
-        <Grid
-          container
-          sx={{
-            alignItems: 'center',
-            justifyContent: 'left',
-            height: '100%',
-            backgroundImage: 'url(/assets/illustrations/illustration_map.svg)',
-            backgroundSize: 'contain',
-            backgroundPosition: 'right',
-            backgroundRepeat: 'no-repeat',
-          }}
-          spacing={3}
-        >
-          <Grid
-            md={9}
-            xs={12}
+      <Container
+        maxWidth="xl"
+        sx={{
+          alignItems: 'center',
+          justifyContent: 'left',
+          height: '100%',
+          backgroundImage: 'url(/assets/illustrations/illustration_map.svg)',
+          backgroundSize: 'contain',
+          backgroundPosition: 'right',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <Stack spacing={3} sx={{ maxWidth: '60%' }}>
+          <Typography variant="h2">
+            International Destination for Mercedes-Benz automotive
+          </Typography>
+          <Typography
             sx={{
-              position: 'relative',
-              px: 3,
+              fontWeight: theme.typography.fontWeightLight,
             }}
           >
-            <Stack spacing={3}>
-              <Typography variant="h2" sx={{ color: 'common.white' }}>
-                International Destination for Mercedes-Benz automotive
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: '1.5rem',
-                  fontWeight: theme.typography.fontWeightLight,
-                  color: 'common.white',
-                }}
-              >
-                Catering to discerning customers from over 50 countries worldwide, Kojak-Exclusive
-                has established itself as a global leader in the luxury automotive industry. Our
-                commitment to delivering top-tier Mercedes-Benz vehicles and unrivaled service knows
-                no borders. With a clientele that spans the globe, we take immense pride in being a
-                trusted destination for individuals seeking luxury, quality, and distinction in
-                their automotive choices. Our international reach is a testament to the excellence
-                we consistently provide, and we look forward to expanding our global family of
-                satisfied customers
-              </Typography>
-              <Box>
-                <Button variant="contained" size="large" color="primary">
-                  Explore Inventory
-                </Button>
-              </Box>
-            </Stack>
-          </Grid>
+            Catering to discerning customers from over 50 countries worldwide, Kojak-Exclusive has
+            established itself as a global leader in the luxury automotive industry. Our commitment
+            to delivering top-tier Mercedes-Benz vehicles and unrivaled service knows no borders.
+            With a clientele that spans the globe, we take immense pride in being a trusted
+            destination for individuals seeking luxury, quality, and distinction in their automotive
+            choices. Our international reach is a testament to the excellence we consistently
+            provide, and we look forward to expanding our global family of satisfied customers
+          </Typography>
+          <Box>
+            <Button variant="contained" size="large" color="primary">
+              Explore Inventory
+            </Button>
+          </Box>
 
-          <Grid md={3} xs={12} sx={{ position: 'relative' }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 2 }}>
-              {FACTS.map((fact) => (
-                <Stack
-                  key={fact.title}
-                  spacing={2}
-                  justifyContent="center"
-                  textAlign="center"
-                  alignItems="center"
-                  sx={{ borderBottom: `dashed 1px ${theme.palette.divider}`, py: 3 }}
-                >
-                  <Box>
-                    <Iconify
-                      icon={fact.icon}
-                      width={64}
-                      height={64}
-                      sx={{ color: 'common.white' }}
-                    />
-                  </Box>
-                  <Typography variant="h4" sx={{ color: 'common.white' }}>
-                    {fact.title}
-                  </Typography>
-                </Stack>
-              ))}
-            </Box>
-          </Grid>
-        </Grid>
+          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
+            {FACTS.map((fact) => (
+              <Stack key={fact.title} spacing={2} textAlign="left">
+                <Box>
+                  <Iconify
+                    icon={fact.icon}
+                    width={32}
+                    height={32}
+                    sx={{ color: 'secondary.main' }}
+                  />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'secondary.main' }}>
+                  {fact.title}
+                </Typography>
+              </Stack>
+            ))}
+          </Box>
+        </Stack>
       </Container>
     </Box>
   );

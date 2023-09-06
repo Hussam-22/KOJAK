@@ -16,24 +16,17 @@ function FeaturesBar({ selectedCardInfo }) {
   return (
     <Box
       sx={{
-        position: 'absolute',
-        bottom: 0,
-        // right: 0,
-        height: '17%',
-        width: 1,
-        pt: 2,
-        px: 10,
+        py: 2,
         background: theme.palette.primary.main,
-        zIndex: 10,
-        borderTop: 'solid 1px #333',
+        borderRadius: '0 0 15px 15px',
       }}
     >
       <Stack sx={{ justifyContent: 'space-evenly', alignItems: 'center' }} direction="row">
         <Stack direction="column">
-          <Typography variant="h1" sx={{ color: 'common.white' }}>
+          <Typography variant="h3" sx={{ color: 'common.white' }}>
             {selectedCardInfo.brand}
           </Typography>
-          <Typography variant="h4" color="secondary">
+          <Typography variant="h5" color="secondary">
             {selectedCardInfo.model}
           </Typography>
         </Stack>
@@ -88,7 +81,7 @@ function FeaturesBar({ selectedCardInfo }) {
           <Button
             variant="contained"
             size="large"
-            onClick={() => navigate(paths.website.serviceDetails + selectedCardInfo.id)}
+            onClick={() => navigate(paths.website.servicesDetails + selectedCardInfo.id)}
             sx={{ bgcolor: 'common.white', color: 'common.black' }}
           >
             View Details

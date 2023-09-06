@@ -2,16 +2,17 @@ import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
-import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -69,37 +70,31 @@ function RenderDesktopHero() {
   return (
     <Box
       sx={{
-        position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
+        bgcolor: 'background.neutral',
       }}
     >
-      <Grid container sx={{ height: 1 }}>
-        <Grid md={8}>
-          {featuredCarsImages.length !== 0 && (
-            <Box component={m.div} {...getVariant('fadeIn')}>
-              <Image
-                src={featuredCarsImages[index].url[0]}
-                ratio="4/3"
-                key={featuredCarsImages[index].url[0]}
-              />
-            </Box>
-          )}
-        </Grid>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
+        <Box sx={{ mb: 6, maxWidth: '60%' }}>
+          <Typography variant="h1" color="secondary">
+            Featured Cars
+          </Typography>
+          <Typography color="secondary">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse
+            voluptate pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea
+            quibusdam modi sit. Molestias modi accusantium architecto suscipit nobis!
+          </Typography>
+        </Box>
 
-        <Grid md={4} sx={{ bgcolor: '#FFFFFF', pt: 5 }}>
-          <Stack spacing={3} sx={{ p: 5 }}>
-            <Box>
-              <Typography variant="h1" color="secondary" sx={{ mixBlendMode: 'darken' }}>
-                Featured Cars
-              </Typography>
-              <Typography color="secondary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse
-                voluptate pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea
-                quibusdam modi sit. Molestias modi accusantium architecto suscipit nobis!
-              </Typography>
-            </Box>
+        <Grid container spacing={4} sx={{ bgcolor: 'background.default', p: 5, borderRadius: 2 }}>
+          <Grid
+            md={4}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column',
+              justifyContent: 'space-evenly',
+            }}
+          >
             {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
               <SideBar
                 featuredCars={featuredCars}
@@ -107,16 +102,31 @@ function RenderDesktopHero() {
                 selectedCarID={featuredCarsImages[index].id}
               />
             )}
-          </Stack>
-        </Grid>
-      </Grid>
+          </Grid>
 
-      {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
-        <FeaturesBar
-          selectedCardInfo={featuredCars.find((car) => car.id === featuredCarsImages[index].id)}
-          images={featuredCarsImages[index].url}
-        />
-      )}
+          <Grid md={8}>
+            {featuredCarsImages.length !== 0 && (
+              <Box component={m.div} {...getVariant('fadeIn')}>
+                <Image
+                  src={featuredCarsImages[index].url[0]}
+                  key={featuredCarsImages[index].url[0]}
+                  ratio="16/9"
+                  sx={{ borderRadius: '15px 15px 0 0' }}
+                />
+              </Box>
+            )}
+
+            {featuredCars.length !== 0 && featuredCarsImages.length !== 0 && (
+              <FeaturesBar
+                selectedCardInfo={featuredCars.find(
+                  (car) => car.id === featuredCarsImages[index].id
+                )}
+                images={featuredCarsImages[index].url}
+              />
+            )}
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 }

@@ -25,18 +25,23 @@ function LandingAbout() {
     <Box
       sx={{
         position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
-        ...bgGradient({
-          direction: 'to right',
-          startColor: `${alpha(theme.palette.grey[900], 1)}`,
-          endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: '/assets/images/hero/old-mercedes.jpg',
-        }),
+        bgcolor: 'background.neutral',
+        pb: 8,
       }}
     >
-      <Container maxWidth="xl" sx={{ height: 1 }}>
+      <Container
+        maxWidth="xl"
+        sx={{
+          p: 15,
+          ...bgGradient({
+            direction: 'to right',
+            startColor: `${alpha(theme.palette.grey[900], 1)}`,
+            endColor: `${alpha(theme.palette.grey[100], 0)}`,
+            imgUrl: '/assets/images/hero/old-mercedes.jpg',
+          }),
+          borderRadius: 3,
+        }}
+      >
         <Grid
           container
           sx={{

@@ -11,13 +11,7 @@ import InternationalBusiness from 'src/sections/landing/internatioanl-business';
 
 export default function LandingView() {
   return (
-    <Box
-      sx={{
-        scrollSnapType: 'y mandatory',
-        maxHeight: '100dvh',
-        overflowY: 'scroll',
-      }}
-    >
+    <>
       <LandingHero />
       <FeaturedCars />
       <LandingAbout />
@@ -25,6 +19,6 @@ export default function LandingView() {
       {/* <CustomOrder /> */}
       <AutoMaintenance />
       <SpareParts />
-    </Box>
+    </>
   );
 }
