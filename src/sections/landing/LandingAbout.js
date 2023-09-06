@@ -24,8 +24,6 @@ function LandingAbout() {
   return (
     <Box
       sx={{
-        position: 'relative',
-        bgcolor: 'background.neutral',
         pb: 8,
       }}
     >

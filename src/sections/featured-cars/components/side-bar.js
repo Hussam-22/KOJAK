@@ -12,7 +12,7 @@ function SideBar({ featuredCars, selectedVehicleID, selectedCarID }) {
   const selectedStyle = {
     bgcolor: theme.palette.primary.main,
     p: 1,
-    borderRadius: 1,
+    borderRadius: '7px 0 0 7px',
     transition: 'ease 0.55s',
   };
   return (

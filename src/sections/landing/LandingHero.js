@@ -1,19 +1,19 @@
 import { useNavigate } from 'react-router';
 
-import Box from '@mui/material/Box';
 import { alpha } from '@mui/system';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { bgGradient } from 'src/theme/css';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { bgGradient, textGradient } from 'src/theme/css';
 
 export default function LandingHero() {
   const mdUp = useResponsive('up', 'md');
@@ -67,7 +67,7 @@ function RenderDesktopHero() {
                 <Box
                   component="span"
                   sx={{
-                    background: `-webkit-linear-gradient(45deg,${theme.palette.info.light},${theme.palette.primary.main})`,
+                    background: `-webkit-linear-gradient(45deg,${theme.palette.warning.light},${theme.palette.primary.main})`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}

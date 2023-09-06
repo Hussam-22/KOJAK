@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   Box,
   Stack,
-  alpha,
   Button,
   useTheme,
   Container,
@@ -12,20 +11,19 @@ import {
 } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { bgGradient } from 'src/theme/css';
+import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
-import GroupCard from 'src/sections/components/group-card';
 import ServiceItem from 'src/sections/components/service-item';
 
 export default function AutoMaintenance() {
   return (
     <GroupSection
       brand="Kojak Auto-Maintenance"
-      backgroundURL="/assets/images/group/auto-maintenance.jpg"
+      backgroundURL="/assets/images/original/6.webp"
       mainText="Looking for Mercedes Auto Repair Shop ?"
       subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
                 fix your car with experience since 1986 in Mercedes-Benz Cars"
-      buttonText="Book an Appointment"
+      buttonText="Visit Auto-Maintenance Website"
     />
   );
 }
@@ -36,16 +34,8 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   return (
     <Box
       sx={{
-        position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
-        ...bgGradient({
-          direction: 'to right',
-          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
-          endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: backgroundURL,
-        }),
+        bgcolor: 'background.neutral',
+        py: 8,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
@@ -76,14 +66,15 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
                     fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
                     lineHeight: 1.25,
                     fontWeight: theme.typography.fontWeightBold,
-                    color: 'common.white',
                   }}
                 >
                   {mainText}
                 </Typography>
               </Box>
 
-              <Typography sx={{ color: 'common.white' }}>{subText}</Typography>
+              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                {subText}
+              </Typography>
 
               <Box>
                 <Button
@@ -98,19 +89,28 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
             </Stack>
           </Grid>
           <Grid md={6} xs={12}>
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { md: 'repeat(5,1fr)', xs: 'repeat(1,1fr)' },
-                gap: 2,
-                my: 6,
-              }}
-            >
-              {_autoRepairServices
-                .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
-                .map((service) => (
-                  <ServiceItem service={service} key={service.id} />
-                ))}
+            <Box>
+              <Image src={backgroundURL} sx={{ borderRadius: 2 }} ratio="16/9" />
+            </Box>
+          </Grid>
+
+          <Grid md={12}>
+            <Box sx={{ bgcolor: 'background.paper', borderRadius: 2, p: 3 }}>
+              <Typography variant="h3">Auto Maintenance Services</Typography>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { md: 'repeat(7,1fr)', xs: 'repeat(1,1fr)' },
+                  gap: 2,
+                  my: 6,
+                }}
+              >
+                {_autoRepairServices
+                  .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                  .map((service) => (
+                    <ServiceItem service={service} key={service.id} />
+                  ))}
+              </Box>
             </Box>
           </Grid>
         </Grid>

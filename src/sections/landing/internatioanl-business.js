@@ -1,22 +1,8 @@
-import PropTypes from 'prop-types';
-
-import {
-  Box,
-  Stack,
-  alpha,
-  Button,
-  useTheme,
-  Container,
-  Typography,
-  Unstable_Grid2 as Grid,
-} from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
-import { bgBlur, bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 
 const FACTS = [
   { title: '+50 Countries', icon: 'fluent-mdl2:world' },
@@ -34,7 +20,9 @@ function InternationalBusiness() {
       sx={{
         position: 'relative',
         // background: `linear-gradient(45deg, ${theme.palette.grey[900]}, ${theme.palette.primary.dark})` /* fallback for old browsers */,
-        py: 15,
+        py: 8,
+        bgcolor: 'primary.lighter',
+        mb: 8,
       }}
     >
       <Container
@@ -47,6 +35,7 @@ function InternationalBusiness() {
           backgroundSize: 'contain',
           backgroundPosition: 'right',
           backgroundRepeat: 'no-repeat',
+          // py: 8,
         }}
       >
         <Stack spacing={3} sx={{ maxWidth: '60%' }}>
@@ -66,16 +55,23 @@ function InternationalBusiness() {
             choices. Our international reach is a testament to the excellence we consistently
             provide, and we look forward to expanding our global family of satisfied customers
           </Typography>
+
           <Box>
             <Button variant="contained" size="large" color="primary">
               Explore Inventory
             </Button>
           </Box>
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,auto)', gap: 0, mt: 2 }}>
             {FACTS.map((fact) => (
-              <Stack key={fact.title} spacing={2} textAlign="left">
-                <Box>
+              <Stack key={fact.title} spacing={2} textAlign="center">
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <Iconify
                     icon={fact.icon}
                     width={32}

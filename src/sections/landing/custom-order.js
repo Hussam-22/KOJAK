@@ -1,9 +1,6 @@
-import PropTypes from 'prop-types';
-
 import {
   Box,
   Stack,
-  alpha,
   Button,
   useTheme,
   Container,
@@ -12,10 +9,7 @@ import {
 } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
-import { bgBlur, bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 
 function CustomOrder() {
   const theme = useTheme();
@@ -24,16 +18,14 @@ function CustomOrder() {
   return (
     <Box
       sx={{
+        py: 8,
+        bgcolor: 'secondary.dark',
+        backgroundImage: 'url(/assets/mercedes-background.jpeg)',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right',
         position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
-        ...bgGradient({
-          direction: 'to right',
-          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
-          endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: '/assets/images/hero/custom-order.jpg',
-        }),
+        zIndex: 0,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
@@ -46,10 +38,11 @@ function CustomOrder() {
           }}
           spacing={3}
         >
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
+          <Grid md={5} xs={12} sx={{ position: 'relative' }}>
             <Stack
               sx={{
                 textAlign: { md: 'left', xs: 'center' },
+                color: 'common.white',
               }}
               spacing={3}
             >
@@ -73,32 +66,17 @@ function CustomOrder() {
                 directly from Germany
               </Typography>
 
-              {!mdUp && (
-                <Box>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    // onClick={() => navigate(paths.website.bookAppointment)}
-                  >
-                    Contact Us
-                  </Button>
-                </Box>
-              )}
+              <Box>
+                <Button
+                  variant="contained"
+                  size="large"
+                  // onClick={() => navigate(paths.website.bookAppointment)}
+                >
+                  Contact Us
+                </Button>
+              </Box>
             </Stack>
           </Grid>
-          {mdUp && (
-            <Grid md={6}>
-              <Box
-                sx={{
-                  ...bgBlur({ color: '#333333', opacity: 0.4, blur: 2 }),
-                  p: 3,
-                  borderRadius: 2,
-                }}
-              >
-                <ContactUsForm />
-              </Box>
-            </Grid>
-          )}
         </Grid>
       </Container>
     </Box>

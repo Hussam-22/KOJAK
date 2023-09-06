@@ -1,4 +1,4 @@
-import { useParams, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -54,7 +54,6 @@ export default function Footer() {
         justifyContent: 'flex-end',
       }}
     >
-      <Divider />
       <JoinNewsletter />
       <Divider />
       <Container

@@ -17,16 +17,16 @@ function FeaturesBar({ selectedCardInfo }) {
     <Box
       sx={{
         py: 2,
-        background: theme.palette.primary.main,
+        background: theme.palette.common.white,
         borderRadius: '0 0 15px 15px',
       }}
     >
       <Stack sx={{ justifyContent: 'space-evenly', alignItems: 'center' }} direction="row">
         <Stack direction="column">
-          <Typography variant="h3" sx={{ color: 'common.white' }}>
+          <Typography variant="overline" color="secondary">
             {selectedCardInfo.brand}
           </Typography>
-          <Typography variant="h5" color="secondary">
+          <Typography variant="h3" color="primary">
             {selectedCardInfo.model}
           </Typography>
         </Stack>
@@ -34,19 +34,13 @@ function FeaturesBar({ selectedCardInfo }) {
         <Stack direction="row" spacing={6}>
           {features.map((feature) => (
             <Stack direction="column" key={feature[0]}>
-              <Typography variant="h5" sx={{ color: 'common.white' }}>
-                {feature[0]}
-              </Typography>
-              <Typography variant="h6" color="secondary">
-                {feature[1]}
-              </Typography>
+              <Typography color="secondary">{feature[0]}</Typography>
+              <Typography color="primary">{feature[1]}</Typography>
             </Stack>
           ))}
 
           <Stack direction="column" alignItems="center">
-            <Typography variant="h5" sx={{ color: 'common.white' }}>
-              Color
-            </Typography>
+            <Typography color="secondary">Color</Typography>
             <Stack direction="row" spacing={1}>
               <Box
                 sx={{
@@ -70,19 +64,12 @@ function FeaturesBar({ selectedCardInfo }) {
           </Stack>
         </Stack>
 
-        {/* <Stack direction="row" spacing={1}>
-          {images.map(
-            (url, index) =>
-              index !== 0 && <Image src={url} height="10vh" sx={{ borderRadius: 1 }} key={url} />
-          )}
-        </Stack> */}
-
         <Box>
           <Button
             variant="contained"
             size="large"
             onClick={() => navigate(paths.website.servicesDetails + selectedCardInfo.id)}
-            sx={{ bgcolor: 'common.white', color: 'common.black' }}
+            color="primary"
           >
             View Details
           </Button>

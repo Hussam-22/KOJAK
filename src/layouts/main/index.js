@@ -17,16 +17,9 @@ import Footer from './footer';
 
 // ----------------------------------------------------------------------
 
-const pathsOnDark = ['/career', '/career/', '/travel', '/travel/'];
+const pathsOnDark = ['/'];
 
-const spacingLayout = [
-  ...pathsOnDark,
-  '/',
-  '/e-learning',
-  '/e-learning/',
-  '/marketing',
-  '/marketing/',
-];
+const spacingLayout = [...pathsOnDark, '/'];
 
 export default function MainLayout({ children }) {
   const pathname = usePathname();
@@ -42,8 +35,8 @@ export default function MainLayout({ children }) {
           height: 1,
         }}
       >
-        {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
-        <ModernHeader />
+        <Header headerOnDark={actionPage(pathsOnDark)} />
+        {/* <ModernHeader /> */}
         <Box
           component="main"
           sx={{

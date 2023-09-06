@@ -68,11 +68,7 @@ function RenderDesktopHero() {
   }, [featuredCars, fsGetImgDownloadUrl]);
 
   return (
-    <Box
-      sx={{
-        bgcolor: 'background.neutral',
-      }}
-    >
+    <Box>
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Box sx={{ mb: 6, maxWidth: '60%' }}>
           <Typography variant="h1" color="secondary">
@@ -85,12 +81,12 @@ function RenderDesktopHero() {
           </Typography>
         </Box>
 
-        <Grid container spacing={4} sx={{ bgcolor: 'background.default', p: 5, borderRadius: 2 }}>
+        <Grid container sx={{ bgcolor: 'background.neutral', p: 5, borderRadius: 2 }}>
           <Grid
             md={4}
             sx={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'right',
               flexDirection: 'column',
               justifyContent: 'space-evenly',
             }}
@@ -104,14 +100,20 @@ function RenderDesktopHero() {
             )}
           </Grid>
 
-          <Grid md={8}>
+          <Grid
+            md={8}
+            sx={{
+              border: `solid 5px ${theme.palette.primary.main}`,
+              borderRadius: 1,
+            }}
+          >
             {featuredCarsImages.length !== 0 && (
               <Box component={m.div} {...getVariant('fadeIn')}>
                 <Image
                   src={featuredCarsImages[index].url[0]}
                   key={featuredCarsImages[index].url[0]}
                   ratio="16/9"
-                  sx={{ borderRadius: '15px 15px 0 0' }}
+                  sx={{ borderRadius: '2px 2px 0 0' }}
                 />
               </Box>
             )}

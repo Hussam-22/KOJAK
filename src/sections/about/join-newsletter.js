@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -13,7 +12,6 @@ import Typography from '@mui/material/Typography';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
-import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
@@ -99,15 +97,14 @@ export default function JoinNewsletter() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
-            position: 'relative',
-            overflow: 'hidden',
-            scrollSnapAlign: 'start',
-            ...bgGradient({
-              direction: 'to right',
-              startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
-              endColor: `${alpha(theme.palette.grey[100], 0)}`,
-            }),
+            // ...bgGradient({
+            //   direction: 'to right',
+            //   startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
+            //   endColor: `${alpha(theme.palette.grey[100], 0)}`,
+            // }),
+            bgcolor: 'background.paper',
             display: 'flex',
+            py: 4,
           }}
         >
           <Container maxWidth="md" sx={{ alignSelf: 'flex-end' }}>
@@ -121,7 +118,7 @@ export default function JoinNewsletter() {
               </Grid>
 
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
-                <Stack direction="column" spacing={2} sx={{ color: 'common.white' }}>
+                <Stack direction="column" spacing={2}>
                   <Typography variant="h4">{translate('newsLetter.title')}</Typography>
                   <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
                     {translate('newsLetter.subTitle')}

@@ -13,9 +13,6 @@ import {
 
 import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
-import { _autoRepairServices } from 'src/_mock';
-import GroupCard from 'src/sections/components/group-card';
-import ServiceItem from 'src/sections/components/service-item';
 
 export default function SpareParts() {
   return (
@@ -24,7 +21,7 @@ export default function SpareParts() {
       backgroundURL="/assets/images/group/spare-parts.jpg"
       mainText="Looking for Mercedes Genuine Spare Parts ?"
       subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
-      buttonText="Search for Parts"
+      buttonText="Visit Spare-Parts Website"
     />
   );
 }
@@ -35,16 +32,13 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   return (
     <Box
       sx={{
-        position: 'relative',
-        height: '100dvh',
-        overflow: 'hidden',
-        scrollSnapAlign: 'start',
         ...bgGradient({
           direction: 'to right',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
           endColor: `${alpha(theme.palette.grey[100], 0)}`,
           imgUrl: backgroundURL,
         }),
+        py: 5,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>

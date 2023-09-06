@@ -20,29 +20,29 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#333333',
-  light: '#222222',
-  main: '#000000',
-  dark: '#000000',
-  darker: '#000000',
+  lighter: '#FFF4F4',
+  light: '#EB5C68',
+  main: '#E63946',
+  dark: '#C81927',
+  darker: '#91121D',
   contrastText: '#FFFFFF',
 };
 
 const SECONDARY = {
-  lighter: '#ECF2FF',
-  light: '#3AB4F2',
-  main: '#1363DF',
-  dark: '#1450A3',
-  darker: '#191D88',
+  lighter: '#636363',
+  light: '#424242',
+  main: '#000000',
+  dark: '#121212',
+  darker: '#000000',
   contrastText: '#FFFFFF',
 };
 
 const INFO = {
   lighter: '#CAFDF5',
   light: '#61F3F3',
-  main: '#1C4F7C',
-  dark: '#153A5B',
-  darker: '#0E273D',
+  main: '#00B8D9',
+  dark: '#006C9C',
+  darker: '#003768',
   contrastText: '#FFFFFF',
 };
 
@@ -56,12 +56,12 @@ const SUCCESS = {
 };
 
 const WARNING = {
-  lighter: '#fff7da',
-  light: '#FFE98B',
-  main: '#FFDC45',
-  dark: '#FFCF00',
-  darker: '#D8AF00',
-  contrastText: '#000000',
+  lighter: '#FFF5CC',
+  light: '#FFD666',
+  main: '#FFAB00',
+  dark: '#B76E00',
+  darker: '#7A4100',
+  contrastText: GREY[800],
 };
 
 const ERROR = {
@@ -76,6 +76,19 @@ const ERROR = {
 const CUSTOM = {
   auto: '#FFDC45',
   spareParts: '#C72C41',
+  pink: '#FFACAC',
+  peachLighter: '#FFF8F6',
+  peachLight: '#FFEBE5',
+  peach: '#FFC7C7',
+  bluishPurpleLighter: '#F8F8FF',
+  bluishPurpleLight: '#EDE4FF',
+  bluishPurple: '#7A77A4',
+  bluishPurpleDark: '#626082',
+  purple: '#674188',
+  orange: '#FFB84C',
+  red: '#F16767',
+  green: '#AACB73',
+  contrastText: '#FFFFFF',
 };
 
 const COMMON = {
@@ -91,10 +104,10 @@ const COMMON = {
   error: ERROR,
   custom: CUSTOM,
   grey: GREY,
-  divider: alpha(GREY[300], 0.5),
+  divider: alpha(GREY[500], 0.2),
   action: {
     hover: alpha(GREY[500], 0.08),
-    selected: alpha(GREY[500], 0.75),
+    selected: alpha(GREY[500], 0.16),
     disabled: alpha(GREY[500], 0.8),
     disabledBackground: alpha(GREY[500], 0.24),
     focus: alpha(GREY[500], 0.24),
@@ -115,8 +128,8 @@ export function palette(mode) {
     background: {
       paper: '#FFFFFF',
       default: '#FFFFFF',
-      neutral: alpha(GREY[500], 0.12),
-      secondary: SECONDARY.light,
+      neutral: GREY[100],
+      peach: SUCCESS.lighter,
     },
     action: {
       ...COMMON.action,
@@ -134,8 +147,9 @@ export function palette(mode) {
     },
     background: {
       paper: GREY[800],
-      default: '#121212',
+      default: GREY[900],
       neutral: alpha(GREY[500], 0.12),
+      peach: alpha(GREY[500], 0.12),
     },
     action: {
       ...COMMON.action,
