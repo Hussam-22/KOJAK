@@ -30,7 +30,7 @@ export default function ServiceDetailsView() {
   const [vehicleInfo, setVehicleInfo] = useState();
 
   const payload = {
-    subject: `I would like to inquire about, ${vehicleInfo?.brand} ${vehicleInfo?.model} ${vehicleInfo?.features?.price[1]}`,
+    subject: `I would like to inquire about, ${vehicleInfo?.brand} ${vehicleInfo?.model} ${vehicleInfo?.price}`,
     source: 'Vehicle Inquiry',
   };
   console.log(payload);
@@ -84,7 +84,7 @@ export default function ServiceDetailsView() {
                 >
                   <Stack sx={{ mb: 2 }}>
                     <Typography variant="h2" color="primary">
-                      {vehicleInfo.price[1]}
+                      {vehicleInfo.price}
                     </Typography>
                     <Stack direction="row" spacing={1}>
                       <Typography variant="h4">{vehicleInfo.brand}</Typography>
@@ -102,30 +102,26 @@ export default function ServiceDetailsView() {
                   >
                     <VehicleFeature
                       icon="mdi:car-door"
-                      value={vehicleInfo.exteriorColor[1]}
+                      value={vehicleInfo.exteriorColor}
                       large={!!mdUp}
                       color
                     />
                     <VehicleFeature
                       icon="mdi:car-seat"
-                      value={vehicleInfo.interiorColor[1]}
+                      value={vehicleInfo.interiorColor}
                       large={!!mdUp}
                       color
                     />
 
-                    <VehicleFeature
-                      icon="uim:calender"
-                      value={vehicleInfo.year[1]}
-                      large={!!mdUp}
-                    />
+                    <VehicleFeature icon="uim:calender" value={vehicleInfo.year} large={!!mdUp} />
                     <VehicleFeature
                       icon="fa-solid:road"
-                      value={`${fNumber(vehicleInfo.milage[1])} Km`}
+                      value={`${fNumber(vehicleInfo.milage)} Km`}
                       large={!!mdUp}
                     />
                     <VehicleFeature
                       icon="ph:engine"
-                      value={vehicleInfo.engineType[1]}
+                      value={vehicleInfo.engineType}
                       large={!!mdUp}
                     />
                   </Box>
@@ -143,7 +139,7 @@ export default function ServiceDetailsView() {
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3 }}>
               <Typography variant="h2">Vehicle Details</Typography>
-              <Typography variant="h2" sx={{ whiteSpace: 'pre-line' }}>
+              <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
                 {vehicleInfo.features}
               </Typography>
               {/* <VehicleDetailsInfo vehicleInfo={vehicleInfo.features} /> */}
