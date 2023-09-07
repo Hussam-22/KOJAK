@@ -33,32 +33,19 @@ export function AuthProvider({ children }) {
     const newDocRef = doc(collection(DB, `/websites/kexclusive/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
-    const appointmentDate = new Date(payload.appointmentDate).toLocaleDateString();
     setDoc(newDocRef, {
       ...payload,
-      website: 'auto-maintenance',
+      website: 'kexclusive',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to:
-        payload.source === 'newsletter'
-          ? []
-          : [
-              'hussam@hotmail.co.uk',
-              'cashierworkshop@kojak-group.com',
-              'info.kgmarketing@gmail.com',
-              'querieskam@kojak-group.com',
-            ],
+      to: payload.source === 'newsletter' ? [] : ['hussam@hotmail.co.uk'],
       message: {
-        subject: 'New Form Was Submitted',
+        subject: payload.subject,
         html: `
         <p>Source: ${payload.source}</p>
         <p>Email: ${payload.email}</p>
         <p>Name: ${payload.fullName}</p>
         <p>Mobile: ${payload.mobile}</p>
-        <p>Car Class: ${payload.class}</p>
-        <p>Year: ${payload.year}</p>
-        <p>Service Required: ${payload?.service?.join(', ') || ''}</p>
-        <p>Appointment Date: ${appointmentDate}</p>
         <p>Inquiry: ${payload.messageText}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>
@@ -71,14 +58,14 @@ export function AuthProvider({ children }) {
 
   // ----------------------------------------------------------------------------
   const getVehicleInfo = useCallback(async (vehicleID) => {
-    const docRef = doc(DB, `/websites/kexclusive/cars/${vehicleID}`);
+    const docRef = doc(DB, `/websites/kexclusive/vehicles/${vehicleID}`);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }, []);
 
   // GET Cars List
   const getCars = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'cars'), where('isActive', '==', true));
+    const docRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', true));
     const querySnapshot = await getDocs(docRef);
     const documents = [];
 
@@ -102,35 +89,32 @@ export function AuthProvider({ children }) {
   }, []);
 
   const addNewCar = useCallback(() => {
-    const docRef = doc(collection(DB, `/websites/kexclusive/cars/`));
+    const docRef = doc(collection(DB, `/websites/kexclusive/vehicles/`));
     setDoc(docRef, {
-      id: docRef.id,
+      // id: docRef.id,
+      id: 'msfSgyETqWbD41DoxKUy',
       brand: 'Mercedes',
-      model: 'G 63 AMG',
+      model: 'G 63 AMG (Brand New)',
       qty: 1,
-      cover: 0,
-      // bucketID: 'test-car-3',
-      features: {
-        description: 'Special Modified Germany Imported, Export Only',
-        year: ['Year', 2023],
-        price: ['Price', '865,000 AED'],
-        hp: ['HP', 667],
-        bodyType: ['Body Type', '4X4'],
-        engineType: ['Engine Type', 'Petrol-Hybrid'],
-        exteriorColor: ['Exterior Color', '#121212'],
-        interiorColor: ['Interior Color', '#D73B3B'],
-        transmission: ['Transmission', 'Automatic'],
-        camera: ['Camera', '360 Camera'],
-        wheelSize: ['Wheel Size', '20"'],
-        soundSystem: ['Sound System', 'Burmester® surround sound system'],
-        light: ['Lights', 'Digital LED'],
-        sunroof: ['Sunroof', 'Electric sunroof, glass version'],
-        axle: ['axle Steering', 'Rear'],
-        milage: ['Milage', 0],
-        isNew: true,
-      },
+      price: '865,000 AED',
+      description: 'Special Modified Germany Imported, Export Only',
+      year: 2023,
+      exteriorColor: '#121212',
+      interiorColor: '#D73B3B',
+      engineType: 'Petrol-Hybrid',
+      milage: 0,
       isActive: true,
       isFeatured: false,
+      features: `
+      Burmester 3D surround sound system		
+      Electric sunroof, glass version		
+      360° camera (360° viewing system, Surround View		
+      (22") (matt) black AMG forged wheels		
+      Anti-Theft Protection Package Plus		
+      Heat-insulating		
+      AMG Night package		
+      Automatic transmission		
+      Active Distance Assist DISTRONIC`,
     });
   }, []);
 

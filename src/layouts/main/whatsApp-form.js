@@ -5,6 +5,7 @@ import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/components/animate/variants/get-variant';
 
@@ -23,10 +24,8 @@ export default function WhatsAppForm() {
     const message = textRef.current.value;
     const CustomerMobileNumber = mobileNumberRef.current.value;
 
-    const number = '+9715529242557';
-
     // Appending the phone number & Message to the URL
-    const url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURI(
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
       message
     )}&app_absent=0`;
 
@@ -35,9 +34,9 @@ export default function WhatsAppForm() {
       fullName: '',
       mobile: CustomerMobileNumber,
       email: '',
-      subject: '',
+      subject: 'K-Exclusive Website WhatsApp Message',
       inquiry: message,
-      sentTo: number,
+      sentTo: WHATSAPP_MOBILE,
     });
 
     window.location.href = url;

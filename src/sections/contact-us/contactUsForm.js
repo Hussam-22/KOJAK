@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -19,7 +20,7 @@ const DIALOG_CONTENT = {
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
-export default function ContactUsForm() {
+export default function ContactUsForm({ payload }) {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
@@ -44,7 +45,7 @@ export default function ContactUsForm() {
     fullName: '',
     mobile: '',
     email: '',
-    subject: '',
+    subject: payload?.subject || '',
     messageText: '',
   };
 
@@ -81,7 +82,7 @@ export default function ContactUsForm() {
 
       addNewForm({
         ...formData,
-        source: 'Contact Us',
+        source: payload?.source || 'Contact Us',
         inquiry: formData.messageText,
       });
 
@@ -147,6 +148,6 @@ export default function ContactUsForm() {
   );
 }
 
-// ContactUsForm.propTypes = {
-//   spaceInfo: PropTypes.object,
-// };
+ContactUsForm.propTypes = {
+  payload: PropTypes.object,
+};

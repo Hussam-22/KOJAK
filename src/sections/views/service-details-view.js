@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import { Box, Card, Stack, Divider, useTheme, Typography } from '@mui/material';
+import { Box, Card, Stack, useTheme, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
@@ -30,6 +30,12 @@ export default function ServiceDetailsView() {
   const { getVehicleInfo } = useAuthContext();
   const [vehicleInfo, setVehicleInfo] = useState();
 
+  const payload = {
+    subject: `I would like to inquire about, ${vehicleInfo?.brand} ${vehicleInfo?.model} ${vehicleInfo?.features?.price[1]}`,
+    source: 'Vehicle Inquiry',
+  };
+  console.log(payload);
+
   useEffect(() => {
     const fakeLoading = async () => {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -47,8 +53,6 @@ export default function ServiceDetailsView() {
   if (loading.value) {
     return <SplashScreen />;
   }
-
-  console.log(vehicleInfo.features);
 
   return (
     <Box sx={{ bgcolor: 'background.neutral', pt: 5, pb: 10 }}>
@@ -149,7 +153,7 @@ export default function ServiceDetailsView() {
               <Typography variant="h2" sx={{ mb: 2 }}>
                 Have a Question ?
               </Typography>
-              <ContactUsForm />
+              <ContactUsForm payload={payload} />
             </Card>
           </Grid>
 

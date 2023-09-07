@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Skeleton, Container, Typography } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
 import VehicleCard from 'src/sections/services/vehicle-card';
@@ -34,7 +34,9 @@ function VehiclesList() {
           <Typography variant="h1">Explore Our Inventory</Typography>
           <Typography>{`We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.`}</Typography>
         </Stack>
-        {/* <Button onClick={addCar}>Add Car</Button> */}
+        <Button variant="contained" color="primary" onClick={addCar}>
+          Add Car
+        </Button>
         <Box
           sx={{
             display: 'grid',
