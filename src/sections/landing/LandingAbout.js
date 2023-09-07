@@ -1,21 +1,8 @@
-import PropTypes from 'prop-types';
-
-import {
-  Box,
-  Stack,
-  alpha,
-  Button,
-  useTheme,
-  Container,
-  Typography,
-  Unstable_Grid2 as Grid,
-} from '@mui/material';
+import { Box, alpha, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
-import { bgBlur, bgGradient } from 'src/theme/css';
+import { bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 
 function LandingAbout() {
   const theme = useTheme();
@@ -35,7 +22,8 @@ function LandingAbout() {
             direction: 'to right',
             startColor: `${alpha(theme.palette.grey[900], 1)}`,
             endColor: `${alpha(theme.palette.grey[100], 0)}`,
-            imgUrl: '/assets/images/hero/old-mercedes.jpg',
+            // imgUrl: '/assets/images/hero/old-mercedes.jpg',
+            imgUrl: '/assets/images/original/old-car-2.jpg',
           }),
           borderRadius: 3,
         }}

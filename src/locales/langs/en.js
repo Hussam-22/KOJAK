@@ -193,10 +193,10 @@ const en = {
   why: {
     title: `We are Mercedes-Benz Experts`,
     subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
-    experience: 'Years of Experience',
-    happyCustomers: 'Happy Customers',
-    carsRepaired: 'Cars Repaired',
-    technicians: 'Expert Technicians',
+    fact1: 'Years of Experience',
+    fact2: 'Happy Customers',
+    fact3: 'Cars Sold',
+    fact4: 'Countries',
   },
 
   testimonial: {
@@ -272,7 +272,7 @@ const en = {
   },
 
   blog: {
-    title: 'Maintenance Matters Blog',
+    title: 'Explore the World of Mercedes-Benz: Our Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
   },
 
@@ -316,36 +316,36 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
   },
 
   about: {
-    title: 'We Make The Best For All Our Customers.',
-    description: `Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts in UAE seeking top-notch service and care for their luxury vehicles.`,
+    title: `Our Story: Discover Kojak's Passion for Mercedes-Benz`,
+    description: `Welcome to Kojak Exclusive, where our journey with Mercedes-Benz 40 yeas ago began with a shared passion for luxury, innovation, and automotive excellence. As a dedicated Mercedes-Benz dealership, we take pride in our rich history and unwavering commitment to providing our customers with the ultimate Mercedes-Benz experience`,
 
-    numbers: 'The numbers speak for themselves',
-    history: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+    vision: 'Our Vision',
+    history: `Our vision is to be the foremost destination for Mercedes-Benz enthusiasts in our region. We aspire to be known not only for our outstanding selection of Mercedes-Benz vehicles but also for our unwavering commitment to customer service and satisfaction. By fostering a culture of innovation and continuous improvement, we aim to set new standards in the automotive industry, ensuring that every interaction with us is a testament to the luxury, quality, and sophistication that define Mercedes-Benz.`,
 
     mission: 'Our Mission',
-    missionText: `Our mission is clear: to keep your Mercedes-Benz running flawlessly, ensuring that every drive is a truly luxurious experience. We're not just here to fix cars; we're here to preserve and enhance the performance, safety, and beauty of your Mercedes.`,
+    missionText: `Our mission is to provide an unparalleled automotive experience to our valued customers. We are committed to delivering the highest quality Mercedes-Benz vehicles and services, guided by the principles of integrity, excellence, and customer satisfaction. Through our passion for luxury automobiles and dedication to our community, we aim to exceed your expectations at every turn, making your journey with Mercedes-Benz truly exceptional.`,
 
     coreValues: {
       items: {
         1: {
-          title: 'Specialization',
+          title: 'Excellence',
           description:
-            'We live and breathe Mercedes-Benz. Our specialized knowledge and experience mean we understand the unique intricacies of these vehicles, allowing us to diagnose and resolve issues with unparalleled precision',
+            'We are committed to excellence in everything we do. We strive for perfection in customer service, vehicle quality, and maintenance services. Our dedication to excellence is a testament to our unwavering pursuit of the highest standards of quality and performance.',
         },
         2: {
-          title: 'Cutting-Edge Technology',
+          title: 'Integrity',
           description:
-            'We exclusively use genuine Mercedes-Benz parts to maintain the authenticity and performance of your vehicle.',
+            'Integrity is the foundation of our dealership. We conduct our business with the utmost honesty, transparency, and ethical behavior. Our customers trust us to provide reliable information and fair deals, and we take that trust seriously. We are committed to building and maintaining long-term relationships based on integrity and trust.',
         },
         3: {
-          title: 'Genuine Parts',
+          title: 'Passion',
           description:
-            'Trust is the cornerstone of our relationships with customers, partners, and employees. We uphold the highest ethical standards, ensuring transparency in all our dealings and fostering an atmosphere of mutual respect and honesty',
+            'Our team shares a deep passion for the Mercedes-Benz brand and the automotive industry. This passion drives us to go above and beyond for our customers, providing them with a truly exceptional experience. We believe that passion is the driving force behind innovation and customer satisfaction.',
         },
         4: {
-          title: 'Dedication to Excellence',
+          title: 'Innovation',
           description:
-            'Our commitment to excellence is unwavering. Every repair and service we perform is carried out to the highest standards, and we never compromise on quality',
+            'Innovation is at the heart of our dealership. We embrace change and continuously seek ways to improve and adapt to the evolving automotive landscape. Our commitment to innovation drives us to explore new technologies, services, and customer experiences, ensuring that we remain at the forefront of the industry and provide our customers with the latest advancements in Mercedes-Benz vehicles and services.',
         },
       },
     },

@@ -1,6 +1,6 @@
 // @mui
 
-import { Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 // components
 import { useLocales } from 'src/locales';
@@ -15,24 +15,32 @@ export default function ContactUsView() {
   const { translate } = useLocales();
 
   return (
-    <Container
+    <Box
       sx={{
         overflow: 'hidden',
-        py: 5,
+        py: 3,
+        bgcolor: 'background.neutral',
       }}
     >
-      <Stack
-        spacing={3}
+      <Container
         sx={{
-          mx: 'auto',
-          maxWidth: 860,
-          textAlign: 'center',
-          pb: { xs: 5, md: 10 },
-          position: 'relative',
-          zIndex: 10,
+          bgcolor: 'background.default',
+          py: 2,
+          borderRadius: 2,
         }}
       >
-        {/* <Box
+        <Stack
+          spacing={3}
+          sx={{
+            mx: 'auto',
+            maxWidth: 860,
+            textAlign: 'center',
+            pb: { xs: 5, md: 10 },
+            position: 'relative',
+            zIndex: 10,
+          }}
+        >
+          {/* <Box
           sx={{
             position: 'absolute',
             fontSize: '7rem',
@@ -47,30 +55,31 @@ export default function ContactUsView() {
         >
           CONTACT US
         </Box> */}
-        <Typography variant="h1">{translate('contactUs.title')}</Typography>
+          <Typography variant="h1">{translate('contactUs.title')}</Typography>
 
-        <Typography>{translate('contactUs.subTitle')}</Typography>
-      </Stack>
-      <Grid
-        container
-        spacing={5}
-        justifyContent={{ md: 'space-between' }}
-        sx={{ p: isMdUp ? 3 : 1 }}
-      >
+          <Typography>{translate('contactUs.subTitle')}</Typography>
+        </Stack>
         <Grid
-          xs={12}
-          md={5}
-          sx={{
-            p: 3,
-            px: { md: 5, xs: 2 },
-          }}
+          container
+          spacing={5}
+          justifyContent={{ md: 'space-between' }}
+          sx={{ p: isMdUp ? 3 : 1 }}
         >
-          <ContactUsInfo />
+          <Grid
+            xs={12}
+            md={5}
+            sx={{
+              p: 3,
+              px: { md: 5, xs: 2 },
+            }}
+          >
+            <ContactUsInfo />
+          </Grid>
+          <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
+            <ContactUsForm />
+          </Grid>
         </Grid>
-        <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
-          <ContactUsForm />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Box>
   );
 }

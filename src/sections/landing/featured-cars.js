@@ -2,7 +2,6 @@ import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
-import { alpha } from '@mui/system';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Container } from '@mui/material';
@@ -72,7 +71,7 @@ function RenderDesktopHero() {
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Box sx={{ mb: 6, maxWidth: '60%' }}>
           <Typography variant="h1" color="secondary">
-            Featured Cars
+            Spotlight
           </Typography>
           <Typography color="secondary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse

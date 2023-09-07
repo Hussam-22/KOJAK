@@ -2,21 +2,19 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, useTheme } from '@mui/material/styles';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
-import { fShortenNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
 const SUMMARY = [
-  { name: 'carsRepaired', number: 3200 },
-  { name: 'happyCustomers', number: 2800 },
-  { name: 'technicians', number: 22 },
-  { name: 'experience', number: 12 },
+  { name: 'fact1', number: 40 },
+  { name: 'fact2', number: 3022 },
+  { name: 'fact3', number: 8450 },
+  { name: 'fact4', number: 50 },
 ];
 
 // ----------------------------------------------------------------------
@@ -56,6 +54,7 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 
 export default function AboutUs() {
   const { translate } = useLocales();
+  const theme = useTheme();
   return (
     <Container
       sx={{
@@ -67,46 +66,30 @@ export default function AboutUs() {
         {translate('about.title')}
       </Typography>
       <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
-      <Section />
-    </Container>
-  );
-}
 
-// ----------------------------------------------------------------------
-
-function Section() {
-  const { translate } = useLocales();
-  return (
-    <StyledSection>
-      <Stack
+      <Box
         sx={{
-          py: 10,
-          zIndex: 9,
-          ml: 'auto',
+          mt: 4,
           position: 'relative',
-          px: { xs: 2.5, md: 10 },
-          width: { md: 0.75, lg: 0.5 },
+          height: 500,
+          ...bgGradient({
+            direction: 'to top',
+            startColor: `${alpha(theme.palette.grey[900], 0.6)}`,
+            endColor: `${alpha(theme.palette.grey[100], 0)}`,
+            imgUrl: '/assets/images/original/font-en.jpg',
+          }),
+          borderRadius: 2,
         }}
       >
-        <Stack
-          sx={{
-            mb: 5,
-            color: 'common.white',
-            textAlign: { xs: 'center', md: 'left' },
-          }}
-        >
-          <Typography variant="h2" paragraph>
-            {translate('about.numbers')}
-          </Typography>
-          <Typography>{translate('about.history')}</Typography>
-        </Stack>
-
         <Box
           sx={{
+            position: 'absolute',
+            bottom: 20,
+            width: '100%',
             gap: 5,
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            textAlign: { xs: 'center', md: 'left' },
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            textAlign: { xs: 'center', md: 'center' },
           }}
         >
           {SUMMARY.map((value) => (
@@ -115,7 +98,7 @@ function Section() {
                 <CountUp
                   start={value.number / 5}
                   end={value.number}
-                  formattingFn={(newValue) => fShortenNumber(newValue)}
+                  formattingFn={(newValue) => newValue}
                 />
 
                 <Typography variant="h3" component="span" sx={{ verticalAlign: 'top', ml: 0.5 }}>
@@ -123,21 +106,13 @@ function Section() {
                 </Typography>
               </Typography>
 
-              <Typography>{translate(`why.${value.name}`)}</Typography>
+              <Typography variant="h6" sx={{ color: 'common.white' }}>
+                {translate(`why.${value.name}`)}
+              </Typography>
             </Stack>
           ))}
         </Box>
-      </Stack>
-
-      <StyledOverlay />
-
-      <Box sx={{ position: 'absolute', width: 1, height: 1, top: 0 }}>
-        <Image
-          alt="career about"
-          src="/assets/images/repair/repair-img-2.jpg"
-          sx={{ width: 1, height: 1 }}
-        />
       </Box>
-    </StyledSection>
+    </Container>
   );
 }

@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
@@ -15,6 +15,7 @@ import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { usePathname } from 'src/routes/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 
@@ -35,6 +36,9 @@ export default function Header({ headerOnDark }) {
   const navigate = useNavigate();
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
+  const pathName = usePathname();
+
+  const useDarkLogo = pathName !== '/';
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -84,7 +88,7 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small />
+              <Logo small light={!useDarkLogo && !offset} />
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">

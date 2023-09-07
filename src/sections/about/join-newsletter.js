@@ -105,6 +105,7 @@ export default function JoinNewsletter() {
             bgcolor: 'background.paper',
             display: 'flex',
             py: 4,
+            borderTop: 'solid 1px #999',
           }}
         >
           <Container maxWidth="md" sx={{ alignSelf: 'flex-end' }}>

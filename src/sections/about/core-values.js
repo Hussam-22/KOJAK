@@ -12,10 +12,10 @@ import Image from 'src/components/image/Image';
 // ----------------------------------------------------------------------
 
 const CORE_VALUES = [
-  'tabler:car-turbine',
-  'carbon:3d-curve-auto-colon',
-  'tabler:car-turbine',
-  'carbon:airport-location',
+  'carbon:badge',
+  'solar:shield-up-linear',
+  'ri:team-line',
+  'solar:graph-up-line-duotone',
 ];
 
 // ----------------------------------------------------------------------
@@ -26,9 +26,8 @@ export default function CoreValues() {
   return (
     <Box
       sx={{
-        overflow: 'hidden',
-        bgcolor: 'background.neutral',
         py: 8,
+        bgcolor: 'background.neutral',
       }}
     >
       <Container>
@@ -43,45 +42,25 @@ export default function CoreValues() {
         >
           <Typography variant="h2">{translate('about.mission')}</Typography>
 
-          <Typography sx={{ maxWidth: { md: 800 } }}>{translate('about.missionText')}</Typography>
+          <Typography>{translate('about.missionText')}</Typography>
         </Stack>
 
-        <Grid container>
-          <Grid md={4}>
+        <Grid container spacing={3}>
+          <Grid md={5} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Image src="/assets/images/original/1.jpg" sx={{ borderRadius: 2 }} ratio="9/16" />
+          </Grid>
+          <Grid md={7} xs={12} sx={{ p: 4 }}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
-              {CORE_VALUES.slice(0, 2).map((value, index) => (
-                <Box sx={{ textAlign: { md: 'left', xs: 'center' } }} key={value}>
+              {CORE_VALUES.map((value, index) => (
+                <Box sx={{ textAlign: 'center' }} key={value}>
                   <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
 
-                  <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
+                  <Typography variant="h5" sx={{ mt: 1, mb: 1 }}>
                     {translate(`about.coreValues.items.${index + 1}.title`)}
                   </Typography>
 
                   <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
                     {translate(`about.coreValues.items.${index + 1}.description`)}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          </Grid>
-          <Grid md={4} sx={{ p: 2 }}>
-            <Stack spacing={2} sx={{ mt: 2 }}>
-              <Image src="/assets/images/original/6.webp" sx={{ borderRadius: 2 }} />
-              <Image src="/assets/images/original/4.webp" sx={{ borderRadius: 2 }} />
-            </Stack>
-          </Grid>
-          <Grid md={4}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
-              {CORE_VALUES.slice(0, 2).map((value, index) => (
-                <Box sx={{ textAlign: { md: 'right', xs: 'center' } }} key={value}>
-                  <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
-
-                  <Typography variant="h5" sx={{ mt: 5, mb: 2 }}>
-                    {translate(`about.coreValues.items.${index + 3}.title`)}
-                  </Typography>
-
-                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-                    {translate(`about.coreValues.items.${index + 3}.description`)}
                   </Typography>
                 </Box>
               ))}

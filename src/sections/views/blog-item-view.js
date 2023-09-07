@@ -61,11 +61,16 @@ function ContentMarkdown({ content, postTitle }) {
   const theme = useTheme();
   return (
     <Stack spacing={3}>
-      {title.length !== 0 && (
+      {title?.length !== 0 && (
         <Typography variant="h6" sx={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
           {title}
         </Typography>
       )}
+
+      {imageURL?.length !== undefined && imageURL?.length !== 0 && (
+        <Image src={imageURL} alt="postTitle" ratio="4/3" sx={{ borderRadius: 1 }} />
+      )}
+
       {text.length !== 0 && (
         <Typography
           variant="body1"
@@ -77,9 +82,6 @@ function ContentMarkdown({ content, postTitle }) {
         >
           {text}
         </Typography>
-      )}
-      {imageURL?.length !== undefined && imageURL?.length !== 0 && (
-        <Image src={imageURL} alt="postTitle" ratio="4/3" sx={{ borderRadius: 1 }} />
       )}
     </Stack>
   );
