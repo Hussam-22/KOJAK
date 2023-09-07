@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
 
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
-
-import Image from 'src/components/image/Image';
-import { useAuthContext } from 'src/auth/hooks';
+import { useTheme, Typography } from '@mui/material';
 
 function VehicleDetailsInfo({ vehicleInfo }) {
   const vehicleFeatures = Object.values(vehicleInfo?.features || {});

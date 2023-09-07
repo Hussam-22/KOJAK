@@ -91,8 +91,7 @@ export function AuthProvider({ children }) {
   const addNewCar = useCallback(() => {
     const docRef = doc(collection(DB, `/websites/kexclusive/vehicles/`));
     setDoc(docRef, {
-      // id: docRef.id,
-      id: 'msfSgyETqWbD41DoxKUy',
+      id: docRef.id,
       brand: 'Mercedes',
       model: 'G 63 AMG (Brand New)',
       qty: 1,

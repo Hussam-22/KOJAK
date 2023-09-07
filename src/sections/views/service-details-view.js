@@ -15,7 +15,6 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { SplashScreen } from 'src/components/loading-screen';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import VehicleDetailsInfo from 'src/sections/services/vehicle-details-info';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 import ProductDetailsCarousel from 'src/sections/services/components/product-details-carousel';
 
@@ -85,13 +84,13 @@ export default function ServiceDetailsView() {
                 >
                   <Stack sx={{ mb: 2 }}>
                     <Typography variant="h2" color="primary">
-                      {vehicleInfo.features.price[1]}
+                      {vehicleInfo.price[1]}
                     </Typography>
                     <Stack direction="row" spacing={1}>
                       <Typography variant="h4">{vehicleInfo.brand}</Typography>
                       <Typography variant="h4">{vehicleInfo.model}</Typography>
                     </Stack>
-                    <Typography>{vehicleInfo.features.description}</Typography>
+                    <Typography>{vehicleInfo.description}</Typography>
                   </Stack>
 
                   <Box
@@ -103,30 +102,30 @@ export default function ServiceDetailsView() {
                   >
                     <VehicleFeature
                       icon="mdi:car-door"
-                      value={vehicleInfo.features.exteriorColor[1]}
+                      value={vehicleInfo.exteriorColor[1]}
                       large={!!mdUp}
                       color
                     />
                     <VehicleFeature
                       icon="mdi:car-seat"
-                      value={vehicleInfo.features.interiorColor[1]}
+                      value={vehicleInfo.interiorColor[1]}
                       large={!!mdUp}
                       color
                     />
 
                     <VehicleFeature
                       icon="uim:calender"
-                      value={vehicleInfo.features.year[1]}
+                      value={vehicleInfo.year[1]}
                       large={!!mdUp}
                     />
                     <VehicleFeature
                       icon="fa-solid:road"
-                      value={`${fNumber(vehicleInfo.features.milage[1])} Km`}
+                      value={`${fNumber(vehicleInfo.milage[1])} Km`}
                       large={!!mdUp}
                     />
                     <VehicleFeature
                       icon="ph:engine"
-                      value={vehicleInfo.features.engineType[1]}
+                      value={vehicleInfo.engineType[1]}
                       large={!!mdUp}
                     />
                   </Box>
@@ -144,7 +143,10 @@ export default function ServiceDetailsView() {
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3 }}>
               <Typography variant="h2">Vehicle Details</Typography>
-              <VehicleDetailsInfo vehicleInfo={vehicleInfo} />
+              <Typography variant="h2" sx={{ whiteSpace: 'pre-line' }}>
+                {vehicleInfo.features}
+              </Typography>
+              {/* <VehicleDetailsInfo vehicleInfo={vehicleInfo.features} /> */}
             </Card>
           </Grid>
 
