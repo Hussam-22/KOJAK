@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +21,7 @@ const CORE_VALUES = [
 
 export default function Vision() {
   const { translate } = useLocales();
-  const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
   return (
     <Box
       sx={{
@@ -42,11 +42,13 @@ export default function Vision() {
               }}
             >
               <Typography variant="h2">{translate('about.vision')}</Typography>
-
+              {!mdUp && (
+                <Image src="/assets/images/original/2.jpg" sx={{ borderRadius: 2 }} ratio="16/9" />
+              )}
               <Typography>{translate('about.history')}</Typography>
             </Stack>
           </Grid>
-          <Grid md={5} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
             <Image src="/assets/images/original/2.jpg" sx={{ borderRadius: 2 }} ratio="16/9" />
           </Grid>
         </Grid>

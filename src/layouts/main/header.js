@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
@@ -103,14 +103,14 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.actionButton')}
                   </Button>
-                  <Divider
+                  {/* <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                   />
                   <IconButton disableRipple color="primary" onClick={toggleLanguageHandler}>
                     {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton>
+                  </IconButton> */}
                 </Stack>
               )}
             </Stack>

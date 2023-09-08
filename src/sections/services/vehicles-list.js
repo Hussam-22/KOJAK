@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Button, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, useTheme, Skeleton, Container, Typography } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
 import VehicleCard from 'src/sections/services/vehicle-card';
 
 function VehiclesList() {
+  const theme = useTheme();
   const { addNewCar, getCars, fsListAllFolderItems } = useAuthContext();
   const [vehiclesList, setVehiclesList] = useState([]);
-
-  //   console.log(imagesList?.items?.filter((item) => item._location.path.includes('200x200')));
 
   useEffect(() => {
     (async () => {
@@ -19,24 +18,34 @@ function VehiclesList() {
   }, [fsListAllFolderItems, getCars]);
 
   const addCar = async () => addNewCar();
+
   return (
-    <Box sx={{ bgcolor: 'background.default' }}>
+    <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
-        maxWidth="xl"
+        // maxWidth="xl"
         sx={{
-          py: 8,
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column',
+          pt: 5,
         }}
       >
-        <Stack sx={{ mb: 5 }}>
-          <Typography variant="h1">Explore Our Inventory</Typography>
+        <Stack spacing={2} sx={{ mb: 5, textAlign: 'center' }}>
+          <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>
+            Find your dream car,{' '}
+            <Box
+              component="span"
+              sx={{
+                background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.dark})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              make it yours !!
+            </Box>
+          </Typography>
           <Typography>{`We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.`}</Typography>
         </Stack>
-        <Button variant="contained" color="primary" onClick={addCar}>
-          Add Car
-        </Button>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ pb: { xs: 5, md: 10 } }}>
         <Box
           sx={{
             display: 'grid',

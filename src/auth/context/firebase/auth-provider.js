@@ -76,7 +76,7 @@ export function AuthProvider({ children }) {
 
   const getFeaturedCars = useCallback(async () => {
     const docRef = query(
-      collectionGroup(DB, 'cars'),
+      collectionGroup(DB, 'vehicles'),
       where('isActive', '==', true),
       where('isFeatured', '==', true)
     );
@@ -93,38 +93,46 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'G 63 AMG (Brand New)',
+      model: 'S 500 LONG (Used)',
       qty: 1,
-      price: '865,000 AED',
-      description: 'Special Modified Germany Imported, Export Only',
-      year: 2023,
-      exteriorColor: '#121212',
-      interiorColor: '#D73B3B',
-      engineType: 'Petrol-Hybrid',
-      milage: 0,
+      price: '515,000 AED',
+      description: 'Export price outside GCC countries - Price Without VAT & Without Customs Duty',
+      year: 2022,
+      exteriorColor: '#000000',
+      interiorColor: '#D68C45',
+      engineType: 'Electric Hybrid fue',
+      milage: 14500,
       isActive: true,
       isFeatured: false,
+      creationDate: new Date(),
       features: `
-      Burmester 3D surround sound system		
-      Electric sunroof, glass version		
-      360° camera (360° viewing system, Surround View		
-      (22") (matt) black AMG forged wheels		
-      Anti-Theft Protection Package Plus		
-      Heat-insulating		
-      AMG Night package		
-      Automatic transmission		
-      Active Distance Assist DISTRONIC`,
+      Climatised Front Seat		
+Automatic panoramic sliding sunroof		
+360° camera		
+KEYLESS-GO		
+Sun protection package		
+Rear seat climate control		
+Air conditioning rear		
+AMG Line		
+Driver assistant package plus		
+`,
     });
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
   const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
-    const url = await getDownloadURL(
-      ref(
-        STORAGE,
-        `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
-      )
-    );
+    let url = '';
+    try {
+      url = await getDownloadURL(
+        ref(
+          STORAGE,
+          `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
+        )
+      );
+    } catch (error) {
+      url = undefined;
+    }
+
     return url;
   }, []);
 

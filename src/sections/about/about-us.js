@@ -88,7 +88,7 @@ export default function AboutUs() {
             width: '100%',
             gap: 5,
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
             textAlign: { xs: 'center', md: 'center' },
           }}
         >

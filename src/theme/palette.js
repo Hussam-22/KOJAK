@@ -123,7 +123,7 @@ export function palette(mode) {
     text: {
       primary: '#000000',
       secondary: GREY[600],
-      disabled: GREY[500],
+      disabled: GREY[400],
     },
     background: {
       paper: '#FFFFFF',

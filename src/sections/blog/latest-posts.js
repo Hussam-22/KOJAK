@@ -40,12 +40,11 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
+    <Box sx={{ bgcolor: 'primary.lighter' }}>
       <Container
         sx={{
           pt: 10,
           pb: 15,
-          mt: 10,
         }}
         component={m.div}
         variants={varFade().inLeft}

@@ -33,7 +33,6 @@ export default function ServiceDetailsView() {
     subject: `I would like to inquire about, ${vehicleInfo?.brand} ${vehicleInfo?.model} ${vehicleInfo?.price}`,
     source: 'Vehicle Inquiry',
   };
-  console.log(payload);
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -74,7 +73,7 @@ export default function ServiceDetailsView() {
         />
 
         <Grid container spacing={3}>
-          {vehicleInfo.id && (
+          {vehicleInfo?.id && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
                 <Stack
@@ -90,14 +89,16 @@ export default function ServiceDetailsView() {
                       <Typography variant="h4">{vehicleInfo.brand}</Typography>
                       <Typography variant="h4">{vehicleInfo.model}</Typography>
                     </Stack>
-                    <Typography>{vehicleInfo.description}</Typography>
+                    <Typography sx={{ color: 'text.disabled' }}>
+                      {vehicleInfo.description}
+                    </Typography>
                   </Stack>
 
                   <Box
                     sx={{
                       display: 'flex',
                       justifyContent: 'space-between',
-                      width: { md: '35%', xs: '100%' },
+                      width: { md: '40%', xs: '100%' },
                     }}
                   >
                     <VehicleFeature
@@ -137,9 +138,9 @@ export default function ServiceDetailsView() {
           </Grid>
 
           <Grid xs={12} md={6}>
-            <Card sx={{ p: 3 }}>
+            <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
               <Typography variant="h2">Vehicle Details</Typography>
-              <Typography variant="body1" sx={{ whiteSpace: 'pre-line' }}>
+              <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
                 {vehicleInfo.features}
               </Typography>
               {/* <VehicleDetailsInfo vehicleInfo={vehicleInfo.features} /> */}
@@ -147,9 +148,9 @@ export default function ServiceDetailsView() {
           </Grid>
 
           <Grid xs={12} md={6}>
-            <Card sx={{ p: 3, height: 1 }}>
+            <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
               <Typography variant="h2" sx={{ mb: 2 }}>
-                Have a Question ?
+                Make it Yours !!
               </Typography>
               <ContactUsForm payload={payload} />
             </Card>
@@ -160,13 +161,17 @@ export default function ServiceDetailsView() {
               <Stack spacing={3}>
                 <Box>
                   <Typography variant="h2">Warranty</Typography>
-                  <Typography sx={{ whiteSpace: 'pre-line' }}>
+                  <Typography
+                    sx={{ whiteSpace: 'pre-line', fontWeight: theme.typography.fontWeightLight }}
+                  >
                     {translate('inventory.warranty')}
                   </Typography>
                 </Box>
                 <Box>
                   <Typography variant="h2">Export</Typography>
-                  <Typography sx={{ whiteSpace: 'pre-line' }}>
+                  <Typography
+                    sx={{ whiteSpace: 'pre-line', fontWeight: theme.typography.fontWeightLight }}
+                  >
                     {translate('inventory.export')}
                   </Typography>
                 </Box>

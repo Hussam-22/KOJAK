@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import Image from 'src/components/image';
@@ -38,7 +37,7 @@ export default function PostItem({ post, index }) {
         spacing={1}
         sx={{
           p: 3,
-          bgcolor: 'background.neutral',
+          bgcolor: 'background.default',
           ...(noImage && {
             bgcolor: 'primary.lighter',
           }),

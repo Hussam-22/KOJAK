@@ -40,7 +40,7 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        <IconButton
+        {/* <IconButton
           disableFocusRipple
           disableTouchRipple
           disableRipple
@@ -49,7 +49,7 @@ export default function NavMobile({ data, toggleLanguage }) {
           onClick={toggleLanguage}
         >
           {currentLang.value === 'en' ? 'ع' : 'En'}
-        </IconButton>
+        </IconButton> */}
 
         <IconButton
           onClick={mobileOpen.onTrue}
@@ -83,9 +83,9 @@ export default function NavMobile({ data, toggleLanguage }) {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(paths.website.bookAppointment)}
+              onClick={() => navigate(paths.website.services)}
             >
-              {translate('common.bookAppointment')}
+              {translate('common.actionButton')}
             </Button>
           </Stack>
         </Scrollbar>

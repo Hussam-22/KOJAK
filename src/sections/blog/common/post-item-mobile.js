@@ -38,7 +38,7 @@ export default function PostItemMobile({ post, onSiderbar }) {
           href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
         >
-          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'} color="primary">
+          <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'} color="secondary">
             {post.title}
           </TextMaxLine>
         </Link>

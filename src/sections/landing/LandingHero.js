@@ -18,10 +18,12 @@ import { useResponsive } from 'src/hooks/use-responsive';
 export default function LandingHero() {
   const mdUp = useResponsive('up', 'md');
 
-  return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+  // return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+  return <RenderDesktopHero />;
 }
 
 function RenderDesktopHero() {
+  const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   const navigate = useNavigate();
   const { translate, currentLang } = useLocales();
@@ -31,10 +33,10 @@ function RenderDesktopHero() {
         position: 'relative',
         height: '100dvh',
         ...bgGradient({
-          direction: 'to right',
+          direction: mdUp ? 'to right' : 'to bottom',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
           endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: '/assets/images/hero/hero-4.jpg',
+          imgUrl: mdUp ? '/assets/images/hero/hero-4.jpg' : '/assets/images/hero/hero-mobile.jpg',
         }),
       }}
     >

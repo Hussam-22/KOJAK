@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
 
-import {
-  Box,
-  Stack,
-  Button,
-  useTheme,
-  Container,
-  Typography,
-  Unstable_Grid2 as Grid,
-} from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
+import Carousel, { useCarousel } from 'src/components/carousel';
 
 export default function AutoMaintenance() {
   return (
@@ -23,7 +15,7 @@ export default function AutoMaintenance() {
       mainText="Looking for Mercedes Auto Repair Shop ?"
       subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
                 fix your car with experience since 1986 in Mercedes-Benz Cars"
-      buttonText="Visit Auto-Maintenance Website"
+      buttonText="Visit Kojak Auto-Maintenance Website"
     />
   );
 }
@@ -31,6 +23,27 @@ export default function AutoMaintenance() {
 function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   const theme = useTheme();
   const { translate } = useLocales();
+
+  const carousel = useCarousel({
+    infinite: true,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: theme.breakpoints.values.md,
+        settings: { slidesToShow: 4 },
+      },
+      {
+        breakpoint: theme.breakpoints.values.sm,
+        settings: { slidesToShow: 2 },
+      },
+    ],
+  });
+
   return (
     <Box
       sx={{
@@ -39,81 +52,65 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
-        <Grid
-          container
+        <Stack
           sx={{
-            alignItems: 'center',
-            justifyContent: 'left',
-            height: '100%',
+            textAlign: 'center',
           }}
           spacing={3}
         >
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Stack
+          <Box>
+            <Typography variant="overline">{brand}</Typography>
+
+            <Typography
               sx={{
-                textAlign: { md: 'left', xs: 'center' },
+                textTransform: 'capitalize',
+                fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
+                lineHeight: 1.25,
+                fontWeight: theme.typography.fontWeightBold,
               }}
-              spacing={3}
             >
-              <Box>
-                <Typography variant="overline" sx={{ color: 'warning.main' }}>
-                  {brand}
-                </Typography>
+              {mainText}
+            </Typography>
+          </Box>
 
-                <Typography
-                  sx={{
-                    textTransform: 'capitalize',
-                    fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
-                    lineHeight: 1.25,
-                    fontWeight: theme.typography.fontWeightBold,
-                  }}
-                >
-                  {mainText}
-                </Typography>
-              </Box>
-
-              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-                {subText}
-              </Typography>
-
-              <Box>
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="warning"
-                  // onClick={() => navigate(paths.website.bookAppointment)}
-                >
-                  {buttonText}
-                </Button>
-              </Box>
-            </Stack>
-          </Grid>
-          <Grid md={6} xs={12}>
-            <Box>
-              <Image src={backgroundURL} sx={{ borderRadius: 2 }} ratio="16/9" />
+          {/* <Box sx={{ bgcolor: 'background.paper', borderRadius: 2, p: 3 }}>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(7,1fr)', xs: 'repeat(1,1fr)' },
+                gap: 1,
+                my: 6,
+              }}
+            >
+              {_autoRepairServices
+                .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                .map((service) => (
+                  <ServiceItem service={service} key={service.id} />
+                ))}
             </Box>
-          </Grid>
+          </Box> */}
 
-          <Grid md={12}>
-            <Box sx={{ bgcolor: 'background.paper', borderRadius: 2, p: 3 }}>
-              <Typography variant="h3">Auto Maintenance Services</Typography>
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { md: 'repeat(7,1fr)', xs: 'repeat(1,1fr)' },
-                  gap: 2,
-                  my: 6,
-                }}
-              >
-                {_autoRepairServices
-                  .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
-                  .map((service) => (
-                    <ServiceItem service={service} key={service.id} />
-                  ))}
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+          <Box sx={{ bgcolor: 'custom.auto', py: 2, borderRadius: 1 }}>
+            <Carousel {...carousel.carouselSettings}>
+              {_autoRepairServices
+                .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+                .map((service) => (
+                  <ServiceItem service={service} key={service.id} />
+                ))}
+            </Carousel>
+          </Box>
+
+          <Box>
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              // onClick={() => navigate(paths.website.bookAppointment)}
+            >
+              {buttonText}
+            </Button>
+          </Box>
+        </Stack>
       </Container>
     </Box>
   );

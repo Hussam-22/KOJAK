@@ -26,7 +26,7 @@ export default function BlogItemView() {
 
       <Container sx={{ overflow: 'hidden', mb: 8 }}>
         <Grid container spacing={3} justifyContent={{ md: 'center' }}>
-          <Grid xs={12} md={8}>
+          <Grid xs={12} md={12}>
             <CustomBreadcrumbs
               links={[
                 { name: 'Home', href: '/' },

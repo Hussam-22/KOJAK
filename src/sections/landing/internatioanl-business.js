@@ -1,14 +1,14 @@
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Iconify from 'src/components/iconify/Iconify';
+import CountUp from 'src/components/count-up/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-const FACTS = [
-  { title: '+50 Countries', icon: 'fluent-mdl2:world' },
-  { title: '+8450 Exported Cars', icon: 'simple-icons:mercedes' },
-  { title: 'Secure Transactions', icon: 'fa6-solid:money-bill-transfer' },
-  { title: '+3020 Happy Customers', icon: 'wpf:happy' },
+const SUMMARY = [
+  { name: 'fact1', number: 40 },
+  { name: 'fact2', number: 3022 },
+  { name: 'fact3', number: 8450 },
+  { name: 'fact4', number: 50 },
 ];
 
 function InternationalBusiness() {
@@ -19,10 +19,9 @@ function InternationalBusiness() {
     <Box
       sx={{
         position: 'relative',
-        // background: `linear-gradient(45deg, ${theme.palette.grey[900]}, ${theme.palette.primary.dark})` /* fallback for old browsers */,
-        py: 8,
         bgcolor: 'primary.lighter',
-        mb: 8,
+        py: 8,
+        px: 1,
       }}
     >
       <Container
@@ -31,14 +30,13 @@ function InternationalBusiness() {
           alignItems: 'center',
           justifyContent: 'left',
           height: '100%',
-          backgroundImage: 'url(/assets/illustrations/illustration_map.svg)',
+          backgroundImage: mdUp && 'url(/assets/illustrations/illustration_map.svg)',
           backgroundSize: 'contain',
           backgroundPosition: 'right',
           backgroundRepeat: 'no-repeat',
-          // py: 8,
         }}
       >
-        <Stack spacing={3} sx={{ maxWidth: '60%' }}>
+        <Stack spacing={3} sx={{ maxWidth: { md: '60%' } }}>
           <Typography variant="h2">
             International Destination for Mercedes-Benz automotive
           </Typography>
@@ -56,34 +54,39 @@ function InternationalBusiness() {
             provide, and we look forward to expanding our global family of satisfied customers
           </Typography>
 
-          <Box>
-            <Button variant="contained" size="large" color="primary">
-              Explore Inventory
-            </Button>
-          </Box>
-
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,auto)', gap: 0, mt: 2 }}>
-            {FACTS.map((fact) => (
-              <Stack key={fact.title} spacing={2} textAlign="center">
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Iconify
-                    icon={fact.icon}
-                    width={32}
-                    height={32}
-                    sx={{ color: 'secondary.main' }}
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { md: 'repeat(4,auto)', xs: 'repeat(2,auto)' },
+              gap: 4,
+              mt: 2,
+            }}
+          >
+            {SUMMARY.map((value) => (
+              <Stack key={value.name} spacing={1}>
+                <Typography variant="h2" sx={{ color: 'primary.main' }}>
+                  <CountUp
+                    start={value.number / 5}
+                    end={value.number}
+                    formattingFn={(newValue) => newValue}
                   />
-                </Box>
-                <Typography variant="h6" sx={{ color: 'secondary.main' }}>
-                  {fact.title}
+
+                  <Typography variant="h3" component="span" sx={{ verticalAlign: 'top', ml: 0.5 }}>
+                    +
+                  </Typography>
+                </Typography>
+
+                <Typography variant="h6" color="secondary">
+                  {translate(`why.${value.name}`)}
                 </Typography>
               </Stack>
             ))}
+          </Box>
+
+          <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
+            <Button variant="contained" size="large" color="primary">
+              Explore Inventory
+            </Button>
           </Box>
         </Stack>
       </Container>

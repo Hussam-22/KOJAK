@@ -6,7 +6,7 @@ import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-export default function ServiceItem({ service, major }) {
+export default function ServiceItem({ service }) {
   const { icon } = service;
   const theme = useTheme();
   const isMobile = useResponsive('down', 'md');
@@ -20,7 +20,7 @@ export default function ServiceItem({ service, major }) {
       alignItems="center"
       sx={{ px: 0.5, py: 1, textAlign: 'center' }}
     >
-      <Image src={`/assets/images/service-icons/${icon}.svg`} width="30%" />
+      <Image src={`/assets/images/service-icons/${icon}.svg`} width="25%" />
       <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
         {translate(`services.items.${icon}.serviceName`)}
       </Typography>
@@ -35,5 +35,4 @@ ServiceItem.propTypes = {
     icon: PropTypes.string,
     serviceItems: PropTypes.array,
   }),
-  major: PropTypes.bool,
 };

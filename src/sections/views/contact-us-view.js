@@ -24,7 +24,6 @@ export default function ContactUsView() {
     >
       <Container
         sx={{
-          bgcolor: 'background.default',
           py: 2,
           borderRadius: 2,
         }}
@@ -40,21 +39,6 @@ export default function ContactUsView() {
             zIndex: 10,
           }}
         >
-          {/* <Box
-          sx={{
-            position: 'absolute',
-            fontSize: '7rem',
-            lineHeight: 1,
-            left: 0,
-            right: 0,
-            mx: 'auto',
-            top: -30,
-            zIndex: -1,
-            color: theme.palette.grey[50],
-          }}
-        >
-          CONTACT US
-        </Box> */}
           <Typography variant="h1">{translate('contactUs.title')}</Typography>
 
           <Typography>{translate('contactUs.subTitle')}</Typography>
@@ -63,7 +47,7 @@ export default function ContactUsView() {
           container
           spacing={5}
           justifyContent={{ md: 'space-between' }}
-          sx={{ p: isMdUp ? 3 : 1 }}
+          sx={{ p: isMdUp ? 3 : 1, bgcolor: 'background.default', borderRadius: 3 }}
         >
           <Grid
             xs={12}

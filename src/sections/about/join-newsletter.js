@@ -102,7 +102,7 @@ export default function JoinNewsletter() {
             //   startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
             //   endColor: `${alpha(theme.palette.grey[100], 0)}`,
             // }),
-            bgcolor: 'background.paper',
+            bgcolor: 'primary.main',
             display: 'flex',
             py: 4,
             borderTop: 'solid 1px #999',
@@ -120,19 +120,28 @@ export default function JoinNewsletter() {
 
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
                 <Stack direction="column" spacing={2}>
-                  <Typography variant="h4">{translate('newsLetter.title')}</Typography>
-                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                  <Typography variant="h3" sx={{ color: 'common.white' }}>
+                    {translate('newsLetter.title')}
+                  </Typography>
+                  <Typography
+                    sx={{ fontWeight: theme.typography.fontWeightLight, color: 'common.white' }}
+                  >
                     {translate('newsLetter.subTitle')}
                   </Typography>
 
                   <Stack direction="row" spacing={1}>
-                    <RHFTextField name="email" label={translate('form.email')} />
+                    <RHFTextField
+                      variant="outlined"
+                      name="email"
+                      label={translate('form.email')}
+                      focused
+                    />
 
                     <LoadingButton
                       size="large"
                       type="submit"
                       variant="contained"
-                      color="primary"
+                      color="secondary"
                       loading={isSubmitting}
                       sx={{
                         mx: { xs: 'auto !important', md: 'unset !important' },

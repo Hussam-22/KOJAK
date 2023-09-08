@@ -27,7 +27,7 @@ export default function CoreValues() {
     <Box
       sx={{
         py: 8,
-        bgcolor: 'background.neutral',
+        bgcolor: 'background.default',
       }}
     >
       <Container>
