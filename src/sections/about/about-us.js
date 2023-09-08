@@ -76,7 +76,7 @@ export default function AboutUs() {
             direction: 'to top',
             startColor: `${alpha(theme.palette.grey[900], 0.6)}`,
             endColor: `${alpha(theme.palette.grey[100], 0)}`,
-            imgUrl: '/assets/images/original/font-en.jpg',
+            imgUrl: '/assets/images/original/font-en.webp',
           }),
           borderRadius: 2,
         }}

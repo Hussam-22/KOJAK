@@ -375,6 +375,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     allRights: '© 2023. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
+    availableVehicles: 'Available Vehicles',
   },
 
   common: {

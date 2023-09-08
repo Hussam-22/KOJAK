@@ -16,7 +16,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import VehicleCard from 'src/sections/services/vehicle-card';
 import { varFade, MotionContainer } from 'src/components/animate';
 import FeaturesBar from 'src/sections/featured-cars/components/features-bar';
-import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+import Carousel, { useCarousel, CarouselArrows, CarouselArrowIndex } from 'src/components/carousel';
 
 // ----------------------------------------------------------------------
 
@@ -50,20 +50,45 @@ export default function SpotlightVehicles() {
       </Box>
 
       <Card>
-        <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-          {featuredCars.length !== 0 &&
-            featuredCars.map((vehicle, index) =>
-              mdUp ? (
-                <CarouselItem
-                  key={vehicle.id}
-                  vehicleInfo={vehicle}
-                  active={index === carousel.currentIndex}
-                />
-              ) : (
-                <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />
-              )
-            )}
-        </Carousel>
+        <CarouselArrows
+          onNext={carousel.onNext}
+          onPrev={carousel.onPrev}
+          leftButtonProps={{
+            sx: {
+              left: 15,
+              opacity: 1,
+              color: 'common.white',
+              bgcolor: 'primary.main',
+              '&:hover': { bgcolor: 'primary.dark' },
+              // ...(mdUp && { display: 'none' }),
+            },
+          }}
+          rightButtonProps={{
+            sx: {
+              right: 15,
+              opacity: 1,
+              color: 'common.white',
+              bgcolor: 'primary.main',
+              '&:hover': { bgcolor: 'primary.dark' },
+              // ...(mdUp && { display: 'none' }),
+            },
+          }}
+        >
+          <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+            {featuredCars.length !== 0 &&
+              featuredCars.map((vehicle, index) =>
+                mdUp ? (
+                  <CarouselItem
+                    key={vehicle.id}
+                    vehicleInfo={vehicle}
+                    active={index === carousel.currentIndex}
+                  />
+                ) : (
+                  <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />
+                )
+              )}
+          </Carousel>
+        </CarouselArrows>
 
         {mdUp && (
           <CarouselArrowIndex

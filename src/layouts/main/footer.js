@@ -3,14 +3,13 @@ import { useLocation } from 'react-router';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { Box, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { Box, alpha, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
-import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
@@ -41,9 +40,9 @@ const GROUPS = [
 
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
+  const path = useLocation();
   const mUItheme = useTheme();
   const { translate } = useLocales();
-  const path = useLocation();
 
   const mainFooter = (
     <Box
@@ -118,19 +117,30 @@ export default function Footer() {
             </Stack>
           </Grid>
 
-          <Grid md={4} xs={12}>
-            <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
-              {translate(`services.title`)}
+          <Grid
+            md={4}
+            xs={12}
+            sx={{
+              textAlign: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {/* <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
+              {translate(`footer.availableVehicles`)}
             </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
-              {_autoRepairServices
-                .filter((service) => !service.isDisabled && !service.isOffer)
-                .map((service) => (
-                  <Typography key={service.serviceName} variant="body2">
-                    {translate(`services.items.${service.icon}.serviceName`)}
-                  </Typography>
-                ))}
-            </Box>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>Hussam</Box> */}
+            <Typography
+              sx={{
+                fontSize: { md: '8dvw', xs: '14dvw' },
+                WebkitTextStroke: `1px ${alpha(mUItheme.palette.common.white, 0.45)}`,
+                color: alpha(mUItheme.palette.background.default, 0),
+                lineHeight: 1,
+              }}
+            >
+              SINCE 1983
+            </Typography>
           </Grid>
         </Grid>
 

@@ -47,7 +47,7 @@ export default function CoreValues() {
 
         <Grid container spacing={3}>
           <Grid md={5} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/images/original/1.jpg" sx={{ borderRadius: 2 }} ratio="9/16" />
+            <Image src="/assets/images/original/1.webp" sx={{ borderRadius: 2 }} ratio="9/16" />
           </Grid>
           <Grid md={7} xs={12} sx={{ p: 4 }}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>

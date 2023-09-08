@@ -24,7 +24,7 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>052 924 2557</Typography>
+        <Typography>052 924 2616</Typography>
       </Stack>
 
       {/* <Stack direction="row" spacing={1}>

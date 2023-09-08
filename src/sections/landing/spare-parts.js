@@ -1,27 +1,18 @@
 import PropTypes from 'prop-types';
 
-import {
-  Box,
-  Stack,
-  alpha,
-  Button,
-  useTheme,
-  Container,
-  Typography,
-  Unstable_Grid2 as Grid,
-} from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { bgGradient } from 'src/theme/css';
+import Image from 'src/components/image/Image';
 
 export default function SpareParts() {
   return (
     <GroupSection
       brand="Kojak Spare-Parts"
-      backgroundURL="/assets/images/group/spare-parts.jpg"
-      mainText="Looking for Mercedes Genuine Spare Parts ?"
-      subText="Visit Kojak Spare Part website and explore more than 10,000 genuine Mercedes-Benz spare parts"
-      buttonText="Visit Spare-Parts Website"
+      backgroundURL="/assets/images/original/6.webp"
+      mainText="Visit Kojak Spare-Parts Shop"
+      subText="Looking for Geniun Parts for your Mercedes, Visit Kojak Spare-Parts Shop or explore our spare-parts inventory online by visiting Kojak Spare-Parts Website"
+      buttonText="Visit Kojak Spare-Parts Website"
     />
   );
 }
@@ -29,76 +20,61 @@ export default function SpareParts() {
 function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   const theme = useTheme();
   const { translate } = useLocales();
+
   return (
     <Box
       sx={{
-        ...bgGradient({
-          direction: 'to right',
-          startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
-          endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: backgroundURL,
-        }),
-        py: 5,
+        bgcolor: 'background.neutral',
+        py: 8,
       }}
     >
       <Container maxWidth="xl" sx={{ height: 1 }}>
-        <Grid
-          container
+        <Stack
           sx={{
-            alignItems: 'center',
-            justifyContent: 'left',
-            height: '100%',
+            textAlign: 'center',
           }}
           spacing={3}
         >
-          <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Stack
+          <Typography variant="h2">{mainText}</Typography>
+          <Typography variant="body1">{subText}</Typography>
+
+          <Box
+            sx={{
+              // bgcolor: 'background.paper',
+              borderRadius: 2,
+              px: 3,
+            }}
+          >
+            <Box
               sx={{
-                textAlign: { md: 'left', xs: 'center' },
+                display: 'grid',
+                gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+                gap: 1,
+                my: 6,
               }}
-              spacing={3}
             >
-              <Box>
-                <Typography variant="overline" sx={{ color: theme.palette.custom.spareParts }}>
-                  {brand}
-                </Typography>
+              {[...Array(8)].map((part, index) => (
+                <Image
+                  src={`/assets/images/parts/part-${index + 1}.webp`}
+                  alt={`car-part-${index + 1}`}
+                  sx={{ borderRadius: 2 }}
+                />
+              ))}
+            </Box>
+          </Box>
 
-                <Typography
-                  sx={{
-                    textTransform: 'capitalize',
-                    fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
-                    lineHeight: 1.25,
-                    fontWeight: theme.typography.fontWeightBold,
-                    color: 'common.white',
-                  }}
-                >
-                  {mainText}
-                </Typography>
-              </Box>
-
-              <Typography sx={{ color: 'common.white' }}>{subText}</Typography>
-
-              <Box>
-                <Button
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    backgroundColor:
-                      brand === 'Kojak Auto-Maintenance'
-                        ? theme.palette.custom.auto
-                        : theme.palette.custom.spareParts,
-                  }}
-                  // onClick={() => navigate(paths.website.bookAppointment)}
-                >
-                  {buttonText}
-                </Button>
-              </Box>
-            </Stack>
-          </Grid>
-
-          {/* <Grid md={6} xs={12}> */}
-          {/* </Grid> */}
-        </Grid>
+          <Box>
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              sx={{ bgcolor: 'custom.spareParts' }}
+              // onClick={() => navigate(paths.website.bookAppointment)}
+            >
+              {buttonText}
+            </Button>
+          </Box>
+        </Stack>
       </Container>
     </Box>
   );

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import LandingView from 'src/sections/views/landing-view';
@@ -9,7 +8,7 @@ export default function LandingPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance</title>
+        <title>Kojak Exclusive</title>
         {/* <meta
           name="description"
           content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"

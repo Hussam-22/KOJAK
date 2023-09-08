@@ -36,7 +36,7 @@ function RenderDesktopHero() {
           direction: mdUp ? 'to right' : 'to bottom',
           startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
           endColor: `${alpha(theme.palette.grey[100], 0)}`,
-          imgUrl: mdUp ? '/assets/images/hero/hero-4.jpg' : '/assets/images/hero/hero-mobile.jpg',
+          imgUrl: mdUp ? '/assets/images/hero/hero-4.webp' : '/assets/images/hero/hero-mobile.webp',
         }),
       }}
     >

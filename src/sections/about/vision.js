@@ -49,7 +49,7 @@ export default function Vision() {
             </Stack>
           </Grid>
           <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/images/original/2.jpg" sx={{ borderRadius: 2 }} ratio="16/9" />
+            <Image src="/assets/images/original/2.webp" sx={{ borderRadius: 2 }} ratio="16/9" />
           </Grid>
         </Grid>
       </Container>

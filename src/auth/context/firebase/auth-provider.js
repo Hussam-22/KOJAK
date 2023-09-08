@@ -38,7 +38,10 @@ export function AuthProvider({ children }) {
       website: 'kexclusive',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to: payload.source === 'newsletter' ? [] : ['hussam@hotmail.co.uk'],
+      to:
+        payload.source === 'newsletter'
+          ? []
+          : ['hussam@hotmail.co.uk', 'info.kgmarketing@gmail.com'],
       message: {
         subject: payload.subject,
         html: `

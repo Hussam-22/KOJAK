@@ -48,7 +48,7 @@ function LandingAbout() {
           </Grid>
           <Grid md={6} xs={12}>
             <Image
-              src="/assets/images/original/old-car-2.jpg"
+              src="/assets/images/original/old-car-2.webp"
               alt="kojak-40-years"
               ratio="16/9"
               sx={{ borderRadius: 1 }}
