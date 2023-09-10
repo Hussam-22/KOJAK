@@ -55,6 +55,7 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
             >
               {[...Array(8)].map((part, index) => (
                 <Image
+                  key={`/assets/images/parts/part-${index + 1}.webp`}
                   src={`/assets/images/parts/part-${index + 1}.webp`}
                   alt={`car-part-${index + 1}`}
                   sx={{ borderRadius: 2 }}

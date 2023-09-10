@@ -97,14 +97,9 @@ export default function JoinNewsletter() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Box
           sx={{
-            // ...bgGradient({
-            //   direction: 'to right',
-            //   startColor: `${alpha(theme.palette.grey[900], 0.9)}`,
-            //   endColor: `${alpha(theme.palette.grey[100], 0)}`,
-            // }),
+            py: 4,
             bgcolor: 'primary.main',
             display: 'flex',
-            py: 4,
             borderTop: 'solid 1px #999',
           }}
         >
@@ -119,7 +114,11 @@ export default function JoinNewsletter() {
               </Grid>
 
               <Grid md={8} xs={12} sx={{ my: 'auto' }}>
-                <Stack direction="column" spacing={2}>
+                <Stack
+                  direction="column"
+                  spacing={2}
+                  sx={{ textAlign: { md: 'left', xs: 'center' } }}
+                >
                   <Typography variant="h3" sx={{ color: 'common.white' }}>
                     {translate('newsLetter.title')}
                   </Typography>

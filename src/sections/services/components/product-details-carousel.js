@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import { Skeleton } from '@mui/material';

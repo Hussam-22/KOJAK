@@ -43,7 +43,7 @@ export default function Vision() {
             >
               <Typography variant="h2">{translate('about.vision')}</Typography>
               {!mdUp && (
-                <Image src="/assets/images/original/2.jpg" sx={{ borderRadius: 2 }} ratio="16/9" />
+                <Image src="/assets/images/original/2.webp" sx={{ borderRadius: 2 }} ratio="16/9" />
               )}
               <Typography>{translate('about.history')}</Typography>
             </Stack>

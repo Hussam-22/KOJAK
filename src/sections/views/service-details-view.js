@@ -54,7 +54,7 @@ export default function ServiceDetailsView() {
 
   return (
     <Box sx={{ bgcolor: 'background.neutral', pt: 5, pb: 10 }}>
-      <Container sx={{ overflow: 'hidden', py: 5, px: { md: 8 }, borderRadius: 3 }}>
+      <Container sx={{ overflow: 'hidden', px: { md: 8 }, borderRadius: 3 }}>
         <CustomBreadcrumbs
           links={[
             {
@@ -132,7 +132,7 @@ export default function ServiceDetailsView() {
           )}
 
           <Grid xs={12} md={12}>
-            <Card sx={{ p: 3 }}>
+            <Card sx={{ pb: 2 }}>
               <ProductDetailsCarousel />
             </Card>
           </Grid>
