@@ -8,17 +8,6 @@ import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-// ----------------------------------------------------------------------
-
-const CORE_VALUES = [
-  'tabler:car-turbine',
-  'carbon:3d-curve-auto-colon',
-  'tabler:car-turbine',
-  'carbon:airport-location',
-];
-
-// ----------------------------------------------------------------------
-
 export default function Vision() {
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');

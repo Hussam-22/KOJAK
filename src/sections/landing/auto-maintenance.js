@@ -1,26 +1,10 @@
-import PropTypes from 'prop-types';
-
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
 
 export default function AutoMaintenance() {
-  return (
-    <GroupSection
-      brand="Kojak Auto-Maintenance"
-      backgroundURL="/assets/images/original/6.webp"
-      mainText="Visit Kojak Auto Maintenance Shop"
-      subText="Book an Appointment Online or Visit Kojak Auto-Maintenance Shop and let our expert team
-                fix your car with experience since 1986 in Mercedes-Benz Cars"
-      buttonText="Visit Kojak Auto-Maintenance Website"
-    />
-  );
-}
-
-function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
-  const theme = useTheme();
   const { translate } = useLocales();
 
   return (
@@ -37,13 +21,13 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
           }}
           spacing={3}
         >
-          <Typography variant="h2">{mainText}</Typography>
-          <Typography variant="body1">{subText}</Typography>
+          <Typography variant="h2">{translate('landing.auto.mainText')}</Typography>
+          <Typography variant="body1">{translate('landing.auto.subText')}</Typography>
 
           <Box
             sx={{
               borderRadius: 2,
-              px: 3,
+              px: 1,
             }}
           >
             <Box
@@ -69,7 +53,7 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
               sx={{ bgcolor: 'custom.auto', color: 'secondary.main' }}
               // onClick={() => navigate(paths.website.bookAppointment)}
             >
-              {buttonText}
+              {translate('landing.auto.buttonText')}
             </Button>
           </Box>
         </Stack>
@@ -77,11 +61,3 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
     </Box>
   );
 }
-
-GroupSection.propTypes = {
-  brand: PropTypes.string,
-  backgroundURL: PropTypes.string,
-  mainText: PropTypes.string,
-  subText: PropTypes.string,
-  buttonText: PropTypes.string,
-};

@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router';
 
 import { Box, Stack, Button, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import { fNumber } from 'src/utils/format-number';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 
 function FeaturesBar({ vehicleInfo }) {
+  const { translate } = useLocales();
   const navigate = useNavigate();
   const { year, price, milage, engineType } = vehicleInfo;
 
@@ -15,7 +17,7 @@ function FeaturesBar({ vehicleInfo }) {
     <Box>
       <Stack direction="column" sx={{ mb: 2 }}>
         <Typography variant="overline" sx={{ color: 'common.white' }}>
-          {vehicleInfo.brand}
+          {translate(`common.${vehicleInfo.brand.toLowerCase()}`)}
         </Typography>
         <Typography variant="h3" sx={{ color: 'common.white' }}>
           {vehicleInfo.model}
@@ -32,8 +34,8 @@ function FeaturesBar({ vehicleInfo }) {
         <VehicleFeature icon="fa-solid:road" value={`${fNumber(milage)} Km`} />
         <VehicleFeature icon="ph:engine" value={engineType} />
 
-        <Stack direction="column" alignItems="center">
-          <Typography sx={{ color: 'common.white' }}>Color</Typography>
+        <Stack direction="column" alignItems="center" spacing={1}>
+          <Typography sx={{ color: 'common.white' }}> {translate('common.color')}</Typography>
           <Stack direction="row" spacing={1}>
             <Box
               sx={{
@@ -63,7 +65,7 @@ function FeaturesBar({ vehicleInfo }) {
             onClick={() => navigate(paths.website.servicesDetails + vehicleInfo.id)}
             color="primary"
           >
-            View Details
+            {translate('common.moreDetails')}
           </Button>
         </Box>
       </Stack>

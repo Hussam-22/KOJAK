@@ -2,34 +2,34 @@ import { useState, useEffect } from 'react';
 
 import { Box, Stack, useTheme, Skeleton, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import VehicleCard from 'src/sections/services/vehicle-card';
 
 function VehiclesList() {
   const theme = useTheme();
+  const { translate } = useLocales();
   const { addNewCar, getCars, fsListAllFolderItems } = useAuthContext();
   const [vehiclesList, setVehiclesList] = useState([]);
 
   useEffect(() => {
     (async () => {
       setVehiclesList(await getCars());
-      //   setImagesList(await fsListAllFolderItems('GIUOlkdajcxIyQ3LJUW9'));
     })();
   }, [fsListAllFolderItems, getCars]);
 
-  const addCar = async () => addNewCar();
+  // const addCar = async () => addNewCar();
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
-        // maxWidth="xl"
         sx={{
           pt: 5,
         }}
       >
         <Stack spacing={2} sx={{ mb: 5, textAlign: 'center' }}>
           <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>
-            Find your dream car,{' '}
+            {translate('inventory.title')}
             <Box
               component="span"
               sx={{
@@ -38,10 +38,10 @@ function VehiclesList() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              make it yours !!
+              {translate('inventory.titlePartTwo')}
             </Box>
           </Typography>
-          <Typography>{`We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.`}</Typography>
+          <Typography>{translate('inventory.subTitle')}</Typography>
         </Stack>
       </Container>
 

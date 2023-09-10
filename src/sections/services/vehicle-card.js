@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 
 import { Box, Link, Card, Stack, Button, Divider, useTheme, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
-import Label from 'src/components/label/Label';
 import Image from 'src/components/image/Image';
+import Label from 'src/components/label/Label';
 import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
@@ -21,6 +22,7 @@ function VehicleCard({ vehicleInfo }) {
   const { brand, model, year, price, engineType, milage, id, isFeatured, qty } = vehicleInfo;
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imageURL, setImageURL] = useState(null);
+  const { translate } = useLocales();
 
   const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ function VehicleCard({ vehicleInfo }) {
           sx={{ position: 'absolute', top: 15, left: 15, zIndex: 9 }}
           endIcon={<Iconify icon="ic:round-star" />}
         >
-          Spotlight
+          {translate('landing.spotLight.spotLight')}
         </Label>
       )}
 
@@ -59,7 +61,9 @@ function VehicleCard({ vehicleInfo }) {
               // underline="none"
               sx={{ color: 'secondary.main' }}
             >
-              <Typography variant="caption">{brand}</Typography>
+              <Typography variant="caption">
+                {translate(`common.${brand.toLowerCase()}`)}
+              </Typography>
 
               <TextMaxLine variant="h4" line={1}>
                 {model}
@@ -74,7 +78,7 @@ function VehicleCard({ vehicleInfo }) {
               onClick={() => navigate(paths.website.servicesDetails + id)}
               sx={{ whiteSpace: 'nowrap' }}
             >
-              More Details
+              {translate('common.moreDetails')}
             </Button>
           </Box>
         </Stack>

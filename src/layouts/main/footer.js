@@ -139,7 +139,7 @@ export default function Footer() {
                 lineHeight: 1,
               }}
             >
-              SINCE 1983
+              {translate(`footer.since`)}
             </Typography>
           </Grid>
         </Grid>

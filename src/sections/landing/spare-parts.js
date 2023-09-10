@@ -1,26 +1,11 @@
-import PropTypes from 'prop-types';
-
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 
 export default function SpareParts() {
-  return (
-    <GroupSection
-      brand="Kojak Spare-Parts"
-      backgroundURL="/assets/images/original/6.webp"
-      mainText="Visit Kojak Spare-Parts Shop"
-      subText="Looking for Geniun Parts for your Mercedes, Visit Kojak Spare-Parts Shop or explore our spare-parts inventory online by visiting Kojak Spare-Parts Website"
-      buttonText="Visit Kojak Spare-Parts Website"
-    />
-  );
-}
-
-function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
   const theme = useTheme();
   const { translate } = useLocales();
-
   return (
     <Box
       sx={{
@@ -35,14 +20,14 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
           }}
           spacing={3}
         >
-          <Typography variant="h2">{mainText}</Typography>
-          <Typography variant="body1">{subText}</Typography>
+          <Typography variant="h2">{translate('landing.spareParts.mainText')}</Typography>
+          <Typography variant="body1">{translate('landing.spareParts.subText')}</Typography>
 
           <Box
             sx={{
               // bgcolor: 'background.paper',
               borderRadius: 2,
-              px: 3,
+              px: 1,
             }}
           >
             <Box
@@ -58,7 +43,7 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
                   key={`/assets/images/parts/part-${index + 1}.webp`}
                   src={`/assets/images/parts/part-${index + 1}.webp`}
                   alt={`car-part-${index + 1}`}
-                  sx={{ borderRadius: 2 }}
+                  sx={{ borderRadius: 1 }}
                 />
               ))}
             </Box>
@@ -72,7 +57,7 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
               sx={{ bgcolor: 'custom.spareParts' }}
               // onClick={() => navigate(paths.website.bookAppointment)}
             >
-              {buttonText}
+              {translate('landing.spareParts.buttonText')}
             </Button>
           </Box>
         </Stack>
@@ -80,11 +65,3 @@ function GroupSection({ brand, backgroundURL, mainText, subText, buttonText }) {
     </Box>
   );
 }
-
-GroupSection.propTypes = {
-  brand: PropTypes.string,
-  backgroundURL: PropTypes.string,
-  mainText: PropTypes.string,
-  subText: PropTypes.string,
-  buttonText: PropTypes.string,
-};

@@ -22,17 +22,34 @@ import ProductDetailsCarousel from 'src/sections/services/components/product-det
 
 export default function ServiceDetailsView() {
   const theme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   const loading = useBoolean(true);
   const { vehicleID } = useParams();
   const { getVehicleInfo } = useAuthContext();
   const [vehicleInfo, setVehicleInfo] = useState();
 
+  console.log(translate(`common.${vehicleInfo?.brand?.toLowerCase() || ''}`));
+
   const payload = {
-    subject: `I would like to inquire about, ${vehicleInfo?.brand} ${vehicleInfo?.model} ${vehicleInfo?.price}`,
+    subject: `${translate('inventory.formText')} ${translate(
+      `common.${vehicleInfo?.brand?.toLowerCase() || ''}`
+    )} ${vehicleInfo?.model} ${vehicleInfo?.price.replace(
+      'AED',
+      currentLang.value === 'en' ? 'AED' : 'درهم'
+    )}`,
     source: 'Vehicle Inquiry',
   };
+
+  const newDescription =
+    currentLang.value === 'en'
+      ? 'Export price outside GCC countries - Price Without VAT & Without Customs Duty'
+      : 'سعر التصدير خارج دول مجلس التعاون الخليجي - السعر بدون ضريبة القيمة المضافة وبدون الرسوم الجمركية';
+
+  const usedDescription =
+    currentLang.value === 'en'
+      ? 'Export price outside GCC countries - Price Without VAT & Without Customs Duty'
+      : 'سعر التصدير خارج دول مجلس التعاون الخليجي - السعر بدون ضريبة القيمة المضافة وبدون الرسوم الجمركية';
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -58,39 +75,47 @@ export default function ServiceDetailsView() {
         <CustomBreadcrumbs
           links={[
             {
-              name: 'Home',
+              name: translate('header.home'),
               href: '/',
             },
             {
-              name: 'Inventory',
+              name: translate('header.services'),
               href: paths.website.services,
             },
             {
-              name: `${vehicleInfo?.brand || ''} - ${vehicleInfo?.model || ''}`,
+              name: `${translate(`common.${vehicleInfo?.brand?.toLowerCase() || ''}`)} - ${
+                vehicleInfo?.model || ''
+              }`,
             },
           ]}
           sx={{ my: 2 }}
         />
 
         <Grid container spacing={3}>
-          {vehicleInfo?.id && (
+          {vehicleInfo?.id !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
                 <Stack
                   direction={{ md: 'row', xs: 'column' }}
                   justifyContent="space-between"
                   alignItems="center"
+                  spacing={2}
                 >
                   <Stack sx={{ mb: 2 }}>
                     <Typography variant="h2" color="primary">
-                      {vehicleInfo.price}
+                      {vehicleInfo?.price.replace(
+                        'AED',
+                        currentLang.value === 'en' ? 'AED' : 'درهم'
+                      )}
                     </Typography>
                     <Stack direction="row" spacing={1}>
-                      <Typography variant="h4">{vehicleInfo.brand}</Typography>
-                      <Typography variant="h4">{vehicleInfo.model}</Typography>
+                      <Typography variant="h4">
+                        {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
+                      </Typography>
+                      <Typography variant="h4">{vehicleInfo?.model}</Typography>
                     </Stack>
                     <Typography sx={{ color: 'text.disabled' }}>
-                      {vehicleInfo.description}
+                      {vehicleInfo?.isUsed ? usedDescription : newDescription}
                     </Typography>
                   </Stack>
 
@@ -103,26 +128,26 @@ export default function ServiceDetailsView() {
                   >
                     <VehicleFeature
                       icon="mdi:car-door"
-                      value={vehicleInfo.exteriorColor}
+                      value={vehicleInfo?.exteriorColor}
                       large={!!mdUp}
                       color
                     />
                     <VehicleFeature
                       icon="mdi:car-seat"
-                      value={vehicleInfo.interiorColor}
+                      value={vehicleInfo?.interiorColor}
                       large={!!mdUp}
                       color
                     />
 
-                    <VehicleFeature icon="uim:calender" value={vehicleInfo.year} large={!!mdUp} />
+                    <VehicleFeature icon="uim:calender" value={vehicleInfo?.year} large={!!mdUp} />
                     <VehicleFeature
                       icon="fa-solid:road"
-                      value={`${fNumber(vehicleInfo.milage)} Km`}
+                      value={`${fNumber(vehicleInfo?.milage)} Km`}
                       large={!!mdUp}
                     />
                     <VehicleFeature
                       icon="ph:engine"
-                      value={vehicleInfo.engineType}
+                      value={vehicleInfo?.engineType}
                       large={!!mdUp}
                     />
                   </Box>
@@ -139,18 +164,17 @@ export default function ServiceDetailsView() {
 
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
-              <Typography variant="h2">Vehicle Details</Typography>
+              <Typography variant="h2">{translate('inventory.vehicleDetails')}</Typography>
               <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
-                {vehicleInfo.features}
+                {currentLang.value === 'en' ? vehicleInfo?.features : vehicleInfo?.translated.ar}
               </Typography>
-              {/* <VehicleDetailsInfo vehicleInfo={vehicleInfo.features} /> */}
             </Card>
           </Grid>
 
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
               <Typography variant="h2" sx={{ mb: 2 }}>
-                Make it Yours !!
+                {translate('inventory.makeItYours')}
               </Typography>
               <ContactUsForm payload={payload} />
             </Card>
@@ -160,19 +184,19 @@ export default function ServiceDetailsView() {
             <Card sx={{ p: 3 }}>
               <Stack spacing={3}>
                 <Box>
-                  <Typography variant="h2">Warranty</Typography>
+                  <Typography variant="h2"> {translate('inventory.warranty.title')}</Typography>
                   <Typography
                     sx={{ whiteSpace: 'pre-line', fontWeight: theme.typography.fontWeightLight }}
                   >
-                    {translate('inventory.warranty')}
+                    {translate('inventory.warranty.text')}
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography variant="h2">Export</Typography>
+                  <Typography variant="h2">{translate('inventory.export.title')}</Typography>
                   <Typography
                     sx={{ whiteSpace: 'pre-line', fontWeight: theme.typography.fontWeightLight }}
                   >
-                    {translate('inventory.export')}
+                    {translate('inventory.export.text')}
                   </Typography>
                 </Box>
               </Stack>

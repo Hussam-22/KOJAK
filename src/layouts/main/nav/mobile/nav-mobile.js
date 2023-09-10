@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
+import { Box, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
 import Logo from 'src/components/logo';
+import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
@@ -50,6 +51,10 @@ export default function NavMobile({ data, toggleLanguage }) {
         >
           {currentLang.value === 'en' ? 'ع' : 'En'}
         </IconButton> */}
+
+        <Box sx={{ width: 48, height: 48 }} component={IconButton} onClick={toggleLanguage}>
+          <Image src="/assets/illustrations/translate.svg" />
+        </Box>
 
         <IconButton
           onClick={mobileOpen.onTrue}

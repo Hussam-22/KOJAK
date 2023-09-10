@@ -37,21 +37,13 @@ function InternationalBusiness() {
         }}
       >
         <Stack spacing={3} sx={{ maxWidth: { md: '60%' } }}>
-          <Typography variant="h2">
-            International Destination for Mercedes-Benz automotive
-          </Typography>
+          <Typography variant="h2">{translate('landing.international.title')}</Typography>
           <Typography
             sx={{
               fontWeight: theme.typography.fontWeightLight,
             }}
           >
-            Catering to discerning customers from over 50 countries worldwide, Kojak-Exclusive has
-            established itself as a global leader in the luxury automotive industry. Our commitment
-            to delivering top-tier Mercedes-Benz vehicles and unrivaled service knows no borders.
-            With a clientele that spans the globe, we take immense pride in being a trusted
-            destination for individuals seeking luxury, quality, and distinction in their automotive
-            choices. Our international reach is a testament to the excellence we consistently
-            provide, and we look forward to expanding our global family of satisfied customers
+            {translate('landing.international.subTitle')}
           </Typography>
 
           <Box
@@ -85,7 +77,7 @@ function InternationalBusiness() {
 
           <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
             <Button variant="contained" size="large" color="primary">
-              Explore Inventory
+              {translate('common.actionButton')}
             </Button>
           </Box>
         </Stack>

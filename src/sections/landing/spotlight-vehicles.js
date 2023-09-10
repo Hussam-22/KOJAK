@@ -6,9 +6,10 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
 import CardContent from '@mui/material/CardContent';
-import { Container, Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
+import { Stack, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
@@ -21,13 +22,16 @@ import Carousel, { useCarousel, CarouselArrows, CarouselArrowIndex } from 'src/c
 // ----------------------------------------------------------------------
 
 export default function SpotlightVehicles() {
+  const { translate } = useLocales();
   const { getFeaturedCars } = useAuthContext();
   const [featuredCars, setFeatureCars] = useState([]);
   const mdUp = useResponsive('up', 'md');
+  const theme = useTheme();
 
   const carousel = useCarousel({
     speed: 800,
     autoplay: true,
+    rtl: Boolean(theme.direction === 'rtl'),
   });
 
   useEffect(() => {
@@ -38,16 +42,12 @@ export default function SpotlightVehicles() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
-      <Box sx={{ mb: 6, maxWidth: { md: '60%' } }}>
+      <Stack spacing={2} sx={{ mb: 6, maxWidth: { md: '60%' } }}>
         <Typography variant="h1" color="secondary">
-          Spotlight Vehicles
+          {translate('landing.spotLight.title')}
         </Typography>
-        <Typography color="secondary">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum tempora maxime esse voluptate
-          pariatur placeat perspiciatis, sequi repellendus, nostrum consequuntur, ea quibusdam modi
-          sit. Molestias modi accusantium architecto suscipit nobis!
-        </Typography>
-      </Box>
+        <Typography color="secondary">{translate('landing.spotLight.subTitle')}</Typography>
+      </Stack>
 
       <Card>
         <CarouselArrows
@@ -134,7 +134,7 @@ function CarouselItem({ vehicleInfo, active }) {
           position: 'absolute',
           ...bgGradient({
             direction: 'to top',
-            startColor: `${theme.palette.grey[900]} 0%`,
+            startColor: `${theme.palette.grey[900]} ${theme.direction === 'rtl' ? '100%' : '0%'} `,
             endColor: `${alpha(theme.palette.grey[900], 0)} 40%`,
           }),
         }}
@@ -153,24 +153,6 @@ function CarouselItem({ vehicleInfo, active }) {
           color: 'common.white',
         }}
       >
-        {/* <m.div variants={variants}>
-          <Typography variant="h3" gutterBottom>
-            {vehicleInfo.brand}
-          </Typography>
-        </m.div>
-
-        <m.div variants={variants}>
-          <Typography variant="body2" noWrap gutterBottom>
-            {vehicleInfo.model}
-          </Typography>
-        </m.div>
-
-        <m.div variants={variants}>
-          <Button variant="contained" sx={{ mt: 3 }}>
-            View More
-          </Button>
-        </m.div> */}
-
         <m.div variants={variants}>
           <FeaturesBar vehicleInfo={vehicleInfo} />
         </m.div>

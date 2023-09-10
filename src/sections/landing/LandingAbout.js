@@ -9,7 +9,7 @@ function LandingAbout() {
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
   return (
-    <Box sx={{ bgcolor: 'secondary.main', px: 2 }}>
+    <Box sx={{ bgcolor: 'secondary.main', px: 1 }}>
       <Container maxWidth="xl" sx={{ py: { md: 15, xs: 10 }, position: 'relative' }}>
         {mdUp && (
           <Typography
@@ -22,7 +22,7 @@ function LandingAbout() {
               zIndex: 0,
             }}
           >
-            40 YEARS
+            {translate('landing.about.fortyYears')}
           </Typography>
         )}
         <Grid container>
@@ -34,11 +34,11 @@ function LandingAbout() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              px: 2,
+              px: { md: 2, xs: 0 },
             }}
           >
             <Typography variant="h1" color="primary">
-              About us
+              {translate('landing.about.title')}
             </Typography>
             {!mdUp && (
               <Image
@@ -53,7 +53,9 @@ function LandingAbout() {
                 fontWeight: theme.typography.fontWeightLight,
                 color: 'common.white',
               }}
-            >{`For over four decades, Kojak-Exclusive has proudly served as a trusted destination for Mercedes enthusiasts. With a legacy spanning 40 years, our commitment to excellence in the world of luxury automobiles has only grown stronger. We've witnessed the evolution of Mercedes-Benz vehicles and have been privileged to be part of countless journeys, delivering dreams on wheels to our valued customers. Our enduring experience is a testament to Kojak-Exclusive's dedication to providing exceptional service, expertise, and a passion for all things Mercedes. As we continue this journey, we look forward to another 40 years of bringing the epitome of luxury to our cherished clients.`}</Typography>
+            >
+              {translate('landing.about.subTitle')}
+            </Typography>
           </Grid>
           <Grid md={6}>
             <Image

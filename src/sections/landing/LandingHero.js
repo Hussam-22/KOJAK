@@ -12,13 +12,9 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function LandingHero() {
-  const mdUp = useResponsive('up', 'md');
-
-  // return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
   return <RenderDesktopHero />;
 }
 
@@ -26,7 +22,7 @@ function RenderDesktopHero() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate, currentLang } = useLocales();
+  const { translate } = useLocales();
   return (
     <Box
       sx={{
@@ -65,7 +61,7 @@ function RenderDesktopHero() {
                   color: 'common.white',
                 }}
               >
-                {translate('hero.heroText')}
+                {translate('landing.hero.heroText')}
                 <Box
                   component="span"
                   sx={{
@@ -74,12 +70,14 @@ function RenderDesktopHero() {
                     WebkitTextFillColor: 'transparent',
                   }}
                 >
-                  {translate('hero.partOne')}
+                  {translate('landing.hero.partOne')}
                 </Box>
-                <Box component="span">{translate('hero.partTwo')}</Box>
+                <Box component="span">{translate('landing.hero.partTwo')}</Box>
               </Typography>
 
-              <Typography sx={{ color: 'common.white' }}>{translate('hero.subText')}</Typography>
+              <Typography sx={{ color: 'common.white' }}>
+                {translate('landing.hero.subText')}
+              </Typography>
 
               <Box>
                 <Button
@@ -95,47 +93,6 @@ function RenderDesktopHero() {
           </Grid>
         </Grid>
       </Container>
-    </Box>
-  );
-}
-
-// -------------------------------------------------------
-
-function RenderMobileHero() {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  const { translate } = useLocales();
-  return (
-    <Box
-      sx={{
-        height: '100dvh',
-        display: 'flex',
-        position: 'relative',
-      }}
-    >
-      <Image
-        src="/assets/images/hero/hero-mobile.webp"
-        sx={{ position: 'absolute', bottom: 0, left: 0 }}
-        alt="kojak-auto-maintenance-hero-img"
-      />
-      <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
-        <Typography variant="h1" color="primary">
-          {translate('hero.heroText')}
-        </Typography>
-        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-          {translate('hero.subText')}
-        </Typography>
-        <Box>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => navigate(paths.website.bookAppointment)}
-          >
-            {translate('common.bookAppointment')}
-          </Button>
-        </Box>
-      </Stack>
     </Box>
   );
 }

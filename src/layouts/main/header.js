@@ -4,20 +4,21 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Backdrop, CircularProgress } from '@mui/material';
+import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
+import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
@@ -103,14 +104,18 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.actionButton')}
                   </Button>
-                  {/* <Divider
+                  <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                   />
-                  <IconButton disableRipple color="primary" onClick={toggleLanguageHandler}>
-                    {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton> */}
+                  <Box
+                    sx={{ width: 48, height: 48 }}
+                    component={IconButton}
+                    onClick={toggleLanguageHandler}
+                  >
+                    <Image src="/assets/illustrations/translate.svg" />
+                  </Box>
                 </Stack>
               )}
             </Stack>
