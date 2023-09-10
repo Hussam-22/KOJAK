@@ -176,7 +176,7 @@ export default function ServiceDetailsView() {
               <Typography variant="h2" sx={{ mb: 2 }}>
                 {translate('inventory.makeItYours')}
               </Typography>
-              <ContactUsForm payload={payload} />
+              {vehicleInfo?.id !== undefined && <ContactUsForm payload={payload} />}
             </Card>
           </Grid>
 

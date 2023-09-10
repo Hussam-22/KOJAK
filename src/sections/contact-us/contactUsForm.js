@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Stack } from '@mui/material';
@@ -33,7 +33,7 @@ export default function ContactUsForm({ payload }) {
     setOpen(false);
   };
 
-  const CareerContactSchema = Yup.object().shape({
+  const schema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string().required('Mobile number is required'),
     email: Yup.string().email('That is not an email'),
@@ -41,24 +41,33 @@ export default function ContactUsForm({ payload }) {
     messageText: Yup.string().required('Message is required'),
   });
 
-  const defaultValues = {
-    fullName: '',
-    mobile: '',
-    email: '',
-    subject: payload?.subject || '',
-    messageText: '',
-  };
+  const defaultValues = useMemo(
+    () => ({
+      fullName: '',
+      mobile: '',
+      email: '',
+      subject: payload?.subject || '',
+      messageText: '',
+    }),
+    [payload?.subject]
+  );
 
   const methods = useForm({
-    resolver: yupResolver(CareerContactSchema),
+    resolver: yupResolver(schema),
     defaultValues,
   });
 
   const {
     reset,
     handleSubmit,
-    formState: { isSubmitting },
+    setValue,
+    formState: { isSubmitting, errors },
   } = methods;
+
+  useEffect(() => {
+    if (payload?.subject !== undefined || payload?.subject !== '')
+      setValue('subject', payload?.subject);
+  }, [payload?.subject, setValue]);
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
