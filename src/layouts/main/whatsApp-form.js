@@ -131,7 +131,6 @@ export default function WhatsAppForm() {
                 </Typography>
 
                 <LoadingButton
-                  size="large"
                   type="submit"
                   variant="contained"
                   color="secondary"
