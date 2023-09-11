@@ -51,7 +51,9 @@ export default function BookAppointmentView() {
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string().required('Mobile number is required'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().email('That is not an email'),
     service: Yup.array().min(1, 'Must have at least 1 items'),
     messageText: Yup.string().required('Message is required'),
@@ -146,7 +148,7 @@ export default function BookAppointmentView() {
             <Stack spacing={2.5}>
               <RHFTextField name="fullName" label={translate('form.name')} />
 
-              <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
+              <RHFTextField name="mobile" label={translate('form.mobile')} />
 
               <RHFTextField name="email" label={translate('form.email')} />
 

@@ -34,7 +34,9 @@ export default function ContactUsForm() {
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string().required('Mobile number is required'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
@@ -103,7 +105,7 @@ export default function ContactUsForm() {
         <Stack spacing={2.5} alignItems="flex-start">
           <RHFTextField name="fullName" label={translate('form.name')} />
 
-          <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
+          <RHFTextField name="mobile" label={translate('form.mobile')} />
 
           <RHFTextField name="email" label={translate('form.email')} />
 
