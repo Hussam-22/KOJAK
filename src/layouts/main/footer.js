@@ -12,6 +12,7 @@ import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
+import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
 // ----------------------------------------------------------------------
@@ -43,6 +44,7 @@ export default function Footer() {
 
   const mainFooter = (
     <Box sx={{ bgcolor: 'common.black' }}>
+      <JoinNewsletter />
       <Divider />
 
       <Container
