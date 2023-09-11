@@ -35,8 +35,10 @@ export default function ContactUsForm({ payload }) {
 
   const schema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string().required('Mobile number is required'),
-    email: Yup.string().email('That is not an email'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
+    email: Yup.string().required().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
   });
@@ -116,7 +118,7 @@ export default function ContactUsForm({ payload }) {
           <RHFTextField
             name="mobile"
             label={translate('form.mobile')}
-            type="number"
+            // type="number"
             variant="outlined"
           />
 
