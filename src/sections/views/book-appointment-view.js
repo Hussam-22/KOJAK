@@ -26,9 +26,31 @@ const DIALOG_CONTENT = {
 };
 
 export default function BookAppointmentView() {
-  const { addNewForm } = useAuthContext();
+  const { addNewForm, getOffers } = useAuthContext();
   const { translate, currentLang } = useLocales();
   const [open, setOpen] = useState(false);
+  const [offers, setOffers] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      setOffers(await getOffers());
+    })();
+  }, [getOffers]);
+
+  const servicesList = [
+    ..._autoRepairServices,
+    ...offers.map((offer) => ({
+      description:
+        currentLang.value === 'en'
+          ? offer.offerDetails.description
+          : offer.translated.description.ar,
+      serviceName:
+        currentLang.value === 'en' ? offer.offerDetails.service : offer.translated.service.ar,
+      price: offer.offerDetails.price === '' ? 'Free' : offer.offerDetails.price,
+      isOffer: true,
+      id: offer.id,
+    })),
+  ];
 
   const today = new Date();
 
@@ -180,20 +202,16 @@ export default function BookAppointmentView() {
                 fullWidth
                 name="service"
                 label={translate('form.serviceType')}
-                options={_autoRepairServices
+                options={servicesList
                   .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
                   .sort((a, b) => b.isOffer - a.isOffer)
                   .map((service, index) => ({
                     isOffer: service.isOffer,
                     value: service.isOffer
-                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
-                          `hotOffers.cards.${index + 1}.price`
-                        )}`
+                      ? `${service.serviceName} - ${service.price}`
                       : translate(`services.items.${service.icon}.serviceName`),
                     label: service.isOffer
-                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
-                          `hotOffers.cards.${index + 1}.price`
-                        )}`
+                      ? `${service.serviceName} - ${service.price}`
                       : translate(`services.items.${service.icon}.serviceName`),
                   }))}
               />
