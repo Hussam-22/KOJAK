@@ -24,12 +24,10 @@ export default function LandingTestimonial() {
       <Grid container spacing={3}>
         <Grid md={5} xs={12}>
           <Typography variant="h2" sx={{ zIndex: 9, color: 'common.white', mb: 2 }}>
-            What our customers say
+            {translate('testimonial.title')}
           </Typography>
           <Typography variant="h6" sx={{ zIndex: 9, fontWeight: theme.typography.fontWeightLight }}>
-            At KOJAK, we take immense pride in providing top-notch services for Mercedes car owners.
-            But don&#39;t just take our word for it – here&#39;s what our valued customers have to
-            say about their experiences with us:
+            {translate('testimonial.description')}
           </Typography>
 
           {mdUp && (
@@ -40,7 +38,7 @@ export default function LandingTestimonial() {
               sx={{ mt: 2 }}
               onClick={() => navigate(paths.website.bookAppointment)}
             >
-              {translate('common.exploreProperties')}
+              {translate('common.bookAppointment')}
             </Button>
           )}
         </Grid>
@@ -52,16 +50,14 @@ export default function LandingTestimonial() {
               sx={{ p: 3, borderRadius: 1, bgcolor: 'primary.main', color: 'common.black' }}
             >
               <Iconify icon="carbon:quotes" sx={{ width: 48, height: 48, color: 'common.black' }} />
-              <Typography>
-                {` Exceptional Service! I've been a loyal customer of KOjak for years, and I couldn't be happier with the level of expertise and care they provide for my Mercedes. From routine maintenance to complex repairs, their team of skilled technicians always goes above and beyond. My car runs like a dream, thanks to Kojak. I wouldn't trust anyone else with my Mercedes!`}
-              </Typography>
+              <Typography>{translate('testimonial.testimonialOne.text')}</Typography>
               <Stack direction="row" alignItems="center">
                 <Avatar
                   src="/assets/images/avatar/avatar_8.svg"
                   sx={{ width: 48, height: 48 }}
                   alt="Testimonial-Avatar-1"
                 />
-                <Typography>Rashed Mohamed</Typography>
+                <Typography> {translate('testimonial.testimonialOne.author')}</Typography>
               </Stack>
             </Stack>
 
@@ -70,16 +66,14 @@ export default function LandingTestimonial() {
               sx={{ p: 3, borderRadius: 1, bgcolor: 'common.white', color: 'common.black' }}
             >
               <Iconify icon="carbon:quotes" sx={{ width: 48, height: 48, color: 'common.black' }} />
-              <Typography>
-                {`I can't express how grateful I am for Kojak. Their Mercedes expertise is unmatched, and their dedication to customer satisfaction is truly commendable. They took the time to explain the issues with my car and provided a transparent breakdown of the costs. The repairs were done quickly, and my Mercedes feels brand new. I highly recommend Kojak to all Mercedes owners`}
-              </Typography>
+              <Typography>{translate('testimonial.testimonialTwo.text')}</Typography>
               <Stack direction="row" alignItems="center">
                 <Avatar
                   src="/assets/images/avatar/avatar_7.svg"
                   sx={{ width: 48, height: 48 }}
                   alt="Testimonial-Avatar-2"
                 />
-                <Typography>Moza Ahmad</Typography>
+                <Typography>{translate('testimonial.testimonialTwo.author')}</Typography>
               </Stack>
             </Stack>
           </Stack>

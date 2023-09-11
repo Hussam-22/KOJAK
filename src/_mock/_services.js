@@ -3,14 +3,35 @@ import { _mock } from 'src/_mock/_mock';
 const AutoRepairServices = [
   {
     serviceName: 'Major Service',
-    description: `Elevate your Mercedes' performance and longevity with our Major Service package at Kojak. This comprehensive offering covers essential components, Replacing Engine oil, Oil filter, Transmission oil, Transmission filter & gasket, Spark plugs, A/C filter, Air filter.`,
+    description: `Mercedes-Benz Major Maintenance Service, is a comprehensive and thorough maintenance procedure designed to address the more extensive needs of your Mercedes-Benz vehicle. This service is typically recommended at longer intervals than minor services and aims to ensure the vehicle's continued reliability, safety, and performance.`,
     icon: 'major',
+    serviceItems: [
+      { serviceName: 'engineOil', icon: 'oil' },
+      { serviceName: 'transmissionOil', icon: 'gear' },
+      { serviceName: 'gasket', icon: 'gasket' },
+      { serviceName: 'sparkPlug', icon: 'spark' },
+      { serviceName: 'cabinFilter', icon: 'filter' },
+      { serviceName: 'airFilter', icon: 'filter' },
+      { serviceName: 'tire', icon: 'tire' },
+      { serviceName: 'break', icon: 'break' },
+      { serviceName: 'battery', icon: 'batterylight' },
+      { serviceName: 'inspect', icon: 'inspection' },
+      { serviceName: 'Indicator', icon: 'indicator' },
+    ],
     isDisabled: false,
   },
   {
     serviceName: 'Minor Service',
-    description: `Our Minor Service at Kojak is all about the details. We replace engine oil, install a fresh oil filter, check tires, inspect brakes, top up fluids, visually inspect components, and reset your service indicator. `,
+    description: `A Mercedes Minor Service is a routine maintenance service specifically designed for Mercedes-Benz vehicles to ensure their optimal performance, safety, and longevity.`,
     icon: 'minor',
+    serviceItems: [
+      { serviceName: 'engineOil', icon: 'oil' },
+      { serviceName: 'tire', icon: 'tire' },
+      { serviceName: 'break', icon: 'break' },
+      { serviceName: 'battery', icon: 'batterylight' },
+      { serviceName: 'inspect', icon: 'inspection' },
+      { serviceName: 'Indicator', icon: 'indicator' },
+    ],
     isDisabled: false,
   },
   // --------------------------------------------------------
@@ -19,11 +40,6 @@ const AutoRepairServices = [
     description: 'Regular oil changes are essential to keep your engine running smoothly.',
     icon: 'oil',
     isDisabled: false,
-  },
-  {
-    serviceName: 'Tire Rotation and Balancing',
-    description: 'This helps extend the life of your tires and ensures even wear.',
-    icon: 'tirebalance',
   },
   {
     serviceName: 'Brake Service',
@@ -44,6 +60,14 @@ const AutoRepairServices = [
     description:
       'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
     icon: 'engine',
+    isDisabled: false,
+  },
+
+  {
+    serviceName: 'Engine Installation',
+    description:
+      'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+    icon: 'engine-replace',
     isDisabled: false,
   },
 
@@ -73,6 +97,7 @@ const AutoRepairServices = [
     serviceName: 'Battery Replacement',
     description: 'When your battery no longer holds a charge, it needs to be replaced.',
     icon: 'batterylight',
+    isDisabled: false,
   },
 
   {
@@ -90,82 +115,11 @@ const AutoRepairServices = [
     isDisabled: false,
   },
   {
-    serviceName: 'Car Inspection',
-    description: 'get free car inspection prior booking online',
-    icon: 'solar:clipboard-check-outline',
-    price: 'Free',
-    isOffer: true,
+    serviceName: 'Tire Rotation and Balancing',
+    description: 'This helps extend the life of your tires and ensures even wear.',
+    icon: 'tirebalance',
     isDisabled: false,
   },
-  {
-    serviceName: 'AC Gas Refill',
-    description: 'get cool air in this hot summer, Inspect your AC & get Gas Refill',
-    icon: 'ph:fan',
-    price: '80 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Break Replacement',
-    description: 'Breaks Inspection, Replacement & Resurfacing of break pads',
-    icon: 'icon-park-twotone:brake-pads',
-    price: '320 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Computer Diagnosis',
-    description: 'diagnosis your car computer for any errors and get full report',
-    icon: 'solar:cpu-linear',
-    price: '100 AED',
-    isOffer: true,
-    isDisabled: false,
-  },
-  {
-    serviceName: 'Engine Installation',
-    description:
-      'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
-    icon: 'engine-replace',
-    isDisabled: false,
-  },
-
-  // {
-  //   serviceName: 'Tire Repair and Replacement',
-  //   description:
-  //     'This includes patching punctured tires, fixing flats, or replacing damaged or worn-out tires.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Steering System Repair',
-  //   description:
-  //     'This covers issues with the power steering system, including the pump, hoses, and steering rack.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Exterior and Interior Detailing',
-  //   description: "Enhances your vehicle's exterior brilliance and restores its interior freshness",
-  //   icon: 'detailing',
-  //   isDisabled: false,
-  // },
-
-  // {
-  //   serviceName: 'Cooling System Service',
-  //   description:
-  //     'This involves maintenance and repair of the radiator, water pump, thermostat, and hoses.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Fuel System Service',
-  //   description:
-  //     'Services may include cleaning fuel injectors, replacing the fuel filter, or addressing fuel pump issues.',
-  //   icon: 'wheel',
-  // },
-  // {
-  //   serviceName: 'Check Engine Light Diagnosis',
-  //   description:
-  //     'Mechanics use diagnostic tools to identify and fix problems indicated by the check engine light.',
-  //   icon: 'wheel',
-  // },
 ];
 
 export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
@@ -176,4 +130,5 @@ export const _autoRepairServices = AutoRepairServices.map((service, index) => ({
   isOffer: service?.isOffer || false,
   price: service?.price || undefined,
   isDisabled: service.isDisabled,
+  serviceItems: service.serviceItems || [],
 }));

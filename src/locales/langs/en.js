@@ -1,10 +1,3 @@
-// ----------------------------------------------------------------------
-
-// IF THIS TRANSLATION IS INCORRECT PLEASE IGNORE THIS AS THIS TRANSLATION IS FOR DEMO PURPOSES ONLY
-// We are happy if you can help improve the translation by sending an email to support@minimals.cc.
-
-// ----------------------------------------------------------------------
-
 const en = {
   header: {
     home: 'Home',
@@ -12,52 +5,212 @@ const en = {
     blog: 'Blog',
     about: 'About',
     contactUs: 'Contact us',
-    bookAppointment: 'Book an Appointment',
   },
   hero: {
-    overlineText: `Looking for residential or commercial space ?`,
-    heroText: 'Specialized in Mercedes-Benz since 1986',
-    title: `in Every Repair`,
+    // overlineText: `Looking for residential or commercial space ?`,
+    heroText: 'Specialized in Mercedes-Benz ',
+    title: `Since 1986`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
+  },
+  hotOffers: {
+    title: 'HOT OFFERS',
+    cards: {
+      1: {
+        title: 'Car Inspection',
+        price: 'Free',
+        description: 'Get Free Car Inspection Prior Booking Online',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      2: {
+        title: 'AC Gas Refill',
+        price: '80 AED',
+        description: 'Get Cool Air In This Hot Summer, Inspect Your AC & Get Gas Refill',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      3: {
+        title: 'Break Replacement',
+        price: '320 AED',
+        description: 'Breaks Inspection, Replacement & Resurfacing Of Break Pads',
+        endDate: 'valid until 29-Aug-2023',
+      },
+      4: {
+        title: 'Computer Diagnosis',
+        price: '100 AED',
+        description: 'Diagnosis Your Car Computer For Any Errors And Get Full Report',
+        endDate: 'valid until 29-Aug-2023',
+      },
+    },
+  },
+  services: {
+    title: 'Auto Repair Services',
+    howItWork: 'Our Services & How it works',
+    description: `Our expert technicians are dedicated to providing top-notch care for your Mercedes vehicle. From routine maintenance to intricate repairs, we have the knowledge and experience to keep your Mercedes running at its best. We use cutting-edge technology and genuine Mercedes parts to ensure the highest quality service. Experience the luxury of specialized care for your Mercedes-Benz. Drive in today and let us elevate your Mercedes-driving experience.`,
+    howItWorksSteps: {
+      stepOne: {
+        step: 'Step One',
+        title: 'Book an Appointment',
+        description: 'Use our user-friendly online booking or give us a call.',
+      },
+      stepTwo: {
+        step: 'Step Two',
+        title: 'Evaluation',
+        description:
+          'Our experienced technicians conduct a comprehensive car evaluation to identifying issues.',
+      },
+      stepThree: {
+        step: 'Step Three',
+        title: 'Quote',
+        description:
+          'After evaluation, get a detailed quote. Understand the work, costs, and time before proceeding.',
+      },
+      stepFour: {
+        step: 'Step Four',
+        title: 'Repair',
+        description:
+          'With your approval, our skilled technicians get to work using top-notch equipment and parts.',
+      },
+      stepFive: {
+        step: 'Step Five',
+        title: 'Payment',
+        description: `Your vehicle is ready! We'll call you to confirm. Inspect, test drive, and then settle the bill with our convenient payment options.`,
+      },
+    },
+    items: {
+      major: {
+        serviceName: 'Major Service',
+        description: `Mercedes-Benz Major Maintenance Service, is a comprehensive and thorough maintenance procedure designed to address the more extensive needs of your Mercedes-Benz vehicle. This service is typically recommended at longer intervals than minor services and aims to ensure the vehicle's continued reliability, safety, and performance.`,
+        icon: 'major',
+        isDisabled: false,
+      },
+      minor: {
+        serviceName: 'Minor Service',
+        description: `A Mercedes Minor Service is a routine maintenance service specifically designed for Mercedes-Benz vehicles to ensure their optimal performance, safety, and longevity.`,
+        icon: 'minor',
+        isDisabled: false,
+      },
+      common: {
+        engineOil: 'Engine Oil & Filter',
+        transmissionOil: 'Transmission Oil & Filter',
+        gasket: 'Gasket',
+        sparkPlug: 'Spark Plugs',
+        cabinFilter: 'Cabin Air Filter Replacement',
+        airFilter: 'Air Filter Replacement',
+        tire: 'Tire Inspection and Rotation',
+        break: 'Brake Inspection',
+        inspect: 'Visually inspect components',
+        Indicator: 'Reset Service Indicator',
+        battery: 'Battery Check',
+      },
+      // --------------------------------------------------------
+      oil: {
+        serviceName: 'Oil Change',
+        description: 'Regular oil changes are essential to keep your engine running smoothly.',
+        icon: 'oil',
+        isDisabled: false,
+      },
+      break: {
+        serviceName: 'Brake Service',
+        description:
+          'This includes brake pad replacement, brake fluid flush, and rotor resurfacing or replacement.',
+        icon: 'break',
+        isDisabled: false,
+      },
+      gear: {
+        serviceName: 'Transmission Service',
+        description:
+          'This may involve changing the transmission fluid and filter or addressing more significant transmission issues.',
+        icon: 'gear',
+        isDisabled: false,
+      },
+      tirebalance: {
+        serviceName: 'Tire Rotation and Balancing',
+        description: 'This helps extend the life of your tires and ensures even wear.',
+        icon: 'tirebalance',
+        isDisabled: false,
+      },
+      engine: {
+        serviceName: 'Engine Tune-Up',
+        description:
+          'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
+        icon: 'engine',
+        isDisabled: false,
+      },
+
+      suspension: {
+        serviceName: 'Suspension Repair',
+        description:
+          'Services may involve replacing shocks, struts, control arms, or other suspension components.',
+        icon: 'suspension',
+        isDisabled: false,
+      },
+      power: {
+        serviceName: 'Electrical System Repair',
+        description:
+          "This covers problems with your vehicle's electrical components, including the battery, alternator, and starter.",
+        icon: 'power',
+        isDisabled: false,
+      },
+      ac: {
+        serviceName: 'Air Conditioning Service',
+        description:
+          'This includes recharging the AC refrigerant, fixing leaks, and repairing or replacing AC components.',
+        icon: 'ac',
+        isDisabled: false,
+      },
+
+      batterylight: {
+        serviceName: 'Battery Replacement',
+        description: 'When your battery no longer holds a charge, it needs to be replaced.',
+        icon: 'batterylight',
+      },
+
+      radiator: {
+        serviceName: 'Radiator and Cooling System Repair',
+        description: 'Services for addressing issues related to overheating and coolant leaks.',
+        icon: 'radiator',
+        isDisabled: false,
+      },
+
+      chip: {
+        serviceName: 'Diagnostics and Computerized Testing',
+        description:
+          'Using specialized tools to identify and diagnose various issues in modern vehicles.',
+        icon: 'chip',
+        isDisabled: false,
+      },
+      'engine-replace': {
+        serviceName: 'Engine Installation',
+        description:
+          'Seamless engine installation and replacement services. Our technicians provide swift and reliable solutions to keep your vehicle running',
+        icon: 'engine-replace',
+        isDisabled: false,
+      },
+    },
+  },
+
+  why: {
+    title: `We are Mercedes-Benz Experts`,
+    subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
     experience: 'Years of Experience',
     happyCustomers: 'Happy Customers',
     carsRepaired: 'Cars Repaired',
     technicians: 'Expert Technicians',
   },
-  why: {
-    title: `We are Mercedes-Benz Experts`,
-    subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
-    cards: {
-      1: {
-        title: `Transparent Transactions`,
-        subTitle: `Our commitment to transparent transactions ensures that you have a clear understanding of all the terms and conditions, empowering you to make decisions with confidence`,
-      },
-      2: {
-        title: `Customer Satisfaction`,
-        subTitle: `Over the years, we've built a reputation for excellence, and our countless satisfied clients stand as a testament to our commitment to customer happiness`,
-      },
-      3: {
-        title: `Prime Locations`,
-        subTitle: `Our portfolio includes spaces in prime and sought-after locations, offering you the benefits of accessibility, convenience, and a thriving community`,
-      },
-      4: {
-        title: `Unbeatable Prices`,
-        subTitle: `Our priority is to provide you with exceptional value. We understand that finding a quality rental at a great price is essential, and we're committed to making that a reality for you.`,
-      },
+
+  testimonial: {
+    title: 'What Our Customers Say',
+    description: `At KOJAK, we take immense pride in providing top-notch services for Mercedes car owners. But don't just take our word for it – here's what our valued customers have to say about their experiences with us:`,
+    testimonialOne: {
+      text: `Exceptional Service! I've been a loyal customer of KOjak for years, and I couldn't be happier with the level of expertise and care they provide for my Mercedes. From routine maintenance to complex repairs, their team of skilled technicians always goes above and beyond. My car runs like a dream, thanks to Kojak. I wouldn't trust anyone else with my Mercedes!`,
+      author: 'Rashed Mohamed',
+    },
+    testimonialTwo: {
+      text: `I can't express how grateful I am for Kojak. Their Mercedes expertise is unmatched, and their dedication to customer satisfaction is truly commendable. They took the time to explain the issues with my car and provided a transparent breakdown of the costs. The repairs were done quickly, and my Mercedes feels brand new. I highly recommend Kojak to all Mercedes owners`,
+      author: 'Moza Ahmad',
     },
   },
-  properties: {
-    title: 'Popular Properties',
-    subTitle: `At Kojak Building , we take pride in offering an extensive selection of both
-    commercial and residential spaces that cater to all your needs. Whether you're
-    looking to upgrade your business headquarters or find a cozy abode to call home,
-    we've got you covered.`,
-    didNotFind: 'Did not find what you are looking for ?',
-  },
-  featuredProperty: {
-    title: `Hot Deal Property `,
-  },
+
   faq: {
     title: 'Frequently Asked Questions',
     subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
@@ -103,33 +256,41 @@ const en = {
         "Yes, we stand behind the quality of our work. We offer warranties on our repairs and services, giving you added peace of mind. If you encounter any issues related to our service, simply reach out to us, and we'll address them promptly.",
     },
   },
+
+  groupAd: {
+    title: 'Experience the Difference',
+    description: `At KOJAK, we're more than an auto repair shop; we're your automotive partners. Whether you need maintenance, repairs, spare parts, or a new Mercedes, you can trust us to deliver excellence and dedication. Visit us today and explore our Mercedes spare parts and car sales showroom. Discover why Mercedes-Benz enthusiasts choose KOJAK as their trusted partner in all things Mercedes-Benz.`,
+    0: {
+      title: 'KOJAK Exclusive',
+      description: 'Looking to buy a new Mercedes ?, check our Mercedes show room website',
+    },
+    1: {
+      title: 'KOJAK Spare Parts',
+      description: `Looking for spear parts for your Mercedes ? check our spare parts website`,
+    },
+  },
+
   blog: {
     title: 'Maintenance Matters Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
   },
 
+  newsLetter: {
+    title: 'Stay Tuned, Never Miss an Offer Again!',
+    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
+  },
+
   about: {
-    aboutUs: {
-      title: 'About Us',
-      subTitle: `At Kojak  we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak   offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements.`,
-      subTitle2: `Quality is the foundation of everything we do at Kojak Building. From selecting the
-      finest properties to maintaining them to the highest standards, we are dedicated to
-      delivering excellence in every aspect of our service.`,
-    },
-    vision: 'Our Vision',
-    visionText: `Our vision is to enrich lives and empower businesses by providing them with spaces
-    that inspire creativity, productivity, and growth. We strive to be the preferred
-    choice for individuals and enterprises seeking top-notch residential and commercial
-    properties that reflect their aspirations and contribute to their success.`,
+    title: 'We Make The Best For All Our Customers.',
+    description: `Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts in UAE seeking top-notch service and care for their luxury vehicles.`,
+
+    numbers: 'The numbers speak for themselves',
+    history: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+
     mission: 'Our Mission',
-    missionText: `At Kojak Building, our mission is to create lasting impressions and enrich lives by
-    providing exceptional residential and commercial spaces that inspire, elevate, and
-    empower individuals and businesses alike.`,
+    missionText: `Our mission is clear: to keep your Mercedes-Benz running flawlessly, ensuring that every drive is a truly luxurious experience. We're not just here to fix cars; we're here to preserve and enhance the performance, safety, and beauty of your Mercedes.`,
+
     coreValues: {
-      title: 'Core Values',
-      subTitle: `Join us on this transformative journey as we shape the future of living and workspaces.
-      Together, we will create lasting impressions and unlock the true potential of every
-      space we touch.`,
       items: {
         1: {
           title: 'Specialization',
@@ -181,27 +342,20 @@ const en = {
     sitemap: 'Sitemap',
   },
 
-  testimonial: { title: 'What Our Customer Say' },
-
-  newsLetter: {
-    title: 'Stay Tuned, Never Miss an Offer Again!',
-    subTitle: `Stay Informed About Our Exclusive Offers, and Our Team Will Ensure You're Among the First to Be Notified Whenever a New Offer Arrives!`,
-  },
-
   common: {
     kojak: 'KOJAK',
-    building: 'Building',
-    exploreProperties: 'Book an Appointment',
+    autoMaintenance: 'Auto Maintenance',
+    bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',
     dialog: {
       title: `We have received your request !!`,
       subTitle: `Thank you for contact Kojak Building, one of your customer success agents will contact you soon !!`,
     },
-    search: 'Search',
-    clearSearch: 'Clear Search',
     dropMessage: 'Drop us a message',
     aed: 'AED',
+    visitWebsite: 'Visit Website',
+    showIncluded: 'Show Included Services',
   },
 
   form: {
@@ -212,11 +366,17 @@ const en = {
     message: 'Message',
     sendMsg: 'Send Message',
     register: 'Register',
+    class: 'Mercedes Class',
+    year: 'Year',
+    serviceType: 'Service Type',
+    appointmentDate: 'Appointment Date',
+    issue: 'Issue Description',
     whatsApp: {
       howCanWeHelpYou: 'How can we help you ?',
       workingHours: 'Our working hours from 9 AM to 6 PM, Saturday to Thursday',
     },
   },
+<<<<<<< HEAD
 
   websiteFilter: {
     all: { type: 'All Types', cities: 'All Cities', spaceTypes: 'All Space Types', all: 'All' },
@@ -318,6 +478,8 @@ const en = {
       },
     },
   },
+=======
+>>>>>>> staging-auto-maintenance
 };
 
 export default en;

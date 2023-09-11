@@ -8,48 +8,34 @@ import { useTheme } from '@mui/material/styles';
 import TimelineItem from '@mui/lab/TimelineItem';
 import Typography from '@mui/material/Typography';
 import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify/Iconify';
-import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
 const TIMELINES = [
   {
-    step: 'STEP 1',
-    title: 'Book an Appointment',
-    description: 'Use our user-friendly online booking or give us a call.',
+    step: 'stepOne',
     icon: 'ph:calendar-light',
   },
   {
-    step: 'STEP 2',
-    title: 'Evaluation',
-    description:
-      'Our experienced technicians conduct a comprehensive car evaluation to identifying issues.',
+    step: 'stepTwo',
     icon: 'icon-park-outline:list',
   },
   {
-    step: 'STEP 3',
-    title: 'Quote',
-    description:
-      'After evaluation, get a detailed quote. Understand the work, costs, and time before proceeding.',
+    step: 'stepThree',
     icon: 'ic:outline-request-quote',
   },
   {
-    step: 'STEP 4',
-    title: 'Repair',
-    description:
-      'With your approval, our skilled technicians get to work using top-notch equipment and parts.',
+    step: 'stepFour',
     icon: 'maki:car-repair',
   },
   {
-    step: 'STEP 5',
-    title: 'Payment',
-    description:
-      "Your vehicle is ready! We'll call you to confirm. Inspect, test drive, and then settle the bill with our convenient payment options.",
+    step: 'stepFive',
     icon: 'tdesign:money',
   },
 ];
@@ -61,15 +47,13 @@ const COLORS = ['primary', 'info', 'error', 'warning', 'success'];
 export default function ServicesHowItWork() {
   const theme = useTheme();
   const navigate = useNavigate();
-
-  const mdUp = useResponsive('up', 'md');
-
+  const { translate } = useLocales();
   return (
     <Box>
       <Timeline position="right">
         {TIMELINES.map((value, index) => (
           <TimelineItem
-            key={value.title}
+            key={value.step}
             sx={{
               '&:before': {
                 display: 'none',
@@ -85,11 +69,11 @@ export default function ServicesHowItWork() {
 
             <TimelineContent sx={{ pb: { xs: 1, md: 2 } }}>
               <Typography variant="overline" sx={{ color: `${COLORS[index]}.main` }}>
-                {value.step}
+                {translate(`services.howItWorksSteps.${value.step}.step`)}
               </Typography>
 
               <Typography variant="h4" sx={{ mt: 0.5, mb: 1 }}>
-                {value.title}
+                {translate(`services.howItWorksSteps.${value.step}.title`)}
               </Typography>
 
               <Typography
@@ -101,7 +85,7 @@ export default function ServicesHowItWork() {
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >
-                {value.description}
+                {translate(`services.howItWorksSteps.${value.step}.description`)}
               </Typography>
 
               {index === 0 && (
@@ -111,7 +95,7 @@ export default function ServicesHowItWork() {
                   onClick={() => navigate(paths.website.bookAppointment)}
                   sx={{ mt: 2 }}
                 >
-                  Book an Appointment
+                  {translate(`common.bookAppointment`)}
                 </Button>
               )}
             </TimelineContent>

@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
+import { Box, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
+import Image from 'src/components/image/Image';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -40,22 +41,9 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        {/* <IconButton
-          disableFocusRipple
-          disableTouchRipple
-          disableRipple
-          color="primary"
-          size="small"
-          sx={{
-            bgcolor: 'common.black',
-            color: 'common.white',
-            // p: 0.75,
-            px: currentLang.value === 'en' ? 1.75 : 1,
-          }}
-          onClick={toggleLanguage}
-        >
-          {currentLang.value === 'en' ? 'ع' : 'En'}
-        </IconButton> */}
+        <Box sx={{ width: 48, height: 48 }} component={IconButton} onClick={toggleLanguage}>
+          <Image src="/assets/illustrations/translate.svg" />
+        </Box>
 
         <IconButton
           onClick={mobileOpen.onTrue}
@@ -91,7 +79,7 @@ export default function NavMobile({ data, toggleLanguage }) {
               color="primary"
               onClick={() => navigate(paths.website.bookAppointment)}
             >
-              {translate('common.exploreProperties')}
+              {translate('common.bookAppointment')}
             </Button>
           </Stack>
         </Scrollbar>

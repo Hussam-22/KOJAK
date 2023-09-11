@@ -23,7 +23,7 @@ export default function KojakBuildingLandingHero() {
 function RenderDesktopHero() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate, onChangeLang, currentLang } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Box
       sx={{
@@ -75,7 +75,7 @@ function RenderDesktopHero() {
                   color: alpha(theme.palette.background.default, 0),
                 }}
               >
-                {currentLang.value === 'en' ? 'KOJAK' : 'كوجاك'}
+                {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
               </Typography>
             </Box>
             <Stack
@@ -95,7 +95,7 @@ function RenderDesktopHero() {
                 <Box component="span" sx={{ color: 'primary.main' }}>
                   {translate('hero.heroText')}
                 </Box>
-                {/* {translate('hero.title')} */}
+                {translate('hero.title')}
               </Typography>
 
               <Typography>{translate('hero.subText')}</Typography>
@@ -107,7 +107,7 @@ function RenderDesktopHero() {
                   size="large"
                   onClick={() => navigate(paths.website.bookAppointment)}
                 >
-                  {translate('common.exploreProperties')}
+                  {translate('common.bookAppointment')}
                 </Button>
               </Box>
             </Stack>
@@ -123,7 +123,7 @@ function RenderDesktopHero() {
 function RenderMobileHero() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate, onChangeLang, currentLang } = useLocales();
+  const { translate } = useLocales();
   return (
     <Box
       sx={{
@@ -151,7 +151,7 @@ function RenderMobileHero() {
             size="large"
             onClick={() => navigate(paths.website.bookAppointment)}
           >
-            {translate('common.exploreProperties')}
+            {translate('common.bookAppointment')}
           </Button>
         </Box>
       </Stack>

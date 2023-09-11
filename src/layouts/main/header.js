@@ -4,17 +4,18 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 
@@ -99,24 +100,20 @@ export default function Header({ headerOnDark }) {
                     color="primary"
                     onClick={() => navigate(paths.website.bookAppointment)}
                   >
-                    {translate('common.exploreProperties')}
+                    {translate('common.bookAppointment')}
                   </Button>
-                  {/* <IconButton
-                    color="primary"
-                    size="small"
-                    sx={{
-                      backgroundColor: 'secondary.main',
-                      color: 'common.white',
-                      px: currentLang.value === 'en' ? 1.75 : 1.15,
-                      '&:hover': {
-                        color: 'common.black',
-                        backgroundColor: 'common.white',
-                      },
-                    }}
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
+                  />
+                  <Box
+                    sx={{ width: 48, height: 48 }}
+                    component={IconButton}
                     onClick={toggleLanguageHandler}
                   >
-                    {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton> */}
+                    <Image src="/assets/illustrations/translate.svg" />
+                  </Box>
                 </Stack>
               )}
             </Stack>

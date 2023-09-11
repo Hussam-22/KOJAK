@@ -1,29 +1,23 @@
-import { useNavigate } from 'react-router';
-
 import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { _autoRepairServices } from 'src/_mock';
 import ServiceItem from 'src/sections/components/service-item';
 
 export default function Services() {
   const theme = useTheme();
-  const navigate = useNavigate();
+  const { translate } = useLocales();
   return (
     <Container maxWidth="xl" sx={{ my: 8 }}>
       <Stack spacing={1} sx={{ mb: 4 }}>
-        <Typography variant="h2">Auto Repair Services</Typography>
+        <Typography variant="h2">{translate('services.title')}</Typography>
         <Stack
           direction={{ md: 'row', xs: 'column' }}
           spacing={3}
           sx={{ justifyContent: 'space-between' }}
         >
           <Typography sx={{ fontWeight: theme.typography.fontWeightLight, width: { md: '82%' } }}>
-            Our expert technicians are dedicated to providing top-notch care for your Mercedes
-            vehicle. From routine maintenance to intricate repairs, we have the knowledge and
-            experience to keep your Mercedes running at its best. We use cutting-edge technology and
-            genuine Mercedes parts to ensure the highest quality service. Experience the luxury of
-            specialized care for your Mercedes-Benz. Drive in today and let us elevate your
-            Mercedes-driving experience.
+            {translate('services.description')}
           </Typography>
 
           {/* <Button

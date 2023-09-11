@@ -5,7 +5,7 @@ export function dialog(theme) {
     MuiDialog: {
       styleOverrides: {
         paper: ({ ownerState }) => ({
-          // boxShadow: theme.customShadows.dialog,
+          boxShadow: 'none',
           borderRadius: theme.shape.borderRadius * 2,
           ...(!ownerState.fullScreen && {
             margin: theme.spacing(2),

@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 
 import { Box, Card, Stack, Button, useTheme, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-function GroupCard({ title, description, img, imgMobile, small }) {
+function GroupCard({ title, description, img, imgMobile, small, index }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
+  const { translate } = useLocales();
   return (
     <Card
       sx={{
@@ -23,23 +25,25 @@ function GroupCard({ title, description, img, imgMobile, small }) {
       <Stack direction="column" sx={{ p: 3, width: { md: '60%' } }} spacing={2}>
         <Box>
           <Typography variant="h3" sx={{ color: 'primary.main' }}>
-            KOJAK {title}
+            {translate(`groupAd.${index}.title`)}
           </Typography>
         </Box>
-        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>
+        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          {translate(`groupAd.${index}.description`)}
+        </Typography>
         <Box>
           <Button
             variant="contained"
             color="secondary"
             endIcon={<Iconify icon="solar:map-arrow-up-bold-duotone" />}
           >
-            Visit website
+            {translate(`common.visitWebsite`)}
           </Button>
         </Box>
 
         {!mdUp && (
           <Image
-            src={`/assets/images/group/${imgMobile}.jpg`}
+            src={`/assets/images/group/${imgMobile}.webp`}
             sx={{ borderRadius: 2 }}
             ratio="16/9"
           />
@@ -48,7 +52,7 @@ function GroupCard({ title, description, img, imgMobile, small }) {
 
       {mdUp && (
         <Image
-          src={`/assets/images/group/${imgMobile}.jpg`}
+          src={`/assets/images/group/${imgMobile}.webp`}
           sx={{ borderRadius: 2, width: '40%' }}
           ratio="4/3"
         />
@@ -65,4 +69,5 @@ GroupCard.propTypes = {
   img: PropTypes.string,
   imgMobile: PropTypes.string,
   small: PropTypes.bool,
+  index: PropTypes.number,
 };

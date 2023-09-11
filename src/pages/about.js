@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { useAuthContext } from 'src/auth/hooks';
 import AboutView from 'src/sections/views/about-view';
 
-export default function KojakBuildingAboutPage() {
+export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Building | About</title>
+        <title>Kojak Auto Maintenance | About</title>
         <meta
           name="description"
           content="At Kojak we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements."

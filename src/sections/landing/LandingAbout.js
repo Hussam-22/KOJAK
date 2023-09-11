@@ -23,7 +23,7 @@ const SUMMARY = [
 export default function LandingAbout() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Box
@@ -53,7 +53,12 @@ export default function LandingAbout() {
             {translate('why.title')}
           </Typography>
 
-          {!mdUp && <Image src="/assets/images/repair/advisor-1.png" alt="kojak-about-img" />}
+          {!mdUp && (
+            <Image
+              src={`/assets/images/repair/advisor-${currentLang.value === 'en' ? 'en' : 'ar'}.png`}
+              alt="kojak-about-img"
+            />
+          )}
 
           <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
             {translate('why.subTitle')}
@@ -87,12 +92,17 @@ export default function LandingAbout() {
                 >
                   {item.value}+
                 </Typography>
-                <Typography variant="h5">{translate(`hero.${item.label}`)}</Typography>
+                <Typography variant="h5">{translate(`why.${item.label}`)}</Typography>
               </Stack>
             ))}
           </Box>
         </Stack>
-        {mdUp && <Image src="/assets/images/repair/advisor-1.png" alt="kojak-about-img" />}
+        {mdUp && (
+          <Image
+            src={`/assets/images/repair/advisor-${currentLang.value === 'en' ? 'en' : 'ar'}.png`}
+            alt="kojak-about-img"
+          />
+        )}
       </Box>
     </Container>
   );

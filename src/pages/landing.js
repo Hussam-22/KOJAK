@@ -4,7 +4,7 @@ import LandingView from 'src/sections/views/landing-view';
 
 // ----------------------------------------------------------------------
 
-export default function KojakBuildingLandingPage() {
+export default function LandingPage() {
   return (
     <>
       <Helmet>

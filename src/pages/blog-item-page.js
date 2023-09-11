@@ -4,11 +4,11 @@ import BlogItemView from 'src/sections/views/blog-item-view';
 
 // ----------------------------------------------------------------------
 
-export default function CareerPostPage() {
+export default function BlogPostPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Building | Blog Post</title>
+        <title>Kojak Auto Maintenance | Blog Post</title>
       </Helmet>
 
       <BlogItemView />
