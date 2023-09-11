@@ -1,18 +1,8 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { useAuthContext } from 'src/auth/hooks';
 import BlogPostsView from 'src/sections/_kojakBuilding/views/blog-posts-view';
 
-const PAGE_NAME = 'BLOG';
-
 export default function KojakBuildingNewsPage() {
-  const { updatePageAnalytic } = useAuthContext();
-
-  useEffect(() => {
-    (async () => updatePageAnalytic(PAGE_NAME))();
-  }, [updatePageAnalytic]);
-
   return (
     <>
       <Helmet>

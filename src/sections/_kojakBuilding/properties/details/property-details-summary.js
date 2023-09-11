@@ -156,10 +156,10 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
             <Typography>{translate('propertyCard.summery.payment.text')}</Typography>
           </Stack>
 
-          <Stack>
+          {/* <Stack>
             <Typography variant="h5"> {translate('propertyCard.summery.spaces.title')}</Typography>
             <Typography>{translate('propertyCard.summery.spaces.text')}</Typography>
-          </Stack>
+          </Stack> */}
 
           <Stack>
             <Typography variant="h5">
