@@ -43,7 +43,7 @@ function GroupCard({ title, description, img, imgMobile, small, index }) {
 
         {!mdUp && (
           <Image
-            src={`/assets/images/group/${imgMobile}.jpg`}
+            src={`/assets/images/group/${imgMobile}.webp`}
             sx={{ borderRadius: 2 }}
             ratio="16/9"
           />
@@ -52,7 +52,7 @@ function GroupCard({ title, description, img, imgMobile, small, index }) {
 
       {mdUp && (
         <Image
-          src={`/assets/images/group/${imgMobile}.jpg`}
+          src={`/assets/images/group/${imgMobile}.webp`}
           sx={{ borderRadius: 2, width: '40%' }}
           ratio="4/3"
         />
