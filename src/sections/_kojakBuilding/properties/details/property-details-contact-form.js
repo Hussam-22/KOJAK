@@ -9,6 +9,7 @@ import { Card, Stack, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
@@ -64,8 +65,6 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
       const dataToSend = Object.entries({ ...formData, building: spaceInfo.buildingName })
         .join('\r\n')
         .replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
 
       const requestOptions = {
         method: 'POST',
@@ -73,7 +72,7 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         credentials: 'omit', // This is equivalent to withCredentials: false in Axios
       };
 
-      await fetch(url, requestOptions);
+      await fetch(SLACK_WEBHOOK_URL, requestOptions);
 
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,

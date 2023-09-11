@@ -8,6 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
@@ -63,8 +64,6 @@ export default function ContactUsForm() {
   const onSubmit = handleSubmit(async (formData) => {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
 
       const requestOptions = {
         method: 'POST',
@@ -73,7 +72,7 @@ export default function ContactUsForm() {
       };
 
       // Add Form Submit to Slack Channel
-      await fetch(url, requestOptions);
+      await fetch(SLACK_WEBHOOK_URL, requestOptions);
 
       // axios.post(url, JSON.stringify({ text: dataToSend }), {
       //   withCredentials: false,
