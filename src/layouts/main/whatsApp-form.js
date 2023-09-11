@@ -1,13 +1,18 @@
+import * as Yup from 'yup';
 import { m } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Box, Fab, Card, Stack, Button, TextField, Typography, IconButton } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Box, Fab, Card, Stack, IconButton, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 import getVariant from 'src/components/animate/variants/get-variant';
+import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function WhatsAppForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +25,33 @@ export default function WhatsAppForm() {
     setIsOpen(true);
   };
 
-  const onSendMessage = () => {
-    const message = textRef.current.value;
-    const CustomerMobileNumber = mobileNumberRef.current.value;
+  const schema = Yup.object().shape({
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
+    messageText: Yup.string().required('Message is required'),
+  });
+
+  const defaultValues = {
+    mobile: '',
+    messageText: '',
+  };
+
+  const methods = useForm({
+    resolver: yupResolver(schema),
+    defaultValues,
+  });
+
+  const {
+    reset,
+    handleSubmit,
+    setValue,
+    formState: { isSubmitting, errors },
+  } = methods;
+
+  const onSubmit = async (formData) => {
+    const message = formData.messageText;
+    const CustomerMobileNumber = formData.mobile;
 
     // Appending the phone number & Message to the URL
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
@@ -39,9 +68,8 @@ export default function WhatsAppForm() {
       sentTo: WHATSAPP_MOBILE,
     });
 
-    window.location.href = url;
-
     setIsOpen(false);
+    window.location.href = url;
   };
 
   return (
@@ -63,7 +91,7 @@ export default function WhatsAppForm() {
             width: { md: 310, xs: 275 },
             height: 395,
             position: 'fixed',
-            bottom: 15,
+            bottom: 35,
             right: 15,
             zIndex: 99,
           }}
@@ -77,32 +105,45 @@ export default function WhatsAppForm() {
               <Iconify icon="carbon:close-filled" />
             </IconButton>
 
-            <Stack spacing={2}>
-              <Typography variant="h5" sx={{ mt: 1 }}>
-                {translate('form.whatsApp.howCanWeHelpYou')}
-              </Typography>
-              <TextField
-                fullWidth
-                label={translate('form.mobile')}
-                inputRef={mobileNumberRef}
-                type="number"
-              />
-              <TextField
-                multiline
-                rows={4}
-                fullWidth
-                label={translate('form.message')}
-                inputRef={textRef}
-              />
-              <Box>
-                <Button variant="contained" color="primary" onClick={onSendMessage}>
+            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+              <Stack spacing={2} alignItems="flex-start">
+                <Typography variant="h5" sx={{ mt: 1 }}>
+                  {translate('form.whatsApp.howCanWeHelpYou')}
+                </Typography>
+
+                <RHFTextField
+                  name="mobile"
+                  label={translate('form.mobile')}
+                  // type="number"
+                  variant="outlined"
+                />
+
+                <RHFTextField
+                  name="messageText"
+                  multiline
+                  rows={4}
+                  label={translate('form.message')}
+                  variant="outlined"
+                />
+
+                <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                  {translate('contactUs.details.hours')}
+                </Typography>
+
+                <LoadingButton
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  loading={isSubmitting}
+                  sx={{
+                    mx: { xs: 'auto !important', md: 'unset !important' },
+                  }}
+                >
                   {translate('form.sendMsg')}
-                </Button>
-              </Box>
-              <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-                {translate('contactUs.details.hours')}
-              </Typography>
-            </Stack>
+                </LoadingButton>
+              </Stack>
+            </FormProvider>
           </Card>
         </Box>
       )}
