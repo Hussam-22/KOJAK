@@ -69,7 +69,7 @@ export default function WhatsAppForm() {
     });
 
     setIsOpen(false);
-    window.location.href = url;
+    if (!isSubmitting) window.location.href = url;
   };
 
   return (
