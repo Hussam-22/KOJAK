@@ -6,10 +6,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Box, Link, Stack, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
+
 // ----------------------------------------------------------------------
 
 function Logo({ large = false, light, sx }) {
   const theme = useTheme();
+  const { currentLang } = useLocales();
 
   const COLOR = light ? theme.palette.common.white : theme.palette.common.black;
 
@@ -103,14 +106,14 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
         </Box>
         <Stack direction="column">
           <Typography variant="h4" sx={{ color: COLOR, lineHeight: 1, fontWeight: '700' }}>
-            KOJAK
+            {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
           </Typography>
           <Typography
             variant="body1"
             color="primary"
             sx={{ lineHeight: 1, fontWeight: theme.typography.fontWeightBold }}
           >
-            EXCLUSIVE
+            {currentLang.value === 'en' ? 'EXCLUSIVE' : 'للسيـارات'}
           </Typography>
         </Stack>
       </Stack>
