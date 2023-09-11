@@ -34,7 +34,9 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string().required('Mobile number is required'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().email('That is not an email'),
     inquiry: Yup.string().required('Inquiry message is required'),
   });

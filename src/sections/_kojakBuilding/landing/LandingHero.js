@@ -9,6 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { bgBlur } from 'src/theme/css';
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 
