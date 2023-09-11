@@ -4,17 +4,15 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Backdrop, IconButton, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
 import Image from 'src/components/image';
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
@@ -97,7 +95,7 @@ export default function Header({ headerOnDark }) {
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
-                  <Button
+                  {/* <Button
                     variant="contained"
                     color="primary"
                     onClick={() => navigate(paths.website.services)}
@@ -108,7 +106,7 @@ export default function Header({ headerOnDark }) {
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
-                  />
+                  /> */}
                   <Box
                     sx={{ width: 48, height: 48 }}
                     component={IconButton}

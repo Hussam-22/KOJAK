@@ -20,12 +20,12 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#FFF4F4',
-  light: '#EB5C68',
-  main: '#E63946',
-  dark: '#C81927',
-  darker: '#91121D',
-  contrastText: '#FFFFFF',
+  lighter: '#EBFFFE',
+  light: '#00CCC5',
+  main: '#00A19B',
+  dark: '#007A76',
+  darker: '#00524F',
+  contrastText: '#000000',
 };
 
 const SECONDARY = {
@@ -126,8 +126,8 @@ export function palette(mode) {
       disabled: GREY[400],
     },
     background: {
-      paper: '#FFFFFF',
-      default: '#FFFFFF',
+      paper: '#212121',
+      default: '#171717',
       neutral: GREY[100],
       peach: SUCCESS.lighter,
     },

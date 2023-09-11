@@ -1,12 +1,9 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
 
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
-import ModernHeader from 'src/layouts/main/modern-header';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 import { SplashScreen } from 'src/components/loading-screen';
 
@@ -25,7 +22,6 @@ export default function MainLayout({ children }) {
   const pathname = usePathname();
   const actionPage = (arr) => arr.some((path) => pathname === path);
   const { isLoading } = useSelector((state) => state.properties);
-
   return (
     <>
       <Box

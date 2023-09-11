@@ -10,7 +10,7 @@ import { useLocales } from 'src/locales';
 
 // ----------------------------------------------------------------------
 
-function Logo({ large = false, light, sx }) {
+function Logo({ large = false, showText = true, light, sx }) {
   const theme = useTheme();
   const { currentLang } = useLocales();
 
@@ -104,18 +104,20 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
         >
           {singleLogo}
         </Box>
-        <Stack direction="column">
-          <Typography variant="h4" sx={{ color: COLOR, lineHeight: 1, fontWeight: '700' }}>
-            {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="primary"
-            sx={{ lineHeight: 1, fontWeight: theme.typography.fontWeightBold }}
-          >
-            {currentLang.value === 'en' ? 'EXCLUSIVE' : 'للسيـارات'}
-          </Typography>
-        </Stack>
+        {showText && (
+          <Stack direction="column">
+            <Typography variant="h4" sx={{ color: COLOR, lineHeight: 1, fontWeight: '700' }}>
+              {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
+            </Typography>
+            <Typography
+              variant="body1"
+              color="primary"
+              sx={{ lineHeight: 1, fontWeight: theme.typography.fontWeightBold }}
+            >
+              {currentLang.value === 'en' ? 'EXCLUSIVE' : 'للسيـارات'}
+            </Typography>
+          </Stack>
+        )}
       </Stack>
     </Link>
   );
@@ -123,6 +125,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
 
 Logo.propTypes = {
   large: PropTypes.bool,
+  showText: PropTypes.bool,
   light: PropTypes.bool,
   sx: PropTypes.object,
 };

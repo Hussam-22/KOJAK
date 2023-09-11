@@ -10,8 +10,8 @@ const en = {
   landing: {
     hero: {
       overlineText: ``,
-      heroText: 'Your Dream Mercedes, Now ',
-      partOne: 'More Affordable',
+      heroText: 'Kojak Group of Companies, ',
+      partOne: 'Mercedes Enthusiasts and More',
       partTwo: 'Than Ever.',
       subText:
         'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
