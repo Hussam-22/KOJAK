@@ -1,4 +1,9 @@
 // ----------------------------------------------------------------------
+export const AUTO_URL = 'https://kojak-auto.netlify.app/';
+export const SPARE_PART_URL = 'https://kojak-spare-parts-staging.netlify.app/';
+export const EXCLUSIVE_URL = 'https://kojak-exclusive.netlify.app/';
+export const BUILDING_URL = 'https://kojak-building.com/';
+
 export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';
 

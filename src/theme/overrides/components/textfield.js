@@ -8,9 +8,9 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
 export function textField(theme) {
   const color = {
-    focused: theme.palette.text.primary,
+    focused: theme.palette.common.white,
     active: theme.palette.text.secondary,
-    placeholder: theme.palette.text.disabled,
+    placeholder: theme.palette.common.white,
   };
 
   const font = {
@@ -123,7 +123,7 @@ export function textField(theme) {
       styleOverrides: {
         root: {
           borderRadius: theme.shape.borderRadius,
-          backgroundColor: alpha(theme.palette.grey[500], 0.08),
+          backgroundColor: alpha(theme.palette.grey[500], 0.25),
           '&:hover': {
             backgroundColor: alpha(theme.palette.grey[500], 0.16),
           },

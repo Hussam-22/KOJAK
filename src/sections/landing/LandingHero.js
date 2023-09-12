@@ -23,7 +23,7 @@ function RenderDesktopHero() {
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: 'url(/assets/images/hero/hero-3.png)',
+        backgroundImage: 'url(/assets/images/hero/hero-5.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -34,7 +34,7 @@ function RenderDesktopHero() {
       }}
     >
       <Container maxWidth="md">
-        <Stack spacing={3}>
+        <Stack spacing={0}>
           <Box
             sx={{
               display: 'flex',
@@ -55,16 +55,16 @@ function RenderDesktopHero() {
             }}
           >
             {translate('landing.hero.heroText')}
-            <Box
-              component="span"
-              sx={{
-                background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.darker})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              {translate('landing.hero.partOne')}
-            </Box>
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { lg: '3.05rem', md: '2.05rem', xs: '1.55rem' },
+              background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.darker})`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            {translate('landing.hero.partOne')}
           </Typography>
 
           <Typography variant="h3" sx={{ color: 'grey.600' }}>

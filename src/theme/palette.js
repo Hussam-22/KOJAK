@@ -28,12 +28,21 @@ const PRIMARY = {
   contrastText: '#000000',
 };
 
-const SECONDARY = {
-  lighter: '#636363',
-  light: '#424242',
-  main: '#000000',
-  dark: '#121212',
+const DARK = {
+  lighter: '#F8F8F8',
+  light: '#636363',
+  main: '#212121',
+  dark: '#000000',
   darker: '#000000',
+  contrastText: '#FFFFFF',
+};
+
+const SECONDARY = {
+  lighter: '#F3ECFD',
+  light: '#DCC7FA',
+  main: '#A26AF1',
+  dark: '#741FEA',
+  darker: '#6113CD',
   contrastText: '#FFFFFF',
 };
 
@@ -102,6 +111,7 @@ const COMMON = {
   success: SUCCESS,
   warning: WARNING,
   error: ERROR,
+  dark: DARK,
   custom: CUSTOM,
   grey: GREY,
   divider: alpha(GREY[500], 0.2),
@@ -124,12 +134,12 @@ export function palette(mode) {
       primary: '#00A19B',
       secondary: GREY[600],
       disabled: GREY[400],
+      white: '#FFFFFF',
     },
     background: {
-      paper: '#212121',
-      default: '#171717',
+      paper: '#171717',
+      default: '#000000',
       neutral: GREY[100],
-      peach: SUCCESS.lighter,
     },
     action: {
       ...COMMON.action,

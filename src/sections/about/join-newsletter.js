@@ -119,28 +119,23 @@ export default function JoinNewsletter() {
                   spacing={2}
                   sx={{ textAlign: { md: 'left', xs: 'center' } }}
                 >
-                  <Typography variant="h3" sx={{ color: 'common.white' }}>
+                  <Typography variant="h3" sx={{ color: 'dark.main' }}>
                     {translate('newsLetter.title')}
                   </Typography>
                   <Typography
-                    sx={{ fontWeight: theme.typography.fontWeightLight, color: 'common.white' }}
+                    sx={{ fontWeight: theme.typography.fontWeightLight, color: 'dark.main' }}
                   >
                     {translate('newsLetter.subTitle')}
                   </Typography>
 
                   <Stack direction="row" spacing={1}>
-                    <RHFTextField
-                      variant="outlined"
-                      name="email"
-                      label={translate('form.email')}
-                      focused
-                    />
+                    <RHFTextField name="email" label={translate('form.email')} />
 
                     <LoadingButton
                       size="large"
                       type="submit"
                       variant="contained"
-                      color="secondary"
+                      color="dark"
                       loading={isSubmitting}
                       sx={{
                         mx: { xs: 'auto !important', md: 'unset !important' },

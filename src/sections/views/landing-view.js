@@ -1,5 +1,15 @@
+import History from 'src/sections/landing/history';
+import HandPicked from 'src/sections/landing/hand-picked';
 import LandingHero from 'src/sections/landing/LandingHero';
+import InternationalBusiness from 'src/sections/landing/international-business';
 
 export default function LandingView() {
-  return <LandingHero />;
+  return (
+    <>
+      <LandingHero />
+      <History />
+      <InternationalBusiness />
+      <HandPicked />
+    </>
+  );
 }

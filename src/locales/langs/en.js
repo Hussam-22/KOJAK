@@ -1,17 +1,17 @@
 const en = {
   header: {
     home: 'Home',
-    services: 'Inventory',
-    blog: 'Blog',
     about: 'About',
+    career: 'Career',
     contactUs: 'Contact us',
+    // blog: 'Blog',
   },
 
   landing: {
     hero: {
       overlineText: ``,
       heroText: 'Kojak Group of Companies, ',
-      partOne: 'Mercedes Enthusiasts and More',
+      partOne: 'A Legacy of Mercedes-Benz Mastery',
       partTwo: 'Since 1983',
       subText:
         'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
@@ -106,8 +106,8 @@ const en = {
   },
 
   newsLetter: {
-    title: 'Stay tuned, never miss a new vehicle becoming available again!',
-    subTitle: `Don't miss out on the opportunity to be a part of our vibrant automotive community. Subscribe now and stay tuned for a thrilling automotive experience!`,
+    title: `Stay in the Driver's Seat: Join Our Newsletter`,
+    subTitle: `Are you passionate about the world of Mercedes-Benz? Don't miss a beat! Subscribe to our newsletter and become a part of the Kojak Mercedes-Benz community.`,
   },
 
   inventory: {

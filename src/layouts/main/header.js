@@ -8,7 +8,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
@@ -70,7 +70,7 @@ export default function Header({ headerOnDark }) {
             }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
-              color: 'text.primary',
+              // color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },
@@ -87,7 +87,8 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small light={!useDarkLogo && !offset} />
+              {/* <Logo small light={!useDarkLogo && !offset} /> */}
+              <Logo small light />
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -107,6 +108,11 @@ export default function Header({ headerOnDark }) {
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                   /> */}
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
+                  />
                   <Box
                     sx={{ width: 48, height: 48 }}
                     component={IconButton}
