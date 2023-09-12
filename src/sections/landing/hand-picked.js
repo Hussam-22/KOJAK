@@ -7,12 +7,14 @@ import { Tab, Box, Card, Tabs, Stack, Button, Container, Typography } from '@mui
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { _autoRepairServices } from 'src/_mock';
+import { useResponsive } from 'src/hooks/use-responsive';
 import ServiceItem from 'src/sections/components/service-item';
 import getVariant from 'src/components/animate/variants/get-variant';
 import SpotlightVehicles from 'src/sections/landing/spotlight-vehicles';
 
 function HandPicked() {
   const [currentTab, setCurrentTab] = useState('Auto Maintenance');
+  const mdUp = useResponsive('up', 'md');
 
   const TABS = [
     {
@@ -63,7 +65,7 @@ function HandPicked() {
           <Tabs
             allowScrollButtonsMobile
             variant="scrollable"
-            scrollButtons="auto"
+            scrollButtons={!mdUp}
             value={currentTab}
             onChange={(event, newValue) => setCurrentTab(newValue)}
           >
@@ -77,6 +79,7 @@ function HandPicked() {
               />
             ))}
           </Tabs>
+
           <Box sx={{ mb: 2 }} />
 
           {TABS.map((tab) => {
@@ -84,8 +87,8 @@ function HandPicked() {
             return (
               isMatched && (
                 <Box
-                  component={m.div}
-                  {...getVariant('fadeInRight')}
+                  // component={m.div}
+                  // {...getVariant('fadeInRight')}
                   key={tab.value}
                   id={tab.value}
                   sx={{ minHeight: 450, bgcolor: 'background.paper', borderRadius: 2 }}
@@ -107,7 +110,10 @@ export default HandPicked;
 function AutoService() {
   return (
     <Box>
-      <Stack direction="row" sx={{ p: 3, justifyContent: 'space-between' }}>
+      <Stack
+        direction={{ md: 'row', xs: 'column' }}
+        sx={{ p: 3, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
+      >
         <Typography variant="h3" color="white">
           Auto Repair Services
         </Typography>
@@ -135,7 +141,10 @@ function AutoService() {
 function SpareParts() {
   return (
     <Box>
-      <Stack direction="row" sx={{ p: 3, justifyContent: 'space-between' }}>
+      <Stack
+        direction={{ md: 'row', xs: 'column' }}
+        sx={{ p: 3, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
+      >
         <Typography variant="h3" color="white">
           Most Ordered Parts
         </Typography>

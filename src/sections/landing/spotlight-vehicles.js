@@ -43,7 +43,10 @@ export default function SpotlightVehicles() {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Stack direction="row" sx={{ p: 1, mb: 1, justifyContent: 'space-between' }}>
+      <Stack
+        direction={{ md: 'row', xs: 'column' }}
+        sx={{ p: 1, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
+      >
         <Typography variant="h3" color="white">
           Spotlight Vehicles
         </Typography>
