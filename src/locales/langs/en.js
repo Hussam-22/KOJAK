@@ -12,7 +12,7 @@ const en = {
       overlineText: ``,
       heroText: 'Kojak Group of Companies, ',
       partOne: 'Mercedes Enthusiasts and More',
-      partTwo: 'Than Ever.',
+      partTwo: 'Since 1983',
       subText:
         'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
     },

@@ -10,8 +10,6 @@ import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-const GROUPS = ['Spare-parts', 'Auto-Maintenance', 'K-Exclusive', 'Building'];
-
 export default function LandingHero() {
   return <RenderDesktopHero />;
 }
@@ -67,20 +65,11 @@ function RenderDesktopHero() {
             >
               {translate('landing.hero.partOne')}
             </Box>
-            {/* <Box component="span">{translate('landing.hero.partTwo')}</Box> */}
           </Typography>
 
-          {/* <Typography sx={{ color: 'common.white' }}>
-            {translate('landing.hero.subText')}
-          </Typography> */}
-
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-            {GROUPS.map((group) => (
-              <Typography key={group} sx={{ color: 'common.white' }}>
-                {group}
-              </Typography>
-            ))}
-          </Box>
+          <Typography variant="h3" sx={{ color: 'grey.600' }}>
+            {translate('landing.hero.partTwo')}
+          </Typography>
         </Stack>
       </Container>
     </Box>

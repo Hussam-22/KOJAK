@@ -121,7 +121,7 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: '#000000',
+      primary: '#00A19B',
       secondary: GREY[600],
       disabled: GREY[400],
     },
