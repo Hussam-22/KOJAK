@@ -4,6 +4,7 @@ import { Stack, useTheme, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
+import TextMaxLine from 'src/components/text-max-line';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function ServiceItem({ service }) {
@@ -21,9 +22,11 @@ export default function ServiceItem({ service }) {
       sx={{ px: 0.5, py: 1, textAlign: 'center' }}
     >
       <Image src={`/assets/images/service-icons/${icon}.svg`} width="25%" />
-      <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+      <TextMaxLine line={1} sx={{ fontWeight: theme.typography.fontWeightLight }}>
         {translate(`services.items.${icon}.serviceName`)}
-      </Typography>
+      </TextMaxLine>
+      {/* <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+      </Typography> */}
     </Stack>
   );
 }

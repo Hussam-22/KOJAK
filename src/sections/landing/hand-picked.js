@@ -1,10 +1,42 @@
+import { useState } from 'react';
+import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-import { Box, Card, Stack, Button, Container, Typography } from '@mui/material';
+import { Tab, Box, Card, Tabs, Stack, Button, Container, Typography } from '@mui/material';
 
+import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
+import { _autoRepairServices } from 'src/_mock';
+import ServiceItem from 'src/sections/components/service-item';
+import getVariant from 'src/components/animate/variants/get-variant';
+import SpotlightVehicles from 'src/sections/landing/spotlight-vehicles';
 
 function HandPicked() {
+  const [currentTab, setCurrentTab] = useState('Auto Maintenance');
+
+  const TABS = [
+    {
+      value: 'Auto Maintenance',
+      icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
+      component: <AutoService />,
+    },
+    {
+      value: 'Spare Parts',
+      icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
+      component: <SpareParts />,
+    },
+    {
+      value: 'Exclusive',
+      icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
+      component: <SpotlightVehicles />,
+    },
+    {
+      value: 'Building',
+      icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
+      component: <SpareParts />,
+    },
+  ];
+
   return (
     <Box>
       <Container sx={{ py: 8 }}>
@@ -27,14 +59,108 @@ function HandPicked() {
           </Typography>
         </Stack>
 
-        <Card sx={{ p: 3 }}>
-          <Stack>
-            <Typography>Kojak Auto Maintenance</Typography>
-          </Stack>
-        </Card>
+        <>
+          <Tabs
+            allowScrollButtonsMobile
+            variant="scrollable"
+            scrollButtons="auto"
+            value={currentTab}
+            onChange={(event, newValue) => setCurrentTab(newValue)}
+          >
+            {TABS.map((tab) => (
+              <Tab
+                disableRipple
+                key={tab.value}
+                label={tab.value}
+                icon={tab.icon}
+                value={tab.value}
+              />
+            ))}
+          </Tabs>
+          <Box sx={{ mb: 2 }} />
+
+          {TABS.map((tab) => {
+            const isMatched = tab.value === currentTab;
+            return (
+              isMatched && (
+                <Box
+                  component={m.div}
+                  {...getVariant('fadeInRight')}
+                  key={tab.value}
+                  id={tab.value}
+                  sx={{ minHeight: 450, bgcolor: 'background.paper', borderRadius: 2 }}
+                >
+                  {tab.component}
+                </Box>
+              )
+            );
+          })}
+        </>
       </Container>
     </Box>
   );
 }
 export default HandPicked;
 // HandPicked.propTypes = { tables: PropTypes.array };
+
+// ----------------------------------------------------------------------------
+function AutoService() {
+  return (
+    <Box>
+      <Stack direction="row" sx={{ p: 3, justifyContent: 'space-between' }}>
+        <Typography variant="h3" color="white">
+          Auto Repair Services
+        </Typography>
+        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
+          Visit Website
+        </Button>
+      </Stack>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: 'repeat(6,1fr)', xs: 'repeat(2,1fr)' },
+          p: 2,
+        }}
+      >
+        {_autoRepairServices
+          .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+          .map((service) => (
+            <ServiceItem service={service} key={service.id} />
+          ))}
+      </Box>
+    </Box>
+  );
+}
+// ----------------------------------------------------------------------------
+function SpareParts() {
+  return (
+    <Box>
+      <Stack direction="row" sx={{ p: 3, justifyContent: 'space-between' }}>
+        <Typography variant="h3" color="white">
+          Most Ordered Parts
+        </Typography>
+        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
+          Visit Website
+        </Button>
+      </Stack>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+          p: 2,
+          gap: 2,
+        }}
+      >
+        {[...Array(4)].map((part, index) => (
+          <Image
+            key={`/assets/images/parts/part-${index + 1}.webp`}
+            src={`/assets/images/parts/part-${index + 1}.webp`}
+            alt={`car-part-${index + 1}`}
+            sx={{ borderRadius: 1 }}
+          />
+        ))}
+      </Box>
+    </Box>
+  );
+}
+// ----------------------------------------------------------------------------

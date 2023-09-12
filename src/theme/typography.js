@@ -33,7 +33,7 @@ const secondaryFont = 'Barlow, Tajawal';
 
 export const typography = {
   fontFamily: primaryFont,
-  fontWeightRegular: 200,
+  fontWeightRegular: 600,
   fontWeightMedium: 600,
   fontWeightSemiBold: 700,
   fontWeightBold: 700,

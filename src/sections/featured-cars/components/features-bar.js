@@ -58,7 +58,7 @@ function FeaturesBar({ vehicleInfo }) {
           </Stack>
         </Stack>
 
-        <Box>
+        {/* <Box>
           <Button
             variant="contained"
             size="small"
@@ -67,7 +67,7 @@ function FeaturesBar({ vehicleInfo }) {
           >
             {translate('common.moreDetails')}
           </Button>
-        </Box>
+        </Box> */}
       </Stack>
     </Box>
   );

@@ -39,7 +39,7 @@ function VehicleCard({ vehicleInfo }) {
         position: 'relative',
       }}
     >
-      {isFeatured && (
+      {/* {isFeatured && (
         <Label
           variant="filled"
           color="warning"
@@ -48,7 +48,7 @@ function VehicleCard({ vehicleInfo }) {
         >
           {translate('landing.spotLight.spotLight')}
         </Label>
-      )}
+      )} */}
 
       <Image src={imageURL || '/assets/images/no_preview.jpg'} ratio="6/4" />
 
@@ -71,7 +71,7 @@ function VehicleCard({ vehicleInfo }) {
             </Link>
             {/* <Typography>{id}</Typography> */}
           </Box>
-          <Box>
+          {/* <Box>
             <Button
               variant="contained"
               color="secondary"
@@ -80,7 +80,7 @@ function VehicleCard({ vehicleInfo }) {
             >
               {translate('common.moreDetails')}
             </Button>
-          </Box>
+          </Box> */}
         </Stack>
         <Stack
           direction="row"

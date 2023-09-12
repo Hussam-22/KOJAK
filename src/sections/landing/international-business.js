@@ -11,7 +11,7 @@ function InternationalBusiness() {
         <Box sx={{ position: 'absolute', top: 50, right: 0 }}>
           <Image src="/assets/illustrations/illustration_map.svg" />
         </Box>
-        <Stack spacing={3} sx={{ color: 'common.white', px: 3 }}>
+        <Stack spacing={3} sx={{ color: 'common.white', px: 3, width: { md: '75%' } }}>
           <Typography variant="h2" color="primary">
             Global Reach, Local Excellence
           </Typography>

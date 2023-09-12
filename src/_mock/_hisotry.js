@@ -6,8 +6,8 @@ const history = [
     title: 'The Genesis of Kojak Group',
     description:
       'In 1983, a group of visionaries founded the Kojak Group, driven by a fervent ambition to make a lasting impact in the world of Mercedes-Benz. This marked the first chapter in our illustrious history, a history built on a resolute commitment to Mercedes-Benz excellence.',
-    // coverUrl: '/assets/images/group/kojak-office-tvEffect.jpg',
-    coverUrl: '/assets/kojak-logo.svg',
+    coverUrl: '/assets/images/group/kojak-office-tvEffect.jpg',
+    // coverUrl: '/assets/kojak-logo.svg',
     websiteLink: '#',
   },
   {

@@ -7,11 +7,12 @@ import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
 import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
-import { Stack, Container, Typography } from '@mui/material';
+import { Stack, Button, Container, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
+import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import VehicleCard from 'src/sections/services/vehicle-card';
@@ -41,12 +42,14 @@ export default function SpotlightVehicles() {
   }, [getFeaturedCars]);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 8 }}>
-      <Stack spacing={2} sx={{ mb: 6, maxWidth: { md: '60%' } }}>
-        <Typography variant="h1" color="secondary">
-          {translate('landing.spotLight.title')}
+    <Box sx={{ p: 2 }}>
+      <Stack direction="row" sx={{ p: 1, mb: 1, justifyContent: 'space-between' }}>
+        <Typography variant="h3" color="white">
+          Spotlight Vehicles
         </Typography>
-        <Typography color="secondary">{translate('landing.spotLight.subTitle')}</Typography>
+        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
+          Visit Website
+        </Button>
       </Stack>
 
       <Card>
@@ -99,7 +102,7 @@ export default function SpotlightVehicles() {
           />
         )}
       </Card>
-    </Container>
+    </Box>
   );
 }
 
@@ -124,7 +127,7 @@ function CarouselItem({ vehicleInfo, active }) {
 
   return (
     <Paper sx={{ position: 'relative' }}>
-      <Image dir="ltr" alt={vehicleInfo.model} src={coverUrl} ratio="16/9" />
+      <Image dir="ltr" alt={vehicleInfo.model} src={coverUrl} ratio="21/9" />
 
       <Box
         sx={{

@@ -59,7 +59,7 @@ function RenderDesktopHero() {
           <Typography
             sx={{
               fontSize: { lg: '3.05rem', md: '2.05rem', xs: '1.55rem' },
-              background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.darker})`,
+              background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.main})`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
@@ -67,7 +67,7 @@ function RenderDesktopHero() {
             {translate('landing.hero.partOne')}
           </Typography>
 
-          <Typography variant="h3" sx={{ color: 'grey.600' }}>
+          <Typography variant="h3" sx={{ color: 'grey.400' }}>
             {translate('landing.hero.partTwo')}
           </Typography>
         </Stack>

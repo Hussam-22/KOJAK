@@ -65,32 +65,17 @@ function History() {
             >
               {mdUp && (
                 <TimelineOppositeContent>
-                  {index !== 0 && (
-                    <Image
-                      src={value.coverUrl}
-                      ratio="16/9"
-                      sx={{
-                        borderRadius: 1,
-                        border: `solid 2px`,
-                        // borderColor: `${COLORS[index]}.main`,
-                        borderColor: `grey.400`,
-                        mb: 5,
-                      }}
-                    />
-                  )}
-                  {index === 0 && (
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'left',
-                        mb: 10,
-                      }}
-                    >
-                      <Logo light large />
-                    </Box>
-                  )}
+                  <Image
+                    src={value.coverUrl}
+                    ratio="16/9"
+                    sx={{
+                      borderRadius: 1,
+                      border: `solid 2px`,
+                      // borderColor: `${COLORS[index]}.main`,
+                      borderColor: `grey.400`,
+                      mb: 5,
+                    }}
+                  />
                 </TimelineOppositeContent>
               )}
               <TimelineSeparator>
