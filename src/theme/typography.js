@@ -105,7 +105,7 @@ export const typography = {
   overline: {
     fontWeight: 700,
     lineHeight: 1.5,
-    fontSize: pxToRem(12),
+    fontSize: pxToRem(18),
     textTransform: 'uppercase',
   },
   button: {

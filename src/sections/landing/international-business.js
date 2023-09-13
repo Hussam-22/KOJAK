@@ -1,25 +1,38 @@
 import PropTypes from 'prop-types';
 
-import { Box, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 
 function InternationalBusiness() {
+  const theme = useTheme();
   return (
-    <Box sx={{ py: 8, position: 'relative', bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ bgcolor: 'background.paper', p: 5, borderRadius: 1, mt: 8 }}>
-        <Box sx={{ position: 'absolute', top: 50, right: 0 }}>
+    <Box sx={{ position: 'relative', py: 8 }}>
+      <Container
+        maxWidth="xl"
+        sx={{
+          p: 8,
+          bgcolor: 'background.light',
+          borderRadius: 1,
+          width: '75%',
+          mr: '35%',
+          borderBottom: `solid 4px`,
+          borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
+        }}
+      >
+        <Box sx={{ position: 'absolute', top: 50, right: 0, textAlign: 'right' }}>
           <Image src="/assets/illustrations/illustration_map.svg" />
         </Box>
         <Stack spacing={3} sx={{ color: 'common.white', px: 3, width: { md: '75%' } }}>
-          <Typography variant="h2" sx={{ color: 'warning.main' }}>
+          <Typography variant="h1" sx={{ color: 'common.black' }}>
             Global Reach, Local Excellence
           </Typography>
           <Typography
             sx={{
               whiteSpace: 'pre-line',
               zIndex: 99,
-              fontWeight: (theme) => theme.typography.fontWeightLight,
+              fontWeight: theme.typography.fontWeightLight,
+              color: 'common.black',
             }}
             variant="h5"
           >

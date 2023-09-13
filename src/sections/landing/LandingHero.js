@@ -32,7 +32,7 @@ function RenderDesktopHero() {
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: 'url(/assets/images/hero/hero-5.png)',
+        backgroundImage: 'url(/assets/images/hero/hero-1.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -52,7 +52,7 @@ function RenderDesktopHero() {
               textAlign: 'center',
             }}
           >
-            <Logo light large showText={false} />
+            <Logo large showText={false} />
           </Box>
           <Typography variant="h3" sx={{ color: 'grey.400' }}>
             {translate('landing.hero.partTwo')}
@@ -64,7 +64,6 @@ function RenderDesktopHero() {
               fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
               lineHeight: 1.25,
               fontWeight: theme.typography.fontWeightBold,
-              color: 'common.white',
             }}
           >
             {translate('landing.hero.heroText')}
@@ -93,9 +92,9 @@ function RenderDesktopHero() {
                 sx={{
                   p: 1,
                   color: 'warning.main',
-                  bgcolor: 'background.paper',
-                  border: 'solid 1px #222',
-                  borderRadius: 0.5,
+                  // bgcolor: 'background.paper',
+                  // border: 'solid 1px #222',
+                  // borderRadius: 0.5,
                   fontWeight: theme.typography.fontWeightLight,
                 }}
               >

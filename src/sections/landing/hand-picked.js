@@ -55,7 +55,7 @@ function HandPicked() {
             //   maxWidth: { md: '65%' },
           }}
         >
-          <Typography variant="h5" color="secondary">
+          <Typography variant="overline" color="secondary">
             What we offer
           </Typography>
           <Typography variant="h2">A Glance from our companies</Typography>

@@ -20,7 +20,7 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#EBFFFE',
+  lighter: '#f5fafb',
   light: '#00CCC5',
   main: '#00A19B',
   dark: '#007A76',
@@ -140,8 +140,9 @@ export function palette(mode) {
     background: {
       paper: '#171717',
       default: '#FFFFFF',
-      neutral: GREY[200],
-      light: PRIMARY.light,
+      neutral: GREY[100],
+      light: PRIMARY.lighter,
+      secondary: SECONDARY.lighter,
     },
     action: {
       ...COMMON.action,
