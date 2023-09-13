@@ -21,7 +21,7 @@ const spacingLayout = [...pathsOnDark, '/'];
 export default function MainLayout({ children }) {
   const pathname = usePathname();
   const actionPage = (arr) => arr.some((path) => pathname === path);
-  const { isLoading } = useSelector((state) => state.properties);
+  const { isLoading } = useSelector((state) => state.siteStore);
   return (
     <>
       <Box

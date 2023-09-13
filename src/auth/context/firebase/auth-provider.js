@@ -124,6 +124,7 @@ Driver assistant package plus
 
   // ------------------ | Get image Download URL | ------------------
   const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
+    console.log('download url');
     let url = '';
     try {
       url = await getDownloadURL(

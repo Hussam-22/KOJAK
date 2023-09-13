@@ -1,6 +1,7 @@
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -9,8 +10,8 @@ import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Stack, Button, Container, Typography } from '@mui/material';
 
-import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
@@ -18,6 +19,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import VehicleCard from 'src/sections/services/vehicle-card';
 import { varFade, MotionContainer } from 'src/components/animate';
 import FeaturesBar from 'src/sections/featured-cars/components/features-bar';
+import { rdxAddVehiclesToStore, rdxAddVehiclesCoverUrlsToStore } from 'src/redux/slices/siteStore';
 import Carousel, { useCarousel, CarouselArrows, CarouselArrowIndex } from 'src/components/carousel';
 
 // ----------------------------------------------------------------------
@@ -25,9 +27,10 @@ import Carousel, { useCarousel, CarouselArrows, CarouselArrowIndex } from 'src/c
 export default function SpotlightVehicles() {
   const { translate } = useLocales();
   const { getFeaturedCars } = useAuthContext();
-  const [featuredCars, setFeatureCars] = useState([]);
+  const featuredCars = useSelector((state) => state.siteStore.vehiclesList);
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const carousel = useCarousel({
     speed: 800,
@@ -37,9 +40,9 @@ export default function SpotlightVehicles() {
 
   useEffect(() => {
     (async () => {
-      setFeatureCars(await getFeaturedCars());
+      if (featuredCars.length === 0) dispatch(rdxAddVehiclesToStore(await getFeaturedCars()));
     })();
-  }, [getFeaturedCars]);
+  }, [dispatch, featuredCars.length, getFeaturedCars]);
 
   return (
     <Box sx={{ p: 2 }}>
@@ -117,20 +120,29 @@ export default function SpotlightVehicles() {
 
 function CarouselItem({ vehicleInfo, active }) {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const { fsGetImgDownloadUrl } = useAuthContext();
-  const [coverUrl, setCoverUrl] = useState('');
+  const vehiclesCoverUrls = useSelector((state) => state.siteStore.vehiclesCoverUrls);
+  const url = vehiclesCoverUrls.find((item) => item.id === vehicleInfo.id)?.coverUrl;
 
   useEffect(() => {
-    (async () => {
-      setCoverUrl(await fsGetImgDownloadUrl(vehicleInfo.id, 0));
-    })();
-  }, [fsGetImgDownloadUrl, vehicleInfo.id]);
+    if (vehiclesCoverUrls.findIndex((item) => item.id === vehicleInfo.id) === -1)
+      (async () => {
+        dispatch(
+          rdxAddVehiclesCoverUrlsToStore({
+            id: vehicleInfo.id,
+            coverUrl: await fsGetImgDownloadUrl(vehicleInfo.id, 0),
+          })
+        );
+      })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const variants = theme.direction === 'rtl' ? varFade().inLeft : varFade().inRight;
 
   return (
     <Paper sx={{ position: 'relative' }}>
-      <Image dir="ltr" alt={vehicleInfo.model} src={coverUrl} ratio="21/9" />
+      <Image dir="ltr" alt={vehicleInfo.model} src={url} ratio="21/9" />
 
       <Box
         sx={{

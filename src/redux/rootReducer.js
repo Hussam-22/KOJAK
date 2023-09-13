@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 // import storage from 'redux-persist/lib/storage';
 // slices
 // import products from './slices/products';
-import propertiesReducer from './slices/properties';
+import siteStoreReducer from './slices/siteStore';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ import propertiesReducer from './slices/properties';
 // };
 
 const rootReducer = combineReducers({
-  properties: propertiesReducer,
+  siteStore: siteStoreReducer,
 
   //   product: persistReducer(productPersistConfig, productReducer),
 });

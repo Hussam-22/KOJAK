@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { stopLoading, startLoading } from 'src/redux/slices/properties';
+import { stopLoading, startLoading } from 'src/redux/slices/siteStore';
 
 // components
 import { useSettingsContext } from '../components/settings';
