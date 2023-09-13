@@ -8,7 +8,7 @@ const GREY = {
   0: '#FFFFFF',
   50: '#F6F6F6',
   100: '#F8F8F8',
-  200: '#CCCCCC',
+  200: '#E9E9E9',
   300: '#B5B5B5',
   400: '#8D8D8D',
   500: '#636363',
@@ -140,7 +140,8 @@ export function palette(mode) {
     background: {
       paper: '#171717',
       default: '#FFFFFF',
-      neutral: GREY[100],
+      neutral: GREY[200],
+      light: PRIMARY.light,
     },
     action: {
       ...COMMON.action,

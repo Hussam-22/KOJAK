@@ -45,24 +45,7 @@ export default function SpotlightVehicles() {
   }, [dispatch, featuredCars.length, getFeaturedCars]);
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Stack
-        direction={{ md: 'row', xs: 'column' }}
-        sx={{
-          p: 1,
-          mb: 2,
-          justifyContent: 'space-between',
-          textAlign: { md: 'unset', xs: 'center' },
-        }}
-      >
-        <Typography variant="h3" color="primary">
-          Spotlight Vehicles
-        </Typography>
-        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
-          Visit Website
-        </Button>
-      </Stack>
-
+    <>
       <Card>
         <CarouselArrows
           onNext={carousel.onNext}
@@ -113,7 +96,18 @@ export default function SpotlightVehicles() {
           />
         )}
       </Card>
-    </Box>
+
+      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant="contained"
+          color="warning"
+          size="large"
+          endIcon={<Iconify icon="quill:link-out" />}
+        >
+          Visit Website
+        </Button>
+      </Box>
+    </>
   );
 }
 

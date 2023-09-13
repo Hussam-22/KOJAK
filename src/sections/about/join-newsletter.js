@@ -98,17 +98,17 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             py: 4,
-            bgcolor: 'primary.main',
+            bgcolor: 'background.light',
             display: 'flex',
             borderTop: 'solid 1px #999',
           }}
         >
-          <Container maxWidth="md" sx={{ alignSelf: 'flex-end' }}>
+          <Container maxWidth="lg" sx={{ alignSelf: 'flex-end' }}>
             <Grid container spacing={3}>
               <Grid md={4} xs={12} sx={{ p: { md: 7, xs: 2 }, textAlign: 'center' }}>
                 <Image
                   src="/assets/illustrations/mail.svg"
-                  width={!mdUp ? '40%' : 'unset'}
+                  width={!mdUp ? '40%' : '75%'}
                   alt="newsletter-illustration"
                 />
               </Grid>
@@ -119,12 +119,8 @@ export default function JoinNewsletter() {
                   spacing={2}
                   sx={{ textAlign: { md: 'left', xs: 'center' } }}
                 >
-                  <Typography variant="h3" sx={{ color: 'dark.main' }}>
-                    {translate('newsLetter.title')}
-                  </Typography>
-                  <Typography
-                    sx={{ fontWeight: theme.typography.fontWeightLight, color: 'dark.main' }}
-                  >
+                  <Typography variant="h3">{translate('newsLetter.title')}</Typography>
+                  <Typography sx={{ color: 'dark.main' }}>
                     {translate('newsLetter.subTitle')}
                   </Typography>
 

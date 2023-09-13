@@ -16,27 +16,27 @@ import FeaturedProperty from 'src/sections/landing/tabs/featured-property';
 import SpotlightVehicles from 'src/sections/landing/tabs/spotlight-vehicles';
 
 function HandPicked() {
-  const [currentTab, setCurrentTab] = useState('Auto Maintenance');
+  const [currentTab, setCurrentTab] = useState('Auto Repair Services');
   const mdUp = useResponsive('up', 'md');
 
   const TABS = [
     {
-      value: 'Auto Maintenance',
+      value: 'Auto Repair Services',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <AutoMaintenance />,
     },
     {
-      value: 'Spare Parts',
+      value: 'Most Ordered Spare Parts',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpareParts />,
     },
     {
-      value: 'Exclusive',
+      value: 'Spotlight Vehicles',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpotlightVehicles />,
     },
     {
-      value: 'Building',
+      value: 'Featured Property',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <FeaturedProperty />,
     },
@@ -47,16 +47,17 @@ function HandPicked() {
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Stack
           direction="column"
-          spacing={2}
           alignItems="left"
           justifyContent={{ xs: 'left', md: 'space-between' }}
           sx={{
-            mb: 4,
+            mb: 1,
             textAlign: 'left',
             //   maxWidth: { md: '65%' },
           }}
         >
-          <Typography variant="h5">What we offer</Typography>
+          <Typography variant="h5" color="secondary">
+            What we offer
+          </Typography>
           <Typography variant="h2">A Glance from our companies</Typography>
         </Stack>
 
@@ -67,6 +68,7 @@ function HandPicked() {
             scrollButtons={!mdUp}
             value={currentTab}
             onChange={(event, newValue) => setCurrentTab(newValue)}
+            sx={{ bgcolor: 'secondary.lighter', px: 2, py: 1, borderRadius: 2 }}
           >
             {TABS.map((tab) => (
               <Tab
@@ -90,7 +92,7 @@ function HandPicked() {
                   // {...getVariant('fadeInRight')}
                   key={tab.value}
                   id={tab.value}
-                  sx={{ minHeight: 450 }}
+                  sx={{ minHeight: 450, p: 3, border: 'solid 3px #000', borderRadius: 3 }}
                 >
                   {tab.component}
                 </Box>

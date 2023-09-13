@@ -37,18 +37,7 @@ function FeaturedProperty() {
   }, [featuredProperty.bucketID, featuredProperty.id, fsGetImgDownloadUrl]);
 
   return (
-    <Box>
-      <Stack
-        direction={{ md: 'row', xs: 'column' }}
-        sx={{ mb: 3, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
-      >
-        <Typography variant="h3" color="primary">
-          Featured Property
-        </Typography>
-        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
-          Visit Website
-        </Button>
-      </Stack>
+    <>
       <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
         <Image src={coverUrlOne} ratio="21/9" sx={{ borderRadius: 1 }} />
         <Image src={coverUrlTwo} ratio="21/9" sx={{ borderRadius: 1 }} />
@@ -62,7 +51,17 @@ function FeaturedProperty() {
           hideSummery
         />
       )}
-    </Box>
+      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant="contained"
+          color="warning"
+          size="large"
+          endIcon={<Iconify icon="quill:link-out" />}
+        >
+          Visit Website
+        </Button>
+      </Box>
+    </>
   );
 }
 export default FeaturedProperty;
@@ -266,7 +265,9 @@ function OverviewItem({ icon, label, text = '-' }) {
     <Stack spacing={1.5} direction="row" alignItems="flex-start">
       <Iconify icon={icon} width={24} />
       <Stack spacing={0.5}>
-        <Typography variant="h6">{label}</Typography>
+        <Typography variant="h6" sx={{ color: 'grey.400' }}>
+          {label}
+        </Typography>
         <Typography>{text}</Typography>
       </Stack>
     </Stack>

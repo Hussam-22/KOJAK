@@ -9,23 +9,11 @@ export default function AutoMaintenance() {
   const { translate } = useLocales();
 
   return (
-    <Box>
-      <Stack
-        direction={{ md: 'row', xs: 'column' }}
-        sx={{ p: 3, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
-      >
-        <Typography variant="h3" color="primary">
-          Auto Repair Services
-        </Typography>
-        <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
-          Visit Website
-        </Button>
-      </Stack>
+    <>
       <Box
         sx={{
           display: 'grid',
           gridTemplateColumns: { md: 'repeat(6,1fr)', xs: 'repeat(2,1fr)' },
-          p: 2,
         }}
       >
         {_autoRepairServices
@@ -34,6 +22,16 @@ export default function AutoMaintenance() {
             <ServiceItem service={service} key={service.id} />
           ))}
       </Box>
-    </Box>
+      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant="contained"
+          color="warning"
+          size="large"
+          endIcon={<Iconify icon="quill:link-out" />}
+        >
+          Visit Website
+        </Button>
+      </Box>
+    </>
   );
 }

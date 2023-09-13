@@ -33,7 +33,7 @@ export function button(theme) {
         ...(containedVariant && {
           color: isLight ? theme.palette.common.white : theme.palette.grey[800],
           backgroundColor: isLight ? theme.palette.grey[800] : theme.palette.common.white,
-          fontWeight: theme.typography.fontWeightLight,
+          fontWeight: theme.typography.fontWeightRegular,
           borderRadius: 3,
           '&:hover': {
             backgroundColor: isLight ? theme.palette.grey[700] : theme.palette.grey[400],
@@ -91,7 +91,7 @@ export function button(theme) {
           // backgroundImage: `linear-gradient(to right, ${theme.palette[color].main} 0%, ${theme.palette[color].dark}  100%)`,
 
           backgroundColor: theme.palette[color].main,
-          fontWeight: '400',
+          fontWeight: '600',
           // transform: 'translateY(0px)',
           // transition: 'transform 0.5s',
           borderRadius: 3,

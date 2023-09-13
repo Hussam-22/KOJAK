@@ -33,10 +33,11 @@ const secondaryFont = 'Tajawal';
 
 export const typography = {
   fontFamily: primaryFont,
-  fontWeightRegular: 600,
+  fontWeightLight: 400,
+  fontWeightRegular: 500,
   fontWeightMedium: 600,
   fontWeightSemiBold: 700,
-  fontWeightBold: 700,
+  fontWeightBold: 800,
   h1: {
     fontWeight: 700,
     lineHeight: 80 / 64,
