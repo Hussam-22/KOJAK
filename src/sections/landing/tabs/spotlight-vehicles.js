@@ -48,9 +48,14 @@ export default function SpotlightVehicles() {
     <Box sx={{ p: 2 }}>
       <Stack
         direction={{ md: 'row', xs: 'column' }}
-        sx={{ p: 1, justifyContent: 'space-between', textAlign: { md: 'unset', xs: 'center' } }}
+        sx={{
+          p: 1,
+          mb: 2,
+          justifyContent: 'space-between',
+          textAlign: { md: 'unset', xs: 'center' },
+        }}
       >
-        <Typography variant="h3" color="white">
+        <Typography variant="h3" color="primary">
           Spotlight Vehicles
         </Typography>
         <Button variant="text" color="warning" endIcon={<Iconify icon="quill:link-out" />}>
@@ -131,7 +136,7 @@ function CarouselItem({ vehicleInfo, active }) {
         dispatch(
           rdxAddVehiclesCoverUrlsToStore({
             id: vehicleInfo.id,
-            coverUrl: await fsGetImgDownloadUrl(vehicleInfo.id, 0),
+            coverUrl: await fsGetImgDownloadUrl('kojak-exclusive', vehicleInfo.id, 0),
           })
         );
       })();

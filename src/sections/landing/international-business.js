@@ -6,16 +6,23 @@ import Image from 'src/components/image/Image';
 
 function InternationalBusiness() {
   return (
-    <Box sx={{ py: 8, position: 'relative' }}>
-      <Container sx={{ bgcolor: 'background.paper', p: 5, borderRadius: 3, mt: 8 }}>
+    <Box sx={{ py: 8, position: 'relative', bgcolor: 'background.neutral' }}>
+      <Container maxWidth="xl" sx={{ bgcolor: 'background.paper', p: 5, borderRadius: 1, mt: 8 }}>
         <Box sx={{ position: 'absolute', top: 50, right: 0 }}>
           <Image src="/assets/illustrations/illustration_map.svg" />
         </Box>
         <Stack spacing={3} sx={{ color: 'common.white', px: 3, width: { md: '75%' } }}>
-          <Typography variant="h2" color="primary">
+          <Typography variant="h2" sx={{ color: 'warning.main' }}>
             Global Reach, Local Excellence
           </Typography>
-          <Typography sx={{ whiteSpace: 'pre-line', zIndex: 99 }}>
+          <Typography
+            sx={{
+              whiteSpace: 'pre-line',
+              zIndex: 99,
+              fontWeight: (theme) => theme.typography.fontWeightLight,
+            }}
+            variant="h5"
+          >
             {`At Kojak Group, our commitment to Mercedes-Benz excellence knows no borders. With a proud tradition of delivering the very best in cars and spare parts, we extend our reach far beyond our local roots.
 
             Our international business division is dedicated to bringing the elegance of Mercedes-Benz to discerning customers worldwide. Through meticulous export processes and a global network of partners, we ensure that the spirit of Mercedes-Benz finds its way to you, wherever you may be.

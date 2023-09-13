@@ -21,38 +21,34 @@ function History() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        bgcolor: 'background.paper',
-      }}
-    >
-      <Container sx={{ py: 8 }}>
-        <Stack
-          direction="column"
-          spacing={2}
-          alignItems="left"
-          justifyContent={{ xs: 'left', md: 'space-between' }}
-          sx={{
-            mb: { xs: 8, md: 10 },
-            textAlign: 'left',
-            //   maxWidth: { md: '65%' },
-          }}
-        >
-          <Typography variant="h5" color="white">
-            Our Journey
-          </Typography>
+    <Box>
+      <Stack
+        direction="column"
+        spacing={2}
+        alignItems="left"
+        justifyContent={{ xs: 'left', md: 'space-between' }}
+        sx={{
+          textAlign: 'left',
+          bgcolor: 'primary.light',
+          py: 5,
+        }}
+      >
+        <Container>
+          <Typography variant="h5">Our Journey</Typography>
           <Typography variant="h2" color="white">
             Pioneering Excellence in Mercedes-Benz Since 1983
           </Typography>
 
-          <Typography variant="h5" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          <Typography variant="h4" sx={{ fontWeight: theme.typography.fontWeightLight }}>
             In the vibrant year of 1983, a vision emerged, a vision that would lead to a
             conglomerate renowned for its unwavering dedication to excellence and innovation. The
             Kojak Group, our modest beginnings, marked the inception of a remarkable journey that
             would span decades, all centered around one marque - Mercedes-Benz.
           </Typography>
-        </Stack>
+        </Container>
+      </Stack>
 
+      <Container maxWidth="xl" sx={{ py: 8 }}>
         <Timeline position={mdUp ? 'alternate' : 'right'}>
           {_groupHistory.map((value, index) => (
             <TimelineItem
@@ -70,9 +66,9 @@ function History() {
                     ratio="16/9"
                     sx={{
                       borderRadius: 1,
-                      border: `solid 2px`,
+                      // border: `solid 2px`,
                       // borderColor: `${COLORS[index]}.main`,
-                      borderColor: `grey.400`,
+                      // borderColor: `grey.400`,
                       mb: 5,
                     }}
                   />
@@ -86,18 +82,15 @@ function History() {
               <TimelineContent>
                 <Stack spacing={1}>
                   <Box>
-                    <Typography variant="h6" color="primary">
+                    <Typography variant="h5" color="primary">
                       {value.year}
                     </Typography>
 
-                    <Typography variant="h4" color="primary">
-                      {value.title}
-                    </Typography>
+                    <Typography variant="h3">{value.title}</Typography>
                   </Box>
 
                   <Typography
-                    variant="body1"
-                    color="white"
+                    variant="h6"
                     sx={{
                       fontWeight: theme.typography.fontWeightLight,
                       // maxWidth: { md: 360 },
@@ -110,7 +103,7 @@ function History() {
                   </Typography>
                   {value.buttonText && (
                     <Box>
-                      <Button variant="contained" color="primary" size="regular" sx={{ mt: 1 }}>
+                      <Button variant="outlined" size="large" sx={{ mt: 1 }}>
                         {value.buttonText}
                       </Button>
                     </Box>

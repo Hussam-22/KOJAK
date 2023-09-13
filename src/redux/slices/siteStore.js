@@ -7,6 +7,7 @@ const initialState = {
   error: null,
   vehiclesList: [],
   vehiclesCoverUrls: [],
+  featuredProperty: {},
 };
 
 const slice = createSlice({
@@ -31,11 +32,20 @@ const slice = createSlice({
       const index = state.vehiclesCoverUrls.findIndex((item) => item.id === action.payload.id);
       if (index === -1) state.vehiclesCoverUrls = [...state.vehiclesCoverUrls, action.payload];
     },
+
+    rdxAddFeaturedProperty(state, action) {
+      state.featuredProperty = action.payload;
+    },
   },
 });
 
 // Reducer
 export default slice.reducer;
 
-export const { startLoading, stopLoading, rdxAddVehiclesToStore, rdxAddVehiclesCoverUrlsToStore } =
-  slice.actions;
+export const {
+  startLoading,
+  stopLoading,
+  rdxAddVehiclesToStore,
+  rdxAddVehiclesCoverUrlsToStore,
+  rdxAddFeaturedProperty,
+} = slice.actions;

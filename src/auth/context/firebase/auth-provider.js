@@ -91,54 +91,32 @@ export function AuthProvider({ children }) {
     return documents;
   }, []);
 
-  const addNewCar = useCallback(() => {
-    const docRef = doc(collection(DB, `/websites/kexclusive/vehicles/`));
-    setDoc(docRef, {
-      id: docRef.id,
-      brand: 'Mercedes',
-      model: 'S 500 LONG (Used)',
-      qty: 1,
-      price: '515,000 AED',
-      description: 'Export price outside GCC countries - Price Without VAT & Without Customs Duty',
-      year: 2022,
-      exteriorColor: '#000000',
-      interiorColor: '#D68C45',
-      engineType: 'Electric Hybrid fue',
-      milage: 14500,
-      isActive: true,
-      isFeatured: false,
-      creationDate: new Date(),
-      features: `
-      Climatised Front Seat		
-Automatic panoramic sliding sunroof		
-360° camera		
-KEYLESS-GO		
-Sun protection package		
-Rear seat climate control		
-Air conditioning rear		
-AMG Line		
-Driver assistant package plus		
-`,
-    });
+  // ------------------ | Get Featured Property | ------------------
+  const fsGetFeaturedProperty = useCallback(async () => {
+    const docRef = query(collectionGroup(DB, 'spaces'), where('isFeatured', '==', true));
+    const querySnapshot = await getDocs(docRef);
+    const dataArr = [];
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    return dataArr[0];
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
-  const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
-    console.log('download url');
-    let url = '';
-    try {
-      url = await getDownloadURL(
-        ref(
-          STORAGE,
-          `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
-        )
-      );
-    } catch (error) {
-      url = undefined;
-    }
+  const fsGetImgDownloadUrl = useCallback(
+    async (location, folderID, imgID, resolution = '1920x1080') => {
+      console.log('download url');
+      let url = '';
+      try {
+        url = await getDownloadURL(
+          ref(STORAGE, `gs://${location}/${folderID}/${imgID}_${resolution}.webp`)
+        );
+      } catch (error) {
+        url = undefined;
+      }
 
-    return url;
-  }, []);
+      return url;
+    },
+    []
+  );
 
   // ------------------ | Get image Download URL | ------------------
   const fsGetFolderImages = useCallback(async (folderID) => {
@@ -158,7 +136,7 @@ Driver assistant package plus
       addNewForm,
       getCars,
       getFeaturedCars,
-      addNewCar,
+      fsGetFeaturedProperty,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
@@ -167,7 +145,7 @@ Driver assistant package plus
       addNewForm,
       getCars,
       getFeaturedCars,
-      addNewCar,
+      fsGetFeaturedProperty,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
