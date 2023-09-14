@@ -29,7 +29,8 @@ function History() {
           alignItems="left"
           justifyContent={{ xs: 'left', md: 'space-between' }}
           sx={{
-            p: 3,
+            py: 3,
+            px: 5,
             mb: 6,
             textAlign: 'left',
             bgcolor: 'primary.lighter',

@@ -53,8 +53,6 @@ export default function Footer() {
         justifyContent: 'flex-end',
       }}
     >
-      <JoinNewsletter />
-      <Divider />
       <Container
         sx={{
           overflow: 'hidden',
@@ -127,20 +125,7 @@ export default function Footer() {
               justifyContent: 'center',
             }}
           >
-            {/* <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
-              {translate(`footer.availableVehicles`)}
-            </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>Hussam</Box> */}
-            <Typography
-              sx={{
-                fontSize: { md: '8dvw', xs: '14dvw' },
-                WebkitTextStroke: `1px ${alpha(mUItheme.palette.common.white, 0.45)}`,
-                color: alpha(mUItheme.palette.background.default, 0),
-                lineHeight: 1,
-              }}
-            >
-              {translate(`footer.since`)}
-            </Typography>
+            <JoinNewsletter />
           </Grid>
         </Grid>
 

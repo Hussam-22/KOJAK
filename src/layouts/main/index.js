@@ -32,8 +32,8 @@ export default function MainLayout({ children }) {
           height: 1,
         }}
       >
-        {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
-        <ModernHeader />
+        <Header headerOnDark={actionPage(pathsOnDark)} />
+        {/* <ModernHeader /> */}
         <Box
           component="main"
           sx={{

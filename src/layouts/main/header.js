@@ -57,7 +57,6 @@ export default function Header({ headerOnDark }) {
         <Toolbar
           disableGutters
           sx={{
-            borderBottom: `solid 1px ${theme.palette.primary.light}`,
             height: {
               xs: HEADER.H_MOBILE,
               md: HEADER.H_DESKTOP,
@@ -71,6 +70,7 @@ export default function Header({ headerOnDark }) {
             }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
+              borderBottom: `solid 1px ${theme.palette.primary.light}`,
               // color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,

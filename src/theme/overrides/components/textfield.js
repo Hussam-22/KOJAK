@@ -8,9 +8,9 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
 export function textField(theme) {
   const color = {
-    focused: theme.palette.common.black,
+    focused: theme.palette.primary.main,
     active: theme.palette.text.secondary,
-    placeholder: theme.palette.common.black,
+    placeholder: theme.palette.primary.main,
   };
 
   const font = {

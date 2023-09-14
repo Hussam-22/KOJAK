@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Box, Card, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Card, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 
@@ -27,56 +27,98 @@ const GROUPS = [
   },
 ];
 
+const PRACTICE = [
+  { title: 'Spare-Parts', icon: 'spare-parts-icon' },
+  { title: 'Repair Shop', icon: 'auto-icon' },
+  { title: 'Dealership', icon: 'exclusive-icon' },
+  { title: 'Property', icon: 'building-icon' },
+];
+
 function VisitGroupsWebsite() {
-  return (
-    <Container maxWidth="xl">
+  const theme = useTheme();
+
+  const renderGroupCard = (item, index) => (
+    <Card
+      key={item.title}
+      sx={{
+        p: 3,
+        borderRadius: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        textAlign: 'center',
+        flexDirection: 'column',
+        minHeight: 200,
+        bgcolor: 'secondary.main',
+        gap: 3,
+        position: 'relative',
+        overflow: 'visible',
+        boxShadow: `7px 7px 0 0 ${theme.palette.primary.main}`,
+      }}
+    >
       <Box
+        key={PRACTICE[index].title}
         sx={{
-          display: 'grid',
-          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-          gap: 2,
+          p: 3,
+          border: `solid 2px ${theme.palette.common.black}`,
+          borderRadius: 2,
+          maxWidth: 150,
+          maxHeight: 200,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          bgcolor: 'background.light',
+          position: 'absolute',
+          top: -60,
         }}
       >
-        {GROUPS.map((item, index) => (
-          <Card
-            key={item.title}
-            sx={{
-              p: 3,
-              borderRadius: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              textAlign: 'center',
-              flexDirection: 'column',
-              minHeight: 200,
-              bgcolor: 'secondary.main',
-              gap: 3,
-            }}
-          >
-            <Box>
-              <Typography variant="overline" color="primary">
-                KOJAK
-              </Typography>
-              <Typography variant="h3" color="primary">
-                {item.title}
-              </Typography>
-            </Box>
-
-            <Typography
-              color="white"
-              sx={{ fontWeight: (theme) => theme.typography.fontWeightLight }}
-            >
-              {item?.description}
-            </Typography>
-
-            <Button variant="soft" color="primary">
-              Visit Website
-            </Button>
-          </Card>
-        ))}
+        <Image src={`/assets/illustrations/${PRACTICE[index].icon}.svg`} width={48} height={48} />
       </Box>
-    </Container>
+
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="overline" color="primary">
+          KOJAK
+        </Typography>
+        <Typography variant="h3" color="primary">
+          {item.title}
+        </Typography>
+      </Box>
+
+      <Typography color="white" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+        {item?.description}
+      </Typography>
+
+      <Button variant="soft" color="primary">
+        Visit Website
+      </Button>
+    </Card>
+  );
+
+  return (
+    <Box sx={{ bgcolor: 'background.neutral' }}>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
+        <Typography variant="overline" color="primary">
+          Group Websites
+        </Typography>
+        <Typography variant="h1" sx={{ color: 'common.black' }}>
+          Visit Our Group Websites
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gap: 3,
+            mt: 12,
+          }}
+        >
+          {GROUPS.map((item, index) => renderGroupCard(item, index))}
+        </Box>
+      </Container>
+    </Box>
   );
 }
+
 export default VisitGroupsWebsite;
 // VisitGroupsWebsite.propTypes = { tables: PropTypes.array };
