@@ -55,17 +55,11 @@ export default function ModernHeader() {
         // width: { xs: '95dvw', md: '75dvw' },
         // border: `solid 1px ${theme.palette.grey[800]}`,
         zIndex: 99,
-        ...bgBlur({ color: theme.palette.common.black, blur: 85, opacity: 0.85 }),
-        // border: `solid 1px ${theme.palette.common.white}`,
+        ...bgBlur({ color: theme.palette.common.white, blur: 85, opacity: 0.85 }),
+        border: `solid 1px ${theme.palette.primary.main}`,
       }}
     >
-      <Stack
-        spacing={3}
-        direction="row"
-        sx={{ color: 'common.white' }}
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Stack spacing={10} direction="row" alignItems="center" justifyContent="space-between">
         <Logo />
 
         {isMdUp && (

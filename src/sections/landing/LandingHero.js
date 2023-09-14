@@ -41,7 +41,9 @@ function RenderDesktopHero() {
         height: '90dvh',
         display: 'flex',
         alignItems: 'center',
-        backgroundImage: `linear-gradient(to top in oklab, #FFFFFF 0%, #F1E2D0 144% 144%)`,
+        backgroundImage: `linear-gradient(to top in oklab, #FFFFFF 20%, #F1E2D0 194% 144%)`,
+        m: 12,
+        borderRadius: 5,
       }}
     >
       <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 9, p: 15 }}>
@@ -50,7 +52,7 @@ function RenderDesktopHero() {
           sx={{ borderRadius: 5, width: 1300, height: 600, boxShadow: '7px 7px 0 1px #000' }}
         />
       </Box>
-      <Box sx={{ width: '45%', zIndex: 9 }}>
+      <Box sx={{ width: '35%', zIndex: 9 }}>
         <Typography variant="overline" color="primary">
           {translate('landing.hero.heroText')}
         </Typography>

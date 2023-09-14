@@ -98,7 +98,7 @@ export default function JoinNewsletter() {
         <Box
           sx={{
             py: 4,
-            bgcolor: 'background.secondary',
+            bgcolor: 'background.light',
             display: 'flex',
             borderTop: 'solid 1px #999',
           }}

@@ -1,6 +1,7 @@
 import History from 'src/sections/landing/history';
 import HandPicked from 'src/sections/landing/hand-picked';
 import LandingHero from 'src/sections/landing/LandingHero';
+import VisitGroupsWebsite from 'src/sections/landing/visit-groups-website';
 import InternationalBusiness from 'src/sections/landing/international-business';
 
 export default function LandingView() {
@@ -8,6 +9,7 @@ export default function LandingView() {
     <>
       <LandingHero />
       <History />
+      <VisitGroupsWebsite />
       <InternationalBusiness />
       <HandPicked />
     </>

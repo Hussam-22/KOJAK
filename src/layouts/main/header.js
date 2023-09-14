@@ -57,6 +57,7 @@ export default function Header({ headerOnDark }) {
         <Toolbar
           disableGutters
           sx={{
+            borderBottom: `solid 1px ${theme.palette.primary.light}`,
             height: {
               xs: HEADER.H_MOBILE,
               md: HEADER.H_DESKTOP,

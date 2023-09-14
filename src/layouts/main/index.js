@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
+import ModernHeader from 'src/layouts/main/modern-header';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 import { SplashScreen } from 'src/components/loading-screen';
 
 import { HEADER } from '../config-layout';
 
-import Header from './header';
 import Footer from './footer';
+import Header from './header';
 
 // ----------------------------------------------------------------------
 
@@ -31,8 +32,8 @@ export default function MainLayout({ children }) {
           height: 1,
         }}
       >
-        <Header headerOnDark={actionPage(pathsOnDark)} />
-        {/* <ModernHeader /> */}
+        {/* <Header headerOnDark={actionPage(pathsOnDark)} /> */}
+        <ModernHeader />
         <Box
           component="main"
           sx={{

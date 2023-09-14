@@ -84,7 +84,6 @@ function InternationalBusiness() {
           <Typography
             sx={{
               whiteSpace: 'pre-line',
-              zIndex: 99,
               fontWeight: theme.typography.fontWeightLight,
               color: 'common.black',
             }}
