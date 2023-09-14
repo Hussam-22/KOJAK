@@ -30,9 +30,16 @@ const GROUPS = [
 function VisitGroupsWebsite() {
   return (
     <Container maxWidth="xl">
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+          gap: 2,
+        }}
+      >
         {GROUPS.map((item, index) => (
           <Card
+            key={item.title}
             sx={{
               p: 3,
               borderRadius: 1,

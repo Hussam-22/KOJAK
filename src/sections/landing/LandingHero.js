@@ -24,11 +24,43 @@ const PRACTICE = [
 ];
 
 export default function LandingHero() {
-  return <RenderDesktopHero />;
+  const mdUp = useResponsive('up', 'md');
+  return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
 }
 
 function RenderDesktopHero() {
-  const mdUp = useResponsive('up', 'md');
+  const { translate } = useLocales();
+  return (
+    <Box
+      sx={{
+        p: 25,
+        position: 'relative',
+        overflow: 'hidden',
+        height: '90dvh',
+        display: 'flex',
+        alignItems: 'center',
+        backgroundImage: `linear-gradient(to top in oklab, #FFFFFF 20%, #F1E2D0 194% 144%)`,
+        m: 12,
+        borderRadius: 5,
+      }}
+    >
+      <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 9, p: 15 }}>
+        <Image
+          src="/assets/images/hero/hero-4.jpg"
+          sx={{ borderRadius: 5, width: 1300, height: 600, boxShadow: '7px 7px 0 1px #000' }}
+        />
+      </Box>
+      <Box sx={{ width: '35%', zIndex: 9 }}>
+        <Typography variant="overline" color="primary">
+          {translate('landing.hero.heroText')}
+        </Typography>
+        <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+      </Box>
+    </Box>
+  );
+}
+
+function RenderMobileHero() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { translate } = useLocales();
@@ -61,6 +93,7 @@ function RenderDesktopHero() {
     </Box>
   );
 }
+
 /* 
 <Box
 sx={{
