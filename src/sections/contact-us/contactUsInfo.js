@@ -37,7 +37,7 @@ export default function ContactUsInfo({ light, small }) {
 
         <Typography>
           <Link
-            href="https://goo.gl/maps/1WhqX8XrQ1cHBRJc9"
+            href="https://goo.gl/maps/qbELTLX7qB9vV8aG7"
             target="_blank"
             rel="noopener"
             sx={{
