@@ -14,7 +14,7 @@ import Footer from './footer';
 
 // ----------------------------------------------------------------------
 
-const pathsOnDark = ['/'];
+const pathsOnDark = [];
 
 const spacingLayout = [...pathsOnDark, '/'];
 

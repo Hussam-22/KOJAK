@@ -26,8 +26,8 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Tajawal';
-const secondaryFont = 'Tajawal';
+const primaryFont = 'Poppins';
+const secondaryFont = 'Poppins';
 
 // ----------------------------------------------------------------------
 

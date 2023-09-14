@@ -131,7 +131,7 @@ export default function JoinNewsletter() {
                       size="large"
                       type="submit"
                       variant="contained"
-                      color="dark"
+                      color="secondary"
                       loading={isSubmitting}
                       sx={{
                         mx: { xs: 'auto !important', md: 'unset !important' },

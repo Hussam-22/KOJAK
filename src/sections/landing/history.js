@@ -17,74 +17,28 @@ import Image from 'src/components/image/Image';
 import { _groupHistory } from 'src/_mock/_hisotry';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-const PRACTICE = [
-  { title: 'Spare-Parts', icon: 'spare-parts-icon' },
-  { title: 'Repair Shop', icon: 'auto-icon' },
-  { title: 'Dealership', icon: 'exclusive-icon' },
-  { title: 'Property', icon: 'building-icon' },
-];
-
 function History() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   return (
     <Box sx={{ py: 8 }}>
-      <Container maxWidth="xl" sx={{ position: 'relative', pt: 8 }}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: -30,
-            right: 0,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4,1fr)',
-            gap: 2,
-          }}
-        >
-          {PRACTICE.map((item) => (
-            <Box
-              sx={{
-                px: 1,
-                py: 3,
-                border: `solid 2px ${theme.palette.secondary.light}`,
-                borderRadius: 3,
-                maxWidth: 150,
-                maxHeight: 200,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Image src={`/assets/illustrations/${item.icon}.svg`} width={48} height={48} />
-              <Typography
-                key={item.title}
-                variant="h6"
-                sx={{
-                  p: 1,
-                  color: 'common.black',
-                }}
-              >
-                {item.title}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
+      <Container maxWidth="xl" sx={{ position: 'relative' }}>
         <Stack
           direction="column"
           spacing={2}
           alignItems="left"
           justifyContent={{ xs: 'left', md: 'space-between' }}
           sx={{
+            p: 3,
+            mb: 6,
             textAlign: 'left',
             bgcolor: 'primary.lighter',
-            p: 3,
             borderRadius: 3,
-            mb: 6,
             borderBottom: `solid 4px`,
-            borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
+            // borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
           }}
         >
-          <Typography variant="overline" color="secondary">
+          <Typography variant="overline" color="primary">
             Our Journey
           </Typography>
           <Typography variant="h1">Pioneering Excellence in Mercedes-Benz Since 1983</Typography>

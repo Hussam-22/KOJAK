@@ -4,6 +4,13 @@ import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/materi
 
 import Image from 'src/components/image/Image';
 
+const PRACTICE = [
+  { title: 'Spare-Parts', icon: 'spare-parts-icon' },
+  { title: 'Repair Shop', icon: 'auto-icon' },
+  { title: 'Dealership', icon: 'exclusive-icon' },
+  { title: 'Property', icon: 'building-icon' },
+];
+
 function InternationalBusiness() {
   const theme = useTheme();
   return (
@@ -12,21 +19,68 @@ function InternationalBusiness() {
         maxWidth="xl"
         sx={{
           p: 8,
-          bgcolor: 'background.light',
-          borderRadius: 1,
-          width: '75%',
           mr: '35%',
+          width: '80%',
+          display: 'flex',
+          alignItems: 'center',
+          borderRadius: 1,
           borderBottom: `solid 4px`,
-          borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
+          bgcolor: 'background.light',
+          position: 'relative',
         }}
       >
-        <Box sx={{ position: 'absolute', top: 50, right: 0, textAlign: 'right' }}>
+        <Box
+          sx={{
+            position: 'absolute',
+            right: -120,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(1,1fr)',
+            gap: 1,
+          }}
+        >
+          {PRACTICE.map((item) => (
+            <Box
+              key={item.title}
+              sx={{
+                px: 1,
+                py: 3,
+                // border: `solid 2px ${theme.palette.primary.light}`,
+                borderRadius: 3,
+                maxWidth: 150,
+                maxHeight: 200,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                bgcolor: 'background.light',
+              }}
+            >
+              <Image src={`/assets/illustrations/${item.icon}.svg`} width={48} height={48} />
+              <Typography
+                key={item.title}
+                variant="h6"
+                sx={{
+                  p: 1,
+                  color: 'common.black',
+                }}
+              >
+                {item.title}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+        <Box>
           <Image src="/assets/illustrations/illustration_map.svg" />
         </Box>
-        <Stack spacing={3} sx={{ color: 'common.white', px: 3, width: { md: '75%' } }}>
-          <Typography variant="h1" sx={{ color: 'common.black' }}>
-            Global Reach, Local Excellence
-          </Typography>
+        <Stack spacing={3} sx={{ px: 3, width: { md: '85%' } }}>
+          <Box>
+            <Typography variant="overline" color="primary">
+              International Business
+            </Typography>
+            <Typography variant="h1" sx={{ color: 'common.black' }}>
+              Global Reach, Local Excellence
+            </Typography>
+          </Box>
           <Typography
             sx={{
               whiteSpace: 'pre-line',

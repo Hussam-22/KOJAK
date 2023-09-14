@@ -1,18 +1,27 @@
+import styled from '@emotion/styled';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { alpha, Divider } from '@mui/material';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { alpha, Button, Divider } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import Label from 'src/components/label';
 import { bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
+
+const PRACTICE = [
+  { title: 'Spare-Parts', icon: 'spare-parts-icon' },
+  { title: 'Repair Shop', icon: 'auto-icon' },
+  { title: 'Dealership', icon: 'exclusive-icon' },
+  { title: 'Property', icon: 'building-icon' },
+];
 
 export default function LandingHero() {
   return <RenderDesktopHero />;
@@ -26,32 +35,57 @@ function RenderDesktopHero() {
   return (
     <Box
       sx={{
-        height: '100dvh',
-
-        ...bgGradient({
-          direction: mdUp ? 'to right' : 'to bottom',
-          startColor: `${alpha(theme.palette.grey[50], 0.4)}`,
-          endColor: `${alpha(theme.palette.grey[900], 0)}`,
-          imgUrl: '/assets/images/hero/hero-1.jpg',
-        }),
-
-        // backgroundImage: 'url(/assets/images/hero/hero-1.jpg)',
-        // backgroundSize: 'cover',
-        // backgroundPosition: 'center',
-        // backgroundRepeat: 'no-repeat',
+        p: 25,
+        position: 'relative',
+        overflow: 'hidden',
+        height: '90dvh',
+        display: 'flex',
+        alignItems: 'center',
+        backgroundImage: `linear-gradient(to top in oklab, #FFFFFF 0%, #F1E2D0 144% 144%)`,
       }}
     >
-      <Grid container sx={{ height: 1 }}>
-        <Grid
-          md={6}
-          sx={{
-            px: 10,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <Stack spacing={0}>
-            <Box
+      <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 9, p: 15 }}>
+        <Image
+          src="/assets/images/hero/hero-4.jpg"
+          sx={{ borderRadius: 5, width: 1300, height: 600, boxShadow: '7px 7px 0 1px #000' }}
+        />
+      </Box>
+      <Box sx={{ width: '45%', zIndex: 9 }}>
+        <Typography variant="h1" sx={{ borderBottom: 'solid 10px #000', borderRadius: 1 }}>
+          {translate('landing.hero.partOne')}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+/* 
+<Box
+sx={{
+  height: '75dvh',
+  position: 'relative',
+  backgroundImage: 'url(/assets/images/hero/hero-4.jpg)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'right',
+  backgroundRepeat: 'no-repeat',
+}}
+>
+<Grid container sx={{ height: 1 }}>
+  <Grid
+    md={5}
+    sx={{
+      px: 10,
+      display: 'flex',
+      alignItems: 'center',
+    }}
+  >
+    <Stack spacing={0}>
+      <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+    </Stack>
+  </Grid>
+</Grid>
+</Box> */
+
+/* <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'left',
@@ -60,12 +94,9 @@ function RenderDesktopHero() {
               }}
             >
               <Logo large showText={false} />
-            </Box>
-            <Typography variant="h3" sx={{ color: 'grey.800' }}>
-              {translate('landing.hero.partTwo')}
-            </Typography>
+            </Box> */
 
-            <Typography
+/* <Typography
               sx={{
                 textTransform: 'capitalize',
                 fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
@@ -74,21 +105,8 @@ function RenderDesktopHero() {
               }}
             >
               {translate('landing.hero.heroText')}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { lg: '3.05rem', md: '2.05rem', xs: '1.55rem' },
-                // background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.main})`,
-                // WebkitBackgroundClip: 'text',
-                // WebkitTextFillColor: 'transparent',
-                color: 'common.white',
-              }}
-            >
-              {translate('landing.hero.partOne')}
-            </Typography>
-          </Stack>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
+            </Typography> */
+
+/* <Typography variant="h3" sx={{ color: 'grey.800' }}>
+              {translate('landing.hero.partTwo')}
+            </Typography> */

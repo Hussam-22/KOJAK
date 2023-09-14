@@ -88,7 +88,7 @@ export default function Header({ headerOnDark }) {
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
               {/* <Logo small light={!useDarkLogo && !offset} /> */}
-              <Logo small light />
+              <Logo small />
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
