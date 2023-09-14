@@ -41,7 +41,11 @@ export function AuthProvider({ children }) {
       to:
         payload.source === 'newsletter'
           ? []
-          : ['hussam@hotmail.co.uk', 'info.kgmarketing@gmail.com'],
+          : [
+              'hussam@hotmail.co.uk',
+              'querieskex@kojak-group.com',
+              'info.marketing@kojak-group.com',
+            ],
       message: {
         subject: payload.subject,
         html: `
