@@ -10,7 +10,7 @@ const en = {
   landing: {
     hero: {
       overlineText: ``,
-      heroText: 'Kojak Group of Companies, ',
+      heroText: 'Kojak Group of Companies',
       partOne: 'A Legacy of Mercedes-Benz Mastery Since 1983',
       partTwo: 'Since 1983',
       subText:

@@ -24,21 +24,25 @@ function HandPicked() {
       value: 'Auto Repair Services',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <AutoMaintenance />,
+      siteUrl: '#',
     },
     {
       value: 'Most Ordered Spare Parts',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpareParts />,
+      siteUrl: '#',
     },
     {
       value: 'Spotlight Vehicles',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpotlightVehicles />,
+      siteUrl: '#',
     },
     {
       value: 'Featured Property',
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <FeaturedProperty />,
+      siteUrl: '#',
     },
   ];
 
@@ -55,10 +59,10 @@ function HandPicked() {
             //   maxWidth: { md: '65%' },
           }}
         >
-          <Typography variant="overline" color="secondary">
+          <Typography variant="overline" color="primary">
             What we offer
           </Typography>
-          <Typography variant="h2">A Glance from our companies</Typography>
+          <Typography variant="h1">A Glance from our companies</Typography>
         </Stack>
 
         <>
@@ -68,7 +72,14 @@ function HandPicked() {
             scrollButtons={!mdUp}
             value={currentTab}
             onChange={(event, newValue) => setCurrentTab(newValue)}
-            sx={{ bgcolor: 'secondary.lighter', px: 2, py: 1, borderRadius: 2 }}
+            sx={{
+              px: 2,
+              py: 1,
+              borderRadius: 1,
+              display: 'flex',
+              bgcolor: 'primary.lighter',
+              justifyContent: 'space-between',
+            }}
           >
             {TABS.map((tab) => (
               <Tab
@@ -92,7 +103,7 @@ function HandPicked() {
                   // {...getVariant('fadeInRight')}
                   key={tab.value}
                   id={tab.value}
-                  sx={{ minHeight: 450, p: 3, border: 'solid 3px #000', borderRadius: 3 }}
+                  // sx={{ minHeight: 450, p: 3, border: 'solid 3px #000', borderRadius: 3 }}
                 >
                   {tab.component}
                 </Box>

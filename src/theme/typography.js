@@ -26,8 +26,8 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Poppins';
-const secondaryFont = 'Poppins';
+const primaryFont = 'Poppins, Alexandria';
+const secondaryFont = 'Poppins, Alexandria';
 
 // ----------------------------------------------------------------------
 

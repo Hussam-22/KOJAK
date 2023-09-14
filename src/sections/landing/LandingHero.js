@@ -51,9 +51,10 @@ function RenderDesktopHero() {
         />
       </Box>
       <Box sx={{ width: '45%', zIndex: 9 }}>
-        <Typography variant="h1" sx={{ borderBottom: 'solid 10px #000', borderRadius: 1 }}>
-          {translate('landing.hero.partOne')}
+        <Typography variant="overline" color="primary">
+          {translate('landing.hero.heroText')}
         </Typography>
+        <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
       </Box>
     </Box>
   );

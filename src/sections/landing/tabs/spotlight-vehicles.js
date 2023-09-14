@@ -45,69 +45,56 @@ export default function SpotlightVehicles() {
   }, [dispatch, featuredCars.length, getFeaturedCars]);
 
   return (
-    <>
-      <Card>
-        <CarouselArrows
+    <Card>
+      <CarouselArrows
+        onNext={carousel.onNext}
+        onPrev={carousel.onPrev}
+        leftButtonProps={{
+          sx: {
+            left: 15,
+            opacity: 1,
+            color: 'common.white',
+            bgcolor: 'primary.main',
+            '&:hover': { bgcolor: 'primary.dark' },
+            // ...(mdUp && { display: 'none' }),
+          },
+        }}
+        rightButtonProps={{
+          sx: {
+            right: 15,
+            opacity: 1,
+            color: 'common.white',
+            bgcolor: 'primary.main',
+            '&:hover': { bgcolor: 'primary.dark' },
+            // ...(mdUp && { display: 'none' }),
+          },
+        }}
+      >
+        <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+          {featuredCars.length !== 0 &&
+            featuredCars.map((vehicle, index) =>
+              mdUp ? (
+                <CarouselItem
+                  key={vehicle.id}
+                  vehicleInfo={vehicle}
+                  active={index === carousel.currentIndex}
+                />
+              ) : (
+                <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />
+              )
+            )}
+        </Carousel>
+      </CarouselArrows>
+
+      {mdUp && (
+        <CarouselArrowIndex
+          index={carousel.currentIndex}
+          total={featuredCars.length}
           onNext={carousel.onNext}
           onPrev={carousel.onPrev}
-          leftButtonProps={{
-            sx: {
-              left: 15,
-              opacity: 1,
-              color: 'common.white',
-              bgcolor: 'primary.main',
-              '&:hover': { bgcolor: 'primary.dark' },
-              // ...(mdUp && { display: 'none' }),
-            },
-          }}
-          rightButtonProps={{
-            sx: {
-              right: 15,
-              opacity: 1,
-              color: 'common.white',
-              bgcolor: 'primary.main',
-              '&:hover': { bgcolor: 'primary.dark' },
-              // ...(mdUp && { display: 'none' }),
-            },
-          }}
-        >
-          <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-            {featuredCars.length !== 0 &&
-              featuredCars.map((vehicle, index) =>
-                mdUp ? (
-                  <CarouselItem
-                    key={vehicle.id}
-                    vehicleInfo={vehicle}
-                    active={index === carousel.currentIndex}
-                  />
-                ) : (
-                  <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />
-                )
-              )}
-          </Carousel>
-        </CarouselArrows>
-
-        {mdUp && (
-          <CarouselArrowIndex
-            index={carousel.currentIndex}
-            total={featuredCars.length}
-            onNext={carousel.onNext}
-            onPrev={carousel.onPrev}
-          />
-        )}
-      </Card>
-
-      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          variant="contained"
-          color="warning"
-          size="large"
-          endIcon={<Iconify icon="quill:link-out" />}
-        >
-          Visit Website
-        </Button>
-      </Box>
-    </>
+        />
+      )}
+    </Card>
   );
 }
 

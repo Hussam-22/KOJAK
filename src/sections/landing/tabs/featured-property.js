@@ -51,16 +51,6 @@ function FeaturedProperty() {
           hideSummery
         />
       )}
-      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          variant="contained"
-          color="warning"
-          size="large"
-          endIcon={<Iconify icon="quill:link-out" />}
-        >
-          Visit Website
-        </Button>
-      </Box>
     </>
   );
 }

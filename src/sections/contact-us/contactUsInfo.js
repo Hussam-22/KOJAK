@@ -41,7 +41,7 @@ export default function ContactUsInfo({ light, small }) {
             target="_blank"
             rel="noopener"
             sx={{
-              color: light ? 'primary.light' : 'primary.main',
+              color: 'primary.main',
               textDecorationLine: 'underline',
             }}
           >
@@ -71,7 +71,7 @@ export default function ContactUsInfo({ light, small }) {
               aria-label={social.value}
             >
               <IconButton color="inherit" aria-label={social.value}>
-                <Iconify icon={social.icon} sx={{ color: light ? 'primary.light' : 'unset' }} />
+                <Iconify icon={social.icon} sx={{ color: 'primary.main' }} />
               </IconButton>
             </Link>
           ))}

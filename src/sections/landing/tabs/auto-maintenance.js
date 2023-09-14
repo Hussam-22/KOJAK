@@ -9,29 +9,17 @@ export default function AutoMaintenance() {
   const { translate } = useLocales();
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { md: 'repeat(6,1fr)', xs: 'repeat(2,1fr)' },
-        }}
-      >
-        {_autoRepairServices
-          .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
-          .map((service) => (
-            <ServiceItem service={service} key={service.id} />
-          ))}
-      </Box>
-      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          variant="contained"
-          color="warning"
-          size="large"
-          endIcon={<Iconify icon="quill:link-out" />}
-        >
-          Visit Website
-        </Button>
-      </Box>
-    </>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { md: 'repeat(6,1fr)', xs: 'repeat(2,1fr)' },
+      }}
+    >
+      {_autoRepairServices
+        .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
+        .map((service) => (
+          <ServiceItem service={service} key={service.id} />
+        ))}
+    </Box>
   );
 }

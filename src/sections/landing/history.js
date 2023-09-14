@@ -105,7 +105,7 @@ function History() {
                   </Typography>
                   {value.buttonText && (
                     <Box>
-                      <Button variant="outlined" size="large" sx={{ mt: 1 }}>
+                      <Button variant="contained" size="large" sx={{ mt: 1 }}>
                         {value.buttonText}
                       </Button>
                     </Box>

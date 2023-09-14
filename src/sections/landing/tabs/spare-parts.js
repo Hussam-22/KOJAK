@@ -8,34 +8,22 @@ export default function SpareParts() {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
-    <>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
-          p: 2,
-          gap: 2,
-        }}
-      >
-        {[...Array(4)].map((part, index) => (
-          <Image
-            key={`/assets/images/parts/part-${index + 1}.webp`}
-            src={`/assets/images/parts/part-${index + 1}.webp`}
-            alt={`car-part-${index + 1}`}
-            sx={{ borderRadius: 1 }}
-          />
-        ))}
-      </Box>
-      <Box sx={{ mt: 4, mx: 3, display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          variant="contained"
-          color="warning"
-          size="large"
-          endIcon={<Iconify icon="quill:link-out" />}
-        >
-          Visit Website
-        </Button>
-      </Box>
-    </>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(2,1fr)' },
+        p: 2,
+        gap: 2,
+      }}
+    >
+      {[...Array(4)].map((part, index) => (
+        <Image
+          key={`/assets/images/parts/part-${index + 1}.webp`}
+          src={`/assets/images/parts/part-${index + 1}.webp`}
+          alt={`car-part-${index + 1}`}
+          sx={{ borderRadius: 1 }}
+        />
+      ))}
+    </Box>
   );
 }
