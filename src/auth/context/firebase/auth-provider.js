@@ -70,29 +70,41 @@ export function AuthProvider({ children }) {
       id: newDocRef.id,
       isActive: true,
       // --------------------------------------
+
       contactEmail: 'info@kojak-group.com',
-      jobID: 'IT-2023-1',
-      createdAt: Timestamp.fromDate(new Date()),
-      jobTitle: 'Full Stack Developer',
-      department: 'IT',
+      jobID: 'CS-2023-1',
+      createdAt: '2023-09-16T00:00:00Z',
+      jobTitle: 'Customer Support Specialist',
+      department: 'Customer Service',
       group: 'Kojak Group',
       location: 'Sharjah - Industrial Area 4',
       jobType: 'Full-Time',
-      experienceYears: 4,
+      experienceYears: 1,
       jobDescription:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio quaerat fuga assumenda, ad voluptatum quisquam minus dolores adipisci pariatur dicta quo, magni illo eum, eligendi accusantium aperiam! Nostrum, vitae molestias?',
+        'Join our Customer Service team and help us provide exceptional support to our customers. You will be the first point of contact for inquiries and support requests.',
       keyResponsibilities: [
-        'Update Kojak Websites',
-        'Maintain Dashboard',
-        'Add/Remove/Edit Group Service Items',
-        'Develop new Pages when required',
+        'Respond to customer inquiries via phone and email',
+        'Resolve customer issues and complaints',
+        'Provide product information and assistance',
+        'Maintain accurate customer records',
       ],
-      jobSkills: ['React', 'JavaScript', 'HTML/CSS', 'Material UI', 'Firebase'],
-      niceToHave: ['Vue', 'Angular', 'Google Analytics'],
-      benefits: ['Air-Ticket', 'Medical Insurance', '30 Off Days'],
-      workingHours: '8AM to 1PM, 4PM to 8 PM (Two Shifts), Saturday to Thursday (Friday Off)',
-      languages: ['Arabic', 'English'],
-      salary: 0,
+      jobSkills: [
+        'Excellent communication skills',
+        'Problem-solving',
+        'Customer service orientation',
+        'Attention to detail',
+        'Multitasking',
+      ],
+      niceToHave: [
+        'Experience in a call center environment',
+        'Knowledge of CRM software',
+        'Fluency in multiple languages',
+      ],
+      benefits: ['Air-Ticket', 'Healthcare', 'Training and development opportunities'],
+      workingHours: 'Rotating shifts, including weekends',
+      languages: ['English', 'Arabic'],
+      salary: 18000,
+
       expiryDate: Timestamp.fromDate(new Date()),
     });
     return newDocRef.id;
@@ -107,6 +119,12 @@ export function AuthProvider({ children }) {
     querySnapshot.forEach((document) => documents.push(document.data()));
 
     return documents;
+  }, []);
+
+  const getJobPostDetails = useCallback(async (jobID) => {
+    const docRef = doc(DB, `/websites/kojak-group/career/${jobID}`);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
   }, []);
 
   // ----------------------------------------------------------------------------
@@ -185,6 +203,7 @@ export function AuthProvider({ children }) {
     () => ({
       addNewForm,
       addNewCareerPost,
+      getJobPostDetails,
       getCareersList,
       getCars,
       getFeaturedCars,
@@ -196,6 +215,7 @@ export function AuthProvider({ children }) {
     [
       addNewForm,
       addNewCareerPost,
+      getJobPostDetails,
       getCareersList,
       getCars,
       getFeaturedCars,

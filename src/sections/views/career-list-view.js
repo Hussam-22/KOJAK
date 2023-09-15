@@ -30,14 +30,20 @@ function CareerListView() {
           eveniet ducimus sit qui id iste aliquid, asperiores omnis quos eligendi. Fugiat totam,
           adipisci quaerat iusto maxime delectus?
         </Typography>
-        <Box>
+        {/* <Box>
           <Button variant="contained" onClick={addNewJobHandler}>
             Add New Job
           </Button>
-        </Box>
+        </Box> */}
       </Stack>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: 'repeat(3,1fr)', xs: 'repeat(1,1fr)' },
+          gap: 2,
+        }}
+      >
         {careersList.map((jobDetails) => (
           <CareerListCard key={jobDetails.id} jobDetails={jobDetails} />
         ))}
