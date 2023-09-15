@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 
-import CareerListView from 'src/sections/views/career-list-view';
+import CareerItemView from 'src/sections/views/career-item-view';
 
-function CareerPage() {
+function CareerItemPage() {
   return (
     <>
       <Helmet>
@@ -18,8 +18,8 @@ function CareerPage() {
             <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" /> */}
       </Helmet>
 
-      <CareerListView />
+      <CareerItemView />
     </>
   );
 }
-export default CareerPage;
+export default CareerItemPage;

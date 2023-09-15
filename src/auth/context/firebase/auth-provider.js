@@ -60,6 +60,56 @@ export function AuthProvider({ children }) {
   }, []);
 
   // ----------------------------------------------------------------------------
+  // add new Career Post
+  const addNewCareerPost = useCallback(async (payload) => {
+    const newDocRef = doc(collection(DB, `/websites/kojak-group/career/`));
+
+    setDoc(newDocRef, {
+      ...payload,
+      // --------------------------------------
+      id: newDocRef.id,
+      isActive: true,
+      // --------------------------------------
+      contactEmail: 'info@kojak-group.com',
+      jobID: 'IT-2023-1',
+      createdAt: Timestamp.fromDate(new Date()),
+      jobTitle: 'Full Stack Developer',
+      department: 'IT',
+      group: 'Kojak Group',
+      location: 'Sharjah - Industrial Area 4',
+      jobType: 'Full-Time',
+      experienceYears: 4,
+      jobDescription:
+        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio quaerat fuga assumenda, ad voluptatum quisquam minus dolores adipisci pariatur dicta quo, magni illo eum, eligendi accusantium aperiam! Nostrum, vitae molestias?',
+      keyResponsibilities: [
+        'Update Kojak Websites',
+        'Maintain Dashboard',
+        'Add/Remove/Edit Group Service Items',
+        'Develop new Pages when required',
+      ],
+      jobSkills: ['React', 'JavaScript', 'HTML/CSS', 'Material UI', 'Firebase'],
+      niceToHave: ['Vue', 'Angular', 'Google Analytics'],
+      benefits: ['Air-Ticket', 'Medical Insurance', '30 Off Days'],
+      workingHours: '8AM to 1PM, 4PM to 8 PM (Two Shifts), Saturday to Thursday (Friday Off)',
+      languages: ['Arabic', 'English'],
+      salary: 0,
+      expiryDate: Timestamp.fromDate(new Date()),
+    });
+    return newDocRef.id;
+  }, []);
+
+  // GET Careers List
+  const getCareersList = useCallback(async () => {
+    const docRef = query(collectionGroup(DB, 'career'), where('isActive', '==', true));
+    const querySnapshot = await getDocs(docRef);
+    const documents = [];
+
+    querySnapshot.forEach((document) => documents.push(document.data()));
+
+    return documents;
+  }, []);
+
+  // ----------------------------------------------------------------------------
   const getVehicleInfo = useCallback(async (vehicleID) => {
     const docRef = doc(DB, `/websites/kexclusive/vehicles/${vehicleID}`);
     const docSnap = await getDoc(docRef);
@@ -134,6 +184,8 @@ export function AuthProvider({ children }) {
   const memoizedValue = useMemo(
     () => ({
       addNewForm,
+      addNewCareerPost,
+      getCareersList,
       getCars,
       getFeaturedCars,
       fsGetFeaturedProperty,
@@ -143,6 +195,8 @@ export function AuthProvider({ children }) {
     }),
     [
       addNewForm,
+      addNewCareerPost,
+      getCareersList,
       getCars,
       getFeaturedCars,
       fsGetFeaturedProperty,
