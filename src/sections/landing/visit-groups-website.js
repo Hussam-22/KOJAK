@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types';
-
-import { Box, Card, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 
@@ -109,7 +107,7 @@ function VisitGroupsWebsite() {
           sx={{
             display: 'grid',
             gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-            gap: 3,
+            gap: { md: 3, xs: 10 },
             mt: 12,
           }}
         >

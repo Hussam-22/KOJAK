@@ -2,16 +2,14 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 
-import { Box, Link, Card, Stack, Button, Divider, useTheme, Typography } from '@mui/material';
+import { Link, Card, Stack, Divider, useTheme, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
-import Label from 'src/components/label/Label';
 import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
-import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import TextMaxLine from 'src/components/text-max-line/text-max-line';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
@@ -28,7 +26,7 @@ function VehicleCard({ vehicleInfo }) {
 
   useEffect(() => {
     (async () => {
-      setImageURL(await fsGetImgDownloadUrl(id, 0));
+      setImageURL(await fsGetImgDownloadUrl('kojak-exclusive', id, 0));
     })();
   }, [fsGetImgDownloadUrl, id]);
 
@@ -39,48 +37,22 @@ function VehicleCard({ vehicleInfo }) {
         position: 'relative',
       }}
     >
-      {/* {isFeatured && (
-        <Label
-          variant="filled"
-          color="warning"
-          sx={{ position: 'absolute', top: 15, left: 15, zIndex: 9 }}
-          endIcon={<Iconify icon="ic:round-star" />}
-        >
-          {translate('landing.spotLight.spotLight')}
-        </Label>
-      )} */}
-
       <Image src={imageURL || '/assets/images/no_preview.jpg'} ratio="6/4" />
 
       <Stack sx={{ p: 3 }} spacing={2}>
         <Stack direction="row" alignItems="flex-end" justifyContent="space-between">
-          <Box>
-            <Link
-              component={RouterLink}
-              href={paths.website.servicesDetails + id}
-              // underline="none"
-              sx={{ color: 'secondary.main' }}
-            >
-              <Typography variant="caption">
-                {translate(`common.${brand.toLowerCase()}`)}
-              </Typography>
+          <Link
+            component={RouterLink}
+            href={paths.website.servicesDetails + id}
+            // underline="none"
+            sx={{ color: 'secondary.main' }}
+          >
+            <Typography variant="caption">{translate(`common.${brand.toLowerCase()}`)}</Typography>
 
-              <TextMaxLine variant="h4" line={1}>
-                {model}
-              </TextMaxLine>
-            </Link>
-            {/* <Typography>{id}</Typography> */}
-          </Box>
-          {/* <Box>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => navigate(paths.website.servicesDetails + id)}
-              sx={{ whiteSpace: 'nowrap' }}
-            >
-              {translate('common.moreDetails')}
-            </Button>
-          </Box> */}
+            <TextMaxLine variant="h4" line={1}>
+              {model}
+            </TextMaxLine>
+          </Link>
         </Stack>
         <Stack
           direction="row"

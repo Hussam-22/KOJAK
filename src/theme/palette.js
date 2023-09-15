@@ -128,7 +128,7 @@ export function palette(mode) {
       warning: WARNING.main,
     },
     background: {
-      paper: '#171717',
+      paper: '#FFFFFF',
       default: '#FFFFFF',
       neutral: GREY[100],
       light: PRIMARY.lighter,

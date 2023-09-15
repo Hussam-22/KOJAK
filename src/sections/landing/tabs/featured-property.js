@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Box, alpha, Stack, Button, Divider, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Divider, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
@@ -38,7 +38,7 @@ function FeaturedProperty() {
 
   return (
     <>
-      <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+      <Stack direction={{ md: 'row', xs: 'column' }} spacing={2} sx={{ mb: 2 }}>
         <Image src={coverUrlOne} ratio="21/9" sx={{ borderRadius: 1 }} />
         <Image src={coverUrlTwo} ratio="21/9" sx={{ borderRadius: 1 }} />
       </Stack>
@@ -250,12 +250,11 @@ PropertyDetailsSummary.propTypes = {
 // ----------------------------------------------------------------------
 
 function OverviewItem({ icon, label, text = '-' }) {
-  const theme = useTheme();
   return (
     <Stack spacing={1.5} direction="row" alignItems="flex-start">
       <Iconify icon={icon} width={24} />
       <Stack spacing={0.5}>
-        <Typography variant="h6" sx={{ color: 'grey.400' }}>
+        <Typography variant="caption" color="primary">
           {label}
         </Typography>
         <Typography>{text}</Typography>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
@@ -10,39 +11,53 @@ import Image from 'src/components/image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function LandingHero() {
-  const mdUp = useResponsive('up', 'md');
-  return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
+  return <RenderDesktopHero />;
 }
 
 function RenderDesktopHero() {
+  const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
   return (
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: 'url(/assets/images/hero/hero-4.jpg)',
+        backgroundImage: mdUp
+          ? 'url(/assets/images/hero/hero-1.png)'
+          : 'url(/assets/images/hero/hero-5.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }}
     >
-      <Grid container sx={{ p: 5, height: 1 }}>
-        <Grid
-          md={4}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'left',
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography variant="overline" color="primary">
-            {translate('landing.hero.heroText')}
-          </Typography>
-          <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+      <Container
+        maxWidth="xl"
+        sx={{
+          height: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'left',
+          alignContent: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Grid container sx={{ p: 5 }}>
+          <Grid
+            md={6}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'left',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="overline" color="primary">
+              {translate('landing.hero.heroText')}
+            </Typography>
+            <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 }

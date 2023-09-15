@@ -1,7 +1,4 @@
-import PropTypes from 'prop-types';
-import { ThemeContext } from '@emotion/react';
-
-import { Box, alpha, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 import {
   Timeline,
   TimelineDot,
@@ -12,7 +9,6 @@ import {
   TimelineOppositeContent,
 } from '@mui/lab';
 
-import Logo from 'src/components/logo';
 import Image from 'src/components/image/Image';
 import { _groupHistory } from 'src/_mock/_hisotry';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -91,7 +87,16 @@ function History() {
 
                     <Typography variant="h3">{value.title}</Typography>
                   </Box>
-
+                  {!mdUp && (
+                    <Image
+                      src={value.coverUrl}
+                      ratio="16/9"
+                      sx={{
+                        borderRadius: 1,
+                        my: 2,
+                      }}
+                    />
+                  )}
                   <Typography
                     variant="h6"
                     sx={{
