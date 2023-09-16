@@ -2,8 +2,10 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
+import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
@@ -56,63 +58,37 @@ export default function AboutUs() {
   const { translate } = useLocales();
   const theme = useTheme();
   return (
-    <Container
-      sx={{
-        pt: 5,
-        pb: { xs: 5, md: 10 },
-      }}
-    >
-      <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
-        {translate('about.title')}
-      </Typography>
-      <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
-
-      <Box
+    <Box sx={{ bgcolor: 'primary.lighter' }}>
+      <Container
+        maxWidth="xl"
         sx={{
-          mt: 4,
-          position: 'relative',
-          height: 500,
-          ...bgGradient({
-            direction: 'to top',
-            startColor: `${alpha(theme.palette.grey[900], 0.6)}`,
-            endColor: `${alpha(theme.palette.grey[100], 0)}`,
-            imgUrl: '/assets/images/original/font-en.webp',
-          }),
-          borderRadius: 2,
+          pt: 5,
+          pb: { xs: 5, md: 10 },
         }}
       >
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: 20,
-            width: '100%',
-            gap: 5,
-            display: 'grid',
-            gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
-            textAlign: { xs: 'center', md: 'center' },
-          }}
-        >
-          {SUMMARY.map((value) => (
-            <Stack key={value.name} spacing={1}>
-              <Typography variant="h2" sx={{ color: 'primary.main' }}>
-                <CountUp
-                  start={value.number / 5}
-                  end={value.number}
-                  formattingFn={(newValue) => newValue}
-                />
+        <Grid container spacing={5}>
+          <Grid
+            md={8}
+            xs={12}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
+              {translate('about.title')}
+            </Typography>
+            <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
+          </Grid>
 
-                <Typography variant="h3" component="span" sx={{ verticalAlign: 'top', ml: 0.5 }}>
-                  +
-                </Typography>
-              </Typography>
-
-              <Typography variant="h6" sx={{ color: 'common.white' }}>
-                {translate(`why.${value.name}`)}
-              </Typography>
-            </Stack>
-          ))}
-        </Box>
-      </Box>
-    </Container>
+          <Grid md={4} xs={12}>
+            <Box sx={{ p: 10 }}>
+              <Image src="/assets/mercedes-logo.svg" />
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

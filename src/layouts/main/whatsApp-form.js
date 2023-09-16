@@ -63,13 +63,15 @@ export default function WhatsAppForm() {
       fullName: '',
       mobile: CustomerMobileNumber,
       email: '',
-      subject: 'K-Exclusive Website WhatsApp Message',
+      subject: 'Kojak Group Website WhatsApp Message',
       inquiry: message,
       sentTo: WHATSAPP_MOBILE,
     });
 
     setIsOpen(false);
-    if (!isSubmitting) window.location.href = url;
+    setTimeout(() => {
+      if (!isSubmitting) window.location.href = url;
+    }, 1000);
   };
 
   return (

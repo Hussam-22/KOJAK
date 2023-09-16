@@ -5,9 +5,9 @@ export const EXCLUSIVE_URL = 'https://kojak-exclusive.netlify.app/';
 export const BUILDING_URL = 'https://kojak-building.com/';
 
 export const SLACK_WEBHOOK_URL =
-  'https://hooks.slack.com/services/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';
+  'https://hooks.slack.com/services/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';
 
-export const WHATSAPP_MOBILE = '+971529242616';
+export const WHATSAPP_MOBILE = '+971529242728';
 
 export const GOOGLE_MAP_API = process.env.NEXT_PUBLIC_MAP_API;
 

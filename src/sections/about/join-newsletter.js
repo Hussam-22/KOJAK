@@ -110,7 +110,11 @@ export default function JoinNewsletter() {
           <Typography color="white">{translate('newsLetter.subTitle')}</Typography>
 
           <Stack direction="row" spacing={1}>
-            <RHFTextField name="email" label={translate('form.email')} />
+            <RHFTextField
+              name="email"
+              label={translate('form.email')}
+              slotProps={{ color: '#FFF' }}
+            />
 
             <LoadingButton
               size="large"

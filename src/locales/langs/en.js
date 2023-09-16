@@ -56,36 +56,32 @@ const en = {
   },
 
   about: {
-    title: `Our Story: Discover Kojak's Passion for Mercedes-Benz`,
-    description: `Welcome to Kojak Exclusive, where our journey with Mercedes-Benz 40 yeas ago began with a shared passion for luxury, innovation, and automotive excellence. As a dedicated Mercedes-Benz dealership, we take pride in our rich history and unwavering commitment to providing our customers with the ultimate Mercedes-Benz experience`,
+    title: `About Kojak Group`,
+    description: `We are passionate about all things Mercedes-Benz. With a rich history spanning several years, we have become a trusted name in the automotive industry, offering a comprehensive range of services and products to meet the diverse needs of Mercedes-Benz enthusiasts around the world`,
 
     vision: 'Our Vision',
-    history: `Our vision is to be the foremost destination for Mercedes-Benz enthusiasts in our region. We aspire to be known not only for our outstanding selection of Mercedes-Benz vehicles but also for our unwavering commitment to customer service and satisfaction. By fostering a culture of innovation and continuous improvement, we aim to set new standards in the automotive industry, ensuring that every interaction with us is a testament to the luxury, quality, and sophistication that define Mercedes-Benz.`,
+    history: `Our vision at Kojak is to be the global leader in Mercedes-Benz solutions, setting the benchmark for quality, innovation, and customer satisfaction. We aspire to continuously expand our reach, offering a seamless and comprehensive Mercedes-Benz experience that transcends borders. By fostering a culture of expertise, adaptability, and sustainability, we aim to shape the future of the automotive industry, enhancing the lives of Mercedes-Benz enthusiasts and customers everywhere.`,
 
     mission: 'Our Mission',
-    missionText: `Our mission is to provide an unparalleled automotive experience to our valued customers. We are committed to delivering the highest quality Mercedes-Benz vehicles and services, guided by the principles of integrity, excellence, and customer satisfaction. Through our passion for luxury automobiles and dedication to our community, we aim to exceed your expectations at every turn, making your journey with Mercedes-Benz truly exceptional.`,
+    missionText: `Our mission is to elevate the Mercedes-Benz experience for enthusiasts and drivers worldwide. We are dedicated to providing exceptional products and services, including genuine Mercedes-Benz spare parts, top-tier auto-maintenance, and the latest brand-new Mercedes-Benz vehicles. Our commitment to excellence, customer-centricity, and unwavering integrity drives us to deliver unparalleled quality and innovation, ensuring that every interaction with us reflects the true essence of Mercedes-Benz luxury and performance.`,
 
     coreValues: {
       items: {
         1: {
-          title: 'Excellence',
-          description:
-            'We are committed to excellence in everything we do. We strive for perfection in customer service, vehicle quality, and maintenance services. Our dedication to excellence is a testament to our unwavering pursuit of the highest standards of quality and performance.',
+          title: 'Trusted Partner',
+          description: `We aspire to be your trusted partner for all your Mercedes-Benz needs. Whether it's finding the perfect part, keeping your vehicle in top condition, or driving home in a new Mercedes-Benz, we're here to ensure your journey is seamless and exceptional.`,
         },
         2: {
-          title: 'Integrity',
-          description:
-            'Integrity is the foundation of our dealership. We conduct our business with the utmost honesty, transparency, and ethical behavior. Our customers trust us to provide reliable information and fair deals, and we take that trust seriously. We are committed to building and maintaining long-term relationships based on integrity and trust.',
+          title: 'Setting Standards',
+          description: `We set and maintain the highest standards in the automotive industry. Our goal is to not only meet but exceed your expectations, setting the benchmark for quality and service in the Mercedes-Benz world`,
         },
         3: {
-          title: 'Passion',
-          description:
-            'Our team shares a deep passion for the Mercedes-Benz brand and the automotive industry. This passion drives us to go above and beyond for our customers, providing them with a truly exceptional experience. We believe that passion is the driving force behind innovation and customer satisfaction.',
+          title: 'Passion for Mercedes-Benz',
+          description: ` Our deep-rooted passion for Mercedes-Benz is evident in our work. We are Mercedes-Benz enthusiasts ourselves, and this passion fuels our dedication to delivering the best Mercedes-Benz experience possible`,
         },
         4: {
-          title: 'Innovation',
-          description:
-            'Innovation is at the heart of our dealership. We embrace change and continuously seek ways to improve and adapt to the evolving automotive landscape. Our commitment to innovation drives us to explore new technologies, services, and customer experiences, ensuring that we remain at the forefront of the industry and provide our customers with the latest advancements in Mercedes-Benz vehicles and services.',
+          title: 'Uncompromising Excellence:',
+          description: `We are unwavering in our commitment to excellence across all our services. Whether it's supplying genuine Mercedes-Benz spare parts, providing expert auto-maintenance, or offering the latest brand-new Mercedes-Benz vehicles, we set the bar high and consistently deliver top-notch quality.`,
         },
       },
     },

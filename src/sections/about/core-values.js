@@ -14,8 +14,8 @@ import Image from 'src/components/image/Image';
 const CORE_VALUES = [
   'carbon:badge',
   'solar:shield-up-linear',
-  'ri:team-line',
-  'solar:graph-up-line-duotone',
+  'arcticons:mercedes-me',
+  'tabler:star',
 ];
 
 // ----------------------------------------------------------------------
@@ -46,12 +46,12 @@ export default function CoreValues() {
         </Stack>
 
         <Grid container spacing={3}>
-          <Grid md={5} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+          {/* <Grid md={5} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
             <Image src="/assets/images/original/1.webp" sx={{ borderRadius: 2 }} ratio="9/16" />
-          </Grid>
-          <Grid md={7} xs={12} sx={{ p: 4 }}>
+          </Grid> */}
+          <Grid md={4} xs={12} sx={{ p: 4 }}>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
-              {CORE_VALUES.map((value, index) => (
+              {CORE_VALUES.slice(0, 2).map((value, index) => (
                 <Box sx={{ textAlign: 'center' }} key={value}>
                   <Iconify icon={value} width={48} sx={{ color: 'primary.main' }} />
 
@@ -61,6 +61,32 @@ export default function CoreValues() {
 
                   <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
                     {translate(`about.coreValues.items.${index + 1}.description`)}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </Grid>
+
+          <Grid md={4} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Image src="/assets/mercedes-background.jpeg" sx={{ borderRadius: 2 }} ratio="9/16" />
+          </Grid>
+
+          <Grid md={4} xs={12} sx={{ p: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(1,1fr)', gap: 4 }}>
+              {CORE_VALUES.slice(0, 2).map((value, index) => (
+                <Box sx={{ textAlign: 'center' }} key={value}>
+                  <Iconify
+                    icon={CORE_VALUES[index + 2]}
+                    width={48}
+                    sx={{ color: 'primary.main' }}
+                  />
+
+                  <Typography variant="h5" sx={{ mt: 1, mb: 1 }}>
+                    {translate(`about.coreValues.items.${index + 3}.title`)}
+                  </Typography>
+
+                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                    {translate(`about.coreValues.items.${index + 3}.description`)}
                   </Typography>
                 </Box>
               ))}

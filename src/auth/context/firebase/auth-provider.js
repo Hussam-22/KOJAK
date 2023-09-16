@@ -30,18 +30,18 @@ const DB = getFirestore(firebaseApp);
 export function AuthProvider({ children }) {
   // add new request-callback form
   const addNewForm = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/kexclusive/forms/`));
+    const newDocRef = doc(collection(DB, `/websites/kojak-group/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
       ...payload,
-      website: 'kexclusive',
+      website: 'kojak-group',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
       to:
         payload.source === 'newsletter'
           ? []
-          : ['hussam@hotmail.co.uk', 'info.kgmarketing@gmail.com'],
+          : ['hussam@hotmail.co.uk', 'info.marketing@kojak-group.com'],
       message: {
         subject: payload.subject,
         html: `

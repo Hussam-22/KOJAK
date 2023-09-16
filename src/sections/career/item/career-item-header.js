@@ -28,12 +28,6 @@ function CareerItemHeader() {
               <Typography variant="caption">Sharjah, Industrial Area 4</Typography>
             </Stack>
           </Stack>
-          <Stack direction="column" spacing={2}>
-            <Button variant="contained" size="large">
-              Apply Now
-            </Button>
-            <Typography variant="caption">Expiry Date: 25-12-2023</Typography>
-          </Stack>
         </Box>
       </Container>
     </Box>

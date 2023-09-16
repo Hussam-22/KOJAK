@@ -15,11 +15,14 @@ export default function Vision() {
     <Box
       sx={{
         py: 8,
-        bgcolor: 'primary.lighter',
+        bgcolor: 'background.neutral',
       }}
     >
       <Container>
         <Grid container spacing={3}>
+          <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Image src="/assets/illustrations/vision.svg" />
+          </Grid>
           <Grid md={7} xs={12} sx={{ p: 4 }}>
             <Stack
               spacing={3}
@@ -32,13 +35,14 @@ export default function Vision() {
             >
               <Typography variant="h2">{translate('about.vision')}</Typography>
               {!mdUp && (
-                <Image src="/assets/images/original/2.webp" sx={{ borderRadius: 2 }} ratio="16/9" />
+                <Image
+                  src="/assets/illustrations/vision.svg"
+                  sx={{ borderRadius: 2 }}
+                  ratio="16/9"
+                />
               )}
               <Typography>{translate('about.history')}</Typography>
             </Stack>
-          </Grid>
-          <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/images/original/2.webp" sx={{ borderRadius: 2 }} ratio="16/9" />
           </Grid>
         </Grid>
       </Container>

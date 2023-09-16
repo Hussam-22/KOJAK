@@ -46,27 +46,37 @@ function CareerItemBody({ jobPostDetails }) {
         </Stack>
       </Grid>
       <Grid md={4} xs={12}>
-        <Card sx={{ p: 3 }}>
-          <Stack spacing={2}>
-            <Box>
-              <Typography variant="h3">Languages</Typography>
-              {languages.map((language) => (
-                <Label key={language} sx={{ mx: 1 }}>
-                  {language}
-                </Label>
-              ))}
-            </Box>
-
-            <Box>
-              <Typography variant="h3">Benefits</Typography>
-              <ul>
-                {benefits.map((item) => (
-                  <li key={item}>{item}</li>
+        <Stack spacing={3}>
+          <Card sx={{ p: 3 }}>
+            <Stack direction="column" spacing={2}>
+              <Typography>Apply Now</Typography>
+              <Typography>Send an email along with your CV to</Typography>
+              <Typography>info@kojak-group.com</Typography>
+              <Typography variant="caption">Expiry Date: 25-12-2023</Typography>
+            </Stack>
+          </Card>
+          <Card sx={{ p: 3 }}>
+            <Stack spacing={2}>
+              <Box>
+                <Typography variant="h3">Languages</Typography>
+                {languages.map((language) => (
+                  <Label key={language} sx={{ mx: 1 }}>
+                    {language}
+                  </Label>
                 ))}
-              </ul>
-            </Box>
-          </Stack>
-        </Card>
+              </Box>
+
+              <Box>
+                <Typography variant="h3">Benefits</Typography>
+                <ul>
+                  {benefits.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </Box>
+            </Stack>
+          </Card>
+        </Stack>
       </Grid>
     </Grid>
   );
