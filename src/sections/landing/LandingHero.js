@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import { Button, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Card, alpha, Button, Container } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -19,6 +19,7 @@ function RenderDesktopHero() {
   const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
   const navigate = useNavigate();
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -43,9 +44,9 @@ function RenderDesktopHero() {
           justifyContent: 'center',
         }}
       >
-        <Grid container sx={{ p: 5 }}>
+        <Grid container spacing={4} sx={{ p: 5 }}>
           <Grid
-            md={5}
+            md={6}
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -74,13 +75,115 @@ function RenderDesktopHero() {
               </Button>
             </Box>
           </Grid>
-          <Grid md={7}>
+          <Grid md={3} sx={{ px: 3 }}>
+            <Card
+              sx={{
+                p: 3,
+                borderRadius: 5,
+                height: 0.5,
+                bgcolor: 'error.main',
+                mt: 8,
+                mb: 2,
+                overflow: 'visible',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                boxShadow: '-10px 10px 0 0 #000',
+              }}
+            >
+              <Typography variant="h1" color="white">
+                Kojak
+              </Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 1)}`,
+                  color: alpha('#000000', 0),
+                }}
+              >
+                Spare Parts
+              </Typography>
+            </Card>
+            <Card
+              sx={{
+                p: 3,
+                borderRadius: 5,
+                height: 0.5,
+                bgcolor: 'primary.main',
+                color: 'secondary.main',
+                overflow: 'visible',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                boxShadow: '-10px 10px 0 0 #000',
+              }}
+            >
+              <Typography variant="h1">Kojak</Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 1)}`,
+                  color: alpha('#000000', 0),
+                }}
+              >
+                Exclusive
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid md={3}>
             {/* <Image src="/assets/images/hero/hero-4.jpg" sx={{ borderRadius: 3 }} /> */}
 
-            <Typography variant="h3">Spare Parts</Typography>
-            <Typography variant="h3">Auto Maintenance</Typography>
-            <Typography variant="h3">K Exclusive</Typography>
-            <Typography variant="h3">Building</Typography>
+            <Card
+              sx={{
+                p: 3,
+                borderRadius: 5,
+                height: 0.5,
+                bgcolor: 'secondary.main',
+                color: 'primary.main',
+                mb: 2,
+                overflow: 'visible',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                boxShadow: `-10px 10px 0 0 ${theme.palette.primary.main}`,
+              }}
+            >
+              <Typography variant="h1">Kojak</Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  WebkitTextStroke: `1px ${alpha(theme.palette.primary.main, 1)}`,
+                  color: alpha('#000000', 0),
+                }}
+              >
+                Auto Maintenance
+              </Typography>
+            </Card>
+            <Card
+              sx={{
+                p: 3,
+                borderRadius: 5,
+                height: 0.5,
+                bgcolor: 'background.neutral',
+                color: 'secondary.main',
+                overflow: 'visible',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                boxShadow: '-10px 10px 0 0 #000',
+              }}
+            >
+              <Typography variant="h1">Kojak</Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 1)}`,
+                  color: alpha('#000000', 0),
+                }}
+              >
+                Building
+              </Typography>
+            </Card>
           </Grid>
         </Grid>
       </Container>
