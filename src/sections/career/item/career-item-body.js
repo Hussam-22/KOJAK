@@ -46,7 +46,7 @@ function CareerItemBody({ jobPostDetails }) {
         </Stack>
       </Grid>
       <Grid md={4} xs={12}>
-        <Stack spacing={3}>
+        <Stack spacing={3} direction={{ md: 'column', xs: 'column-reverse' }}>
           <Card sx={{ p: 3 }}>
             <Stack direction="column" spacing={2}>
               <Typography>Apply Now</Typography>

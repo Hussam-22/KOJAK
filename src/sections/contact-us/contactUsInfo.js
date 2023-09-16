@@ -5,6 +5,7 @@ import { Link, Stack, IconButton, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
 import { useLocales } from 'src/locales';
+import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
@@ -17,14 +18,14 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-        <Link color="inherit" href="mailto:querieskex@kojak-group.com">
-          querieskex@kojak-group.com
+        <Link color="inherit" href="mailto:kojak1m@kojak-group.com">
+          kojak1m@kojak-group.com
         </Link>
       </Stack>
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>052 924 2616</Typography>
+        <Typography>{WHATSAPP_MOBILE}</Typography>
       </Stack>
 
       {/* <Stack direction="row" spacing={1}>

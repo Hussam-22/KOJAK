@@ -8,12 +8,13 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Button, Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
 
-import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
-import Image from 'src/components/image';
+import Logo from 'src/components/logo';
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -97,19 +98,19 @@ export default function Header({ headerOnDark }) {
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
-                  {/* <Button
+                  <Button
                     variant="contained"
-                    color="primary"
-                    onClick={() => navigate(paths.website.services)}
+                    color="secondary"
+                    onClick={() => navigate(paths.website.contactUs)}
                   >
-                    {translate('common.actionButton')}
+                    {translate('header.contactUs')}
                   </Button>
                   <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
-                  /> */}
-                  <Divider
+                  />
+                  {/* <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
@@ -120,7 +121,7 @@ export default function Header({ headerOnDark }) {
                     onClick={toggleLanguageHandler}
                   >
                     <Image src="/assets/illustrations/translate.svg" />
-                  </Box>
+                  </Box> */}
                 </Stack>
               )}
             </Stack>

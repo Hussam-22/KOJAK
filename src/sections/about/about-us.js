@@ -9,6 +9,7 @@ import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -56,7 +57,7 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 
 export default function AboutUs() {
   const { translate } = useLocales();
-  const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
   return (
     <Box sx={{ bgcolor: 'primary.lighter' }}>
       <Container
@@ -74,6 +75,7 @@ export default function AboutUs() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
+              order: mdUp ? 0 : 1,
             }}
           >
             <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>

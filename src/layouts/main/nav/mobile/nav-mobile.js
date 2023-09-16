@@ -52,9 +52,9 @@ export default function NavMobile({ data, toggleLanguage }) {
           {currentLang.value === 'en' ? 'ع' : 'En'}
         </IconButton> */}
 
-        <Box sx={{ width: 48, height: 48 }} component={IconButton} onClick={toggleLanguage}>
+        {/* <Box sx={{ width: 48, height: 48 }} component={IconButton} onClick={toggleLanguage}>
           <Image src="/assets/illustrations/translate.svg" />
-        </Box>
+        </Box> */}
 
         <IconButton
           onClick={mobileOpen.onTrue}
@@ -88,9 +88,9 @@ export default function NavMobile({ data, toggleLanguage }) {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(paths.website.services)}
+              onClick={() => navigate(paths.website.contactUs)}
             >
-              {translate('common.actionButton')}
+              {translate('header.contactUs')}
             </Button>
           </Stack>
         </Scrollbar>

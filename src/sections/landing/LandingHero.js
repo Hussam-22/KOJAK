@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import { Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { Button, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function LandingHero() {
@@ -17,16 +18,18 @@ export default function LandingHero() {
 function RenderDesktopHero() {
   const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
-        height: '100dvh',
-        backgroundImage: mdUp
-          ? 'url(/assets/images/hero/hero-1.png)'
-          : 'url(/assets/images/hero/hero-5.png)',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
+        height: '85dvh',
+        // bgcolor: 'primary.lighter',
+        // backgroundImage: mdUp
+        //   ? 'url(/assets/images/hero/hero-1.png)'
+        //   : 'url(/assets/images/hero/hero-5.png)',
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+        // backgroundPosition: 'center',
       }}
     >
       <Container
@@ -42,19 +45,42 @@ function RenderDesktopHero() {
       >
         <Grid container sx={{ p: 5 }}>
           <Grid
-            md={6}
+            md={5}
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'left',
               alignContent: 'center',
               justifyContent: 'center',
+              gap: 3,
+              position: 'relative',
             }}
           >
-            <Typography variant="overline" color="primary">
-              {translate('landing.hero.heroText')}
-            </Typography>
-            <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+            <Image src="/assets/shape/shape-1.svg" sx={{ position: 'absolute', zIndex: -1 }} />
+            <Box>
+              <Typography variant="overline" color="primary">
+                {translate('landing.hero.heroText')}
+              </Typography>
+              <Typography variant="h1">{translate('landing.hero.partOne')}</Typography>
+            </Box>
+            <Box>
+              <Button
+                size="large"
+                variant="contained"
+                color="secondary"
+                onClick={() => navigate(paths.website.contactUs)}
+              >
+                {translate('header.contactUs')}
+              </Button>
+            </Box>
+          </Grid>
+          <Grid md={7}>
+            {/* <Image src="/assets/images/hero/hero-4.jpg" sx={{ borderRadius: 3 }} /> */}
+
+            <Typography variant="h3">Spare Parts</Typography>
+            <Typography variant="h3">Auto Maintenance</Typography>
+            <Typography variant="h3">K Exclusive</Typography>
+            <Typography variant="h3">Building</Typography>
           </Grid>
         </Grid>
       </Container>

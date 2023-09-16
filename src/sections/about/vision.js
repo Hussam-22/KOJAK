@@ -20,9 +20,11 @@ export default function Vision() {
     >
       <Container>
         <Grid container spacing={3}>
-          <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/illustrations/vision.svg" />
-          </Grid>
+          {mdUp && (
+            <Grid md={5} sx={{ display: 'flex', alignItems: 'center' }}>
+              <Image src="/assets/illustrations/vision.svg" />
+            </Grid>
+          )}
           <Grid md={7} xs={12} sx={{ p: 4 }}>
             <Stack
               spacing={3}
@@ -34,13 +36,7 @@ export default function Vision() {
               }}
             >
               <Typography variant="h2">{translate('about.vision')}</Typography>
-              {!mdUp && (
-                <Image
-                  src="/assets/illustrations/vision.svg"
-                  sx={{ borderRadius: 2 }}
-                  ratio="16/9"
-                />
-              )}
+              {!mdUp && <Image src="/assets/illustrations/vision.svg" />}
               <Typography>{translate('about.history')}</Typography>
             </Stack>
           </Grid>

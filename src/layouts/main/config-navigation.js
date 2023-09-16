@@ -6,7 +6,7 @@ export const navConfig = [
   { title: 'home', path: '/' },
   { title: 'about', path: paths.website.about },
   { title: 'career', path: paths.website.career },
-  { title: 'contactUs', path: paths.website.contactUs },
+  // { title: 'contactUs', path: paths.website.contactUs },
   // { title: 'blog', path: paths.website.blogPosts },
   // { title: 'bookAppointment', path: paths.website.bookAppointment },
 

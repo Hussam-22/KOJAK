@@ -160,7 +160,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     details: {
       number: '06 5334 312 EXT. 220',
       location: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '8 AM to 1 PM - 4 PM to 8 PM (Saturday to Thursday)',
+      hours: '8 AM to 8 PM (Saturday to Thursday)',
       follow: 'FOLLOW US',
     },
   },
