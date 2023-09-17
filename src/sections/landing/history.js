@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import { m } from 'framer-motion';
+
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 import {
   Timeline,
@@ -12,14 +15,17 @@ import {
 import Image from 'src/components/image/Image';
 import { _groupHistory } from 'src/_mock/_hisotry';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { varFade, MotionViewport } from 'src/components/animate';
 
 function History() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
+
   return (
     <Box sx={{ py: 8 }}>
       <Container maxWidth="xl" sx={{ position: 'relative' }}>
         <Stack
+          component={MotionViewport}
           direction="column"
           spacing={2}
           alignItems="left"
@@ -35,17 +41,19 @@ function History() {
             // borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
           }}
         >
-          <Typography variant="overline" color="primary">
-            Our Journey
-          </Typography>
-          <Typography variant="h1">Pioneering Excellence in Mercedes-Benz Since 1983</Typography>
+          <m.div variants={varFade().inUp}>
+            <Typography variant="overline" color="primary">
+              Our Journey
+            </Typography>
+            <Typography variant="h1">Pioneering Excellence in Mercedes-Benz Since 1983</Typography>
 
-          <Typography variant="h4" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-            In the vibrant year of 1983, a vision emerged, a vision that would lead to a
-            conglomerate renowned for its unwavering dedication to excellence and innovation. The
-            Kojak Group, our modest beginnings, marked the inception of a remarkable journey that
-            would span decades, all centered around one marque - Mercedes-Benz.
-          </Typography>
+            <Typography variant="h4" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+              In the vibrant year of 1983, a vision emerged, a vision that would lead to a
+              conglomerate renowned for its unwavering dedication to excellence and innovation. The
+              Kojak Group, our modest beginnings, marked the inception of a remarkable journey that
+              would span decades, all centered around one marque - Mercedes-Benz.
+            </Typography>
+          </m.div>
         </Stack>
 
         <Timeline position={mdUp ? 'alternate' : 'right'}>
@@ -59,18 +67,17 @@ function History() {
               }}
             >
               {mdUp && (
-                <TimelineOppositeContent>
-                  <Image
-                    src={value.coverUrl}
-                    ratio="16/9"
-                    sx={{
-                      borderRadius: 1,
-                      // border: `solid 2px`,
-                      // borderColor: `${COLORS[index]}.main`,
-                      // borderColor: `grey.400`,
-                      mb: 5,
-                    }}
-                  />
+                <TimelineOppositeContent component={MotionViewport}>
+                  <m.div variants={index % 2 === 0 ? varFade().inLeft : varFade().inRight}>
+                    <Image
+                      src={value.coverUrl}
+                      ratio="16/9"
+                      sx={{
+                        borderRadius: 1,
+                        mb: 5,
+                      }}
+                    />
+                  </m.div>
                 </TimelineOppositeContent>
               )}
               <TimelineSeparator>
@@ -78,45 +85,46 @@ function History() {
                 <TimelineConnector />
               </TimelineSeparator>
 
-              <TimelineContent>
-                <Stack spacing={1}>
-                  <Box>
+              <TimelineContent component={MotionViewport}>
+                <m.div variants={index % 2 === 0 ? varFade().inRight : varFade().inLeft}>
+                  <Stack spacing={1}>
                     <Typography variant="h5" color="primary">
                       {value.year}
                     </Typography>
 
                     <Typography variant="h3">{value.title}</Typography>
-                  </Box>
-                  {!mdUp && (
-                    <Image
-                      src={value.coverUrl}
-                      ratio="16/9"
+
+                    {!mdUp && (
+                      <Image
+                        src={value.coverUrl}
+                        ratio="16/9"
+                        sx={{
+                          borderRadius: 1,
+                          my: 2,
+                        }}
+                      />
+                    )}
+                    <Typography
+                      variant="h6"
                       sx={{
-                        borderRadius: 1,
-                        my: 2,
+                        fontWeight: theme.typography.fontWeightLight,
+                        // maxWidth: { md: 360 },
+                        ...(index % 2 && {
+                          ml: 'auto',
+                        }),
                       }}
-                    />
-                  )}
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: theme.typography.fontWeightLight,
-                      // maxWidth: { md: 360 },
-                      ...(index % 2 && {
-                        ml: 'auto',
-                      }),
-                    }}
-                  >
-                    {value.description}
-                  </Typography>
-                  {value.buttonText && (
-                    <Box>
-                      <Button variant="contained" size="large" sx={{ mt: 1 }}>
-                        {value.buttonText}
-                      </Button>
-                    </Box>
-                  )}
-                </Stack>
+                    >
+                      {value.description}
+                    </Typography>
+                    {value.buttonText && (
+                      <Box>
+                        <Button variant="contained" size="large" sx={{ mt: 1 }}>
+                          {value.buttonText}
+                        </Button>
+                      </Box>
+                    )}
+                  </Stack>
+                </m.div>
               </TimelineContent>
             </TimelineItem>
           ))}

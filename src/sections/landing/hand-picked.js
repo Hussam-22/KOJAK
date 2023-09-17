@@ -10,6 +10,7 @@ import { _autoRepairServices } from 'src/_mock';
 import { useResponsive } from 'src/hooks/use-responsive';
 import ServiceItem from 'src/sections/components/service-item';
 import SpareParts from 'src/sections/landing/tabs/spare-parts';
+import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 import AutoMaintenance from 'src/sections/landing/tabs/auto-maintenance';
 import FeaturedProperty from 'src/sections/landing/tabs/featured-property';
@@ -50,6 +51,7 @@ function HandPicked() {
     <Box>
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Stack
+          component={MotionViewport}
           direction="column"
           alignItems="left"
           justifyContent={{ xs: 'left', md: 'space-between' }}
@@ -59,10 +61,14 @@ function HandPicked() {
             //   maxWidth: { md: '65%' },
           }}
         >
-          <Typography variant="overline" color="primary">
-            What we offer
-          </Typography>
-          <Typography variant="h1">A Glance from our companies</Typography>
+          <m.div variants={varFade().inLeft}>
+            <Typography variant="overline" color="primary">
+              What we offer
+            </Typography>
+          </m.div>
+          <m.div variants={varFade().inRight}>
+            <Typography variant="h1">A Glance from our companies</Typography>
+          </m.div>
         </Stack>
 
         <>

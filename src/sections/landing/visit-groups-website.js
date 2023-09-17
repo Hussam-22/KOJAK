@@ -1,6 +1,10 @@
+import { m } from 'framer-motion';
+
 import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
+import getVariant from 'src/components/animate/variants/get-variant';
+import { varFade, varSlide, MotionViewport } from 'src/components/animate';
 
 const GROUPS = [
   {
@@ -71,37 +75,47 @@ function VisitGroupsWebsite() {
           top: -60,
         }}
       >
-        <Image src={`/assets/illustrations/${PRACTICE[index].icon}.svg`} width={48} height={48} />
+        <m.div variants={varFade().inUp}>
+          <Image src={`/assets/illustrations/${PRACTICE[index].icon}.svg`} width={48} height={48} />
+        </m.div>
       </Box>
 
       <Box sx={{ mt: 4 }}>
-        <Typography variant="overline" color="primary">
-          KOJAK
-        </Typography>
-        <Typography variant="h3" color="primary">
-          {item.title}
-        </Typography>
+        <m.div variants={varFade().inUp}>
+          <Typography variant="overline" color="primary">
+            KOJAK
+          </Typography>
+          <Typography variant="h3" color="primary">
+            {item.title}
+          </Typography>
+        </m.div>
       </Box>
 
-      <Typography color="white" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-        {item?.description}
-      </Typography>
+      <m.div variants={varFade().inUp}>
+        <Typography color="white" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+          {item?.description}
+        </Typography>
+      </m.div>
 
-      <Button variant="soft" color="primary">
-        Visit Website
-      </Button>
+      <m.div variants={varFade().inUp}>
+        <Button variant="soft" color="primary">
+          Visit Website
+        </Button>
+      </m.div>
     </Card>
   );
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
-        <Typography variant="overline" color="primary">
-          Group Websites
-        </Typography>
-        <Typography variant="h1" sx={{ color: 'common.black' }}>
-          Visit Our Group Websites
-        </Typography>
+      <Container maxWidth="xl" sx={{ py: 8 }} component={MotionViewport}>
+        <m.div variants={varSlide().inRight}>
+          <Typography variant="overline" color="primary">
+            Group Websites
+          </Typography>
+          <Typography variant="h1" sx={{ color: 'common.black' }}>
+            Visit Our Group Websites
+          </Typography>
+        </m.div>
 
         <Box
           sx={{

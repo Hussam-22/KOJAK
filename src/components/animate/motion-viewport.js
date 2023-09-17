@@ -21,7 +21,7 @@ export default function MotionViewport({ children, disableAnimatedMobile = true,
       component={m.div}
       initial="initial"
       whileInView="animate"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.05 }}
       variants={varContainer()}
       {...other}
     >

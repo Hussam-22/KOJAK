@@ -66,9 +66,10 @@ export default function Header({ headerOnDark }) {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.shorter,
             }),
-            ...(headerOnDark && {
-              color: 'common.white',
-            }),
+            ...(!offset &&
+              headerOnDark && {
+                color: 'common.white',
+              }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
               borderBottom: `solid 1px ${theme.palette.primary.light}`,
@@ -89,8 +90,8 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              {/* <Logo small light={!useDarkLogo && !offset} /> */}
-              <Logo small />
+              <Logo small light={!useDarkLogo && !offset} />
+              {/* <Logo small /> */}
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -100,7 +101,7 @@ export default function Header({ headerOnDark }) {
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     onClick={() => navigate(paths.website.contactUs)}
                   >
                     {translate('header.contactUs')}

@@ -15,9 +15,9 @@ import Header from './header';
 
 // ----------------------------------------------------------------------
 
-const pathsOnDark = [];
+const pathsOnDark = ['/'];
 
-const spacingLayout = [...pathsOnDark, '/'];
+const spacingLayout = [...pathsOnDark];
 
 export default function MainLayout({ children }) {
   const pathname = usePathname();
