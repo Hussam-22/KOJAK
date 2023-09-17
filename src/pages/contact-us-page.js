@@ -6,7 +6,7 @@ export default function ContactUs() {
   return (
     <>
       <Helmet>
-        <title>Kojak Exclusive | Contact Us</title>
+        <title>Kojak Group | Contact Us</title>
         <meta
           name="description"
           content="We're here to assist you. If you have any questions, feedback, or need support, please don't hesitate to reach out to us. Our dedicated team is ready to help you in any way we can."

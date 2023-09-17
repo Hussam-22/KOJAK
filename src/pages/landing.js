@@ -8,7 +8,7 @@ export default function LandingPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Exclusive</title>
+        <title>Kojak Group</title>
         {/* <meta
           name="description"
           content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"

@@ -58,10 +58,8 @@ function RenderDesktopHero() {
               alignContent: 'center',
               justifyContent: 'center',
               gap: 3,
-              position: 'relative',
             }}
           >
-            <Image src="/assets/shape/shape-1.svg" sx={{ position: 'absolute', zIndex: -1 }} />
             <Box component={m.div} {...getVariant('fadeInUp')}>
               <Typography variant="overline" color="primary">
                 {translate('landing.hero.heroText')}
