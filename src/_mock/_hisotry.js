@@ -1,4 +1,5 @@
 import { _mock } from 'src/_mock/_mock';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 const history = [
   {
@@ -25,7 +26,7 @@ const history = [
     description:
       'Also in 1983, Kojak Exclusive was established, offering exclusive and premium Mercedes-Benz vehicles. This division set new standards for luxury and sophistication, providing discerning clients with unparalleled Mercedes-Benz experiences',
     coverUrl: '/assets/images/original/font-en.webp',
-    websiteLink: '#',
+    websiteLink: EXCLUSIVE_URL,
     buttonText: 'Explore our Inventory',
   },
   {
@@ -34,7 +35,7 @@ const history = [
     description:
       'In 1984, we expanded our offerings with the creation of Kojak Auto Maintenance. This specialized branch was dedicated to ensuring that Mercedes-Benz vehicles not only ran seamlessly but also received the highest standard of care and attention, reflecting our unwavering commitment to Mercedes-Benz excellence.',
     coverUrl: '/assets/images/group/auto.jpg',
-    websiteLink: '#',
+    websiteLink: AUTO_URL,
     buttonText: 'Book an Appointment',
   },
   {
@@ -43,7 +44,7 @@ const history = [
     description:
       'In 1999, Kojak Building added a new dimension to our portfolio. While Mercedes-Benz remained at the heart of our automotive passion, Kojak Building ventured into architectural excellence, shaping skylines and creating spaces that stand as testaments to our commitment to innovation and quality. While this venture extends beyond Mercedes-Benz, it embodies the same spirit of excellence that defines our group.',
     coverUrl: '/assets/images/group/building.webp',
-    websiteLink: '#',
+    websiteLink: BUILDING_URL,
     buttonText: 'Find a Space',
   },
 ];

@@ -118,7 +118,14 @@ function History() {
                     </Typography>
                     {value.buttonText && (
                       <Box>
-                        <Button variant="contained" size="large" sx={{ mt: 1 }}>
+                        <Button
+                          variant="contained"
+                          size="large"
+                          sx={{ mt: 1 }}
+                          href={value.websiteLink}
+                          target="_blank"
+                          rel="noopener"
+                        >
                           {value.buttonText}
                         </Button>
                       </Box>
