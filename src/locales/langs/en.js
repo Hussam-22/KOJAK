@@ -4,7 +4,7 @@ const en = {
     about: 'About',
     career: 'Career',
     contactUs: 'Contact us',
-    // blog: 'Blog',
+    blog: 'Blog',
   },
 
   landing: {
