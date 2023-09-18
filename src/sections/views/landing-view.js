@@ -9,9 +9,9 @@ export default function LandingView() {
     <>
       <LandingHero />
       <History />
-      <VisitGroupsWebsite />
       <InternationalBusiness />
       <HandPicked />
+      <VisitGroupsWebsite />
     </>
   );
 }
