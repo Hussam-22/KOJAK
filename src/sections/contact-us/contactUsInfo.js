@@ -1,10 +1,11 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Link, Stack, IconButton, Typography } from '@mui/material';
+import { Box, Link, Stack, Typography, IconButton } from '@mui/material';
 
 import { _socials } from 'src/_mock';
 import { useLocales } from 'src/locales';
+import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
@@ -24,16 +25,18 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>052 924 2616</Typography>
+        <Typography>{WHATSAPP_MOBILE}</Typography>
       </Stack>
 
-      {/* <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={1}>
         <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography>{translate('contactUs.details.number')}</Typography>
-      </Stack> */}
+        <Typography>+97143330533</Typography>
+      </Stack>
 
       <Stack spacing={1} direction="row">
-        <Iconify icon="carbon:location" width={24} />
+        <Box>
+          <Iconify icon="carbon:location" width={24} height={24} />
+        </Box>
 
         <Typography>
           <Link

@@ -114,9 +114,6 @@ export default function ServiceDetailsView() {
                       </Typography>
                       <Typography variant="h4">{vehicleInfo?.model}</Typography>
                     </Stack>
-                    <Typography sx={{ color: 'text.disabled' }}>
-                      {vehicleInfo?.isUsed ? usedDescription : newDescription}
-                    </Typography>
                   </Stack>
 
                   <Box
@@ -167,6 +164,10 @@ export default function ServiceDetailsView() {
               <Typography variant="h2">{translate('inventory.vehicleDetails')}</Typography>
               <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
                 {currentLang.value === 'en' ? vehicleInfo?.features : vehicleInfo?.translated.ar}
+              </Typography>
+
+              <Typography variant="h6" color="primary">
+                {vehicleInfo?.isUsed ? usedDescription : newDescription}
               </Typography>
             </Card>
           </Grid>

@@ -4,11 +4,12 @@ import { useMemo, useCallback } from 'react';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  query,
   where,
-  getDoc,
+  query,
   setDoc,
+  getDoc,
   getDocs,
+  updateDoc,
   Timestamp,
   collection,
   getFirestore,
@@ -155,6 +156,22 @@ Driver assistant package plus
     return [thumbnail, largeImage];
   }, []);
 
+  const fsUpdateDoc = useCallback(async () => {
+    const docRef = doc(DB, `/websites/kexclusive/vehicles/TVFk1tQoM9LbAzo80gLQ`);
+    const docSnap = await updateDoc(docRef, {
+      features: `Climatised Front Seat
+    Automatic panoramic sliding sunroof
+    360° camera
+    KEYLESS-GO
+    Sun protection package
+    Rear seat climate control
+    Air conditioning rear
+    AMG Line
+    Driver assistant package plus`,
+    });
+    return docSnap.data();
+  }, []);
+
   // --------------------------------------------------------------------
   const memoizedValue = useMemo(
     () => ({
@@ -165,6 +182,7 @@ Driver assistant package plus
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
+      fsUpdateDoc,
     }),
     [
       addNewForm,
@@ -174,6 +192,7 @@ Driver assistant package plus
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
+      fsUpdateDoc,
     ]
   );
 

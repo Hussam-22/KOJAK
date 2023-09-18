@@ -113,7 +113,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
             color="primary"
             sx={{ lineHeight: 1, fontWeight: theme.typography.fontWeightBold }}
           >
-            {currentLang.value === 'en' ? 'EXCLUSIVE' : 'للسيـارات'}
+            {currentLang.value === 'en' ? 'EXCLUSIVE' : 'ك اكسكلوسيف كارس'}
           </Typography>
         </Stack>
       </Stack>

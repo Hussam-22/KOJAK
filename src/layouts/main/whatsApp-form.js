@@ -63,13 +63,15 @@ export default function WhatsAppForm() {
       fullName: '',
       mobile: CustomerMobileNumber,
       email: '',
-      subject: 'K-Exclusive Website WhatsApp Message',
+      subject: 'Kojak Group Website WhatsApp Message',
       inquiry: message,
       sentTo: WHATSAPP_MOBILE,
     });
 
     setIsOpen(false);
-    if (!isSubmitting) window.location.href = url;
+    setTimeout(() => {
+      if (!isSubmitting) window.location.href = url;
+    }, 1000);
   };
 
   return (
@@ -78,9 +80,18 @@ export default function WhatsAppForm() {
         <Fab
           aria-label="whatsapp"
           onClick={openWhatsAppForm}
-          sx={{ position: 'fixed', bottom: 15, right: 15, width: 55, height: 55, zIndex: 98 }}
+          sx={{
+            position: 'fixed',
+            bottom: 15,
+            right: 15,
+            width: 55,
+            height: 55,
+            zIndex: 98,
+            border: 'solid 2px #000000',
+            p: 0.5,
+          }}
         >
-          <Iconify icon="logos:whatsapp-icon" width={45} />
+          <Iconify icon="mdi:whatsapp" width={45} />
         </Fab>
       )}
       {isOpen && (
@@ -96,7 +107,7 @@ export default function WhatsAppForm() {
             zIndex: 99,
           }}
         >
-          <Card sx={{ p: 3, bgcolor: 'background.default' }}>
+          <Card sx={{ p: 3, bgcolor: 'background.paper' }}>
             <IconButton
               aria-label="delete"
               sx={{ position: 'absolute', top: 5, right: 5 }}
@@ -133,7 +144,7 @@ export default function WhatsAppForm() {
                 <LoadingButton
                   type="submit"
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   loading={isSubmitting}
                   sx={{
                     mx: { xs: 'auto !important', md: 'unset !important' },
