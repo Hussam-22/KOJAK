@@ -9,7 +9,7 @@ const en = {
   hero: {
     // overlineText: `Looking for residential or commercial space ?`,
     heroText: 'Specialized in Mercedes-Benz ',
-    title: `Since 1986`,
+    title: `Since 1987`,
     subText:
       'Give your Mercedes the treatment it deserves with our expert servicing. Say goodbye to unnecessary agency repair expenses while still enjoying top-notch service',
   },
@@ -94,7 +94,7 @@ const en = {
         transmissionOil: 'Transmission Oil & Filter',
         gasket: 'Gasket',
         sparkPlug: 'Spark Plugs',
-        cabinFilter: 'Cabin Air Filter Replacement',
+        cabinFilter: 'AC Filter Replacement',
         airFilter: 'Air Filter Replacement',
         tire: 'Tire Inspection and Rotation',
         break: 'Brake Inspection',
@@ -132,7 +132,7 @@ const en = {
       engine: {
         serviceName: 'Engine Tune-Up',
         description:
-          'A tune-up can include replacing spark plugs, ignition wires, and other components to improve engine performance.',
+          'A tune-up can include replacing spark plugs, ignition communication, and other components to improve engine performance.',
         icon: 'engine',
         isDisabled: false,
       },
@@ -191,7 +191,7 @@ const en = {
 
   why: {
     title: `We are Mercedes-Benz Experts`,
-    subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+    subTitle: `Founded in 1987, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
     experience: 'Years of Experience',
     happyCustomers: 'Happy Customers',
     carsRepaired: 'Cars Repaired',
@@ -285,7 +285,7 @@ const en = {
     description: `Welcome to Kojak Auto Maintenance, where automotive excellence meets a passion for precision. At Kojak, we take pride in being the premier destination for Mercedes enthusiasts in UAE seeking top-notch service and care for their luxury vehicles.`,
 
     numbers: 'The numbers speak for themselves',
-    history: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
+    history: `Founded in 1987, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
 
     mission: 'Our Mission',
     missionText: `Our mission is clear: to keep your Mercedes-Benz running flawlessly, ensuring that every drive is a truly luxurious experience. We're not just here to fix cars; we're here to preserve and enhance the performance, safety, and beauty of your Mercedes.`,

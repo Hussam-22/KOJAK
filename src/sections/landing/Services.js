@@ -16,19 +16,9 @@ export default function Services() {
           spacing={3}
           sx={{ justifyContent: 'space-between' }}
         >
-          <Typography sx={{ fontWeight: theme.typography.fontWeightLight, width: { md: '82%' } }}>
+          {/* <Typography sx={{ fontWeight: theme.typography.fontWeightLight, width: { md: '82%' } }}>
             {translate('services.description')}
-          </Typography>
-
-          {/* <Button
-            variant="outlined"
-            color="primary"
-            size="large"
-            sx={{ width: { md: '18%' } }}
-            onClick={() => navigate(paths.website.services)}
-          >
-            Full list of services
-          </Button> */}
+          </Typography> */}
         </Stack>
       </Stack>
 

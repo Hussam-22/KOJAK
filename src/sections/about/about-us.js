@@ -10,13 +10,15 @@ import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
 import { fShortenNumber } from 'src/utils/format-number';
 
+const EXPERIENCE_YEARS = new Date().getFullYear() - 1987;
+
 // ----------------------------------------------------------------------
 
 const SUMMARY = [
   { name: 'carsRepaired', number: 3200 },
   { name: 'happyCustomers', number: 2800 },
   { name: 'technicians', number: 22 },
-  { name: 'experience', number: 12 },
+  { name: 'experience', number: EXPERIENCE_YEARS },
 ];
 
 // ----------------------------------------------------------------------
