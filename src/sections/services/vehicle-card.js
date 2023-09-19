@@ -5,11 +5,9 @@ import { useState, useEffect } from 'react';
 import { Link, Card, Stack, Divider, useTheme, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
-import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import TextMaxLine from 'src/components/text-max-line/text-max-line';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
@@ -42,8 +40,8 @@ function VehicleCard({ vehicleInfo }) {
       <Stack sx={{ p: 3 }} spacing={2}>
         <Stack direction="row" alignItems="flex-end" justifyContent="space-between">
           <Link
-            component={RouterLink}
-            href={paths.website.servicesDetails + id}
+            // component={RouterLink}
+            // href={paths.website.servicesDetails + id}
             // underline="none"
             sx={{ color: 'secondary.main' }}
           >

@@ -22,11 +22,11 @@ function History() {
   const theme = useTheme();
   const { translate, currentLang } = useLocales();
 
-  const animation = (index) => {
-    if (index % 2 === 0 && currentLang.value === 'en') {
+  const animation = (index, reverse) => {
+    if (!reverse && index % 2 === 0 && currentLang.value === 'en') {
       return varFade().inLeft;
     }
-    if (index % 2 === 0 && currentLang.value === 'ar') return varFade().inRight;
+    if (!reverse && index % 2 === 0 && currentLang.value === 'ar') return varFade().inRight;
 
     return varFade().inRight;
   };

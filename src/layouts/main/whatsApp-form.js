@@ -58,21 +58,17 @@ export default function WhatsAppForm() {
   } = methods;
 
   const onSubmit = async (formData) => {
-    const message = formData.messageText;
     const CustomerMobileNumber = formData.mobile;
 
     // Appending the phone number & Message to the URL
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
-      message
+      formData.messageText
     )}&app_absent=0`;
 
     addNewForm({
+      ...formData,
       source: 'WhatsApp',
-      fullName: '',
-      mobile: CustomerMobileNumber,
-      email: '',
-      subject: 'Kojak Group Website WhatsApp Message',
-      inquiry: message,
+      inquiry: formData.messageText,
       sentTo: WHATSAPP_MOBILE,
     });
 

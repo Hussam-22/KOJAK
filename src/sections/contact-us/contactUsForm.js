@@ -74,9 +74,6 @@ export default function ContactUsForm({ payload }) {
   const onSubmit = handleSubmit(async (formData) => {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      // const url =
-      //   'https://hooks.slack.com/services/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';
-
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -85,11 +82,6 @@ export default function ContactUsForm({ payload }) {
 
       // Add Form Submit to Slack Channel
       await fetch(SLACK_WEBHOOK_URL, requestOptions);
-
-      // axios.post(url, JSON.stringify({ text: dataToSend }), {
-      //   withCredentials: false,
-      //   transformRequest: [(data, Headers) => data],
-      // });
 
       addNewForm({
         ...formData,

@@ -38,10 +38,8 @@ export function AuthProvider({ children }) {
       website: 'kojak-group',
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to:
-        payload.source === 'newsletter'
-          ? []
-          : ['hussam@hotmail.co.uk', 'info.marketing@kojak-group.com'],
+      to: payload.source !== 'Contact Us' ? ['hussam@hotmail.co.uk'] : [],
+      // : ['hussam@hotmail.co.uk', 'info.marketing@kojak-group.com'],
       message: {
         subject: payload.subject,
         html: `
