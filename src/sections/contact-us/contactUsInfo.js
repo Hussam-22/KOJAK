@@ -1,7 +1,7 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Link, Stack, IconButton, Typography } from '@mui/material';
+import { Box, Link, Stack, Typography, IconButton } from '@mui/material';
 
 import { _socials } from 'src/_mock';
 import { useLocales } from 'src/locales';
@@ -52,7 +52,9 @@ export default function ContactUsInfo({ light, small }) {
       </Stack>
 
       <Stack direction="row" spacing={1}>
-        <Iconify icon="mingcute:time-line" width={24} />
+        <Box>
+          <Iconify icon="mingcute:time-line" width={24} />
+        </Box>
 
         <Typography>{translate('contactUs.details.hours')}</Typography>
       </Stack>

@@ -3,6 +3,7 @@ import { m } from 'framer-motion';
 import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
 import { varFade, varSlide, MotionViewport } from 'src/components/animate';
 
@@ -31,7 +32,14 @@ const GROUPS = [
 
 function VisitGroupsWebsite() {
   const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
+
+  const POSITION_VALUE = () => {
+    if (currentLang.value === 'ar' && mdUp) return '-190px';
+    if (currentLang.value === 'ar' && !mdUp) return '-120px';
+    return '190px';
+  };
 
   const renderGroupCard = (item, index) => (
     <Card
@@ -45,11 +53,9 @@ function VisitGroupsWebsite() {
         textAlign: 'left',
         flexDirection: 'column',
         minHeight: 200,
-        // bgcolor: 'secondary.main',
-        // backgroundColor: '#000000',
         backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
         backgroundSize: 'contain',
-        backgroundPositionX: currentLang.value === 'en' ? '190px' : '-190px',
+        backgroundPositionX: POSITION_VALUE(),
         backgroundPositionY: '90px',
         backgroundRepeat: 'no-repeat',
         gap: 3,
@@ -111,7 +117,7 @@ function VisitGroupsWebsite() {
           sx={{
             display: 'grid',
             gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-            gap: { md: 3, xs: 10 },
+            gap: 3,
             mt: 5,
           }}
         >

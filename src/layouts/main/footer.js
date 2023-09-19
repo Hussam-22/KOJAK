@@ -3,10 +3,10 @@ import { useLocation } from 'react-router';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
+import { Box, useTheme } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, alpha, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
@@ -131,7 +131,12 @@ export default function Footer() {
 
         <Divider sx={{ p: 1 }} />
 
-        <Stack spacing={1} direction="column" sx={{ pt: 1, textAlign: 'center' }}>
+        <Stack
+          spacing={1}
+          direction={{ md: 'row', xs: 'column' }}
+          justifyContent="space-between"
+          sx={{ pt: 1, textAlign: 'center' }}
+        >
           <Typography
             variant="caption"
             sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}

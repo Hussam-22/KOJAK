@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 import { m } from 'framer-motion';
-import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -16,10 +16,19 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function WhatsAppForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const textRef = useRef();
-  const mobileNumberRef = useRef();
   const { addNewForm } = useAuthContext();
   const { translate } = useLocales();
+  const [hide, setHide] = useState(false);
+
+  console.log(hide);
+
+  window.onscroll = function () {
+    if (document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 200) {
+      // User is within 200 pixels from the very bottom of the page
+      // console.log('You are close to the very bottom of the page!');
+      setHide(true);
+    } else setHide(false);
+  };
 
   const openWhatsAppForm = () => {
     setIsOpen(true);
@@ -43,10 +52,8 @@ export default function WhatsAppForm() {
   });
 
   const {
-    reset,
     handleSubmit,
-    setValue,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (formData) => {
@@ -89,6 +96,9 @@ export default function WhatsAppForm() {
             zIndex: 98,
             border: 'solid 2px #000000',
             p: 0.5,
+            visibility: hide ? 'hidden' : 'visible',
+            opacity: hide ? 0 : 1,
+            transition: 'visibility 0.5s ease-out, opacity 0.5s ease-out',
           }}
         >
           <Iconify icon="mdi:whatsapp" width={45} />

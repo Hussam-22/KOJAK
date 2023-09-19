@@ -39,6 +39,7 @@ export default function Header({ headerOnDark }) {
   const pathName = usePathname();
 
   const useDarkLogo = pathName !== '/';
+  const light = !useDarkLogo && !offset;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -90,7 +91,7 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small light={!useDarkLogo && !offset} />
+              <Logo small light={light} />
               {/* <Logo small /> */}
             </Box>
 
@@ -116,15 +117,18 @@ export default function Header({ headerOnDark }) {
                     flexItem
                     sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
-                  <TranslateIcon
-                    light={!useDarkLogo && !offset}
-                    toggleLanguageHandler={toggleLanguageHandler}
-                  />
+                  <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
                 </Stack>
               )}
             </Stack>
 
-            {!mdUp && <NavMobile data={navConfig} toggleLanguage={toggleLanguageHandler} />}
+            {!mdUp && (
+              <NavMobile
+                data={navConfig}
+                toggleLanguage={toggleLanguageHandler}
+                useLightIcon={light}
+              />
+            )}
           </Container>
         </Toolbar>
 
