@@ -2,13 +2,15 @@ import React from 'react';
 import { m } from 'framer-motion';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
+import { Stack, useTheme, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
-import { varZoom, varFade, varSlide, MotionViewport } from 'src/components/animate';
+import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
 function InternationalBusiness() {
   const theme = useTheme();
+  const { translate } = useLocales();
 
   return (
     <MotionViewport
@@ -39,10 +41,10 @@ function InternationalBusiness() {
             <Stack spacing={3}>
               <m.div variants={varSlide().inLeft}>
                 <Typography variant="overline" color="primary">
-                  International Business
+                  {translate('landing.international.overline')}
                 </Typography>
                 <Typography variant="h1" sx={{ color: 'common.black' }}>
-                  Global Reach, Local Excellence
+                  {translate('landing.international.title')}
                 </Typography>
               </m.div>
               <m.div variants={varSlide().inRight}>
@@ -54,13 +56,7 @@ function InternationalBusiness() {
                   }}
                   variant="h5"
                 >
-                  {`At Kojak Group, our commitment to Mercedes-Benz excellence knows no borders. With a proud tradition of delivering the very best in cars and spare parts, we extend our reach far beyond our local roots.
-
-            Our international business division is dedicated to bringing the elegance of Mercedes-Benz to discerning customers worldwide. Through meticulous export processes and a global network of partners, we ensure that the spirit of Mercedes-Benz finds its way to you, wherever you may be.
-
-            Whether you seek the allure of a Mercedes-Benz vehicle or require genuine spare parts for your prized possession, Kojak Group is your trusted partner in the global pursuit of luxury and automotive sophistication.
-
-            Join us in the pursuit of international excellence. Experience Mercedes-Benz the Kojak way, no matter where your journey takes you`}
+                  {translate('landing.international.text')}
                 </Typography>
               </m.div>
             </Stack>

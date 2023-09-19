@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { m } from 'framer-motion';
 
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
@@ -12,6 +11,7 @@ import {
   TimelineOppositeContent,
 } from '@mui/lab';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { _groupHistory } from 'src/_mock/_hisotry';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -20,41 +20,40 @@ import { varFade, MotionViewport } from 'src/components/animate';
 function History() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
+  const { translate, currentLang } = useLocales();
 
   return (
     <Box sx={{ py: 8 }}>
       <Container maxWidth="xl" sx={{ position: 'relative' }}>
-        <Stack
-          component={MotionViewport}
-          direction="column"
-          spacing={2}
-          alignItems="left"
-          justifyContent={{ xs: 'left', md: 'space-between' }}
-          sx={{
-            py: 3,
-            px: 5,
-            mb: 6,
-            textAlign: 'left',
-            bgcolor: 'primary.lighter',
-            borderRadius: 3,
-            borderBottom: `solid 4px`,
-            // borderImage: `linear-gradient(to left, ${theme.palette.secondary.main} 10%, transparent 50%) 100% 1`,
-          }}
-        >
-          <m.div variants={varFade().inUp}>
-            <Typography variant="overline" color="primary">
-              Our Journey
-            </Typography>
-            <Typography variant="h1">Pioneering Excellence in Mercedes-Benz Since 1983</Typography>
-
-            <Typography variant="h4" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-              In the vibrant year of 1983, a vision emerged, a vision that would lead to a
-              conglomerate renowned for its unwavering dedication to excellence and innovation. The
-              Kojak Group, our modest beginnings, marked the inception of a remarkable journey that
-              would span decades, all centered around one marque - Mercedes-Benz.
-            </Typography>
-          </m.div>
-        </Stack>
+        <Box component={MotionViewport}>
+          <Stack
+            direction="column"
+            spacing={currentLang.value === 'en' ? 2 : 4}
+            alignItems="left"
+            justifyContent={{ xs: 'left', md: 'space-between' }}
+            sx={{
+              py: 3,
+              px: 5,
+              mb: 6,
+              textAlign: 'left',
+              bgcolor: 'primary.lighter',
+              borderRadius: 3,
+              borderBottom: `solid 4px`,
+            }}
+          >
+            <m.div variants={varFade().inUp}>
+              <Typography variant="overline" color="primary">
+                {translate('landing.journey.overline')}
+              </Typography>
+              <Typography variant="h1">{translate('landing.journey.title')}</Typography>
+            </m.div>
+            <m.div variants={varFade().inUp}>
+              <Typography variant="h4" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                {translate('landing.journey.text')}
+              </Typography>
+            </m.div>
+          </Stack>
+        </Box>
 
         <Timeline position={mdUp ? 'alternate' : 'right'}>
           {_groupHistory.map((value, index) => (
@@ -89,10 +88,13 @@ function History() {
                 <m.div variants={index % 2 === 0 ? varFade().inRight : varFade().inLeft}>
                   <Stack spacing={1}>
                     <Typography variant="h5" color="primary">
-                      {value.year}
+                      {translate(`landing.journey.history.item${index + 1}.year`)}
                     </Typography>
 
-                    <Typography variant="h3">{value.title}</Typography>
+                    <Typography variant="h3">
+                      {' '}
+                      {translate(`landing.journey.history.item${index + 1}.title`)}
+                    </Typography>
 
                     {!mdUp && (
                       <Image
@@ -114,7 +116,7 @@ function History() {
                         }),
                       }}
                     >
-                      {value.description}
+                      {translate(`landing.journey.history.item${index + 1}.text`)}
                     </Typography>
                     {value.buttonText && (
                       <Box>
@@ -126,7 +128,7 @@ function History() {
                           target="_blank"
                           rel="noopener"
                         >
-                          {value.buttonText}
+                          {translate(`landing.journey.history.item${index + 1}.buttonText`)}
                         </Button>
                       </Box>
                     )}

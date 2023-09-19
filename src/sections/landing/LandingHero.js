@@ -13,7 +13,7 @@ import getVariant from 'src/components/animate/variants/get-variant';
 
 const LandingHero = () => {
   const mdUp = useResponsive('up', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
 
   const handleContactUsClick = () => {
@@ -25,7 +25,7 @@ const LandingHero = () => {
       sx={{
         height: '100dvh',
         backgroundImage: mdUp
-          ? 'url(/assets/images/hero/hero-1.png)'
+          ? `url(/assets/images/hero/hero-1${currentLang.value === 'ar' ? '-ar' : ''}.png)`
           : 'url(/assets/images/hero/hero-2-mobile.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
