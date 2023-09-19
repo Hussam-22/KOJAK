@@ -67,7 +67,13 @@ function History() {
             >
               {mdUp && (
                 <TimelineOppositeContent component={MotionViewport}>
-                  <m.div variants={index % 2 === 0 ? varFade().inLeft : varFade().inRight}>
+                  <m.div
+                    variants={
+                      index % 2 === 0 && currentLang.value === 'en'
+                        ? varFade().inLeft
+                        : varFade().inRight
+                    }
+                  >
                     <Image
                       src={value.coverUrl}
                       ratio="16/9"
@@ -85,7 +91,13 @@ function History() {
               </TimelineSeparator>
 
               <TimelineContent component={MotionViewport}>
-                <m.div variants={index % 2 === 0 ? varFade().inRight : varFade().inLeft}>
+                <m.div
+                  variants={
+                    index % 2 === 0 && currentLang.value === 'en'
+                      ? varFade().inRight
+                      : varFade().inLeft
+                  }
+                >
                   <Stack spacing={1}>
                     <Typography variant="h5" color="primary">
                       {translate(`landing.journey.history.item${index + 1}.year`)}

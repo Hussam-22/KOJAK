@@ -40,9 +40,9 @@ const en = {
           buttonText: 'Explore Our Inventory',
         },
         item4: {
-          year: '1984',
+          year: '1987',
           title: 'Kojak Auto Maintenance - Mercedes-Benz Care',
-          text: `In 1984, we expanded our offerings with the creation of Kojak Auto Maintenance. This specialized branch was dedicated to ensuring that Mercedes-Benz vehicles not only ran seamlessly but also received the highest standard of care and attention, reflecting our unwavering commitment to Mercedes-Benz excellence`,
+          text: `In 1987, we expanded our offerings with the creation of Kojak Auto Maintenance. This specialized branch was dedicated to ensuring that Mercedes-Benz vehicles not only ran seamlessly but also received the highest standard of care and attention, reflecting our unwavering commitment to Mercedes-Benz excellence`,
           buttonText: 'Book An Appointment',
         },
         item5: {
@@ -118,23 +118,14 @@ const en = {
     },
   },
 
-  why: {
-    title: `We are Mercedes-Benz Experts`,
-    subTitle: `Founded in 1986, Kojak Auto Maintenance has established itself as the region's leading authority on Mercedes-Benz vehicles. With a team of Mercedes-certified technicians and cutting-edge diagnostic equipment, we provide specialized services that cater exclusively to the unique needs of Mercedes owners.`,
-    fact1: 'Years of Experience',
-    fact2: 'Happy Customers',
-    fact3: 'Cars Sold',
-    fact4: 'Countries',
-  },
-
   blog: {
     title: 'Explore the World of Mercedes-Benz: Our Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,
   },
 
   newsLetter: {
-    title: `Stay in the Driver's Seat: Join Our Newsletter`,
-    subTitle: `Are you passionate about the world of Mercedes-Benz? Don't miss a beat! Subscribe to our newsletter and become a part of the Kojak Mercedes-Benz community.`,
+    title: `Join Our Newsletter`,
+    subTitle: `Subscribe to our newsletter and become a part of the Kojak Mercedes-Benz community.`,
   },
 
   contactUs: {

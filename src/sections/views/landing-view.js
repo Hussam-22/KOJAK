@@ -1,4 +1,6 @@
+import { blogPosts } from 'src/_mock';
 import History from 'src/sections/landing/history';
+import LatestPosts from 'src/sections/blog/latest-posts';
 import HandPicked from 'src/sections/landing/hand-picked';
 import LandingHero from 'src/sections/landing/LandingHero';
 import VisitGroupsWebsite from 'src/sections/landing/visit-groups-website';
@@ -12,6 +14,7 @@ export default function LandingView() {
       <InternationalBusiness />
       <HandPicked />
       <VisitGroupsWebsite />
+      <LatestPosts posts={blogPosts} />
     </>
   );
 }

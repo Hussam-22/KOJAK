@@ -40,7 +40,7 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
+    <Box sx={{ bgcolor: 'background.light' }}>
       <Container
         sx={{
           pt: 10,

@@ -3,7 +3,6 @@ import { m } from 'framer-motion';
 import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
 import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
 import { varFade, varSlide, MotionViewport } from 'src/components/animate';
 
@@ -32,7 +31,7 @@ const GROUPS = [
 
 function VisitGroupsWebsite() {
   const theme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const renderGroupCard = (item, index) => (
     <Card
@@ -41,61 +40,50 @@ function VisitGroupsWebsite() {
         p: 3,
         borderRadius: 1,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'left',
         justifyContent: 'space-between',
-        textAlign: 'center',
+        textAlign: 'left',
         flexDirection: 'column',
         minHeight: 200,
-        bgcolor: 'secondary.main',
+        // bgcolor: 'secondary.main',
+        // backgroundColor: '#000000',
+        backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
+        backgroundSize: 'contain',
+        backgroundPositionX: currentLang.value === 'en' ? '190px' : '-190px',
+        backgroundPositionY: '90px',
+        backgroundRepeat: 'no-repeat',
         gap: 3,
         position: 'relative',
         overflow: 'visible',
-        boxShadow: `7px 7px 0 0 ${theme.palette.primary.main}`,
       }}
     >
-      <Box
-        key={item.title}
-        sx={{
-          p: 3,
-          border: `solid 2px ${theme.palette.common.black}`,
-          borderRadius: 2,
-          maxWidth: 150,
-          maxHeight: 200,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          bgcolor: 'background.light',
-          position: 'absolute',
-          top: -60,
-        }}
-      >
+      <Box>
         <m.div variants={varFade().inUp}>
-          <Image src={`/assets/illustrations/${item.icon}.svg`} width={48} height={48} />
-        </m.div>
-      </Box>
-
-      <Box sx={{ mt: 4 }}>
-        <m.div variants={varFade().inUp}>
-          <Typography variant="overline" color="primary">
+          <Typography variant="overline" color="secondary">
             {translate('common.brand')}
           </Typography>
-          <Typography variant="h3" color="primary">
+          <Typography variant="h3" color="secondary">
             {translate(`common.${item.title}`)}
           </Typography>
         </m.div>
       </Box>
 
-      <m.div variants={varFade().inUp}>
-        <Typography color="white" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+      <m.div variants={varFade().inUp} style={{ width: '60%' }}>
+        <Typography
+          variant="body2"
+          color="secondary"
+          sx={{
+            fontWeight: theme.typography.fontWeightLight,
+          }}
+        >
           {translate(`landing.visit.cardText.${item.title}`)}
         </Typography>
       </m.div>
 
       <m.div variants={varFade().inUp}>
         <Button
-          variant="soft"
-          color="primary"
+          variant="contained"
+          color="secondary"
           sx={{ mt: 1 }}
           href={item?.link}
           target="_blank"
@@ -124,7 +112,7 @@ function VisitGroupsWebsite() {
             display: 'grid',
             gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
             gap: { md: 3, xs: 10 },
-            mt: 12,
+            mt: 5,
           }}
         >
           {GROUPS.map((item, index) => renderGroupCard(item, index))}

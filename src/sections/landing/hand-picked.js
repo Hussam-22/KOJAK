@@ -15,28 +15,32 @@ import SpotlightVehicles from 'src/sections/landing/tabs/spotlight-vehicles';
 function HandPicked() {
   const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
-  const [currentTab, setCurrentTab] = useState(translate('landing.glance.tabs.auto'));
+  const [currentTab, setCurrentTab] = useState(1);
 
   const TABS = [
     {
+      index: 1,
       value: translate('landing.glance.tabs.auto'),
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <AutoMaintenance />,
       siteUrl: '#',
     },
     {
+      index: 2,
       value: translate('landing.glance.tabs.spareParts'),
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpareParts />,
       siteUrl: '#',
     },
     {
+      index: 3,
       value: translate('landing.glance.tabs.vehicles'),
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <SpotlightVehicles />,
       siteUrl: '#',
     },
     {
+      index: 4,
       value: translate('landing.glance.tabs.building'),
       icon: <Iconify icon="ic:twotone-circle" width={20} height={20} />,
       component: <FeaturedProperty />,
@@ -87,10 +91,10 @@ function HandPicked() {
             {TABS.map((tab) => (
               <Tab
                 disableRipple
-                key={tab.value}
+                key={tab.index}
                 label={tab.value}
                 icon={tab.icon}
-                value={tab.value}
+                value={tab.index}
               />
             ))}
           </Tabs>
@@ -98,10 +102,10 @@ function HandPicked() {
           <Box sx={{ mb: 2 }} />
 
           {TABS.map((tab) => {
-            const isMatched = tab.value === currentTab;
+            const isMatched = tab.index === currentTab;
             return (
               isMatched && (
-                <Box key={tab.value} id={tab.value}>
+                <Box key={tab.index} id={tab.index}>
                   {tab.component}
                 </Box>
               )
