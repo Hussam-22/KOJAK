@@ -28,8 +28,6 @@ export default function Offers() {
   const { addOffer, getOffers } = useAuthContext();
   const [offers, setOffers] = useState([]);
 
-  console.log(offers);
-
   useEffect(() => {
     (async () => {
       setOffers(await getOffers());

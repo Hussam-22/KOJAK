@@ -43,7 +43,7 @@ export default function GroupAd() {
                   title={group.title}
                   description={group.description}
                   img={group.img}
-                  imgMobile={group.imgMobile}
+                  imgMobile={group.img}
                   index={index}
                   horizontal
                 />

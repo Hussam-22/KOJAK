@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
@@ -15,6 +15,7 @@ import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 
@@ -106,9 +107,13 @@ export default function Header({ headerOnDark }) {
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                   />
-                  <IconButton disableRipple color="primary" onClick={toggleLanguageHandler}>
-                    {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton>
+                  <Box
+                    sx={{ width: 48, height: 48 }}
+                    component={IconButton}
+                    onClick={toggleLanguageHandler}
+                  >
+                    <Image src="/assets/illustrations/translate.svg" />
+                  </Box>
                 </Stack>
               )}
             </Stack>

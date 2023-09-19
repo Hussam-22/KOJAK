@@ -26,9 +26,31 @@ const DIALOG_CONTENT = {
 };
 
 export default function BookAppointmentView() {
-  const { addNewForm } = useAuthContext();
+  const { addNewForm, getOffers } = useAuthContext();
   const { translate, currentLang } = useLocales();
   const [open, setOpen] = useState(false);
+  const [offers, setOffers] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      setOffers(await getOffers());
+    })();
+  }, [getOffers]);
+
+  const servicesList = [
+    ..._autoRepairServices,
+    ...offers.map((offer) => ({
+      description:
+        currentLang.value === 'en'
+          ? offer.offerDetails.description
+          : offer.translated.description.ar,
+      serviceName:
+        currentLang.value === 'en' ? offer.offerDetails.service : offer.translated.service.ar,
+      price: offer.offerDetails.price === '' ? 'Free' : offer.offerDetails.price,
+      isOffer: true,
+      id: offer.id,
+    })),
+  ];
 
   const today = new Date();
 
@@ -51,7 +73,9 @@ export default function BookAppointmentView() {
 
   const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string().required('Mobile number is required'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().email('That is not an email'),
     service: Yup.array().min(1, 'Must have at least 1 items'),
     messageText: Yup.string().required('Message is required'),
@@ -146,7 +170,7 @@ export default function BookAppointmentView() {
             <Stack spacing={2.5}>
               <RHFTextField name="fullName" label={translate('form.name')} />
 
-              <RHFTextField name="mobile" label={translate('form.mobile')} type="number" />
+              <RHFTextField name="mobile" label={translate('form.mobile')} />
 
               <RHFTextField name="email" label={translate('form.email')} />
 
@@ -178,20 +202,16 @@ export default function BookAppointmentView() {
                 fullWidth
                 name="service"
                 label={translate('form.serviceType')}
-                options={_autoRepairServices
+                options={servicesList
                   .sort((a, b) => a.serviceName.localeCompare(b.serviceName))
                   .sort((a, b) => b.isOffer - a.isOffer)
                   .map((service, index) => ({
                     isOffer: service.isOffer,
                     value: service.isOffer
-                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
-                          `hotOffers.cards.${index + 1}.price`
-                        )}`
+                      ? `${service.serviceName} - ${service.price}`
                       : translate(`services.items.${service.icon}.serviceName`),
                     label: service.isOffer
-                      ? `${translate(`hotOffers.cards.${index + 1}.title`)} - ${translate(
-                          `hotOffers.cards.${index + 1}.price`
-                        )}`
+                      ? `${service.serviceName} - ${service.price}`
                       : translate(`services.items.${service.icon}.serviceName`),
                   }))}
               />
