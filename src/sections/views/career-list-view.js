@@ -1,17 +1,14 @@
-import PropTypes from 'prop-types';
+/* eslint-disable no-nested-ternary */
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Stack, Skeleton, Container, Typography } from '@mui/material';
 
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import CareerListCard from 'src/sections/career/list/career-list-card';
 
 function CareerListView() {
   const { addNewCareerPost, getCareersList } = useAuthContext();
-  const [careersList, setCareersList] = useState([]);
-
-  console.log(careersList);
+  const [careersList, setCareersList] = useState(null);
 
   const addNewJobHandler = async () => addNewCareerPost();
 
@@ -44,9 +41,23 @@ function CareerListView() {
           gap: 2,
         }}
       >
-        {careersList.map((jobDetails) => (
-          <CareerListCard key={jobDetails.id} jobDetails={jobDetails} />
-        ))}
+        {careersList === null ? (
+          [...Array(6)].map((_, index) => (
+            <Skeleton
+              key={index}
+              variant="rectangle"
+              height={200}
+              width="100%"
+              sx={{ borderRadius: 1, boxShadow: 5 }}
+            />
+          ))
+        ) : careersList.length === 0 ? (
+          <Typography variant="h5">No Career Posts Available at the Moment</Typography>
+        ) : (
+          careersList.map((jobDetails) => (
+            <CareerListCard key={jobDetails.id} jobDetails={jobDetails} />
+          ))
+        )}
       </Box>
     </Container>
   );

@@ -11,21 +11,22 @@ import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
 import getVariant from 'src/components/animate/variants/get-variant';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function WhatsAppForm() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { addNewForm } = useAuthContext();
+  const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
+  const { addNewForm } = useAuthContext();
+  const [isOpen, setIsOpen] = useState(false);
   const [hide, setHide] = useState(false);
 
-  console.log(hide);
-
   window.onscroll = function () {
-    if (document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 200) {
-      // User is within 200 pixels from the very bottom of the page
-      // console.log('You are close to the very bottom of the page!');
+    if (
+      !mdUp &&
+      document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 200
+    ) {
       setHide(true);
     } else setHide(false);
   };
