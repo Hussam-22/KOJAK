@@ -4,21 +4,20 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Divider, Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
-import Image from 'src/components/image';
+import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
+import TranslateIcon from 'src/components/logo/translate-icon';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
@@ -67,12 +66,14 @@ export default function Header({ headerOnDark }) {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.shorter,
             }),
-            ...(headerOnDark && {
-              color: 'common.white',
-            }),
+            ...(!offset &&
+              headerOnDark && {
+                color: 'common.white',
+              }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
-              color: 'text.primary',
+              borderBottom: `solid 1px ${theme.palette.primary.light}`,
+              // color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },
@@ -90,6 +91,7 @@ export default function Header({ headerOnDark }) {
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
               <Logo small light={!useDarkLogo && !offset} />
+              {/* <Logo small /> */}
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -100,22 +102,24 @@ export default function Header({ headerOnDark }) {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate(paths.website.services)}
+                    onClick={() => navigate(paths.website.contactUs)}
                   >
-                    {translate('common.actionButton')}
+                    {translate('header.contactUs')}
                   </Button>
                   <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                   />
-                  <Box
-                    sx={{ width: 48, height: 48 }}
-                    component={IconButton}
-                    onClick={toggleLanguageHandler}
-                  >
-                    <Image src="/assets/illustrations/translate.svg" />
-                  </Box>
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
+                  />
+                  <TranslateIcon
+                    light={!useDarkLogo && !offset}
+                    toggleLanguageHandler={toggleLanguageHandler}
+                  />
                 </Stack>
               )}
             </Stack>
