@@ -2,32 +2,28 @@ import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
+import { Button, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Card, alpha, Button, Container } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { MotionContainer } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 
-export default function LandingHero() {
-  return <RenderDesktopHero />;
-}
-
-function RenderDesktopHero() {
+const LandingHero = () => {
   const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
   const navigate = useNavigate();
-  const theme = useTheme();
+
+  const handleContactUsClick = () => {
+    navigate(paths.website.contactUs);
+  };
+
   return (
     <Box
       sx={{
         height: '100dvh',
-        // bgcolor: 'primary.lighter',
         backgroundImage: mdUp
           ? 'url(/assets/images/hero/hero-1.png)'
           : 'url(/assets/images/hero/hero-2-mobile.png)',
@@ -74,7 +70,7 @@ function RenderDesktopHero() {
                 size="large"
                 variant="contained"
                 color="primary"
-                onClick={() => navigate(paths.website.contactUs)}
+                onClick={handleContactUsClick}
               >
                 {translate('header.contactUs')}
               </Button>
@@ -84,4 +80,6 @@ function RenderDesktopHero() {
       </Container>
     </Box>
   );
-}
+};
+
+export default LandingHero;

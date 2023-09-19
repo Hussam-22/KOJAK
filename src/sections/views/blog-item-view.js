@@ -68,7 +68,7 @@ function ContentMarkdown({ content, postTitle }) {
       )}
 
       {imageURL?.length !== undefined && imageURL?.length !== 0 && (
-        <Image src={imageURL} alt="postTitle" ratio="4/3" sx={{ borderRadius: 1 }} />
+        <Image src={imageURL} alt="postTitle" ratio="21/9" sx={{ borderRadius: 1 }} />
       )}
 
       {text.length !== 0 && (

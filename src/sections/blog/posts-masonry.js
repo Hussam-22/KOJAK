@@ -17,7 +17,7 @@ export default function PostsMasonry({ posts }) {
         mx: { xs: 'unset', sm: 0 },
       }}
     >
-      {posts.slice(0, 8).map((post, index) => (
+      {posts.map((post, index) => (
         <PostItem key={post.id} post={post} index={index} />
       ))}
     </Masonry>
