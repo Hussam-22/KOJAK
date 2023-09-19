@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Card, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Card, Stack, Typography } from '@mui/material';
 
 import Label from 'src/components/label';
 
@@ -47,14 +47,6 @@ function CareerItemBody({ jobPostDetails }) {
       </Grid>
       <Grid md={4} xs={12}>
         <Stack spacing={3} direction={{ md: 'column', xs: 'column-reverse' }}>
-          <Card sx={{ p: 3 }}>
-            <Stack direction="column" spacing={2}>
-              <Typography>Apply Now</Typography>
-              <Typography>Send an email along with your CV to</Typography>
-              <Typography>info@kojak-group.com</Typography>
-              <Typography variant="caption">Expiry Date: 25-12-2023</Typography>
-            </Stack>
-          </Card>
           <Card sx={{ p: 3 }}>
             <Stack spacing={2}>
               <Box>

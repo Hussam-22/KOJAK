@@ -1,5 +1,5 @@
 import { _mock } from 'src/_mock/_mock';
-import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
 
 const history = [
   {
@@ -7,7 +7,7 @@ const history = [
     title: 'The Genesis of Kojak Group',
     description:
       'In 1983, a group of visionaries founded the Kojak Group, driven by a fervent ambition to make a lasting impact in the world of Mercedes-Benz. This marked the first chapter in our illustrious history, a history built on a resolute commitment to Mercedes-Benz excellence.',
-    coverUrl: '/assets/images/group/kojak-office-tvEffect.jpg',
+    coverUrl: '/assets/images/group/kojak-office-tvEffect.webp',
     // coverUrl: '/assets/kojak-logo.svg',
     websiteLink: '#',
   },
@@ -16,7 +16,7 @@ const history = [
     title: 'Kojak Spare-Parts - Mercedes-Benz Genuine Parts',
     description:
       'The same year, Kojak Spare-Parts emerged as the embodiment of our commitment to quality and service, specializing exclusively in Mercedes-Benz spare parts. We quickly became a trusted name in the industry, catering to the ever-evolving needs of Mercedes-Benz enthusiasts.',
-    coverUrl: '/assets/images/group/spare-parts.jpg',
+    coverUrl: '/assets/images/group/spare-parts.webp',
     websiteLink: '#',
     buttonText: 'Search Spare-Parts',
   },
@@ -34,7 +34,7 @@ const history = [
     title: 'Kojak Auto Maintenance - Mercedes-Benz Care',
     description:
       'In 1984, we expanded our offerings with the creation of Kojak Auto Maintenance. This specialized branch was dedicated to ensuring that Mercedes-Benz vehicles not only ran seamlessly but also received the highest standard of care and attention, reflecting our unwavering commitment to Mercedes-Benz excellence.',
-    coverUrl: '/assets/images/group/auto.jpg',
+    coverUrl: '/assets/images/group/auto.webp',
     websiteLink: AUTO_URL,
     buttonText: 'Book an Appointment',
   },

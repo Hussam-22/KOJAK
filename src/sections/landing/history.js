@@ -22,7 +22,7 @@ function History() {
   const theme = useTheme();
   const { translate, currentLang } = useLocales();
 
-  const animation = (index, reverse) => {
+  const animation = (index = 0, reverse) => {
     if (!reverse && index % 2 === 0 && currentLang.value === 'en') {
       return varFade().inLeft;
     }
@@ -76,7 +76,7 @@ function History() {
             >
               {mdUp && (
                 <TimelineOppositeContent component={MotionViewport}>
-                  <m.div variants={animation(index)}>
+                  <m.div variants={animation(index, true)}>
                     <Image
                       src={value.coverUrl}
                       ratio="16/9"

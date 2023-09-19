@@ -118,6 +118,11 @@ const en = {
     },
   },
 
+  career: {
+    title: 'Our Careers',
+    description: `At Kojak, we believe that our greatest asset is our team. We're always on the lookout for talented individuals who are passionate about what they do and are eager to contribute their skills to our mission. Explore the exciting opportunities we have available`,
+  },
+
   blog: {
     title: 'Explore the World of Mercedes-Benz: Our Blog',
     subTitle: `Our blog is more than just a collection of articles; it's a resource designed to empower you as a vehicle owner. Whether you're a car enthusiast or simply rely on your vehicle for everyday life, our blog is tailored to provide you with valuable information to enhance your driving experience.`,

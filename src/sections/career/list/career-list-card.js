@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router';
 
-import { Box, Link, Card, Stack, Button, Divider, Container, Typography } from '@mui/material';
+import { Box, Link, Card, Stack, Divider, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
 

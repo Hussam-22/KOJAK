@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 
 import { Box, Stack, Skeleton, Container, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import CareerListCard from 'src/sections/career/list/career-list-card';
 
 function CareerListView() {
   const { addNewCareerPost, getCareersList } = useAuthContext();
   const [careersList, setCareersList] = useState(null);
+  const { translate } = useLocales();
 
   const addNewJobHandler = async () => addNewCareerPost();
 
@@ -20,13 +22,9 @@ function CareerListView() {
 
   return (
     <Container sx={{ py: 5 }}>
-      <Stack sx={{ mb: 4 }}>
-        <Typography variant="h1">Our Careers</Typography>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed consectetur fugit nesciunt
-          eveniet ducimus sit qui id iste aliquid, asperiores omnis quos eligendi. Fugiat totam,
-          adipisci quaerat iusto maxime delectus?
-        </Typography>
+      <Stack sx={{ mb: 4 }} spacing={2}>
+        <Typography variant="h1">{translate('career.title')}</Typography>
+        <Typography>{translate('career.description')}</Typography>
         {/* <Box>
           <Button variant="contained" onClick={addNewJobHandler}>
             Add New Job

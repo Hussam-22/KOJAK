@@ -1,26 +1,33 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Button, Skeleton, Container, Typography } from '@mui/material';
+import { Stack, Skeleton, Container } from '@mui/material';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { useBoolean } from 'src/hooks/use-boolean';
+import { SplashScreen } from 'src/components/loading-screen';
 import WhyWorkWithUs from 'src/sections/career/item/why-work-with-us';
 import CareerItemBody from 'src/sections/career/item/career-item-body';
 import CareerItemHeader from 'src/sections/career/item/career-item-header';
 
 function CareerItemView() {
   const { jobID } = useParams();
+  const loading = useBoolean(true);
   const [jobPost, setJobPost] = useState(undefined);
   const { getJobPostDetails } = useAuthContext();
-
-  console.log(jobPost);
 
   useEffect(() => {
     (async () => {
       setJobPost(await getJobPostDetails(jobID));
+      // await new Promise((resolve) => setTimeout(resolve, 500));
+      loading.onFalse();
     })();
-  }, [getJobPostDetails, jobID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading.value) {
+    return <SplashScreen />;
+  }
 
   return (
     <>

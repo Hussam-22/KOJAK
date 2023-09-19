@@ -15,7 +15,6 @@ const LandingHero = () => {
   const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
-
   const handleContactUsClick = () => {
     navigate(paths.website.contactUs);
   };
@@ -25,8 +24,8 @@ const LandingHero = () => {
       sx={{
         height: '100dvh',
         backgroundImage: mdUp
-          ? `url(/assets/images/hero/hero-1${currentLang.value === 'ar' ? '-ar' : ''}.png)`
-          : 'url(/assets/images/hero/hero-2-mobile.png)',
+          ? `url(/assets/images/hero/hero-1${currentLang.value === 'ar' ? '-ar' : ''}.webp)`
+          : 'url(/assets/images/hero/hero-2-mobile.webp)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',

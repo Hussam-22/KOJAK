@@ -9,9 +9,9 @@ import { Box, Fab, Card, Stack, IconButton, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { WHATSAPP_FORM, WHATSAPP_MOBILE } from 'src/config-global';
 import getVariant from 'src/components/animate/variants/get-variant';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
@@ -58,18 +58,16 @@ export default function WhatsAppForm() {
   } = methods;
 
   const onSubmit = async (formData) => {
-    const CustomerMobileNumber = formData.mobile;
-
-    // Appending the phone number & Message to the URL
+    // Create WhatsApp link
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
       formData.messageText
     )}&app_absent=0`;
 
+    // add form to FireBase
     addNewForm({
       ...formData,
-      source: 'WhatsApp',
-      inquiry: formData.messageText,
-      sentTo: WHATSAPP_MOBILE,
+      source: WHATSAPP_FORM,
+      mobile: WHATSAPP_MOBILE,
     });
 
     setIsOpen(false);

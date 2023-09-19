@@ -9,9 +9,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -85,8 +85,8 @@ export default function ContactUsForm({ payload }) {
 
       addNewForm({
         ...formData,
-        source: payload?.source || 'Contact Us',
-        inquiry: formData.messageText,
+        subject: `${SITE_NAME} - New Contact Us Form`,
+        source: CONTACT_US_FORM,
       });
 
       await new Promise((resolve) =>

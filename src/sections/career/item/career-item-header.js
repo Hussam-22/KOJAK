@@ -1,22 +1,14 @@
-import PropTypes from 'prop-types';
+import { Box, Stack, Divider, Container, Typography } from '@mui/material';
 
-import { Box, Stack, Button, Container, Typography } from '@mui/material';
-
-import Image from 'src/components/image/Image';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 function CareerItemHeader() {
+  const isMobile = useResponsive('down', 'sm');
+
   return (
     <Box sx={{ bgcolor: 'primary.lighter', py: 4 }}>
       <Container>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
+        <Stack direction={{ md: 'row', xs: 'column' }} justifyContent="space-between">
           <Stack direction="column" spacing={2}>
             <Box>
               <Typography variant="overline">Job ID: IT-2023-1</Typography>
@@ -28,7 +20,14 @@ function CareerItemHeader() {
               <Typography variant="caption">Sharjah, Industrial Area 4</Typography>
             </Stack>
           </Stack>
-        </Box>
+          {isMobile && <Divider sx={{ my: 2 }} />}
+          <Stack direction="column" spacing={1}>
+            <Typography variant="h4">Apply Now</Typography>
+            <Typography>Send your CV to</Typography>
+            <Typography color="primary">info@kojak-group.com</Typography>
+            <Typography variant="caption">Expiry Date: 25-12-2023</Typography>
+          </Stack>
+        </Stack>
       </Container>
     </Box>
   );
