@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
-import { _autoRepairServices } from 'src/_mock';
 import { RouterLink } from 'src/routes/components';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
@@ -45,9 +44,6 @@ export default function Footer() {
   return (
     <footer>
       <Box sx={{ bgcolor: 'common.black' }}>
-        <JoinNewsletter />
-        <Divider />
-
         <Container
           sx={{
             overflow: 'hidden',
@@ -56,7 +52,7 @@ export default function Footer() {
           maxWidth="xl"
         >
           <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
-            <Grid xs={12} md={4}>
+            <Grid xs={12} md={5}>
               <Stack spacing={2}>
                 <Logo small />
                 <Typography
@@ -70,7 +66,7 @@ export default function Footer() {
               </Stack>
             </Grid>
 
-            <Grid xs={12} md={3}>
+            <Grid xs={12} md={2}>
               <Typography variant="h6" sx={{ color: 'primary.main' }}>
                 {translate('footer.groupTitle')}
               </Typography>
@@ -109,19 +105,8 @@ export default function Footer() {
               </Stack>
             </Grid>
 
-            <Grid md={4} xs={12}>
-              <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
-                {translate(`services.title`)}
-              </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>
-                {_autoRepairServices
-                  .filter((service) => !service.isDisabled && !service.isOffer)
-                  .map((service) => (
-                    <Typography key={service.serviceName} variant="body2">
-                      {translate(`services.items.${service.icon}.serviceName`)}
-                    </Typography>
-                  ))}
-              </Box>
+            <Grid md={5} xs={12}>
+              <JoinNewsletter />
             </Grid>
           </Grid>
 
