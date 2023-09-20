@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import { Typography } from '@mui/material';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -28,7 +26,9 @@ export default function ConfirmationDialog({ title, content, open, handleClose }
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{currentLang.value === 'ar' ? 'اغلاق' : 'Close'}</Button>
+        <Button variant="outlined" color="primary" onClick={handleClose}>
+          {currentLang.value === 'ar' ? 'اغلاق' : 'Close'}
+        </Button>
       </DialogActions>
     </Dialog>
   );

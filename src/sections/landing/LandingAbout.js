@@ -13,8 +13,6 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 const EXPERIENCE_YEARS = new Date().getFullYear() - 1987;
 
-console.log(EXPERIENCE_YEARS);
-
 const SUMMARY = [
   { label: 'carsRepaired', value: 3200, icon: 'solar:document-outline' },
   { label: 'happyCustomers', value: 2800, icon: 'ion:happy-outline' },

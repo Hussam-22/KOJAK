@@ -336,6 +336,7 @@ const en = {
     exclusive: { title: 'K-Exclusive', text: 'Buy your dream Mercedes' },
     spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
+    building: { title: 'Building', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'Visit Website',
     allRights: '© 2023. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',

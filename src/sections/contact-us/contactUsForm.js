@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Stack } from '@mui/material';
@@ -8,9 +9,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -19,7 +20,7 @@ const DIALOG_CONTENT = {
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
-export default function ContactUsForm() {
+export default function ContactUsForm({ payload }) {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
@@ -32,41 +33,47 @@ export default function ContactUsForm() {
     setOpen(false);
   };
 
-  const CareerContactSchema = Yup.object().shape({
+  const schema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
     mobile: Yup.string()
       .required('Mobile number is required')
       .min(9, 'Contact Number must be at least 9 numbers'),
-    email: Yup.string().email('That is not an email'),
+    email: Yup.string().required().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
   });
 
-  const defaultValues = {
-    fullName: '',
-    mobile: '',
-    email: '',
-    subject: '',
-    messageText: '',
-  };
+  const defaultValues = useMemo(
+    () => ({
+      fullName: '',
+      mobile: '',
+      email: '',
+      subject: payload?.subject || '',
+      messageText: '',
+    }),
+    [payload?.subject]
+  );
 
   const methods = useForm({
-    resolver: yupResolver(CareerContactSchema),
+    resolver: yupResolver(schema),
     defaultValues,
   });
 
   const {
     reset,
     handleSubmit,
-    formState: { isSubmitting },
+    setValue,
+    formState: { isSubmitting, errors },
   } = methods;
+
+  useEffect(() => {
+    if (payload?.subject !== undefined || payload?.subject !== '')
+      setValue('subject', payload?.subject);
+  }, [payload?.subject, setValue]);
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      // const url =
-      //   'https://hooks.slack.com/services/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';
-
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -76,15 +83,10 @@ export default function ContactUsForm() {
       // Add Form Submit to Slack Channel
       await fetch(SLACK_WEBHOOK_URL, requestOptions);
 
-      // axios.post(url, JSON.stringify({ text: dataToSend }), {
-      //   withCredentials: false,
-      //   transformRequest: [(data, Headers) => data],
-      // });
-
       addNewForm({
         ...formData,
-        source: 'Contact Us',
-        inquiry: formData.messageText,
+        subject: `${SITE_NAME} - New Contact Us Form`,
+        source: CONTACT_US_FORM,
       });
 
       await new Promise((resolve) =>
@@ -103,13 +105,18 @@ export default function ContactUsForm() {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField name="fullName" label={translate('form.name')} />
+          <RHFTextField name="fullName" label={translate('form.name')} variant="outlined" />
 
-          <RHFTextField name="mobile" label={translate('form.mobile')} />
+          <RHFTextField
+            name="mobile"
+            label={translate('form.mobile')}
+            // type="number"
+            variant="outlined"
+          />
 
-          <RHFTextField name="email" label={translate('form.email')} />
+          <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
 
-          <RHFTextField name="subject" label={translate('form.subject')} />
+          <RHFTextField name="subject" label={translate('form.subject')} variant="outlined" />
 
           <RHFTextField
             name="messageText"
@@ -117,13 +124,14 @@ export default function ContactUsForm() {
             rows={4}
             label={translate('form.message')}
             sx={{ pb: 2.5 }}
+            variant="outlined"
           />
 
           <LoadingButton
             size="large"
             type="submit"
             variant="contained"
-            color="secondary"
+            color="primary"
             loading={isSubmitting}
             sx={{
               mx: { xs: 'auto !important', md: 'unset !important' },
@@ -143,6 +151,6 @@ export default function ContactUsForm() {
   );
 }
 
-// ContactUsForm.propTypes = {
-//   spaceInfo: PropTypes.object,
-// };
+ContactUsForm.propTypes = {
+  payload: PropTypes.object,
+};

@@ -1,8 +1,8 @@
 // import dayjs from 'dayjs';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
 
 import { DatePicker } from '@mui/x-date-pickers';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -11,9 +11,9 @@ import { Box, Stack, Divider, MenuItem, Container, Typography } from '@mui/mater
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
-import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import { _mercedesClasses, _autoRepairServices } from 'src/_mock';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { SITE_NAME, SLACK_WEBHOOK_URL, BOOK_APPOINTMENT_FORM } from 'src/config-global';
 import FormProvider, { RHFSelect, RHFTextField, RHFMultiSelect } from 'src/components/hook-form';
 
 const thisYear = new Date().getFullYear();
@@ -120,14 +120,7 @@ export default function BookAppointmentView() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      const dataToSend = Object.entries({
-        ...formData,
-        appointment: new Date(formData.appointmentDate).toLocaleDateString(),
-      })
-        .join('\r\n')
-        .replaceAll(',', ': ');
-      // const url =
-      //   'https://hooks.slack.com/services/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';
+      const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -136,14 +129,11 @@ export default function BookAppointmentView() {
 
       // Add Form Submit to Slack Channel
       await fetch(SLACK_WEBHOOK_URL, requestOptions);
-      // axios.post(url, JSON.stringify({ text: dataToSend }), {
-      //   withCredentials: false,
-      //   transformRequest: [(data, Headers) => data],
-      // });
 
       addNewForm({
         ...formData,
-        source: 'Book an Appointment',
+        subject: `${SITE_NAME} - New Book an Appointment Form`,
+        source: BOOK_APPOINTMENT_FORM,
       });
 
       await new Promise((resolve) =>

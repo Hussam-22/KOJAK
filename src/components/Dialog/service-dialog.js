@@ -44,7 +44,7 @@ export default function ServiceDialog({ service, open, handleClose }) {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" color="primary" onClick={handleClose}>
+        <Button variant="outlined" color="primary" onClick={handleClose}>
           {currentLang.value === 'ar' ? 'اغلاق' : 'Close'}
         </Button>
       </DialogActions>

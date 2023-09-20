@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Box from '@mui/material/Box';
+import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Stack, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
+import { NEWSLETTER_FORM } from 'src/config-global';
 import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
@@ -25,7 +26,6 @@ const DIALOG_TEXT = {
 // ----------------------------------------------------------------------
 
 export default function JoinNewsletter() {
-  const theme = useTheme();
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
@@ -60,26 +60,12 @@ export default function JoinNewsletter() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      /* const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
-      const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({ text: dataToSend }),
-        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-      };
-      // Add Form Submit to Slack Channel
-      await fetch(url, requestOptions); */
-
+      // add form to FireBase
       addNewForm({
-        source: 'newsletter',
-        fullName: '',
-        mobile: '',
-        email: formData.email,
-        subject: '',
-        inquiry: '',
-        sentTo: '',
+        ...formData,
+        source: NEWSLETTER_FORM,
       });
+
       await new Promise((resolve) =>
         setTimeout(() => {
           handleClickOpen();

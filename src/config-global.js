@@ -1,8 +1,19 @@
-// ----------------------------------------------------------------------
+export const SITE_NAME = 'autoMaintenance';
+
+export const CONTACT_US_FORM = 'CONTACT-US';
+export const NEWSLETTER_FORM = 'NEWSLETTER';
+export const WHATSAPP_FORM = 'WHATSAPP';
+export const BOOK_APPOINTMENT_FORM = 'BOOK AN APPOINTMENT';
+
+export const AUTO_URL = 'https://kojak-auto.netlify.app/';
+export const SPARE_PART_URL = 'https://kojak-spare-parts-staging.netlify.app/';
+export const EXCLUSIVE_URL = 'https://kojak-exclusive.netlify.app/';
+export const BUILDING_URL = 'https://kojak-building.com/';
+
 export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';
 
-export const WHATSAPP_MOBILE = '+9715529242557';
+export const WHATSAPP_MOBILE = '+971529242557';
 
 export const GOOGLE_MAP_API = process.env.NEXT_PUBLIC_MAP_API;
 
