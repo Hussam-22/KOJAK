@@ -17,7 +17,7 @@ import {
 } from 'firebase/firestore';
 
 // config
-import { FIREBASE_API } from 'src/config-global';
+import { SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
 
 //
 import { AuthContext } from './auth-context';
@@ -31,26 +31,24 @@ const DB = getFirestore(firebaseApp);
 export function AuthProvider({ children }) {
   // add new request-callback form
   const addNewForm = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/kexclusive/forms/`));
+    const newDocRef = doc(collection(DB, `/websites/${SITE_NAME}/forms/`));
     const date = new Date();
     const dateTime = date.toDateString();
-    setDoc(newDocRef, {
-      ...payload,
-      website: 'kexclusive',
-      id: newDocRef.id,
-      createdAt: Timestamp.fromDate(new Date()),
-      to:
-        payload.source === 'newsletter'
-          ? []
-          : [
-              'hussam@hotmail.co.uk',
-              'querieskex@kojak-group.com',
-              'info.marketing@kojak-group.com',
-            ],
-      message: {
-        subject: payload.subject,
-        html: `
-        <p>Source: ${payload.source}</p>
+
+    if (payload.source === CONTACT_US_FORM) {
+      return setDoc(newDocRef, {
+        ...payload,
+        website: SITE_NAME,
+        id: newDocRef.id,
+        createdAt: Timestamp.fromDate(new Date()),
+        to: [
+          'hussam@hotmail.co.uk',
+          'querieskex@kojak-group.com',
+          'info.marketing@kojak-group.com',
+        ],
+        message: {
+          subject: payload.subject,
+          html: `
         <p>Email: ${payload.email}</p>
         <p>Name: ${payload.fullName}</p>
         <p>Mobile: ${payload.mobile}</p>
@@ -59,14 +57,22 @@ export function AuthProvider({ children }) {
         <p>${dateTime.toLocaleString()}</p>
         <p>${newDocRef.id}</p>
         `,
-      },
+        },
+      });
+    }
+    setDoc(newDocRef, {
+      ...payload,
+      website: SITE_NAME,
+      id: newDocRef.id,
+      createdAt: Timestamp.fromDate(new Date()),
     });
+
     return newDocRef.id;
   }, []);
 
   // ----------------------------------------------------------------------------
   const getVehicleInfo = useCallback(async (vehicleID) => {
-    const docRef = doc(DB, `/websites/kexclusive/vehicles/${vehicleID}`);
+    const docRef = doc(DB, `/websites/${SITE_NAME}/vehicles/${vehicleID}`);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }, []);
@@ -97,7 +103,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const addNewCar = useCallback(() => {
-    const docRef = doc(collection(DB, `/websites/kexclusive/vehicles/`));
+    const docRef = doc(collection(DB, `/websites/${SITE_NAME}/vehicles/`));
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',

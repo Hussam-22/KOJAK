@@ -25,12 +25,12 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>{WHATSAPP_MOBILE}</Typography>
+        <Typography>{WHATSAPP_MOBILE.replace('+', '')}</Typography>
       </Stack>
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography>+97143330533</Typography>
+        <Typography>97143330533</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
@@ -54,7 +54,9 @@ export default function ContactUsInfo({ light, small }) {
       </Stack>
 
       <Stack direction="row" spacing={1}>
-        <Iconify icon="mingcute:time-line" width={24} />
+        <Box>
+          <Iconify icon="mingcute:time-line" width={24} />
+        </Box>
 
         <Typography>{translate('contactUs.details.hours')}</Typography>
       </Stack>

@@ -11,7 +11,7 @@ const ar = {
     hero: {
       overlineText: '',
       heroText: 'سيارة مرسيدس أحلامك، الآن ',
-      partOne: 'أكثر توفيرًا',
+      partOne: 'أكثر توفيرًا ',
       partTwo: 'من أي وقت مضى.',
       subText:
         'استمتع بتوفير غير مسبوق في وكالتنا، حيث تُعرض سيارات مرسيدس بأسعار أقل من أسعار الوكالة والسوق. اكتشف قيمة استثنائية دون التنازل عن الفخامة والجودة. سيارة مرسيدس أحلامك أصبحت الآن أكثر توفيرًا من أي وقت مضى.',
@@ -316,6 +316,7 @@ const ar = {
     exclusive: { title: 'K-Exclusive', text: 'اشتري سيارة مرسيدس أحلامك' },
     spareParts: { title: 'قطع الغيار', text: 'قطع الغيار الأصلية لمرسيدسك' },
     auto: { title: 'صيانة السيارات', text: 'إصلاح مرسيدسك على يد خبراء' },
+    building: { title: 'العقارات', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'زيارة الموقع الإلكتروني',
     allRights: '© 2023. كل الحقوق محفوظة - مجموعة شركات Kojak',
     designedBy: 'صمم بواسطة ProzEffect | hello@prozeffect.com',

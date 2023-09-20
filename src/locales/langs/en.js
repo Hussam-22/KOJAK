@@ -11,7 +11,7 @@ const en = {
     hero: {
       overlineText: ``,
       heroText: 'Your Dream Mercedes, Now ',
-      partOne: 'More Affordable',
+      partOne: 'More Affordable ',
       partTwo: 'Than Ever.',
       subText:
         'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',
@@ -177,6 +177,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     exclusive: { title: 'K-Exclusive', text: 'Buy your dream Mercedes' },
     spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
+    building: { title: 'Building', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'Visit Website',
     allRights: '© 2023. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',

@@ -5,14 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import Box from '@mui/material/Box';
 import { LoadingButton } from '@mui/lab';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Stack, useTheme } from '@mui/material';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
+import { NEWSLETTER_FORM } from 'src/config-global';
 import { useResponsive } from 'src/hooks/use-responsive';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
@@ -60,26 +59,12 @@ export default function JoinNewsletter() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      /* const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      const url =
-        'https://hooks.slack.com/services/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';
-      const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({ text: dataToSend }),
-        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-      };
-      // Add Form Submit to Slack Channel
-      await fetch(url, requestOptions); */
-
+      // add form to FireBase
       addNewForm({
-        source: 'newsletter',
-        fullName: '',
-        mobile: '',
-        email: formData.email,
-        subject: '',
-        inquiry: '',
-        sentTo: '',
+        ...formData,
+        source: NEWSLETTER_FORM,
       });
+
       await new Promise((resolve) =>
         setTimeout(() => {
           handleClickOpen();
@@ -95,65 +80,37 @@ export default function JoinNewsletter() {
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Box
-          sx={{
-            py: 4,
-            bgcolor: 'primary.main',
-            display: 'flex',
-            borderTop: 'solid 1px #999',
-          }}
-        >
-          <Container maxWidth="md" sx={{ alignSelf: 'flex-end' }}>
-            <Grid container spacing={3}>
-              <Grid md={4} xs={12} sx={{ p: { md: 7, xs: 2 }, textAlign: 'center' }}>
-                <Image
-                  src="/assets/illustrations/mail.svg"
-                  width={!mdUp ? '40%' : 'unset'}
-                  alt="newsletter-illustration"
-                />
-              </Grid>
+        <Stack direction="column" spacing={2} sx={{ textAlign: { md: 'center', xs: 'center' } }}>
+          <Box>
+            <Image
+              src="/assets/illustrations/mail.svg"
+              width={!mdUp ? '20%' : '30%'}
+              alt="newsletter-illustration"
+            />
+          </Box>
 
-              <Grid md={8} xs={12} sx={{ my: 'auto' }}>
-                <Stack
-                  direction="column"
-                  spacing={2}
-                  sx={{ textAlign: { md: 'left', xs: 'center' } }}
-                >
-                  <Typography variant="h3" sx={{ color: 'common.white' }}>
-                    {translate('newsLetter.title')}
-                  </Typography>
-                  <Typography
-                    sx={{ fontWeight: theme.typography.fontWeightLight, color: 'common.white' }}
-                  >
-                    {translate('newsLetter.subTitle')}
-                  </Typography>
+          <Typography variant="h3" color="white">
+            {translate('newsLetter.title')}
+          </Typography>
+          <Typography color="white">{translate('newsLetter.subTitle')}</Typography>
 
-                  <Stack direction="row" spacing={1}>
-                    <RHFTextField
-                      variant="outlined"
-                      name="email"
-                      label={translate('form.email')}
-                      focused
-                    />
+          <Stack direction="row" spacing={1}>
+            <RHFTextField name="email" label={translate('form.email')} />
 
-                    <LoadingButton
-                      size="large"
-                      type="submit"
-                      variant="contained"
-                      color="secondary"
-                      loading={isSubmitting}
-                      sx={{
-                        mx: { xs: 'auto !important', md: 'unset !important' },
-                      }}
-                    >
-                      {translate('form.register')}
-                    </LoadingButton>
-                  </Stack>
-                </Stack>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
+            <LoadingButton
+              size="large"
+              type="submit"
+              variant="contained"
+              color="primary"
+              loading={isSubmitting}
+              sx={{
+                mx: { xs: 'auto !important', md: 'unset !important' },
+              }}
+            >
+              {translate('form.register')}
+            </LoadingButton>
+          </Stack>
+        </Stack>
       </FormProvider>
       <ConfirmationDialog
         title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}

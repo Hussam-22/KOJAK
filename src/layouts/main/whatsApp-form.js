@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 import { m } from 'framer-motion';
-import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -9,17 +9,27 @@ import { Box, Fab, Card, Stack, IconButton, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
+import { WHATSAPP_FORM, WHATSAPP_MOBILE } from 'src/config-global';
 import getVariant from 'src/components/animate/variants/get-variant';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function WhatsAppForm() {
-  const [isOpen, setIsOpen] = useState(false);
-  const textRef = useRef();
-  const mobileNumberRef = useRef();
-  const { addNewForm } = useAuthContext();
+  const mdUp = useResponsive('up', 'md');
   const { translate } = useLocales();
+  const { addNewForm } = useAuthContext();
+  const [isOpen, setIsOpen] = useState(false);
+  const [hide, setHide] = useState(false);
+
+  window.onscroll = function () {
+    if (
+      !mdUp &&
+      document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 200
+    ) {
+      setHide(true);
+    } else setHide(false);
+  };
 
   const openWhatsAppForm = () => {
     setIsOpen(true);
@@ -43,29 +53,21 @@ export default function WhatsAppForm() {
   });
 
   const {
-    reset,
     handleSubmit,
-    setValue,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (formData) => {
-    const message = formData.messageText;
-    const CustomerMobileNumber = formData.mobile;
-
-    // Appending the phone number & Message to the URL
+    // Create WhatsApp link
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
-      message
+      formData.messageText
     )}&app_absent=0`;
 
+    // add form to FireBase
     addNewForm({
-      source: 'WhatsApp',
-      fullName: '',
-      mobile: CustomerMobileNumber,
-      email: '',
-      subject: 'Kojak Group Website WhatsApp Message',
-      inquiry: message,
-      sentTo: WHATSAPP_MOBILE,
+      ...formData,
+      source: WHATSAPP_FORM,
+      mobile: WHATSAPP_MOBILE,
     });
 
     setIsOpen(false);
@@ -89,6 +91,9 @@ export default function WhatsAppForm() {
             zIndex: 98,
             border: 'solid 2px #000000',
             p: 0.5,
+            visibility: hide ? 'hidden' : 'visible',
+            opacity: hide ? 0 : 1,
+            transition: 'visibility 0.5s ease-out, opacity 0.5s ease-out',
           }}
         >
           <Iconify icon="mdi:whatsapp" width={45} />

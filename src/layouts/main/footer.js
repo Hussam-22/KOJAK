@@ -3,10 +3,10 @@ import { useLocation } from 'react-router';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
+import { Box, useTheme } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, alpha, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
@@ -15,24 +15,26 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
 const GROUPS = [
   {
     title: 'exclusive',
-    url: 'www.kojak-spareparts.com',
-    image: 'k-exclusive',
+    url: EXCLUSIVE_URL,
   },
   {
     title: 'spareParts',
-    url: 'www.kojak-spareparts.com',
-    image: 'spare-parts',
+    url: SPARE_PART_URL,
   },
   {
     title: 'auto',
-    url: 'www.kojak-auto-maintenance.com',
-    image: 'auto-main',
+    url: AUTO_URL,
+  },
+  {
+    title: 'building',
+    url: BUILDING_URL,
   },
 ];
 
@@ -53,8 +55,6 @@ export default function Footer() {
         justifyContent: 'flex-end',
       }}
     >
-      <JoinNewsletter />
-      <Divider />
       <Container
         sx={{
           overflow: 'hidden',
@@ -64,7 +64,7 @@ export default function Footer() {
         maxWidth="xl"
       >
         <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
-          <Grid xs={12} md={4}>
+          <Grid xs={12} md={5}>
             <Stack spacing={2}>
               <Logo small light />
               <Typography
@@ -118,7 +118,7 @@ export default function Footer() {
           </Grid>
 
           <Grid
-            md={4}
+            md={5}
             xs={12}
             sx={{
               textAlign: 'center',
@@ -127,26 +127,18 @@ export default function Footer() {
               justifyContent: 'center',
             }}
           >
-            {/* <Typography variant="h6" sx={{ color: 'primary.main', mb: 2 }}>
-              {translate(`footer.availableVehicles`)}
-            </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 2 }}>Hussam</Box> */}
-            <Typography
-              sx={{
-                fontSize: { md: '8dvw', xs: '14dvw' },
-                WebkitTextStroke: `1px ${alpha(mUItheme.palette.common.white, 0.45)}`,
-                color: alpha(mUItheme.palette.background.default, 0),
-                lineHeight: 1,
-              }}
-            >
-              {translate(`footer.since`)}
-            </Typography>
+            <JoinNewsletter />
           </Grid>
         </Grid>
 
         <Divider sx={{ p: 1 }} />
 
-        <Stack spacing={1} direction="column" sx={{ pt: 1, textAlign: 'center' }}>
+        <Stack
+          spacing={1}
+          direction={{ md: 'row', xs: 'column' }}
+          sx={{ pt: 1, textAlign: 'center' }}
+          justifyContent="space-between"
+        >
           <Typography
             variant="caption"
             sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}

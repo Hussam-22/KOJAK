@@ -102,9 +102,9 @@ export default function Header({ headerOnDark }) {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate(paths.website.contactUs)}
+                    onClick={() => navigate(paths.website.services)}
                   >
-                    {translate('header.contactUs')}
+                    {translate('common.actionButton')}
                   </Button>
                   <Divider
                     orientation="vertical"
