@@ -155,6 +155,7 @@ const ar = {
     exclusive: { title: 'ك إكسكلوسيف كارس', text: 'اشتري سيارة مرسيدس أحلامك' },
     spareParts: { title: 'قطع الغيار', text: 'قطع الغيار الأصلية لمرسيدسك' },
     auto: { title: 'صيانة السيارات', text: 'إصلاح مرسيدسك على يد خبراء' },
+    building: { title: 'عقارات', text: '-' },
     visitWebsite: 'زيارة الموقع الإلكتروني',
     allRights: '© 2023. كل الحقوق محفوظة - مجموعة شركات كوجك',
     designedBy: 'صمم بواسطة ProzEffect | hello@prozeffect.com',

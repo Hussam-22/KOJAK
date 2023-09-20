@@ -21,18 +21,19 @@ import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 const GROUPS = [
   {
     title: 'exclusive',
-    url: 'www.kojak-spareparts.com',
-    image: 'k-exclusive',
+    url: 'www.kojak-exclusive.com',
   },
   {
     title: 'spareParts',
     url: 'www.kojak-spareparts.com',
-    image: 'spare-parts',
   },
   {
     title: 'auto',
     url: 'www.kojak-auto-maintenance.com',
-    image: 'auto-main',
+  },
+  {
+    title: 'building',
+    url: 'www.kojak-building.com',
   },
 ];
 
