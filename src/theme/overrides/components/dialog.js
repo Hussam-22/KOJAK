@@ -42,6 +42,9 @@ export function dialog(theme) {
           '& > :not(:first-of-type)': {
             marginLeft: theme.spacing(1.5),
           },
+          button: {
+            background: '#000 !important',
+          },
         },
       },
     },
