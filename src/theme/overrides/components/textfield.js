@@ -123,17 +123,17 @@ export function textField(theme) {
       styleOverrides: {
         root: {
           borderRadius: theme.shape.borderRadius,
-          backgroundColor: alpha(theme.palette.grey[500], 0.25),
+          backgroundColor: alpha(theme.palette.grey[500], 0.55),
           '&:hover': {
-            backgroundColor: alpha(theme.palette.grey[500], 0.16),
+            backgroundColor: alpha(theme.palette.grey[500], 0.55),
           },
           [`&.${filledInputClasses.focused}`]: {
-            backgroundColor: alpha(theme.palette.grey[500], 0.16),
+            backgroundColor: alpha(theme.palette.common.white, 1),
           },
           [`&.${filledInputClasses.error}`]: {
-            backgroundColor: alpha(theme.palette.error.main, 0.08),
+            backgroundColor: alpha(theme.palette.error.main, 0.55),
             [`&.${filledInputClasses.focused}`]: {
-              backgroundColor: alpha(theme.palette.error.main, 0.16),
+              backgroundColor: alpha(theme.palette.error.main, 0.55),
             },
           },
           [`&.${filledInputClasses.disabled}`]: {
