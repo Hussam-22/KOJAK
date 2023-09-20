@@ -358,7 +358,7 @@ const ar = {
   },
   form: {
     name: 'الاسم الكامل',
-    mobile: 'الجوال',
+    mobile: 'موبايل',
     email: 'البريد الإلكتروني',
     subject: 'الموضوع',
     message: 'الرسالة',

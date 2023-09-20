@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import { alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -60,7 +59,7 @@ function RenderDesktopHero() {
           <Grid md={6} xs={12} />
 
           <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            <Box
+            {/* <Box
               sx={{
                 position: 'absolute',
                 left: '50%',
@@ -77,7 +76,7 @@ function RenderDesktopHero() {
               >
                 {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
               </Typography>
-            </Box>
+            </Box> */}
             <Stack
               sx={{
                 textAlign: { md: 'left', xs: 'center' },
@@ -92,7 +91,13 @@ function RenderDesktopHero() {
                   fontWeight: theme.typography.fontWeightBold,
                 }}
               >
-                <Box component="span" sx={{ color: 'primary.main' }}>
+                <Box
+                  component="span"
+                  sx={{
+                    color: 'primary.main',
+                    lineHeight: currentLang.value === 'ar' ? 1.5 : 'unset',
+                  }}
+                >
                   {translate('hero.heroText')}
                 </Box>
                 {translate('hero.title')}

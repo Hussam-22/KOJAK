@@ -236,6 +236,7 @@ export default function BookAppointmentView() {
                         fullWidth: true,
                         error: !!error,
                         helperText: error?.message,
+                        readOnly: true,
                       },
                     }}
                   />
