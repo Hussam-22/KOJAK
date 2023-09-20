@@ -33,7 +33,12 @@ function TranslateIcon({ light, toggleLanguageHandler, sx }) {
   );
 
   return (
-    <Box sx={{ width: 48, height: 48 }} component={IconButton} onClick={toggleLanguageHandler}>
+    <Box
+      sx={{ width: 48, height: 48 }}
+      component={IconButton}
+      onClick={toggleLanguageHandler}
+      aria-label="switch-language"
+    >
       {singleLogo}
     </Box>
   );
