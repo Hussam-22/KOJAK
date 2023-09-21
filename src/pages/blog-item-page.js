@@ -8,7 +8,7 @@ export default function BlogPostPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Blog Post</title>
+        <title>Kojak Auto Maintenance Blog - Stay Informed About Mercedes Auto Care</title>
       </Helmet>
 
       <BlogItemView />

@@ -6,16 +6,16 @@ export default function ContactUs() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Contact Us</title>
+        <title>Contact Kojak Auto Maintenance - Get in Touch with Us</title>
         <meta
           name="description"
-          content="We're here to assist you. If you have any questions, feedback, or need support, please don't hesitate to reach out to us. Our dedicated team is ready to help you in any way we can."
+          content="Contact Kojak Auto Maintenance in Sharjah, UAE, for all your Mercedes auto repair and maintenance needs. Feel free to reach out to us with any questions or service inquiries."
         />
         <meta
           name="keywords"
-          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+          content="Contact Kojak Auto Maintenance, Mercedes auto repair, Mercedes maintenance, Mercedes service, Mercedes-Benz, automotive solutions, Kojak Auto Maintenance, Sharjah, UAE, contact information"
         />
-        <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
+        <meta name="author" content="KOJAK GROUP - Auto Maintenance" />
       </Helmet>
 
       <ContactUsView />

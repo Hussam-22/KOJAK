@@ -8,16 +8,16 @@ export default function BlogPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Auto Maintenance | Blog</title>
+        <title>Kojak Auto Maintenance Blog - Stay Informed About Mercedes Auto Care</title>
         <meta
           name="description"
-          content="Your go-to resource for all things related to property renting and leasing. Whether you're a seasoned tenant or a first-time renter, a property owner, or a curious observer of the real estate market, our blog is designed to provide you with valuable information, tips, and industry insights"
+          content="Explore the latest articles and insights on Mercedes auto care and maintenance on the Kojak Auto Maintenance blog. Stay informed about tips, news, and expert advice for your Mercedes-Benz vehicle."
         />
         <meta
           name="keywords"
-          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+          content="Kojak Auto Maintenance Blog, Mercedes auto care, Mercedes maintenance, Mercedes service, Mercedes-Benz, automotive tips, car maintenance, expert advice"
         />
-        <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
+        <meta name="author" content="KOJAK GROUP - Auto Maintenance" />
       </Helmet>
 
       <BlogPostsView />
