@@ -51,7 +51,7 @@ export default function Footer() {
           }}
           maxWidth="xl"
         >
-          <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
+          <Grid container spacing={5} justifyContent={{ md: 'space-between' }}>
             <Grid xs={12} md={5}>
               <Stack spacing={2}>
                 <Logo small light />
@@ -66,7 +66,7 @@ export default function Footer() {
               </Stack>
             </Grid>
 
-            <Grid xs={12} md={2}>
+            <Grid xs={12} md={3}>
               <Typography variant="h6" sx={{ color: 'primary.main' }}>
                 {translate('footer.groupTitle')}
               </Typography>
@@ -105,7 +105,7 @@ export default function Footer() {
               </Stack>
             </Grid>
 
-            <Grid md={5} xs={12}>
+            <Grid md={4} xs={12}>
               <JoinNewsletter />
             </Grid>
           </Grid>
