@@ -1,7 +1,7 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Box, Link, Stack, Typography, IconButton } from '@mui/material';
+import { Box, Link, Stack, useTheme, IconButton, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
 import { useLocales } from 'src/locales';
@@ -10,6 +10,7 @@ import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
   const { translate } = useLocales();
+  const theme = useTheme();
   return (
     <Stack
       spacing={small ? 2.5 : 5}
@@ -18,27 +19,64 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-        <Link color="inherit" href="mailto:kojak1m@kojak-group.com">
-          kojak1m@kojak-group.com
-        </Link>
+
+        <Stack
+          direction={small ? 'row' : 'column'}
+          spacing={1}
+          alignItems={small ? 'center' : 'unset'}
+        >
+          <Link color="inherit" href="mailto:queries@kojak-group.com">
+            queries@kojak-group.com
+          </Link>
+          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+            (For General Inquires)
+          </Typography>
+        </Stack>
+      </Stack>
+
+      <Stack spacing={1} direction="row">
+        <Iconify icon="carbon:email" width={24} />
+
+        <Stack
+          direction={small ? 'row' : 'column'}
+          spacing={1}
+          alignItems={small ? 'center' : 'unset'}
+        >
+          <Link color="inherit" href="mailto: customercare@kojak-group.com">
+            customercare@kojak-group.com
+          </Link>
+          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+            (For Complaints)
+          </Typography>
+        </Stack>
+      </Stack>
+
+      <Stack direction="row" spacing={1}>
+        <Iconify icon="tabler:device-landline-phone" width={24} />
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography>06-5334312</Typography>
+          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+            (For General Inquires)
+          </Typography>
+        </Stack>
       </Stack>
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>{WHATSAPP_MOBILE}</Typography>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
+          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+            (For Complaints)
+          </Typography>
+        </Stack>
       </Stack>
-
-      {/* <Stack direction="row" spacing={1}>
-        <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography>{translate('contactUs.details.number')}</Typography>
-      </Stack> */}
 
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:location" width={24} />
 
         <Typography>
           <Link
-            href="https://goo.gl/maps/1WhqX8XrQ1cHBRJc9"
+            href="https://maps.app.goo.gl/Bp3MWamxTdxwa2DE7"
             target="_blank"
             rel="noopener"
             sx={{

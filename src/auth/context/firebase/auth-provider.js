@@ -39,7 +39,12 @@ export function AuthProvider({ children }) {
         website: SITE_NAME,
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
-        to: ['hussam@hotmail.co.uk', 'info.marketing@kojak-group.com', 'kojak1m@kojak-group.com'],
+        to: [
+          'hussam@hotmail.co.uk',
+          'info.marketing@kojak-group.com',
+          'queries@kojak-group.com',
+          'customercare@kojak-group.com',
+        ],
         message: {
           subject: payload.subject,
           html: `

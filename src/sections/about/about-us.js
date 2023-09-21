@@ -1,14 +1,12 @@
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { alpha, styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { alpha, styled, useTheme } from '@mui/material/styles';
 
-import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
-import CountUp from 'src/components/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
@@ -67,7 +65,7 @@ export default function AboutUs() {
           pb: { xs: 5, md: 10 },
         }}
       >
-        <Grid container spacing={5}>
+        <Grid container spacing={3}>
           <Grid
             md={8}
             xs={12}
