@@ -61,11 +61,12 @@ export default function NavMobile({ data, toggleLanguage }) {
           sx: {
             pb: 5,
             width: NAV.W_VERTICAL,
+            bgcolor: 'background.default',
           },
         }}
       >
         <Scrollbar>
-          <Logo sx={{ ml: 1.5, my: 3 }} small />
+          <Logo sx={{ ml: 1.5, my: 3 }} small light />
 
           <List component="nav" disablePadding>
             {data.map((link) => (

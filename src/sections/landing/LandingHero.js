@@ -59,24 +59,6 @@ function RenderDesktopHero() {
           <Grid md={6} xs={12} />
 
           <Grid md={6} xs={12} sx={{ position: 'relative' }}>
-            {/* <Box
-              sx={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%,-50%)',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: '19dvw',
-                  WebkitTextStroke: `1px ${alpha(theme.palette.common.white, 0.1)}`,
-                  color: alpha(theme.palette.background.default, 0),
-                }}
-              >
-                {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
-              </Typography>
-            </Box> */}
             <Stack
               sx={{
                 textAlign: { md: 'left', xs: 'center' },
@@ -128,24 +110,39 @@ function RenderDesktopHero() {
 function RenderMobileHero() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
+
   return (
     <Box
       sx={{
         height: '100dvh',
         display: 'flex',
         position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <Image
-        src="/assets/images/hero/hero-mobile.webp"
-        sx={{ position: 'absolute', bottom: 0, left: 0 }}
-        alt="kojak-auto-maintenance-hero-img"
-      />
       <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
-        <Typography variant="h1" color="primary">
-          {translate('hero.heroText')}
+        <Typography
+          sx={{
+            textTransform: 'capitalize',
+            fontSize: { lg: '3.55rem', md: '2.55rem', xs: '1.75rem' },
+            lineHeight: 1.25,
+            fontWeight: theme.typography.fontWeightBold,
+          }}
+        >
+          <Box
+            component="span"
+            sx={{
+              color: 'primary.main',
+              lineHeight: currentLang.value === 'ar' ? 1.5 : 'unset',
+            }}
+          >
+            {translate('hero.heroText')}
+          </Box>
+          {translate('hero.title')}
         </Typography>
+        <Image src="/assets/images/hero/hero-mobile.webp" alt="kojak-auto-maintenance-hero-img" />
         <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
           {translate('hero.subText')}
         </Typography>
