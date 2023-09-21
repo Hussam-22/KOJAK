@@ -118,7 +118,7 @@ export default function Footer() {
           </Grid>
 
           <Grid
-            md={5}
+            md={4}
             xs={12}
             sx={{
               textAlign: 'center',
