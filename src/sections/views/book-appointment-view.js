@@ -158,15 +158,15 @@ export default function BookAppointmentView() {
         <Box sx={{ bgcolor: 'background.neutral', borderRadius: 1, p: 3 }}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={2.5}>
-              <RHFTextField name="fullName" label={translate('form.name')} />
+              <RHFTextField name="fullName" label={translate('form.name')} variant="outlined" />
 
-              <RHFTextField name="mobile" label={translate('form.mobile')} />
+              <RHFTextField name="mobile" label={translate('form.mobile')} variant="outlined" />
 
-              <RHFTextField name="email" label={translate('form.email')} />
+              <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
 
               {/* <RHFTextField name="subject" label={translate('form.subject')} /> */}
 
-              <RHFSelect name="class" label={translate('form.class')}>
+              <RHFSelect name="class" label={translate('form.class')} variant="outlined">
                 <MenuItem value="">None</MenuItem>
                 <Divider sx={{ borderStyle: 'dashed' }} />
                 {_mercedesClasses.map((option) => (
@@ -176,7 +176,7 @@ export default function BookAppointmentView() {
                 ))}
               </RHFSelect>
 
-              <RHFSelect name="year" label={translate('form.year')}>
+              <RHFSelect name="year" label={translate('form.year')} variant="outlined">
                 <MenuItem value="">None</MenuItem>
                 <Divider sx={{ borderStyle: 'dashed' }} />
                 {[...Array(yearsDiff + 1)].map((_, index) => (
@@ -227,6 +227,7 @@ export default function BookAppointmentView() {
                         error: !!error,
                         helperText: error?.message,
                         readOnly: true,
+                        variant: 'outlined',
                       },
                     }}
                   />
@@ -239,6 +240,7 @@ export default function BookAppointmentView() {
                 rows={4}
                 label={translate('form.issue')}
                 sx={{ pb: 2.5 }}
+                variant="outlined"
               />
 
               <Box sx={{ textAlign: 'center' }}>
