@@ -85,9 +85,9 @@ export default function LandingTestimonial() {
                 color="primary"
                 size="large"
                 sx={{ mt: 4 }}
-                // onClick={() => navigate(paths.website.properties)}
+                onClick={() => navigate(paths.website.bookAppointment)}
               >
-                {translate('common.exploreProperties')}
+                {translate('common.bookAppointment')}
               </Button>
             </Box>
           )}

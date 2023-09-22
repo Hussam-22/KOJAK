@@ -26,8 +26,8 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Alexandria';
-const secondaryFont = 'Alexandria';
+const primaryFont = 'Alexandria, Tajawal';
+const secondaryFont = 'Alexandria, Tajawal';
 
 // ----------------------------------------------------------------------
 

@@ -120,9 +120,17 @@ function RenderMobileHero() {
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'background.default',
+        backgroundImage: 'url(/assets/images/hero/hero-mobile.png)',
+        backgroundSize: 'cover',
       }}
     >
       <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
+        {/* <Image
+          src="/assets/images/hero/hero-mobile.png"
+          alt="kojak-auto-maintenance-hero-img"
+          height="25dvh"
+        /> */}
         <Typography
           sx={{
             textTransform: 'capitalize',
@@ -142,7 +150,7 @@ function RenderMobileHero() {
           </Box>
           {translate('hero.title')}
         </Typography>
-        <Image src="/assets/images/hero/hero-mobile.webp" alt="kojak-auto-maintenance-hero-img" />
+
         <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
           {translate('hero.subText')}
         </Typography>

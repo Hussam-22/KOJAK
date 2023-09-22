@@ -109,8 +109,6 @@ function OffersCard({ offers }) {
           sx={{
             WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
             color: alpha(theme.palette.background.default, 0),
-            fontFamily: 'Segoe UI',
-            letterSpacing: 2,
           }}
         >
           {offer.isFree && (currentLang.value === 'en' ? 'FREE' : 'مجاناً')}
