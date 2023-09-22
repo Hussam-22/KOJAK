@@ -6,12 +6,15 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Box, Link, Stack, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
+
 // ----------------------------------------------------------------------
 
-function Logo({ small = false, light = false, sx }) {
+function Logo({ large = false, showText = true, light, sx }) {
   const theme = useTheme();
+  const { currentLang } = useLocales();
 
-  const PRIMARY_MAIN = theme.palette.common.black;
+  const COLOR = light ? theme.palette.common.white : theme.palette.common.black;
 
   const singleLogo = (
     <svg
@@ -23,7 +26,7 @@ function Logo({ small = false, light = false, sx }) {
     >
       <g
         transform="translate(0.000000,239.000000) scale(0.100000,-0.100000)"
-        fill={light ? '#FFFFFF' : '#000000'}
+        fill={COLOR}
         stroke="none"
       >
         <path
@@ -91,38 +94,38 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
       <Stack direction="row" spacing={1} alignItems="center">
         <Box
           sx={{
-            width: small ? 64 : 125,
+            width: large ? 150 : 55,
             lineHeight: 0,
             cursor: 'pointer',
             display: 'inline-flex',
-            p: { my: 0.75, xs: 1 },
+            p: 0.75,
             ...sx,
           }}
         >
           {singleLogo}
         </Box>
-        <Stack direction="column">
-          <Typography
-            variant="h4"
-            sx={{ lineHeight: 1, fontWeight: '700', color: light ? 'common.white' : 'unset' }}
-          >
-            {theme.direction === 'ltr' ? 'KOJAK' : 'كوجاك'}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="primary"
-            sx={{ lineHeight: 1.25, fontWeight: '700', color: 'primary.main' }}
-          >
-            {theme.direction === 'ltr' ? 'BUILDING' : 'العقارية'}
-          </Typography>
-        </Stack>
+        {showText && (
+          <Stack direction="column" spacing={theme.direction === 'ltr' ? 0 : 1}>
+            <Typography variant="h4" sx={{ color: COLOR, lineHeight: 1, fontWeight: '700' }}>
+              {currentLang.value === 'en' ? 'KOJAK' : 'كوجك'}
+            </Typography>
+            <Typography
+              variant="body1"
+              color="primary"
+              sx={{ lineHeight: 1, fontWeight: theme.typography.fontWeightBold }}
+            >
+              {currentLang.value === 'en' ? 'GROUP' : 'مجموعة شركات'}
+            </Typography>
+          </Stack>
+        )}
       </Stack>
     </Link>
   );
 }
 
 Logo.propTypes = {
-  small: PropTypes.bool,
+  large: PropTypes.bool,
+  showText: PropTypes.bool,
   light: PropTypes.bool,
   sx: PropTypes.object,
 };
