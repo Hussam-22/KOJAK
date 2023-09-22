@@ -57,29 +57,7 @@ export default function KojakBuildingLandingHero() {
                   {translate('common.exploreProperties')}
                 </Button>
               </Box>
-
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3,1fr)',
-                  borderRadius: 1,
-                  mt: mdUp ? 'unset' : 2,
-                }}
-              >
-                {SUMMARY.map((item, index) => (
-                  <Stack
-                    key={item.value}
-                    spacing={0.5}
-                    sx={{
-                      position: 'relative',
-                      py: mdUp ? 5 : 2,
-                    }}
-                  >
-                    <Typography variant="h4">{item.value}+</Typography>
-                    <Typography variant="body1">{translate(`hero.${item.label}`)}</Typography>
-                  </Stack>
-                ))}
-              </Box>
+              {/* sAX */}
             </Stack>
           </Grid>
         </Grid>
