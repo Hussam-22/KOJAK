@@ -160,6 +160,54 @@ function MobileCarousel({ offers }) {
     autoplay: true,
   });
 
+  if (offers.length === 1)
+    return (
+      <Card
+        sx={{
+          bgcolor: 'primary.main',
+          color: 'common.black',
+          p: 3,
+          borderRadius: 1,
+        }}
+      >
+        <Stack spacing={1}>
+          <Iconify icon={offers[0].icon} width={64} />
+          <Typography variant="h4">
+            {currentLang.value === 'en'
+              ? offers[0].offerDetails.service
+              : offers[0].translated.service.ar}
+          </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              WebkitTextStroke: `2px ${alpha(theme.palette.common.black, 1)}`,
+              color: alpha(theme.palette.background.default, 0),
+            }}
+          >
+            {offers[0].isFree && (currentLang.value === 'en' ? 'FREE' : 'مجاناً')}
+            {!offers[0].isFree &&
+              (currentLang.value === 'en'
+                ? offers[0].offerDetails.price
+                : offers[0].translated.price.ar)}
+          </Typography>
+          <Typography
+            sx={{
+              textTransform: 'capitalize',
+              fontWeight: theme.typography.fontWeightLight,
+            }}
+          >
+            {currentLang.value === 'en'
+              ? offers[0].offerDetails.description
+              : offers[0].translated.description.ar}
+          </Typography>
+
+          <Typography variant="caption" sx={{ textAlign: 'center', pt: 1 }}>
+            {new Date(offers[0].validTill.seconds * 1000).toDateString()}
+          </Typography>
+        </Stack>
+      </Card>
+    );
+
   return (
     <Box sx={{ position: 'relative' }}>
       <CarouselArrows

@@ -116,8 +116,8 @@ function RenderMobileHero() {
     <Box
       sx={{
         height: '100dvh',
-        display: 'flex',
         position: 'relative',
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'background.default',
