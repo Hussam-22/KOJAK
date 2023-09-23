@@ -34,6 +34,8 @@ export default function Offers() {
     })();
   }, [getOffers]);
 
+  if (offers.length === 0) return null;
+
   return (
     <Box
       sx={{
@@ -45,23 +47,28 @@ export default function Offers() {
         <Stack spacing={4}>
           <Typography variant="h2">{translate('hotOffers.title')}</Typography>
           {mdUp && (
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-                gap: 4,
-              }}
-            >
-              {offers.length === 0 &&
-                [...Array(4)].map((_, index) => (
-                  <Skeleton
-                    key={index}
-                    variant="rectangular"
-                    height={300}
-                    sx={{ borderRadius: 2 }}
-                  />
-                ))}
-              {offers.length !== 0 && <OffersCard offers={offers} />}
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: {
+                    md: `repeat(${offers.length},1fr)`,
+                    xs: 'repeat(1,1fr)',
+                  },
+                  gap: 4,
+                }}
+              >
+                {offers.length === 0 &&
+                  [...Array(4)].map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      variant="rectangular"
+                      height={300}
+                      sx={{ borderRadius: 2 }}
+                    />
+                  ))}
+                {offers.length !== 0 && <OffersCard offers={offers} />}
+              </Box>
             </Box>
           )}
 

@@ -104,7 +104,7 @@ export function AuthProvider({ children }) {
     const docRef = query(
       collectionGroup(DB, 'offers'),
       where('isActive', '==', true),
-      where('validTill', '<=', new Date())
+      where('validTill', '>=', new Date())
     );
     const querySnapshot = await getDocs(docRef);
     const documents = [];
