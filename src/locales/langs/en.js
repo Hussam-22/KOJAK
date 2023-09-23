@@ -15,7 +15,7 @@ const en = {
   },
   hero: {
     overlineText: `Looking for residential or commercial space ?`,
-    title: `Find Your Perfect Space for Living or Business Thriving with `,
+    title: `Find Your Perfect Space for Living or Business Thriving `,
     apartments: 'Apartments',
     happyTenants: 'Happy Tenants',
     leasesProcessed: 'Leases processed',

@@ -43,14 +43,14 @@ export default function KojakBuildingLandingHero() {
             <Stack spacing={1}>
               {/* <Typography variant="overline">{translate('hero.overlineText')}</Typography> */}
 
-              <Typography color="primary" variant="h1">
+              <Typography color="secondary" variant="h1">
                 {translate('hero.title')}
               </Typography>
 
               <Box>
                 <Button
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   size="large"
                   onClick={() => navigate(paths.website.properties)}
                 >
