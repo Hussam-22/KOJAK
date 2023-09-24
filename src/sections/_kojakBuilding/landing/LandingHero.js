@@ -25,15 +25,16 @@ export default function KojakBuildingLandingHero() {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
-  const { translate, onChangeLang, currentLang } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   return (
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: `url(/assets/kojak-building/hero/hero-1.png)`,
+        backgroundImage: `url(/assets/kojak-building/hero/hero-${currentLang.value}.png)`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
         position: 'relative',
       }}
     >
@@ -57,7 +58,6 @@ export default function KojakBuildingLandingHero() {
                   {translate('common.exploreProperties')}
                 </Button>
               </Box>
-              {/* sAX */}
             </Stack>
           </Grid>
         </Grid>

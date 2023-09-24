@@ -127,7 +127,7 @@ export function palette(mode) {
       paper: '#FFFFFF',
       default: '#FFFFFF',
       neutral: GREY[100],
-      peach: SUCCESS.lighter,
+      peach: PRIMARY.lighter,
     },
     action: {
       ...COMMON.action,

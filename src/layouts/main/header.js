@@ -72,7 +72,7 @@ export default function Header({ headerOnDark }) {
                 color: 'common.white',
               }),
             ...(offset && {
-              ...bgBlur({ color: theme.palette.background.default }),
+              ...bgBlur({ color: theme.palette.background.peach }),
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },

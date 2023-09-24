@@ -33,7 +33,7 @@ export default function PopularProperties() {
   }, [getAllSpacesInfo]);
 
   return (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box sx={{ bgcolor: 'background.default' }}>
       <Container
         sx={{
           py: { xs: 5, md: 10 },
@@ -48,7 +48,7 @@ export default function PopularProperties() {
           }}
         >
           <Stack spacing={3} flexGrow={1} sx={{ textAlign: { md: 'left', xs: 'center' } }}>
-            <Typography variant="h2">{translate('properties.title')}</Typography>
+            <Typography variant="h2">{translate('featuredProperty.title')}</Typography>
 
             <Box sx={{ width: { md: '60%', xs: 'unset' } }}>
               <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
