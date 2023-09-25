@@ -2,14 +2,12 @@ const fs = require('fs');
 
 const paths = {
   // Building
-  website: {
-    root: { path: '/', priority: 1.0, changefreq: 'daily' },
-    about: { path: '/about', priority: 0.8, changefreq: 'weekly' },
-    contactUs: { path: '/contact-us', priority: 0.7, changefreq: 'monthly' },
-    services: { path: '/services', priority: 0.6, changefreq: 'monthly' },
-    blogPosts: { path: '/blog-posts', priority: 0.5, changefreq: 'daily' },
-    bookAppointment: { path: '/book-appointment', priority: 0.9, changefreq: 'weekly' },
-  },
+  root: { path: '/', priority: 1.0, changefreq: 'daily' },
+  about: { path: '/about', priority: 0.8, changefreq: 'weekly' },
+  contactUs: { path: '/contact-us', priority: 0.7, changefreq: 'monthly' },
+  services: { path: '/services', priority: 0.6, changefreq: 'monthly' },
+  blogPosts: { path: '/blog-posts', priority: 0.5, changefreq: 'daily' },
+  bookAppointment: { path: '/book-appointment', priority: 0.9, changefreq: 'weekly' },
   page404: { path: '/404', priority: 0.4, changefreq: 'yearly' },
   page500: { path: '/500', priority: 0.3, changefreq: 'yearly' },
 };
