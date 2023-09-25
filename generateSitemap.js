@@ -34,7 +34,7 @@ const blogItems = posts.map((post) => ({
   changefreq: 'monthly',
 }));
 
-const baseUrl = 'https://kojak-auto-maintenance.com/'; // Replace with your website's base URL
+const baseUrl = 'https://kojak-auto-maintenance.com'; // Replace with your website's base URL
 
 const sitemapUrls = [];
 
