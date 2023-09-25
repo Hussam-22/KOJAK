@@ -31,7 +31,9 @@ export default function KojakBuildingLandingHero() {
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: `url(/assets/kojak-building/hero/hero-${currentLang.value}.png)`,
+        backgroundImage: mdUp
+          ? `url(/assets/kojak-building/hero/hero-${currentLang.value}.png)`
+          : 'unset',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundPosition: 'center',

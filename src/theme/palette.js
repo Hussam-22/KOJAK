@@ -124,10 +124,10 @@ export function palette(mode) {
       disabled: GREY[500],
     },
     background: {
-      paper: '#FFFFFF',
+      paper: GREY[100],
       default: '#FFFFFF',
-      neutral: GREY[100],
-      peach: PRIMARY.lighter,
+      neutral: PRIMARY.lighter,
+      dark: '#121212',
     },
     action: {
       ...COMMON.action,

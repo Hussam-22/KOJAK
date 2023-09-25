@@ -38,7 +38,7 @@ export default function Header({ headerOnDark }) {
   const { translate } = useLocales();
   const pathName = usePathname();
 
-  const useDarkLogo = pathName !== '/';
+  const useDarkLogo = true;
   const light = useDarkLogo && !offset;
 
   const toggleLanguageHandler = () => {
@@ -72,7 +72,7 @@ export default function Header({ headerOnDark }) {
                 color: 'common.white',
               }),
             ...(offset && {
-              ...bgBlur({ color: theme.palette.background.peach }),
+              ...bgBlur({ color: theme.palette.background.default }),
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },
@@ -89,7 +89,7 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small light={light} />
+              <Logo small />
               {/* <Logo small /> */}
             </Box>
 
@@ -108,14 +108,9 @@ export default function Header({ headerOnDark }) {
                   <Divider
                     orientation="vertical"
                     flexItem
-                    sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
-                  />
-                  <Divider
-                    orientation="vertical"
-                    flexItem
                     sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
-                  <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
+                  <TranslateIcon light={false} toggleLanguageHandler={toggleLanguageHandler} />
                 </Stack>
               )}
             </Stack>

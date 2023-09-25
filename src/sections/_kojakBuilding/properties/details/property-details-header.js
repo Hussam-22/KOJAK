@@ -29,31 +29,17 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
   const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description || '';
 
   return (
-    <>
-      <Typography variant="caption" sx={{ textTransform: 'capitalize' }}>
-        {`${translate(`propertyCard.${type}`)} - ${descriptionValue}`}
-      </Typography>
-      <Stack
-        spacing={3}
-        direction="row"
-        sx={{
-          mb: 2,
-        }}
-      >
-        {/* <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-          {translate(`propertyCard.${spaceType.toLowerCase()}`)} - {description}
-        </Typography> */}
-      </Stack>
-
-      <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
+    <Box>
+      {isAvailable && (
+        <Typography variant="h2" sx={{ mb: 1 }}>
+          {`${translate('common.aed')} ${rent}`}
+        </Typography>
+      )}
+      <Stack spacing={1} direction={{ xs: 'column', md: 'row' }}>
+        <Typography sx={{ textTransform: 'capitalize' }}>
+          {`${translate(`propertyCard.${type}`)} - ${descriptionValue}`}
+        </Typography>
         <Stack spacing={0.5} direction="row" alignItems="center">
-          <Iconify icon="grommet-icons:money" sx={{ color: 'success.main' }} />
-
-          {isAvailable && (
-            <Box sx={{ typography: 'h6' }}>
-              {translate('common.aed')} {rent}
-            </Box>
-          )}
           {!isAvailable && (
             <Box sx={{ typography: 'h6' }}>{translate(`propertyCard.notAvailable`)}</Box>
           )}
@@ -68,7 +54,7 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
           <Iconify icon="clarity:date-line" sx={{ mr: 0.5 }} /> {listingDateTime}
         </Stack>
       </Stack>
-    </>
+    </Box>
   );
 }
 

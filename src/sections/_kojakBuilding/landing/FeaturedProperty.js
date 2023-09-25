@@ -1,19 +1,12 @@
-import { m } from 'framer-motion';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 import { memo, useState, useEffect } from 'react';
 
-import { Masonry } from '@mui/lab';
 import { useTheme } from '@mui/system';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, Stack, Button, Divider, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Stack, Button, Divider } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
-import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
@@ -54,25 +47,28 @@ function FeaturedProperty() {
   return (
     <Box
       sx={{
-        border: `solid 3px ${theme.palette.primary.main}`,
-        borderRadius: 3,
-        bgcolor: 'common.white',
+        borderRadius: 1,
         p: { md: 5, xs: 2 },
+        boxShadow: `-10px 10px 0 0 ${theme.palette.primary.main}`,
+        border: `solid 2px ${theme.palette.common.black}`,
+        bgcolor: 'background.default',
       }}
     >
       <Stack
         direction={{ md: 'row', xs: 'column' }}
-        justifyContent="space-between"
         textAlign={{ md: 'unset', xs: 'center' }}
+        justifyContent="space-between"
         alignItems="center"
+        spacing={2}
+        sx={{ mb: 3 }}
       >
-        <Typography variant="h2" sx={{ mb: 3 }}>
+        <Typography variant="h2">
           {translate('featuredProperty.title')}
           <Iconify icon="noto:fire" width={54} />
         </Typography>
 
         <Button
-          variant="soft"
+          variant="contained"
           color="primary"
           onClick={() => navigate(`/properties/${featuredProperty.id}`)}
         >
@@ -80,15 +76,11 @@ function FeaturedProperty() {
         </Button>
       </Stack>
 
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        {descriptionValue}
-      </Typography>
-
       {images.length !== 0 && <PropertyDetailsGallery images={images} />}
 
       {featuredProperty.id !== undefined && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
-      <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
+      <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
       {featuredProperty.id !== undefined && (
         <PropertyDetailsSummary
