@@ -1,10 +1,10 @@
 {
-  "name": "Kojak Building",
-  "short_name": "Kojak Building",
+  "name": "Kojak Auto Maintenance",
+  "short_name": "Kojak Auto Maintenance",
   "display": "standalone",
   "start_url": "/",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#121212",
+  "background_color": "#FFDC45",
   "icons": [
     {
       "src": "favicon/android-chrome-192x192.png",
