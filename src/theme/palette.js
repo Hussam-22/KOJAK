@@ -121,14 +121,14 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: '#000000',
+      primary: '#FFFFFF',
       secondary: GREY[600],
       disabled: GREY[400],
       white: '#FFFFFF',
       warning: WARNING.main,
     },
     background: {
-      paper: GREY[100],
+      paper: GREY[700],
       default: '#121212',
       neutral: alpha(GREY[800], 0.8),
     },

@@ -147,22 +147,34 @@ export function AuthProvider({ children }) {
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
-  const fsGetImgDownloadUrl = useCallback(
-    async (location, folderID, imgID, resolution = '1920x1080') => {
-      console.log('download url');
-      let url = '';
-      try {
-        url = await getDownloadURL(
-          ref(STORAGE, `gs://${location}/${folderID}/${imgID}_${resolution}.webp`)
-        );
-      } catch (error) {
-        url = undefined;
-      }
+  // const fsGetImgDownloadUrl = useCallback(
+  //   async (location, folderID, imgID, resolution = '1920x1080') => {
+  //     console.log('download url');
+  //     let url = '';
+  //     try {
+  //       url = await getDownloadURL(
+  //         ref(STORAGE, `gs://${location}/${folderID}/${imgID}_${resolution}.webp`)
+  //       );
+  //     } catch (error) {
+  //       url = undefined;
+  //     }
 
-      return url;
-    },
-    []
-  );
+  //     return url;
+  //   },
+  //   []
+  // );
+
+  const fsGetImgDownloadUrl = useCallback(async (imgID) => {
+    console.log('download url');
+    let url = '';
+    try {
+      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/parts-images/${imgID}`));
+    } catch (error) {
+      url = undefined;
+    }
+
+    return url;
+  }, []);
 
   // ------------------ | Get image Download URL | ------------------
   const fsGetFolderImages = useCallback(async (folderID) => {
@@ -182,8 +194,18 @@ export function AuthProvider({ children }) {
       addNewForm,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
+      fsGetProductsByPage,
+      fsGetProductsDocumentsCount,
+      fsWriteBatchPartsData,
     }),
-    [addNewForm, fsGetImgDownloadUrl, fsGetFolderImages]
+    [
+      addNewForm,
+      fsGetImgDownloadUrl,
+      fsGetFolderImages,
+      fsGetProductsByPage,
+      fsGetProductsDocumentsCount,
+      fsWriteBatchPartsData,
+    ]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

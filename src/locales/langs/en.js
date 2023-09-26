@@ -2,7 +2,7 @@ const en = {
   header: {
     home: 'Home',
     about: 'About',
-    career: 'Career',
+    spareParts: 'Spare Parts',
     contactUs: 'Contact us',
     blog: 'Blog',
   },

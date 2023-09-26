@@ -15,7 +15,7 @@ import Header from './header';
 
 // ----------------------------------------------------------------------
 
-const pathsOnDark = ['/'];
+const pathsOnDark = ['/', '/spare-parts'];
 
 const spacingLayout = [...pathsOnDark];
 

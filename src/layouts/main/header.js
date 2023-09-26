@@ -38,8 +38,7 @@ export default function Header({ headerOnDark }) {
   const { translate } = useLocales();
   const pathName = usePathname();
 
-  const useDarkLogo = pathName !== '/';
-  const light = !useDarkLogo && !offset;
+  const light = true;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -67,13 +66,10 @@ export default function Header({ headerOnDark }) {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.shorter,
             }),
-            ...(!offset &&
-              headerOnDark && {
-                color: 'common.white',
-              }),
+            color: 'common.white',
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
-              borderBottom: `solid 1px ${theme.palette.primary.light}`,
+              // borderBottom: `solid 1px ${theme.palette.primary.light}`,
               // color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,
