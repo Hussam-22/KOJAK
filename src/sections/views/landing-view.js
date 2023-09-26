@@ -7,14 +7,5 @@ import VisitGroupsWebsite from 'src/sections/landing/visit-groups-website';
 import InternationalBusiness from 'src/sections/landing/international-business';
 
 export default function LandingView() {
-  return (
-    <>
-      <LandingHero />
-      <History />
-      <InternationalBusiness />
-      <HandPicked />
-      <VisitGroupsWebsite />
-      <LatestPosts posts={blogPosts} />
-    </>
-  );
+  return <LandingHero />;
 }

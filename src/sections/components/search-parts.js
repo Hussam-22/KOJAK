@@ -9,24 +9,18 @@ import { Box, Stack, Button, Divider, MenuItem, Container, Typography } from '@m
 import { _mercedesClasses } from 'src/_mock';
 import Image from 'src/components/image/Image';
 import { RHFSelect } from 'src/components/hook-form';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { _partsCategory } from 'src/_mock/_partsCategory';
 import FormProvider from 'src/components/hook-form/form-provider';
 
 function SearchParts() {
+  const mdUp = useResponsive('up', 'md');
   const CareerContactSchema = Yup.object().shape({
-    fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string()
-      .required('Mobile number is required')
-      .min(9, 'Contact Number must be at least 9 numbers'),
-    email: Yup.string().email('That is not an email'),
-    service: Yup.array().min(1, 'Must have at least 1 items'),
-    messageText: Yup.string().required('Message is required'),
     class: Yup.string().required('Car Class is required'),
     year: Yup.string().when('class', {
       is: (selectedClass) => selectedClass !== '', // Only apply validation when "class" is selected
       then: () => Yup.string().required('Car Year is required'),
     }),
-    appointmentDate: Yup.mixed().nullable().required('Start date is required'),
   });
 
   const defaultValues = {
@@ -57,7 +51,7 @@ function SearchParts() {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack direction="row" spacing={2.5}>
+      <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
         <RHFSelect name="class" label="Mercedes Class" variant="outlined">
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
@@ -76,7 +70,7 @@ function SearchParts() {
               .find((option) => option.class === values.class)
               .models.map((option) => (
                 <MenuItem key={option.productionYears} value={option.productionYears}>
-                  {option.productionYears}
+                  {`${option.model} - ${option.productionYears}`}
                 </MenuItem>
               ))}
         </RHFSelect>

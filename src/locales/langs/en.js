@@ -11,7 +11,7 @@ const en = {
     hero: {
       overlineText: ``,
       heroText: 'Kojak - Spare Parts',
-      partOne: 'Your Ultimate Destination for your Mercedes Spare Parts',
+      partOne: 'Your Ultimate Destination for your Mercedes-Benz Spare Parts Quest',
       partTwo: 'Since 1983',
       subText:
         'Experience unparalleled savings at our dealership, where Mercedes cars are offered at prices lower than the agency and market rates. Discover exceptional value without compromising on luxury and quality. Your dream Mercedes is now more affordable than ever',

@@ -24,7 +24,7 @@ const LandingHero = () => {
   return (
     <Box
       sx={{
-        height: '100dvh',
+        height: { md: '60dvh', xs: '100dvh' },
         bgcolor: 'background.dark',
       }}
     >
@@ -40,23 +40,27 @@ const LandingHero = () => {
         }}
       >
         <Grid container spacing={4} sx={{ p: 5, position: 'relative' }}>
-          <Image
+          {/* <Image
             src="/assets/illustrations/engine.svg"
             sx={{ position: 'absolute', right: 0, transform: 'rotate(-90deg)', zIndex: 0 }}
-          />
+          /> */}
           <Grid md={12} xs={12}>
-            <Box component={m.div} {...getVariant('fadeInUp')} sx={{ mb: 2 }}>
+            {/* <Image src="/assets/mercedes-logo.svg" width={100} height={100} /> */}
+            <Box component={m.div} {...getVariant('fadeInUp')} sx={{ my: 2 }}>
               <Typography variant="overline" color="primary">
                 {translate('landing.hero.heroText')}
               </Typography>
 
-              <Typography variant="h1" color="white">
+              <Typography variant={mdUp ? 'h1' : 'h2'} color="white">
                 {translate('landing.hero.partOne')}
               </Typography>
             </Box>
           </Grid>
 
           <Grid md={12} xs={12}>
+            <Typography sx={{ ml: 1, color: 'secondary.light' }}>
+              Search Available Spare Parts
+            </Typography>
             <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'background.neutral', flexGrow: 1 }}>
               <SearchParts />
             </Box>

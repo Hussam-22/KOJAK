@@ -129,9 +129,8 @@ export function palette(mode) {
     },
     background: {
       paper: GREY[100],
-      default: '#FFFFFF',
+      default: '#121212',
       neutral: alpha(GREY[800], 0.8),
-      dark: '#121212',
     },
     action: {
       ...COMMON.action,

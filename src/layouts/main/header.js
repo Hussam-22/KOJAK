@@ -107,15 +107,11 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('header.contactUs')}
                   </Button>
+
                   <Divider
                     orientation="vertical"
                     flexItem
-                    sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
-                  />
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
+                    sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
                   <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
                 </Stack>

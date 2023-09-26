@@ -1,20 +1,26 @@
 import PropTypes from 'prop-types';
-import { initializeApp } from 'firebase/app';
 import { useMemo, useCallback } from 'react';
+import { initializeApp } from 'firebase/app';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  query,
+  limit,
   where,
-  getDoc,
+  query,
   setDoc,
+  getDoc,
+  orderBy,
   getDocs,
   Timestamp,
+  writeBatch,
+  startAfter,
   collection,
   getFirestore,
   collectionGroup,
+  getCountFromServer,
 } from 'firebase/firestore';
 
+import { _partsData } from 'src/_mock/_partsData';
 // config
 import { SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
 
@@ -28,6 +34,7 @@ const DB = getFirestore(firebaseApp);
 // ----------------------------------------------------------------------
 
 export function AuthProvider({ children }) {
+  // ADD NEW FORM
   const addNewForm = useCallback(async (payload) => {
     const newDocRef = doc(collection(DB, `/websites/${SITE_NAME}/forms/`));
     const date = new Date();
@@ -70,111 +77,73 @@ export function AuthProvider({ children }) {
   }, []);
 
   // ----------------------------------------------------------------------------
-  // add new Career Post
-  const addNewCareerPost = useCallback(async (payload) => {
-    const newDocRef = doc(collection(DB, `/websites/${SITE_NAME}/career/`));
+  const fsWriteBatchPartsData = useCallback(async () => {
+    const batch = writeBatch(DB);
+    const partsToAdd = _partsData.slice(5, 10);
 
-    setDoc(newDocRef, {
-      ...payload,
-      // --------------------------------------
-      id: newDocRef.id,
-      isActive: true,
-      // --------------------------------------
-      contactEmail: 'info@kojak-group.com',
-      jobID: 'CS-2023-1',
-      createdAt: '2023-09-16T00:00:00Z',
-      jobTitle: 'Customer Support Specialist',
-      department: 'Customer Service',
-      group: 'Kojak Group',
-      location: 'Sharjah - Industrial Area 4',
-      jobType: 'Full-Time',
-      experienceYears: 1,
-      jobDescription:
-        'Join our Customer Service team and help us provide exceptional support to our customers. You will be the first point of contact for inquiries and support requests.',
-      keyResponsibilities: [
-        'Respond to customer inquiries via phone and email',
-        'Resolve customer issues and complaints',
-        'Provide product information and assistance',
-        'Maintain accurate customer records',
-      ],
-      jobSkills: [
-        'Excellent communication skills',
-        'Problem-solving',
-        'Customer service orientation',
-        'Attention to detail',
-        'Multitasking',
-      ],
-      niceToHave: [
-        'Experience in a call center environment',
-        'Knowledge of CRM software',
-        'Fluency in multiple languages',
-      ],
-      benefits: ['Air-Ticket', 'Healthcare', 'Training and development opportunities'],
-      workingHours: 'Rotating shifts, including weekends',
-      languages: ['English', 'Arabic'],
-      salary: 18000,
-
-      expiryDate: Timestamp.fromDate(new Date()),
+    partsToAdd.forEach((element) => {
+      const docRef = doc(collection(DB, `/websites/${SITE_NAME}/partsData`));
+      batch.set(docRef, {
+        ...element,
+        docID: docRef.id,
+        brandClass: ['B-Class', 'C-Class'],
+        brandModel: ['W245', 'W246', 'W202', 'W203', 'W204', 'W205'],
+        category: 'Transmission',
+        subCategory: 'Clutch Kit',
+      });
     });
-    return newDocRef.id;
+
+    await batch.commit();
   }, []);
 
-  // GET Careers List
-  const getCareersList = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'career'), where('isActive', '==', true));
-    const querySnapshot = await getDocs(docRef);
-    const documents = [];
+  const fsGetProductsDocumentsCount = useCallback(async () => {
+    const docRefCount = query(collectionGroup(DB, `partsData`), orderBy('id', 'desc'));
+    const snapshot = await getCountFromServer(docRefCount);
 
-    querySnapshot.forEach((document) => documents.push(document.data()));
-
-    return documents;
+    return snapshot.data().count;
   }, []);
 
-  const getJobPostDetails = useCallback(async (jobID) => {
-    const docRef = doc(DB, `/websites/${SITE_NAME}/career/${jobID}`);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data();
-  }, []);
-
-  // ----------------------------------------------------------------------------
-  const getVehicleInfo = useCallback(async (vehicleID) => {
-    const docRef = doc(DB, `/websites/kexclusive/vehicles/${vehicleID}`);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data();
-  }, []);
-
-  // GET Cars List
-  const getCars = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', true));
-    const querySnapshot = await getDocs(docRef);
-    const documents = [];
-
-    querySnapshot.forEach((document) => documents.push(document.data()));
-
-    return documents;
-  }, []);
-
-  const getFeaturedCars = useCallback(async () => {
-    const docRef = query(
-      collectionGroup(DB, 'vehicles'),
-      where('isActive', '==', true),
-      where('isFeatured', '==', true)
-    );
-    const querySnapshot = await getDocs(docRef);
-    const documents = [];
-
-    querySnapshot.forEach((document) => documents.push(document.data()));
-
-    return documents;
-  }, []);
-
-  // ------------------ | Get Featured Property | ------------------
-  const fsGetFeaturedProperty = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'spaces'), where('isFeatured', '==', true));
-    const querySnapshot = await getDocs(docRef);
+  const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
     const dataArr = [];
+    // const docRef = query(
+    //   collectionGroup(DB, `partsData`),
+    //   orderBy('id', 'desc'),
+    //   startAfter(page * recordsLimit),
+    //   limit(recordsLimit)
+    // );
+
+    let docRef = collectionGroup(DB, 'partsData');
+
+    // if (filter.partNo !== '') {
+    //   docRef = query(docRef, where('partNumber', '==', filter.partNo));
+    // }
+
+    // if (filter.partName !== '') {
+    //   docRef = query(docRef, where('partName', '==', filter.partName));
+    // }
+
+    // if (filter.class !== '') {
+    //   docRef = query(docRef, where('brandClass', '==', filter.class));
+    // }
+
+    // if (filter.model !== '') {
+    //   docRef = query(docRef, where('brandModel', '==', filter.model));
+    // }
+
+    // if (filter.category.length !== 0) {
+    //   docRef = query(docRef, where('category', 'in', filter.category));
+    // }
+
+    docRef = query(
+      docRef,
+      orderBy('id', 'desc'),
+      startAfter(page * recordsLimit),
+      limit(recordsLimit)
+    );
+
+    const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
-    return dataArr[0];
+    return dataArr;
   }, []);
 
   // ------------------ | Get image Download URL | ------------------
@@ -211,28 +180,10 @@ export function AuthProvider({ children }) {
   const memoizedValue = useMemo(
     () => ({
       addNewForm,
-      addNewCareerPost,
-      getJobPostDetails,
-      getCareersList,
-      getCars,
-      getFeaturedCars,
-      fsGetFeaturedProperty,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
-      getVehicleInfo,
     }),
-    [
-      addNewForm,
-      addNewCareerPost,
-      getJobPostDetails,
-      getCareersList,
-      getCars,
-      getFeaturedCars,
-      fsGetFeaturedProperty,
-      fsGetImgDownloadUrl,
-      fsGetFolderImages,
-      getVehicleInfo,
-    ]
+    [addNewForm, fsGetImgDownloadUrl, fsGetFolderImages]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;

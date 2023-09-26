@@ -1,4 +1,4 @@
-export const SITE_NAME = 'kojak-group';
+export const SITE_NAME = 'spareparts';
 
 export const CONTACT_US_FORM = 'CONTACT-US';
 export const NEWSLETTER_FORM = 'NEWSLETTER';
