@@ -21,9 +21,9 @@ const GREY = {
 
 const PRIMARY = {
   lighter: '#FAF5EF',
-  light: '#F1E2D0',
-  main: '#D6A871',
-  dark: '#CD9551',
+  light: '#04BFAD',
+  main: '#04BFAD',
+  dark: '#027373',
   darker: '#BE8137',
   contrastText: '#FFFFFF',
 };
@@ -31,7 +31,7 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: '#F8F8F8',
   light: '#636363',
-  main: '#000000',
+  main: '#0E0F13',
   dark: '#000000',
   darker: '#000000',
   contrastText: '#FFFFFF',
@@ -133,6 +133,7 @@ export function palette(mode) {
       neutral: GREY[100],
       light: PRIMARY.lighter,
       secondary: SECONDARY.lighter,
+      dark: '#121212',
     },
     action: {
       ...COMMON.action,

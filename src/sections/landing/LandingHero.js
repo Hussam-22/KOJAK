@@ -2,12 +2,12 @@ import { m } from 'framer-motion';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import { Button, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Stack, Button, TextField, Container } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
 import getVariant from 'src/components/animate/variants/get-variant';
 
@@ -23,13 +23,7 @@ const LandingHero = () => {
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: mdUp
-          ? `url(/assets/images/hero/hero-1${currentLang.value === 'ar' ? '-ar' : ''}.webp)`
-          : 'url(/assets/images/hero/hero-2-mobile.webp)',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        overflow: 'visible',
+        bgcolor: 'background.dark',
       }}
     >
       <Container
@@ -38,24 +32,15 @@ const LandingHero = () => {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'left',
+          alignItems: 'center',
           alignContent: 'center',
           justifyContent: 'center',
+          textAlign: 'center',
         }}
       >
         <Grid container spacing={4} sx={{ p: 5 }}>
-          <Grid
-            md={6}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'left',
-              alignContent: 'center',
-              justifyContent: 'center',
-              gap: 3,
-            }}
-          >
-            <Box component={m.div} {...getVariant('fadeInUp')}>
+          <Grid md={12} xs={12}>
+            <Box component={m.div} {...getVariant('fadeInUp')} sx={{ mb: 2 }}>
               <Typography variant="overline" color="primary">
                 {translate('landing.hero.heroText')}
               </Typography>
@@ -64,15 +49,27 @@ const LandingHero = () => {
                 {translate('landing.hero.partOne')}
               </Typography>
             </Box>
-            <Box component={m.div} {...getVariant('fadeInLeft')}>
-              <Button
-                size="large"
-                variant="contained"
-                color="primary"
-                onClick={handleContactUsClick}
-              >
-                {translate('header.contactUs')}
-              </Button>
+          </Grid>
+
+          <Grid
+            md={12}
+            xs={12}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Box sx={{ p: 2, borderRadius: 3 }}>
+              <Stack direction="row" spacing={3}>
+                <TextField label="MercedesClass" />
+                <TextField label="Manufacture Year" />
+                <TextField label="Part Category" />
+
+                <Button size="large" variant="contained" color="primary">
+                  Search
+                </Button>
+              </Stack>
             </Box>
           </Grid>
         </Grid>
