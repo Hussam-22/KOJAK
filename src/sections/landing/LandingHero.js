@@ -6,9 +6,11 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Stack, Button, TextField, Container } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
+import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { useResponsive } from 'src/hooks/use-responsive';
+import SearchParts from 'src/sections/components/search-parts';
 import getVariant from 'src/components/animate/variants/get-variant';
 
 const LandingHero = () => {
@@ -35,10 +37,13 @@ const LandingHero = () => {
           alignItems: 'center',
           alignContent: 'center',
           justifyContent: 'center',
-          textAlign: 'center',
         }}
       >
-        <Grid container spacing={4} sx={{ p: 5 }}>
+        <Grid container spacing={4} sx={{ p: 5, position: 'relative' }}>
+          <Image
+            src="/assets/illustrations/engine.svg"
+            sx={{ position: 'absolute', right: 0, transform: 'rotate(-90deg)', zIndex: 0 }}
+          />
           <Grid md={12} xs={12}>
             <Box component={m.div} {...getVariant('fadeInUp')} sx={{ mb: 2 }}>
               <Typography variant="overline" color="primary">
@@ -51,25 +56,9 @@ const LandingHero = () => {
             </Box>
           </Grid>
 
-          <Grid
-            md={12}
-            xs={12}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Box sx={{ p: 2, borderRadius: 3 }}>
-              <Stack direction="row" spacing={3}>
-                <TextField label="MercedesClass" />
-                <TextField label="Manufacture Year" />
-                <TextField label="Part Category" />
-
-                <Button size="large" variant="contained" color="primary">
-                  Search
-                </Button>
-              </Stack>
+          <Grid md={12} xs={12}>
+            <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'background.neutral', flexGrow: 1 }}>
+              <SearchParts />
             </Box>
           </Grid>
         </Grid>

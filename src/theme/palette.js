@@ -128,11 +128,9 @@ export function palette(mode) {
       warning: WARNING.main,
     },
     background: {
-      paper: '#FFFFFF',
+      paper: GREY[100],
       default: '#FFFFFF',
-      neutral: GREY[100],
-      light: PRIMARY.lighter,
-      secondary: SECONDARY.lighter,
+      neutral: alpha(GREY[800], 0.8),
       dark: '#121212',
     },
     action: {
