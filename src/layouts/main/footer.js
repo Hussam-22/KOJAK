@@ -21,7 +21,7 @@ const GROUPS = [
     url: 'www.kojak-exclusive.com',
   },
   {
-    title: 'spareParts',
+    title: 'sparePart',
     url: 'www.kojak-spareparts.com',
   },
   {
@@ -86,7 +86,7 @@ export default function Footer() {
                     key={group.title}
                     sx={{ color: 'common.white' }}
                   >
-                    {translate(`footer.${group.title}.title`)}
+                    {translate(`common.${group.title}`)}
                   </Link>
                 ))}
               </Stack>
