@@ -69,7 +69,7 @@ const LandingHero = () => {
 
           <Grid md={12} xs={12}>
             <Stack direction="row" spacing={2} justifyContent="space-between" sx={{ mt: 2 }}>
-              <ProofIcon icon="codicon:workspace-trusted" text="Genuine Spare Parts" />
+              <ProofIcon icon="simple-icons:mercedes" text="Genuine Spare Parts" />
               <ProofIcon icon="la:shipping-fast" text="Fast Delivery & International Shipping" />
               <ProofIcon icon="basil:headset-outline" text="Responsive Customer Support" />
               <ProofIcon icon="solar:money-bag-outline" text="Best Price Grantee" />
