@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +36,7 @@ export default function SparePartsView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
   const dispatch = useDispatch();
+  const param = useLocation();
 
   const [recordsLimit, setrecordsLimit] = useState(25);
   const [documentsCount, setDocumentsCount] = useState(1);
@@ -48,11 +50,11 @@ export default function SparePartsView() {
 
   useEffect(() => {
     const getProducts = async () => {
-      // dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit, filter)));
-      dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit)));
+      dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit, filter)));
+      // dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit)));
     };
     getProducts();
-  }, [dispatch, fsGetProductsByPage, page, recordsLimit]);
+  }, [dispatch, fsGetProductsByPage, page, recordsLimit, filter]);
 
   useEffect(() => {
     const fakeLoading = async () => {

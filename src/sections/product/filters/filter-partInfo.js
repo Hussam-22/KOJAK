@@ -17,7 +17,6 @@ export default function FilterPartInfo() {
   const { partNo, partName } = useSelector((state) => state.products.filter);
 
   useEffect(() => {
-    console.log('IM HERE');
     if (partNo === '') setPartNoValue('');
     if (partName === '') setPartNameValue('');
   }, [partName, partNo]);
@@ -29,6 +28,7 @@ export default function FilterPartInfo() {
   const onPartNameFindHandler = () => {
     dispatch(rdxUpdateFilter({ partName: partNameValue }));
   };
+
   return (
     <Stack spacing={2}>
       <FormControl variant="outlined" sx={{ width: '100%' }}>

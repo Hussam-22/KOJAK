@@ -79,7 +79,7 @@ const slice = createSlice({
         state.filteredProducts = toFilteredProducts;
       }
 
-      console.log(state.filteredProducts);
+      // console.log(current(state.filteredProducts));
     },
 
     rdxClearFilter(state) {

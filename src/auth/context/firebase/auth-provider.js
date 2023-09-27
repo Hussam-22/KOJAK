@@ -4,17 +4,16 @@ import { initializeApp } from 'firebase/app';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  limit,
   where,
   query,
+  limit,
   setDoc,
-  getDoc,
-  orderBy,
   getDocs,
+  orderBy,
   Timestamp,
-  writeBatch,
-  startAfter,
   collection,
+  startAfter,
+  writeBatch,
   getFirestore,
   collectionGroup,
   getCountFromServer,
@@ -105,6 +104,40 @@ export function AuthProvider({ children }) {
 
   const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
     const dataArr = [];
+    let docRef = collectionGroup(DB, 'partsData');
+    docRef = query(
+      docRef,
+      orderBy('id', 'desc'),
+      startAfter(page * recordsLimit),
+      limit(recordsLimit)
+    );
+
+    // Conditionally add filters based on the provided filter object
+    if (filter.partNo) {
+      docRef = query(docRef, where('partNumber', '==', filter.partNo));
+    }
+    if (filter.partName) {
+      docRef = query(docRef, where('partName', '==', filter.partName));
+    }
+    // if (filter.class && filter.class.length > 0) {
+    //   docRef = query(docRef, where('brandClass', 'array-contains-any', filter.class));
+    // }
+    if (filter.model && filter.model.length > 0) {
+      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+    }
+    if (filter.category && filter.category.length > 0) {
+      docRef = query(docRef, where('category', 'in', filter.category));
+    }
+
+    console.log(docRef);
+
+    const querySnapshot = await getDocs(docRef);
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    return dataArr;
+  }, []);
+
+  /*  const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
+    const dataArr = [];
     // const docRef = query(
     //   collectionGroup(DB, `partsData`),
     //   orderBy('id', 'desc'),
@@ -138,13 +171,18 @@ export function AuthProvider({ children }) {
       docRef,
       orderBy('id', 'desc'),
       startAfter(page * recordsLimit),
-      limit(recordsLimit)
+      limit(recordsLimit),
+      where('partNumber', '==', filter.partNo),
+      where('partName', '==', filter.partName),
+      where('brandClass', '==', filter.class),
+      where('brandModel', '==', filter.model),
+      where('category', 'in', filter.category)
     );
 
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;
-  }, []);
+  }, []); */
 
   // ------------------ | Get image Download URL | ------------------
   // const fsGetImgDownloadUrl = useCallback(
@@ -165,7 +203,6 @@ export function AuthProvider({ children }) {
   // );
 
   const fsGetImgDownloadUrl = useCallback(async (imgID) => {
-    console.log('download url');
     let url = '';
     try {
       url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/parts-images/${imgID}`));

@@ -27,7 +27,7 @@ export default function EcommerceProductViewGridItem({ product, sx, ...other }) 
   }, [fsGetImgDownloadUrl, product.imageName]);
 
   return (
-    <Card sx={{ bgcolor: 'background.paper' }}>
+    <Card sx={{ bgcolor: 'background.paper', borderRadius: 1 }}>
       <Stack
         sx={{
           position: 'relative',

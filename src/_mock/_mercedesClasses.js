@@ -90,13 +90,13 @@ export const _mercedesClasses = [
       { model: 'W463A', productionYears: '2018-present' },
     ],
   },
-  {
-    class: 'GL-Class',
-    models: [
-      { model: 'X164', productionYears: '2006-2012' },
-      { model: 'X166', productionYears: '2012-2019' },
-    ],
-  },
+  // {
+  //   class: 'GL-Class',
+  //   models: [
+  //     { model: 'X164', productionYears: '2006-2012' },
+  //     { model: 'X166', productionYears: '2012-2019' },
+  //   ],
+  // },
   {
     class: 'GLK-Class',
     models: [{ model: 'X204', productionYears: '2008-2015' }],
