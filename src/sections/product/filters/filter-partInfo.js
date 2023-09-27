@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@mui/material/TextField';
@@ -10,11 +10,9 @@ import { rdxUpdateFilter } from 'src/redux/slices/products';
 
 export default function FilterPartInfo() {
   const dispatch = useDispatch();
-  const partNumberRef = useRef('');
-  const partNameRef = useRef('');
-  const [partNoValue, setPartNoValue] = useState('');
-  const [partNameValue, setPartNameValue] = useState('');
   const { partNo, partName } = useSelector((state) => state.products.filter);
+  const [partNoValue, setPartNoValue] = useState(partNo);
+  const [partNameValue, setPartNameValue] = useState('');
 
   useEffect(() => {
     if (partNo === '') setPartNoValue('');

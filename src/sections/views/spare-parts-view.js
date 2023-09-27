@@ -19,17 +19,7 @@ import EcommerceFilters from '../product/filters/ecommerce-filters';
 
 // ----------------------------------------------------------------------
 
-const VIEW_OPTIONS = [
-  { value: 'list', icon: <Iconify icon="carbon:list-boxes" /> },
-  { value: 'grid', icon: <Iconify icon="carbon:grid" /> },
-];
-
-const SORT_OPTIONS = [
-  { value: 'latest', label: 'Latest' },
-  { value: 'oldest', label: 'Oldest' },
-  { value: 'popular', label: 'Popular' },
-];
-
+const RECORDS_LIMIT = 25;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {
@@ -38,7 +28,6 @@ export default function SparePartsView() {
   const dispatch = useDispatch();
   const param = useLocation();
 
-  const [recordsLimit, setrecordsLimit] = useState(25);
   const [documentsCount, setDocumentsCount] = useState(1);
 
   const { page, filteredProducts: productsData, filter } = useSelector((state) => state.products);
@@ -50,11 +39,11 @@ export default function SparePartsView() {
 
   useEffect(() => {
     const getProducts = async () => {
-      dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit, filter)));
-      // dispatch(rdxSetProducts(await fsGetProductsByPage(page, recordsLimit)));
+      console.log('CALL PARTS FROM FIREBASE');
+      dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
     };
     getProducts();
-  }, [dispatch, fsGetProductsByPage, page, recordsLimit, filter]);
+  }, [dispatch, fsGetProductsByPage, page, filter]);
 
   useEffect(() => {
     const fakeLoading = async () => {

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -13,9 +13,9 @@ import Iconify from 'src/components/iconify';
 import { _mercedesClasses } from 'src/_mock';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { _partsCategory } from 'src/_mock/_partsCategory';
-import { rdxUpdateFilter } from 'src/redux/slices/products';
 import FormProvider from 'src/components/hook-form/form-provider';
 import { RHFSelect, RHFTextField } from 'src/components/hook-form';
+import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
 function SearchParts() {
   const mdUp = useResponsive('up', 'md');
@@ -115,7 +115,8 @@ function SearchAdvanced() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    dispatch(rdxUpdateFilter({ ...formData }));
+    dispatch(rdxClearFilter());
+    dispatch(rdxUpdateFilter({ ...formData, category: [formData.category] }));
     navigate(paths.website.spareParts);
     console.log(formData);
   });
@@ -179,12 +180,15 @@ function SearchAdvanced() {
 // ----------------------------------------------------------------------------
 
 function SearchPartNumber() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const CareerContactSchema = Yup.object().shape({
-    partNumber: Yup.string().required('Car Class is required'),
+    partNo: Yup.string().required('Car Class is required'),
   });
 
   const defaultValues = {
-    partNumber: '',
+    partNo: '',
   };
 
   const methods = useForm({
@@ -201,13 +205,16 @@ function SearchPartNumber() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
+    dispatch(rdxClearFilter());
+    dispatch(rdxUpdateFilter({ ...formData }));
+    navigate(paths.website.spareParts);
     console.log(formData);
   });
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
-        <RHFTextField name="partNumber" label="Part Number" variant="outlined" fullWidth />
+        <RHFTextField name="partNo" label="Part Number" variant="outlined" fullWidth />
 
         <Box sx={{ textAlign: 'center' }}>
           <LoadingButton

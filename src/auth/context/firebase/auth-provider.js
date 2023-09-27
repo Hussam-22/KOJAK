@@ -129,8 +129,6 @@ export function AuthProvider({ children }) {
       docRef = query(docRef, where('category', 'in', filter.category));
     }
 
-    console.log(docRef);
-
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;

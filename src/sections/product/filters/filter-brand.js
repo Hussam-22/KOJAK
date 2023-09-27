@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
 import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
@@ -11,15 +11,20 @@ import { _mercedesClasses } from 'src/_mock/_mercedesClasses';
 
 export default function FilterBrand() {
   const dispatch = useDispatch();
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
+  const { filter } = useSelector((state) => state.products);
+  const [selectedClass, setSelectedClass] = useState(filter.class);
+  const [selectedModel, setSelectedModel] = useState(filter.model);
+
+  useEffect(() => {
+    if (filter.class === '') setSelectedClass('');
+    if (filter.model === '') setSelectedClass('');
+  }, [filter]);
 
   const handelSelectedClassChange = (e) => {
-    dispatch(rdxUpdateFilter({ class: e.target.value }));
     setSelectedClass(e.target.value);
   };
   const handelSelectedModelChange = (e) => {
-    dispatch(rdxUpdateFilter({ model: e.target.value }));
+    dispatch(rdxUpdateFilter({ model: e.target.value, class: selectedClass }));
     setSelectedModel(e.target.value);
   };
 

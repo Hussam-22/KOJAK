@@ -7,6 +7,7 @@ import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { useSelector } from 'src/redux/store';
 import { rdxUpdatePage } from 'src/redux/slices/products';
+import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 
 import EcommerceProductViewGridItem from '../item/ecommerce-product-view-grid-item';
 import EcommerceProductViewGridItemSkeleton from '../item/ecommerce-product-view-grid-item-skeleton';
@@ -19,6 +20,9 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
 
   const pages = useMemo(() => Math.ceil(totalDocs / 25), [totalDocs]);
 
+  const noFilterApplied =
+    JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
+
   useEffect(() => {
     window.scrollTo({
       top: 10,
@@ -30,7 +34,7 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
     dispatch(rdxUpdatePage(page));
   };
 
-  return (
+  const resultsFound = (
     <>
       <Box
         rowGap={4}
@@ -65,6 +69,8 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
       />
     </>
   );
+
+  return products.length === 0 && !noFilterApplied ? <NoResultsReturned /> : resultsFound;
 }
 
 EcommerceProductList.propTypes = {
