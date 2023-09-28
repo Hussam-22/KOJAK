@@ -13,6 +13,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { rdxSetProducts } from 'src/redux/slices/products';
+import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 import EcommerceProductList from 'src/sections/product/list/ecommerce-product-list';
 
 import EcommerceFilters from '../product/filters/ecommerce-filters';
@@ -24,9 +25,10 @@ const RECORDS_LIMIT = 25;
 
 export default function SparePartsView() {
   const mobileOpen = useBoolean();
-  const loading = useBoolean(true);
   const dispatch = useDispatch();
-  const param = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  console.log('RENDERING PAGE');
 
   const [documentsCount, setDocumentsCount] = useState(1);
 
@@ -39,19 +41,24 @@ export default function SparePartsView() {
 
   useEffect(() => {
     const getProducts = async () => {
-      console.log('CALL PARTS FROM FIREBASE');
-      dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
+      if (filter.partNo !== '' || filter.model !== '') {
+        setLoading(true);
+        dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      }
     };
     getProducts();
   }, [dispatch, fsGetProductsByPage, page, filter]);
 
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
-    };
-    fakeLoading();
-  }, [loading]);
+  // useEffect(() => {
+  //   const fakeLoading = async () => {
+  //     await new Promise((resolve) => setTimeout(resolve, 500));
+  //     loading.onFalse();
+  //   };
+  //   fakeLoading();
+  // }, [loading, filter]);
 
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
@@ -98,11 +105,20 @@ export default function SparePartsView() {
             width: { md: `calc(100% - ${280}px)` },
           }}
         >
-          <EcommerceProductList
-            loading={loading.value}
-            products={[...productsData].sort((a, b) => a.id - b.id)}
-            totalDocs={documentsCount}
-          />
+          {productsData.length === 0 && (
+            <NoResultsReturned
+              text="Use the search fields to find spare parts"
+              illustration="/assets/illustrations/search.svg"
+            />
+          )}
+
+          {productsData.length !== 0 && (
+            <EcommerceProductList
+              loading={loading}
+              products={[...productsData].sort((a, b) => a.id - b.id)}
+              totalDocs={documentsCount}
+            />
+          )}
         </Box>
       </Stack>
     </Container>

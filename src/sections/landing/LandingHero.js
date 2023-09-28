@@ -7,12 +7,12 @@ import { Stack, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import SearchParts from 'src/sections/components/search-parts';
 import getVariant from 'src/components/animate/variants/get-variant';
+import LandingSearchParts from 'src/sections/components/landing=search-parts';
 
 const LandingHero = () => {
   const mdUp = useResponsive('up', 'md');
@@ -64,7 +64,7 @@ const LandingHero = () => {
           </Grid>
 
           <Grid md={12} xs={12}>
-            <SearchParts />
+            <LandingSearchParts />
           </Grid>
 
           <Grid md={12} xs={12}>

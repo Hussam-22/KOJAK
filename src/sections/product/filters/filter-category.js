@@ -13,8 +13,6 @@ export default function FilterCategory() {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
 
-  const isDisabled = filter.model === '';
-
   const onChangeCategories = (selectedCategory) => {
     if (filter.category.includes(selectedCategory)) {
       dispatch(
@@ -34,15 +32,10 @@ export default function FilterCategory() {
     <Box
       sx={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${isDisabled ? 1 : 2},1fr)`,
+        gridTemplateColumns: `repeat(2,1fr)`,
         gap: 2,
       }}
     >
-      {isDisabled && (
-        <Typography variant="caption" sx={{ color: 'warning.main' }}>
-          {`Select "Model/Year" to Show Categories`}
-        </Typography>
-      )}
       {_partsCategory
         .sort((a, b) => a.icon.localeCompare(b.icon))
         .map((option) => (
@@ -58,9 +51,6 @@ export default function FilterCategory() {
               // border: `solid 1px ${borderColor(option.category)}`,
               bgcolor: borderColor(option.category),
               p: 1,
-              visibility: isDisabled ? 'hidden' : 'visible',
-              opacity: isDisabled ? 0 : 1,
-              transition: 'visibility 0.5s ease-out, opacity 0.5s ease-out',
             }}
           >
             <Image src={`/assets/images/icons/${option.icon}.svg`} width={36} />

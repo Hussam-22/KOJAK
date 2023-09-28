@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -19,6 +19,9 @@ import FilterPartInfo from './filter-partInfo';
 export default function EcommerceFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
   const dispatch = useDispatch();
+  const { filter } = useSelector((state) => state.products);
+
+  const isDisabled = filter.model === '';
 
   const handleClearAll = () => dispatch(rdxClearFilter());
 
@@ -39,7 +42,15 @@ export default function EcommerceFilters({ open, onClose }) {
         <FilterBrand />
       </Block>
 
-      <Block title="Category">
+      <Block
+        title="Category"
+        sx={{
+          visibility: isDisabled ? 'hidden' : 'visible',
+          opacity: isDisabled ? 0 : 1,
+          height: isDisabled ? 0 : 1,
+          transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
+        }}
+      >
         <FilterCategory />
       </Block>
 
@@ -87,11 +98,11 @@ EcommerceFilters.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function Block({ title, children, ...other }) {
+function Block({ title, children, sx }) {
   const contentOpen = useBoolean(true);
 
   return (
-    <Stack spacing={2} alignItems="flex-start" sx={{ width: 1 }}>
+    <Stack spacing={2} alignItems="flex-start" sx={{ width: 1, ...sx }}>
       <Typography variant="h6">{title}</Typography>
       <Box sx={{ width: 1 }}>{children}</Box>
     </Stack>
@@ -101,4 +112,5 @@ function Block({ title, children, ...other }) {
 Block.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  sx: PropTypes.object,
 };

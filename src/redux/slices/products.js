@@ -30,6 +30,12 @@ const slice = createSlice({
       state.filteredProducts = action.payload;
     },
 
+    rdxClearFilter(state) {
+      const defaultFilter = { partNo: '', partName: '', class: '', model: '', category: [] };
+      state.filter = { ...defaultFilter };
+      state.filteredProducts = [];
+    },
+
     rdxUpdateFilter(state, action) {
       state.filter = { ...state.filter, ...action.payload };
 
@@ -78,13 +84,6 @@ const slice = createSlice({
       // } else {
       //   state.filteredProducts = toFilteredProducts;
       // }
-    },
-
-    rdxClearFilter(state) {
-      const defaultFilter = { partNo: '', partName: '', class: '', model: '', category: [] };
-      state.filter = { ...defaultFilter };
-      // state.filter = defaultFilter;
-      state.filteredProducts = state.products;
     },
   },
 });

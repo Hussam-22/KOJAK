@@ -17,7 +17,7 @@ import FormProvider from 'src/components/hook-form/form-provider';
 import { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
-function SearchParts() {
+function LandingSearchParts() {
   const mdUp = useResponsive('up', 'md');
   const [currentTab, setCurrentTab] = useState(1);
 
@@ -77,9 +77,9 @@ function SearchParts() {
     </>
   );
 }
-export default SearchParts;
+export default LandingSearchParts;
 
-// SearchParts.propTypes = { tables: PropTypes.array };
+// LandingSearchParts.propTypes = { tables: PropTypes.array };
 
 // ----------------------------------------------------------------------------
 

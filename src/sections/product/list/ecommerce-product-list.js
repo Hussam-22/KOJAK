@@ -70,7 +70,14 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
     </>
   );
 
-  return products.length === 0 && !noFilterApplied ? <NoResultsReturned /> : resultsFound;
+  return products.length === 0 && !noFilterApplied ? (
+    <NoResultsReturned
+      text="No Spare Parts Where Found !!"
+      illustration="/assets/illustrations/no-results.svg"
+    />
+  ) : (
+    resultsFound
+  );
 }
 
 EcommerceProductList.propTypes = {

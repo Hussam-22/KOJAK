@@ -17,7 +17,7 @@ export default function FilterBrand() {
 
   useEffect(() => {
     if (filter.class === '') setSelectedClass('');
-    if (filter.model === '') setSelectedClass('');
+    if (filter.model === '') setSelectedModel('');
   }, [filter]);
 
   const handelSelectedClassChange = (e) => {
