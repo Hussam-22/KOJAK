@@ -31,7 +31,9 @@ export default function EcommerceFilters({ open, onClose }) {
       alignItems="flex-start"
       sx={{
         flexShrink: 0,
-        width: { xs: 1, md: 280 },
+        width: { xs: 1, md: 320 },
+        borderRight: 'dashed 1px #333',
+        pr: 5,
       }}
     >
       <Block title="Part Info">

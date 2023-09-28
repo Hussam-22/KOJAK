@@ -27,11 +27,7 @@ export default function SparePartsView() {
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
-  console.log('RENDERING PAGE');
-
   const [documentsCount, setDocumentsCount] = useState(1);
-
   const { page, filteredProducts: productsData, filter } = useSelector((state) => state.products);
   const { fsGetProductsByPage, fsGetProductsDocumentsCount } = useAuthContext();
 
@@ -42,6 +38,7 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
+        console.log('render');
         setLoading(true);
         dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
         setTimeout(() => {
@@ -50,7 +47,8 @@ export default function SparePartsView() {
       }
     };
     getProducts();
-  }, [dispatch, fsGetProductsByPage, page, filter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, fsGetProductsByPage, page, filter.partNo, filter.model]);
 
   // useEffect(() => {
   //   const fakeLoading = async () => {
@@ -70,8 +68,8 @@ export default function SparePartsView() {
           py: 5,
         }}
       >
-        <Typography variant="h3" id="scrollToHere">
-          Catalog
+        <Typography variant="h1" id="scrollToHere">
+          CATALOG
         </Typography>
 
         <Button
@@ -94,15 +92,13 @@ export default function SparePartsView() {
         }}
         sx={{ mb: { xs: 8, md: 10 } }}
       >
-        <Stack spacing={5} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
-          <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-        </Stack>
+        <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
 
         <Box
           sx={{
             flexGrow: 1,
-            pl: { md: 8 },
-            width: { md: `calc(100% - ${280}px)` },
+            pl: { md: 4 },
+            width: { md: `calc(100% - ${300}px)` },
           }}
         >
           {productsData.length === 0 && (

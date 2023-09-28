@@ -86,6 +86,7 @@ export default LandingSearchParts;
 function SearchAdvanced() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const CareerContactSchema = Yup.object().shape({
     class: Yup.string().required('Car Class is required'),
@@ -115,11 +116,22 @@ function SearchAdvanced() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
+    setLoading(true);
+
     dispatch(rdxClearFilter());
-    dispatch(rdxUpdateFilter({ ...formData, category: [formData.category] }));
-    navigate(paths.website.spareParts);
-    console.log(formData);
+    dispatch(
+      rdxUpdateFilter({
+        ...formData,
+        category: formData.category ? [formData.category] : formData.category,
+      })
+    );
+    setTimeout(() => {
+      setLoading(false);
+      navigate(paths.website.spareParts);
+    }, 500);
   });
+
+  console.log(loading);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -163,7 +175,7 @@ function SearchAdvanced() {
             type="submit"
             variant="contained"
             color="primary"
-            loading={isSubmitting}
+            loading={loading}
             sx={{
               whiteSpace: 'nowrap',
             }}

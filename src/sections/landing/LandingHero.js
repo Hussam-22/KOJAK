@@ -7,21 +7,17 @@ import { Stack, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
+import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import getVariant from 'src/components/animate/variants/get-variant';
-import LandingSearchParts from 'src/sections/components/landing=search-parts';
+import LandingSearchParts from 'src/sections/components/landing-search-parts';
 
 const LandingHero = () => {
   const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
-  const navigate = useNavigate();
-
-  const handleContactUsClick = () => {
-    navigate(paths.website.contactUs);
-  };
 
   return (
     <Box
@@ -46,8 +42,7 @@ const LandingHero = () => {
             src="/assets/illustrations/engine.svg"
             sx={{ position: 'absolute', right: 0, transform: 'rotate(-90deg)', zIndex: 0 }}
           /> */}
-          <Grid md={12} xs={12}>
-            {/* <Image src="/assets/mercedes-logo.svg" width={100} height={100} /> */}
+          <Grid md={10} xs={12}>
             <Box component={m.div} {...getVariant('fadeInUp')} sx={{ my: 2 }}>
               <Typography variant="overline" sx={{ color: 'secondary.light' }}>
                 {translate('landing.hero.heroText')}
@@ -61,6 +56,17 @@ const LandingHero = () => {
                 <Box component="span">{translate('landing.hero.partThree')}</Box>
               </Typography>
             </Box>
+          </Grid>
+
+          <Grid
+            md={2}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Image src="/assets/mercedes-logo.svg" width={200} height={200} />
           </Grid>
 
           <Grid md={12} xs={12}>
