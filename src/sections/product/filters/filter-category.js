@@ -48,9 +48,9 @@ export default function FilterCategory() {
             justifyContent="center"
             onClick={() => onChangeCategories(option.category)}
             sx={{
-              // border: `solid 1px ${borderColor(option.category)}`,
-              bgcolor: borderColor(option.category),
               p: 1,
+              bgcolor: borderColor(option.category),
+              '&:hover': { backgroundColor: 'none !important' },
             }}
           >
             <Image src={`/assets/images/icons/${option.icon}.svg`} width={36} />
