@@ -21,18 +21,9 @@ function InternationalBusiness() {
         position: 'relative',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          backgroundSize: 'cover',
-          backgroundImage: 'url(/assets/images/misc/import-export.png)',
-        }}
-      />
       <Container maxWidth="xl">
         <Grid container>
-          <Grid md={8} xs={12} sx={{ p: 3 }}>
+          <Grid md={7} xs={12} sx={{ p: 3 }}>
             <Stack spacing={3}>
               <Typography variant="overline" color="primary">
                 {translate('landing.international.overline')}
@@ -58,6 +49,13 @@ function InternationalBusiness() {
                 Contact our Export/Import Team
               </Button>
             </Stack>
+          </Grid>
+          <Grid
+            md={5}
+            xs={12}
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Image src="/assets/images/misc/import-export.png" />
           </Grid>
         </Grid>
       </Container>
