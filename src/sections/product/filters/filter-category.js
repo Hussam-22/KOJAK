@@ -50,7 +50,7 @@ export default function FilterCategory() {
             sx={{
               p: 1,
               bgcolor: borderColor(option.category),
-              '&:hover': { backgroundColor: 'none !important' },
+              '&:hover': { bgcolor: borderColor(option.category) },
             }}
           >
             <Image src={`/assets/images/icons/${option.icon}.svg`} width={36} />
