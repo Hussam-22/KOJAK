@@ -12,8 +12,8 @@ function FeaturedParts() {
   const { translate } = useLocales();
 
   return (
-    <Box sx={{ my: 8, bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+    <Box sx={{ py: 15, bgcolor: 'common.black' }}>
+      <Container maxWidth="xl">
         <Typography variant="overline" color="primary">
           Featured Parts
         </Typography>

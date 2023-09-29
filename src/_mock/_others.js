@@ -10,6 +10,16 @@ export const _categories = [
   { label: 'Management', path: '' },
 ];
 
+const cars = [
+  'Mercedes C300 - 2022',
+  'Mercedes G63 - 2023',
+  'Mercedes GLA - 2021',
+  'Mercedes S500 - 2019',
+  'Mercedes E200 - 2018',
+  'Mercedes S400 - 2022',
+  'Mercedes SLA - 2016',
+];
+
 // ----------------------------------------------------------------------
 
 export const _testimonials = [...Array(8)].map((_, index) => ({
@@ -19,6 +29,7 @@ export const _testimonials = [...Array(8)].map((_, index) => ({
   avatarUrl: _mock.image.avatar(index),
   createdAt: _mock.time(index),
   ratingNumber: 5,
+  car: cars[index],
   review:
     'Amazing experience i love it a lot. Thanks to the team that dreams come true, great! I appreciate there attitude and approach.',
 }));

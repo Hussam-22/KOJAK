@@ -48,7 +48,7 @@ export default function LandingTestimonial() {
       sx={{
         overflow: 'hidden',
         position: 'relative',
-        py: 8,
+        py: 15,
       }}
     >
       <Container maxWidth="xl">
@@ -83,24 +83,24 @@ LandingTestimonial.propTypes = {
 // ----------------------------------------------------------------------
 
 function TestimonialItem({ testimonial, index, sx, ...other }) {
-  const { name, review, rating } = testimonial;
+  const { name, review, car } = testimonial;
   const theme = useTheme();
 
   return (
     <Box
       sx={{
-        p: 2,
+        p: 4,
         bgcolor: 'common.black',
         borderRadius: 1,
+        minHeight: 250,
       }}
     >
       <Stack
         alignItems="center"
         sx={{
           textAlign: 'center',
-          ...sx,
         }}
-        {...other}
+        spacing={3}
       >
         <Rating
           value={5}
@@ -114,7 +114,6 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
 
         <Typography
           sx={{
-            my: 3,
             lineHeight: 1.75,
             fontWeight: theme.typography.fontWeightLight,
           }}
@@ -122,9 +121,12 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
           {review}
         </Typography>
 
-        <Typography variant="h6" color="primary">
-          {name}
-        </Typography>
+        <Box>
+          <Typography variant="h6" color="primary">
+            {name}
+          </Typography>
+          <Typography sx={{ color: 'secondary.light' }}>{car}</Typography>
+        </Box>
       </Stack>
     </Box>
   );
