@@ -33,27 +33,27 @@ export const _socials = [
     color: '#1877F2',
     path: 'https://www.facebook.com/KojakGroupofCompanies',
   },
-  // {
-  //   value: 'instagram',
-  //   label: 'Instagram',
-  //   icon: 'carbon:logo-instagram',
-  //   color: '#E02D69',
-  //   path: 'https://www.instagram.com/kexclusive_cars',
-  // },
-  // {
-  //   value: 'tikTok',
-  //   label: 'TikTok',
-  //   icon: 'ic:baseline-tiktok',
-  //   color: '#007EBB',
-  //   path: 'https://www.tiktok.com/en/Kexclusive.cars',
-  // },
-  // {
-  //   value: 'twitter',
-  //   label: 'Twitter',
-  //   icon: 'ri:twitter-x-fill',
-  //   color: '#00AAEC',
-  //   path: 'https://twitter.com/Kexclusive_cars',
-  // },
+  {
+    value: 'instagram',
+    label: 'Instagram',
+    icon: 'carbon:logo-instagram',
+    color: '#E02D69',
+    path: 'https://www.instagram.com/kexclusive_cars',
+  },
+  {
+    value: 'tikTok',
+    label: 'TikTok',
+    icon: 'ic:baseline-tiktok',
+    color: '#007EBB',
+    path: 'https://www.tiktok.com/en/Kexclusive.cars',
+  },
+  {
+    value: 'twitter',
+    label: 'Twitter',
+    icon: 'ri:twitter-x-fill',
+    color: '#00AAEC',
+    path: 'https://twitter.com/Kexclusive_cars',
+  },
 ];
 
 // ----------------------------------------------------------------------
