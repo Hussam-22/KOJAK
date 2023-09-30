@@ -26,7 +26,9 @@ function FixOffer() {
                 Auto Maintenance Shop
               </Typography>
               <Box>
-                <Button variant="contained">Book an Appointment</Button>
+                <Button variant="contained" size="large">
+                  Book an Appointment
+                </Button>
               </Box>
             </Stack>
           </Grid>

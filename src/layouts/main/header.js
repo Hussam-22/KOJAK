@@ -98,10 +98,10 @@ export default function Header({ headerOnDark }) {
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
-                    color="primary"
-                    onClick={() => navigate(paths.website.contactUs)}
+                    color="error"
+                    onClick={() => navigate(paths.website.spareParts)}
                   >
-                    {translate('header.contactUs')}
+                    {translate('common.actionButton')}
                   </Button>
 
                   <Divider

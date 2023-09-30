@@ -83,6 +83,7 @@ const en = {
         sparePart: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
         exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
         building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
+        group: 'A Legacy of Mercedes-Benz Mastery Since 1983',
       },
     },
   },
@@ -165,13 +166,14 @@ const en = {
 
   common: {
     brand: 'KOJAK',
+    group: 'Group of Companies',
     sparePart: 'Spare Parts',
     auto: 'Auto Maintenance',
     exclusive: 'K Exclusive',
     building: 'Building',
     mercedes: 'Mercedes',
     brandSpecial: 'Auto Exclusive',
-    actionButton: 'Explore Inventory',
+    actionButton: 'Find Spare Part',
     bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
     viewAll: 'View All',

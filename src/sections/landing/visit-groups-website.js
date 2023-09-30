@@ -9,9 +9,9 @@ import { varFade, varSlide, MotionViewport } from 'src/components/animate';
 
 const GROUPS = [
   {
-    title: 'sparePart',
+    title: 'group',
     link: '#',
-    icon: 'spare-parts-icon',
+    icon: 'mercedes-logo',
   },
   {
     title: 'auto',
