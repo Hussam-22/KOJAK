@@ -1,4 +1,5 @@
 import FixOffer from 'src/sections/landing/fix-offer';
+import PartsCount from 'src/sections/landing/parts-count';
 import LandingHero from 'src/sections/landing/LandingHero';
 import LandingFaqs from 'src/sections/landing/LandingFaqs';
 import FeaturedParts from 'src/sections/landing/featured-parts';
@@ -11,7 +12,8 @@ export default function LandingView() {
     <>
       <LandingHero />
       <FixOffer />
-      <FeaturedParts />
+      <PartsCount />
+      {/* <FeaturedParts /> */}
       <InternationalBusiness />
       <LandingTestimonial />
       <LandingFaqs />

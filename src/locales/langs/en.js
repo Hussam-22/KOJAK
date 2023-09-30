@@ -76,7 +76,7 @@ const en = {
       },
     },
     visit: {
-      overline: 'GROUP WEBSITES',
+      overline: 'Kojak Group of Companies',
       title: 'Visit Our Group Websites',
       cardText: {
         auto: `Specialized in Mercedes-Benz Since 1983`,
