@@ -191,6 +191,7 @@ const ar = {
     mobile: 'الجوال',
     email: 'البريد الإلكتروني',
     subject: 'الموضوع',
+    hearAbout: 'كيف سمعت عنا ؟',
     message: 'الرسالة',
     sendMsg: 'إرسال الرسالة',
     register: 'التسجيل',

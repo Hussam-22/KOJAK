@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Stack } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Stack, Divider, MenuItem } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
@@ -19,6 +19,9 @@ const DIALOG_CONTENT = {
   ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
+
+const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
+const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
 
 export default function ContactUsForm({ payload }) {
   const { addNewForm } = useAuthContext();
@@ -41,6 +44,7 @@ export default function ContactUsForm({ payload }) {
     email: Yup.string().required().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
+    hearAbout: Yup.string().required('How did you hear about us is required'),
   });
 
   const defaultValues = useMemo(
@@ -50,6 +54,7 @@ export default function ContactUsForm({ payload }) {
       email: '',
       subject: payload?.subject || '',
       messageText: '',
+      hearAbout: '',
     }),
     [payload?.subject]
   );
@@ -115,6 +120,16 @@ export default function ContactUsForm({ payload }) {
           />
 
           <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
+
+          <RHFSelect name="hearAbout" label={translate('form.hearAbout')} variant="outlined">
+            <MenuItem value="">None</MenuItem>
+            <Divider sx={{ borderStyle: 'dashed' }} />
+            {[...(currentLang.value === 'en' ? hearAboutEn : hearAboutAr)].map((item, index) => (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </RHFSelect>
 
           <RHFTextField name="subject" label={translate('form.subject')} variant="outlined" />
 

@@ -189,6 +189,7 @@ const en = {
     name: 'Full Name',
     mobile: 'Mobile',
     email: 'Email',
+    hearAbout: 'How did you hear about us ?',
     subject: 'Subject',
     message: 'Message',
     sendMsg: 'Send Message',

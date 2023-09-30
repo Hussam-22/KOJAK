@@ -59,7 +59,7 @@ export default function ContactUsView() {
           >
             <ContactUsInfo />
           </Grid>
-          <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
+          <Grid xs={12} md={7}>
             <ContactUsForm />
           </Grid>
         </Grid>
