@@ -7,5 +7,5 @@ export const navConfig = [
   { title: 'spareParts', path: paths.website.spareParts },
   { title: 'about', path: paths.website.about },
   { title: 'blog', path: paths.website.blogPosts },
-  // { title: 'contactUs', path: paths.website.contactUs },
+  { title: 'contactUs', path: paths.website.contactUs },
 ];

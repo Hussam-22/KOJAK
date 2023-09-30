@@ -89,7 +89,7 @@ const en = {
   },
 
   about: {
-    title: `About Kojak Group`,
+    title: `About Us`,
     description: `We are passionate about all things Mercedes-Benz. With a rich history spanning several years, we have become a trusted name in the automotive industry, offering a comprehensive range of services and products to meet the diverse needs of Mercedes-Benz enthusiasts around the world`,
 
     vision: 'Our Vision',

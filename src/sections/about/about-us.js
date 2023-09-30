@@ -1,11 +1,12 @@
 import Box from '@mui/material/Box';
+import { Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -57,37 +58,24 @@ export default function AboutUs() {
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
   return (
-    <Box sx={{ bgcolor: 'primary.lighter' }}>
+    <Box sx={{ bgcolor: 'background.default' }}>
       <Container
-        maxWidth="xl"
         sx={{
-          pt: 5,
-          pb: { xs: 5, md: 10 },
+          py: 8,
         }}
       >
-        <Grid container spacing={3}>
-          <Grid
-            md={8}
-            xs={12}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              order: mdUp ? 0 : 1,
-            }}
-          >
-            <Typography variant="h1" sx={{ textAlign: 'center', mb: 2 }}>
-              {translate('about.title')}
-            </Typography>
-            <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
-          </Grid>
+        <Stack>
+          {/* <Box sx={{ p: 5, textAlign: 'center' }}>
+            <Image src="/assets/illustrations/spark.svg" />
+          </Box> */}
 
-          <Grid md={4} xs={12}>
-            <Box sx={{ p: 10 }}>
-              <Image src="/assets/mercedes-logo.svg" />
-            </Box>
-          </Grid>
-        </Grid>
+          <Typography variant="h1" color="primary" sx={{ textAlign: 'center', mb: 2 }}>
+            {translate('about.title')}
+          </Typography>
+          <Typography color="white" sx={{ textAlign: 'center' }}>
+            {translate('about.description')}
+          </Typography>
+        </Stack>
       </Container>
     </Box>
   );
