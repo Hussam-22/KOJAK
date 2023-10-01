@@ -156,6 +156,18 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     },
   },
 
+  visit: {
+    overline: 'GROUP WEBSITES',
+    title: 'Visit Our Group Websites',
+    cardText: {
+      auto: `Specialized in Mercedes-Benz Since 1983`,
+      sparePart: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
+      exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
+      building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
+      group: 'A Legacy of Mercedes-Benz Mastery Since 1983',
+    },
+  },
+
   contactUs: {
     title: 'Contact Us',
     subTitle: ` We're here to assist you. If you have any questions, feedback, or need support, please
@@ -189,6 +201,11 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
   common: {
     mercedes: 'Mercedes',
     brand: 'KOJAK',
+    group: 'Group of Companies',
+    sparePart: 'Spare Parts',
+    auto: 'Auto Maintenance',
+    exclusive: 'K Exclusive',
+    building: 'Building',
     brandSpecial: 'Auto Exclusive',
     actionButton: 'Explore Inventory',
     bookAppointment: 'Book an Appointment',
@@ -210,6 +227,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     mobile: 'Mobile',
     email: 'Email',
     subject: 'Subject',
+    hearAbout: 'How did you hear about us ?',
     message: 'Message',
     sendMsg: 'Send Message',
     register: 'Register',

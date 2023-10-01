@@ -10,10 +10,10 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
-import { paths } from 'src/routes/paths';
+import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -110,11 +110,6 @@ export default function Header({ headerOnDark }) {
                     orientation="vertical"
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
-                  />
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
                   <TranslateIcon
                     light={!useDarkLogo && !offset}
