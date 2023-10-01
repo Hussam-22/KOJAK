@@ -25,6 +25,11 @@ const DIALOG_CONTENT = {
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
+const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
+const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
+
+// ----------------------------------------------------------------------------
+
 export default function BookAppointmentView() {
   const { addNewForm, getOffers } = useAuthContext();
   const { translate, currentLang } = useLocales();
@@ -78,6 +83,7 @@ export default function BookAppointmentView() {
       .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().email('That is not an email'),
     service: Yup.array().min(1, 'Must have at least 1 items'),
+    hearAbout: Yup.string().required('How did you hear about us is required'),
     messageText: Yup.string().required('Message is required'),
     class: Yup.string().required('Car Class is required'),
     year: Yup.string().when('class', {
@@ -92,6 +98,7 @@ export default function BookAppointmentView() {
     mobile: '',
     email: '',
     service: [],
+    hearAbout: '',
     messageText: '',
     class: '',
     year: '',
@@ -164,7 +171,17 @@ export default function BookAppointmentView() {
 
               <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
 
-              {/* <RHFTextField name="subject" label={translate('form.subject')} /> */}
+              <RHFSelect name="hearAbout" label={translate('form.hearAbout')} variant="outlined">
+                <MenuItem value="">None</MenuItem>
+                <Divider sx={{ borderStyle: 'dashed' }} />
+                {[...(currentLang.value === 'en' ? hearAboutEn : hearAboutAr)].map(
+                  (item, index) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  )
+                )}
+              </RHFSelect>
 
               <RHFSelect name="class" label={translate('form.class')} variant="outlined">
                 <MenuItem value="">None</MenuItem>

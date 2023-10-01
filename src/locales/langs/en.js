@@ -316,6 +316,18 @@ const en = {
     },
   },
 
+  visit: {
+    overline: 'GROUP WEBSITES',
+    title: 'Visit Our Group Websites',
+    cardText: {
+      auto: `Specialized in Mercedes-Benz Since 1983`,
+      sparePart: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
+      exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
+      building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
+      group: 'A Legacy of Mercedes-Benz Mastery Since 1983',
+    },
+  },
+
   contactUs: {
     title: 'Contact Us',
     subTitle: ` We're here to assist you. If you have any questions, feedback, or need support, please
@@ -332,11 +344,12 @@ const en = {
   footer: {
     about:
       'Kojak stands as a multifaceted group of companies, each specializing in a unique facet that collectively shapes a comprehensive automotive ecosystem. its presence in four distinct domains: car spare-parts, auto maintenance, the exclusive sale of Mercedes cars, and the versatile realm of space leasing and renting.',
-    groupTitle: 'Kojak Group of Companies',
-    exclusive: { title: 'K-Exclusive', text: 'Buy your dream Mercedes' },
-    spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
-    auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
-    building: { title: 'Building', text: 'Fix your Mercedes by experts' },
+    groupTitle: 'Group Websites',
+    exclusive: 'K-Exclusive',
+    spareParts: 'Spare Parts',
+    auto: 'Auto Maintenance',
+    building: 'Building',
+    group: 'Kojak Group of Companies',
     visitWebsite: 'Visit Website',
     allRights: '© 2023. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
@@ -345,6 +358,12 @@ const en = {
 
   common: {
     kojak: 'KOJAK',
+    brand: 'KOJAK',
+    group: 'Group of Companies',
+    sparePart: 'Spare Parts',
+    auto: 'Auto Maintenance',
+    exclusive: 'K Exclusive',
+    building: 'Building',
     autoMaintenance: 'Auto Maintenance',
     bookAppointment: 'Book an Appointment',
     moreDetails: 'More Details',
@@ -364,6 +383,7 @@ const en = {
     mobile: 'Mobile',
     email: 'Email',
     subject: 'Subject',
+    hearAbout: 'How did you hear about us ?',
     message: 'Message',
     sendMsg: 'Send Message',
     register: 'Register',
