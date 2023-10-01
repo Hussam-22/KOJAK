@@ -31,7 +31,7 @@ const PRIMARY = {
 const SECONDARY = {
   lighter: '#F8F8F8',
   light: '#636363',
-  main: '#0E0F13',
+  main: '#000000',
   dark: '#000000',
   darker: '#000000',
   contrastText: '#FFFFFF',
@@ -75,7 +75,7 @@ const ERROR = {
 
 const CUSTOM = {
   auto: '#FFDC45',
-  spareParts: '#C72C41',
+  spareParts: '#ee89fa',
   pink: '#FFACAC',
   peachLighter: '#FFF8F6',
   peachLight: '#FFEBE5',
