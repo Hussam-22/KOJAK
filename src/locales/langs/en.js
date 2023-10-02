@@ -127,9 +127,7 @@ const en = {
     
     New Vehicle Limited Warranty: Every new Mercedes-Benz comes with a comprehensive limited warranty that covers the vehicle for a specified period. This warranty includes coverage for manufacturing defects and ensures that your investment is safeguarded from unforeseen issues.
     
-    Extended Warranty Options: For added peace of mind, we offer extended warranty options that allow you to extend your coverage beyond the standard warranty period. This option is ideal for those who plan to keep their Mercedes-Benz for an extended duration.
-    
-    Certified Pre-Owned (CPO) Program: If you opt for a certified pre-owned Mercedes-Benz, you benefit from the CPO program, which provides warranty coverage for the vehicle's certified components, giving you confidence in the quality and reliability of your purchase.`,
+    Extended Warranty Options: For added peace of mind, we offer extended warranty options that allow you to extend your coverage beyond the standard warranty period. This option is ideal for those who plan to keep their Mercedes-Benz for an extended duration.`,
     },
 
     export: {
@@ -185,7 +183,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
   footer: {
     about:
       'Kojak stands as a multifaceted group of companies, each specializing in a unique facet that collectively shapes a comprehensive automotive ecosystem. its presence in four distinct domains: car spare-parts, auto maintenance, the exclusive sale of Mercedes cars, and the versatile realm of space leasing and renting.',
-    groupTitle: 'Kojak Group of Companies',
+    groupTitle: 'Group Website',
     exclusive: { title: 'K-Exclusive', text: 'Buy your dream Mercedes' },
     spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },

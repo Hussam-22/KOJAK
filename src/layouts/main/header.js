@@ -72,8 +72,6 @@ export default function Header({ headerOnDark }) {
               }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
-              borderBottom: `solid 1px ${theme.palette.primary.light}`,
-              // color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },
@@ -119,7 +117,13 @@ export default function Header({ headerOnDark }) {
               )}
             </Stack>
 
-            {!mdUp && <NavMobile data={navConfig} toggleLanguage={toggleLanguageHandler} />}
+            {!mdUp && (
+              <NavMobile
+                data={navConfig}
+                toggleLanguage={toggleLanguageHandler}
+                light={!useDarkLogo && !offset}
+              />
+            )}
           </Container>
         </Toolbar>
 

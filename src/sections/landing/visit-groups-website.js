@@ -3,11 +3,16 @@ import { m } from 'framer-motion';
 import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import { varSlide } from 'src/components/animate';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
-import { varFade, varSlide, MotionViewport } from 'src/components/animate';
+import { AUTO_URL, GROUP_URL, BUILDING_URL } from 'src/config-global';
 
 const GROUPS = [
+  {
+    title: 'group',
+    link: GROUP_URL,
+    icon: 'mercedes-logo',
+  },
   {
     title: 'sparePart',
     link: '#',
@@ -18,11 +23,7 @@ const GROUPS = [
     link: AUTO_URL,
     icon: 'auto-icon',
   },
-  {
-    title: 'exclusive',
-    link: EXCLUSIVE_URL,
-    icon: 'exclusive-icon',
-  },
+
   {
     title: 'building',
     link: BUILDING_URL,
@@ -36,7 +37,7 @@ function VisitGroupsWebsite() {
   const { translate, currentLang } = useLocales();
 
   const POSITION_VALUE = () => {
-    if (currentLang.value === 'ar' && mdUp) return '-190px';
+    if (currentLang.value === 'ar' && mdUp) return '-125px';
     if (currentLang.value === 'ar' && !mdUp) return '-120px';
     return '190px';
   };
@@ -64,29 +65,26 @@ function VisitGroupsWebsite() {
       }}
     >
       <Box>
-        <m.div variants={varFade().inUp}>
-          <Typography variant="overline" color="secondary">
-            {translate('common.brand')}
-          </Typography>
-          <Typography variant="h3" color="secondary">
-            {translate(`common.${item.title}`)}
-          </Typography>
-        </m.div>
+        <Typography variant="overline" color="secondary">
+          {translate('common.brand')}
+        </Typography>
+        <Typography variant="h3" color="secondary">
+          {translate(`common.${item.title}`)}
+        </Typography>
       </Box>
 
-      <m.div variants={varFade().inUp} style={{ width: '60%' }}>
-        <Typography
-          variant="body2"
-          color="secondary"
-          sx={{
-            fontWeight: theme.typography.fontWeightLight,
-          }}
-        >
-          {translate(`visit.cardText.${item.title}`)}
-        </Typography>
-      </m.div>
+      <Typography
+        variant="body2"
+        color="secondary"
+        sx={{
+          fontWeight: theme.typography.fontWeightLight,
+          width: '60%',
+        }}
+      >
+        {translate(`visit.cardText.${item.title}`)}
+      </Typography>
 
-      <m.div variants={varFade().inUp}>
+      <Box>
         <Button
           variant="contained"
           color="secondary"
@@ -97,13 +95,13 @@ function VisitGroupsWebsite() {
         >
           {translate(`common.visitWebsite`)}
         </Button>
-      </m.div>
+      </Box>
     </Card>
   );
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }} component={MotionViewport}>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
         <m.div variants={varSlide().inRight}>
           <Typography variant="h1" sx={{ color: 'common.black' }}>
             {translate(`visit.title`)}

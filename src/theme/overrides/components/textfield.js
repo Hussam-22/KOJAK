@@ -96,6 +96,7 @@ export function textField(theme) {
           [`&.${outlinedInputClasses.focused}`]: {
             [`& .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: color.focused,
+              color: theme.palette.common.white,
             },
           },
           [`&.${outlinedInputClasses.error}`]: {

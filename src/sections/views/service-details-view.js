@@ -29,8 +29,6 @@ export default function ServiceDetailsView() {
   const { getVehicleInfo } = useAuthContext();
   const [vehicleInfo, setVehicleInfo] = useState();
 
-  console.log(translate(`common.${vehicleInfo?.brand?.toLowerCase() || ''}`));
-
   const payload = {
     subject: `${translate('inventory.formText')} ${translate(
       `common.${vehicleInfo?.brand?.toLowerCase() || ''}`
@@ -95,27 +93,17 @@ export default function ServiceDetailsView() {
           {vehicleInfo?.id !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
-                <Stack
-                  direction={{ md: 'row', xs: 'column' }}
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                >
-                  <Stack sx={{ mb: 2 }}>
-                    <Typography variant="h2" color="primary">
-                      {vehicleInfo?.price.replace(
-                        'AED',
-                        currentLang.value === 'en' ? 'AED' : 'درهم'
-                      )}
-                    </Typography>
-                    <Stack direction="row" spacing={1}>
-                      <Typography variant="h4">
-                        {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
-                      </Typography>
-                      <Typography variant="h4">{vehicleInfo?.model}</Typography>
-                    </Stack>
-                  </Stack>
+                <Typography variant="h4" color="primary">
+                  {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
+                </Typography>
+                <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                  <Typography variant="h2">
+                    {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
+                  </Typography>
+                  <Typography variant="h2">{vehicleInfo?.model}</Typography>
+                </Stack>
 
+                <Stack direction="row" justifyContent="space-between" alignItems="center">
                   <Box
                     sx={{
                       display: 'flex',
