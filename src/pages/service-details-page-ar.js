@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { useLocales } from 'src/locales';
-import ServicesView from 'src/sections/views/services-view';
+import ServiceDetailsView from 'src/sections/views/service-details-view';
 
-export default function ServicesPage() {
+export default function ServiceDetailsPageAr() {
   const { onChangeLang, currentLang } = useLocales();
 
   useEffect(() => {
-    onChangeLang('en');
+    onChangeLang('ar');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -20,7 +20,7 @@ export default function ServicesPage() {
         <meta name="keywords" content="" />
         <meta name="author" content="KOJAK GROUP - Exclusive" />
       </Helmet>
-      {currentLang.value === 'en' && <ServicesView />}
+      {currentLang.value === 'ar' && <ServiceDetailsView />}
     </>
   );
 }

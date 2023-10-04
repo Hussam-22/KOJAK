@@ -6,14 +6,13 @@ import LandingView from 'src/sections/views/landing-view';
 
 // ----------------------------------------------------------------------
 
-export default function LandingPage() {
+export default function LandingPageAr() {
   const { onChangeLang, currentLang } = useLocales();
 
   useEffect(() => {
-    onChangeLang('en');
+    onChangeLang('ar');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <>
       <Helmet>
@@ -29,7 +28,7 @@ export default function LandingPage() {
         <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" /> */}
       </Helmet>
 
-      {currentLang.value === 'en' && <LandingView />}
+      {currentLang.value === 'ar' && <LandingView />}
     </>
   );
 }

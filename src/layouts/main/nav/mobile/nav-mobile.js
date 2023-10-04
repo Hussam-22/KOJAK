@@ -75,7 +75,7 @@ export default function NavMobile({ data, toggleLanguage, light }) {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(paths.website.services)}
+              onClick={() => navigate(paths(currentLang.value).website.services)}
             >
               {translate('common.actionButton')}
             </Button>

@@ -6,11 +6,11 @@ import BlogItemView from 'src/sections/views/blog-item-view';
 
 // ----------------------------------------------------------------------
 
-export default function BlogPostPage() {
+export default function BlogPostPageAr() {
   const { onChangeLang, currentLang } = useLocales();
 
   useEffect(() => {
-    onChangeLang('en');
+    onChangeLang('ar');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -20,7 +20,7 @@ export default function BlogPostPage() {
         <title>Kojak Exclusive | Blog Post</title>
       </Helmet>
 
-      {currentLang === 'en' && <BlogItemView />}
+      {currentLang.value === 'ar' && <BlogItemView />}
     </>
   );
 }

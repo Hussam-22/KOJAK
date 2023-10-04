@@ -22,7 +22,7 @@ function VehicleCard({ vehicleInfo }) {
   const { brand, model, year, price, engineType, milage, id, isFeatured, qty } = vehicleInfo;
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imageURL, setImageURL] = useState(null);
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ function VehicleCard({ vehicleInfo }) {
           <Box>
             <Link
               component={RouterLink}
-              href={paths.website.servicesDetails + id}
+              href={paths(currentLang.value).website.servicesDetails + id}
               // underline="none"
               sx={{ color: 'secondary.main' }}
             >
@@ -75,7 +75,7 @@ function VehicleCard({ vehicleInfo }) {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => navigate(paths.website.servicesDetails + id)}
+              onClick={() => navigate(paths(currentLang.value).website.servicesDetails + id)}
               sx={{ whiteSpace: 'nowrap' }}
             >
               {translate('common.moreDetails')}

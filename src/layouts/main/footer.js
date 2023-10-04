@@ -1,5 +1,3 @@
-import { useLocation } from 'react-router';
-
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -11,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
 import { RouterLink } from 'src/routes/components';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
@@ -41,10 +38,8 @@ const GROUPS = [
 // ----------------------------------------------------------------------
 
 export default function Footer() {
-  const mdUp = useResponsive('up', 'md');
-  const path = useLocation();
   const mUItheme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const mainFooter = (
     <Box
@@ -102,7 +97,7 @@ export default function Footer() {
               {translate('footer.sitemap')}
             </Typography>
             <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
-              {navConfig.map((list) => (
+              {navConfig(currentLang.value).map((list) => (
                 <Typography key={list.title} variant="body2">
                   <Link
                     component={RouterLink}

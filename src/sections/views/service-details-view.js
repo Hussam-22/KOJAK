@@ -78,7 +78,7 @@ export default function ServiceDetailsView() {
             },
             {
               name: translate('header.services'),
-              href: paths.website.services,
+              href: paths(currentLang.value).website.services,
             },
             {
               name: `${translate(`common.${vehicleInfo?.brand?.toLowerCase() || ''}`)} - ${

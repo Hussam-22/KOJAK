@@ -2,12 +2,12 @@ import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 
-export const navConfig = [
+export const navConfig = (lang) => [
   { title: 'home', path: '/' },
-  { title: 'services', path: paths.website.services },
-  { title: 'about', path: paths.website.about },
-  { title: 'blog', path: paths.website.blogPosts },
-  { title: 'contactUs', path: paths.website.contactUs },
+  { title: 'services', path: paths(lang).website.services },
+  { title: 'about', path: paths(lang).website.about },
+  { title: 'blog', path: paths(lang).website.blogPosts },
+  { title: 'contactUs', path: paths(lang).website.contactUs },
   // { title: 'bookAppointment', path: paths.website.bookAppointment },
 
   // { title: 'home', path: '/' },

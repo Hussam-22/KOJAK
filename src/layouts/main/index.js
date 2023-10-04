@@ -9,8 +9,8 @@ import { SplashScreen } from 'src/components/loading-screen';
 
 import { HEADER } from '../config-layout';
 
-import Header from './header';
 import Footer from './footer';
+import Header from './header';
 
 // ----------------------------------------------------------------------
 

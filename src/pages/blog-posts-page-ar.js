@@ -4,14 +4,15 @@ import { Helmet } from 'react-helmet-async';
 import { useLocales } from 'src/locales';
 import BlogPostsView from 'src/sections/views/blog-posts-view';
 
-export default function BlogPage() {
+const PAGE_NAME = 'BLOG';
+
+export default function BlogPageAr() {
   const { onChangeLang, currentLang } = useLocales();
 
   useEffect(() => {
-    onChangeLang('en');
+    onChangeLang('ar');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <>
       <Helmet>
@@ -27,7 +28,7 @@ export default function BlogPage() {
         <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
       </Helmet>
 
-      {currentLang.value === 'en' && <BlogPostsView />}
+      {currentLang.value === 'ar' && <BlogPostsView />}
     </>
   );
 }

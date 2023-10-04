@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
+import { useLocales } from 'src/locales';
 import ContactUsView from 'src/sections/views/contact-us-view';
 
-export default function ContactUs() {
+export default function ContactUsPage() {
+  const { onChangeLang, currentLang } = useLocales();
+
+  useEffect(() => {
+    onChangeLang('en');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -18,7 +27,7 @@ export default function ContactUs() {
         <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
       </Helmet>
 
-      <ContactUsView />
+      {currentLang.value === 'en' && <ContactUsView />}
     </>
   );
 }
