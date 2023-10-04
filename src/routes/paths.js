@@ -2,7 +2,7 @@
 
 export const paths = (lang) => ({
   website: {
-    root: lang === 'ar' ? '/ar' : '/',
+    root: lang === 'ar' ? '/ar/' : '/',
     about: lang === 'ar' ? '/ar/about' : '/about',
     contactUs: lang === 'ar' ? '/ar/contact-us' : '/contact-us',
     services: lang === 'ar' ? '/ar/inventory' : '/inventory',

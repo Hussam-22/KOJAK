@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -25,11 +24,10 @@ import NavList from './nav-list';
 // ----------------------------------------------------------------------
 
 export default function NavMobile({ data, toggleLanguage, light }) {
-  const theme = useTheme();
   const pathname = usePathname();
   const navigate = useNavigate();
   const mobileOpen = useBoolean();
-  const { translate, currentLang, onChangeLang } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   useEffect(() => {
     if (mobileOpen.value) {

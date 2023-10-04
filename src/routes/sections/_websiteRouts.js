@@ -28,7 +28,7 @@ export const _websiteRouts = [
     path: '/',
     children: [
       { element: <LandingPage />, index: true },
-      { path: 'ar/', element: <LandingPage />, index: true },
+      { path: 'ar/', element: <LandingPageAr />, index: true },
       { path: 'inventory', element: <ServicesPage /> },
       { path: 'ar/inventory', element: <ServicesPageAr /> },
       { path: 'inventory/:vehicleID', element: <ServiceDetailsPage /> },
