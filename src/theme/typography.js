@@ -26,7 +26,7 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Alexandria';
+const primaryFont = 'Vazirmatn, sans-serif';
 // ----------------------------------------------------------------------
 
 export const typography = {

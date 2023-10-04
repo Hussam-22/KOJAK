@@ -24,14 +24,16 @@ function VehiclesList() {
     <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
         sx={{
-          pt: 5,
+          py: 8,
         }}
       >
         <Stack spacing={2} sx={{ mb: 5, textAlign: 'center' }}>
-          <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>
-            {translate('inventory.title')}
-            <Box
-              component="span"
+          <Box>
+            <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>
+              {translate('inventory.title')}
+            </Typography>
+            <Typography
+              variant="h1"
               sx={{
                 background: `-webkit-linear-gradient(45deg,${theme.palette.primary.light},${theme.palette.primary.dark})`,
                 WebkitBackgroundClip: 'text',
@@ -39,8 +41,8 @@ function VehiclesList() {
               }}
             >
               {translate('inventory.titlePartTwo')}
-            </Box>
-          </Typography>
+            </Typography>
+          </Box>
           <Typography>{translate('inventory.subTitle')}</Typography>
         </Stack>
       </Container>

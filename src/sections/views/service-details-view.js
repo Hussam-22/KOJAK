@@ -96,11 +96,15 @@ export default function ServiceDetailsView() {
                 <Typography variant="h4" color="primary">
                   {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
                 </Typography>
-                <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
-                  <Typography variant="h2">
+                <Stack
+                  direction={{ md: 'row', xs: 'column' }}
+                  spacing={mdUp ? 2 : 0}
+                  sx={{ mb: 2 }}
+                >
+                  <Typography variant={mdUp ? 'h2' : 'h3'}>
                     {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
                   </Typography>
-                  <Typography variant="h2">{vehicleInfo?.model}</Typography>
+                  <Typography variant={mdUp ? 'h2' : 'h3'}>{vehicleInfo?.model}</Typography>
                 </Stack>
 
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
