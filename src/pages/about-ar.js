@@ -15,16 +15,56 @@ export default function AboutPageAr() {
   return (
     <>
       <Helmet>
-        <title>كوجك إكسكلوسيف | من نحن</title>
+        <title>كوجك إكسكلوسيف كارس - اكتشف شغف كوجك بمرسيدس-بنز</title>
         <meta
           name="description"
-          content="At Kojak we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements."
+          content="مرحبًا بك في كوجك إكسكلوسيف كارس، حيث بدأت رحلتنا مع مرسيدس-بنز قبل 40 عامًا بشغف مشترك بالفخامة والابتكار والتميز في مجال السيارات. كوكبة متخصصة في مرسيدس-بنز، نفتخر بتاريخنا الغني والالتزام الثابت بتقديم تجربة مرسيدس-بنز النهائية لعملائنا."
         />
         <meta
           name="keywords"
-          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+          content="كوجك إكسكلوسيف كارس, مرسيدس الفاخرة, مرسيدس بنز, الشارقة, دبي, الإمارات, سيارات فاخرة, وكالة سيارات فاخرة"
         />
-        <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
+        <meta property="og:title" content="كوجك إكسكلوسيف كارس - اكتشف شغف كوجك بمرسيدس-بنز" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="https://www.kojak-exclusive.com/assets/kojak-logo.svg" />
+        <meta property="og:url" content="https://www.kojak-exclusive.com/ar/about" />
+        <meta property="og:type" content="website" />
+
+        {/* Schema.org JSON-LD Markup */}
+        <script type="application/ld+json">
+          {`
+      {
+        "@context": "http://schema.org",
+        "@type": "AutoDealer",
+        "name": "كوجك إكسكلوسيف كارس",
+        "url": "https://www.kojak-exclusive.com/ar/about",
+        "description": "مرحبًا بك في كوجك إكسكلوسيف كارس، حيث بدأت رحلتنا مع مرسيدس-بنز قبل 40 عامًا بشغف مشترك بالفخامة والابتكار والتميز في مجال السيارات. كوكبة متخصصة في مرسيدس-بنز، نفتخر بتاريخنا الغني والالتزام الثابت بتقديم تجربة مرسيدس-بنز النهائية لعملائنا.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "معرض رقم 37 - قطعة رقم 4 العوير - سوق رأس الخور للسيارات دبي",
+          "addressLocality": "دبي",
+          "addressRegion": "دبي",
+          "addressCountry": "AE"
+        },
+        "logo": "https://www.kojak-exclusive.com/assets/kojak-logo.svg",
+        "telephone": "+971-52-9242616",
+        "sameAs": [
+          "https://www.facebook.com/KojakGroupofCompanies",
+          "https://www.instagram.com/kexclusive_cars"
+        ],
+        "openingHours": "9:30 صباحًا - 1:00 ظهرًا | 4:30 مساءً - 9:00 مساءً (السبت إلى الخميس)",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 25.169091844674753,
+          "longitude": 55.36876576140712
+        }
+      }
+    `}
+        </script>
+
+        <link rel="alternate" href="https://www.kojak-exclusive.com/about" hrefLang="x-default" />
+        <link rel="alternate" href="https://www.kojak-exclusive.com/about" hrefLang="en" />
+        <link rel="alternate" href="https://www.kojak-exclusive.com/ar/about" hrefLang="ar" />
       </Helmet>
 
       {currentLang.value === 'ar' && <AboutView />}

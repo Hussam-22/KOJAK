@@ -1,0 +1,130 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+    <url>
+        <loc>https://kojak-exclusive.com/</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>1</priority>
+        <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+        <loc>https://kojak-exclusive.com/ar/</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>1</priority>
+        <changefreq>daily</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/about</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.8</priority>
+        <changefreq>weekly</changefreq>
+    </url>
+
+     <url>
+        <loc>https://kojak-exclusive.com/ar/about</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.8</priority>
+        <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/contact-us</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+     <url>
+        <loc>https://kojak-exclusive.com/ar/contact-us</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/inventory</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.6</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+
+     <url>
+        <loc>https://kojak-exclusive.com/ar/inventory</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.6</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.5</priority>
+        <changefreq>daily</changefreq>
+    </url>
+
+    <url>
+        <loc>https://kojak-exclusive.com/ar/blog-posts</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.5</priority>
+        <changefreq>daily</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/404</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.4</priority>
+        <changefreq>yearly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/500</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.3</priority>
+        <changefreq>yearly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/The-Evolution-of-Elegance:-A-History-of-Mercedes-Benz-Luxury-Cars</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/Performance-Unleashed:-A-Deep-Dive-into-Mercedes-AMG-Models</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/Mercedes-Benz-Safety-Features:-Protecting-You-and-Your-Loved-Ones</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/Mercedes-Benz-Maintenance-Tips:-Keeping-Your-Car-Running-Smoothly</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/Going-Green-with-Mercedes-Benz:-The-Future-of-Sustainable-Driving</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+    <url>
+        <loc>https://kojak-exclusive.com/blog-posts/The-Art-of-Luxury:-Exploring-Mercedes-Benz-Interior-Design</loc>
+        <lastmod>2023-10-04</lastmod>
+        <priority>0.7</priority>
+        <changefreq>monthly</changefreq>
+    </url>
+  
+</urlset>
