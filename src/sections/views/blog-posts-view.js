@@ -15,7 +15,7 @@ export default function BlogPostsView() {
     <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
         sx={{
-          pt: { xs: 0, md: 5 },
+          pt: 5,
           pb: { xs: 8, md: 15 },
         }}
       >

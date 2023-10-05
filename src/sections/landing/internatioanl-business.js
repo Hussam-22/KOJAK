@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router';
+
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import CountUp from 'src/components/count-up/count-up';
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -13,8 +16,9 @@ const SUMMARY = [
 
 function InternationalBusiness() {
   const theme = useTheme();
-  const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
+  const navigate = useNavigate();
+  const { translate, currentLang } = useLocales();
   return (
     <Box
       sx={{
@@ -78,7 +82,12 @@ function InternationalBusiness() {
           </Box>
 
           <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
-            <Button variant="contained" size="large" color="secondary">
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              onClick={() => navigate(paths(currentLang.value).website.services)}
+            >
               {translate('common.actionButton')}
             </Button>
           </Box>

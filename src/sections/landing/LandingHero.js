@@ -22,7 +22,7 @@ function RenderDesktopHero() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Box
       sx={{
@@ -84,7 +84,7 @@ function RenderDesktopHero() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => navigate(paths.website.services)}
+                  onClick={() => navigate(paths(currentLang.value).website.services)}
                 >
                   {translate('common.actionButton')}
                 </Button>
