@@ -26,7 +26,7 @@ export function responsiveFontSizes({ sm, md, lg }) {
 }
 
 // const primaryFont = 'Public Sans, sans-serif';
-const primaryFont = 'Vazirmatn, sans-serif';
+const primaryFont = 'Alexandria, sans-serif';
 // ----------------------------------------------------------------------
 
 export const typography = {
@@ -104,6 +104,12 @@ export const typography = {
     lineHeight: 1.5,
     fontSize: pxToRem(12),
     textTransform: 'uppercase',
+  },
+  quote: {
+    fontWeight: 700,
+    lineHeight: 1.5,
+    fontSize: pxToRem(16),
+    fontStyle: 'italic',
   },
   button: {
     fontWeight: 700,

@@ -7,7 +7,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import {
   Box,
-  Button,
   Accordion,
   AccordionDetails,
   AccordionSummary,
@@ -15,7 +14,6 @@ import {
   accordionSummaryClasses,
 } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -41,13 +39,13 @@ export default function FAQs() {
   return (
     <Container
       sx={{
-        py: 8,
+        pb: 15,
       }}
       maxWidth="xl"
     >
       <Grid container spacing={4}>
         <Grid md={6} xs={12} sx={{ order: mdUp ? 1 : 2 }}>
-          {[...Array(6)].map((_, index) => (
+          {[...Array(5)].map((_, index) => (
             <Accordion
               key={index}
               expanded={expanded === translate(`faq.${index + 1}.question`)}
@@ -66,7 +64,7 @@ export default function FAQs() {
                   },
                 }}
               >
-                <Typography variant="h6" color="primary" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" color="secondary" sx={{ flexGrow: 1 }}>
                   {translate(`faq.${index + 1}.question`)}
                 </Typography>
 
@@ -85,25 +83,6 @@ export default function FAQs() {
                   <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
                     {translate(`faq.${index + 1}.answer`)}
                   </Typography>
-
-                  {index === 2 && (
-                    <Box>
-                      <Button variant="contained" color="primary">
-                        {translate(`faq.${index + 1}.buttonText`)}
-                      </Button>
-                    </Box>
-                  )}
-                  {index === 1 && (
-                    <Box>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
-                      >
-                        {translate(`faq.${index + 1}.buttonText`)}
-                      </Button>
-                    </Box>
-                  )}
                 </Stack>
               </AccordionDetails>
             </Accordion>

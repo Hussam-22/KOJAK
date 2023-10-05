@@ -19,9 +19,8 @@ function InternationalBusiness() {
     <Box
       sx={{
         position: 'relative',
-        bgcolor: 'primary.lighter',
-        py: 8,
-        px: 1,
+        bgcolor: 'primary.main',
+        py: { md: 20, xs: 10 },
       }}
     >
       <Container
@@ -37,8 +36,11 @@ function InternationalBusiness() {
         }}
       >
         <Stack spacing={3} sx={{ maxWidth: { md: '60%' } }}>
-          <Typography variant="h2">{translate('landing.international.title')}</Typography>
+          <Typography variant="h2" color="white">
+            {translate('landing.international.title')}
+          </Typography>
           <Typography
+            color="white"
             sx={{
               fontWeight: theme.typography.fontWeightLight,
             }}
@@ -56,7 +58,7 @@ function InternationalBusiness() {
           >
             {SUMMARY.map((value) => (
               <Stack key={value.name} spacing={1}>
-                <Typography variant="h2" sx={{ color: 'primary.main' }}>
+                <Typography variant="h2" color="white">
                   <CountUp
                     start={value.number / 5}
                     end={value.number}
@@ -76,7 +78,7 @@ function InternationalBusiness() {
           </Box>
 
           <Box sx={{ textAlign: { md: 'left', xs: 'center' } }}>
-            <Button variant="contained" size="large" color="primary">
+            <Button variant="contained" size="large" color="secondary">
               {translate('common.actionButton')}
             </Button>
           </Box>

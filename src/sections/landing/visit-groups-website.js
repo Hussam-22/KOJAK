@@ -100,8 +100,8 @@ function VisitGroupsWebsite() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+    <Box sx={{ bgcolor: 'background.neutral', py: 15 }}>
+      <Container maxWidth="xl">
         <m.div variants={varSlide().inRight}>
           <Typography variant="h1" sx={{ color: 'common.black' }}>
             {translate(`visit.title`)}

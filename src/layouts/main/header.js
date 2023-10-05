@@ -35,7 +35,7 @@ export default function Header({ headerOnDark }) {
   const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const useDarkLogo = pathName !== '/' && pathName !== '/ar/';
+  const useDarkLogo = pathName.includes(['/', '/ar', '/ar/']);
 
   const toggleLanguageHandler = () => {
     setTimeout(() => {

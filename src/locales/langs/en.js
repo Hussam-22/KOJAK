@@ -35,7 +35,7 @@ const en = {
     },
 
     about: {
-      fortyYears: '40 YEARS',
+      fortyYears: '40 YEARS in Business',
       title: 'About Kojak Exclusive',
       subTitle: `For over four decades, Kojak-Exclusive has proudly served as a trusted destination for Mercedes enthusiasts. With a legacy spanning 40 years, our commitment to excellence in the world of luxury automobiles has only grown stronger. We've witnessed the evolution of Mercedes-Benz vehicles and have been privileged to be part of countless journeys, delivering dreams on wheels to our valued customers. Our enduring experience is a testament to Kojak-Exclusive's dedication to providing exceptional service, expertise, and a passion for all things Mercedes. As we continue this journey, we look forward to another 40 years of bringing the epitome of luxury to our cherished clients.`,
     },
@@ -387,64 +387,54 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     },
   },
 
-  // faq: {
-  //   title: 'Frequently Asked Questions',
-  //   subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
-  //   We've compiled a list of inquiries that customers frequently ask us. Below,
-  //   you'll find information on various topics to assist you in getting the answers you
-  //   need.`,
+  faq: {
+    title: 'Frequently Asked Questions',
+    subTitle: `Our FAQ section is where we address common questions and provide helpful answers.
+    We've compiled a list of inquiries that customers frequently ask us. Below,
+    you'll find information on various topics to assist you in getting the answers you
+    need.`,
 
-  //   1: {
-  //     question: 'What Types of Services Do You Offer for Mercedes Vehicles?',
-  //     answer:
-  //       "We offer a comprehensive range of services for Mercedes-Benz vehicles, including routine maintenance (oil changes, brake inspections, tire rotations), major repairs, engine diagnostics, and performance tuning. Whether it's a minor service or a complex repair, we have you covered.",
-  //   },
-  //   2: {
-  //     question: 'How Can I Schedule an Appointment for Service?',
-  //     answer:
-  //       "Scheduling an appointment is easy. You can give us a call, visit our website, or use our online appointment booking system. Just select a date and time that works for you, and we'll be ready to provide your Mercedes with top-notch service.",
-  //     buttonText: 'Book An Appointment',
-  //   },
-  //   3: {
-  //     question: 'What Are the Benefits of Using Genuine Mercedes Parts?',
-  //     answer:
-  //       "Genuine Mercedes parts are designed and manufactured specifically for your vehicle, ensuring the highest quality and performance. They fit perfectly, maintain your car's authenticity, and often come with warranties, providing peace of mind.",
-  //     buttonText: 'Visit Kojak Spare-Parts Website',
-  //   },
-  //   4: {
-  //     question: 'How Can I Keep My Mercedes-Benz Running at Its Best Between Services?',
-  //     answer:
-  //       "Regular maintenance is key. In addition, follow your manufacturer's recommended service schedule, drive gently, keep an eye on fluid levels, and address any unusual sounds or issues promptly. Our blog and newsletter also provide valuable tips for Mercedes-Benz owners.",
-  //   },
-  //   5: {
-  //     question: 'Is Your Mercedes Auto Repair Shop Equipped with the Latest Diagnostic Technology?',
-  //     answer:
-  //       'Yes, we invest in state-of-the-art diagnostic equipment designed specifically for Mercedes-Benz vehicles. This technology allows us to accurately diagnose issues and perform precise repairs, ensuring your car receives the best care.',
-  //   },
-  //   6: {
-  //     question: 'How Do Your Prices Compare to Other Auto Repair Shops?',
-  //     answer:
-  //       'While pricing can vary depending on the service required, we offer competitive rates for the specialized expertise and genuine Mercedes parts we provide. Our focus is on quality and reliability, ensuring that you receive excellent value for your investment in your Mercedes-Benz.',
-  //   },
-  //   7: {
-  //     question: 'Do You Offer a Warranty on Your Repairs and Services?',
-  //     answer:
-  //       "Yes, we stand behind the quality of our work. We offer warranties on our repairs and services, giving you added peace of mind. If you encounter any issues related to our service, simply reach out to us, and we'll address them promptly.",
-  //   },
-  // },
+    1: {
+      question: 'What is Kojak Exclusive known for?',
+      answer:
+        'Kojak Exclusive is renowned for its exceptional selection of luxury vehicles, with a focus on Mercedes-Benz models. We take pride in delivering quality and customer satisfaction.',
+    },
+    2: {
+      question: 'Can I purchase a vehicle from Kojak Exclusive internationally?',
+      answer:
+        'Yes, we cater to international buyers. Our team has extensive experience in facilitating international purchases and shipping to ensure a smooth and convenient process.',
+    },
+    3: {
+      question: 'How does the international purchasing and shipping process work?',
+      answer:
+        'Our international purchasing and shipping process is designed for simplicity. After selecting your desired vehicle, we assist you in managing all aspects of the purchase and arranging shipping logistics with trusted partners.',
+    },
+    4: {
+      question: 'What type of warranty or after-sales support do you provide?',
+      answer: `We offer various warranty options and comprehensive after-sales support to give you peace of mind. Our team is here to address any questions or concerns you may have after your purchase, ensuring your satisfaction with your luxury vehicle`,
+    },
+    5: {
+      question: 'How can I get in touch with Kojak Exclusive for more information?',
+      answer: `You can reach out to us through our contact page on the website, where you'll find our contact details. Feel free to call, email, or fill out the contact form, and our team will be happy to assist you with any inquiries or requests you may have.`,
+    },
+  },
 
-  // testimonial: {
-  //   title: 'What Our Customers Say',
-  //   description: `At KOJAK, we take immense pride in providing top-notch services for Mercedes car owners. But don't just take our word for it – here's what our valued customers have to say about their experiences with us:`,
-  //   testimonialOne: {
-  //     text: `Exceptional Service! I've been a loyal customer of KOjak for years, and I couldn't be happier with the level of expertise and care they provide for my Mercedes. From routine maintenance to complex repairs, their team of skilled technicians always goes above and beyond. My car runs like a dream, thanks to Kojak. I wouldn't trust anyone else with my Mercedes!`,
-  //     author: 'Rashed Mohamed',
-  //   },
-  //   testimonialTwo: {
-  //     text: `I can't express how grateful I am for Kojak. Their Mercedes expertise is unmatched, and their dedication to customer satisfaction is truly commendable. They took the time to explain the issues with my car and provided a transparent breakdown of the costs. The repairs were done quickly, and my Mercedes feels brand new. I highly recommend Kojak to all Mercedes owners`,
-  //     author: 'Moza Ahmad',
-  //   },
-  // },
+  testimonial: {
+    title: 'See What Our Customers Have to Say!',
+    description: `At Kojak Exclusive, our customers' satisfaction is our top priority. Here's what some of our valued customers have to say about their experiences with us, whether it's international shipping, competitive prices, or local purchases. We take pride in delivering exceptional service and quality vehicles to each and every one of our clients.`,
+    testimonialOne: {
+      text: `As an international buyer, I had concerns about purchasing a Mercedes from overseas, but Kojak Exclusive completely put my mind at ease. Their team took care of every aspect of the process, from finding the right vehicle to arranging international shipping. My Mercedes arrived on time and in pristine condition. The quality and service provided by Kojak Exclusive are unparalleled, and I highly recommend them to anyone looking to own a Mercedes.`,
+      author: 'Elena C',
+    },
+    testimonialTwo: {
+      text: `I recently purchased a Mercedes from Kojak Exclusive, and I couldn't be happier with my decision. Not only did I find the perfect car for my needs, but I was also pleasantly surprised by their competitive prices. Kojak Exclusive offered me a great deal on my dream car, and the entire buying process was smooth and enjoyable. I highly recommend Kojak Exclusive to anyone in the market for a luxury vehicle.`,
+      author: 'Sarah H',
+    },
+    testimonialThree: {
+      text: `I had been considering a Mercedes for quite some time, and when I visited Kojak Exclusive, They offered me an excellent deal on the model I wanted, and their team made the entire purchase process effortless. Kojak Exclusive's dedication to providing top-notch vehicles at affordable prices is truly remarkable. I'm now cruising in my dream Mercedes, all thanks to them.`,
+      author: 'Mohammed S',
+    },
+  },
 };
 
 export default en;

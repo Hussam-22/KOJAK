@@ -9,8 +9,8 @@ import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Stack, Container, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -41,10 +41,10 @@ export default function SpotlightVehicles() {
   }, [getFeaturedCars]);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 8 }}>
+    <Container maxWidth="xl" sx={{ py: 15 }}>
       <Stack spacing={2} sx={{ mb: 6, maxWidth: { md: '60%' } }}>
         <Typography variant="h1" color="secondary">
-          {translate('landing.spotLight.title')}
+          {translate('landing.spotLight.title')}{' '}
         </Typography>
         <Typography color="secondary">{translate('landing.spotLight.subTitle')}</Typography>
       </Stack>
