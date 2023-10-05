@@ -342,7 +342,7 @@ const ar = {
     building: 'بناء',
     group: 'مجموعة شركات',
     brandSpecial: 'أوتو إكسكلوسيف',
-    actionButton: 'استكشاف معرض السيارات',
+    actionButton: 'معرض السيارات',
     bookAppointment: 'حجز موعد',
     moreDetails: 'المزيد من التفاصيل',
     viewAll: 'عرض الكل',

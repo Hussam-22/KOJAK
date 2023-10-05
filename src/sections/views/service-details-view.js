@@ -154,8 +154,10 @@ export default function ServiceDetailsView() {
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
               <Typography variant="h2">{translate('inventory.vehicleDetails')}</Typography>
-              <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
-                {currentLang.value === 'en' ? vehicleInfo?.features : vehicleInfo?.translated.ar}
+              <Typography variant="h6" sx={{ whiteSpace: 'pre-line', textTransform: 'capitalize' }}>
+                {currentLang.value === 'en'
+                  ? vehicleInfo?.translated.en.replaceAll('%', '\n')
+                  : vehicleInfo?.translated.ar.replaceAll('%', '\n')}
               </Typography>
 
               <Typography variant="h6" color="primary">
