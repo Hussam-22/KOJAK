@@ -15,16 +15,60 @@ export default function ContactUsPageAr() {
   return (
     <>
       <Helmet>
-        <title>Kojak Exclusive | Contact Us</title>
+        <title>كوجك إكسكلوسيف كارس - اتصل بنا</title>
         <meta
           name="description"
-          content="We're here to assist you. If you have any questions, feedback, or need support, please don't hesitate to reach out to us. Our dedicated team is ready to help you in any way we can."
+          content="نحن هنا لمساعدتك. إذا كانت لديك أي أسئلة أو تعليقات أو تحتاج إلى دعم، فلا تتردد في التواصل معنا. فريقنا المخصص جاهز لمساعدتك بأي طريقة يمكننا."
         />
         <meta
           name="keywords"
-          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+          content="كوجك إكسكلوسيف كارس, مرسيدس الفاخرة, مرسيدس بنز, الشارقة, دبي, الإمارات, سيارات فاخرة, وكالة سيارات فاخرة"
         />
-        <meta name="author" content="KOJAK GROUP - KOJAK BUILDING" />
+        <meta property="og:title" content="كوجك إكسكلوسيف كارس - اتصل بنا" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="https://www.kojak-exclusive.com/assets/kojak-logo.svg" />
+        <meta property="og:url" content="https://www.kojak-exclusive.com/ar/contact-us" />
+        <meta property="og:type" content="website" />
+
+        {/* Schema.org JSON-LD Markup */}
+        <script type="application/ld+json">
+          {`
+      {
+        "@context": "http://schema.org",
+        "@type": "AutoDealer",
+        "name": "كوجك إكسكلوسيف كارس",
+        "url": "https://www.kojak-exclusive.com/ar/contact-us",
+        "description": "نحن هنا لمساعدتك. إذا كانت لديك أي أسئلة أو تعليقات أو تحتاج إلى دعم، فلا تتردد في التواصل معنا. فريقنا المخصص جاهز لمساعدتك بأي طريقة يمكننا.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "معرض رقم 37 - قطعة رقم 4 العوير - سوق رأس الخور للسيارات دبي",
+          "addressLocality": "دبي",
+          "addressRegion": "دبي",
+          "addressCountry": "AE"
+        },
+        "logo": "https://www.kojak-exclusive.com/assets/kojak-logo.svg",
+        "telephone": "+971-52-9242616",
+        "sameAs": [
+          "https://www.facebook.com/KojakGroupofCompanies",
+          "https://www.instagram.com/kexclusive_cars"
+        ],
+        "openingHours": "9:30 صباحًا - 1:00 ظهرًا | 4:30 مساءً - 9:00 مساءً (السبت إلى الخميس)",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 25.169091844674753,
+          "longitude": 55.36876576140712
+        }
+      }
+    `}
+        </script>
+
+        <link
+          rel="alternate"
+          href="https://www.kojak-exclusive.com/contact-us"
+          hrefLang="x-default"
+        />
+        <link rel="alternate" href="https://www.kojak-exclusive.com/contact-us" hrefLang="en" />
+        <link rel="alternate" href="https://www.kojak-exclusive.com/ar/contact-us" hrefLang="ar" />
       </Helmet>
 
       {currentLang.value === 'ar' && <ContactUsView />}

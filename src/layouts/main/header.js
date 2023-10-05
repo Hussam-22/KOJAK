@@ -35,7 +35,7 @@ export default function Header({ headerOnDark }) {
   const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const useDarkLogo = pathName.includes(['/', '/ar', '/ar/']);
+  const useDarkLogo = ['/ar', '/ar/', '/'].includes(pathName);
 
   const toggleLanguageHandler = () => {
     setTimeout(() => {
@@ -82,7 +82,7 @@ export default function Header({ headerOnDark }) {
           maxWidth="xl"
         >
           <Box sx={{ lineHeight: 0, position: 'relative' }}>
-            <Logo small light={!useDarkLogo && !offset} />
+            <Logo small light={useDarkLogo && !offset} />
             {/* <Logo small /> */}
           </Box>
 
@@ -104,7 +104,7 @@ export default function Header({ headerOnDark }) {
                   sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.divider }}
                 />
                 <TranslateIcon
-                  light={!useDarkLogo && !offset}
+                  light={useDarkLogo && !offset}
                   toggleLanguageHandler={toggleLanguageHandler}
                 />
               </Stack>
@@ -115,7 +115,7 @@ export default function Header({ headerOnDark }) {
             <NavMobile
               data={navConfig(currentLang.value)}
               toggleLanguage={toggleLanguageHandler}
-              light={!useDarkLogo && !offset}
+              light={useDarkLogo && !offset}
             />
           )}
         </Container>

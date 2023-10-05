@@ -58,7 +58,7 @@ function InternationalBusiness() {
           >
             {SUMMARY.map((value) => (
               <Stack key={value.name} spacing={1}>
-                <Typography variant="h2" color="white">
+                <Typography variant="h2" color="secondary">
                   <CountUp
                     start={value.number / 5}
                     end={value.number}
@@ -70,7 +70,7 @@ function InternationalBusiness() {
                   </Typography>
                 </Typography>
 
-                <Typography variant="h6" color="secondary">
+                <Typography variant="h6" color="white">
                   {translate(`why.${value.name}`)}
                 </Typography>
               </Stack>
