@@ -119,9 +119,6 @@ export function AuthProvider({ children }) {
     if (filter.partName) {
       docRef = query(docRef, where('partName', '==', filter.partName));
     }
-    // if (filter.class && filter.class.length > 0) {
-    //   docRef = query(docRef, where('brandClass', 'array-contains-any', filter.class));
-    // }
     if (filter.model && filter.model.length > 0) {
       docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
     }

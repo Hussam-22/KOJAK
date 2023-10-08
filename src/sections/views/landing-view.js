@@ -13,7 +13,6 @@ export default function LandingView() {
       <LandingHero />
       <FixOffer />
       <PartsCount />
-      {/* <FeaturedParts /> */}
       <InternationalBusiness />
       <LandingTestimonial />
       <LandingFaqs />

@@ -131,8 +131,6 @@ function SearchAdvanced() {
     }, 500);
   });
 
-  console.log(loading);
-
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>

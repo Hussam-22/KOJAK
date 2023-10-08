@@ -10,21 +10,23 @@ import { rdxUpdateFilter } from 'src/redux/slices/products';
 
 export default function FilterPartInfo() {
   const dispatch = useDispatch();
-  const { partNo, partName } = useSelector((state) => state.products.filter);
-  const [partNoValue, setPartNoValue] = useState(partNo);
-  const [partNameValue, setPartNameValue] = useState('');
+  const { filter } = useSelector((state) => state.products);
+  const [partNoValue, setPartNoValue] = useState(filter.partNo);
+
+  // console.log(filter);
 
   useEffect(() => {
-    if (partNo === '') setPartNoValue('');
-    if (partName === '') setPartNameValue('');
-  }, [partName, partNo]);
+    if (
+      filter.partName === '' &&
+      filter.class === '' &&
+      filter.model === '' &&
+      filter.partNo === ''
+    )
+      setPartNoValue('');
+  }, [filter]);
 
   const onPartNoFindHandler = () => {
     dispatch(rdxUpdateFilter({ partNo: partNoValue }));
-  };
-
-  const onPartNameFindHandler = () => {
-    dispatch(rdxUpdateFilter({ partName: partNameValue }));
   };
 
   return (
@@ -40,23 +42,6 @@ export default function FilterPartInfo() {
           InputProps={{
             endAdornment: (
               <Button color="primary" variant="contained" onClick={onPartNoFindHandler}>
-                Find
-              </Button>
-            ),
-          }}
-        />
-      </FormControl>
-      <FormControl variant="outlined" sx={{ width: '100%' }}>
-        <TextField
-          variant="outlined"
-          onChange={(e) => setPartNameValue(e.target.value)}
-          fullWidth
-          label="Part Name"
-          value={partNameValue}
-          type="text"
-          InputProps={{
-            endAdornment: (
-              <Button color="primary" variant="contained" onClick={onPartNameFindHandler}>
                 Find
               </Button>
             ),

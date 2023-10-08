@@ -16,14 +16,12 @@ import FilterBrand from './filter-brand';
 import FilterCategory from './filter-category';
 import FilterPartInfo from './filter-partInfo';
 
-export default function EcommerceFilters({ open, onClose }) {
+export default function SparePartsViewFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
 
   const isDisabled = filter.model === '';
-
-  const handleClearAll = () => dispatch(rdxClearFilter());
 
   const renderContent = (
     <Stack
@@ -36,16 +34,16 @@ export default function EcommerceFilters({ open, onClose }) {
         pr: 5,
       }}
     >
-      <Block title="Part Info">
+      <Block title="Search By Part Number">
         <FilterPartInfo />
       </Block>
 
-      <Block title="Brand">
+      <Block title="Search By Part Info">
         <FilterBrand />
       </Block>
 
       <Block
-        title="Category"
+        title="Filter Results By Category"
         sx={{
           visibility: isDisabled ? 'hidden' : 'visible',
           opacity: isDisabled ? 0 : 1,
@@ -55,17 +53,6 @@ export default function EcommerceFilters({ open, onClose }) {
       >
         <FilterCategory />
       </Block>
-
-      <Button
-        fullWidth
-        color="primary"
-        size="large"
-        variant="contained"
-        startIcon={<Iconify icon="carbon:trash-can" />}
-        onClick={handleClearAll}
-      >
-        Clear All
-      </Button>
     </Stack>
   );
 
@@ -93,7 +80,7 @@ export default function EcommerceFilters({ open, onClose }) {
   );
 }
 
-EcommerceFilters.propTypes = {
+SparePartsViewFilters.propTypes = {
   onClose: PropTypes.func,
   open: PropTypes.bool,
 };

@@ -7,7 +7,6 @@ import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/materi
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
-import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
 function InternationalBusiness() {
   const theme = useTheme();
@@ -19,6 +18,7 @@ function InternationalBusiness() {
         py: 8,
         bgcolor: 'background.neutral',
         position: 'relative',
+        overflow: 'hidden',
       }}
     >
       <Container maxWidth="xl">

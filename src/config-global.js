@@ -4,9 +4,9 @@ export const CONTACT_US_FORM = 'CONTACT-US';
 export const NEWSLETTER_FORM = 'NEWSLETTER';
 export const WHATSAPP_FORM = 'WHATSAPP';
 
-export const AUTO_URL = 'https://kojak-auto.netlify.app/';
+export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
 export const SPARE_PART_URL = 'https://kojak-spare-parts-staging.netlify.app/';
-export const EXCLUSIVE_URL = 'https://kojak-exclusive.netlify.app/';
+export const EXCLUSIVE_URL = 'https://kojak-exclusive.com/';
 export const BUILDING_URL = 'https://kojak-building.com/';
 
 export const SLACK_WEBHOOK_URL =

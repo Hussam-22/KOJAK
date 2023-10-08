@@ -16,7 +16,7 @@ import { rdxSetProducts } from 'src/redux/slices/products';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 import EcommerceProductList from 'src/sections/product/list/ecommerce-product-list';
 
-import EcommerceFilters from '../product/filters/ecommerce-filters';
+import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ export default function SparePartsView() {
     };
     getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, fsGetProductsByPage, page, filter.partNo, filter.model]);
+  }, [dispatch, fsGetProductsByPage, page, filter.partNo, filter.model, filter.partName]);
 
   // useEffect(() => {
   //   const fakeLoading = async () => {
@@ -92,7 +92,7 @@ export default function SparePartsView() {
         }}
         sx={{ mb: { xs: 8, md: 10 } }}
       >
-        <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
+        <SparePartsViewFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
 
         <Box
           sx={{
