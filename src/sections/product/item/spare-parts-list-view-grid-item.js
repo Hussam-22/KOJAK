@@ -47,7 +47,7 @@ export default function SparePartsListViewGridItem({
       sx={{
         bgcolor: 'background.paper',
         borderRadius: 1,
-        outline: isInCart && `solid 3px ${theme.palette.error.main}`,
+        outline: isInCart && `solid 4px ${theme.palette.error.main}`,
       }}
     >
       <Stack

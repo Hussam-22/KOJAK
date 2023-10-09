@@ -29,7 +29,8 @@ export default function SparePartsView() {
   const [loading, setLoading] = useState(false);
   const [documentsCount, setDocumentsCount] = useState(1);
   const { page, filteredProducts: productsData, filter } = useSelector((state) => state.products);
-  const { fsGetProductsByPage, fsGetProductsDocumentsCount } = useAuthContext();
+  const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
+    useAuthContext();
 
   useEffect(() => {
     (async () => setDocumentsCount(await fsGetProductsDocumentsCount()))();
@@ -38,6 +39,7 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
+        console.log({ page, RECORDS_LIMIT, filter });
         setLoading(true);
         dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
         setTimeout(() => {
@@ -57,6 +59,10 @@ export default function SparePartsView() {
   //   fakeLoading();
   // }, [loading, filter]);
 
+  const addParts = async () => fsWriteBatchPartsData();
+
+  console.log(productsData);
+
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Stack
@@ -70,6 +76,8 @@ export default function SparePartsView() {
         <Typography variant="h1" id="scrollToHere">
           CATALOG
         </Typography>
+
+        <Button onClick={addParts}>Add Parts</Button>
 
         <Button
           color="inherit"

@@ -78,15 +78,15 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
   const fsWriteBatchPartsData = useCallback(async () => {
     const batch = writeBatch(DB);
-    const partsToAdd = _partsData.slice(5, 10);
+    const partsToAdd = _partsData.slice(1, 55);
 
     partsToAdd.forEach((element) => {
       const docRef = doc(collection(DB, `/websites/${SITE_NAME}/partsData`));
       batch.set(docRef, {
         ...element,
         docID: docRef.id,
-        brandClass: ['B-Class', 'C-Class'],
-        brandModel: ['W245', 'W246', 'W202', 'W203', 'W204', 'W205'],
+        brandClass: ['A-Class', 'B-Class'],
+        brandModel: ['W168', 'W177', 'W245'],
         category: 'Transmission',
         subCategory: 'Clutch Kit',
       });

@@ -53,7 +53,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
         sx={{
           visibility: isDisabled ? 'hidden' : 'visible',
           opacity: isDisabled ? 0 : 1,
-          height: isDisabled ? 0 : 1,
+          // height: isDisabled ? 0 : 1,
           transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
         }}
       >

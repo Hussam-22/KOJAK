@@ -20,7 +20,7 @@ export default function SparePartsList({ loading, products, totalDocs }) {
   const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const { page: CurrentPage, filter } = useSelector((state) => state.products);
 
-  const pages = useMemo(() => Math.ceil(totalDocs / 25), [totalDocs]);
+  const pagesCount = useMemo(() => Math.ceil(totalDocs / 25), [totalDocs]);
 
   const noFilterApplied =
     JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
@@ -48,7 +48,7 @@ export default function SparePartsList({ loading, products, totalDocs }) {
     <>
       <Box
         rowGap={4}
-        columnGap={2}
+        columnGap={3}
         display="grid"
         gridTemplateColumns={{
           xs: 'repeat(2, 1fr)',
@@ -72,7 +72,7 @@ export default function SparePartsList({ loading, products, totalDocs }) {
 
       <Pagination
         onChange={handlePageChange}
-        count={pages}
+        count={pagesCount}
         color="primary"
         sx={{
           mt: 10,
