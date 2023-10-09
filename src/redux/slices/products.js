@@ -15,6 +15,7 @@ const initialState = {
     model: '',
     category: [],
   },
+  cart: [],
 };
 
 const slice = createSlice({
@@ -23,6 +24,15 @@ const slice = createSlice({
   reducers: {
     rdxUpdatePage(state, action) {
       state.page = action.payload;
+    },
+
+    rdxAddItemsToCart(state, action) {
+      const index = state.cart.findIndex((item) => item === action.payload);
+      if (index === -1) state.cart = [...state.cart, action.payload];
+    },
+
+    rdxRemoveItemsToCart(state, action) {
+      state.cart = state.cart.filter((item) => item !== action.payload);
     },
 
     rdxSetProducts(state, action) {
@@ -91,4 +101,11 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-export const { rdxSetProducts, rdxUpdatePage, rdxUpdateFilter, rdxClearFilter } = slice.actions;
+export const {
+  rdxSetProducts,
+  rdxUpdatePage,
+  rdxUpdateFilter,
+  rdxClearFilter,
+  rdxAddItemsToCart,
+  rdxRemoveItemsToCart,
+} = slice.actions;

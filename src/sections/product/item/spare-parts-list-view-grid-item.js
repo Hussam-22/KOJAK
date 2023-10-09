@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import { Card, Typography } from '@mui/material';
+import { Card, useTheme, Typography } from '@mui/material';
 
 import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
@@ -13,21 +14,42 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { rdxAddItemsToCart, rdxRemoveItemsToCart } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 
-export default function EcommerceProductViewGridItem({ product, sx, ...other }) {
+export default function SparePartsListViewGridItem({
+  product,
+  onClickCartHandler,
+  localStorageCart,
+  sx,
+  ...other
+}) {
+  const theme = useTheme();
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imgUrl, setImageUrl] = useState('');
+  const isInCart = localStorageCart.find((partNumber) => partNumber === product.partNumber);
+
+  const addRemoveCartPartNumber = () => {
+    onClickCartHandler(product.partNumber);
+  };
 
   useEffect(() => {
     (async () => {
       setImageUrl(await fsGetImgDownloadUrl(product.imageName));
     })();
-  }, [fsGetImgDownloadUrl, product.imageName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <Card sx={{ bgcolor: 'background.paper', borderRadius: 1 }}>
+    <Card
+      sx={{
+        bgcolor: 'background.paper',
+        borderRadius: 1,
+        outline: isInCart && `solid 3px ${theme.palette.error.main}`,
+      }}
+    >
       <Stack
         sx={{
           position: 'relative',
@@ -50,12 +72,15 @@ export default function EcommerceProductViewGridItem({ product, sx, ...other }) 
         </Label>
       )} */}
 
-        <Box sx={{ position: 'relative' }}>
+        <Box
+          sx={{
+            position: 'relative',
+          }}
+        >
           <Fab
-            component={RouterLink}
-            href={paths.website.productDetails}
+            onClick={addRemoveCartPartNumber}
             className="add-to-cart"
-            color="primary"
+            color={isInCart ? 'error' : 'primary'}
             size="small"
             sx={{
               right: 8,
@@ -63,21 +88,20 @@ export default function EcommerceProductViewGridItem({ product, sx, ...other }) 
               bottom: 8,
               opacity: 0,
               position: 'absolute',
-              transition: (theme) =>
-                theme.transitions.create('opacity', {
-                  easing: theme.transitions.easing.easeIn,
-                  duration: theme.transitions.duration.shortest,
-                }),
+              transition: theme.transitions.create('opacity', {
+                easing: theme.transitions.easing.easeIn,
+                duration: theme.transitions.duration.shortest,
+              }),
             }}
           >
-            <Iconify icon="carbon:shopping-cart-plus" />
+            <Iconify icon={isInCart ? 'ph:trash' : 'carbon:shopping-cart-plus'} />
           </Fab>
 
           <Image
             src={imgUrl}
             sx={{
               flexShrink: 0,
-              borderRadius: '5px 5px 0 0',
+              borderRadius: '2px 2px 0 0',
               bgcolor: 'background.neutral',
             }}
             ratio="4/3"
@@ -113,7 +137,7 @@ export default function EcommerceProductViewGridItem({ product, sx, ...other }) 
   );
 }
 
-EcommerceProductViewGridItem.propTypes = {
+SparePartsListViewGridItem.propTypes = {
   product: PropTypes.shape({
     description: PropTypes.string,
     docID: PropTypes.string,
@@ -129,4 +153,6 @@ EcommerceProductViewGridItem.propTypes = {
     brandClass: PropTypes.array,
   }),
   sx: PropTypes.object,
+  onClickCartHandler: PropTypes.func,
+  localStorageCart: PropTypes.array,
 };

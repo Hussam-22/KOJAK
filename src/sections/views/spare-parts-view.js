@@ -13,8 +13,8 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { rdxSetProducts } from 'src/redux/slices/products';
+import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
-import EcommerceProductList from 'src/sections/product/list/ecommerce-product-list';
 
 import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
@@ -38,7 +38,6 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
-        console.log('render');
         setLoading(true);
         dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
         setTimeout(() => {
@@ -109,7 +108,7 @@ export default function SparePartsView() {
           )}
 
           {productsData.length !== 0 && (
-            <EcommerceProductList
+            <SparePartsList
               loading={loading}
               products={[...productsData].sort((a, b) => a.id - b.id)}
               totalDocs={documentsCount}

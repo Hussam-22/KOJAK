@@ -1,21 +1,23 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { useMemo, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { useSelector } from 'src/redux/store';
 import { rdxUpdatePage } from 'src/redux/slices/products';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 
-import EcommerceProductViewGridItem from '../item/ecommerce-product-view-grid-item';
-import EcommerceProductViewGridItemSkeleton from '../item/ecommerce-product-view-grid-item-skeleton';
+import SparePartsListViewGridItem from '../item/spare-parts-list-view-grid-item';
+import SparePartsListViewGridItemSkeleton from '../item/spare-parts-list-view-grid-item-skeleton';
 
 // ----------------------------------------------------------------------
 
-export default function EcommerceProductList({ loading, products, totalDocs }) {
+export default function SparePartsList({ loading, products, totalDocs }) {
   const dispatch = useDispatch();
+  const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const { page: CurrentPage, filter } = useSelector((state) => state.products);
 
   const pages = useMemo(() => Math.ceil(totalDocs / 25), [totalDocs]);
@@ -34,6 +36,14 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
     dispatch(rdxUpdatePage(page));
   };
 
+  // Function to update the cart and localStorage
+  const onClickCartHandler = (partNumber) => {
+    if (localStorageCart.includes(partNumber))
+      SetLocalStorageCart((prevState) => prevState.filter((item) => item !== partNumber));
+    if (!localStorageCart.includes(partNumber))
+      SetLocalStorageCart((prevState) => [...prevState, partNumber]);
+  };
+
   const resultsFound = (
     <>
       <Box
@@ -48,9 +58,14 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
       >
         {(loading ? [...Array(16)] : products).map((product, index) =>
           product ? (
-            <EcommerceProductViewGridItem key={product.docID} product={product} />
+            <SparePartsListViewGridItem
+              key={product.docID}
+              product={product}
+              onClickCartHandler={onClickCartHandler}
+              localStorageCart={localStorageCart}
+            />
           ) : (
-            <EcommerceProductViewGridItemSkeleton key={index} />
+            <SparePartsListViewGridItemSkeleton key={index} />
           )
         )}
       </Box>
@@ -80,7 +95,7 @@ export default function EcommerceProductList({ loading, products, totalDocs }) {
   );
 }
 
-EcommerceProductList.propTypes = {
+SparePartsList.propTypes = {
   loading: PropTypes.bool,
   products: PropTypes.array,
   totalDocs: PropTypes.number,
