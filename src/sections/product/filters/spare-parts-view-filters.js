@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Drawer from '@mui/material/Drawer';
+import { LoadingButton } from '@mui/lab';
 import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
@@ -13,8 +14,8 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxClearFilter } from 'src/redux/slices/products';
 
 import FilterBrand from './filter-brand';
-import FilterCategory from './filter-category';
 import FilterPartInfo from './filter-partInfo';
+import FilterCategory from './filter-category';
 
 export default function SparePartsViewFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
@@ -22,6 +23,11 @@ export default function SparePartsViewFilters({ open, onClose }) {
   const { filter } = useSelector((state) => state.products);
 
   const isDisabled = filter.model === '';
+  const isBtnHidden = filter.model === '' && filter.class === '' && filter.partNo === '';
+
+  const handleClearAll = () => {
+    dispatch(rdxClearFilter());
+  };
 
   const renderContent = (
     <Stack
@@ -53,6 +59,19 @@ export default function SparePartsViewFilters({ open, onClose }) {
       >
         <FilterCategory />
       </Block>
+
+      {!isBtnHidden && (
+        <LoadingButton
+          fullWidth
+          color="primary"
+          size="large"
+          variant="contained"
+          startIcon={<Iconify icon="carbon:trash-can" />}
+          onClick={handleClearAll}
+        >
+          Clear All
+        </LoadingButton>
+      )}
     </Stack>
   );
 

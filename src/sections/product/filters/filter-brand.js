@@ -30,8 +30,6 @@ export default function FilterBrand() {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
 
-  console.log(filter);
-
   const schema = Yup.object().shape({
     class: Yup.string().required('Car Class is required'),
     model: Yup.string().when('class', {
@@ -46,8 +44,6 @@ export default function FilterBrand() {
     // partName: '',
   };
 
-  console.log({ defaultValues });
-
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues,
@@ -56,7 +52,6 @@ export default function FilterBrand() {
   const {
     handleSubmit,
     watch,
-    setValue,
     reset,
     formState: { isSubmitting },
   } = methods;
@@ -64,22 +59,18 @@ export default function FilterBrand() {
   const values = watch();
 
   useEffect(() => {
-    if (filter.class === '' && filter.model === '' && filter.partNo === '') reset();
+    if (filter.class === '' && filter.model === '') reset({ class: '', model: '' });
   }, [filter, reset]);
 
   const onSubmit = handleSubmit(async (formData) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    dispatch(rdxClearFilter());
     dispatch(
       rdxUpdateFilter({
         ...formData,
       })
     );
-    await new Promise((resolve) => setTimeout(resolve, 1000));
   });
-
-  const handleClearAll = () => {
-    reset({ class: '', mode: 'None' });
-    dispatch(rdxClearFilter());
-  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -101,13 +92,14 @@ export default function FilterBrand() {
           disabled={values.class === ''}
         >
           <Divider sx={{ borderStyle: 'dashed' }} />
-          {_mercedesClasses
-            .find((option) => option.class === values.class)
-            ?.models.map((option) => (
-              <MenuItem key={option.model} value={option.model}>
-                {`${option.model} - ${option.productionYears}`}
-              </MenuItem>
-            ))}
+          {values.class !== '' &&
+            _mercedesClasses
+              .find((option) => option.class === values.class)
+              ?.models.map((option) => (
+                <MenuItem key={option.model} value={option.model}>
+                  {`${option.model} - ${option.productionYears}`}
+                </MenuItem>
+              ))}
         </RHFSelect>
 
         {/* <RHFTextField
@@ -139,17 +131,6 @@ export default function FilterBrand() {
             fullWidth
           >
             Find Part
-          </LoadingButton>
-
-          <LoadingButton
-            fullWidth
-            color="primary"
-            size="large"
-            variant="contained"
-            startIcon={<Iconify icon="carbon:trash-can" />}
-            onClick={handleClearAll}
-          >
-            Clear All
           </LoadingButton>
         </Stack>
       </Stack>

@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { LoadingButton } from '@mui/lab';
 import TextField from '@mui/material/TextField';
-import { Stack, Button, FormControl } from '@mui/material';
+import { Stack, Button, IconButton, FormControl } from '@mui/material';
 
-import { rdxUpdateFilter } from 'src/redux/slices/products';
+import Iconify from 'src/components/iconify';
+import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 
@@ -12,21 +15,23 @@ export default function FilterPartInfo() {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
   const [partNoValue, setPartNoValue] = useState(filter.partNo);
-
-  // console.log(filter);
+  const partNoRef = useRef();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (
-      filter.partName === '' &&
-      filter.class === '' &&
-      filter.model === '' &&
-      filter.partNo === ''
-    )
-      setPartNoValue('');
+    if (filter.class === '' && filter.model === '' && filter.partNo === '') setPartNoValue('');
   }, [filter]);
 
-  const onPartNoFindHandler = () => {
+  useEffect(() => {
+    if (filter.class !== '' && filter.model !== '') setPartNoValue('');
+  }, [filter]);
+
+  const onPartNoFindHandler = async () => {
+    setLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    dispatch(rdxClearFilter());
     dispatch(rdxUpdateFilter({ partNo: partNoValue }));
+    setLoading(false);
   };
 
   return (
@@ -39,11 +44,17 @@ export default function FilterPartInfo() {
           label="Part Number"
           type="text"
           value={partNoValue}
+          inputRef={partNoRef}
           InputProps={{
             endAdornment: (
-              <Button color="primary" variant="contained" onClick={onPartNoFindHandler}>
-                Find
-              </Button>
+              <LoadingButton
+                color="primary"
+                onClick={onPartNoFindHandler}
+                disabled={partNoRef?.current?.value === ''}
+                loading={loading}
+              >
+                <Iconify icon="octicon:search-16" />
+              </LoadingButton>
             ),
           }}
         />
