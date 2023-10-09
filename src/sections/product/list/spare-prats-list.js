@@ -15,12 +15,12 @@ import SparePartsListViewGridItemSkeleton from '../item/spare-parts-list-view-gr
 
 // ----------------------------------------------------------------------
 
-export default function SparePartsList({ loading, products, totalDocs }) {
+export default function SparePartsList({ loading, products, totalDocs, recordsLimit }) {
   const dispatch = useDispatch();
   const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const { page: CurrentPage, filter } = useSelector((state) => state.products);
 
-  const pagesCount = useMemo(() => Math.ceil(totalDocs / 25), [totalDocs]);
+  const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
   const noFilterApplied =
     JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
@@ -70,18 +70,20 @@ export default function SparePartsList({ loading, products, totalDocs }) {
         )}
       </Box>
 
-      <Pagination
-        onChange={handlePageChange}
-        count={pagesCount}
-        color="primary"
-        sx={{
-          mt: 10,
-          mb: 5,
-          [`& .${paginationClasses.ul}`]: {
-            justifyContent: 'center',
-          },
-        }}
-      />
+      {products.length > recordsLimit && (
+        <Pagination
+          onChange={handlePageChange}
+          count={pagesCount}
+          color="primary"
+          sx={{
+            mt: 10,
+            mb: 5,
+            [`& .${paginationClasses.ul}`]: {
+              justifyContent: 'center',
+            },
+          }}
+        />
+      )}
     </>
   );
 
@@ -99,4 +101,5 @@ SparePartsList.propTypes = {
   loading: PropTypes.bool,
   products: PropTypes.array,
   totalDocs: PropTypes.number,
+  recordsLimit: PropTypes.number,
 };

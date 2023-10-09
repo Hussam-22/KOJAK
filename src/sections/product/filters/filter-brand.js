@@ -124,6 +124,7 @@ export default function FilterBrand() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
+            disabled={values.model === ''}
             sx={{
               whiteSpace: 'nowrap',
             }}

@@ -61,8 +61,6 @@ export default function SparePartsView() {
 
   const addParts = async () => fsWriteBatchPartsData();
 
-  console.log(productsData);
-
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Stack
@@ -120,6 +118,7 @@ export default function SparePartsView() {
               loading={loading}
               products={[...productsData].sort((a, b) => a.id - b.id)}
               totalDocs={documentsCount}
+              recordsLimit={RECORDS_LIMIT}
             />
           )}
         </Box>

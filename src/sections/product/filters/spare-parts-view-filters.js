@@ -23,7 +23,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
   const { filter } = useSelector((state) => state.products);
 
   const isDisabled = filter.model === '';
-  const isBtnHidden = filter.model === '' && filter.class === '' && filter.partNo === '';
+  const isBtnHidden = filter.partNo === '' && filter.model === '' && filter.class === '';
 
   const handleClearAll = () => {
     dispatch(rdxClearFilter());
@@ -34,7 +34,8 @@ export default function SparePartsViewFilters({ open, onClose }) {
       spacing={3}
       alignItems="flex-start"
       sx={{
-        flexShrink: 0,
+        // flexShrink: 0,
+        height: 1,
         width: { xs: 1, md: 320 },
         borderRight: 'dashed 1px #333',
         pr: 5,
@@ -53,7 +54,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
         sx={{
           visibility: isDisabled ? 'hidden' : 'visible',
           opacity: isDisabled ? 0 : 1,
-          // height: isDisabled ? 0 : 1,
+          height: isDisabled ? 0 : 1,
           transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
         }}
       >
@@ -63,7 +64,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
       {!isBtnHidden && (
         <LoadingButton
           fullWidth
-          color="primary"
+          color="secondary"
           size="large"
           variant="contained"
           startIcon={<Iconify icon="carbon:trash-can" />}
