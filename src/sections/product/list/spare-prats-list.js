@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { useSelector } from 'src/redux/store';
-import { rdxUpdatePage } from 'src/redux/slices/products';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { rdxUpdatePage, rdxUpdateCart } from 'src/redux/slices/products';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 
 import SparePartsListViewGridItem from '../item/spare-parts-list-view-grid-item';
@@ -38,10 +38,13 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
   // Function to update the cart and localStorage
   const onClickCartHandler = (partNumber) => {
-    if (localStorageCart.includes(partNumber))
+    if (localStorageCart.includes(partNumber)) {
       SetLocalStorageCart((prevState) => prevState.filter((item) => item !== partNumber));
+    }
     if (!localStorageCart.includes(partNumber))
       SetLocalStorageCart((prevState) => [...prevState, partNumber]);
+
+    dispatch(rdxUpdateCart(partNumber));
   };
 
   const resultsFound = (

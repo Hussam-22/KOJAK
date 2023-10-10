@@ -104,7 +104,7 @@ const COMMON = {
   error: ERROR,
   custom: CUSTOM,
   grey: GREY,
-  divider: alpha(GREY[500], 0.2),
+  divider: '#333',
   action: {
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.16),

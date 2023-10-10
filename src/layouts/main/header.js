@@ -10,15 +10,16 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
-import { paths } from 'src/routes/paths';
+import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 import Iconify from 'src/components/iconify/Iconify';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
-import TranslateIcon from 'src/components/logo/translate-icon';
+import { useResponsive } from 'src/hooks/use-responsive';
+import TranslateIcon from 'src/layouts/main/translate-icon';
+import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
@@ -113,6 +114,8 @@ export default function Header({ headerOnDark }) {
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
                   <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
+
+                  <OpenCartIconButton light={light} toggleLanguageHandler={toggleLanguageHandler} />
                 </Stack>
               )}
             </Stack>

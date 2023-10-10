@@ -32,8 +32,6 @@ export default function SparePartsView() {
   const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
     useAuthContext();
 
-  console.log(productsData);
-
   useEffect(() => {
     (async () => setDocumentsCount(await fsGetProductsDocumentsCount()))();
   }, [fsGetProductsDocumentsCount]);
@@ -41,7 +39,6 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
-        console.log({ page, RECORDS_LIMIT, filter });
         setLoading(true);
         dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
         setTimeout(() => {

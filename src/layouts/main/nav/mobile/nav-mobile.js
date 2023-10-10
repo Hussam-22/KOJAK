@@ -16,7 +16,7 @@ import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
 import { useBoolean } from 'src/hooks/use-boolean';
-import TranslateIcon from 'src/components/logo/translate-icon';
+import TranslateIcon from 'src/layouts/main/translate-icon';
 
 import { NAV } from '../../../config-layout';
 

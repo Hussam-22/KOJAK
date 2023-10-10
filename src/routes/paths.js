@@ -9,6 +9,7 @@ export const paths = {
     contactUs: '/contact-us',
     blogPosts: '/blog-posts',
     blogItem: '/blog-posts/',
+    cart: '/cart',
   },
   page404: '/404',
   page500: '/500',

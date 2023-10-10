@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { current, createSlice } from '@reduxjs/toolkit';
 
 // utils
 
@@ -26,13 +26,16 @@ const slice = createSlice({
       state.page = action.payload;
     },
 
-    rdxAddItemsToCart(state, action) {
-      const index = state.cart.findIndex((item) => item === action.payload);
-      if (index === -1) state.cart = [...state.cart, action.payload];
+    rdxLoadCartFromStorage(state, action) {
+      state.cart = [...action.payload];
     },
 
-    rdxRemoveItemsToCart(state, action) {
-      state.cart = state.cart.filter((item) => item !== action.payload);
+    rdxUpdateCart(state, action) {
+      if (!state.cart.includes(action.payload)) {
+        state.cart = [...state.cart, action.payload];
+      } else {
+        state.cart = state.cart.filter((partNumber) => partNumber !== action.payload);
+      }
     },
 
     rdxSetProducts(state, action) {
@@ -106,6 +109,6 @@ export const {
   rdxUpdatePage,
   rdxUpdateFilter,
   rdxClearFilter,
-  rdxAddItemsToCart,
-  rdxRemoveItemsToCart,
+  rdxUpdateCart,
+  rdxLoadCartFromStorage,
 } = slice.actions;
