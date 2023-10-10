@@ -70,20 +70,18 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
         )}
       </Box>
 
-      {products.length > recordsLimit && (
-        <Pagination
-          onChange={handlePageChange}
-          count={pagesCount}
-          color="primary"
-          sx={{
-            mt: 10,
-            mb: 5,
-            [`& .${paginationClasses.ul}`]: {
-              justifyContent: 'center',
-            },
-          }}
-        />
-      )}
+      <Pagination
+        onChange={handlePageChange}
+        count={pagesCount}
+        color="primary"
+        sx={{
+          mt: 10,
+          mb: 5,
+          [`& .${paginationClasses.ul}`]: {
+            justifyContent: 'center',
+          },
+        }}
+      />
     </>
   );
 

@@ -20,7 +20,7 @@ import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
 // ----------------------------------------------------------------------
 
-const RECORDS_LIMIT = 25;
+const RECORDS_LIMIT = 24;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {
@@ -31,6 +31,8 @@ export default function SparePartsView() {
   const { page, filteredProducts: productsData, filter } = useSelector((state) => state.products);
   const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
     useAuthContext();
+
+  console.log(productsData);
 
   useEffect(() => {
     (async () => setDocumentsCount(await fsGetProductsDocumentsCount()))();

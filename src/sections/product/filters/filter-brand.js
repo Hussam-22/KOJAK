@@ -97,7 +97,8 @@ export default function FilterBrand() {
               .find((option) => option.class === values.class)
               ?.models.map((option) => (
                 <MenuItem key={option.model} value={option.model}>
-                  {`${option.model} - ${option.productionYears}`}
+                  {/* {`${option.model} - ${option.productionYears}`} */}
+                  {option.productionYears}
                 </MenuItem>
               ))}
         </RHFSelect>

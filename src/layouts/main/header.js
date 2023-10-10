@@ -15,8 +15,9 @@ import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
-import { useOffSetTop } from 'src/hooks/use-off-set-top';
+import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import TranslateIcon from 'src/components/logo/translate-icon';
 
 import { HEADER } from '../config-layout';
@@ -88,18 +89,20 @@ export default function Header({ headerOnDark }) {
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
               <Logo small light={light} />
-              {/* <Logo small /> */}
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-              {mdUp && <NavDesktop data={navConfig} />}
+              {mdUp && (
+                <NavDesktop data={navConfig.filter((link) => link.title !== 'spareParts')} />
+              )}
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
-                    color="error"
+                    color="primary"
                     onClick={() => navigate(paths.website.spareParts)}
+                    startIcon={<Iconify icon="octicon:search-16" />}
                   >
                     {translate('common.actionButton')}
                   </Button>
