@@ -211,9 +211,10 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
   const fsGetCartParts = useCallback(
     async (cartPartsArray) => {
+      const partsNumbersArray = cartPartsArray.map((part) => part.partNumber);
       const docRef = query(
         collectionGroup(DB, 'partsData'),
-        where('partNumber', 'in', cartPartsArray)
+        where('partNumber', 'in', partsNumbersArray)
       );
 
       const querySnapshot = await getDocs(docRef);
@@ -224,9 +225,11 @@ export function AuthProvider({ children }) {
       querySnapshot.forEach((document) => {
         const asyncOperation = async () => {
           const imageUrl = await fsGetImgDownloadUrl(document.data().imageName);
+          const { partNumber } = document.data();
           documents.push({
             partData: document.data(),
             imageUrl,
+            qty: cartPartsArray.find((item) => item.partNumber === partNumber).qty,
           });
         };
         asyncOperations.push(asyncOperation());

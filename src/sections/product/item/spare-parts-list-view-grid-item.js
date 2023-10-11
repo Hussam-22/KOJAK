@@ -28,7 +28,9 @@ export default function SparePartsListViewGridItem({
   const theme = useTheme();
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imgUrl, setImageUrl] = useState('');
-  const isInCart = localStorageCart.find((partNumber) => partNumber === product.partNumber);
+  const isInCart = localStorageCart.find(
+    (storageItem) => storageItem.partNumber === product.partNumber
+  );
 
   const addRemoveCartPartNumber = () => {
     onClickCartHandler(product.partNumber);

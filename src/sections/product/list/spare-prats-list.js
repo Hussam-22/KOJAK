@@ -38,13 +38,15 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
   // Function to update the cart and localStorage
   const onClickCartHandler = (partNumber) => {
-    if (localStorageCart.includes(partNumber)) {
-      SetLocalStorageCart((prevState) => prevState.filter((item) => item !== partNumber));
+    if (localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
+      SetLocalStorageCart((prevState) =>
+        prevState.filter((item) => item.partNumber !== partNumber)
+      );
     }
-    if (!localStorageCart.includes(partNumber))
-      SetLocalStorageCart((prevState) => [...prevState, partNumber]);
+    if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
+      SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
 
-    dispatch(rdxUpdateCart(partNumber));
+    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
   };
 
   const resultsFound = (

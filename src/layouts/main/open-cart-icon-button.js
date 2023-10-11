@@ -4,11 +4,9 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Box, Badge, styled, IconButton } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 // ----------------------------------------------------------------------
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -21,13 +19,15 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function CartIconButton({ light, sx }) {
-  const theme = useTheme();
+function CartIconButton() {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state.products);
-  const COLOR = light ? theme.palette.common.white : theme.palette.common.black;
 
-  const singleLogo = (
+  console.log(cart);
+
+  const cartItemsQty = cart.reduce((accum, item) => accum + item.qty, 0);
+
+  const cartIcon = (
     <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000">
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
@@ -48,22 +48,22 @@ function CartIconButton({ light, sx }) {
   );
 
   return (
-    <StyledBadge badgeContent={cart.length} color="warning">
+    <StyledBadge badgeContent={cartItemsQty} color="warning">
       <Box
         sx={{ width: 48, height: 48 }}
         component={IconButton}
         onClick={() => navigate(paths.website.cart)}
         aria-label="open-cart"
       >
-        {singleLogo}
+        {cartIcon}
       </Box>
     </StyledBadge>
   );
 }
 
-CartIconButton.propTypes = {
-  light: PropTypes.bool,
-  sx: PropTypes.object,
-};
+// CartIconButton.propTypes = {
+//   light: PropTypes.bool,
+//   sx: PropTypes.object,
+// };
 
 export default memo(CartIconButton);

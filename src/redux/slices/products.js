@@ -31,10 +31,12 @@ const slice = createSlice({
     },
 
     rdxUpdateCart(state, action) {
-      if (!state.cart.includes(action.payload)) {
-        state.cart = [...state.cart, action.payload];
+      if (state.cart.some((cart) => cart.partNumber === action.payload.partNumber)) {
+        console.log('DELETE');
+        state.cart = state.cart.filter((cart) => cart.partNumber !== action.payload.partNumber);
       } else {
-        state.cart = state.cart.filter((partNumber) => partNumber !== action.payload);
+        console.log('ADD');
+        state.cart = [...state.cart, action.payload];
       }
     },
 

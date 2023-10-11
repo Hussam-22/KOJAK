@@ -115,7 +115,7 @@ export default function Header({ headerOnDark }) {
                   />
                   <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
 
-                  <OpenCartIconButton light={light} toggleLanguageHandler={toggleLanguageHandler} />
+                  <OpenCartIconButton />
                 </Stack>
               )}
             </Stack>
