@@ -208,6 +208,37 @@ export function AuthProvider({ children }) {
     return url;
   }, []);
 
+  // ----------------------------------------------------------------------------
+  const fsGetCartParts = useCallback(
+    async (cartPartsArray) => {
+      const docRef = query(
+        collectionGroup(DB, 'partsData'),
+        where('partNumber', 'in', cartPartsArray)
+      );
+
+      const querySnapshot = await getDocs(docRef);
+      const documents = [];
+
+      const asyncOperations = [];
+
+      querySnapshot.forEach((document) => {
+        const asyncOperation = async () => {
+          const imageUrl = await fsGetImgDownloadUrl(document.data().imageName);
+          documents.push({
+            partData: document.data(),
+            imageUrl,
+          });
+        };
+        asyncOperations.push(asyncOperation());
+      });
+
+      await Promise.all(asyncOperations);
+
+      return documents;
+    },
+    [fsGetImgDownloadUrl]
+  );
+
   // ------------------ | Get image Download URL | ------------------
   const fsGetFolderImages = useCallback(async (folderID) => {
     const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
@@ -229,6 +260,7 @@ export function AuthProvider({ children }) {
       fsGetProductsByPage,
       fsGetProductsDocumentsCount,
       fsWriteBatchPartsData,
+      fsGetCartParts,
     }),
     [
       addNewForm,
@@ -237,6 +269,7 @@ export function AuthProvider({ children }) {
       fsGetProductsByPage,
       fsGetProductsDocumentsCount,
       fsWriteBatchPartsData,
+      fsGetCartParts,
     ]
   );
 

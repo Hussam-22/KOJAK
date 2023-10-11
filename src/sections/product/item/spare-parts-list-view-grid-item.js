@@ -15,7 +15,6 @@ import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
-import { rdxAddItemsToCart, rdxRemoveItemsToCart } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 

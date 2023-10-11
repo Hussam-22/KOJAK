@@ -8,7 +8,7 @@ export default function CartView() {
     <Box sx={{ bgcolor: 'background.default' }}>
       <Container sx={{ py: 8 }}>
         <CartHeader />
-        <Divider sx={{ borderStyle: 'dashed', my: 3, color: (theme) => theme.palette.divider }} />
+        {/* <Divider sx={{ borderStyle: 'dashed', my: 3, color: (theme) => theme.palette.divider }} /> */}
         <CartItems />
       </Container>
     </Box>

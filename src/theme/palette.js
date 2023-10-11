@@ -65,9 +65,9 @@ const WARNING = {
 };
 
 const ERROR = {
-  lighter: '#FFE9D5',
-  light: '#FFAC82',
-  main: '#C72C41',
+  lighter: '#F8C9CD',
+  light: '#EB5C68',
+  main: '#E63946',
   dark: '#B71D18',
   darker: '#7A0916',
   contrastText: '#FFFFFF',
