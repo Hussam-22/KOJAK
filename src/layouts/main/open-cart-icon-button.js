@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { Box, Badge, styled, IconButton } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image/Image';
 
 // ----------------------------------------------------------------------
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -19,11 +20,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function CartIconButton() {
+function CartIconButton({ disabled = false }) {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state.products);
-
-  console.log(cart);
 
   const cartItemsQty = cart.reduce((accum, item) => accum + item.qty, 0);
 
@@ -47,7 +46,7 @@ function CartIconButton() {
     </svg>
   );
 
-  return (
+  return !disabled ? (
     <StyledBadge badgeContent={cartItemsQty} color="warning">
       <Box
         sx={{ width: 48, height: 48 }}
@@ -58,12 +57,15 @@ function CartIconButton() {
         {cartIcon}
       </Box>
     </StyledBadge>
+  ) : (
+    <Box sx={{ width: 85, height: 85 }} aria-label="cart-empty">
+      {cartIcon}
+    </Box>
   );
 }
 
-// CartIconButton.propTypes = {
-//   light: PropTypes.bool,
-//   sx: PropTypes.object,
-// };
+CartIconButton.propTypes = {
+  disabled: PropTypes.bool,
+};
 
 export default memo(CartIconButton);

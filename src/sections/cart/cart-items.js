@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,17 +15,22 @@ import {
   IconButton,
 } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { rdxUpdateCart } from 'src/redux/slices/products';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
+import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
 function CartItems() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { fsGetCartParts } = useAuthContext();
   const [cartItems, setCartItems] = useState([]);
   const { cart } = useSelector((state) => state.products);
   const theme = useTheme();
+  const [_, setLocalStorageCart] = useLocalStorage('cart');
 
   const updateCartState = (partNumber) =>
     setCartItems((state) =>
@@ -33,46 +39,101 @@ function CartItems() {
 
   useEffect(() => {
     (async () => {
-      setCartItems(await fsGetCartParts(cart));
+      if (cart.length !== 0) setCartItems(await fsGetCartParts(cart));
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onDeleteClickHandler = (partNumber) => {
+    setLocalStorageCart((prevState) =>
+      prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
+    );
+    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+    updateCartState(partNumber);
+  };
+
   return (
-    <Stack
-      direction="column"
-      spacing={1}
-      divider={
-        <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
-      }
-      sx={{ py: 4 }}
-    >
-      {cartItems
-        .sort((a, b) => b.partData.id - a.partData.id)
-        .map((cartItem, index) => (
-          <Box
-            key={cartItem.partData.partNumber}
-            sx={{ borderRadius: 1, bgcolor: 'background.default' }}
+    <Box sx={{ py: 4 }}>
+      {cartItems.length === 0 && (
+        <Stack direction="column" spacing={2} alignItems="center">
+          <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
+          <OpenCartIconButton disabled />
+          <Typography variant="h3" sx={{ color: 'secondary.main' }}>
+            Your Cart is Empty !!
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<Iconify icon="fluent-emoji-high-contrast:plus" width={24} height={24} />}
+            onClick={() => navigate(paths.website.spareParts)}
           >
-            <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
-              <Typography variant="h5">{index + 1}</Typography>
-              <Image
-                src={cartItem.imageUrl}
-                width={85}
-                height={85}
-                alt={`spare-part${cartItem.partData.partNumber}`}
-                sx={{ borderRadius: 1 }}
-              />
-              <PartInfo partData={cartItem.partData} />
-              <ActionButtons
-                partNumber={cartItem.partData.partNumber}
-                qty={cartItem.qty}
-                updateCartState={updateCartState}
-              />
-            </Stack>
-          </Box>
-        ))}
-    </Stack>
+            Add Spare Parts to Cart
+          </Button>
+        </Stack>
+      )}
+
+      {cartItems.length !== 0 && (
+        <Stack
+          direction="column"
+          spacing={1}
+          divider={
+            <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
+          }
+        >
+          {cartItems
+            .sort((a, b) => b.partData.id - a.partData.id)
+            .map((cartItem, index) => (
+              <Box
+                key={cartItem.partData.partNumber}
+                sx={{ borderRadius: 1, bgcolor: 'background.default' }}
+              >
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="h5">{index + 1}</Typography>
+                  <Image
+                    src={cartItem.imageUrl}
+                    width={85}
+                    height={85}
+                    alt={`spare-part${cartItem.partData.partNumber}`}
+                    sx={{ borderRadius: 1 }}
+                  />
+                  <PartInfo partData={cartItem.partData} />
+                  <ActionButtons
+                    partNumber={cartItem.partData.partNumber}
+                    qty={cartItem.qty}
+                    onDeleteClickHandler={onDeleteClickHandler}
+                  />
+                </Stack>
+              </Box>
+            ))}
+        </Stack>
+      )}
+
+      {cartItems.length !== 0 && (
+        <Divider
+          sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 2 }}
+          flexItem
+        />
+      )}
+
+      {cartItems.length !== 0 && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<Iconify icon="ant-design:dollar-twotone" width={24} height={24} />}
+          >
+            Inquire About Part Price(s)
+          </Button>
+        </Box>
+      )}
+    </Box>
   );
 }
 export default CartItems;
@@ -131,20 +192,13 @@ PartInfo.propTypes = { partData: PropTypes.object };
 
 // ----------------------------------------------------------------------------
 
-function ActionButtons({ partNumber, qty, updateCartState }) {
-  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
-  const dispatch = useDispatch();
-
-  const onDeleteClickHandler = () => {
-    setLocalStorageCart((prevState) =>
-      prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
-    );
-    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
-    updateCartState(partNumber);
-  };
-
+function ActionButtons({ partNumber, qty, onDeleteClickHandler }) {
   // if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
   //   SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
+
+  const onDeleteClick = () => {
+    onDeleteClickHandler(partNumber);
+  };
 
   return (
     <Stack direction="row" spacing={3}>
@@ -157,7 +211,7 @@ function ActionButtons({ partNumber, qty, updateCartState }) {
           <Iconify icon="bxs:down-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />
         </IconButton>
       </Stack>
-      <IconButton onClick={onDeleteClickHandler}>
+      <IconButton onClick={onDeleteClick}>
         <Iconify icon="ph:trash" width={26} height={26} sx={{ color: 'error.main' }} />
       </IconButton>
     </Stack>
@@ -167,5 +221,5 @@ function ActionButtons({ partNumber, qty, updateCartState }) {
 ActionButtons.propTypes = {
   partNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   qty: PropTypes.number,
-  updateCartState: PropTypes.func,
+  onDeleteClickHandler: PropTypes.func,
 };
