@@ -48,12 +48,12 @@ export default function SparePartsListViewGridItem({
       sx={{
         bgcolor: 'background.paper',
         borderRadius: 1,
-        outline: isInCart && `solid 4px ${theme.palette.error.main}`,
       }}
     >
       <Stack
         sx={{
           position: 'relative',
+          '.add-to-cart': isInCart && { opacity: 1 },
           '&:hover .add-to-cart': {
             opacity: 1,
           },
