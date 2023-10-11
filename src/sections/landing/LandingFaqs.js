@@ -67,7 +67,7 @@ export default function LandingFaqs() {
     <Box
       sx={{
         py: 15,
-        bgcolor: 'background.neutral',
+        bgcolor: 'background.default',
         position: 'relative',
       }}
     >
