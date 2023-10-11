@@ -9,10 +9,11 @@ import {
   Stack,
   Button,
   Divider,
+  Skeleton,
   useTheme,
   Container,
-  Typography,
   IconButton,
+  Typography,
 } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
@@ -52,9 +53,31 @@ function CartItems() {
     updateCartState(partNumber);
   };
 
+  const renderSkeleton = [...Array(cart.length)].map((item, index) => (
+    <Stack key={index} direction="column" spacing={1}>
+      <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
+        <Skeleton variant="text" width="1.25%" />
+        <Skeleton variant="rectangular" width={85} height={85} sx={{ borderRadius: 1 }} />
+        <Stack sx={{ p: 1, flexGrow: 1 }}>
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="35%" />
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="25%" />
+        </Stack>
+        <Stack direction="row" spacing={3}>
+          <Skeleton variant="rounded" width={25} height={25} />
+          <Skeleton variant="rounded" width={25} height={25} />
+        </Stack>
+      </Stack>
+      <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
+    </Stack>
+  ));
+
   return (
     <Box sx={{ py: 4 }}>
-      {cartItems.length === 0 && (
+      {cart.length !== 0 && cartItems.length === 0 && renderSkeleton}
+      {cart.length === 0 && cartItems.length === 0 && (
         <Stack direction="column" spacing={2} alignItems="center">
           <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
           <OpenCartIconButton disabled />
