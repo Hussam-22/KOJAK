@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,7 +13,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
-import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
+import { CART_FORM, SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -25,6 +26,7 @@ export default function CartDrawerForm({ payload }) {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
+  const { cart } = useSelector((state) => state.products);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -61,18 +63,16 @@ export default function CartDrawerForm({ payload }) {
   const {
     reset,
     handleSubmit,
-    setValue,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
   } = methods;
 
-  useEffect(() => {
-    if (payload?.subject !== undefined || payload?.subject !== '')
-      setValue('subject', payload?.subject);
-  }, [payload?.subject, setValue]);
-
   const onSubmit = handleSubmit(async (formData) => {
+    console.log(formData);
+    const slackCart = cart.map((item) => `part#: ${item.partNumber} | qty: ${item.qty}`);
     try {
-      const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
+      const dataToSend = Object.entries({ ...formData, ...slackCart })
+        .join('\r\n')
+        .replaceAll(',', ': ');
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({ text: dataToSend }),
@@ -84,8 +84,7 @@ export default function CartDrawerForm({ payload }) {
 
       addNewForm({
         ...formData,
-        subject: `${SITE_NAME} - New Contact Us Form`,
-        source: CONTACT_US_FORM,
+        source: CART_FORM,
       });
 
       await new Promise((resolve) =>

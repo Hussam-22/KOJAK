@@ -35,6 +35,8 @@ function CartItems() {
   const theme = useTheme();
   const [_, setLocalStorageCart] = useLocalStorage('cart');
 
+  console.log(cart);
+
   const openDrawerHandler = () => {
     dispatch(rdxToggleDrawer());
   };

@@ -28,7 +28,7 @@ function CartDrawer() {
       onClose={toggleDrawer}
       PaperProps={{ sx: { bgcolor: 'grey.800', boxShadow: 0 } }}
     >
-      <Box sx={{ width: { md: '25dvw', xs: '50dvw' }, p: 3 }}>
+      <Box sx={{ width: { md: '25dvw', xs: '75dvw' }, p: 3 }}>
         <Typography variant="h5" color="primary">
           Contact Info
         </Typography>

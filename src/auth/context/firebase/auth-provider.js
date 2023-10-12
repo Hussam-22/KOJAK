@@ -21,7 +21,7 @@ import {
 
 import { _partsData } from 'src/_mock/_partsData';
 // config
-import { SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
+import { CART_FORM, SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
 
 //
 import { AuthContext } from './auth-context';
@@ -39,18 +39,37 @@ export function AuthProvider({ children }) {
     const date = new Date();
     const dateTime = date.toDateString();
 
+    if (payload.source === CART_FORM) {
+      return setDoc(newDocRef, {
+        ...payload,
+        website: SITE_NAME,
+        id: newDocRef.id,
+        createdAt: Timestamp.fromDate(new Date()),
+        to: ['hussam@hotmail.co.uk'],
+        message: {
+          subject: 'Spare-Parts Inquiry',
+          html: `
+      <p>Email: ${payload.email}</p>
+      <p>Name: ${payload.fullName}</p>
+      <p>Mobile: ${payload.mobile}</p>
+      <p>Inquiry: ${payload.messageText}</p>
+      <p>---------------------------</p>
+      
+      <p>---------------------------</p>
+      <p>${dateTime.toLocaleString()}</p>
+      <p>${newDocRef.id}</p>
+      `,
+        },
+      });
+    }
+
     if (payload.source === CONTACT_US_FORM) {
       return setDoc(newDocRef, {
         ...payload,
         website: SITE_NAME,
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
-        to: [
-          'hussam@hotmail.co.uk',
-          'info.marketing@kojak-group.com',
-          'queries@kojak-group.com',
-          'customercare@kojak-group.com',
-        ],
+        to: ['hussam@hotmail.co.uk'],
         message: {
           subject: payload.subject,
           html: `
