@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -22,11 +23,12 @@ import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { rdxUpdateCart } from 'src/redux/slices/products';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { varFade, MotionViewport } from 'src/components/animate';
+import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
 function CartItems() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { fsGetCartParts } = useAuthContext();
   const [cartItems, setCartItems] = useState([]);
   const { cart } = useSelector((state) => state.products);
@@ -53,87 +55,52 @@ function CartItems() {
     updateCartState(partNumber);
   };
 
-  const renderSkeleton = [...Array(cart.length)].map((item, index) => (
-    <Stack key={index} direction="column" spacing={1}>
-      <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
-        <Skeleton variant="text" width="1.25%" />
-        <Skeleton variant="rectangular" width={85} height={85} sx={{ borderRadius: 1 }} />
-        <Stack sx={{ p: 1, flexGrow: 1 }}>
-          <Skeleton variant="text" width="15%" />
-          <Skeleton variant="text" width="35%" />
-          <Skeleton variant="text" width="15%" />
-          <Skeleton variant="text" width="15%" />
-          <Skeleton variant="text" width="25%" />
-        </Stack>
-        <Stack direction="row" spacing={3}>
-          <Skeleton variant="rounded" width={25} height={25} />
-          <Skeleton variant="rounded" width={25} height={25} />
-        </Stack>
-      </Stack>
-      <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
-    </Stack>
-  ));
-
   return (
     <Box sx={{ py: 4 }}>
-      {cart.length !== 0 && cartItems.length === 0 && renderSkeleton}
-      {cart.length === 0 && cartItems.length === 0 && (
-        <Stack direction="column" spacing={2} alignItems="center">
-          <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
-          <OpenCartIconButton disabled />
-          <Typography variant="h3" sx={{ color: 'secondary.main' }}>
-            Your Cart is Empty !!
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            startIcon={<Iconify icon="fluent-emoji-high-contrast:plus" width={24} height={24} />}
-            onClick={() => navigate(paths.website.spareParts)}
-          >
-            Add Spare Parts to Cart
-          </Button>
-        </Stack>
-      )}
+      {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
+      {cart.length === 0 && cartItems.length === 0 && <YourCartIsEmpty />}
 
       {cartItems.length !== 0 && (
-        <Stack
-          direction="column"
-          spacing={1}
-          divider={
-            <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
-          }
-        >
-          {cartItems
-            .sort((a, b) => b.partData.id - a.partData.id)
-            .map((cartItem, index) => (
-              <Box
-                key={cartItem.partData.partNumber}
-                sx={{ borderRadius: 1, bgcolor: 'background.default' }}
-              >
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  justifyContent="space-between"
-                  alignItems="center"
+        <Stack direction="column" spacing={1}>
+          <AnimatePresence initial={false}>
+            {cartItems
+              .sort((a, b) => b.partData.id - a.partData.id)
+              .map((cartItem, index) => (
+                <Box
+                  key={cartItem.partData.partNumber}
+                  sx={{ borderRadius: 1, bgcolor: 'background.default' }}
+                  component={m.div}
+                  {...getVariant('fadeInRight')}
                 >
-                  <Typography variant="h5">{index + 1}</Typography>
-                  <Image
-                    src={cartItem.imageUrl}
-                    width={85}
-                    height={85}
-                    alt={`spare-part${cartItem.partData.partNumber}`}
-                    sx={{ borderRadius: 1 }}
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <Typography variant="h5">{index + 1}</Typography>
+
+                    <Image
+                      src={cartItem.imageUrl}
+                      width={85}
+                      height={85}
+                      alt={`spare-part${cartItem.partData.partNumber}`}
+                      sx={{ borderRadius: 1 }}
+                    />
+                    <PartInfo partData={cartItem.partData} />
+                    <ActionButtons
+                      partNumber={cartItem.partData.partNumber}
+                      qty={cartItem.qty}
+                      onDeleteClickHandler={onDeleteClickHandler}
+                    />
+                  </Stack>
+                  <Divider
+                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }}
+                    flexItem
                   />
-                  <PartInfo partData={cartItem.partData} />
-                  <ActionButtons
-                    partNumber={cartItem.partData.partNumber}
-                    qty={cartItem.qty}
-                    onDeleteClickHandler={onDeleteClickHandler}
-                  />
-                </Stack>
-              </Box>
-            ))}
+                </Box>
+              ))}
+          </AnimatePresence>
         </Stack>
       )}
 
@@ -161,6 +128,58 @@ function CartItems() {
 }
 export default CartItems;
 // CartItems.propTypes = { tables: PropTypes.array };
+
+// ----------------------------------------------------------------------------
+function YourCartIsEmpty() {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  return (
+    <Stack direction="column" spacing={2} alignItems="center">
+      <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
+      <OpenCartIconButton disabled />
+      <Typography variant="h3" sx={{ color: 'secondary.main' }}>
+        Your Cart is Empty !!
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        startIcon={<Iconify icon="fluent-emoji-high-contrast:plus" width={24} height={24} />}
+        onClick={() => navigate(paths.website.spareParts)}
+      >
+        Add Spare Parts to Cart
+      </Button>
+    </Stack>
+  );
+}
+
+// ----------------------------------------------------------------------------
+
+function PartsSkeleton({ cartLength }) {
+  const theme = useTheme();
+  return [...Array(cartLength)].map((item, index) => (
+    <Stack key={index} direction="column" spacing={1}>
+      <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
+        <Skeleton variant="text" width="1.25%" />
+        <Skeleton variant="rectangular" width={85} height={85} sx={{ borderRadius: 1 }} />
+        <Stack sx={{ p: 1, flexGrow: 1 }}>
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="35%" />
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="15%" />
+          <Skeleton variant="text" width="25%" />
+        </Stack>
+        <Stack direction="row" spacing={3}>
+          <Skeleton variant="rounded" width={25} height={25} />
+          <Skeleton variant="rounded" width={25} height={25} />
+        </Stack>
+      </Stack>
+      <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
+    </Stack>
+  ));
+}
+
+PartsSkeleton.propTypes = { cartLength: PropTypes.number, borderColor: PropTypes.string };
 
 // ----------------------------------------------------------------------------
 
