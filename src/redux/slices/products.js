@@ -16,6 +16,7 @@ const initialState = {
     category: [],
   },
   cart: [],
+  isDrawerOpen: false,
 };
 
 const slice = createSlice({
@@ -24,6 +25,10 @@ const slice = createSlice({
   reducers: {
     rdxUpdatePage(state, action) {
       state.page = action.payload;
+    },
+
+    rdxToggleDrawer(state) {
+      state.isDrawerOpen = !state.isDrawerOpen;
     },
 
     rdxLoadCartFromStorage(state, action) {
@@ -121,4 +126,5 @@ export const {
   rdxUpdateCart,
   rdxLoadCartFromStorage,
   rdxUpdatePartQty,
+  rdxToggleDrawer,
 } = slice.actions;

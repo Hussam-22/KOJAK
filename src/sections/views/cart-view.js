@@ -2,6 +2,7 @@ import { Box, Divider, Container } from '@mui/material';
 
 import CartItems from 'src/sections/cart/cart-items';
 import CartHeader from 'src/sections/cart/cart-header';
+import CartDrawer from 'src/sections/cart/cart-drawer';
 
 export default function CartView() {
   return (
@@ -10,6 +11,7 @@ export default function CartView() {
         <CartHeader />
         {/* <Divider sx={{ borderStyle: 'dashed', my: 3, color: (theme) => theme.palette.divider }} /> */}
         <CartItems />
+        <CartDrawer />
       </Container>
     </Box>
   );

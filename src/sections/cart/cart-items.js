@@ -25,7 +25,7 @@ import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
-import { rdxUpdateCart, rdxUpdatePartQty } from 'src/redux/slices/products';
+import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -34,6 +34,10 @@ function CartItems() {
   const { cart } = useSelector((state) => state.products);
   const theme = useTheme();
   const [_, setLocalStorageCart] = useLocalStorage('cart');
+
+  const openDrawerHandler = () => {
+    dispatch(rdxToggleDrawer());
+  };
 
   const updateCartState = (partNumber) =>
     setCartItems((state) =>
@@ -133,6 +137,7 @@ function CartItems() {
             color="primary"
             size="large"
             startIcon={<Iconify icon="ant-design:dollar-twotone" width={24} height={24} />}
+            onClick={openDrawerHandler}
           >
             Inquire About Part Price(s)
           </Button>
@@ -173,7 +178,7 @@ function YourCartIsEmpty() {
 function PartsSkeleton({ cartLength }) {
   const theme = useTheme();
   return [...Array(cartLength)].map((item, index) => (
-    <Stack key={index} direction="column" spacing={1}>
+    <Stack key={index} direction="column" spacing={0} maxHeight={200}>
       <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
         <Skeleton variant="text" width="1.25%" />
         <Skeleton variant="rectangular" width={85} height={85} sx={{ borderRadius: 1 }} />
