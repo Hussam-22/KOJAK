@@ -38,6 +38,15 @@ const slice = createSlice({
       }
     },
 
+    rdxUpdatePartQty(state, action) {
+      const index = state.cart.findIndex(
+        (cartItem) => cartItem.partNumber === action.payload.partNumber
+      );
+      const newCart = state.cart;
+      newCart[index].qty += action.payload.qty;
+      state.cart = [...newCart];
+    },
+
     rdxSetProducts(state, action) {
       state.products = action.payload;
       state.filteredProducts = action.payload;
@@ -111,4 +120,5 @@ export const {
   rdxClearFilter,
   rdxUpdateCart,
   rdxLoadCartFromStorage,
+  rdxUpdatePartQty,
 } = slice.actions;

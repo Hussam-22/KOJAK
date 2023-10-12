@@ -21,11 +21,11 @@ import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
-import { rdxUpdateCart } from 'src/redux/slices/products';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
+import { rdxUpdateCart, rdxUpdatePartQty } from 'src/redux/slices/products';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -55,6 +55,27 @@ function CartItems() {
     updateCartState(partNumber);
   };
 
+  const onUpdateQtyClickHandler = (partNumber, qty) => {
+    // update local storage
+    setLocalStorageCart((prevState) => {
+      const index = prevState.findIndex(
+        (localStorageItem) => localStorageItem.partNumber === partNumber
+      );
+      prevState[index] = { ...prevState[index], qty: prevState[index].qty + qty };
+      return prevState;
+    });
+
+    // update Redux
+    dispatch(rdxUpdatePartQty({ partNumber, qty }));
+
+    // update current view state
+    setCartItems((state) => {
+      const index = state.findIndex((cartItem) => cartItem.partData.partNumber === partNumber);
+      state[index] = { ...state[index], qty: state[index].qty + qty };
+      return state;
+    });
+  };
+
   return (
     <Box sx={{ py: 4 }}>
       {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
@@ -70,7 +91,7 @@ function CartItems() {
                   key={cartItem.partData.partNumber}
                   sx={{ borderRadius: 1, bgcolor: 'background.default' }}
                   component={m.div}
-                  {...getVariant('fadeInRight')}
+                  {...getVariant('fadeInLeft')}
                 >
                   <Stack
                     direction="row"
@@ -92,6 +113,7 @@ function CartItems() {
                       partNumber={cartItem.partData.partNumber}
                       qty={cartItem.qty}
                       onDeleteClickHandler={onDeleteClickHandler}
+                      onUpdateQtyClickHandler={onUpdateQtyClickHandler}
                     />
                   </Stack>
                   <Divider
@@ -105,14 +127,7 @@ function CartItems() {
       )}
 
       {cartItems.length !== 0 && (
-        <Divider
-          sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 2 }}
-          flexItem
-        />
-      )}
-
-      {cartItems.length !== 0 && (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 4 }}>
           <Button
             variant="contained"
             color="primary"
@@ -234,9 +249,13 @@ PartInfo.propTypes = { partData: PropTypes.object };
 
 // ----------------------------------------------------------------------------
 
-function ActionButtons({ partNumber, qty, onDeleteClickHandler }) {
+function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClickHandler }) {
   // if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
   //   SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
+
+  const updateQty = (quantity) => {
+    onUpdateQtyClickHandler(partNumber, quantity);
+  };
 
   const onDeleteClick = () => {
     onDeleteClickHandler(partNumber);
@@ -245,15 +264,15 @@ function ActionButtons({ partNumber, qty, onDeleteClickHandler }) {
   return (
     <Stack direction="row" spacing={3}>
       <Stack direction="column" alignItems="center">
-        <IconButton>
+        <IconButton disableRipple onClick={() => updateQty(+1)}>
           <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />
         </IconButton>
         <Typography>x {qty}</Typography>
-        <IconButton>
+        <IconButton disableRipple onClick={() => updateQty(-1)} disabled={qty === 1}>
           <Iconify icon="bxs:down-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />
         </IconButton>
       </Stack>
-      <IconButton onClick={onDeleteClick}>
+      <IconButton onClick={onDeleteClick} disableRipple>
         <Iconify icon="ph:trash" width={26} height={26} sx={{ color: 'error.main' }} />
       </IconButton>
     </Stack>
@@ -264,4 +283,5 @@ ActionButtons.propTypes = {
   partNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   qty: PropTypes.number,
   onDeleteClickHandler: PropTypes.func,
+  onUpdateQtyClickHandler: PropTypes.func,
 };
