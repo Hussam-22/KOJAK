@@ -17,7 +17,7 @@ export const _websiteRouts = [
     children: [
       { element: <KojakBuildingLandingPage />, index: true },
       { path: 'spare-parts', element: <SparePartsPage /> },
-      { path: 'spare-parts/:partNumber', element: <SparePartDetailsPage /> },
+      { path: 'spare-parts/:partDocID', element: <SparePartDetailsPage /> },
       { path: 'cart', element: <CartPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'contact-us', element: <ContactUsPage /> },

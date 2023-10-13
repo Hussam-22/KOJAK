@@ -4,16 +4,17 @@ import { initializeApp } from 'firebase/app';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  where,
-  query,
   limit,
+  query,
+  where,
+  getDoc,
   setDoc,
-  getDocs,
   orderBy,
+  getDocs,
   Timestamp,
-  collection,
-  startAfter,
   writeBatch,
+  startAfter,
+  collection,
   getFirestore,
   collectionGroup,
   getCountFromServer,
@@ -33,6 +34,18 @@ const DB = getFirestore(firebaseApp);
 // ----------------------------------------------------------------------
 
 export function AuthProvider({ children }) {
+  // ----------------------------------------------------------------------------
+  const fsGetImgDownloadUrl = useCallback(async (imgID) => {
+    let url = '';
+    try {
+      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/parts-images/${imgID}`));
+    } catch (error) {
+      url = undefined;
+    }
+
+    return url;
+  }, []);
+  // ----------------------------------------------------------------------------
   // ADD NEW FORM
   const addNewForm = useCallback(async (payload) => {
     const newDocRef = doc(collection(DB, `/websites/${SITE_NAME}/forms/`));
@@ -95,6 +108,17 @@ export function AuthProvider({ children }) {
   }, []);
 
   // ----------------------------------------------------------------------------
+  const fsGetPartDetails = useCallback(
+    async (partID) => {
+      const docRef = doc(DB, `/websites/${SITE_NAME}/partsData/${partID}`);
+      const docSnap = await getDoc(docRef);
+      const imgUrl = await fsGetImgDownloadUrl(docSnap.data().imageName);
+      return { ...docSnap.data(), imgUrl };
+    },
+    [fsGetImgDownloadUrl]
+  );
+  // ----------------------------------------------------------------------------
+
   const fsWriteBatchPartsData = useCallback(async () => {
     const batch = writeBatch(DB);
     const partsToAdd = _partsData.slice(1, 55);
@@ -113,14 +137,14 @@ export function AuthProvider({ children }) {
 
     await batch.commit();
   }, []);
-
+  // ----------------------------------------------------------------------------
   const fsGetProductsDocumentsCount = useCallback(async () => {
     const docRefCount = query(collectionGroup(DB, `partsData`), orderBy('id', 'desc'));
     const snapshot = await getCountFromServer(docRefCount);
 
     return snapshot.data().count;
   }, []);
-
+  // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
     const dataArr = [];
     let docRef = collectionGroup(DB, 'partsData');
@@ -148,83 +172,6 @@ export function AuthProvider({ children }) {
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;
-  }, []);
-
-  /*  const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
-    const dataArr = [];
-    // const docRef = query(
-    //   collectionGroup(DB, `partsData`),
-    //   orderBy('id', 'desc'),
-    //   startAfter(page * recordsLimit),
-    //   limit(recordsLimit)
-    // );
-
-    let docRef = collectionGroup(DB, 'partsData');
-
-    // if (filter.partNo !== '') {
-    //   docRef = query(docRef, where('partNumber', '==', filter.partNo));
-    // }
-
-    // if (filter.partName !== '') {
-    //   docRef = query(docRef, where('partName', '==', filter.partName));
-    // }
-
-    // if (filter.class !== '') {
-    //   docRef = query(docRef, where('brandClass', '==', filter.class));
-    // }
-
-    // if (filter.model !== '') {
-    //   docRef = query(docRef, where('brandModel', '==', filter.model));
-    // }
-
-    // if (filter.category.length !== 0) {
-    //   docRef = query(docRef, where('category', 'in', filter.category));
-    // }
-
-    docRef = query(
-      docRef,
-      orderBy('id', 'desc'),
-      startAfter(page * recordsLimit),
-      limit(recordsLimit),
-      where('partNumber', '==', filter.partNo),
-      where('partName', '==', filter.partName),
-      where('brandClass', '==', filter.class),
-      where('brandModel', '==', filter.model),
-      where('category', 'in', filter.category)
-    );
-
-    const querySnapshot = await getDocs(docRef);
-    querySnapshot.forEach((document) => dataArr.push(document.data()));
-    return dataArr;
-  }, []); */
-
-  // ------------------ | Get image Download URL | ------------------
-  // const fsGetImgDownloadUrl = useCallback(
-  //   async (location, folderID, imgID, resolution = '1920x1080') => {
-  //     console.log('download url');
-  //     let url = '';
-  //     try {
-  //       url = await getDownloadURL(
-  //         ref(STORAGE, `gs://${location}/${folderID}/${imgID}_${resolution}.webp`)
-  //       );
-  //     } catch (error) {
-  //       url = undefined;
-  //     }
-
-  //     return url;
-  //   },
-  //   []
-  // );
-
-  const fsGetImgDownloadUrl = useCallback(async (imgID) => {
-    let url = '';
-    try {
-      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/parts-images/${imgID}`));
-    } catch (error) {
-      url = undefined;
-    }
-
-    return url;
   }, []);
 
   // ----------------------------------------------------------------------------
@@ -277,6 +224,7 @@ export function AuthProvider({ children }) {
   const memoizedValue = useMemo(
     () => ({
       addNewForm,
+      fsGetPartDetails,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       fsGetProductsByPage,
@@ -286,6 +234,7 @@ export function AuthProvider({ children }) {
     }),
     [
       addNewForm,
+      fsGetPartDetails,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       fsGetProductsByPage,

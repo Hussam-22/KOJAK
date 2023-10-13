@@ -70,9 +70,14 @@ export default function SparePartsView() {
           py: 5,
         }}
       >
-        <Typography variant="h1" id="scrollToHere">
-          CATALOG
-        </Typography>
+        <Stack>
+          <Typography variant="h1" id="scrollToHere">
+            CATALOG
+          </Typography>
+          <Typography>
+            Add Items to cart, send them to our sales team, get quote within 1 hour
+          </Typography>
+        </Stack>
 
         <Button onClick={addParts}>Add Parts</Button>
 

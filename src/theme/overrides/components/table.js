@@ -33,7 +33,8 @@ export function table(theme) {
     MuiTableCell: {
       styleOverrides: {
         root: {
-          borderBottomStyle: 'dashed',
+          borderBottomStyle: 'solid',
+          borderColor: theme.palette.divider,
         },
         head: {
           fontSize: 14,

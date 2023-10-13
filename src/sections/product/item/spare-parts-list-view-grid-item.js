@@ -115,7 +115,7 @@ export default function SparePartsListViewGridItem({
                 pl: 0,
                 '&:hover': { textDecoration: 'underline', textDecorationColor: '#777' },
               }}
-              onClick={() => navigate(paths.website.sparePartDetails + product.partNumber)}
+              onClick={() => navigate(paths.website.sparePartDetails + product.docID)}
             >
               <TextMaxLine line={1} color="primary">
                 {product.partName}
