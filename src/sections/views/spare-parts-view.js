@@ -105,21 +105,12 @@ export default function SparePartsView() {
             width: { md: `calc(100% - ${300}px)` },
           }}
         >
-          {productsData.length === 0 && (
-            <NoResultsReturned
-              text="Use the search fields to find spare parts"
-              illustration="/assets/illustrations/search.svg"
-            />
-          )}
-
-          {productsData.length !== 0 && (
-            <SparePartsList
-              loading={loading}
-              products={[...productsData].sort((a, b) => a.id - b.id)}
-              totalDocs={documentsCount}
-              recordsLimit={RECORDS_LIMIT}
-            />
-          )}
+          <SparePartsList
+            loading={loading}
+            products={[...productsData].sort((a, b) => a.id - b.id)}
+            totalDocs={documentsCount}
+            recordsLimit={RECORDS_LIMIT}
+          />
         </Box>
       </Stack>
     </Container>
