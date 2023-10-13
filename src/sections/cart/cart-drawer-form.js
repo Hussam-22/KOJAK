@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Stack, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -11,28 +11,32 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { rdxToggleDrawer, rdxLoadCartFromStorage } from 'src/redux/slices/products';
 import { CART_FORM, SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
-const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
-  ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
-  en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
+  ar: `لقد قمنا باستلام قائمة قطع الغيار, سيتم التواصل معك قريباً`,
+  en: 'We have received the parts list, we will get back to you soon',
 };
 
-export default function CartDrawerForm({ payload }) {
+export default function CartDrawerForm() {
+  const dispatch = useDispatch();
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
   const { cart } = useSelector((state) => state.products);
+  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    dispatch(rdxToggleDrawer());
     setOpen(false);
   };
 
@@ -47,9 +51,9 @@ export default function CartDrawerForm({ payload }) {
 
   const defaultValues = useMemo(
     () => ({
-      fullName: '',
-      mobile: '',
-      email: '',
+      fullName: 'Hussam',
+      mobile: '0507440031',
+      email: 'a@a.com',
       messageText: '',
     }),
     []
@@ -68,10 +72,12 @@ export default function CartDrawerForm({ payload }) {
 
   const onSubmit = handleSubmit(async (formData) => {
     console.log(formData);
-    const slackCart = cart.map((item) => `part#: ${item.partNumber} | qty: ${item.qty}`);
+    const slackCart = cart.map((item) => `%${item.partNumber} | x${item.qty}*`);
     try {
       const dataToSend = Object.entries({ ...formData, ...slackCart })
         .join('\r\n')
+        .replaceAll('%', '')
+        .replaceAll('*', '')
         .replaceAll(',', ': ');
       const requestOptions = {
         method: 'POST',
@@ -79,16 +85,19 @@ export default function CartDrawerForm({ payload }) {
         credentials: 'omit', // This is equivalent to withCredentials: false in Axios
       };
 
-      // Add Form Submit to Slack Channel
+      // // Add Form Submit to Slack Channel
       await fetch(SLACK_WEBHOOK_URL, requestOptions);
 
       addNewForm({
         ...formData,
+        parts: slackCart.join('\r\n').replaceAll('%', '<p>').replaceAll('*', '</p>'),
         source: CART_FORM,
       });
 
       await new Promise((resolve) =>
         setTimeout(() => {
+          dispatch(rdxLoadCartFromStorage([]));
+          setLocalStorageCart([]);
           handleClickOpen();
           return resolve();
         }, 500)
@@ -150,7 +159,6 @@ export default function CartDrawerForm({ payload }) {
         </Stack>
       </FormProvider>
       <ConfirmationDialog
-        title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}
         content={currentLang.value === 'ar' ? DIALOG_CONTENT.ar : DIALOG_CONTENT.en}
         open={open}
         handleClose={handleClose}
@@ -159,6 +167,6 @@ export default function CartDrawerForm({ payload }) {
   );
 }
 
-CartDrawerForm.propTypes = {
-  payload: PropTypes.object,
-};
+// CartDrawerForm.propTypes = {
+//   payload: PropTypes.object,
+// };

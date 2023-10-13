@@ -25,7 +25,12 @@ import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
-import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
+import {
+  rdxUpdateCart,
+  rdxToggleDrawer,
+  rdxUpdatePartQty,
+  rdxLoadCartFromStorage,
+} from 'src/redux/slices/products';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -33,9 +38,7 @@ function CartItems() {
   const [cartItems, setCartItems] = useState([]);
   const { cart } = useSelector((state) => state.products);
   const theme = useTheme();
-  const [_, setLocalStorageCart] = useLocalStorage('cart');
-
-  console.log(cart);
+  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
   const openDrawerHandler = () => {
     dispatch(rdxToggleDrawer());
@@ -45,6 +48,13 @@ function CartItems() {
     setCartItems((state) =>
       state.filter((cartItem) => cartItem.partData.partNumber !== partNumber)
     );
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      console.log('EMPTY CART ITEMS', localStorageCart.length);
+      setCartItems([]);
+    }
+  }, [cart, localStorageCart.length]);
 
   useEffect(() => {
     (async () => {

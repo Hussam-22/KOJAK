@@ -54,7 +54,7 @@ export function AuthProvider({ children }) {
       <p>Mobile: ${payload.mobile}</p>
       <p>Inquiry: ${payload.messageText}</p>
       <p>---------------------------</p>
-      
+      ${payload.parts}
       <p>---------------------------</p>
       <p>${dateTime.toLocaleString()}</p>
       <p>${newDocRef.id}</p>
