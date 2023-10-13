@@ -4,7 +4,7 @@ export const paths = {
   website: {
     root: '/',
     spareParts: '/spare-parts',
-    // careerItem: '/career/',
+    sparePartDetails: '/spare-parts/',
     about: '/about',
     contactUs: '/contact-us',
     blogPosts: '/blog-posts',

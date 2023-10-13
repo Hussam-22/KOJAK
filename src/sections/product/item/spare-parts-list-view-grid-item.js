@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -6,7 +7,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import { Card, useTheme, Typography } from '@mui/material';
+import { Card, Button, useTheme, Typography } from '@mui/material';
 
 import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
@@ -14,6 +15,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
+import Label from 'src/assets/illustrations/pattern/Label';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 // ----------------------------------------------------------------------
@@ -25,6 +27,7 @@ export default function SparePartsListViewGridItem({
   sx,
   ...other
 }) {
+  const navigate = useNavigate();
   const theme = useTheme();
   const { fsGetImgDownloadUrl } = useAuthContext();
   const [imgUrl, setImageUrl] = useState('');
@@ -53,26 +56,14 @@ export default function SparePartsListViewGridItem({
       <Stack
         sx={{
           position: 'relative',
-          '.add-to-cart': isInCart && { opacity: 1 },
-          '&:hover .add-to-cart': {
-            opacity: 1,
-          },
+          '.add-to-cart': { opacity: 1 },
+          // '&:hover .add-to-cart': {
+          //   opacity: 1,
+          // },
           ...sx,
         }}
         {...other}
       >
-        {/* {product.label === 'new' && (
-        <Label color="info" sx={{ position: 'absolute', m: 1, top: 0, right: 0, zIndex: 9 }}>
-          NEW
-        </Label>
-      )}
-
-      {product.label === 'sale' && (
-        <Label color="error" sx={{ position: 'absolute', m: 1, top: 0, right: 0, zIndex: 9 }}>
-          SALE
-        </Label>
-      )} */}
-
         <Box
           sx={{
             position: 'relative',
@@ -116,9 +107,21 @@ export default function SparePartsListViewGridItem({
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.brandClass.join(' - ')}
           </Typography>
-          <TextMaxLine variant="body1" line={1} color="primary">
-            {product.partName}
-          </TextMaxLine>
+          <Box>
+            <Button
+              variant="text"
+              sx={{
+                textAlign: 'left',
+                pl: 0,
+                '&:hover': { textDecoration: 'underline', textDecorationColor: '#777' },
+              }}
+              onClick={() => navigate(paths.website.sparePartDetails + product.partNumber)}
+            >
+              <TextMaxLine line={1} color="primary">
+                {product.partName}
+              </TextMaxLine>
+            </Button>
+          </Box>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.category} - {product.subCategory}
           </Typography>
