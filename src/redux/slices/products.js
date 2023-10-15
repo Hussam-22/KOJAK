@@ -7,6 +7,9 @@ import { current, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   products: [],
   filteredProducts: [],
+  recordsCount: 0,
+  startAfterDocument: undefined,
+  startAtDocument: undefined,
   page: 1,
   filter: {
     partNo: '',
@@ -25,6 +28,15 @@ const slice = createSlice({
   reducers: {
     rdxUpdatePage(state, action) {
       state.page = action.payload;
+    },
+
+    rdxGetRecordsCount(state, action) {
+      state.recordsCount = action.payload;
+    },
+
+    rdxUpdatePaginationDocuments(state, action) {
+      state.startAfterDocument = action.payload.startAfterDocument;
+      state.startAtDocument = action.payload.startAtDocument;
     },
 
     rdxToggleDrawer(state) {
@@ -53,6 +65,8 @@ const slice = createSlice({
     },
 
     rdxSetProducts(state, action) {
+      state.startAfterDocument = action.payload[action.payload.length - 1].partNumber;
+      state.startAtDocument = action.payload[0].partNumber;
       state.products = action.payload;
       state.filteredProducts = action.payload;
     },
@@ -67,32 +81,6 @@ const slice = createSlice({
       state.filter = { ...state.filter, ...action.payload };
 
       let toFilteredProducts = state.products;
-
-      // // FILTER BY PART NUMBER
-      // if (state.filter.partNo !== '')
-      //   toFilteredProducts = toFilteredProducts.filter(
-      //     (product) =>
-      //       product.partNumber.toString().toLowerCase() === state.filter.partNo.toLowerCase()
-      //   );
-
-      // // FILTER BY PART NAME
-      // if (state.filter.partName !== '')
-      //   toFilteredProducts = toFilteredProducts.filter(
-      //     (product) =>
-      //       product.partName.toString().toLowerCase() === state.filter.partName.toLowerCase()
-      //   );
-
-      // // FILTER BY CLASS
-      // if (state.filter.class !== '')
-      //   toFilteredProducts = toFilteredProducts.filter((product) =>
-      //     product.brandClass.includes(state.filter.class)
-      //   );
-
-      // // FILTER BY MODEL
-      // if (state.filter.model !== '')
-      //   toFilteredProducts = toFilteredProducts.filter((product) =>
-      //     product.brandModel.includes(state.filter.model)
-      //   );
 
       // FILTER BY CATEGORY
       if (state.filter.category.length !== 0)
@@ -127,4 +115,5 @@ export const {
   rdxLoadCartFromStorage,
   rdxUpdatePartQty,
   rdxToggleDrawer,
+  rdxGetRecordsCount,
 } = slice.actions;

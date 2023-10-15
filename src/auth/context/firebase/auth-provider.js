@@ -4,17 +4,18 @@ import { initializeApp } from 'firebase/app';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  limit,
-  query,
   where,
-  getDoc,
+  query,
+  limit,
   setDoc,
-  orderBy,
+  getDoc,
+  startAt,
   getDocs,
+  orderBy,
   Timestamp,
-  writeBatch,
-  startAfter,
   collection,
+  startAfter,
+  writeBatch,
   getFirestore,
   collectionGroup,
   getCountFromServer,
@@ -138,41 +139,62 @@ export function AuthProvider({ children }) {
     await batch.commit();
   }, []);
   // ----------------------------------------------------------------------------
-  const fsGetProductsDocumentsCount = useCallback(async () => {
-    const docRefCount = query(collectionGroup(DB, `partsData`), orderBy('id', 'desc'));
-    const snapshot = await getCountFromServer(docRefCount);
+  const fsGetProductsDocumentsCount = useCallback(async (filter) => {
+    let docRef = collectionGroup(DB, 'partsData');
+
+    docRef = query(docRef, orderBy('partNumber', 'desc'));
+
+    if (filter.partNo) {
+      docRef = query(
+        docRef,
+        where('partNumber', '>=', filter.partNo),
+        where('partNumber', '<', `${filter.partNo}\uf8ff`)
+      );
+    }
+
+    if (filter.model && filter.model.length > 0) {
+      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+    }
+
+    const snapshot = await getCountFromServer(docRef);
 
     return snapshot.data().count;
   }, []);
   // ----------------------------------------------------------------------------
-  const fsGetProductsByPage = useCallback(async (page, recordsLimit, filter) => {
-    const dataArr = [];
-    let docRef = collectionGroup(DB, 'partsData');
-    docRef = query(
-      docRef,
-      orderBy('id', 'desc'),
-      startAfter(page * recordsLimit),
-      limit(recordsLimit)
-    );
+  const fsGetProductsByPage = useCallback(
+    async (startAfterDocument, startAtDocument, recordsLimit, filter) => {
+      console.log(startAfterDocument);
+      const dataArr = [];
+      let docRef = collectionGroup(DB, 'partsData');
+      docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
 
-    // Conditionally add filters based on the provided filter object
-    if (filter.partNo) {
-      docRef = query(docRef, where('partNumber', '==', filter.partNo));
-    }
-    if (filter.partName) {
-      docRef = query(docRef, where('partName', '==', filter.partName));
-    }
-    if (filter.model && filter.model.length > 0) {
-      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
-    }
-    if (filter.category && filter.category.length > 0) {
-      docRef = query(docRef, where('category', 'in', filter.category));
-    }
+      // Conditionally add filters based on the provided filter object
+      if (filter.partNo) {
+        docRef = query(
+          docRef,
+          where('partNumber', '>=', filter.partNo),
+          where('partNumber', '<', `${filter.partNo}\uf8ff`)
+        );
+      }
 
-    const querySnapshot = await getDocs(docRef);
-    querySnapshot.forEach((document) => dataArr.push(document.data()));
-    return dataArr;
-  }, []);
+      if (filter.model && filter.model.length > 0) {
+        docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+      }
+
+      // Start the query after the last document from the previous page
+      if (startAfterDocument) {
+        docRef = query(docRef, startAfter(startAfterDocument));
+      }
+      if (startAtDocument) {
+        docRef = query(docRef, startAt(startAtDocument));
+      }
+
+      const querySnapshot = await getDocs(docRef);
+      querySnapshot.forEach((document) => dataArr.push(document.data()));
+      return dataArr;
+    },
+    []
+  );
 
   // ----------------------------------------------------------------------------
   const fsGetCartParts = useCallback(

@@ -26,6 +26,8 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
+  const showPagination = totalDocs > recordsLimit;
+
   const noFilterApplied =
     JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
 
@@ -37,6 +39,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   }, [CurrentPage]);
 
   const handlePageChange = (event, page) => {
+    console.log(event);
     dispatch(rdxUpdatePage(page));
   };
 
@@ -115,18 +118,20 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           )}
         </Box>
 
-        <Pagination
-          onChange={handlePageChange}
-          count={pagesCount}
-          color="primary"
-          sx={{
-            mt: 10,
-            mb: 5,
-            [`& .${paginationClasses.ul}`]: {
-              justifyContent: 'center',
-            },
-          }}
-        />
+        {showPagination && (
+          <Pagination
+            onChange={handlePageChange}
+            count={pagesCount}
+            color="primary"
+            sx={{
+              mt: 10,
+              mb: 5,
+              [`& .${paginationClasses.ul}`]: {
+                justifyContent: 'center',
+              },
+            }}
+          />
+        )}
       </>
     );
   };

@@ -12,9 +12,9 @@ import Typography from '@mui/material/Typography';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
-import { rdxSetProducts } from 'src/redux/slices/products';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
+import { rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
 
 import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
@@ -27,20 +27,28 @@ export default function SparePartsView() {
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [documentsCount, setDocumentsCount] = useState(1);
-  const { page, filteredProducts: productsData, filter } = useSelector((state) => state.products);
+  const {
+    page,
+    filteredProducts: productsData,
+    filter,
+    recordsCount,
+    startAfterDocument,
+    startAtDocument,
+  } = useSelector((state) => state.products);
   const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
     useAuthContext();
 
-  useEffect(() => {
-    (async () => setDocumentsCount(await fsGetProductsDocumentsCount()))();
-  }, [fsGetProductsDocumentsCount]);
-
+  // ----------------------------------------------------------------------------
+  // GET RECORDS DATA
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
         setLoading(true);
-        dispatch(rdxSetProducts(await fsGetProductsByPage(page, RECORDS_LIMIT, filter)));
+        dispatch(
+          rdxSetProducts(
+            await fsGetProductsByPage(startAfterDocument, startAtDocument, RECORDS_LIMIT, filter)
+          )
+        );
         setTimeout(() => {
           setLoading(false);
         }, 500);
@@ -49,6 +57,16 @@ export default function SparePartsView() {
     getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, fsGetProductsByPage, page, filter.partNo, filter.model, filter.partName]);
+  // ----------------------------------------------------------------------------
+  // GET RECORDS COUNT
+  useEffect(() => {
+    (async () => {
+      if (filter.partNo !== '' || filter.model !== '') {
+        dispatch(rdxGetRecordsCount(await fsGetProductsDocumentsCount(filter)));
+      }
+    })();
+  }, [fsGetProductsDocumentsCount, filter, dispatch]);
+  // ----------------------------------------------------------------------------
 
   // useEffect(() => {
   //   const fakeLoading = async () => {
@@ -113,7 +131,7 @@ export default function SparePartsView() {
           <SparePartsList
             loading={loading}
             products={[...productsData].sort((a, b) => a.id - b.id)}
-            totalDocs={documentsCount}
+            totalDocs={recordsCount}
             recordsLimit={RECORDS_LIMIT}
           />
         </Box>
