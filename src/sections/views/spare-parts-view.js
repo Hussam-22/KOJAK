@@ -14,7 +14,7 @@ import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
-import { rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
+import { rdxClearFilter, rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
 
 import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
@@ -28,26 +28,33 @@ export default function SparePartsView() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const {
-    page,
+    currentPage,
     filteredProducts: productsData,
     filter,
     recordsCount,
     startAfterDocument,
-    startAtDocument,
   } = useSelector((state) => state.products);
   const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
     useAuthContext();
 
-  // ----------------------------------------------------------------------------
-  // GET RECORDS DATA
+  const addParts = async () => fsWriteBatchPartsData();
+
+  console.log(startAfterDocument);
+
+  // GET SPARE-PARTS DATA  ------------------------------------
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
         setLoading(true);
         dispatch(
-          rdxSetProducts(
-            await fsGetProductsByPage(startAfterDocument, startAtDocument, RECORDS_LIMIT, filter)
-          )
+          rdxSetProducts({
+            page: currentPage,
+            sparePartsData: await fsGetProductsByPage(
+              startAfterDocument[currentPage - 1],
+              RECORDS_LIMIT,
+              filter
+            ),
+          })
         );
         setTimeout(() => {
           setLoading(false);
@@ -55,10 +62,11 @@ export default function SparePartsView() {
       }
     };
     getProducts();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, fsGetProductsByPage, page, filter.partNo, filter.model, filter.partName]);
-  // ----------------------------------------------------------------------------
-  // GET RECORDS COUNT
+  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model, filter.partName]);
+
+  // GET SPARE-PARTS COUNT ------------------------------------
   useEffect(() => {
     (async () => {
       if (filter.partNo !== '' || filter.model !== '') {
@@ -66,17 +74,6 @@ export default function SparePartsView() {
       }
     })();
   }, [fsGetProductsDocumentsCount, filter, dispatch]);
-  // ----------------------------------------------------------------------------
-
-  // useEffect(() => {
-  //   const fakeLoading = async () => {
-  //     await new Promise((resolve) => setTimeout(resolve, 500));
-  //     loading.onFalse();
-  //   };
-  //   fakeLoading();
-  // }, [loading, filter]);
-
-  const addParts = async () => fsWriteBatchPartsData();
 
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
@@ -130,7 +127,7 @@ export default function SparePartsView() {
         >
           <SparePartsList
             loading={loading}
-            products={[...productsData].sort((a, b) => a.id - b.id)}
+            products={productsData}
             totalDocs={recordsCount}
             recordsLimit={RECORDS_LIMIT}
           />

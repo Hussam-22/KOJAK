@@ -8,9 +8,8 @@ const initialState = {
   products: [],
   filteredProducts: [],
   recordsCount: 0,
-  startAfterDocument: undefined,
-  startAtDocument: undefined,
-  page: 1,
+  startAfterDocument: [undefined],
+  currentPage: 1,
   filter: {
     partNo: '',
     partName: '',
@@ -26,23 +25,23 @@ const slice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    rdxToggleDrawer(state) {
+      state.isDrawerOpen = !state.isDrawerOpen;
+    },
+
+    // ----- Pagination ------------------------------------
     rdxUpdatePage(state, action) {
-      state.page = action.payload;
+      state.currentPage = action.payload.page;
+      if (action.payload.page > state.currentPage)
+        state.startAfterDocument[action.payload.page - 1] = action.payload.startAfterDocument;
     },
 
     rdxGetRecordsCount(state, action) {
       state.recordsCount = action.payload;
     },
+    // ----------------------------------------------------
 
-    rdxUpdatePaginationDocuments(state, action) {
-      state.startAfterDocument = action.payload.startAfterDocument;
-      state.startAtDocument = action.payload.startAtDocument;
-    },
-
-    rdxToggleDrawer(state) {
-      state.isDrawerOpen = !state.isDrawerOpen;
-    },
-
+    // ----- Cart -----------------------------------------
     rdxLoadCartFromStorage(state, action) {
       state.cart = [...action.payload];
     },
@@ -63,18 +62,23 @@ const slice = createSlice({
       newCart[index].qty += action.payload.qty;
       state.cart = [...newCart];
     },
+    // ----------------------------------------------------
 
+    // ----- Load Spare-Parts & Filter --------------------
     rdxSetProducts(state, action) {
-      state.startAfterDocument = action.payload[action.payload.length - 1].partNumber;
-      state.startAtDocument = action.payload[0].partNumber;
-      state.products = action.payload;
-      state.filteredProducts = action.payload;
+      state.startAfterDocument[action.payload.page] =
+        action.payload.sparePartsData[action.payload.sparePartsData.length - 1]?.partNumber ||
+        undefined;
+      state.products = action.payload.sparePartsData;
+      state.filteredProducts = action.payload.sparePartsData;
     },
 
     rdxClearFilter(state) {
       const defaultFilter = { partNo: '', partName: '', class: '', model: '', category: [] };
       state.filter = { ...defaultFilter };
+      state.products = [];
       state.filteredProducts = [];
+      state.startAfterDocument = [undefined];
     },
 
     rdxUpdateFilter(state, action) {

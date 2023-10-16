@@ -161,40 +161,33 @@ export function AuthProvider({ children }) {
     return snapshot.data().count;
   }, []);
   // ----------------------------------------------------------------------------
-  const fsGetProductsByPage = useCallback(
-    async (startAfterDocument, startAtDocument, recordsLimit, filter) => {
-      console.log(startAfterDocument);
-      const dataArr = [];
-      let docRef = collectionGroup(DB, 'partsData');
-      docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
+  const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
+    const dataArr = [];
+    let docRef = collectionGroup(DB, 'partsData');
+    docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
 
-      // Conditionally add filters based on the provided filter object
-      if (filter.partNo) {
-        docRef = query(
-          docRef,
-          where('partNumber', '>=', filter.partNo),
-          where('partNumber', '<', `${filter.partNo}\uf8ff`)
-        );
-      }
+    // Conditionally add filters based on the provided filter object
+    if (filter.partNo) {
+      docRef = query(
+        docRef,
+        where('partNumber', '>=', filter.partNo),
+        where('partNumber', '<', `${filter.partNo}\uf8ff`)
+      );
+    }
 
-      if (filter.model && filter.model.length > 0) {
-        docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
-      }
+    if (filter.model && filter.model.length > 0) {
+      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+    }
 
-      // Start the query after the last document from the previous page
-      if (startAfterDocument) {
-        docRef = query(docRef, startAfter(startAfterDocument));
-      }
-      if (startAtDocument) {
-        docRef = query(docRef, startAt(startAtDocument));
-      }
+    // Start the query after the last document from the previous page
+    if (startAfterDocument) {
+      docRef = query(docRef, startAfter(startAfterDocument));
+    }
 
-      const querySnapshot = await getDocs(docRef);
-      querySnapshot.forEach((document) => dataArr.push(document.data()));
-      return dataArr;
-    },
-    []
-  );
+    const querySnapshot = await getDocs(docRef);
+    querySnapshot.forEach((document) => dataArr.push(document.data()));
+    return dataArr;
+  }, []);
 
   // ----------------------------------------------------------------------------
   const fsGetCartParts = useCallback(

@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router';
 import { useMemo, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
-import { Stack, Button, Typography } from '@mui/material';
+import { Stack, Button, Typography, IconButton } from '@mui/material';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { paths } from 'src/routes/paths';
+import Iconify from 'src/components/iconify';
 import { useSelector } from 'src/redux/store';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { rdxUpdatePage, rdxUpdateCart } from 'src/redux/slices/products';
@@ -22,7 +23,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   const dispatch = useDispatch();
   const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const navigate = useNavigate();
-  const { page: CurrentPage, filter } = useSelector((state) => state.products);
+  const { currentPage, filter } = useSelector((state) => state.products);
 
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
@@ -36,12 +37,15 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
       top: 10,
       behavior: 'smooth',
     });
-  }, [CurrentPage]);
+  }, [currentPage]);
 
-  const handlePageChange = (event, page) => {
-    console.log(event);
-    dispatch(rdxUpdatePage(page));
-  };
+  const startAfterDocument = products[products.length - 1]?.partNumber || undefined;
+
+  const handlePreviousPageClick = () => dispatch(rdxUpdatePage({ page: currentPage - 1 }));
+  const handleNextPageClick = () =>
+    dispatch(rdxUpdatePage({ page: currentPage + 1, startAfterDocument }));
+
+  const handlePageChange = (event, page) => {};
 
   // Function to update the cart and localStorage
   const onClickCartHandler = (partNumber) => {
@@ -60,8 +64,9 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     if (products.length === 0 && noFilterApplied) {
       return (
         <NoResultsReturned
-          text="Use the search fields to find spare parts"
-          illustration="/assets/illustrations/search.svg"
+          text="Lets help you find the right part for your Mercedes"
+          illustration="/assets/illustrations/mercedes-logo.svg"
+          color="primary.main"
         />
       );
     }
@@ -118,20 +123,27 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           )}
         </Box>
 
-        {showPagination && (
-          <Pagination
-            onChange={handlePageChange}
-            count={pagesCount}
+        <Box sx={{ mt: 3, display: 'flex', justifyContent: 'space-between' }}>
+          <IconButton
             color="primary"
-            sx={{
-              mt: 10,
-              mb: 5,
-              [`& .${paginationClasses.ul}`]: {
-                justifyContent: 'center',
-              },
-            }}
-          />
-        )}
+            disableRipple
+            onClick={handlePreviousPageClick}
+            disabled={currentPage === 1}
+            sx={{ typography: 'body1' }}
+          >
+            <Iconify icon="bxs:left-arrow" /> Previous
+          </IconButton>
+
+          <IconButton
+            color="primary"
+            disableRipple
+            onClick={handleNextPageClick}
+            disabled={currentPage === pagesCount}
+            sx={{ typography: 'body1' }}
+          >
+            Next <Iconify icon="bxs:right-arrow" />
+          </IconButton>
+        </Box>
       </>
     );
   };
