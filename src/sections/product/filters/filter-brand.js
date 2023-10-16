@@ -31,7 +31,10 @@ export default function FilterBrand() {
   const { filter } = useSelector((state) => state.products);
 
   const schema = Yup.object().shape({
-    class: Yup.string().required('Car Class is required'),
+    class: Yup.string().when('partNo', {
+      is: (selectedClass) => selectedClass === '', // Only apply validation when "class" is selected
+      then: () => Yup.string().required('Car Year is required'),
+    }),
     model: Yup.string().when('class', {
       is: (selectedClass) => selectedClass !== '', // Only apply validation when "class" is selected
       then: () => Yup.string().required('Car Year is required'),
@@ -41,7 +44,7 @@ export default function FilterBrand() {
   const defaultValues = {
     class: filter.class || '',
     model: filter.model || '',
-    // partName: '',
+    partNo: filter.partNo || '',
   };
 
   const methods = useForm({
@@ -59,12 +62,18 @@ export default function FilterBrand() {
   const values = watch();
 
   useEffect(() => {
-    if (filter.class === '' && filter.model === '') reset({ class: '', model: '' });
+    if (filter.class === '' && filter.model === '' && filter.partNo === '')
+      reset({ class: '', model: '', partNo: '' });
   }, [filter, reset]);
+
+  useEffect(() => {
+    if (values.class !== '') reset({ partNo: '' });
+  }, [filter, reset, values.class]);
 
   const onSubmit = handleSubmit(async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     dispatch(rdxClearFilter());
+
     dispatch(
       rdxUpdateFilter({
         ...formData,
@@ -75,6 +84,8 @@ export default function FilterBrand() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction="column" spacing={2.5}>
+        <RHFTextField name="partNo" label="Part Number" variant="outlined" />
+
         <RHFSelect name="class" label="Mercedes Class" variant="outlined">
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
@@ -125,7 +136,7 @@ export default function FilterBrand() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
-            disabled={values.model === ''}
+            disabled={values.model === '' && values.partNo === ''}
             sx={{
               whiteSpace: 'nowrap',
             }}

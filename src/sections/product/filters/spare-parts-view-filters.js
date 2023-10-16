@@ -22,7 +22,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
 
-  const isDisabled = filter.model === '';
+  const isDisabled = filter.model === '' && filter.partNo === '';
   const isBtnHidden = filter.partNo === '' && filter.model === '' && filter.class === '';
 
   const handleClearAll = () => {
@@ -41,10 +41,6 @@ export default function SparePartsViewFilters({ open, onClose }) {
         pr: 5,
       }}
     >
-      <Block title="Search By Part Number">
-        <FilterPartInfo />
-      </Block>
-
       <Block title="Search By Part Info">
         <FilterBrand />
       </Block>
