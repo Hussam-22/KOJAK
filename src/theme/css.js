@@ -107,9 +107,9 @@ export function bgGradient(props) {
 
 // ----------------------------------------------------------------------
 
-export function textGradient(value) {
+export function textGradient(start, end) {
   return {
-    background: `-webkit-linear-gradient(${value})`,
+    background: `-webkit-linear-gradient(45deg,${start},${end})`,
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   };

@@ -5,6 +5,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import { bgGradient } from 'src/theme/css';
 import Image from 'src/components/image/Image';
 import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 

@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import { Stack, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Stack, useTheme, Container } from '@mui/material';
 
-import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
+import { textGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import getVariant from 'src/components/animate/variants/get-variant';
 import LandingSearchParts from 'src/sections/components/landing-search-parts';
 
 const LandingHero = () => {
+  const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
+  const textGradientColor = textGradient(theme.palette.primary.main, theme.palette.info.main);
 
   return (
     <Box
@@ -51,7 +54,7 @@ const LandingHero = () => {
 
               <Typography variant={mdUp ? 'h1' : 'h2'}>
                 <Box component="span">{translate('landing.hero.partOne')}</Box>
-                <Box component="span" sx={{ color: 'primary.main' }}>
+                <Box component="span" sx={{ ...textGradientColor }}>
                   {translate('landing.hero.partTwo')}
                 </Box>
                 <Box component="span">{translate('landing.hero.partThree')}</Box>

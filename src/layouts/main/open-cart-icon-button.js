@@ -47,7 +47,7 @@ function CartIconButton({ disabled = false }) {
   );
 
   return !disabled ? (
-    <StyledBadge badgeContent={cartItemsQty} color="warning">
+    <StyledBadge badgeContent={cartItemsQty} color="info">
       <Box
         sx={{ width: 48, height: 48 }}
         component={IconButton}
