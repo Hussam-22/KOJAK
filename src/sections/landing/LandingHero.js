@@ -22,8 +22,10 @@ const LandingHero = () => {
   return (
     <Box
       sx={{
-        height: { md: '100dvh', xs: '100dvh' },
-        bgcolor: 'background.dark',
+        height: { md: '80dvh', xs: '80dvh' },
+        bgcolor: 'common.black',
+        pb: 8,
+        // border: 'solid 1px #FFF',
       }}
     >
       <Container
@@ -32,9 +34,8 @@ const LandingHero = () => {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          alignContent: 'center',
-          justifyContent: 'center',
+
+          justifyContent: 'flex-end',
         }}
       >
         <Grid container spacing={4} sx={{ position: 'relative' }}>

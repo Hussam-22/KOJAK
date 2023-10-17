@@ -14,7 +14,7 @@ function FixOffer() {
 
   return (
     <Box sx={{ py: 8, bgcolor: 'background.default' }}>
-      <Container maxWidth="xl" sx={{ bgcolor: 'primary.main', borderRadius: 1, p: 3 }}>
+      <Container maxWidth="xl" sx={{ bgcolor: 'info.main', borderRadius: 1, p: 3 }}>
         <Grid container spacing={3}>
           <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
             <Stack spacing={2}>

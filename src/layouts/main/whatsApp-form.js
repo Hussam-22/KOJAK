@@ -112,7 +112,7 @@ export default function WhatsAppForm() {
             zIndex: 99,
           }}
         >
-          <Card sx={{ p: 3, bgcolor: 'background.paper' }}>
+          <Card sx={{ p: 3, bgcolor: 'common.black' }}>
             <IconButton
               aria-label="delete"
               sx={{ position: 'absolute', top: 5, right: 5 }}
@@ -132,6 +132,7 @@ export default function WhatsAppForm() {
                   label={translate('form.mobile')}
                   // type="number"
                   variant="outlined"
+                  focused
                 />
 
                 <RHFTextField
@@ -140,6 +141,7 @@ export default function WhatsAppForm() {
                   rows={4}
                   label={translate('form.message')}
                   variant="outlined"
+                  focused
                 />
 
                 <Typography variant="caption" sx={{ color: 'text.disabled' }}>

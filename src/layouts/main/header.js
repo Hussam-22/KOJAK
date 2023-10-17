@@ -101,7 +101,7 @@ export default function Header({ headerOnDark }) {
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
-                    color="primary"
+                    color="info"
                     onClick={() => navigate(paths.website.spareParts)}
                     startIcon={<Iconify icon="octicon:search-16" />}
                   >

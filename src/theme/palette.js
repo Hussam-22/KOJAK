@@ -38,11 +38,11 @@ const SECONDARY = {
 };
 
 const INFO = {
-  lighter: '#EBFFFD',
-  light: '#05F0D8',
-  main: '#04BFAD',
-  dark: '#027373',
-  darker: '#015050',
+  lighter: '#FFEBF0',
+  light: '#FF85A7',
+  main: '#FF336D',
+  dark: '#FF0A50',
+  darker: '#A3002E',
   contrastText: '#000000',
 };
 

@@ -191,6 +191,7 @@ const en = {
   form: {
     inquire: 'Inquire',
     specialRequests: 'Any Special Requests ?',
+    hearAbout: 'How did you hear about us ?',
     name: 'Full Name',
     mobile: 'Mobile',
     email: 'Email',

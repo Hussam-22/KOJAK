@@ -16,7 +16,7 @@ function InternationalBusiness() {
     <Box
       sx={{
         py: 8,
-        bgcolor: 'background.default',
+        bgcolor: 'background.neutral',
         position: 'relative',
         overflow: 'hidden',
       }}

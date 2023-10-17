@@ -11,8 +11,8 @@ export default function LandingView() {
   return (
     <>
       <LandingHero />
-      <FixOffer />
       <FeaturedParts />
+      <FixOffer />
       <PartsCount />
       <InternationalBusiness />
       <LandingTestimonial />
