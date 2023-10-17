@@ -119,7 +119,6 @@ export default function LandingFaqs() {
                     sx={{
                       flexGrow: 1,
                       fontWeight: theme.typography.fontWeightLight,
-                      color: 'common.black',
                     }}
                   >
                     {faq.question}
@@ -135,6 +134,7 @@ export default function LandingFaqs() {
                 <AccordionDetails
                   sx={{
                     p: 2,
+                    borderRadius: 1,
                   }}
                 >
                   <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>

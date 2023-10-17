@@ -2,73 +2,83 @@ import React from 'react';
 import { m } from 'framer-motion';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Card, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
+
+const FEATURED_PARTS = [
+  {
+    imageUrl: '/assets/images/parts/engine-service-kit.webp',
+    description: `Genuine Mercedes Service Kit E Class w213 OM654 DIESEL engine oil and filters -
+  service kit`,
+    partNo: 'A000121',
+  },
+  {
+    imageUrl: '/assets/images/parts/gearbox-service-kit.webp',
+    description: `Genuine Mercedes-Benz 722.9 Automatic gearbox oil (BLUE) kit for reduced friction gearbox A89 code`,
+    partNo: 'A000122',
+  },
+  {
+    imageUrl: '/assets/images/parts/brake-service-kit.webp',
+    description: `Disk & Brake Pad Front/Rear Complete Service Kit - Mercedes-Benz`,
+    partNo: 'A000123',
+  },
+  {
+    imageUrl: '/assets/images/parts/ac-kit.webp',
+    description: `Cabin Air Filter Cleaning Kit`,
+    partNo: 'A000124',
+  },
+];
 
 function FeaturedParts() {
   const theme = useTheme();
   const { translate } = useLocales();
 
   return (
-    <Box sx={{ py: 15, bgcolor: 'common.black' }}>
+    <Box sx={{ py: 15 }}>
       <Container maxWidth="xl">
-        <Typography variant="overline" color="primary">
-          Featured Parts
-        </Typography>
-        <Grid container spacing={6}>
-          <Grid md={12} xs={12}>
-            <Stack spacing={3}>
-              <Typography variant="h1" color="white">
-                Rims Collection
-              </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-                <Image
-                  src="https://cdna.artstation.com/p/assets/images/images/051/642/330/large/roman-tikhonov-ps5-245-6.jpg?1657802314"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdna.artstation.com/p/assets/images/images/065/330/774/large/roman-tikhonov-main.jpg?1690116976"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdna.artstation.com/p/assets/images/images/061/027/634/large/roman-tikhonov-cup2r-285-5.jpg?1679861692"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdna.artstation.com/p/assets/images/images/061/536/694/large/roman-tikhonov-375-7.jpg?1681058407"
-                  sx={{ borderRadius: 1 }}
-                />
+        <Grid container spacing={2}>
+          <Grid md={12}>
+            <Stack spacing={2} sx={{ mb: 2 }}>
+              <Box>
+                <Typography variant="overline" color="primary">
+                  Service Kits
+                </Typography>
+                <Typography variant="h1" color="white">
+                  Experience Peak Performance with Our Premium Mercedes-Benz Service Kits
+                </Typography>
               </Box>
-            </Stack>
-          </Grid>
 
-          <Grid md={12} xs={12}>
-            <Stack spacing={3}>
-              <Typography variant="h1" color="white">
-                Consumables Collection
+              <Typography>
+                {`Elevate your driving experience and ensure your Mercedes-Benz operates at its best
+              with our meticulously designed service kits. Crafted to meet the exacting standards of
+              Mercedes-Benz engineering, our premium kits offer a seamless blend of precision and
+              quality. Maintain your luxury car's top-tier performance, all while enjoying the peace
+              of mind that comes with our specialized service solutions. Explore our range of
+              service kits and give your Mercedes the care it deserves.`}
               </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-                <Image
-                  src="https://cdnb.artstation.com/p/assets/images/images/021/332/465/large/shakil-jamal-automotive-battery-preview-03.jpg?1571257921"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdna.artstation.com/p/assets/images/images/030/284/104/large/mohammx-dastan-sunoco-galon-insta-01-00000.jpg?1600152903"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdnb.artstation.com/p/assets/images/images/046/235/675/large/roberts-s-of2k.jpg?1644606316"
-                  sx={{ borderRadius: 1 }}
-                />
-                <Image
-                  src="https://cdnb.artstation.com/p/assets/images/images/029/936/475/large/alex-tsekot-presentation-main-thumb.jpg?1599079970"
-                  sx={{ borderRadius: 1 }}
-                />
-              </Box>
             </Stack>
           </Grid>
+          {FEATURED_PARTS.map((item) => (
+            <Grid key={item.partNo} md={3} xs={6}>
+              <Card
+                sx={{
+                  height: 1,
+                  borderRadius: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="3/4" />
+                <Typography sx={{ p: 2, alignSelf: 'center' }}>{item.description}</Typography>
+                <Button variant="contained" color="primary">
+                  More Details
+                </Button>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </Box>

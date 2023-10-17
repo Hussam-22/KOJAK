@@ -55,7 +55,7 @@ function InternationalBusiness() {
             xs={12}
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
-            <Image src="/assets/images/misc/import-export.png" />
+            <Image src="/assets/illustrations/illustration_map.svg" />
           </Grid>
         </Grid>
       </Container>

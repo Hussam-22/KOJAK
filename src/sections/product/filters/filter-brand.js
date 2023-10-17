@@ -66,10 +66,6 @@ export default function FilterBrand() {
       reset({ class: '', model: '', partNo: '' });
   }, [filter, reset]);
 
-  useEffect(() => {
-    if (values.class !== '') reset({ partNo: '' });
-  }, [filter, reset, values.class]);
-
   const onSubmit = handleSubmit(async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     dispatch(rdxClearFilter());
