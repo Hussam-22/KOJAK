@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, useTheme, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, Skeleton, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
@@ -18,7 +18,7 @@ function VehiclesList() {
     })();
   }, [fsListAllFolderItems, getCars]);
 
-  // const addCar = async () => addNewCar();
+  const addCar = async () => addNewCar();
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
@@ -27,6 +27,7 @@ function VehiclesList() {
           py: 8,
         }}
       >
+        {/* <Button onClick={addCar}>Add New Car</Button> */}
         <Stack spacing={2} sx={{ mb: 5, textAlign: 'center' }}>
           <Box>
             <Typography variant="h1" sx={{ textTransform: 'capitalize' }}>

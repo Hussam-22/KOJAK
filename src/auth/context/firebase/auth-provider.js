@@ -107,29 +107,17 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'S 500 LONG (Used)',
-      qty: 1,
-      price: '515,000 AED',
-      description: 'Export price outside GCC countries - Price Without VAT & Without Customs Duty',
-      year: 2022,
-      exteriorColor: '#000000',
-      interiorColor: '#D68C45',
-      engineType: 'Electric Hybrid fue',
-      milage: 14500,
+      model: 'S 500 L',
+      price: '000,000 AED',
+      year: 2024,
+      exteriorColor: '#FFFFFF',
+      interiorColor: '#E4DEC3',
+      engineType: 'Petrol',
+      milage: 0,
       isActive: true,
-      isFeatured: false,
+      isFeatured: true,
       creationDate: new Date(),
-      features: `
-      Climatised Front Seat		
-Automatic panoramic sliding sunroof		
-360° camera		
-KEYLESS-GO		
-Sun protection package		
-Rear seat climate control		
-Air conditioning rear		
-AMG Line		
-Driver assistant package plus		
-`,
+      features: `AMG Kit% Interior lighting 64 colors% Panoramic sunroof% Front radar% Lane detection system% Blind spot system% Front electric seats% Electric rear seats% Cooling and heating in the front seats% Cooling and heating of the rear seats% 360 degree camera% 3D mapping system% Wireless mobile charger% Perfume system% Fingerprint entry% Fingerprint start% Suction doors% Rear curtains% Digital Light% Smart MBUX system with automatic simulation in Arabic and provides full control of the car through the (MERCEDES ME) application% Electric trunk% Touch screen control% Apple CarPlay% Touch screen% Smart mouse% Front and rear sensors% Diamond brown leather (camel)% Auto parking system% Separate control of the rear air conditioner% Wheels measuring 21% Welcome lights in the handles Doors% Large Projector% Rear iPad% Rear Screens% Rolling Rear Wheels%`,
     });
   }, []);
 
