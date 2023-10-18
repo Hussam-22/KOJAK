@@ -89,7 +89,7 @@ const en = {
   },
 
   about: {
-    title: `About Kojak`,
+    title: `About`,
     titleTwo: `Spare Parts`,
     description: `Welcome to Kojak Spare Parts, your trusted source for high-quality Mercedes spare parts. We are a leading reseller of genuine and aftermarket Mercedes-Benz components, serving customers locally and internationally. With a commitment to excellence and an extensive inventory, we have been a go-to choice for Mercedes enthusiasts and repair professionals since 1983.`,
 

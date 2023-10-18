@@ -24,12 +24,12 @@ export default function AboutUs() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   return (
-    <Box sx={{ bgcolor: 'background.default', py: 15 }}>
+    <Box sx={{ bgcolor: 'common.black', height: '100dvh', display: 'flex', alignItems: 'center' }}>
       <Container>
         <Grid container>
           <Grid md={7}>
             <Typography
-              color="primary"
+              color="secondary"
               sx={{
                 fontSize: '18dvh',
                 fontWeight: theme.typography.fontWeightBold,
@@ -40,6 +40,19 @@ export default function AboutUs() {
               }}
             >
               {translate('about.title')}
+            </Typography>
+            <Typography
+              sx={{
+                color: 'primary.main',
+                fontSize: '18dvh',
+                fontWeight: theme.typography.fontWeightBold,
+                lineHeight: 1,
+                // whiteSpace: 'nowrap',
+
+                textTransform: 'uppercase',
+              }}
+            >
+              {translate('common.brand')}
             </Typography>
           </Grid>
           <Grid md={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
