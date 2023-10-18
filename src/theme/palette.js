@@ -43,7 +43,7 @@ const INFO = {
   main: '#FF336D',
   dark: '#FF0A50',
   darker: '#A3002E',
-  contrastText: '#000000',
+  contrastText: '#FFFFFF',
 };
 
 const SUCCESS = {

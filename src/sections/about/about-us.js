@@ -25,9 +25,9 @@ export default function AboutUs() {
   const theme = useTheme();
   return (
     <Box sx={{ bgcolor: 'common.black', height: '100dvh', display: 'flex', alignItems: 'center' }}>
-      <Container>
+      <Container maxWidth="xl">
         <Grid container>
-          <Grid md={7}>
+          <Grid md={5}>
             <Typography
               color="secondary"
               sx={{
@@ -55,8 +55,20 @@ export default function AboutUs() {
               {translate('common.brand')}
             </Typography>
           </Grid>
-          <Grid md={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Image src="/assets/illustrations/engine.svg" />
+          <Grid
+            md={7}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative',
+            }}
+          >
+            <Image
+              src="/assets/illustrations/engine.svg"
+              height={500}
+              sx={{ position: 'absolute', top: 0, zIndex: 0 }}
+            />
           </Grid>
         </Grid>
         <Stack spacing={2}>

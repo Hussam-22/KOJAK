@@ -7,17 +7,24 @@ import Image from 'src/components/image/Image';
 
 const DATA = [
   {
-    icon: 'simple-icons:mercedes', // You can specify the actual icon name or URL here
-    description: `At Kojak Spare Parts, we take pride in offering only genuine spare parts for your Mercedes-Benz. Our commitment to authenticity ensures that your vehicle's performance and safety are never compromised.`,
-    title: 'Genuine Spare Parts',
-    bgcolor: 'primary.main',
-  },
-  {
     icon: 'solar:money-bag-outline', // You can specify the actual icon name or URL here
     description:
       'We believe in delivering not only quality but also affordability. With our best price guarantee, you can trust that you are getting the most competitive prices for your Mercedes spare parts without sacrificing quality.',
     title: 'Best Price Guarantee',
-    bgcolor: 'secondary.main',
+    bgcolor: 'primary.main',
+  },
+  {
+    icon: 'simple-icons:mercedes', // You can specify the actual icon name or URL here
+    description: `At Kojak Spare Parts, we take pride in offering only genuine spare parts for your Mercedes-Benz. Our commitment to authenticity ensures that your vehicle's performance and safety are never compromised.`,
+    title: 'Genuine Spare Parts',
+    bgcolor: 'common.black',
+  },
+  {
+    icon: 'la:shipping-fast', // You can specify the actual icon name or URL here
+    description:
+      'Time is of the essence when your vehicle needs repairs. We offer fast delivery and international shipping options, ensuring that your required Mercedes-Benz spare parts reach you promptly, no matter where you are.',
+    title: 'Fast Delivery & International Shipping',
+    bgcolor: 'info.main',
   },
   {
     icon: 'basil:headset-outline', // You can specify the actual icon name or URL here
@@ -26,13 +33,6 @@ const DATA = [
     title: 'Responsive Customer Support',
     bgcolor: 'common.white',
     color: 'common.black',
-  },
-  {
-    icon: 'la:shipping-fast', // You can specify the actual icon name or URL here
-    description:
-      'Time is of the essence when your vehicle needs repairs. We offer fast delivery and international shipping options, ensuring that your required Mercedes-Benz spare parts reach you promptly, no matter where you are.',
-    title: 'Fast Delivery & International Shipping',
-    bgcolor: 'info.main',
   },
 ];
 

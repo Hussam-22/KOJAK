@@ -37,7 +37,6 @@ const LandingHero = () => {
           height: 1,
           display: 'flex',
           flexDirection: 'column',
-
           justifyContent: 'flex-end',
         }}
       >
