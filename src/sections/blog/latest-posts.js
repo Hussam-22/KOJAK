@@ -40,7 +40,7 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.light' }}>
+    <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container
         sx={{
           pt: 10,
@@ -64,9 +64,14 @@ export default function LatestPosts({ posts }) {
               maxWidth: { md: '60%', xs: 'unset' },
             }}
           >
-            <Typography variant="h2" sx={{ mb: 3 }}>
-              {translate('blog.title')}
-            </Typography>
+            <Box>
+              <Typography variant="overline" color="primary">
+                Our Blog
+              </Typography>
+              <Typography variant="h2" sx={{ mb: 3 }}>
+                {translate('blog.title')}
+              </Typography>
+            </Box>
 
             <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
               {translate('blog.subTitle')}

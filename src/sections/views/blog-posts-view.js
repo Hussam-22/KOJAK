@@ -12,8 +12,9 @@ import PostsMasonry from '../blog/posts-masonry';
 export default function BlogPostsView() {
   const { translate } = useLocales();
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
+    <Box sx={{ bgcolor: 'background.default' }}>
       <Container
+        maxWidth="xl"
         sx={{
           pt: { xs: 0, md: 5 },
           pb: { xs: 8, md: 15 },

@@ -37,7 +37,7 @@ export default function PostItem({ post, index }) {
         spacing={1}
         sx={{
           p: 3,
-          bgcolor: 'background.default',
+          bgcolor: 'background.neutral',
           ...(noImage && {
             bgcolor: 'primary.lighter',
           }),

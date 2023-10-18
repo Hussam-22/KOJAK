@@ -1,4 +1,6 @@
+import { blogPosts } from 'src/_mock';
 import FixOffer from 'src/sections/landing/fix-offer';
+import LatestPosts from 'src/sections/blog/latest-posts';
 import PartsCount from 'src/sections/landing/parts-count';
 import LandingHero from 'src/sections/landing/LandingHero';
 import LandingFaqs from 'src/sections/landing/LandingFaqs';
@@ -18,6 +20,7 @@ export default function LandingView() {
       <LandingTestimonial />
       <LandingFaqs />
       <VisitGroupsWebsite />
+      <LatestPosts posts={blogPosts} />
     </>
   );
 }
