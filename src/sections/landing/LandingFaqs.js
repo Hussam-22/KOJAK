@@ -108,8 +108,7 @@ export default function LandingFaqs() {
               >
                 <AccordionSummary
                   sx={{
-                    // background: `linear-gradient(120deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark} 95%)`,
-                    bgcolor: 'primary.main',
+                    // bgcolor: 'primary.main',
                     mb: 2,
                     px: 2,
                     borderRadius: 1,
@@ -127,7 +126,7 @@ export default function LandingFaqs() {
                   <Iconify
                     width={24}
                     icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-                    sx={{ color: 'common.black' }}
+                    sx={{ color: 'primary.main' }}
                   />
                 </AccordionSummary>
 
