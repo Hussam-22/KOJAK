@@ -60,7 +60,7 @@ export default function OurStory() {
       <Container
         maxWidth="xl"
         sx={{
-          py: { md: 15, xs: 8 },
+          py: 8,
         }}
       >
         <Typography paragraph variant="overline" color="primary">
