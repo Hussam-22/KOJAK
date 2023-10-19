@@ -27,8 +27,6 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
-  const showPagination = totalDocs > recordsLimit;
-
   const noFilterApplied =
     JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
 
@@ -45,10 +43,8 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   const handleNextPageClick = () =>
     dispatch(rdxUpdatePage({ page: currentPage + 1, startAfterDocument }));
 
-  const handlePageChange = (event, page) => {};
-
   // Function to update the cart and localStorage
-  const onClickCartHandler = (partNumber) => {
+  const addToCartOnClickHandler = (partNumber) => {
     if (localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) =>
         prevState.filter((item) => item.partNumber !== partNumber)
@@ -114,7 +110,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
               <SparePartsListViewGridItem
                 key={product.docID}
                 product={product}
-                onClickCartHandler={onClickCartHandler}
+                addToCartOnClickHandler={addToCartOnClickHandler}
                 localStorageCart={localStorageCart}
               />
             ) : (

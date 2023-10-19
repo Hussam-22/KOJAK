@@ -22,7 +22,7 @@ import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 export default function SparePartsListViewGridItem({
   product,
-  onClickCartHandler,
+  addToCartOnClickHandler,
   localStorageCart,
   sx,
   ...other
@@ -35,8 +35,8 @@ export default function SparePartsListViewGridItem({
     (storageItem) => storageItem.partNumber === product.partNumber
   );
 
-  const addRemoveCartPartNumber = () => {
-    onClickCartHandler(product.partNumber);
+  const addRemoveCartPart = () => {
+    addToCartOnClickHandler(product.partNumber);
   };
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function SparePartsListViewGridItem({
           }}
         >
           <Fab
-            onClick={addRemoveCartPartNumber}
+            onClick={addRemoveCartPart}
             className="add-to-cart"
             color={isInCart ? 'error' : 'primary'}
             size="small"
@@ -157,6 +157,6 @@ SparePartsListViewGridItem.propTypes = {
     brandClass: PropTypes.array,
   }),
   sx: PropTypes.object,
-  onClickCartHandler: PropTypes.func,
+  addToCartOnClickHandler: PropTypes.func,
   localStorageCart: PropTypes.array,
 };

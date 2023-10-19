@@ -2,11 +2,21 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Box, Stack, Button, useTheme, Container, IconButton, Typography } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Button,
+  Divider,
+  useTheme,
+  Container,
+  Typography,
+  IconButton,
+} from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { rdxUpdateCart, rdxUpdatePartQty } from 'src/redux/slices/products';
 
@@ -30,76 +40,101 @@ SparePartsDetailsActionButtons.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
 function AvailableStockActionBar({ partDetails }) {
-  const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
+  const mdUp = useResponsive('up', 'md');
 
   const cartQty =
-    localStorageCart.find((part) => part.partNumber === partDetails.partNumber)?.qty || 1;
+    localStorageCart.find((part) => part.partNumber === partDetails.partNumber)?.qty || 0;
 
-  const onUpdateQtyClickHandler = (partNumber, qty) => {
-    // update local storage
-    setLocalStorageCart((prevState) => {
-      const index = prevState.findIndex(
-        (localStorageItem) => localStorageItem.partNumber === partNumber
+  const onUpdateQtyClickHandler = (qty, partNumber = partDetails.partNumber) => {
+    // add part to localStorage & Cart (new)
+    if (cartQty === 0) {
+      setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
+      dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+    }
+
+    // remove part from LocalStorage & Cart when reaching Zero Qty
+    if (cartQty === 1 && qty === -1) {
+      console.log('REMOVE');
+      setLocalStorageCart((prevState) =>
+        prevState.filter((item) => item.partNumber !== partNumber)
       );
-      prevState[index] = { ...prevState[index], qty: prevState[index].qty + qty };
-      return prevState;
-    });
+      dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (cartQty !== 0) {
+        console.log('+/-');
+        setLocalStorageCart((prevState) => {
+          const index = prevState.findIndex(
+            (localStorageItem) => localStorageItem.partNumber === partDetails.partNumber
+          );
+          prevState[index] = { ...prevState[index], qty: prevState[index].qty + qty };
+          return prevState;
+        });
 
-    // update Redux
-    dispatch(rdxUpdatePartQty({ partNumber, qty }));
-
-    // update current view state
-    setCartItems((state) => {
-      const index = state.findIndex((cartItem) => cartItem.partData.partNumber === partNumber);
-      state[index] = { ...state[index], qty: state[index].qty + qty };
-      return state;
-    });
+        // update Redux
+        dispatch(rdxUpdatePartQty({ partNumber, qty }));
+      }
+    }
   };
   // ----------------------------------------------------------------------------
   return (
-    <Stack direction="row" justifyContent="space-between" sx={{ px: 3 }}>
-      <Stack direction="column" alignItems="center">
-        <Typography variant="caption" color="secondary">
-          Qty
-        </Typography>
-        <Stack direction="row" alignItems="center">
-          <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
-            <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />
-          </IconButton>
-          <Typography>x {cartQty}</Typography>
-          <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(-1)} disabled={0 === 1}>
-            <Iconify
-              icon="bxs:down-arrow"
-              width={16}
-              height={16}
-              sx={{ color: 'secondary.main' }}
-            />
-          </IconButton>
+    <Stack
+      direction={{ md: 'row', xs: 'column' }}
+      justifyContent="space-between"
+      sx={{ px: 3 }}
+      spacing={2}
+      divider={mdUp && <Divider orientation="vertical" />}
+    >
+      <Stack direction="row" justifyContent="space-between" spacing={2}>
+        <Stack direction="column" alignItems="center">
+          <Typography variant="caption" color="secondary">
+            Qty
+          </Typography>
+          <Stack direction="row" alignItems="center">
+            <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
+              <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'success.main' }} />
+            </IconButton>
+            <Typography sx={{ whiteSpace: 'nowrap' }}>x {cartQty}</Typography>
+            <IconButton
+              disableRipple
+              onClick={() => onUpdateQtyClickHandler(-1)}
+              disabled={cartQty === 0}
+            >
+              <Iconify
+                icon="bxs:down-arrow"
+                width={16}
+                height={16}
+                sx={{ color: cartQty === 0 ? 'secondary.main' : 'error.main' }}
+              />
+            </IconButton>
+          </Stack>
         </Stack>
-      </Stack>
 
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={
-          <Iconify
-            icon="carbon:shopping-cart-plus"
-            width={32}
-            height={32}
-            sx={{ color: 'common.white' }}
-          />
-        }
-      >
-        Add to Cart
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ whiteSpace: 'nowrap' }}
+          disabled={cartQty === 0}
+          startIcon={
+            <Iconify
+              icon="carbon:shopping-cart-plus"
+              width={24}
+              height={24}
+              sx={{ color: 'common.white' }}
+            />
+          }
+        >
+          Add to Cart
+        </Button>
+      </Stack>
 
       <Button
         variant="contained"
         color="success"
         startIcon={
-          <Iconify icon="mdi:whatsapp" width={32} height={32} sx={{ color: 'common.white' }} />
+          <Iconify icon="mdi:whatsapp" width={24} height={24} sx={{ color: 'common.white' }} />
         }
       >
         Get Quote via WhatsApp

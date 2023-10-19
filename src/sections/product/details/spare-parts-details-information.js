@@ -30,22 +30,16 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
 
   const applicableModels = filteredClasses.map((item) => (
     <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
-      {item.class} -{' '}
+      <Box component="span" sx={{ color: 'info.main' }}>
+        {item.class}
+      </Box>{' '}
+      -{' '}
       {item.models
         .filter((model) => partDetails.brandModel.includes(model.model))
         .map((modelItem) => `(${modelItem.model}) ${modelItem.productionYears}`)
         .join(', ')}
     </Typography>
   ));
-
-  // const applicableModels = filteredClasses.map((item) =>
-  //   console.log(
-  //     item.models
-  //       .filter((model) => partDetails.brandModel.includes(model.model))
-
-  //   )
-  // );
-
   return (
     partDetails?.id && (
       <Box sx={{ px: 3 }}>
