@@ -134,7 +134,7 @@ function AvailableStockActionBar({ partDetails }) {
         variant="contained"
         color="success"
         startIcon={
-          <Iconify icon="mdi:whatsapp" width={24} height={24} sx={{ color: 'common.white' }} />
+          <Iconify icon="mdi:whatsapp" width={24} height={24} sx={{ color: 'common.black' }} />
         }
       >
         Get Quote via WhatsApp
