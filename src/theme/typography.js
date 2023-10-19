@@ -26,7 +26,7 @@ const primaryFont = 'Poppins, Alexandria';
 // ----------------------------------------------------------------------
 export const typography = {
   fontFamily: primaryFont,
-  fontWeightLight: 300,
+  fontWeightLight: 200,
   fontWeightRegular: 500,
   fontWeightMedium: 600,
   fontWeightSemiBold: 700,

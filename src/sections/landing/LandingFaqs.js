@@ -100,48 +100,43 @@ export default function LandingFaqs() {
             </Box>
           </Grid>
           <Grid md={6} xs={12}>
-            {CONTENTS.map((faq, index) => (
-              <Accordion
-                expanded={expanded === faq.question}
-                onChange={handleChangeExpanded(faq.question)}
-                key={index}
-              >
-                <AccordionSummary
+            <Stack spacing={2}>
+              {CONTENTS.map((faq, index) => (
+                <Accordion
+                  expanded={expanded === faq.question}
+                  onChange={handleChangeExpanded(faq.question)}
+                  key={index}
                   sx={{
-                    // bgcolor: 'primary.main',
-                    mb: 2,
-                    px: 2,
+                    background: `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.default}) padding-box,
+              linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.info.main}) border-box`,
                     borderRadius: 1,
+                    border: `2px solid transparent`,
                   }}
                 >
-                  <Typography
-                    sx={{
-                      flexGrow: 1,
-                      fontWeight: theme.typography.fontWeightLight,
-                    }}
-                  >
-                    {faq.question}
-                  </Typography>
+                  <AccordionSummary>
+                    <Typography
+                      sx={{
+                        flexGrow: 1,
+                      }}
+                    >
+                      {faq.question}
+                    </Typography>
 
-                  <Iconify
-                    width={24}
-                    icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
-                    sx={{ color: 'primary.main' }}
-                  />
-                </AccordionSummary>
+                    <Iconify
+                      width={24}
+                      icon={expanded === faq.question ? 'carbon:subtract' : 'carbon:add'}
+                      sx={{ color: 'common.white' }}
+                    />
+                  </AccordionSummary>
 
-                <AccordionDetails
-                  sx={{
-                    p: 2,
-                    borderRadius: 1,
-                  }}
-                >
-                  <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-                    {faq.answer}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                  <AccordionDetails>
+                    <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                      {faq.answer}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Stack>
           </Grid>
         </Grid>
       </Container>

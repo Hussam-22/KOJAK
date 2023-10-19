@@ -34,10 +34,10 @@ import {
 
 function CartItems() {
   const dispatch = useDispatch();
-  const { fsGetCartParts } = useAuthContext();
-  const [cartItems, setCartItems] = useState([]);
-  const { cart } = useSelector((state) => state.products);
   const theme = useTheme();
+  const { fsGetCartParts } = useAuthContext();
+  const { cart } = useSelector((state) => state.products);
+  const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
   const openDrawerHandler = () => {

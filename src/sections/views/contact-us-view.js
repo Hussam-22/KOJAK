@@ -19,7 +19,7 @@ export default function ContactUsView() {
       sx={{
         overflow: 'hidden',
         py: 3,
-        bgcolor: 'background.neutral',
+        bgcolor: 'background.default',
       }}
     >
       <Container
@@ -47,7 +47,7 @@ export default function ContactUsView() {
           container
           spacing={5}
           justifyContent={{ md: 'space-between' }}
-          sx={{ p: isMdUp ? 3 : 1, bgcolor: 'background.default', borderRadius: 3 }}
+          sx={{ p: isMdUp ? 3 : 1, bgcolor: 'background.neutral', borderRadius: 3 }}
         >
           <Grid
             xs={12}
