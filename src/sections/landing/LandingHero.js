@@ -25,14 +25,14 @@ const LandingHero = () => {
   return (
     <Box
       sx={{
-        height: { md: '80dvh', xs: '80dvh' },
+        height: { md: '100dvh', xs: '80dvh' },
         bgcolor: 'common.black',
         pb: 8,
         // border: 'solid 1px #FFF',
       }}
     >
       <Container
-        maxWidth="xl"
+        // maxWidth="xl"
         sx={{
           height: 1,
           display: 'flex',

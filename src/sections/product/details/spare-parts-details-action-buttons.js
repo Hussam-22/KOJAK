@@ -63,11 +63,10 @@ function AvailableStockActionBar({ partDetails }) {
 
   const onAddClickHandler = () => {
     // If item does not exists in cart --> add it
-    console.log(tempQty);
     if (cartQty === 0) {
       console.log('NEW');
       setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: tempQty }]);
-      // dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
+      dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
     }
 
     if (cartQty !== 0) {
@@ -77,14 +76,11 @@ function AvailableStockActionBar({ partDetails }) {
         const index = prevState.findIndex(
           (localStorageItem) => localStorageItem.partNumber === partDetails.partNumber
         );
-        prevState[index] = { ...prevState[index], qty: prevState[index].qty + tempQty };
+        prevState[index] = { ...prevState[index], qty: tempQty };
         return prevState;
       });
+      dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty, isItemPage: true }));
     }
-
-    // UPDATE REDUX QTY
-    console.log({ partNumber, qty: tempQty });
-    // dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty }));
   };
 
   const onUpdateQtyClickHandler = (newQty) => {

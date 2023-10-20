@@ -55,12 +55,13 @@ const slice = createSlice({
     },
 
     rdxUpdatePartQty(state, action) {
-      console.log(action.payload);
       const index = state.cart.findIndex(
         (cartItem) => cartItem.partNumber === action.payload.partNumber
       );
       const newCart = state.cart;
-      newCart[index].qty += action.payload.qty;
+      if (action.payload?.isItemPage) {
+        newCart[index].qty = action.payload.qty;
+      } else newCart[index].qty += action.payload.qty;
       state.cart = [...newCart];
     },
     // ----------------------------------------------------
