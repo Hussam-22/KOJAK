@@ -55,6 +55,7 @@ const slice = createSlice({
     },
 
     rdxUpdatePartQty(state, action) {
+      console.log(action.payload);
       const index = state.cart.findIndex(
         (cartItem) => cartItem.partNumber === action.payload.partNumber
       );
