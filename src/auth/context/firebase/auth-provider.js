@@ -107,17 +107,28 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'S 500 L',
-      price: '000,000 AED',
-      year: 2024,
-      exteriorColor: '#FFFFFF',
-      interiorColor: '#E4DEC3',
+      model: 'G 400 D',
+      price: '690,000 AED',
+      year: 2023,
+      exteriorColor: '#000000',
+      interiorColor: '#D64343',
       engineType: 'Petrol',
       milage: 0,
       isActive: true,
       isFeatured: true,
       creationDate: new Date(),
-      features: `AMG Kit% Interior lighting 64 colors% Panoramic sunroof% Front radar% Lane detection system% Blind spot system% Front electric seats% Electric rear seats% Cooling and heating in the front seats% Cooling and heating of the rear seats% 360 degree camera% 3D mapping system% Wireless mobile charger% Perfume system% Fingerprint entry% Fingerprint start% Suction doors% Rear curtains% Digital Light% Smart MBUX system with automatic simulation in Arabic and provides full control of the car through the (MERCEDES ME) application% Electric trunk% Touch screen control% Apple CarPlay% Touch screen% Smart mouse% Front and rear sensors% Diamond brown leather (camel)% Auto parking system% Separate control of the rear air conditioner% Wheels measuring 21% Welcome lights in the handles Doors% Large Projector% Rear iPad% Rear Screens% Rolling Rear Wheels%`,
+      features: `20” AMG Light alloy wheel painted black%
+      360° camera All round viewing system%
+      PARKTRONIC Park Assist%
+      Electric sunroof, glass version%
+      Anti-theft protection package plus%
+      Burmester 3D surround sound system%
+      Ambient lighting showcased%
+      AMG LINE%
+      9G Tronic Automatic Transmission%
+      Active Distance Assist DISTRONIC%
+      Night package%
+      Energizing comfort control%`,
     });
   }, []);
 

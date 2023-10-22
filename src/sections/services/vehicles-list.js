@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Skeleton, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, useTheme, Skeleton, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';

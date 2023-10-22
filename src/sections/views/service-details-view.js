@@ -93,9 +93,15 @@ export default function ServiceDetailsView() {
           {vehicleInfo?.id !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
-                <Typography variant="h4" color="primary">
-                  {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
-                </Typography>
+                {vehicleInfo.isActive ? (
+                  <Typography variant="h4" color="primary">
+                    {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
+                  </Typography>
+                ) : (
+                  <Typography variant="h4" color="primary">
+                    {currentLang.value === 'en' ? 'SOLD' : 'بيعت'}
+                  </Typography>
+                )}
                 <Stack
                   direction={{ md: 'row', xs: 'column' }}
                   spacing={mdUp ? 2 : 0}
@@ -166,14 +172,16 @@ export default function ServiceDetailsView() {
             </Card>
           </Grid>
 
-          <Grid xs={12} md={6}>
-            <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
-              <Typography variant="h2" sx={{ mb: 2 }}>
-                {translate('inventory.makeItYours')}
-              </Typography>
-              {vehicleInfo?.id !== undefined && <ContactUsForm payload={payload} />}
-            </Card>
-          </Grid>
+          {vehicleInfo.isActive && (
+            <Grid xs={12} md={6}>
+              <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
+                <Typography variant="h2" sx={{ mb: 2 }}>
+                  {translate('inventory.makeItYours')}
+                </Typography>
+                {vehicleInfo?.id !== undefined && <ContactUsForm payload={payload} />}
+              </Card>
+            </Grid>
+          )}
 
           <Grid xs={12}>
             <Card sx={{ p: 3 }}>
