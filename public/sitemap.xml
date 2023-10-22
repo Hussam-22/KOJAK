@@ -126,5 +126,190 @@
         <priority>0.7</priority>
         <changefreq>monthly</changefreq>
     </url>
+
+    <!-- VEHICLES LIST -->
+    <url>
+    <loc>https://kojak-exclusive.com/inventory/Un3RvPGMJ2zxLlGdO3An</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/a2gvc9BHurKcfCyXh0jF</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/bN8BxGysGdelcqjXU9hf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/fIuS0S46YTv3MnTXYl9O</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/g7KS9enlBco2YTgGC7rQ</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/iLvA0jig3xs0oEFmrdnw</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/nCQWxr9uRoLlrxtXRgwf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/pKA6qltvmAcirLLhqyrk</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/v2oeO0ULsmfwC1cT1oi1</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/1gK5CTXwJnH1j1oan5Tr</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/Br48P9irbgatZI1ZKMUv</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/C9PgbILyqt6uDCPze2cI</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/Dqa6fO2fmiLvzQuFnvFY</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/LR5AncKKOTeZ2Rn8iirf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/inventory/TVFk1tQoM9LbAzo80gLQ</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/Un3RvPGMJ2zxLlGdO3An</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/a2gvc9BHurKcfCyXh0jF</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/bN8BxGysGdelcqjXU9hf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/fIuS0S46YTv3MnTXYl9O</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/g7KS9enlBco2YTgGC7rQ</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/iLvA0jig3xs0oEFmrdnw</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/nCQWxr9uRoLlrxtXRgwf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/pKA6qltvmAcirLLhqyrk</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/v2oeO0ULsmfwC1cT1oi1</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/1gK5CTXwJnH1j1oan5Tr</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/Br48P9irbgatZI1ZKMUv</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/C9PgbILyqt6uDCPze2cI</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/Dqa6fO2fmiLvzQuFnvFY</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/LR5AncKKOTeZ2Rn8iirf</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+<url>
+    <loc>https://kojak-exclusive.com/ar/inventory/TVFk1tQoM9LbAzo80gLQ</loc>
+    <lastmod>2023-10-022</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+</url>
+
+
   
 </urlset>
