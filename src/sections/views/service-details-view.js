@@ -93,7 +93,7 @@ export default function ServiceDetailsView() {
           {vehicleInfo?.id !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
-                {vehicleInfo.isActive ? (
+                {vehicleInfo?.isActive ? (
                   <Typography variant="h4" color="primary">
                     {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
                   </Typography>
@@ -172,7 +172,7 @@ export default function ServiceDetailsView() {
             </Card>
           </Grid>
 
-          {vehicleInfo.isActive && (
+          {vehicleInfo?.isActive && (
             <Grid xs={12} md={6}>
               <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
                 <Typography variant="h2" sx={{ mb: 2 }}>
