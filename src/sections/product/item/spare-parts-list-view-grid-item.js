@@ -9,13 +9,13 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import { Card, Button, useTheme, Typography } from '@mui/material';
 
-import Image from 'src/components/image';
+import Label from 'src/components/label';
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
-import Label from 'src/assets/illustrations/pattern/Label';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 // ----------------------------------------------------------------------
@@ -34,6 +34,13 @@ export default function SparePartsListViewGridItem({
   const isInCart = localStorageCart.find(
     (storageItem) => storageItem.partNumber === product.partNumber
   );
+
+  const getStockInfo = () => {
+    if (product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
+    if (product.stock > 0 && product.stock <= 10)
+      return { text: 'LIMITED STOCK', color: 'warning' };
+    return { text: 'AVAILABLE', color: 'success' };
+  };
 
   const addRemoveCartPart = () => {
     addToCartOnClickHandler(product.partNumber);
@@ -69,25 +76,40 @@ export default function SparePartsListViewGridItem({
             position: 'relative',
           }}
         >
-          <Fab
-            onClick={addRemoveCartPart}
-            className="add-to-cart"
-            color={isInCart ? 'error' : 'primary'}
-            size="small"
+          <Label
+            color={getStockInfo().color}
             sx={{
-              right: 8,
-              zIndex: 9,
-              bottom: 8,
-              opacity: 0,
+              fontSize: 10,
+              p: 1,
               position: 'absolute',
-              transition: theme.transitions.create('opacity', {
-                easing: theme.transitions.easing.easeIn,
-                duration: theme.transitions.duration.shortest,
-              }),
+              zIndex: 10,
+              borderRadius: '0 0 10px 0',
             }}
+            variant="filled"
           >
-            <Iconify icon={isInCart ? 'ph:trash' : 'carbon:shopping-cart-plus'} />
-          </Fab>
+            {getStockInfo().text}
+          </Label>
+          {product.stock !== 0 && (
+            <Fab
+              onClick={addRemoveCartPart}
+              className="add-to-cart"
+              color={isInCart ? 'error' : 'primary'}
+              size="small"
+              sx={{
+                right: 8,
+                zIndex: 9,
+                bottom: 8,
+                opacity: 0,
+                position: 'absolute',
+                transition: theme.transitions.create('opacity', {
+                  easing: theme.transitions.easing.easeIn,
+                  duration: theme.transitions.duration.shortest,
+                }),
+              }}
+            >
+              <Iconify icon={isInCart ? 'ph:trash' : 'carbon:shopping-cart-plus'} />
+            </Fab>
+          )}
 
           <Image
             src={imgUrl}
@@ -155,6 +177,7 @@ SparePartsListViewGridItem.propTypes = {
     subCategory: PropTypes.string,
     brandModel: PropTypes.array,
     brandClass: PropTypes.array,
+    stock: PropTypes.number,
   }),
   sx: PropTypes.object,
   addToCartOnClickHandler: PropTypes.func,

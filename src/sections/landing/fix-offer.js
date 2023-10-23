@@ -19,10 +19,10 @@ function FixOffer() {
         <Grid container spacing={3}>
           <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
             <Stack spacing={2}>
-              <Typography variant="h1" color="black">
+              <Typography variant="h1" color="white">
                 5% Discount
               </Typography>
-              <Typography variant="h5" color="black">
+              <Typography variant="h5" color="white">
                 Get 5% discount on Spare Parts price when you chose to Fix/Install Spare Part by our
                 Auto Maintenance Shop
               </Typography>

@@ -17,49 +17,32 @@ export default function ContactUsView() {
   return (
     <Box
       sx={{
-        overflow: 'hidden',
-        py: 3,
-        bgcolor: 'background.default',
+        py: 5,
       }}
     >
-      <Container
-        sx={{
-          py: 2,
-          borderRadius: 2,
-        }}
-      >
-        <Stack
-          spacing={3}
-          sx={{
-            mx: 'auto',
-            maxWidth: 860,
-            textAlign: 'center',
-            pb: { xs: 5, md: 10 },
-            position: 'relative',
-            zIndex: 10,
-          }}
-        >
+      <Container>
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="h1">{translate('contactUs.title')}</Typography>
-
           <Typography>{translate('contactUs.subTitle')}</Typography>
-        </Stack>
+        </Box>
+
         <Grid
           container
           spacing={5}
           justifyContent={{ md: 'space-between' }}
-          sx={{ p: isMdUp ? 3 : 1, bgcolor: 'background.neutral', borderRadius: 3 }}
+          sx={{ p: isMdUp ? 3 : 1 }}
         >
           <Grid
             xs={12}
             md={5}
             sx={{
               p: 3,
-              px: { md: 5, xs: 2 },
+              borderRight: 'dashed 1px #222',
             }}
           >
             <ContactUsInfo />
           </Grid>
-          <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' } }}>
+          <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' }, pl: 5 }}>
             <ContactUsForm />
           </Grid>
         </Grid>

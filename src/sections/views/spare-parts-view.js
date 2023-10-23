@@ -39,8 +39,6 @@ export default function SparePartsView() {
 
   const addParts = async () => fsWriteBatchPartsData();
 
-  console.log(startAfterDocument);
-
   // GET SPARE-PARTS DATA  ------------------------------------
   useEffect(() => {
     const getProducts = async () => {
@@ -64,7 +62,7 @@ export default function SparePartsView() {
     getProducts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model, filter.partName]);
+  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model, filter.inStockOnly]);
 
   // GET SPARE-PARTS COUNT ------------------------------------
   useEffect(() => {

@@ -13,7 +13,7 @@ import InternationalBusiness from 'src/sections/landing/international-business';
 
 export default function LandingView() {
   return (
-    <Container maxWidth={{ md: 'md', lg: 'lg' }}>
+    <>
       <LandingHero />
       <FeaturedParts />
       <FixOffer />
@@ -23,6 +23,6 @@ export default function LandingView() {
       <LandingFaqs />
       <VisitGroupsWebsite />
       <LatestPosts posts={blogPosts} />
-    </Container>
+    </>
   );
 }

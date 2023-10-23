@@ -106,8 +106,9 @@ function FeaturedSection({ caption, title, description, data }) {
       </Stack>
 
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-        {data.map((item) => (
+        {data.map((item, index) => (
           <Card
+            key={index}
             sx={{
               height: 1,
               borderRadius: 1,

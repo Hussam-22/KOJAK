@@ -21,8 +21,8 @@ import {
 import Iconify from 'src/components/iconify';
 import { _mercedesClasses } from 'src/_mock/_mercedesClasses';
 import FormProvider from 'src/components/hook-form/form-provider';
-import { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
+import { RHFSelect, RHFSwitch, RHFTextField } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +45,7 @@ export default function FilterBrand() {
     class: filter.class || '',
     model: filter.model || '',
     partNo: filter.partNo || '',
+    inStockOnly: true,
   };
 
   const methods = useForm({
@@ -63,7 +64,7 @@ export default function FilterBrand() {
 
   useEffect(() => {
     if (filter.class === '' && filter.model === '' && filter.partNo === '')
-      reset({ class: '', model: '', partNo: '' });
+      reset({ class: '', model: '', partNo: '', inStockOnly: true });
   }, [filter, reset]);
 
   const onSubmit = handleSubmit(async (formData) => {
@@ -81,6 +82,8 @@ export default function FilterBrand() {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction="column" spacing={2.5}>
         <RHFTextField name="partNo" label="Part Number" variant="outlined" />
+
+        <Divider sx={{ borderStyle: 'dashed' }} />
 
         <RHFSelect name="class" label="Mercedes Class" variant="outlined">
           <MenuItem value="">None</MenuItem>
@@ -110,20 +113,7 @@ export default function FilterBrand() {
               ))}
         </RHFSelect>
 
-        {/* <RHFTextField
-          name="partName"
-          label="Part Name"
-          variant="outlined"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={clearPartNameFieldHandler}>
-                  <Iconify icon="carbon:close-outline" />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        /> */}
+        <RHFSwitch name="inStockOnly" label="Show Available Stock Only" />
 
         <Stack spacing={2}>
           <LoadingButton

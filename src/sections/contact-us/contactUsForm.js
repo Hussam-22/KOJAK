@@ -146,7 +146,7 @@ export default function ContactUsForm({ payload }) {
             size="large"
             type="submit"
             variant="contained"
-            color="secondary"
+            color="primary"
             loading={isSubmitting}
             sx={{
               mx: { xs: 'auto !important', md: 'unset !important' },

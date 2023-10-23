@@ -12,10 +12,10 @@ const initialState = {
   currentPage: 1,
   filter: {
     partNo: '',
-    partName: '',
     class: '',
     model: '',
     category: [],
+    inStockOnly: true,
   },
   cart: [],
   isDrawerOpen: false,

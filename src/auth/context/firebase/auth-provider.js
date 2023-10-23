@@ -152,6 +152,10 @@ export function AuthProvider({ children }) {
       );
     }
 
+    if (!filter.partNo) {
+      docRef = query(docRef, where('partNumber', '!=', ''));
+    }
+
     if (filter.model && filter.model.length > 0) {
       docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
     }
@@ -162,6 +166,7 @@ export function AuthProvider({ children }) {
   }, []);
   // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
+    console.log(filter.inStockOnly);
     const dataArr = [];
     let docRef = collectionGroup(DB, 'partsData');
     docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
@@ -173,6 +178,10 @@ export function AuthProvider({ children }) {
         where('partNumber', '>=', filter.partNo),
         where('partNumber', '<', `${filter.partNo}\uf8ff`)
       );
+    }
+
+    if (!filter.partNo) {
+      docRef = query(docRef, where('partNumber', '!=', ''));
     }
 
     if (filter.model && filter.model.length > 0) {

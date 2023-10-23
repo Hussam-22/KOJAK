@@ -42,28 +42,28 @@ export const _socials = [
     label: 'FaceBook',
     icon: 'carbon:logo-facebook',
     color: '#1877F2',
-    path: 'https://www.facebook.com/KojakGroupofCompanies',
+    path: 'https://www.facebook.com/Kojak.SpareParts',
   },
   {
     value: 'instagram',
     label: 'Instagram',
     icon: 'carbon:logo-instagram',
     color: '#E02D69',
-    path: 'https://www.instagram.com/kexclusive_cars',
+    path: 'https://www.instagram.com/kojak.spareparts/',
   },
   {
     value: 'tikTok',
     label: 'TikTok',
     icon: 'ic:baseline-tiktok',
     color: '#007EBB',
-    path: 'https://www.tiktok.com/en/Kexclusive.cars',
+    path: 'https://www.tiktok.com/en/Kojakautospareparts',
   },
   {
     value: 'twitter',
     label: 'Twitter',
     icon: 'ri:twitter-x-fill',
     color: '#00AAEC',
-    path: 'https://twitter.com/Kexclusive_cars',
+    path: 'https://twitter.com/kojakAuto',
   },
 ];
 

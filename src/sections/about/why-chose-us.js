@@ -25,7 +25,7 @@ const DATA = [
       'Time is of the essence when your vehicle needs repairs. We offer fast delivery and international shipping options, ensuring that your required Mercedes-Benz spare parts reach you promptly, no matter where you are.',
     title: 'Fast Delivery & International Shipping',
     bgcolor: 'info.main',
-    color: 'common.black',
+    color: 'common.white',
   },
   {
     icon: 'basil:headset-outline', // You can specify the actual icon name or URL here
@@ -50,6 +50,7 @@ function WhyChoseUs() {
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
           {DATA.map((item, index) => (
             <Box
+              key={item.icon}
               sx={{
                 p: 3,
                 bgcolor: item.bgcolor,

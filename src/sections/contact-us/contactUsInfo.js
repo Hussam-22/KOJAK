@@ -19,8 +19,8 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-        <Link color="inherit" href="mailto:queries@kojak-group.com">
-          queries@kojak-group.com
+        <Link color="inherit" href="mailto:queriesksp@kojak-group.com">
+          queriesksp@kojak-group.com
         </Link>
       </Stack>
 

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { LoadingButton } from '@mui/lab';
 import {
   Box,
   Stack,
@@ -40,6 +41,8 @@ SparePartsDetailsActionButtons.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
 function AvailableStockActionBar({ partDetails }) {
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
+  const [loadingRemove, setLoadingRemove] = useState(false);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
   const mdUp = useResponsive('up', 'md');
@@ -54,19 +57,27 @@ function AvailableStockActionBar({ partDetails }) {
   }, [cartQty]);
 
   const onRemoveClickHandler = () => {
+    setLoadingRemove(true);
     setLocalStorageCart((prevState) =>
       prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
     );
-    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
-    setTempQty(1);
+    setTimeout(() => {
+      dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+      setLoadingRemove(false);
+      setTempQty(1);
+    }, 1000);
   };
 
   const onAddClickHandler = () => {
+    setLoadingUpdate(true);
     // If item does not exists in cart --> add it
     if (cartQty === 0) {
       console.log('NEW');
       setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: tempQty }]);
-      dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
+      setTimeout(() => {
+        dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
+        setLoadingUpdate(false);
+      }, 1000);
     }
 
     if (cartQty !== 0) {
@@ -79,7 +90,10 @@ function AvailableStockActionBar({ partDetails }) {
         prevState[index] = { ...prevState[index], qty: tempQty };
         return prevState;
       });
-      dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty, isItemPage: true }));
+      setTimeout(() => {
+        dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty, isItemPage: true }));
+        setLoadingUpdate(false);
+      }, 1000);
     }
   };
 
@@ -121,7 +135,8 @@ function AvailableStockActionBar({ partDetails }) {
           </Stack>
         </Stack>
 
-        <Button
+        <LoadingButton
+          loading={loadingUpdate}
           variant="contained"
           color="primary"
           sx={{ whiteSpace: 'nowrap' }}
@@ -137,8 +152,9 @@ function AvailableStockActionBar({ partDetails }) {
           onClick={onAddClickHandler}
         >
           {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
-        </Button>
-        <Button
+        </LoadingButton>
+        <LoadingButton
+          loading={loadingRemove}
           variant="contained"
           color="error"
           sx={{ whiteSpace: 'nowrap' }}
@@ -149,7 +165,7 @@ function AvailableStockActionBar({ partDetails }) {
           onClick={onRemoveClickHandler}
         >
           Remove
-        </Button>
+        </LoadingButton>
       </Stack>
       {/* <Button
         variant="contained"

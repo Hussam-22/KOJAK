@@ -79,7 +79,7 @@ export default function Vision() {
 
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3, mt: 4 }}>
               {DATA.map((item, index) => (
-                <Box sx={{ border: 'dashed 1px #333', p: 3, borderRadius: 3 }}>
+                <Box sx={{ border: 'dashed 1px #333', p: 3, borderRadius: 3 }} key={item.title}>
                   <Typography variant="h5" sx={{ color: 'info.main' }}>
                     {item.title}
                   </Typography>
