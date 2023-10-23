@@ -6,21 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Box,
+  Link,
   Card,
   Stack,
   Button,
   Divider,
-  Skeleton,
   useTheme,
+  Skeleton,
   Container,
-  IconButton,
   Typography,
+  IconButton,
 } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
+import { RouterLink } from 'src/routes/components';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
@@ -34,11 +36,14 @@ import {
 
 function CartItems() {
   const dispatch = useDispatch();
+
   const theme = useTheme();
   const { fsGetCartParts } = useAuthContext();
   const { cart } = useSelector((state) => state.products);
   const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
+
+  console.log(cartItems);
 
   const openDrawerHandler = () => {
     dispatch(rdxToggleDrawer());
@@ -51,7 +56,6 @@ function CartItems() {
 
   useEffect(() => {
     if (cart.length === 0) {
-      console.log('EMPTY CART ITEMS', localStorageCart.length);
       setCartItems([]);
     }
   }, [cart, localStorageCart.length]);
@@ -117,13 +121,18 @@ function CartItems() {
                   >
                     <Typography variant="h5">{index + 1}</Typography>
 
-                    <Image
-                      src={cartItem.imageUrl}
-                      width={85}
-                      height={85}
-                      alt={`spare-part${cartItem.partData.partNumber}`}
-                      sx={{ borderRadius: 1 }}
-                    />
+                    <Link
+                      component={RouterLink}
+                      to={paths.website.sparePartDetails + cartItem.partData.docID}
+                    >
+                      <Image
+                        src={cartItem.imageUrl}
+                        width={85}
+                        height={85}
+                        alt={`spare-part${cartItem.partData.partNumber}`}
+                        sx={{ borderRadius: 1 }}
+                      />
+                    </Link>
                     <PartInfo partData={cartItem.partData} />
                     <ActionButtons
                       partNumber={cartItem.partData.partNumber}
@@ -216,15 +225,21 @@ PartsSkeleton.propTypes = { cartLength: PropTypes.number, borderColor: PropTypes
 // ----------------------------------------------------------------------------
 
 function PartInfo({ partData }) {
+  const navigate = useNavigate();
   const theme = useTheme();
-  const { partNumber, partName, category, itemGroup, brandClass, brandModel } = partData;
+  const { partNumber, partName, category, itemGroup, brandClass, brandModel, docID } = partData;
+
+  const navigateToPartPage = () => navigate();
 
   return (
     <Stack sx={{ p: 1, flexGrow: 1 }}>
       <Typography color="secondary" variant="body2">
         {partNumber}
       </Typography>
-      <Typography color="primary">{partName}</Typography>
+      <Link component={RouterLink} to={paths.website.sparePartDetails + docID}>
+        {partName}
+      </Link>
+      {/* <Typography color="primary">{partName}</Typography> */}
       <Typography color="white" variant="body2">
         {category}
       </Typography>

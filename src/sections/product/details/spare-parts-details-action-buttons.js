@@ -43,41 +43,50 @@ function AvailableStockActionBar({ partDetails }) {
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
   const mdUp = useResponsive('up', 'md');
+  const [tempQty, setTempQty] = useState(1);
 
+  const { partNumber } = partDetails;
   const cartQty =
-    localStorageCart.find((part) => part.partNumber === partDetails.partNumber)?.qty || 0;
+    localStorageCart?.find((part) => part.partNumber === partDetails.partNumber)?.qty || 0;
 
-  const onUpdateQtyClickHandler = (qty, partNumber = partDetails.partNumber) => {
-    // add part to localStorage & Cart (new)
+  useEffect(() => {
+    if (cartQty !== 0) setTempQty(cartQty);
+  }, [cartQty]);
+
+  const onRemoveClickHandler = () => {
+    setLocalStorageCart((prevState) =>
+      prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
+    );
+    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+    setTempQty(1);
+  };
+
+  const onAddClickHandler = () => {
+    // If item does not exists in cart --> add it
     if (cartQty === 0) {
-      setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
-      dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+      console.log('NEW');
+      setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: tempQty }]);
+      dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
     }
 
-    // remove part from LocalStorage & Cart when reaching Zero Qty
-    if (cartQty === 1 && qty === -1) {
-      console.log('REMOVE');
-      setLocalStorageCart((prevState) =>
-        prevState.filter((item) => item.partNumber !== partNumber)
-      );
-      dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
-    } else {
-      // eslint-disable-next-line no-lonely-if
-      if (cartQty !== 0) {
-        console.log('+/-');
-        setLocalStorageCart((prevState) => {
-          const index = prevState.findIndex(
-            (localStorageItem) => localStorageItem.partNumber === partDetails.partNumber
-          );
-          prevState[index] = { ...prevState[index], qty: prevState[index].qty + qty };
-          return prevState;
-        });
-
-        // update Redux
-        dispatch(rdxUpdatePartQty({ partNumber, qty }));
-      }
+    if (cartQty !== 0) {
+      console.log('UPDATE');
+      // If item exists in cart --> update Qty
+      setLocalStorageCart((prevState) => {
+        const index = prevState.findIndex(
+          (localStorageItem) => localStorageItem.partNumber === partDetails.partNumber
+        );
+        prevState[index] = { ...prevState[index], qty: tempQty };
+        return prevState;
+      });
+      dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty, isItemPage: true }));
     }
   };
+
+  const onUpdateQtyClickHandler = (newQty) => {
+    setTempQty((prevQty) => prevQty + newQty);
+  };
+
   // ----------------------------------------------------------------------------
   return (
     <Stack
@@ -96,17 +105,17 @@ function AvailableStockActionBar({ partDetails }) {
             <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
               <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'success.main' }} />
             </IconButton>
-            <Typography sx={{ whiteSpace: 'nowrap' }}>x {cartQty}</Typography>
+            <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
             <IconButton
               disableRipple
               onClick={() => onUpdateQtyClickHandler(-1)}
-              disabled={cartQty === 0}
+              disabled={tempQty === 1}
             >
               <Iconify
                 icon="bxs:down-arrow"
                 width={16}
                 height={16}
-                sx={{ color: cartQty === 0 ? 'secondary.main' : 'error.main' }}
+                sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
               />
             </IconButton>
           </Stack>
@@ -116,7 +125,7 @@ function AvailableStockActionBar({ partDetails }) {
           variant="contained"
           color="primary"
           sx={{ whiteSpace: 'nowrap' }}
-          disabled={cartQty === 0}
+          disabled={cartQty === tempQty}
           startIcon={
             <Iconify
               icon="carbon:shopping-cart-plus"
@@ -125,20 +134,32 @@ function AvailableStockActionBar({ partDetails }) {
               sx={{ color: 'common.white' }}
             />
           }
+          onClick={onAddClickHandler}
         >
-          Add to Cart
+          {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          sx={{ whiteSpace: 'nowrap' }}
+          disabled={cartQty === 0}
+          startIcon={
+            <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
+          }
+          onClick={onRemoveClickHandler}
+        >
+          Remove
         </Button>
       </Stack>
-
-      <Button
+      {/* <Button
         variant="contained"
         color="success"
         startIcon={
           <Iconify icon="mdi:whatsapp" width={24} height={24} sx={{ color: 'common.black' }} />
         }
       >
-        Get Quote via WhatsApp
-      </Button>
+        Get Quick Quote via WhatsApp
+      </Button>  */}
     </Stack>
   );
 }

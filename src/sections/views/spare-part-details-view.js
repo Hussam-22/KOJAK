@@ -61,12 +61,12 @@ function SparePartDetailsView() {
                 alignItems: 'center',
               }}
             >
-              <Image
+              {/* <Image
                 src={partDetails.imgUrl}
                 sx={{ borderRadius: 1 }}
                 // ratio="1/1"
                 alt={`${productDescription} - www.kojak-spare-parts.com`}
-              />
+              /> */}
             </Box>
           </Grid>
           <Grid md={6}>
