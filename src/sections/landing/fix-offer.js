@@ -14,7 +14,7 @@ function FixOffer() {
   const { translate } = useLocales();
 
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.default' }}>
+    <Box sx={{ py: 8, px: { xs: 3 } }}>
       <Container maxWidth="xl" sx={{ bgcolor: 'info.main', borderRadius: 1, p: 3 }}>
         <Grid container spacing={3}>
           <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>

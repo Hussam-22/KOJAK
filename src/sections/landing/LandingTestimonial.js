@@ -52,7 +52,7 @@ export default function LandingTestimonial() {
       }}
     >
       <Container maxWidth="xl">
-        <Stack spacing={2} sx={{ mb: 5 }}>
+        <Stack spacing={2} sx={{ mb: 5, px: 1 }}>
           <Typography variant="overline" color="primary">
             Testimonials
           </Typography>

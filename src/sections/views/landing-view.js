@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 import { blogPosts } from 'src/_mock';
 import FixOffer from 'src/sections/landing/fix-offer';

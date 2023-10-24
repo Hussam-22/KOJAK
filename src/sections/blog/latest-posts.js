@@ -40,7 +40,7 @@ export default function LatestPosts({ posts }) {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
+    <Box sx={{ bgcolor: 'background.neutral', px: 1 }}>
       <Container
         sx={{
           pt: 10,
@@ -56,7 +56,6 @@ export default function LatestPosts({ posts }) {
           justifyContent={{ xs: 'center', md: 'space-between' }}
           sx={{
             mb: 5,
-            textAlign: { xs: 'center', md: 'left' },
           }}
         >
           <Stack

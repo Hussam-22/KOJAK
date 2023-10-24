@@ -74,15 +74,12 @@ export default function LandingFaqs() {
       <Container maxWidth="xl">
         <Grid container spacing={3}>
           <Grid md={6} xs={12}>
-            <Box>
+            <Box sx={{ px: 1 }}>
               <Typography variant="overline" color="primary">
                 FAQ
               </Typography>
               <Stack spacing={3}>
-                <Typography
-                  variant="h1"
-                  sx={{ color: 'common.white', textAlign: { md: 'left', xs: 'center', zIndex: 9 } }}
-                >
+                <Typography variant="h1" sx={{ color: 'common.white' }}>
                   Frequently Asked Questions
                 </Typography>
                 <Typography

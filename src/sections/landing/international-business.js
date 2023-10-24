@@ -7,10 +7,12 @@ import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/materi
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 function InternationalBusiness() {
   const theme = useTheme();
   const { translate } = useLocales();
+  const mdUp = useResponsive('up', 'md');
 
   return (
     <Box
@@ -23,12 +25,13 @@ function InternationalBusiness() {
     >
       <Container maxWidth="xl">
         <Grid container>
-          <Grid md={7} xs={12} sx={{ p: 3 }}>
-            <Stack spacing={3}>
+          <Grid md={7} xs={12}>
+            <Stack spacing={3} sx={{ px: 1 }}>
               <Typography variant="overline" color="primary">
                 {translate('landing.international.overline')}
               </Typography>
               <Typography variant="h1">{translate('landing.international.title')}</Typography>
+              {!mdUp && <Image src="/assets/illustrations/illustration_map.svg" />}
               <Typography
                 sx={{
                   whiteSpace: 'pre-line',
@@ -52,7 +55,7 @@ function InternationalBusiness() {
           </Grid>
           <Grid
             md={5}
-            xs={12}
+            xs={0}
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
             <Image src="/assets/illustrations/illustration_map.svg" />

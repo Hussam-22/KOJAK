@@ -28,8 +28,6 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const filteredClasses =
     _mercedesClasses.filter((vehicle) => partDetails?.brandClass?.includes(vehicle.class)) || {};
 
-  console.log(partDetails?.brandClass);
-
   // const applicableModels = filteredClasses.map((item) => (
   //   <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
   //     <Box component="span" sx={{ color: 'info.main' }}>
@@ -55,7 +53,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   return (
     partDetails?.id && (
       <Box sx={{ px: 3 }}>
-        <Stack direction="row" justifyContent="space-between" sx={{ mb: 2 }}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
           <Box>
             <Label color={getStockInfo(partDetails.stock).color} sx={{ fontSize: 14, p: 1 }}>
               {getStockInfo(partDetails.stock).text}

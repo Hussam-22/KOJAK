@@ -84,6 +84,7 @@ export default LandingSearchParts;
 // ----------------------------------------------------------------------------
 
 function SearchAdvanced() {
+  const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -134,7 +135,12 @@ function SearchAdvanced() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
-        <RHFSelect name="class" label="Mercedes Class" variant="outlined">
+        <RHFSelect
+          name="class"
+          label="Mercedes Class"
+          variant="outlined"
+          size={mdUp ? 'large' : 'small'}
+        >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {_mercedesClasses.map((option) => (
@@ -144,20 +150,30 @@ function SearchAdvanced() {
           ))}
         </RHFSelect>
 
-        <RHFSelect name="model" label="Production Year" variant="outlined">
+        <RHFSelect
+          name="model"
+          label="Production Year"
+          variant="outlined"
+          size={mdUp ? 'large' : 'small'}
+        >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {values.class !== '' &&
             _mercedesClasses
               .find((option) => option.class === values.class)
               .models.map((option) => (
-                <MenuItem key={option.model} value={option.model}>
-                  {`${option.model} - ${option.productionYears}`}
+                <MenuItem key={option} value={option}>
+                  {`${option}`}
                 </MenuItem>
               ))}
         </RHFSelect>
 
-        <RHFSelect name="category" label="Part Category" variant="outlined">
+        <RHFSelect
+          name="category"
+          label="Part Category"
+          variant="outlined"
+          size={mdUp ? 'large' : 'small'}
+        >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {_partsCategory.map((option) => (
@@ -169,7 +185,7 @@ function SearchAdvanced() {
 
         <Box sx={{ textAlign: 'center' }}>
           <LoadingButton
-            size="large"
+            size={mdUp ? 'large' : 'small'}
             type="submit"
             variant="contained"
             color="primary"
@@ -190,6 +206,7 @@ function SearchAdvanced() {
 // ----------------------------------------------------------------------------
 
 function SearchPartNumber() {
+  const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -224,11 +241,17 @@ function SearchPartNumber() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
-        <RHFTextField name="partNo" label="Part Number" variant="outlined" fullWidth />
+        <RHFTextField
+          name="partNo"
+          label="Part Number"
+          variant="outlined"
+          fullWidth
+          size={mdUp ? 'large' : 'small'}
+        />
 
         <Box sx={{ textAlign: 'center' }}>
           <LoadingButton
-            size="large"
+            size={mdUp ? 'large' : 'small'}
             type="submit"
             variant="contained"
             color="primary"

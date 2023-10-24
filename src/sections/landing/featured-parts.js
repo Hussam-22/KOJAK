@@ -7,6 +7,8 @@ import { Box, Card, Stack, Button, Divider, useTheme, Container, Typography } fr
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
+import CarouselComponent from 'src/components/carousel/carousel-component';
 
 const SERVICE_KIT = [
   {
@@ -59,8 +61,8 @@ function FeaturedParts() {
   const { translate } = useLocales();
 
   return (
-    <Box sx={{ py: 15 }}>
-      <Container maxWidth="xl">
+    <Box sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 3 } }}>
         <Stack spacing={8} divider={<Divider />}>
           <FeaturedSection
             caption="Service Kits"
@@ -89,6 +91,7 @@ function FeaturedParts() {
 export default FeaturedParts;
 
 function FeaturedSection({ caption, title, description, data }) {
+  const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   return (
     <Box>
@@ -105,26 +108,58 @@ function FeaturedSection({ caption, title, description, data }) {
         <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>
       </Stack>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            sx={{
-              height: 1,
-              borderRadius: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="3/4" />
-            <Typography sx={{ p: 2, alignSelf: 'center' }}>{item.description}</Typography>
-            <Button variant="contained" color="primary">
-              More Details
-            </Button>
-          </Card>
-        ))}
-      </Box>
+      {mdUp ? (
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gap: 2,
+          }}
+        >
+          {data.map((item, index) => (
+            <Card
+              key={index}
+              sx={{
+                height: 1,
+                borderRadius: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="3/4" />
+              <Typography sx={{ p: 2, alignSelf: 'center' }}>{item.description}</Typography>
+              <Button variant="contained" color="primary">
+                More Details
+              </Button>
+            </Card>
+          ))}
+        </Box>
+      ) : (
+        <Box sx={{ height: 1 }}>
+          <CarouselComponent>
+            {data.map((item, index) => (
+              <Card
+                key={index}
+                sx={{
+                  height: '100%',
+                  borderRadius: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  maxWidth: '82dvw',
+                }}
+              >
+                <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="3/4" />
+                <Typography sx={{ p: 2, alignSelf: 'center' }}>{item.description}</Typography>
+                <Button variant="contained" color="primary">
+                  More Details
+                </Button>
+              </Card>
+            ))}
+          </CarouselComponent>
+        </Box>
+      )}
     </Box>
   );
 }

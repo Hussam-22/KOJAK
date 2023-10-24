@@ -95,7 +95,7 @@ function VisitGroupsWebsite() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.default', py: 15 }}>
+    <Box sx={{ bgcolor: 'background.default', py: 15, px: 1 }}>
       <Container maxWidth="xl">
         <Typography variant="overline" color="primary">
           {translate(`landing.visit.overline`)}

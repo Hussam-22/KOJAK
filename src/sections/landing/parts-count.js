@@ -20,13 +20,11 @@ function PartsCount() {
     <Box
       sx={{
         py: 8,
-        bgcolor: 'background.default',
-        position: 'relative',
       }}
     >
       <Container maxWidth="xl">
         <Grid container>
-          <Grid md={12} xs={12} sx={{ p: 3 }}>
+          <Grid md={12} xs={12} sx={{ px: 1 }}>
             <Stack spacing={3}>
               <Box>
                 <Typography variant="overline" color="primary">
@@ -55,8 +53,10 @@ function PartsCount() {
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: `repeat(6,1fr)`,
+                gridTemplateColumns: { md: `repeat(6,1fr)`, xs: `repeat(2,1fr)` },
                 gap: 2,
+                px: 1,
+                mt: 2,
               }}
             >
               {_partsCategory
