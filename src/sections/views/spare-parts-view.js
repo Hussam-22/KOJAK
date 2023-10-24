@@ -63,7 +63,7 @@ export default function SparePartsView() {
     getProducts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model, filter.inStockOnly]);
+  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model]);
 
   // GET SPARE-PARTS COUNT ------------------------------------
   useEffect(() => {

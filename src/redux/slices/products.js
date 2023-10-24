@@ -71,8 +71,12 @@ const slice = createSlice({
       state.startAfterDocument[action.payload.page] =
         action.payload.sparePartsData[action.payload.sparePartsData.length - 1]?.partNumber ||
         undefined;
+
       state.products = action.payload.sparePartsData;
-      state.filteredProducts = action.payload.sparePartsData;
+
+      if (state.filter.inStockOnly) {
+        state.filteredProducts = action.payload.sparePartsData.filter((part) => part.stock > 0);
+      } else state.filteredProducts = action.payload.sparePartsData;
     },
 
     rdxClearFilter(state) {
