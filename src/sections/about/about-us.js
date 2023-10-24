@@ -25,17 +25,15 @@ export default function AboutUs() {
   const theme = useTheme();
   return (
     <Box sx={{ bgcolor: 'common.black', height: '100dvh', display: 'flex', alignItems: 'center' }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ mx: mdUp ? 'auto' : 4, position: 'relative' }}>
         <Grid container>
-          <Grid md={5}>
+          <Grid md={5} xs={12}>
             <Typography
               color="secondary"
               sx={{
-                fontSize: '18dvh',
+                fontSize: mdUp ? '18dvh' : '10dvh',
                 fontWeight: theme.typography.fontWeightBold,
                 lineHeight: 1,
-                // whiteSpace: 'nowrap',
-
                 textTransform: 'uppercase',
               }}
             >
@@ -44,38 +42,21 @@ export default function AboutUs() {
             <Typography
               sx={{
                 color: 'primary.main',
-                fontSize: '18dvh',
+                fontSize: mdUp ? '18dvh' : '10dvh',
                 fontWeight: theme.typography.fontWeightBold,
                 lineHeight: 1,
-                // whiteSpace: 'nowrap',
-
                 textTransform: 'uppercase',
               }}
             >
               {translate('common.brand')}
             </Typography>
           </Grid>
-          <Grid
-            md={7}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative',
-            }}
-          >
-            <Image
-              src="/assets/illustrations/engine.svg"
-              height={500}
-              sx={{ position: 'absolute', top: 0, zIndex: 0 }}
-            />
-          </Grid>
         </Grid>
         <Stack spacing={2}>
           <Typography
             color="white"
             sx={{
-              fontSize: '18dvh',
+              fontSize: mdUp ? '18dvh' : '10dvh',
               fontWeight: theme.typography.fontWeightBold,
               lineHeight: 1,
               textTransform: 'uppercase',
@@ -85,6 +66,12 @@ export default function AboutUs() {
           </Typography>
           <Typography color="white">{translate('about.description')}</Typography>
         </Stack>
+
+        {mdUp && (
+          <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 0 }}>
+            <Image src="/assets/illustrations/engine.svg" height={mdUp ? 500 : 300} />
+          </Box>
+        )}
       </Container>
     </Box>
   );

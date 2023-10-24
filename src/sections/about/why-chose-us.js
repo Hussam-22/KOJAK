@@ -4,6 +4,7 @@ import { Box, Card, Stack, Button, Container, Typography } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 const DATA = [
   {
@@ -38,16 +39,22 @@ const DATA = [
 ];
 
 function WhyChoseUs() {
+  const mdUp = useResponsive('up', 'md');
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ py: 8, px: mdUp ? 'unset' : 4 }}>
         <Typography variant="overline" color="primary">
           Why Choose Us
         </Typography>
         <Typography variant="h1" sx={{ mb: 8 }}>
           Why Choose Kojak Spare Parts
         </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+          }}
+        >
           {DATA.map((item, index) => (
             <Box
               key={item.icon}
@@ -55,7 +62,9 @@ function WhyChoseUs() {
                 p: 3,
                 bgcolor: item.bgcolor,
                 color: item?.color || 'unset',
-                borderRadius: (index === 0 && '18px 0 0 18px') || (index === 3 && '0 18px 18px 0'),
+                borderRadius:
+                  (index === 0 && mdUp && '18px 0 0 18px') ||
+                  (index === 3 && mdUp && '0 18px 18px 0'),
               }}
             >
               <Stack spacing={2}>

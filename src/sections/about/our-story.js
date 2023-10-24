@@ -9,6 +9,7 @@ import Image from 'src/components/image';
 import { bgGradient } from 'src/theme/css';
 import CountUp from 'src/components/count-up';
 import { fShortenNumber } from 'src/utils/format-number';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -55,18 +56,20 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function OurStory() {
+  const mdUp = useResponsive('up', 'md');
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Container
         maxWidth="xl"
         sx={{
           py: 8,
+          px: mdUp ? 'unset' : 4,
         }}
       >
         <Typography paragraph variant="overline" color="primary">
           Our Commitment
         </Typography>
-        <Typography variant="h1">Our commitment is threefold</Typography>
+        <Typography variant="h1">Our Commitment is Threefold</Typography>
         <Typography>
           {`We invite you to explore our comprehensive online catalog or reach out to our dedicated
             team for personalized assistance. Whether you're a Mercedes-Benz enthusiast or a
