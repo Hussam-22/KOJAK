@@ -106,9 +106,8 @@ export default function FilterBrand() {
             _mercedesClasses
               .find((option) => option.class === values.class)
               ?.models.map((option) => (
-                <MenuItem key={option.model} value={option.model}>
-                  {/* {`${option.model} - ${option.productionYears}`} */}
-                  {option.productionYears}
+                <MenuItem key={option} value={option}>
+                  {`${option}`}
                 </MenuItem>
               ))}
         </RHFSelect>

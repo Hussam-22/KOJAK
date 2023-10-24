@@ -28,18 +28,30 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const filteredClasses =
     _mercedesClasses.filter((vehicle) => partDetails?.brandClass?.includes(vehicle.class)) || {};
 
+  console.log(partDetails?.brandClass);
+
+  // const applicableModels = filteredClasses.map((item) => (
+  //   <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
+  //     <Box component="span" sx={{ color: 'info.main' }}>
+  //       {item.class}
+  //     </Box>{' '}
+  //     -{' '}
+  //     {item.models
+  //       .filter((model) => partDetails.brandModel.slice(0, 4).includes(model.model))
+  //       .map((modelItem) => `(${modelItem.model}) ${modelItem.productionYears}`)
+  //       .join(', ')}
+  //   </Typography>
+  // ));
+
   const applicableModels = filteredClasses.map((item) => (
     <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
       <Box component="span" sx={{ color: 'info.main' }}>
         {item.class}
       </Box>{' '}
-      -{' '}
-      {item.models
-        .filter((model) => partDetails.brandModel.includes(model.model))
-        .map((modelItem) => `(${modelItem.model}) ${modelItem.productionYears}`)
-        .join(', ')}
+      - {partDetails.brandModel.join(', ')}
     </Typography>
   ));
+
   return (
     partDetails?.id && (
       <Box sx={{ px: 3 }}>

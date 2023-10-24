@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
   const fsGetImgDownloadUrl = useCallback(async (imgID) => {
     let url = '';
     try {
-      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/parts-images/${imgID}`));
+      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/large/${imgID}`));
     } catch (error) {
       url = undefined;
     }
@@ -122,17 +122,18 @@ export function AuthProvider({ children }) {
 
   const fsWriteBatchPartsData = useCallback(async () => {
     const batch = writeBatch(DB);
-    const partsToAdd = _partsData.slice(1, 55);
+    const partsToAdd = _partsData.slice(7501, 7727);
 
     partsToAdd.forEach((element) => {
       const docRef = doc(collection(DB, `/websites/${SITE_NAME}/partsData`));
       batch.set(docRef, {
         ...element,
+        id: +element.ID,
+        stock: +element.stock,
+        brandClass: [element.brandClass],
+        brandModel: [element.brandModel],
         docID: docRef.id,
-        brandClass: ['A-Class', 'B-Class'],
-        brandModel: ['W168', 'W177', 'W245'],
-        category: 'Transmission',
-        subCategory: 'Clutch Kit',
+        imageName: `${element.ID}.webp`,
       });
     });
 
@@ -166,7 +167,7 @@ export function AuthProvider({ children }) {
   }, []);
   // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
-    console.log(filter.inStockOnly);
+    console.log(filter);
     const dataArr = [];
     let docRef = collectionGroup(DB, 'partsData');
     docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));

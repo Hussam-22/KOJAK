@@ -140,23 +140,13 @@ export default function SparePartsListViewGridItem({
               onClick={() => navigate(paths.website.sparePartDetails + product.docID)}
             >
               <TextMaxLine line={1} color="primary">
-                {product.partName}
+                {product.description}
               </TextMaxLine>
             </Button>
           </Box>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.category} - {product.subCategory}
           </Typography>
-          <Link component={RouterLink} href={paths.website.productDetails} color="inherit">
-            <TextMaxLine
-              variant="body2"
-              color="primary"
-              line={1}
-              sx={{ fontWeight: 'fontWeightMedium' }}
-            >
-              {product.description}
-            </TextMaxLine>
-          </Link>
         </Stack>
       </Stack>
     </Card>
@@ -170,7 +160,6 @@ SparePartsListViewGridItem.propTypes = {
     id: PropTypes.number,
     itemGroup: PropTypes.string,
     partNumber: PropTypes.any,
-    partName: PropTypes.any,
     price: PropTypes.number,
     imageName: PropTypes.string,
     category: PropTypes.string,

@@ -35,7 +35,7 @@ function SparePartDetailsView() {
 
   const productDescription =
     (partDetails?.id &&
-      `${partDetails.partName}, ${partDetails.category}, ` +
+      `${partDetails.description}, ${partDetails.category}, ` +
         `applicable for Mercedes Class: ${partDetails.brandClass.join(', ')}, ` +
         `and Mercedes Model: ${partDetails.brandModel.join(', ')}`) ||
     '';

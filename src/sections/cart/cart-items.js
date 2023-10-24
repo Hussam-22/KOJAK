@@ -227,7 +227,7 @@ PartsSkeleton.propTypes = { cartLength: PropTypes.number, borderColor: PropTypes
 function PartInfo({ partData }) {
   const navigate = useNavigate();
   const theme = useTheme();
-  const { partNumber, partName, category, itemGroup, brandClass, brandModel, docID } = partData;
+  const { partNumber, description, category, itemGroup, brandClass, brandModel, docID } = partData;
 
   const navigateToPartPage = () => navigate();
 
@@ -237,9 +237,9 @@ function PartInfo({ partData }) {
         {partNumber}
       </Typography>
       <Link component={RouterLink} to={paths.website.sparePartDetails + docID}>
-        {partName}
+        {description}
       </Link>
-      {/* <Typography color="primary">{partName}</Typography> */}
+      {/* <Typography color="primary">{description}</Typography> */}
       <Typography color="white" variant="body2">
         {category}
       </Typography>

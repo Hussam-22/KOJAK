@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
+import { _partsData } from 'src/_mock/_partsData';
 import { useBoolean } from 'src/hooks/use-boolean';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
