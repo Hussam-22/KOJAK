@@ -77,14 +77,14 @@ export default function SparePartsView() {
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Stack
-        direction="row"
+        direction={{ md: 'row', xs: 'column' }}
         alignItems="center"
         justifyContent="space-between"
         sx={{
           py: 5,
         }}
       >
-        <Stack>
+        <Stack sx={{ mb: 2 }}>
           <Typography variant="h1" id="scrollToHere">
             CATALOG
           </Typography>
@@ -93,10 +93,10 @@ export default function SparePartsView() {
           </Typography>
         </Stack>
 
-        <Button onClick={addParts}>Add Parts</Button>
+        {/* <Button onClick={addParts}>Add Parts</Button> */}
 
         <Button
-          color="inherit"
+          color="primary"
           variant="contained"
           startIcon={<Iconify icon="carbon:filter" width={18} />}
           onClick={mobileOpen.onTrue}

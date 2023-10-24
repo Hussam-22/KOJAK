@@ -96,11 +96,11 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     return (
       <>
         <Box
-          rowGap={4}
-          columnGap={3}
+          rowGap={2}
+          columnGap={2}
           display="grid"
           gridTemplateColumns={{
-            xs: 'repeat(2, 1fr)',
+            xs: 'repeat(1, 1fr)',
             md: 'repeat(3, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}
