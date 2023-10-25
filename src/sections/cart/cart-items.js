@@ -55,10 +55,10 @@ function CartItems() {
     );
 
   useEffect(() => {
-    if (cart.length === 0) {
+    if (cart?.length === 0) {
       setCartItems([]);
     }
-  }, [cart, localStorageCart.length]);
+  }, [cart, localStorageCart?.length]);
 
   useEffect(() => {
     (async () => {
