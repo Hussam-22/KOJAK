@@ -24,6 +24,69 @@ import FormProvider from 'src/components/hook-form/form-provider';
 import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 import { RHFSelect, RHFSwitch, RHFTextField } from 'src/components/hook-form';
 
+const TEMP_CATEGORY = [
+  'ACCESSORIES',
+  'ATTACHMENT PARTS',
+  'ATTACHMENT PARTS FOR UNITS',
+  'ATTACHMENT/BODY PARTS',
+  'BRAKES',
+  'SERVICE PARTS',
+  'COOLER',
+  'COOLING/AUXILIARY HEATING',
+  'ENGINE COOLING',
+  'FANS',
+  'HEATING AND VENTILATION',
+  'POWER STEERING PUMP, AC COMPRESSOR',
+  'RADIATOR',
+  'BATTERY',
+  'ELEC',
+  'ELECTRICAL EQUIPMENT AND INSTRUMENTS',
+  'ELECTRICAL SYSTEM',
+  'ENGINE ELECTRICAL EQUIPMENT',
+  'AIR CLEANER AND ENGINE CHARGING',
+  'ENGINE',
+  'ENGINE LUBRICATION',
+  'ENGINE SUSPENSION',
+  'ENGINE TIMING',
+  'SHEET METAL PARTS',
+  'CHASSIS SHEET METAL / AIR INTAKE',
+  'EXHAUST SYSTEM',
+  'INTAKE AND EXHAUST MANIFOLDS',
+  'BODY KIT',
+  'COWL,​FRONT PANEL',
+  'DOORS',
+  'FENDER',
+  'FRONT DOORS',
+  'FRONT-END ASSEMBLY, FRONT PANEL',
+  'REAR DOORS',
+  'SIDE PANELS',
+  'SLIDING ROOF',
+  'SUBFRAME',
+  'SUBSTRUCTURE',
+  'TRANSFER CASE',
+  'TRUNK LID',
+  'TRUNKS AND CASES',
+  'WINDOWS',
+  'WINDSHIELD WASHER,EMERGENCY EQUIPMT',
+  'OIL  AND LUBRICANTS',
+  'OIL AND ACCESSORIES',
+  'PANELLING',
+  'FUEL INJECTION',
+  'FUEL SYSTEM',
+  'INTERIOR',
+  'FRONT AXLE',
+  'STEERING',
+  'SPRINGS,​SUSPENSION AND HYDRAULICS',
+  'SUSPENSION',
+  'COVERING AND LINING',
+  'REAR AXLE',
+  'WHEELS',
+  'AUTOMATIC TRANSMISSION',
+  'MB AUTOMATIC TRANSMISSION',
+  'MB PARTS',
+  'PROPELLER SHAFT',
+];
+
 // ----------------------------------------------------------------------
 
 export default function FilterBrand() {
@@ -45,6 +108,7 @@ export default function FilterBrand() {
     class: filter.class || '',
     model: filter.model || '',
     partNo: filter.partNo || '',
+    category: filter.category || '',
   };
 
   const methods = useForm({
@@ -70,9 +134,12 @@ export default function FilterBrand() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     // dispatch(rdxClearFilter());
 
+    console.log(formData);
+
     dispatch(
       rdxUpdateFilter({
         ...formData,
+        category: [formData.category],
       })
     );
   });
@@ -114,6 +181,16 @@ export default function FilterBrand() {
                   {`${option}`}
                 </MenuItem>
               ))}
+        </RHFSelect>
+
+        <RHFSelect name="category" label="Category" variant="outlined">
+          <MenuItem value="">None</MenuItem>
+          <Divider sx={{ borderStyle: 'dashed' }} />
+          {TEMP_CATEGORY.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
         </RHFSelect>
 
         <Stack spacing={2}>

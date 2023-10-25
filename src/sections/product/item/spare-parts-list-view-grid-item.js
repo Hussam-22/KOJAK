@@ -40,8 +40,6 @@ export default function SparePartsListViewGridItem({
     category.subcategories.includes(product.category)
   );
 
-  console.log(mainCategory.category);
-
   const getStockInfo = () => {
     if (product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
     if (product.stock > 0 && product.stock <= 10)
@@ -141,12 +139,12 @@ export default function SparePartsListViewGridItem({
             sx={{ textDecoration: 'underline' }}
           >
             <TextMaxLine line={1} color="primary">
-              {product.description}
+              {product?.description}
             </TextMaxLine>
           </Link>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {/* {product.category} - {product.subCategory} */}
-            {mainCategory.category}
+            {mainCategory?.category}
           </Typography>
         </Stack>
       </Stack>

@@ -37,7 +37,8 @@ export default function SparePartsView() {
   const [showBackDrop, setShowBackDrop] = useState(false);
   const {
     currentPage,
-    filteredProducts: productsData,
+    // filteredProducts: productsData,
+    products: productsData,
     filter,
     recordsCount,
     startAfterDocument,
@@ -51,7 +52,7 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
-        console.log('SEARCH');
+        console.log(filter);
         setLoading(true);
         dispatch(
           rdxSetProducts({
@@ -71,7 +72,7 @@ export default function SparePartsView() {
     getProducts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model]);
+  }, [dispatch, fsGetProductsByPage, currentPage, filter.partNo, filter.model, filter.category]);
 
   // GET SPARE-PARTS COUNT ------------------------------------
   useEffect(() => {

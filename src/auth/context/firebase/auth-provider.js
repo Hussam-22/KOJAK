@@ -145,6 +145,9 @@ export function AuthProvider({ children }) {
 
     docRef = query(docRef, orderBy('partNumber', 'desc'));
 
+    if (filter.category.length !== 0)
+      docRef = query(docRef, where('category', 'in', filter.category));
+
     if (filter.partNo) {
       docRef = query(
         docRef,
@@ -180,6 +183,11 @@ export function AuthProvider({ children }) {
       );
     }
 
+    console.log(filter);
+
+    if (filter.category.length !== 0)
+      docRef = query(docRef, where('category', 'in', filter.category));
+
     if (!filter.partNo) {
       docRef = query(docRef, where('partNumber', '!=', ''));
     }
@@ -195,7 +203,7 @@ export function AuthProvider({ children }) {
 
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
-
+    console.log(dataArr);
     return dataArr;
   }, []);
 

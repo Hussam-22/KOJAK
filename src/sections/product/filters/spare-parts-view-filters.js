@@ -48,7 +48,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
         <FilterBrand />
       </Block>
 
-      <Block
+      {/* <Block
         title="Filter Results By Category"
         sx={{
           visibility: isDisabled ? 'hidden' : 'visible',
@@ -58,20 +58,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
         }}
       >
         <FilterCategory />
-      </Block>
-
-      {!isBtnHidden && (
-        <LoadingButton
-          fullWidth
-          color="secondary"
-          size="large"
-          variant="contained"
-          startIcon={<Iconify icon="carbon:trash-can" />}
-          onClick={handleClearAll}
-        >
-          Clear All
-        </LoadingButton>
-      )}
+      </Block> */}
     </Stack>
   );
 

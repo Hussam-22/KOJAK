@@ -88,38 +88,7 @@ const slice = createSlice({
     rdxUpdateFilter(state, action) {
       state.filter = { ...state.filter, ...action.payload };
 
-      let toFilteredProducts = state.products;
-
-      // FILTER BY CATEGORY
-      if (state.filter.category.length !== 0) {
-        const mainCategory = _partsCategory.filter((partCategory) =>
-          state.filter.category.includes(partCategory.category)
-        );
-
-        const flatSubCategories = mainCategory.flatMap((category) => category.subcategories);
-
-        console.log(flatSubCategories);
-
-        toFilteredProducts = toFilteredProducts.filter((sparePart) =>
-          flatSubCategories.includes(sparePart.category)
-        );
-
-        // toFilteredProducts = toFilteredProducts.filter((product) =>
-        //   state.filter.category.includes(product.category)
-        // );
-      }
-
-      if (
-        state.filter.partNo === '' &&
-        state.filter.partName === '' &&
-        state.filter.class === '' &&
-        state.filter.model === '' &&
-        state.filter.category.length === 0
-      ) {
-        state.filteredProducts = state.products;
-      } else {
-        state.filteredProducts = toFilteredProducts;
-      }
+      console.log(state.filter);
     },
   },
 });
