@@ -113,7 +113,7 @@ export default function Header({ headerOnDark }) {
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
-                  <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} />
+                  {/* <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} /> */}
 
                   <OpenCartIconButton />
                 </Stack>

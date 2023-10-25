@@ -28,7 +28,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
   const noFilterApplied =
-    JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', Array(0)]);
+    JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '']);
 
   useEffect(() => {
     window.scrollTo({
@@ -100,7 +100,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           columnGap={2}
           display="grid"
           gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
+            xs: 'repeat(2, 1fr)',
             md: 'repeat(3, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}

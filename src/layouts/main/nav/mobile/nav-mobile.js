@@ -44,7 +44,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
       <Stack direction="row" spacing={0}>
         <OpenCartIconButton />
 
-        <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} />
+        {/* <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton
           onClick={mobileOpen.onTrue}
@@ -77,10 +77,10 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
           <Stack spacing={1.5} sx={{ p: 3 }}>
             <Button
               variant="contained"
-              color="primary"
-              onClick={() => navigate(paths.website.contactUs)}
+              color="info"
+              onClick={() => navigate(paths.website.spareParts)}
             >
-              {translate('header.contactUs')}
+              {translate('common.actionButton')}
             </Button>
           </Stack>
         </Scrollbar>

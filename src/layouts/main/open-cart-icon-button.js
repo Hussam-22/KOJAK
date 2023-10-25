@@ -16,7 +16,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     top: 13,
     border: `2px solid ${theme.palette.common.dark}`,
     padding: 5,
-    fontSize: '18px',
+    fontSize: '16px',
   },
 }));
 
@@ -47,16 +47,11 @@ function CartIconButton({ disabled = false }) {
   );
 
   return !disabled ? (
-    <StyledBadge badgeContent={cartItemsQty} color="info">
-      <Box
-        sx={{ width: 48, height: 48 }}
-        component={IconButton}
-        onClick={() => navigate(paths.website.cart)}
-        aria-label="open-cart"
-      >
-        {cartIcon}
-      </Box>
-    </StyledBadge>
+    <Box component={IconButton} onClick={() => navigate(paths.website.cart)} aria-label="open-cart">
+      <StyledBadge badgeContent={cartItemsQty} color="info">
+        <Box sx={{ width: 40, height: 40 }}>{cartIcon}</Box>
+      </StyledBadge>
+    </Box>
   ) : (
     <Box sx={{ width: 85, height: 85 }} aria-label="cart-empty">
       {cartIcon}

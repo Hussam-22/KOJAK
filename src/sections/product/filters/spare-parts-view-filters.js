@@ -40,12 +40,12 @@ export default function SparePartsViewFilters({ open, onClose }) {
         // flexShrink: 0,
         height: 1,
         width: { xs: 1, md: 320 },
-        borderRight: 'dashed 1px #333',
-        pr: 5,
+        borderRight: { md: 'dashed 1px #333' },
+        pr: { md: 5 },
       }}
     >
       <Block title="Search By Part Info">
-        <FilterBrand />
+        <FilterBrand closeDrawer={onClose} />
       </Block>
 
       {/* <Block
@@ -76,6 +76,8 @@ export default function SparePartsViewFilters({ open, onClose }) {
               pt: 3,
               px: 3,
               width: 280,
+              boxShadow: 0,
+              bgcolor: 'common.black',
             },
           }}
         >

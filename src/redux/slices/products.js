@@ -78,7 +78,7 @@ const slice = createSlice({
     },
 
     rdxClearFilter(state) {
-      const defaultFilter = { partNo: '', class: '', model: '', category: [] };
+      const defaultFilter = { partNo: '', class: '', model: '', category: '' };
       state.filter = { ...defaultFilter };
       state.products = [];
       state.filteredProducts = [];

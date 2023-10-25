@@ -25,13 +25,13 @@ export default function AboutUs() {
   const theme = useTheme();
   return (
     <Box sx={{ bgcolor: 'common.black', height: '100dvh', display: 'flex', alignItems: 'center' }}>
-      <Container maxWidth="xl" sx={{ mx: mdUp ? 'auto' : 4, position: 'relative' }}>
+      <Container maxWidth="xl" sx={{ mx: mdUp ? 'auto' : 4, position: 'relative', pt: { xs: 5 } }}>
         <Grid container>
           <Grid md={5} xs={12}>
             <Typography
               color="secondary"
               sx={{
-                fontSize: mdUp ? '18dvh' : '10dvh',
+                fontSize: mdUp ? '18dvh' : '9dvh',
                 fontWeight: theme.typography.fontWeightBold,
                 lineHeight: 1,
                 textTransform: 'uppercase',
@@ -42,7 +42,7 @@ export default function AboutUs() {
             <Typography
               sx={{
                 color: 'primary.main',
-                fontSize: mdUp ? '18dvh' : '10dvh',
+                fontSize: mdUp ? '18dvh' : '9dvh',
                 fontWeight: theme.typography.fontWeightBold,
                 lineHeight: 1,
                 textTransform: 'uppercase',
@@ -56,7 +56,7 @@ export default function AboutUs() {
           <Typography
             color="white"
             sx={{
-              fontSize: mdUp ? '18dvh' : '10dvh',
+              fontSize: mdUp ? '18dvh' : '9dvh',
               fontWeight: theme.typography.fontWeightBold,
               lineHeight: 1,
               textTransform: 'uppercase',

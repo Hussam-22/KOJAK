@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useRef, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -89,7 +90,7 @@ const TEMP_CATEGORY = [
 
 // ----------------------------------------------------------------------
 
-export default function FilterBrand() {
+export default function FilterBrand({ closeDrawer }) {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
 
@@ -120,8 +121,10 @@ export default function FilterBrand() {
     handleSubmit,
     watch,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isDirty },
   } = methods;
+
+  console.log(isDirty);
 
   const values = watch();
 
@@ -139,10 +142,12 @@ export default function FilterBrand() {
         ...formData,
       })
     );
+    reset({}, { keepValues: true });
+    closeDrawer();
   });
 
   const resetSearchHandler = () => {
-    reset({ class: '', model: '', partNo: '' });
+    reset({ class: '', model: '', partNo: '', category: '' });
     dispatch(rdxClearFilter());
   };
 
@@ -202,7 +207,7 @@ export default function FilterBrand() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
-            disabled={values.model === '' && values.partNo === ''}
+            disabled={!isDirty && values.model !== ''}
             sx={{
               whiteSpace: 'nowrap',
             }}
@@ -231,3 +236,7 @@ export default function FilterBrand() {
     </FormProvider>
   );
 }
+
+FilterBrand.propTypes = {
+  closeDrawer: PropTypes.func,
+};
