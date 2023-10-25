@@ -125,10 +125,10 @@ export default function FilterBrand() {
 
   const values = watch();
 
-  useEffect(() => {
-    if (filter.class === '' && filter.model === '' && filter.partNo === '')
-      reset({ class: '', model: '', partNo: '' });
-  }, [filter, reset]);
+  // useEffect(() => {
+  //   if (filter.class === '' && filter.model === '' && filter.partNo === '')
+  //     reset({ class: '', model: '', partNo: '', category: '' });
+  // }, [filter, reset]);
 
   const onSubmit = handleSubmit(async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -175,12 +175,17 @@ export default function FilterBrand() {
               .find((option) => option.class === values.class)
               ?.models.map((option) => (
                 <MenuItem key={option} value={option}>
-                  {`${option}`}
+                  {option}
                 </MenuItem>
               ))}
         </RHFSelect>
 
-        <RHFSelect name="category" label="Category" variant="outlined">
+        <RHFSelect
+          name="category"
+          label="Category"
+          variant="outlined"
+          disabled={values.model === '' || values.class === ''}
+        >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {TEMP_CATEGORY.map((option) => (
