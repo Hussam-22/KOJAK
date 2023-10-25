@@ -142,11 +142,7 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
   const fsGetProductsDocumentsCount = useCallback(async (filter) => {
     let docRef = collectionGroup(DB, 'partsData');
-
     docRef = query(docRef, orderBy('partNumber', 'desc'));
-
-    if (filter.category.length !== 0)
-      docRef = query(docRef, where('category', 'in', filter.category));
 
     if (filter.partNo) {
       docRef = query(
@@ -162,6 +158,10 @@ export function AuthProvider({ children }) {
 
     if (filter.model && filter.model.length > 0) {
       docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+    }
+
+    if (filter.category !== '') {
+      docRef = query(docRef, where('category', 'in', [filter.category]));
     }
 
     const snapshot = await getCountFromServer(docRef);
@@ -183,11 +183,6 @@ export function AuthProvider({ children }) {
       );
     }
 
-    console.log(filter);
-
-    if (filter.category.length !== 0)
-      docRef = query(docRef, where('category', 'in', filter.category));
-
     if (!filter.partNo) {
       docRef = query(docRef, where('partNumber', '!=', ''));
     }
@@ -196,14 +191,21 @@ export function AuthProvider({ children }) {
       docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
     }
 
+    console.log(filter.category);
+
+    if (filter.category !== '') {
+      docRef = query(docRef, where('category', 'in', [filter.category]));
+    }
+
     // Start the query after the last document from the previous page
     if (startAfterDocument) {
       docRef = query(docRef, startAfter(startAfterDocument));
     }
 
+    console.log(docRef);
+
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
-    console.log(dataArr);
     return dataArr;
   }, []);
 

@@ -52,7 +52,6 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
-        console.log(filter);
         setLoading(true);
         dispatch(
           rdxSetProducts({

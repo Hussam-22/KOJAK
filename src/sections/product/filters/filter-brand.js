@@ -134,12 +134,9 @@ export default function FilterBrand() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     // dispatch(rdxClearFilter());
 
-    console.log(formData);
-
     dispatch(
       rdxUpdateFilter({
         ...formData,
-        category: [formData.category],
       })
     );
   });

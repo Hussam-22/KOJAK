@@ -36,9 +36,9 @@ export default function SparePartsListViewGridItem({
     (storageItem) => storageItem.partNumber === product.partNumber
   );
 
-  const mainCategory = _partsCategory.find((category) =>
-    category.subcategories.includes(product.category)
-  );
+  // const mainCategory = _partsCategory.find((category) =>
+  //   category.subcategories.includes(product.category)
+  // );
 
   const getStockInfo = () => {
     if (product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
@@ -143,8 +143,8 @@ export default function SparePartsListViewGridItem({
             </TextMaxLine>
           </Link>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-            {/* {product.category} - {product.subCategory} */}
-            {mainCategory?.category}
+            {product.category}
+            {/* {mainCategory?.category} */}
           </Typography>
         </Stack>
       </Stack>

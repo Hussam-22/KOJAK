@@ -16,7 +16,7 @@ const initialState = {
     partNo: '',
     class: '',
     model: '',
-    category: [],
+    category: '',
   },
   cart: [],
   isDrawerOpen: false,
@@ -87,8 +87,6 @@ const slice = createSlice({
 
     rdxUpdateFilter(state, action) {
       state.filter = { ...state.filter, ...action.payload };
-
-      console.log(state.filter);
     },
   },
 });
