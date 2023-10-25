@@ -23,6 +23,7 @@ import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
@@ -36,14 +37,14 @@ import {
 
 function CartItems() {
   const dispatch = useDispatch();
-
+  const isMobile = useResponsive('down', 'sm');
   const theme = useTheme();
   const { fsGetCartParts } = useAuthContext();
   const { cart } = useSelector((state) => state.products);
   const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
-  console.log(cartItems);
+  console.log(isMobile);
 
   const openDrawerHandler = () => {
     dispatch(rdxToggleDrawer());
@@ -97,7 +98,7 @@ function CartItems() {
   };
 
   return (
-    <Box sx={{ py: 4 }}>
+    <Box sx={{ py: 4, px: { xs: 2 } }}>
       {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
       {cart.length === 0 && cartItems.length === 0 && <YourCartIsEmpty />}
 
@@ -114,10 +115,10 @@ function CartItems() {
                   {...getVariant('fadeInLeft')}
                 >
                   <Stack
-                    direction="row"
+                    direction={{ md: 'row', sm: 'column' }}
                     spacing={2}
                     justifyContent="space-between"
-                    alignItems="center"
+                    alignItems={{ md: 'center', xs: 'unset' }}
                   >
                     <Typography variant="h5">{index + 1}</Typography>
 
