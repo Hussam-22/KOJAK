@@ -14,7 +14,7 @@ export const _mercedesClasses = [
   { class: 'GLS CLASS', models: ['X166s - 2012-2019', 'X167 - 2019-Present'] },
   { class: 'S CLASS', models: ['C217 - 2015–2021', 'W221 - 2006-2013', 'W222 - 2013-2022'] },
   { class: 'SLK CLASS', models: ['R172 - 2011-2019'] },
-  { class: '#N/A', models: ['#N/A'] },
+  // { class: '#N/A', models: ['#N/A'] },
   // {
   //   class: 'A Class',
   //   models: [

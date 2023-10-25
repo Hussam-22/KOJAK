@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,11 +8,13 @@ import { LoadingButton } from '@mui/lab';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
+import { Switch, FormControlLabel } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { rdxClearFilter } from 'src/redux/slices/products';
+import { DisplayTotal } from 'src/components/lightbox/Lightbox';
+import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
 import FilterBrand from './filter-brand';
 import FilterPartInfo from './filter-partInfo';

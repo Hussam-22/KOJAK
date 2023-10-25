@@ -1,5 +1,7 @@
 import { current, createSlice } from '@reduxjs/toolkit';
 
+import { _partsCategory } from 'src/_mock/_partsCategory';
+
 // utils
 
 // ----------------------------------------------------------------------
@@ -15,7 +17,6 @@ const initialState = {
     class: '',
     model: '',
     category: [],
-    inStockOnly: true,
   },
   cart: [],
   isDrawerOpen: false,
@@ -73,14 +74,11 @@ const slice = createSlice({
         undefined;
 
       state.products = action.payload.sparePartsData;
-
-      if (state.filter.inStockOnly) {
-        state.filteredProducts = action.payload.sparePartsData.filter((part) => part.stock > 0);
-      } else state.filteredProducts = action.payload.sparePartsData;
+      state.filteredProducts = action.payload.sparePartsData;
     },
 
     rdxClearFilter(state) {
-      const defaultFilter = { partNo: '', partName: '', class: '', model: '', category: [] };
+      const defaultFilter = { partNo: '', class: '', model: '', category: [] };
       state.filter = { ...defaultFilter };
       state.products = [];
       state.filteredProducts = [];
@@ -93,10 +91,23 @@ const slice = createSlice({
       let toFilteredProducts = state.products;
 
       // FILTER BY CATEGORY
-      if (state.filter.category.length !== 0)
-        toFilteredProducts = toFilteredProducts.filter((product) =>
-          state.filter.category.includes(product.category)
+      if (state.filter.category.length !== 0) {
+        const mainCategory = _partsCategory.filter((partCategory) =>
+          state.filter.category.includes(partCategory.category)
         );
+
+        const flatSubCategories = mainCategory.flatMap((category) => category.subcategories);
+
+        console.log(flatSubCategories);
+
+        toFilteredProducts = toFilteredProducts.filter((sparePart) =>
+          flatSubCategories.includes(sparePart.category)
+        );
+
+        // toFilteredProducts = toFilteredProducts.filter((product) =>
+        //   state.filter.category.includes(product.category)
+        // );
+      }
 
       if (
         state.filter.partNo === '' &&

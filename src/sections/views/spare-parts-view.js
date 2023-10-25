@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { Backdrop } from '@mui/material';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
@@ -15,7 +16,12 @@ import { _partsData } from 'src/_mock/_partsData';
 import { useBoolean } from 'src/hooks/use-boolean';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
-import { rdxClearFilter, rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
+import {
+  rdxSetProducts,
+  rdxClearFilter,
+  rdxUpdateFilter,
+  rdxGetRecordsCount,
+} from 'src/redux/slices/products';
 
 import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
@@ -28,6 +34,7 @@ export default function SparePartsView() {
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [showBackDrop, setShowBackDrop] = useState(false);
   const {
     currentPage,
     filteredProducts: productsData,
@@ -44,6 +51,7 @@ export default function SparePartsView() {
   useEffect(() => {
     const getProducts = async () => {
       if (filter.partNo !== '' || filter.model !== '') {
+        console.log('SEARCH');
         setLoading(true);
         dispatch(
           rdxSetProducts({

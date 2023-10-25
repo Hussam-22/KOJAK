@@ -167,7 +167,6 @@ export function AuthProvider({ children }) {
   }, []);
   // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
-    console.log(filter);
     const dataArr = [];
     let docRef = collectionGroup(DB, 'partsData');
     docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
@@ -196,6 +195,7 @@ export function AuthProvider({ children }) {
 
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
+
     return dataArr;
   }, []);
 
@@ -227,6 +227,8 @@ export function AuthProvider({ children }) {
       });
 
       await Promise.all(asyncOperations);
+
+      console.log(documents);
 
       return documents;
     },

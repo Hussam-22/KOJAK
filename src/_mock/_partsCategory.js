@@ -25,6 +25,13 @@ export const _partsCategory = [
       'Throttle Body',
       'EGR Valve',
       'PCV Valve',
+      // ---------- custom -------------
+      'AIR CLEANER AND ENGINE CHARGING',
+      'ENGINE',
+      'ENGINE LUBRICATION',
+      'ENGINE SUSPENSION',
+      'ENGINE TIMING',
+      'SHEET METAL PARTS',
     ],
   },
   {
@@ -43,6 +50,11 @@ export const _partsCategory = [
       'CV Joint',
       'Driveshaft',
       'Shift Solenoid',
+
+      'AUTOMATIC TRANSMISSION',
+      'MB AUTOMATIC TRANSMISSION',
+      'MB PARTS',
+      'PROPELLER SHAFT',
     ],
   },
   {
@@ -59,6 +71,9 @@ export const _partsCategory = [
       'Brake Booster',
       'ABS Sensor',
       'Parking Brake Cable',
+
+      'BRAKES',
+      'SERVICE PARTS',
     ],
   },
   {
@@ -76,6 +91,9 @@ export const _partsCategory = [
       'Wheel Bearings',
       'Stabilizer Bar',
       'Air Suspension Components',
+
+      'SPRINGS,​SUSPENSION AND HYDRAULICS',
+      'SUSPENSION',
     ],
   },
   {
@@ -99,6 +117,12 @@ export const _partsCategory = [
       'Turn Signal Switch',
       'Window Regulator/Motor',
       'Power Window Switch',
+
+      'BATTERY',
+      'ELEC',
+      'ELECTRICAL EQUIPMENT AND INSTRUMENTS',
+      'ELECTRICAL SYSTEM',
+      'ENGINE ELECTRICAL EQUIPMENT',
     ],
   },
   {
@@ -116,6 +140,14 @@ export const _partsCategory = [
       'Expansion Tank',
       'Heater Core',
       'Thermostat Housing',
+
+      'COOLER',
+      'COOLING/AUXILIARY HEATING',
+      'ENGINE COOLING',
+      'FANS',
+      'HEATING AND VENTILATION',
+      'POWER STEERING PUMP, AC COMPRESSOR',
+      'RADIATOR',
     ],
   },
   {
@@ -130,6 +162,10 @@ export const _partsCategory = [
       'Oxygen Sensor',
       'Exhaust Gaskets',
       'EGR Valve',
+
+      'CHASSIS SHEET METAL / AIR INTAKE',
+      'EXHAUST SYSTEM',
+      'INTAKE AND EXHAUST MANIFOLDS',
     ],
   },
   {
@@ -143,6 +179,10 @@ export const _partsCategory = [
       'Cabin Air Filter',
       'Transmission Filter',
       'Oil Separator/Catch Can',
+
+      'OIL  AND LUBRICANTS',
+      'OIL AND ACCESSORIES',
+      'PANELLING',
     ],
   },
   {
@@ -164,6 +204,8 @@ export const _partsCategory = [
       'Center Console',
       'Instrument Cluster',
       'Shift Knob',
+
+      'INTERIOR',
     ],
   },
   {
@@ -187,21 +229,49 @@ export const _partsCategory = [
       'Fenders',
       'Hoods',
       'Trunk/Hatch',
+
+      'BODY KIT',
+      'COWL,​FRONT PANEL',
+      'DOORS',
+      'FENDER',
+      'FRONT DOORS',
+      'FRONT-END ASSEMBLY, FRONT PANEL',
+      'REAR DOORS',
+      'SIDE PANELS',
+      'SLIDING ROOF',
+      'SUBFRAME',
+      'SUBSTRUCTURE',
+      'TRANSFER CASE',
+      'TRUNK LID',
+      'TRUNKS AND CASES',
+      'WINDOWS',
+      'WINDSHIELD WASHER,EMERGENCY EQUIPMT',
     ],
   },
+  // {
+  //   category: 'Air Conditioning',
+  //   icon: 'air-conditioning',
+  //   description: "Parts related to the car's air conditioning system.",
+  //   subcategories: [
+  //     'A/C Compressor',
+  //     'A/C Condenser',
+  //     'A/C Evaporator',
+  //     'A/C Expansion Valve',
+  //     'A/C Receiver Drier',
+  //     'A/C Blower Motor',
+  //     'A/C Control Module',
+  //     'A/C Pressure Switch',
+  //   ],
+  // },
   {
-    category: 'Air Conditioning',
+    category: 'Accessories',
     icon: 'air-conditioning',
     description: "Parts related to the car's air conditioning system.",
     subcategories: [
-      'A/C Compressor',
-      'A/C Condenser',
-      'A/C Evaporator',
-      'A/C Expansion Valve',
-      'A/C Receiver Drier',
-      'A/C Blower Motor',
-      'A/C Control Module',
-      'A/C Pressure Switch',
+      'ACCESSORIES',
+      'ATTACHMENT PARTS',
+      'ATTACHMENT PARTS FOR UNITS',
+      'ATTACHMENT/BODY PARTS',
     ],
   },
   {
@@ -216,6 +286,9 @@ export const _partsCategory = [
       'Fuel Pressure Regulator',
       'Throttle Body',
       'Fuel Cap',
+
+      'FUEL INJECTION',
+      'FUEL SYSTEM',
     ],
   },
   {
@@ -231,10 +304,13 @@ export const _partsCategory = [
       'Tie Rod End',
       'Pitman Arm',
       'Idler Arm',
+
+      'FRONT AXLE',
+      'STEERING',
     ],
   },
   {
-    category: 'Tires',
+    category: 'Wheels',
     icon: 'wheels',
     description: "Parts related to the car's wheels and tires.",
     subcategories: [
@@ -247,6 +323,10 @@ export const _partsCategory = [
       'Wheel Lug Nuts',
       'Wheel Locks',
       'Wheel Studs',
+
+      'COVERING AND LINING',
+      'REAR AXLE',
+      'WHEELS',
     ],
   },
 ];

@@ -28,7 +28,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
   const noFilterApplied =
-    JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', '', Array(0)]);
+    JSON.stringify(Object.values(filter)) === JSON.stringify(['', '', '', Array(0)]);
 
   useEffect(() => {
     window.scrollTo({

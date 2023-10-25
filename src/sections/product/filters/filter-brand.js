@@ -45,7 +45,6 @@ export default function FilterBrand() {
     class: filter.class || '',
     model: filter.model || '',
     partNo: filter.partNo || '',
-    inStockOnly: true,
   };
 
   const methods = useForm({
@@ -64,12 +63,12 @@ export default function FilterBrand() {
 
   useEffect(() => {
     if (filter.class === '' && filter.model === '' && filter.partNo === '')
-      reset({ class: '', model: '', partNo: '', inStockOnly: true });
+      reset({ class: '', model: '', partNo: '' });
   }, [filter, reset]);
 
   const onSubmit = handleSubmit(async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    dispatch(rdxClearFilter());
+    // dispatch(rdxClearFilter());
 
     dispatch(
       rdxUpdateFilter({
@@ -77,6 +76,11 @@ export default function FilterBrand() {
       })
     );
   });
+
+  const resetSearchHandler = () => {
+    reset({ class: '', model: '', partNo: '' });
+    dispatch(rdxClearFilter());
+  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -112,8 +116,6 @@ export default function FilterBrand() {
               ))}
         </RHFSelect>
 
-        <RHFSwitch name="inStockOnly" label="Show Available Stock Only" />
-
         <Stack spacing={2}>
           <LoadingButton
             size="large"
@@ -129,6 +131,21 @@ export default function FilterBrand() {
             fullWidth
           >
             Find Part
+          </LoadingButton>
+          <LoadingButton
+            size="large"
+            variant="contained"
+            color="error"
+            loading={isSubmitting}
+            disabled={values.model === '' && values.partNo === ''}
+            onClick={resetSearchHandler}
+            sx={{
+              whiteSpace: 'nowrap',
+            }}
+            startIcon={<Iconify icon="octicon:search-16" />}
+            fullWidth
+          >
+            Reset Search
           </LoadingButton>
         </Stack>
       </Stack>

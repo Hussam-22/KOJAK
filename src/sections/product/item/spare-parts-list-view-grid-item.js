@@ -9,13 +9,14 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import { Card, Button, useTheme, Typography } from '@mui/material';
 
+import Image from 'src/components/image';
 import Label from 'src/components/label';
 import { paths } from 'src/routes/paths';
-import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
+import { _partsCategory } from 'src/_mock/_partsCategory';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 // ----------------------------------------------------------------------
@@ -34,6 +35,12 @@ export default function SparePartsListViewGridItem({
   const isInCart = localStorageCart.find(
     (storageItem) => storageItem.partNumber === product.partNumber
   );
+
+  const mainCategory = _partsCategory.find((category) =>
+    category.subcategories.includes(product.category)
+  );
+
+  console.log(mainCategory.category);
 
   const getStockInfo = () => {
     if (product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
@@ -111,41 +118,35 @@ export default function SparePartsListViewGridItem({
             </Fab>
           )}
 
-          <Image
-            src={imgUrl}
-            sx={{
-              flexShrink: 0,
-              borderRadius: '2px 2px 0 0',
-              bgcolor: 'background.neutral',
-            }}
-            ratio="4/3"
-          />
+          <Box sx={{ p: imgUrl === undefined ? 4 : 0 }}>
+            <Image
+              src={imgUrl === undefined ? '/assets/illustrations/part-unavailable.svg' : imgUrl}
+              ratio="1/1"
+            />
+            {imgUrl === undefined && (
+              <Typography sx={{ position: 'absolute', bottom: 12 }}>
+                Image Not Available !!
+              </Typography>
+            )}
+          </Box>
         </Box>
 
         <Stack spacing={0.5} sx={{ p: 2 }}>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.id} - {product.partNumber}
           </Typography>
+          <Link
+            component={RouterLink}
+            to={paths.website.sparePartDetails + product.docID}
+            sx={{ textDecoration: 'underline' }}
+          >
+            <TextMaxLine line={1} color="primary">
+              {product.description}
+            </TextMaxLine>
+          </Link>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-            {product.brandClass.join(' - ')}
-          </Typography>
-          <Box>
-            <Button
-              variant="text"
-              sx={{
-                textAlign: 'left',
-                pl: 0,
-                '&:hover': { textDecoration: 'underline', textDecorationColor: '#777' },
-              }}
-              onClick={() => navigate(paths.website.sparePartDetails + product.docID)}
-            >
-              <TextMaxLine line={1} color="primary">
-                {product.description}
-              </TextMaxLine>
-            </Button>
-          </Box>
-          <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-            {product.category} - {product.subCategory}
+            {/* {product.category} - {product.subCategory} */}
+            {mainCategory.category}
           </Typography>
         </Stack>
       </Stack>
