@@ -1,20 +1,10 @@
 import PropTypes from 'prop-types';
 
-import {
-  Box,
-  Stack,
-  Button,
-  Divider,
-  useTheme,
-  Container,
-  Typography,
-  IconButton,
-} from '@mui/material';
+import { Box, Stack, Divider, useTheme, Typography, IconButton } from '@mui/material';
 
 import Label from 'src/components/label';
 import { _mercedesClasses } from 'src/_mock';
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 
 function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const theme = useTheme();
@@ -41,6 +31,21 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   //   </Typography>
   // ));
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `${partDetails.partNumber} - ${partDetails.description}`,
+          text: `Check out this part on Kojak Spare Parts website`,
+          url: window.location.href,
+        })
+        .then(() => console.log('Share successful'))
+        .catch((error) => console.error('Error sharing:', error));
+    } else {
+      alert('Web Share API not supported in your browser.');
+    }
+  };
+
   const applicableModels = filteredClasses.map((item) => (
     <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
       <Box component="span" sx={{ color: 'info.main' }}>
@@ -59,7 +64,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
               {getStockInfo(partDetails.stock).text}
             </Label>
           </Box>
-          <IconButton disableRipple>
+          <IconButton disableRipple onClick={handleShare}>
             <Iconify icon="tdesign:share" sx={{ color: 'common.white' }} />
             <Typography sx={{ px: 1, color: 'common.white' }}>Share</Typography>
           </IconButton>

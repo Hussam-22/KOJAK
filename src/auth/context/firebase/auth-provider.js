@@ -9,7 +9,6 @@ import {
   limit,
   setDoc,
   getDoc,
-  startAt,
   getDocs,
   orderBy,
   Timestamp,
@@ -191,8 +190,6 @@ export function AuthProvider({ children }) {
       docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
     }
 
-    console.log(filter.category);
-
     if (filter.category !== '') {
       docRef = query(docRef, where('category', 'in', [filter.category]));
     }
@@ -201,8 +198,6 @@ export function AuthProvider({ children }) {
     if (startAfterDocument) {
       docRef = query(docRef, startAfter(startAfterDocument));
     }
-
-    console.log(docRef);
 
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
@@ -237,8 +232,6 @@ export function AuthProvider({ children }) {
       });
 
       await Promise.all(asyncOperations);
-
-      console.log(documents);
 
       return documents;
     },

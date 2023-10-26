@@ -1,27 +1,18 @@
-import { useLocation } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { Backdrop } from '@mui/material';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
-import { _partsData } from 'src/_mock/_partsData';
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useResponsive } from 'src/hooks/use-responsive';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
-import NoResultsReturned from 'src/sections/product/list/no-results-returned';
-import {
-  rdxSetProducts,
-  rdxClearFilter,
-  rdxUpdateFilter,
-  rdxGetRecordsCount,
-} from 'src/redux/slices/products';
+import { rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
 
 import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
@@ -31,6 +22,7 @@ const RECORDS_LIMIT = 24;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {
+  const mdUp = useResponsive('up', 'md');
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -102,18 +94,18 @@ export default function SparePartsView() {
         </Stack>
 
         {/* <Button onClick={addParts}>Add Parts</Button> */}
-
-        <Button
-          color="primary"
-          variant="contained"
-          startIcon={<Iconify icon="carbon:filter" width={18} />}
-          onClick={mobileOpen.onTrue}
-          sx={{
-            display: { md: 'none' },
-          }}
-        >
-          Filters
-        </Button>
+        {!mdUp && (
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: 1 }}>
+            <Button
+              color="primary"
+              variant="contained"
+              startIcon={<Iconify icon="carbon:filter" width={18} />}
+              onClick={mobileOpen.onTrue}
+            >
+              Search & Filter
+            </Button>
+          </Box>
+        )}
       </Stack>
 
       <Stack

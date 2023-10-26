@@ -1,37 +1,26 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
+import { Box, Stack, Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import TableContainer from '@mui/material/TableContainer';
-import {
-  Box,
-  Paper,
-  Stack,
-  Button,
-  Divider,
-  useTheme,
-  TableRow,
-  Container,
-  TableCell,
-  Typography,
-  IconButton,
-} from '@mui/material';
 
-import Iconify from 'src/components/iconify';
-import Label from 'src/components/label/Label';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
+import SideDrawer from 'src/components/drawer/side-drawer';
+import { rdxToggleDrawer } from 'src/redux/slices/products';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import SparePartsDetailsInformation from 'src/sections/product/details/spare-parts-details-information';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
 function SparePartDetailsView() {
+  const dispatch = useDispatch();
   const { partDocID } = useParams();
   const [partDetails, setPartDetails] = useState({});
   const { fsGetPartDetails } = useAuthContext();
+  const { isDrawerOpen } = useSelector((state) => state.products);
+
+  const onDrawerCloseHandler = () => dispatch(rdxToggleDrawer());
 
   const productDescription =
     (partDetails?.id &&
@@ -80,6 +69,9 @@ function SparePartDetailsView() {
           </Grid>
         </Grid>
       </Container>
+      <SideDrawer open={isDrawerOpen} onClose={onDrawerCloseHandler}>
+        <ContactUsForm />
+      </SideDrawer>
     </Box>
   );
 }

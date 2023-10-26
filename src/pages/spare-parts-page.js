@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 
-import LandingView from 'src/sections/views/landing-view';
 import SparePartsView from 'src/sections/views/spare-parts-view';
 
 // ----------------------------------------------------------------------
@@ -9,7 +8,7 @@ export default function SparePartsPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Group</title>
+        <title>Kojak Spare Parts</title>
         {/* <meta
           name="description"
           content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"

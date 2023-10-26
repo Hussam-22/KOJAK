@@ -1,6 +1,4 @@
-import { current, createSlice } from '@reduxjs/toolkit';
-
-import { _partsCategory } from 'src/_mock/_partsCategory';
+import { createSlice } from '@reduxjs/toolkit';
 
 // utils
 
@@ -81,7 +79,6 @@ const slice = createSlice({
 
     // ----- Load Spare-Parts & Filter --------------------
     rdxSetProducts(state, action) {
-      console.log(action.payload.page);
       state.startAfterDocument[action.payload.page] =
         action.payload.sparePartsData[action.payload.sparePartsData.length - 1]?.partNumber ||
         undefined;

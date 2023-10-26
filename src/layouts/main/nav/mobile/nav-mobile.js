@@ -16,7 +16,6 @@ import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
 import { useBoolean } from 'src/hooks/use-boolean';
-import TranslateIcon from 'src/layouts/main/translate-icon';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
 import { NAV } from '../../../config-layout';
@@ -66,7 +65,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
         }}
       >
         <Scrollbar>
-          <Logo sx={{ ml: 1.5, my: 3 }} small />
+          <Logo sx={{ ml: 1.5, my: 3 }} small light />
 
           <List component="nav" disablePadding>
             {data.map((link) => (

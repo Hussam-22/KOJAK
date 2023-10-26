@@ -8,7 +8,7 @@ export default function SparePartDetailsPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Group</title>
+        <title>Kojak Spare Parts</title>
         {/* <meta
           name="description"
           content="Find Your Perfect Space For Living Or Business Thriving With KOJAK"

@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Group | Blog</title>
+        <title>Kojak Spare Parts | Blog</title>
         <meta
           name="description"
           content="Your go-to resource for all things related to property renting and leasing. Whether you're a seasoned tenant or a first-time renter, a property owner, or a curious observer of the real estate market, our blog is designed to provide you with valuable information, tips, and industry insights"

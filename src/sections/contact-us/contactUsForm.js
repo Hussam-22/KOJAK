@@ -1,9 +1,8 @@
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Stack, Divider, MenuItem } from '@mui/material';
@@ -11,6 +10,7 @@ import { Stack, Divider, MenuItem } from '@mui/material';
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { rdxFormPayload, rdxToggleDrawer } from 'src/redux/slices/products';
 import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
@@ -29,6 +29,7 @@ export default function ContactUsForm() {
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
   const { formPayload } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,6 +37,17 @@ export default function ContactUsForm() {
 
   const handleClose = () => {
     setOpen(false);
+    dispatch(rdxToggleDrawer());
+    dispatch(
+      rdxFormPayload({
+        fullName: '',
+        mobile: '',
+        email: '',
+        subject: '',
+        messageText: '',
+        hearAbout: '',
+      })
+    );
   };
 
   const schema = Yup.object().shape({
@@ -54,11 +66,11 @@ export default function ContactUsForm() {
       fullName: '',
       mobile: '',
       email: '',
-      subject: '',
-      messageText: '',
+      subject: formPayload.subject || '',
+      messageText: formPayload.messageText || '',
       hearAbout: '',
     }),
-    []
+    [formPayload]
   );
 
   const methods = useForm({
@@ -92,7 +104,7 @@ export default function ContactUsForm() {
 
       addNewForm({
         ...formData,
-        subject: `${SITE_NAME} - New Contact Us Form`,
+        subject: `${SITE_NAME} - ${formData.subject}`,
         source: CONTACT_US_FORM,
       });
 

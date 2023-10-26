@@ -7,13 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Link,
-  Card,
   Stack,
   Button,
   Divider,
   useTheme,
   Skeleton,
-  Container,
   Typography,
   IconButton,
 } from '@mui/material';
@@ -25,15 +23,9 @@ import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
-import { varFade, MotionViewport } from 'src/components/animate';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
-import {
-  rdxUpdateCart,
-  rdxToggleDrawer,
-  rdxUpdatePartQty,
-  rdxLoadCartFromStorage,
-} from 'src/redux/slices/products';
+import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -43,8 +35,6 @@ function CartItems() {
   const { cart } = useSelector((state) => state.products);
   const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
-
-  console.log(isMobile);
 
   const openDrawerHandler = () => {
     dispatch(rdxToggleDrawer());
@@ -98,7 +88,7 @@ function CartItems() {
   };
 
   return (
-    <Box sx={{ py: 4, px: { xs: 2 } }}>
+    <Box sx={{ py: 4, px: { xs: 1 } }}>
       {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
       {cart.length === 0 && cartItems.length === 0 && <YourCartIsEmpty />}
 
@@ -120,30 +110,40 @@ function CartItems() {
                     justifyContent="space-between"
                     alignItems={{ md: 'center', xs: 'unset' }}
                   >
-                    <Typography variant="h5">{index + 1}</Typography>
-
-                    <Link
-                      component={RouterLink}
-                      to={paths.website.sparePartDetails + cartItem.partData.docID}
-                    >
-                      <Image
-                        src={cartItem.imageUrl}
-                        width={85}
-                        height={85}
-                        alt={`spare-part${cartItem.partData.partNumber}`}
-                        sx={{ borderRadius: 1 }}
-                      />
-                    </Link>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                      <Link
+                        component={RouterLink}
+                        to={paths.website.sparePartDetails + cartItem.partData.docID}
+                      >
+                        <Image
+                          src={cartItem.imageUrl}
+                          width={85}
+                          height={85}
+                          alt={`spare-part${cartItem.partData.partNumber}`}
+                          sx={{ borderRadius: 1 }}
+                        />
+                      </Link>
+                      {isMobile && (
+                        <ActionButtons
+                          partNumber={cartItem.partData.partNumber}
+                          qty={cartItem.qty}
+                          onDeleteClickHandler={onDeleteClickHandler}
+                          onUpdateQtyClickHandler={onUpdateQtyClickHandler}
+                        />
+                      )}
+                    </Stack>
                     <PartInfo partData={cartItem.partData} />
-                    <ActionButtons
-                      partNumber={cartItem.partData.partNumber}
-                      qty={cartItem.qty}
-                      onDeleteClickHandler={onDeleteClickHandler}
-                      onUpdateQtyClickHandler={onUpdateQtyClickHandler}
-                    />
+                    {!isMobile && (
+                      <ActionButtons
+                        partNumber={cartItem.partData.partNumber}
+                        qty={cartItem.qty}
+                        onDeleteClickHandler={onDeleteClickHandler}
+                        onUpdateQtyClickHandler={onUpdateQtyClickHandler}
+                      />
+                    )}
                   </Stack>
                   <Divider
-                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }}
+                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 2 }}
                     flexItem
                   />
                 </Box>
@@ -153,7 +153,7 @@ function CartItems() {
       )}
 
       {cartItems.length !== 0 && (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', pt: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: { md: 'flex-end', xs: 'center' }, pt: 4 }}>
           <Button
             variant="contained"
             color="primary"
@@ -230,10 +230,8 @@ function PartInfo({ partData }) {
   const theme = useTheme();
   const { partNumber, description, category, itemGroup, brandClass, brandModel, docID } = partData;
 
-  const navigateToPartPage = () => navigate();
-
   return (
-    <Stack sx={{ p: 1, flexGrow: 1 }}>
+    <Stack sx={{ flexGrow: 1, pt: { xs: 1 } }}>
       <Typography color="secondary" variant="body2">
         {partNumber}
       </Typography>
@@ -295,7 +293,7 @@ function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClick
   };
 
   return (
-    <Stack direction="row" spacing={3}>
+    <Stack direction="row" spacing={1}>
       <Stack direction="column" alignItems="center">
         <IconButton disableRipple onClick={() => updateQty(+1)}>
           <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />

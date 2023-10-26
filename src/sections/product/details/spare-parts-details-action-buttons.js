@@ -3,24 +3,18 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingButton } from '@mui/lab';
-import {
-  Box,
-  Stack,
-  Button,
-  Divider,
-  useTheme,
-  Container,
-  Typography,
-  IconButton,
-} from '@mui/material';
+import { Box, Stack, Button, useTheme, Typography, IconButton } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
-import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
+import {
+  rdxUpdateCart,
+  rdxFormPayload,
+  rdxToggleDrawer,
+  rdxUpdatePartQty,
+} from 'src/redux/slices/products';
 
 function SparePartsDetailsActionButtons({ partDetails }) {
   const theme = useTheme();
@@ -31,7 +25,7 @@ function SparePartsDetailsActionButtons({ partDetails }) {
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
   return partDetails.stock === 0 ? (
-    <OutOfStockActionBar />
+    <OutOfStockActionBar partDetails={partDetails} />
   ) : (
     <AvailableStockActionBar partDetails={partDetails} />
   );
@@ -104,88 +98,63 @@ function AvailableStockActionBar({ partDetails }) {
 
   // ----------------------------------------------------------------------------
   return (
-    <>
-      <Stack
-        direction={{ md: 'row', xs: 'column' }}
-        justifyContent="space-between"
-        sx={{ px: 3 }}
-        spacing={2}
-        divider={mdUp && <Divider orientation="vertical" />}
-      >
-        <Stack direction="row" justifyContent="space-between" spacing={2}>
-          <Stack direction="column" alignItems="center">
-            <Typography variant="caption" color="secondary">
-              Qty
-            </Typography>
-            <Stack direction="row" alignItems="center">
-              <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
-                <Iconify
-                  icon="bxs:up-arrow"
-                  width={16}
-                  height={16}
-                  sx={{ color: 'success.main' }}
-                />
-              </IconButton>
-              <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
-              <IconButton
-                disableRipple
-                onClick={() => onUpdateQtyClickHandler(-1)}
-                disabled={tempQty === 1}
-              >
-                <Iconify
-                  icon="bxs:down-arrow"
-                  width={16}
-                  height={16}
-                  sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
-                />
-              </IconButton>
-            </Stack>
-          </Stack>
-
-          <LoadingButton
-            loading={loadingUpdate}
-            variant="contained"
-            color="primary"
-            sx={{ whiteSpace: 'nowrap' }}
-            disabled={cartQty === tempQty}
-            startIcon={
-              <Iconify
-                icon="carbon:shopping-cart-plus"
-                width={24}
-                height={24}
-                sx={{ color: 'common.white' }}
-              />
-            }
-            onClick={onAddClickHandler}
+    <Stack direction="row" spacing={2}>
+      <Stack direction="column" alignItems="center">
+        <Typography variant="caption" color="secondary">
+          Qty
+        </Typography>
+        <Stack direction="row" alignItems="center">
+          <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
+            <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'success.main' }} />
+          </IconButton>
+          <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
+          <IconButton
+            disableRipple
+            onClick={() => onUpdateQtyClickHandler(-1)}
+            disabled={tempQty === 1}
           >
-            {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
-          </LoadingButton>
-          <LoadingButton
-            loading={loadingRemove}
-            variant="contained"
-            color="error"
-            sx={{ whiteSpace: 'nowrap' }}
-            disabled={cartQty === 0}
-            startIcon={
-              <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
-            }
-            onClick={onRemoveClickHandler}
-          >
-            Remove
-          </LoadingButton>
+            <Iconify
+              icon="bxs:down-arrow"
+              width={16}
+              height={16}
+              sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
+            />
+          </IconButton>
         </Stack>
-        {/* <Button
-        variant="contained"
-        color="success"
-        startIcon={
-          <Iconify icon="mdi:whatsapp" width={24} height={24} sx={{ color: 'common.black' }} />
-        }
-      >
-        Get Quick Quote via WhatsApp
-      </Button>  */}
       </Stack>
-      <Drawer />
-    </>
+
+      <LoadingButton
+        loading={loadingUpdate}
+        variant="contained"
+        color="primary"
+        sx={{ whiteSpace: 'nowrap' }}
+        disabled={cartQty === tempQty}
+        startIcon={
+          <Iconify
+            icon="carbon:shopping-cart-plus"
+            width={24}
+            height={24}
+            sx={{ color: 'common.white' }}
+          />
+        }
+        onClick={onAddClickHandler}
+      >
+        {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
+      </LoadingButton>
+      <LoadingButton
+        loading={loadingRemove}
+        variant="contained"
+        color="error"
+        sx={{ whiteSpace: 'nowrap' }}
+        disabled={cartQty === 0}
+        startIcon={
+          <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
+        }
+        onClick={onRemoveClickHandler}
+      >
+        Remove
+      </LoadingButton>
+    </Stack>
   );
 }
 AvailableStockActionBar.propTypes = { partDetails: PropTypes.object };
@@ -194,8 +163,15 @@ AvailableStockActionBar.propTypes = { partDetails: PropTypes.object };
 function OutOfStockActionBar({ partDetails }) {
   const dispatch = useDispatch();
   const openDrawerHandler = () => {
-    console.log(partDetails);
     dispatch(rdxToggleDrawer());
+    dispatch(
+      rdxFormPayload({
+        subject: `Out of Stock part Inquiry - ${partDetails.partNumber}`,
+        messageText: `I would like to inquire about the possibility to arrange the following out-of-stock part 
+    Part number: ${partDetails.partNumber}
+    Part description: ${partDetails.description}`,
+      })
+    );
   };
   return (
     <Box sx={{ px: 3 }}>
@@ -218,31 +194,3 @@ function OutOfStockActionBar({ partDetails }) {
   );
 }
 OutOfStockActionBar.propTypes = { partDetails: PropTypes.object };
-
-// ? ----------------------------------------------------------------------------
-function Drawer() {
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const { isDrawerOpen } = useSelector((state) => state.products);
-  const toggleDrawer = () => dispatch(rdxToggleDrawer());
-  return (
-    <Drawer
-      anchor="right"
-      open={isDrawerOpen}
-      onClose={toggleDrawer}
-      PaperProps={{ sx: { bgcolor: 'grey.800', boxShadow: 0 } }}
-    >
-      <Box sx={{ width: { md: '25dvw', xs: '75dvw' }, p: 3 }}>
-        <Typography variant="h5" color="primary">
-          Unavailable Part Inquiry
-        </Typography>
-        {/* <Typography>Please provide your information to call you back</Typography> */}
-        <Divider
-          sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 3 }}
-          flexItem
-        />
-        <ContactUsForm />
-      </Box>
-    </Drawer>
-  );
-}
