@@ -58,7 +58,11 @@ export function AuthProvider({ children }) {
         website: SITE_NAME,
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
-        to: ['hussam@hotmail.co.uk'],
+        to: [
+          'hussam@hotmail.co.uk',
+          'queriesksp@kojak-group.com',
+          'info.marketing@kojak-group.com',
+        ],
         message: {
           subject: 'Spare-Parts Inquiry',
           html: `
@@ -82,13 +86,18 @@ export function AuthProvider({ children }) {
         website: SITE_NAME,
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
-        to: ['hussam@hotmail.co.uk'],
+        to: [
+          'hussam@hotmail.co.uk',
+          'queriesksp@kojak-group.com',
+          'info.marketing@kojak-group.com',
+        ],
         message: {
           subject: payload.subject,
           html: `
         <p>Email: ${payload.email}</p>
         <p>Name: ${payload.fullName}</p>
         <p>Mobile: ${payload.mobile}</p>
+        <p>Subject: ${payload.subject}</p>
         <p>Inquiry: ${payload.messageText}</p>
         <p>---------------------------</p>
         <p>${dateTime.toLocaleString()}</p>

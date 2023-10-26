@@ -51,7 +51,11 @@ function SparePartDetailsView() {
               }}
             >
               <Image
-                src={partDetails.imgUrl}
+                src={
+                  partDetails.imgUrl === undefined
+                    ? '/assets/illustrations/part-unavailable.svg'
+                    : partDetails.imgUrl
+                }
                 sx={{ borderRadius: 1 }}
                 // ratio="1/1"
                 alt={`${productDescription} - www.kojak-spare-parts.com`}

@@ -18,7 +18,7 @@ import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
   ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
-  en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
+  en: 'Thank you for contact Kojak, one of our customer success agents will contact you soon !!',
 };
 
 const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
