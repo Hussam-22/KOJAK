@@ -36,10 +36,6 @@ export default function SparePartsListViewGridItem({
     (storageItem) => storageItem.partNumber === product.partNumber
   );
 
-  // const mainCategory = _partsCategory.find((category) =>
-  //   category.subcategories.includes(product.category)
-  // );
-
   const getStockInfo = () => {
     if (product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
     if (product.stock > 0 && product.stock <= 10)
@@ -121,11 +117,6 @@ export default function SparePartsListViewGridItem({
               src={imgUrl === undefined ? '/assets/illustrations/part-unavailable.svg' : imgUrl}
               ratio="1/1"
             />
-            {imgUrl === undefined && (
-              <Typography sx={{ position: 'absolute', bottom: 12 }}>
-                Image Not Available !!
-              </Typography>
-            )}
           </Box>
         </Box>
 

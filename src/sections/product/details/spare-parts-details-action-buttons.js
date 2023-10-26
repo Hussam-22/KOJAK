@@ -19,7 +19,8 @@ import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
-import { rdxUpdateCart, rdxUpdatePartQty } from 'src/redux/slices/products';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
+import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
 
 function SparePartsDetailsActionButtons({ partDetails }) {
   const theme = useTheme();
@@ -103,71 +104,77 @@ function AvailableStockActionBar({ partDetails }) {
 
   // ----------------------------------------------------------------------------
   return (
-    <Stack
-      direction={{ md: 'row', xs: 'column' }}
-      justifyContent="space-between"
-      sx={{ px: 3 }}
-      spacing={2}
-      divider={mdUp && <Divider orientation="vertical" />}
-    >
-      <Stack direction="row" justifyContent="space-between" spacing={2}>
-        <Stack direction="column" alignItems="center">
-          <Typography variant="caption" color="secondary">
-            Qty
-          </Typography>
-          <Stack direction="row" alignItems="center">
-            <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
-              <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'success.main' }} />
-            </IconButton>
-            <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
-            <IconButton
-              disableRipple
-              onClick={() => onUpdateQtyClickHandler(-1)}
-              disabled={tempQty === 1}
-            >
-              <Iconify
-                icon="bxs:down-arrow"
-                width={16}
-                height={16}
-                sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
-              />
-            </IconButton>
+    <>
+      <Stack
+        direction={{ md: 'row', xs: 'column' }}
+        justifyContent="space-between"
+        sx={{ px: 3 }}
+        spacing={2}
+        divider={mdUp && <Divider orientation="vertical" />}
+      >
+        <Stack direction="row" justifyContent="space-between" spacing={2}>
+          <Stack direction="column" alignItems="center">
+            <Typography variant="caption" color="secondary">
+              Qty
+            </Typography>
+            <Stack direction="row" alignItems="center">
+              <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
+                <Iconify
+                  icon="bxs:up-arrow"
+                  width={16}
+                  height={16}
+                  sx={{ color: 'success.main' }}
+                />
+              </IconButton>
+              <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
+              <IconButton
+                disableRipple
+                onClick={() => onUpdateQtyClickHandler(-1)}
+                disabled={tempQty === 1}
+              >
+                <Iconify
+                  icon="bxs:down-arrow"
+                  width={16}
+                  height={16}
+                  sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
+                />
+              </IconButton>
+            </Stack>
           </Stack>
-        </Stack>
 
-        <LoadingButton
-          loading={loadingUpdate}
-          variant="contained"
-          color="primary"
-          sx={{ whiteSpace: 'nowrap' }}
-          disabled={cartQty === tempQty}
-          startIcon={
-            <Iconify
-              icon="carbon:shopping-cart-plus"
-              width={24}
-              height={24}
-              sx={{ color: 'common.white' }}
-            />
-          }
-          onClick={onAddClickHandler}
-        >
-          {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
-        </LoadingButton>
-        <LoadingButton
-          loading={loadingRemove}
-          variant="contained"
-          color="error"
-          sx={{ whiteSpace: 'nowrap' }}
-          disabled={cartQty === 0}
-          startIcon={
-            <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
-          }
-          onClick={onRemoveClickHandler}
-        >
-          Remove
-        </LoadingButton>
-      </Stack>
-      {/* <Button
+          <LoadingButton
+            loading={loadingUpdate}
+            variant="contained"
+            color="primary"
+            sx={{ whiteSpace: 'nowrap' }}
+            disabled={cartQty === tempQty}
+            startIcon={
+              <Iconify
+                icon="carbon:shopping-cart-plus"
+                width={24}
+                height={24}
+                sx={{ color: 'common.white' }}
+              />
+            }
+            onClick={onAddClickHandler}
+          >
+            {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
+          </LoadingButton>
+          <LoadingButton
+            loading={loadingRemove}
+            variant="contained"
+            color="error"
+            sx={{ whiteSpace: 'nowrap' }}
+            disabled={cartQty === 0}
+            startIcon={
+              <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
+            }
+            onClick={onRemoveClickHandler}
+          >
+            Remove
+          </LoadingButton>
+        </Stack>
+        {/* <Button
         variant="contained"
         color="success"
         startIcon={
@@ -176,16 +183,24 @@ function AvailableStockActionBar({ partDetails }) {
       >
         Get Quick Quote via WhatsApp
       </Button>  */}
-    </Stack>
+      </Stack>
+      <Drawer />
+    </>
   );
 }
 AvailableStockActionBar.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
-function OutOfStockActionBar() {
+function OutOfStockActionBar({ partDetails }) {
+  const dispatch = useDispatch();
+  const openDrawerHandler = () => {
+    console.log(partDetails);
+    dispatch(rdxToggleDrawer());
+  };
   return (
     <Box sx={{ px: 3 }}>
       <Button
+        onClick={openDrawerHandler}
         variant="contained"
         color="primary"
         startIcon={
@@ -200,5 +215,34 @@ function OutOfStockActionBar() {
         Contact us for possibility to arrange part
       </Button>
     </Box>
+  );
+}
+OutOfStockActionBar.propTypes = { partDetails: PropTypes.object };
+
+// ? ----------------------------------------------------------------------------
+function Drawer() {
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const { isDrawerOpen } = useSelector((state) => state.products);
+  const toggleDrawer = () => dispatch(rdxToggleDrawer());
+  return (
+    <Drawer
+      anchor="right"
+      open={isDrawerOpen}
+      onClose={toggleDrawer}
+      PaperProps={{ sx: { bgcolor: 'grey.800', boxShadow: 0 } }}
+    >
+      <Box sx={{ width: { md: '25dvw', xs: '75dvw' }, p: 3 }}>
+        <Typography variant="h5" color="primary">
+          Unavailable Part Inquiry
+        </Typography>
+        {/* <Typography>Please provide your information to call you back</Typography> */}
+        <Divider
+          sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 3 }}
+          flexItem
+        />
+        <ContactUsForm />
+      </Box>
+    </Drawer>
   );
 }

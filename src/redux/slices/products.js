@@ -20,6 +20,14 @@ const initialState = {
   },
   cart: [],
   isDrawerOpen: false,
+  formPayload: {
+    subject: '',
+    messageText: '',
+    fullName: '',
+    mobile: '',
+    email: '',
+    hearAbout: '',
+  },
 };
 
 const slice = createSlice({
@@ -28,6 +36,10 @@ const slice = createSlice({
   reducers: {
     rdxToggleDrawer(state) {
       state.isDrawerOpen = !state.isDrawerOpen;
+    },
+    // ----- FORM ------------------------------------
+    rdxFormPayload(state, action) {
+      state.formPayload = { ...state.formPayload, ...action.payload };
     },
 
     // ----- Pagination ------------------------------------
@@ -69,6 +81,7 @@ const slice = createSlice({
 
     // ----- Load Spare-Parts & Filter --------------------
     rdxSetProducts(state, action) {
+      console.log(action.payload.page);
       state.startAfterDocument[action.payload.page] =
         action.payload.sparePartsData[action.payload.sparePartsData.length - 1]?.partNumber ||
         undefined;
@@ -104,4 +117,5 @@ export const {
   rdxUpdatePartQty,
   rdxToggleDrawer,
   rdxGetRecordsCount,
+  rdxFormPayload,
 } = slice.actions;

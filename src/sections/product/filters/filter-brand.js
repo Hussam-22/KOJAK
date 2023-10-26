@@ -22,8 +22,8 @@ import {
 import Iconify from 'src/components/iconify';
 import { _mercedesClasses } from 'src/_mock/_mercedesClasses';
 import FormProvider from 'src/components/hook-form/form-provider';
-import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 import { RHFSelect, RHFSwitch, RHFTextField } from 'src/components/hook-form';
+import { rdxUpdatePage, rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
 const TEMP_CATEGORY = [
   'ACCESSORIES',
@@ -124,14 +124,7 @@ export default function FilterBrand({ closeDrawer }) {
     formState: { isSubmitting, isDirty },
   } = methods;
 
-  console.log(isDirty);
-
   const values = watch();
-
-  // useEffect(() => {
-  //   if (filter.class === '' && filter.model === '' && filter.partNo === '')
-  //     reset({ class: '', model: '', partNo: '', category: '' });
-  // }, [filter, reset]);
 
   const onSubmit = handleSubmit(async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -142,6 +135,7 @@ export default function FilterBrand({ closeDrawer }) {
         ...formData,
       })
     );
+    dispatch(rdxUpdatePage({ page: 1 }));
     reset({}, { keepValues: true });
     closeDrawer();
   });
@@ -193,7 +187,7 @@ export default function FilterBrand({ closeDrawer }) {
         >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
-          {TEMP_CATEGORY.map((option) => (
+          {TEMP_CATEGORY.sort((a, b) => a.localeCompare(b)).map((option) => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
@@ -207,7 +201,7 @@ export default function FilterBrand({ closeDrawer }) {
             variant="contained"
             color="primary"
             loading={isSubmitting}
-            disabled={!isDirty && values.model !== ''}
+            disabled={!isDirty}
             sx={{
               whiteSpace: 'nowrap',
             }}

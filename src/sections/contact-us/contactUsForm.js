@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,10 +24,11 @@ const DIALOG_CONTENT = {
 const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
 const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
 
-export default function ContactUsForm({ payload }) {
+export default function ContactUsForm() {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
+  const { formPayload } = useSelector((state) => state.products);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,11 +54,11 @@ export default function ContactUsForm({ payload }) {
       fullName: '',
       mobile: '',
       email: '',
-      subject: payload?.subject || '',
+      subject: '',
       messageText: '',
       hearAbout: '',
     }),
-    [payload?.subject]
+    []
   );
 
   const methods = useForm({
@@ -71,10 +73,10 @@ export default function ContactUsForm({ payload }) {
     formState: { isSubmitting, errors },
   } = methods;
 
-  useEffect(() => {
-    if (payload?.subject !== undefined || payload?.subject !== '')
-      setValue('subject', payload?.subject);
-  }, [payload?.subject, setValue]);
+  // useEffect(() => {
+  //   if (payload?.subject !== undefined || payload?.subject !== '')
+  //     setValue('subject', payload?.subject);
+  // }, [payload?.subject, setValue]);
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
@@ -165,7 +167,3 @@ export default function ContactUsForm({ payload }) {
     </>
   );
 }
-
-ContactUsForm.propTypes = {
-  payload: PropTypes.object,
-};
