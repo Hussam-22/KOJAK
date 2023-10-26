@@ -68,7 +68,9 @@ function AvailableStockActionBar({ partDetails }) {
     // If item does not exists in cart --> add it
     if (cartQty === 0) {
       console.log('NEW');
-      setLocalStorageCart((prevState) => [...prevState, { partNumber, qty: tempQty }]);
+      setLocalStorageCart((prevState) =>
+        prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
+      );
       setTimeout(() => {
         dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
         setLoadingUpdate(false);
