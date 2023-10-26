@@ -116,7 +116,11 @@ function CartItems() {
                         to={paths.website.sparePartDetails + cartItem.partData.docID}
                       >
                         <Image
-                          src={cartItem.imageUrl}
+                          src={
+                            cartItem.imageUrl === undefined
+                              ? '/assets/illustrations/part-unavailable.svg'
+                              : cartItem.imageUrl
+                          }
                           width={85}
                           height={85}
                           alt={`spare-part${cartItem.partData.partNumber}`}
