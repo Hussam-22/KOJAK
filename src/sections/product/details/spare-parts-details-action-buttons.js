@@ -67,7 +67,6 @@ function AvailableStockActionBar({ partDetails }) {
     setLoadingUpdate(true);
     // If item does not exists in cart --> add it
     if (cartQty === 0) {
-      console.log('NEW');
       setLocalStorageCart((prevState) =>
         prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
       );
@@ -78,7 +77,6 @@ function AvailableStockActionBar({ partDetails }) {
     }
 
     if (cartQty !== 0) {
-      console.log('UPDATE');
       // If item exists in cart --> update Qty
       setLocalStorageCart((prevState) => {
         const index = prevState.findIndex(

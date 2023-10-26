@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,10 +11,10 @@ import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { CART_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import { rdxToggleDrawer, rdxLoadCartFromStorage } from 'src/redux/slices/products';
-import { CART_FORM, SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 const DIALOG_CONTENT = {
@@ -51,9 +50,9 @@ export default function CartDrawerForm() {
 
   const defaultValues = useMemo(
     () => ({
-      fullName: 'Hussam',
-      mobile: '0507440031',
-      email: 'a@a.com',
+      fullName: '',
+      mobile: '',
+      email: '',
       messageText: '',
     }),
     []
