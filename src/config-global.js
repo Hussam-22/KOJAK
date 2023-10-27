@@ -9,6 +9,7 @@ export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
 export const SPARE_PART_URL = 'https://kojak-spare-parts-staging.netlify.app/';
 export const EXCLUSIVE_URL = 'https://kojak-exclusive.com/';
 export const BUILDING_URL = 'https://kojak-building.com/';
+export const GROUP_URL = 'https://kojakgroup.com/';
 
 export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';

@@ -15,40 +15,50 @@ import {
 
 // components
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 
 const CONTENTS = [
   {
-    question: `What types of cars do you sell?`,
-    answer: `We offer a diverse range of cars for sale, including both brand-new and pre-owned vehicles. Our inventory includes sedans, SUVs, coupes, convertibles, and more, catering to various preferences and budgets.`,
+    question: 'Do you offer international shipping for Mercedes spare parts?',
+    answer:
+      'Yes, we provide international shipping to customers worldwide. Our global delivery services ensure you can get genuine Mercedes spare parts no matter where you are.',
   },
   {
-    question: 'Are the spare parts you provide genuine?',
-    answer: `Yes, we guarantee genuine spare parts for all our customers. We source our spare parts directly from reputable manufacturers, ensuring their authenticity and compatibility with different vehicle models.`,
+    question: 'What types of Mercedes spare parts do you carry?',
+    answer:
+      'We stock a wide range of Mercedes spare parts, including engine components, body parts, electrical systems, suspension parts, and more. You can find both OEM and aftermarket options in our inventory.',
   },
   {
-    question: 'How can I find the right spare part for my car?',
-    answer: `Our knowledgeable staff is here to assist you. You can provide us with your vehicle's make, model, and specific part requirements, and we will help you find the exact spare part you need.`,
+    question: 'Are your Mercedes spare parts genuine and authentic?',
+    answer:
+      'Absolutely. We take pride in offering only genuine Mercedes spare parts. We work with authorized suppliers to ensure the authenticity and quality of our products.',
   },
   {
-    question: 'Do you offer installation services for the purchased spare parts?',
-    answer: `Yes, At our Kojak Auto-maintenance workshop, we offer installation services for the spare parts you purchase. Our skilled technicians are trained to handle the installation of various spare parts, ensuring proper fitment and functionality. You can rely on our expertise to efficiently and professionally install the purchased spare parts in your vehicle.`,
+    question: 'How can I find the right spare part for my specific Mercedes model?',
+    answer:
+      'You can use our user-friendly search feature on our website. Enter your Mercedes model and the part you need, and our system will guide you to the appropriate products.',
   },
   {
-    question: 'What types of auto maintenance services do you provide?',
-    answer: `We offer a comprehensive range of auto maintenance services, including routine inspections, oil changes, brake repairs, engine diagnostics, tire rotations, and more. Our skilled technicians are trained to handle various maintenance and repair tasks.`,
+    question: 'Do you offer any warranties or guarantees on your spare parts?',
+    answer:
+      'Yes, we offer warranties on many of our products. Please check the product description or contact our customer support team for specific warranty details.',
+  },
+  {
+    question: 'What is your return and exchange policy for Mercedes spare parts?',
+    answer:
+      'We have a straightforward return and exchange policy. If you receive a defective or incorrect part, please contact our customer service within 30 days of purchase for a return or exchange.',
   },
   {
     question:
-      'Can I purchase a car and avail of your auto maintenance services at the same location?',
-    answer: `Yes, we provide both car sales and auto maintenance services at our conveniently located facilities. You can explore our range of cars for sale and also benefit from our professional maintenance services under one roof.`,
+      'Can I get technical assistance or guidance in installing the spare parts I purchase?',
+    answer:
+      'Certainly! We have a team of experienced technicians and a dedicated Mercedes auto maintenance workshop. We can offer installation services for any purchased spare parts from our spare-part shop. Feel free to reach out for assistance."',
   },
   {
-    question: 'Are there any warranty options for the cars I purchase?',
-    answer: `Yes, most of our brand-new cars come with manufacturer warranties. Additionally, we may offer extended warranty options for both new and pre-owned vehicles to provide you with added peace of mind.`,
+    question: 'How can I contact Kojak for further inquiries or assistance?',
+    answer: `You can contact us through our website's contact form, email us at "queriesksp@kojak-group.com", or call our customer support hotline at +971-52-9242722. Our dedicated team is here to assist you with any questions or concerns.`,
   },
 ];
 

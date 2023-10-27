@@ -1,13 +1,11 @@
 import React from 'react';
-import { m } from 'framer-motion';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { bgGradient } from 'src/theme/css';
+import { AUTO_URL } from 'src/config-global';
 import Image from 'src/components/image/Image';
-import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
 function FixOffer() {
   const theme = useTheme();
@@ -27,7 +25,14 @@ function FixOffer() {
                 Auto Maintenance Shop
               </Typography>
               <Box>
-                <Button variant="contained" size="large">
+                <Button
+                  variant="contained"
+                  size="large"
+                  href={AUTO_URL}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Kojak Auto Maintenance Website  - Book an Appointment"
+                >
                   Book an Appointment
                 </Button>
               </Box>

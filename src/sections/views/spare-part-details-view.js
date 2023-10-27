@@ -2,8 +2,8 @@ import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Box, Stack, Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import { Box, Stack, Divider, Container, Typography } from '@mui/material';
 
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
@@ -74,6 +74,11 @@ function SparePartDetailsView() {
         </Grid>
       </Container>
       <SideDrawer open={isDrawerOpen} onClose={onDrawerCloseHandler}>
+        <Typography variant="h4">Lets try to get you this spare-part</Typography>
+        <Typography variant="caption">
+          Once you submit the request, One of our customer success will contact you shortly
+        </Typography>
+        <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
         <ContactUsForm />
       </SideDrawer>
     </Box>

@@ -1,18 +1,28 @@
 import React from 'react';
-import { m } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
+import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { rdxFormPayload } from 'src/redux/slices/products';
 
 function InternationalBusiness() {
   const theme = useTheme();
   const { translate } = useLocales();
   const mdUp = useResponsive('up', 'md');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onContactUsClick = () => {
+    dispatch(rdxFormPayload({ subject: 'I would like to inquire about international shipping' }));
+    navigate(paths.website.contactUs);
+  };
 
   return (
     <Box
@@ -46,7 +56,7 @@ function InternationalBusiness() {
                 variant="contained"
                 color="primary"
                 size="large"
-                // sx={{ color: 'secondary.main' }}
+                onClick={onContactUsClick}
                 endIcon={<Iconify icon="la:headset" width={32} height={32} />}
               >
                 Contact our Export/Import Team

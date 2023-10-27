@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,6 +30,22 @@ export default function ContactUsForm() {
   const { translate, currentLang } = useLocales();
   const { formPayload } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+
+  useEffect(
+    () => () =>
+      // clear any form payload on navigate away
+      dispatch(
+        rdxFormPayload({
+          fullName: '',
+          mobile: '',
+          email: '',
+          subject: '',
+          messageText: '',
+          hearAbout: '',
+        })
+      ),
+    [dispatch]
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
