@@ -3,7 +3,17 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingButton } from '@mui/lab';
-import { Box, Stack, Button, useTheme, Typography, IconButton } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Button,
+  Divider,
+  useTheme,
+  TextField,
+  Typography,
+  IconButton,
+  InputAdornment,
+} from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
@@ -36,8 +46,8 @@ SparePartsDetailsActionButtons.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
 function AvailableStockActionBar({ partDetails }) {
+  const [isVisible, setIsVisible] = useState(false);
   const [loadingUpdate, setLoadingUpdate] = useState(false);
-  const [loadingRemove, setLoadingRemove] = useState(false);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
   const mdUp = useResponsive('up', 'md');
@@ -52,13 +62,13 @@ function AvailableStockActionBar({ partDetails }) {
   }, [cartQty]);
 
   const onRemoveClickHandler = () => {
-    setLoadingRemove(true);
+    setLoadingUpdate(true);
     setLocalStorageCart((prevState) =>
       prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
     );
     setTimeout(() => {
       dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
-      setLoadingRemove(false);
+      setLoadingUpdate(false);
       setTempQty(1);
     }, 1000);
   };
@@ -96,9 +106,35 @@ function AvailableStockActionBar({ partDetails }) {
     setTempQty((prevQty) => prevQty + newQty);
   };
 
+  const onWhatsAppClickHandler = async () => {
+    // // Create WhatsApp link
+    // const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
+    //   formData.messageText
+    // )}&app_absent=0`;
+    // // add form to FireBase
+    // addNewForm({
+    //   ...formData,
+    //   source: WHATSAPP_FORM,
+    //   mobile: WHATSAPP_MOBILE,
+    // });
+    // setIsOpen(false);
+    // setTimeout(() => {
+    //   if (!isSubmitting) window.location.href = url;
+    // }, 1000);
+  };
+
+  const onShowMobileNumberHandler = () => {};
+  const onBackClickHandler = () => {};
+
   // ----------------------------------------------------------------------------
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack
+      direction={{ md: 'row', xs: 'column' }}
+      spacing={2}
+      alignItems="center"
+      justifyContent="space-between"
+      divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
+    >
       <Stack direction="column" alignItems="center">
         <Typography variant="caption" color="secondary">
           Qty
@@ -123,37 +159,95 @@ function AvailableStockActionBar({ partDetails }) {
         </Stack>
       </Stack>
 
-      <LoadingButton
-        loading={loadingUpdate}
-        variant="contained"
-        color="primary"
-        sx={{ whiteSpace: 'nowrap' }}
-        disabled={cartQty === tempQty}
-        startIcon={
-          <Iconify
-            icon="carbon:shopping-cart-plus"
-            width={24}
-            height={24}
-            sx={{ color: 'common.white' }}
-          />
-        }
-        onClick={onAddClickHandler}
-      >
-        {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
-      </LoadingButton>
-      <LoadingButton
-        loading={loadingRemove}
-        variant="contained"
-        color="error"
-        sx={{ whiteSpace: 'nowrap' }}
-        disabled={cartQty === 0}
-        startIcon={
-          <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
-        }
-        onClick={onRemoveClickHandler}
-      >
-        Remove
-      </LoadingButton>
+      <Stack direction="row" spacing={2}>
+        <LoadingButton
+          loading={loadingUpdate}
+          variant="contained"
+          color="primary"
+          sx={{ whiteSpace: 'nowrap' }}
+          disabled={cartQty === tempQty}
+          startIcon={
+            <Iconify
+              icon="carbon:shopping-cart-plus"
+              width={24}
+              height={24}
+              sx={{ color: 'common.white' }}
+            />
+          }
+          onClick={onAddClickHandler}
+        >
+          {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
+        </LoadingButton>
+        <LoadingButton
+          loading={loadingUpdate}
+          variant="contained"
+          color="error"
+          sx={{ whiteSpace: 'nowrap' }}
+          disabled={cartQty === 0}
+          startIcon={
+            <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
+          }
+          onClick={onRemoveClickHandler}
+        >
+          Remove
+        </LoadingButton>
+      </Stack>
+
+      <Box>
+        {!isVisible && (
+          <Button
+            onClick={() => setIsVisible(!isVisible)}
+            variant="outlined"
+            color="success"
+            sx={{
+              visibility: !isVisible ? 'visible' : 'hidden',
+              opacity: !isVisible ? 1 : 0,
+            }}
+            startIcon={
+              <Iconify
+                icon="ic:baseline-whatsapp"
+                width={24}
+                height={24}
+                sx={{ color: 'common.white' }}
+              />
+            }
+          >
+            Get quick quote via whatsApp
+          </Button>
+        )}
+        {isVisible && (
+          <Stack
+            direction="row"
+            alignItems="center"
+            sx={{
+              visibility: isVisible ? 'visible' : 'hidden',
+              opacity: isVisible ? 1 : 0,
+            }}
+          >
+            <IconButton onClick={() => setIsVisible(!isVisible)}>
+              <Iconify icon="ic:twotone-arrow-back-ios-new" width={24} height={24} />
+            </IconButton>
+            <TextField
+              aria-label="Customer Mobile Number"
+              label="Your Mobile Number"
+              variant="outlined"
+              focused
+              required
+              fullWidth
+              // helperText="Correct Mobile Number is Required"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton color="success" onClick={onWhatsAppClickHandler}>
+                      <Iconify icon="fluent-mdl2:send" width={24} height={24} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+        )}
+      </Box>
     </Stack>
   );
 }

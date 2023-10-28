@@ -139,7 +139,7 @@ function SearchAdvanced() {
           name="class"
           label="Mercedes Class"
           variant="outlined"
-          size={mdUp ? 'large' : 'small'}
+          size={mdUp ? 'large' : 'unset'}
         >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
@@ -150,12 +150,7 @@ function SearchAdvanced() {
           ))}
         </RHFSelect>
 
-        <RHFSelect
-          name="model"
-          label="Production Year"
-          variant="outlined"
-          size={mdUp ? 'large' : 'small'}
-        >
+        <RHFSelect name="model" label="Model" variant="outlined" size={mdUp ? 'large' : 'unset'}>
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {values.class !== '' &&
@@ -172,7 +167,7 @@ function SearchAdvanced() {
           name="category"
           label="Part Category"
           variant="outlined"
-          size={mdUp ? 'large' : 'small'}
+          size={mdUp ? 'large' : 'unset'}
         >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
@@ -185,7 +180,7 @@ function SearchAdvanced() {
 
         <Box sx={{ textAlign: 'center' }}>
           <LoadingButton
-            size={mdUp ? 'large' : 'small'}
+            size="large"
             type="submit"
             variant="contained"
             color="primary"

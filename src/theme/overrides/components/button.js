@@ -81,8 +81,8 @@ export function button(theme) {
       ...(outlinedVariant && {
         border: 'solid 2px',
         '&:hover': {
-          border: 'solid 3px',
-          backgroundColor: theme.palette.action.hover,
+          border: 'solid 2px',
+          boxShadow: 2,
         },
       }),
       ...(ownerState.color === color && {

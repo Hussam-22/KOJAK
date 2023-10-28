@@ -37,7 +37,7 @@ function SparePartDetailsView() {
 
   return (
     <Box sx={{ py: 8, bgcolor: 'background.default' }}>
-      <Container>
+      <Container maxWidth="xl">
         <Grid container spacing={2}>
           <Grid md={6}>
             <Box

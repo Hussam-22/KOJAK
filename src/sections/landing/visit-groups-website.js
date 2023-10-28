@@ -57,6 +57,7 @@ function VisitGroupsWebsite() {
 
   const renderGroupCard = (item, index) => (
     <Box
+      key={item.title}
       sx={{
         backgroundImage: `url(/assets/shape/bg-blurry.svg)`,
         backgroundSize: 'cover',
@@ -71,7 +72,6 @@ function VisitGroupsWebsite() {
       }}
     >
       <Box
-        key={item.title}
         sx={{
           p: 3,
           borderRadius: 1,
