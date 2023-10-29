@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { useMemo, useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,6 +31,9 @@ export default function ContactUsForm() {
   const { translate, currentLang } = useLocales();
   const { formPayload } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   useEffect(
     () => () =>
@@ -42,6 +46,8 @@ export default function ContactUsForm() {
           subject: '',
           messageText: '',
           hearAbout: '',
+          source: '',
+          parts: [],
         })
       ),
     [dispatch]
@@ -91,6 +97,8 @@ export default function ContactUsForm() {
     [formPayload]
   );
 
+  console.log(formPayload);
+
   const methods = useForm({
     resolver: yupResolver(schema),
     defaultValues,
@@ -121,7 +129,7 @@ export default function ContactUsForm() {
         source: CONTACT_US_FORM,
       });
 
-      if (formPayload.parts.length !== 0)
+      if (formPayload.parts.length !== 0 && pathname !== '/contact-us')
         formPayload.parts.map((part) => fsUpdatePartStatistics(part, formPayload.source));
 
       await new Promise((resolve) =>

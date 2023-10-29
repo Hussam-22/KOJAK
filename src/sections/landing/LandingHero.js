@@ -77,8 +77,8 @@ const LandingHero = () => {
             >
               <Image
                 src="/assets/mercedes-logo.svg"
-                width={{ md: 200, xs: 100 }}
-                height={{ md: 200, xs: 100 }}
+                width={{ xl: 200, md: 175, xs: 100 }}
+                height={{ xl: 200, md: 175, xs: 100 }}
               />
             </Grid>
           )}
