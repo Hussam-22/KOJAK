@@ -1,24 +1,14 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingButton } from '@mui/lab';
-import {
-  Box,
-  Stack,
-  Button,
-  Divider,
-  useTheme,
-  TextField,
-  Typography,
-  IconButton,
-  InputAdornment,
-} from '@mui/material';
+import { Box, Stack, Button, Divider, Typography, IconButton } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { OUT_OF_STOCK, WHATSAPP_FORM, WHATSAPP_MOBILE } from 'src/config-global';
 import {
   rdxUpdateCart,
   rdxFormPayload,
@@ -27,13 +17,6 @@ import {
 } from 'src/redux/slices/products';
 
 function SparePartsDetailsActionButtons({ partDetails }) {
-  const theme = useTheme();
-  const dispatch = useDispatch();
-  const { fsGetCartParts } = useAuthContext();
-  const { cart } = useSelector((state) => state.products);
-
-  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
-
   return partDetails.stock === 0 ? (
     <OutOfStockActionBar partDetails={partDetails} />
   ) : (
@@ -46,12 +29,11 @@ SparePartsDetailsActionButtons.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
 function AvailableStockActionBar({ partDetails }) {
-  const [isVisible, setIsVisible] = useState(false);
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
-  const mdUp = useResponsive('up', 'md');
   const [tempQty, setTempQty] = useState(1);
+  const { fsUpdatePartStatistics } = useAuthContext();
 
   const { partNumber } = partDetails;
   const cartQty =
@@ -107,24 +89,21 @@ function AvailableStockActionBar({ partDetails }) {
   };
 
   const onWhatsAppClickHandler = async () => {
-    // // Create WhatsApp link
-    // const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
-    //   formData.messageText
-    // )}&app_absent=0`;
-    // // add form to FireBase
-    // addNewForm({
-    //   ...formData,
-    //   source: WHATSAPP_FORM,
-    //   mobile: WHATSAPP_MOBILE,
-    // });
-    // setIsOpen(false);
-    // setTimeout(() => {
-    //   if (!isSubmitting) window.location.href = url;
-    // }, 1000);
-  };
+    // Create WhatsApp link
+    setLoadingUpdate(true);
+    const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
+      `I would like to get quote about part No. ${partDetails.partNumber} available on the following link on your Kojak Spare Parts website : ${window.location.href}`
+    )}&app_absent=0`;
 
-  const onShowMobileNumberHandler = () => {};
-  const onBackClickHandler = () => {};
+    // UPDATE PART STATISTICS - WHATSAPP
+    await fsUpdatePartStatistics(partDetails, WHATSAPP_FORM);
+
+    // TAKE CUSTOMER TO WHATSAPP
+    setTimeout(() => {
+      setLoadingUpdate(false);
+      if (!loadingUpdate) window.location.href = url;
+    }, 1000);
+  };
 
   // ----------------------------------------------------------------------------
   return (
@@ -193,61 +172,21 @@ function AvailableStockActionBar({ partDetails }) {
         </LoadingButton>
       </Stack>
 
-      <Box>
-        {!isVisible && (
-          <Button
-            onClick={() => setIsVisible(!isVisible)}
-            variant="outlined"
-            color="success"
-            sx={{
-              visibility: !isVisible ? 'visible' : 'hidden',
-              opacity: !isVisible ? 1 : 0,
-            }}
-            startIcon={
-              <Iconify
-                icon="ic:baseline-whatsapp"
-                width={24}
-                height={24}
-                sx={{ color: 'common.white' }}
-              />
-            }
-          >
-            Get quick quote via whatsApp
-          </Button>
-        )}
-        {isVisible && (
-          <Stack
-            direction="row"
-            alignItems="center"
-            sx={{
-              visibility: isVisible ? 'visible' : 'hidden',
-              opacity: isVisible ? 1 : 0,
-            }}
-          >
-            <IconButton onClick={() => setIsVisible(!isVisible)}>
-              <Iconify icon="ic:twotone-arrow-back-ios-new" width={24} height={24} />
-            </IconButton>
-            <TextField
-              aria-label="Customer Mobile Number"
-              label="Your Mobile Number"
-              variant="outlined"
-              focused
-              required
-              fullWidth
-              // helperText="Correct Mobile Number is Required"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton color="success" onClick={onWhatsAppClickHandler}>
-                      <Iconify icon="fluent-mdl2:send" width={24} height={24} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Stack>
-        )}
-      </Box>
+      <Button
+        onClick={onWhatsAppClickHandler}
+        variant="outlined"
+        color="success"
+        startIcon={
+          <Iconify
+            icon="ic:baseline-whatsapp"
+            width={24}
+            height={24}
+            sx={{ color: 'common.white' }}
+          />
+        }
+      >
+        Get quick quote via whatsApp
+      </Button>
     </Stack>
   );
 }
@@ -262,8 +201,10 @@ function OutOfStockActionBar({ partDetails }) {
       rdxFormPayload({
         subject: `Out of Stock part Inquiry - ${partDetails.partNumber}`,
         messageText: `I would like to inquire about the possibility to arrange the following out-of-stock part 
-    Part number: ${partDetails.partNumber}
-    Part description: ${partDetails.description}`,
+                      Part number: ${partDetails.partNumber}
+                      Part description: ${partDetails.description}`,
+        source: OUT_OF_STOCK,
+        parts: [partDetails.docID],
       })
     );
   };
