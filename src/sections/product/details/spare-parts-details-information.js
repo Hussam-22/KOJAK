@@ -39,7 +39,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
           text: `Check out this part on Kojak Spare Parts website`,
           url: window.location.href,
         })
-        .then(() => console.log('Share successful'))
+        .then(() => true)
         .catch((error) => console.error('Error sharing:', error));
     } else {
       alert('Web Share API not supported in your browser.');

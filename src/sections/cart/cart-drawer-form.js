@@ -33,8 +33,6 @@ export default function CartDrawerForm() {
   const { cart, formPayload } = useSelector((state) => state.products);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
-  console.log(formPayload);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -89,7 +87,6 @@ export default function CartDrawerForm() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    console.log(formData);
     const slackCart = cart.map((item) => `%${item.partNumber} | x${item.qty}*`);
     try {
       const dataToSend = Object.entries({ ...formData, ...slackCart })

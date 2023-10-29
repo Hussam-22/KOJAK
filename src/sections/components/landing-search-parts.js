@@ -230,7 +230,6 @@ function SearchPartNumber() {
     dispatch(rdxClearFilter());
     dispatch(rdxUpdateFilter({ ...formData }));
     navigate(paths.website.spareParts);
-    console.log(formData);
   });
 
   return (
