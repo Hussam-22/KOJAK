@@ -5,6 +5,7 @@ import { Box, Stack, Divider, useTheme, Typography, IconButton } from '@mui/mate
 import Label from 'src/components/label';
 import { _mercedesClasses } from 'src/_mock';
 import Iconify from 'src/components/iconify';
+import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
 function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const theme = useTheme();
@@ -31,21 +32,6 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   //   </Typography>
   // ));
 
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: `${partDetails.partNumber} - ${partDetails.description}`,
-          text: `Check out this part on Kojak Spare Parts website`,
-          url: window.location.href,
-        })
-        .then(() => true)
-        .catch((error) => console.error('Error sharing:', error));
-    } else {
-      alert('Web Share API not supported in your browser.');
-    }
-  };
-
   const applicableModels = filteredClasses.map((item) => (
     <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
       <Box component="span" sx={{ color: 'info.main' }}>
@@ -60,14 +46,14 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
       <Box>
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
           <Box>
-            <Label color={getStockInfo(partDetails.stock).color} sx={{ fontSize: 14, p: 1 }}>
+            <Label
+              color={getStockInfo(partDetails.stock).color}
+              sx={{ fontSize: 14, p: 1, fontWeight: theme.typography.fontWeightMedium }}
+            >
               {getStockInfo(partDetails.stock).text}
             </Label>
           </Box>
-          <IconButton disableRipple onClick={handleShare}>
-            <Iconify icon="tdesign:share" sx={{ color: 'common.white' }} />
-            <Typography sx={{ px: 1, color: 'common.white' }}>Share</Typography>
-          </IconButton>
+          <SparePartsDetailsActionButtons partDetails={partDetails} />
         </Stack>
         <Stack direction="column" spacing={1} justifyContent="space-between">
           <Typography variant="h4">{partDetails.partName}</Typography>

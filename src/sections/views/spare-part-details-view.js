@@ -70,13 +70,10 @@ function SparePartDetailsView() {
             </Box>
           </Grid>
           <Grid md={6} xs={12}>
-            <Stack direction="column" justifyContent="space-between" sx={{ height: 1 }} spacing={2}>
-              <SparePartsDetailsInformation
-                productDescription={productDescription}
-                partDetails={partDetails}
-              />
-              <SparePartsDetailsActionButtons partDetails={partDetails} />
-            </Stack>
+            <SparePartsDetailsInformation
+              productDescription={productDescription}
+              partDetails={partDetails}
+            />
           </Grid>
         </Grid>
       </Container>

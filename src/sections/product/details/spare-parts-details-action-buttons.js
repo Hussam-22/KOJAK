@@ -9,12 +9,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { OUT_OF_STOCK, WHATSAPP_FORM, WHATSAPP_MOBILE } from 'src/config-global';
-import {
-  rdxUpdateCart,
-  rdxFormPayload,
-  rdxToggleDrawer,
-  rdxUpdatePartQty,
-} from 'src/redux/slices/products';
+import { rdxUpdateCart, rdxFormPayload, rdxToggleDrawer } from 'src/redux/slices/products';
 
 function SparePartsDetailsActionButtons({ partDetails }) {
   return partDetails.stock === 0 ? (
@@ -29,7 +24,11 @@ SparePartsDetailsActionButtons.propTypes = { partDetails: PropTypes.object };
 
 // ? ----------------------------------------------------------------------------
 function AvailableStockActionBar({ partDetails }) {
-  const [loadingUpdate, setLoadingUpdate] = useState(false);
+  const [loading, setLoading] = useState({
+    add: false,
+    delete: false,
+    whatsApp: false,
+  });
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
   const [tempQty, setTempQty] = useState(1);
@@ -44,149 +43,111 @@ function AvailableStockActionBar({ partDetails }) {
   }, [cartQty]);
 
   const onRemoveClickHandler = () => {
-    setLoadingUpdate(true);
+    setLoading((state) => ({ ...state, delete: true }));
     setLocalStorageCart((prevState) =>
       prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)
     );
     setTimeout(() => {
       dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
-      setLoadingUpdate(false);
+      setLoading((state) => ({ ...state, delete: false }));
       setTempQty(1);
     }, 1000);
   };
 
   const onAddClickHandler = () => {
-    setLoadingUpdate(true);
-    // If item does not exists in cart --> add it
-    if (cartQty === 0) {
-      setLocalStorageCart((prevState) =>
-        prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
-      );
-      setTimeout(() => {
-        dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
-        setLoadingUpdate(false);
-      }, 1000);
-    }
-
-    if (cartQty !== 0) {
-      // If item exists in cart --> update Qty
-      setLocalStorageCart((prevState) => {
-        const index = prevState.findIndex(
-          (localStorageItem) => localStorageItem.partNumber === partDetails.partNumber
-        );
-        prevState[index] = { ...prevState[index], qty: tempQty };
-        return prevState;
-      });
-      setTimeout(() => {
-        dispatch(rdxUpdatePartQty({ partNumber, qty: tempQty, isItemPage: true }));
-        setLoadingUpdate(false);
-      }, 1000);
-    }
-  };
-
-  const onUpdateQtyClickHandler = (newQty) => {
-    setTempQty((prevQty) => prevQty + newQty);
+    setLoading((state) => ({ ...state, add: true }));
+    setLocalStorageCart((prevState) =>
+      prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
+    );
+    setTimeout(() => {
+      dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
+      setLoading((state) => ({ ...state, add: false }));
+    }, 1000);
   };
 
   const onWhatsAppClickHandler = async () => {
+    setLoading((state) => ({ ...state, whatsApp: true }));
+
     // Create WhatsApp link
-    setLoadingUpdate(true);
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_MOBILE}&text=${encodeURI(
       `I would like to get quote about part No. ${partDetails.partNumber} available on the following link on your Kojak Spare Parts website : ${window.location.href}`
     )}&app_absent=0`;
 
     // UPDATE PART STATISTICS - WHATSAPP
-    await fsUpdatePartStatistics(partDetails, WHATSAPP_FORM);
+    await fsUpdatePartStatistics(partDetails.docID, WHATSAPP_FORM);
 
     // TAKE CUSTOMER TO WHATSAPP
     setTimeout(() => {
-      setLoadingUpdate(false);
-      if (!loadingUpdate) window.location.href = url;
+      setLoading((state) => ({ ...state, whatsApp: false }));
+      window.location.href = url;
     }, 1000);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `${partDetails.partNumber} - ${partDetails.description}`,
+          text: `Check out this part on Kojak Spare Parts website`,
+          url: window.location.href,
+        })
+        .then(() => true)
+        .catch((error) => console.error('Error sharing:', error));
+    } else {
+      alert('Web Share API not supported in your browser.');
+    }
   };
 
   // ----------------------------------------------------------------------------
   return (
     <Stack
       direction={{ md: 'row', xs: 'column' }}
-      spacing={2}
       alignItems="center"
       justifyContent="space-between"
       divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
     >
-      <Stack direction="column" alignItems="center">
-        <Typography variant="caption" color="secondary">
-          Qty
-        </Typography>
-        <Stack direction="row" alignItems="center">
-          <IconButton disableRipple onClick={() => onUpdateQtyClickHandler(+1)}>
-            <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'success.main' }} />
-          </IconButton>
-          <Typography sx={{ whiteSpace: 'nowrap' }}>x {tempQty}</Typography>
-          <IconButton
-            disableRipple
-            onClick={() => onUpdateQtyClickHandler(-1)}
-            disabled={tempQty === 1}
-          >
-            <Iconify
-              icon="bxs:down-arrow"
-              width={16}
-              height={16}
-              sx={{ color: tempQty === 0 ? 'secondary.main' : 'error.main' }}
-            />
-          </IconButton>
-        </Stack>
-      </Stack>
-
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={1}>
         <LoadingButton
-          loading={loadingUpdate}
-          variant="contained"
-          color="primary"
-          sx={{ whiteSpace: 'nowrap' }}
-          disabled={cartQty === tempQty}
-          startIcon={
-            <Iconify
-              icon="carbon:shopping-cart-plus"
-              width={24}
-              height={24}
-              sx={{ color: 'common.white' }}
-            />
-          }
-          onClick={onAddClickHandler}
-        >
-          {cartQty !== 0 ? `Update Cart` : 'Add to Cart'}
-        </LoadingButton>
-        <LoadingButton
-          loading={loadingUpdate}
-          variant="contained"
-          color="error"
-          sx={{ whiteSpace: 'nowrap' }}
-          disabled={cartQty === 0}
-          startIcon={
-            <Iconify icon="ph:trash" width={24} height={24} sx={{ color: 'common.white' }} />
-          }
+          variant="text"
+          loading={loading.delete}
           onClick={onRemoveClickHandler}
+          disabled={cartQty === 0}
         >
-          Remove
+          <Iconify
+            icon="ph:trash"
+            width={24}
+            height={24}
+            sx={{ color: cartQty === 0 ? 'grey[400]' : 'error.main' }}
+          />
         </LoadingButton>
-      </Stack>
 
-      <Button
-        onClick={onWhatsAppClickHandler}
-        variant="outlined"
-        color="success"
-        startIcon={
+        <LoadingButton
+          variant="text"
+          loading={loading.add}
+          onClick={onAddClickHandler}
+          disabled={cartQty > 0}
+        >
+          <Iconify
+            icon="carbon:shopping-cart-plus"
+            width={24}
+            height={24}
+            sx={{ color: cartQty > 0 ? 'grey[400]' : 'primary.main' }}
+          />
+        </LoadingButton>
+
+        <LoadingButton variant="text" loading={loading.whatsApp} onClick={onWhatsAppClickHandler}>
           <Iconify
             icon="ic:baseline-whatsapp"
             width={24}
             height={24}
-            sx={{ color: 'common.white' }}
+            sx={{ color: 'success.main' }}
           />
-        }
-      >
-        Get quick quote via whatsApp
-      </Button>
+        </LoadingButton>
+
+        <IconButton disableRipple onClick={handleShare}>
+          <Iconify icon="tdesign:share" width={24} height={24} sx={{ color: 'common.white' }} />
+        </IconButton>
+      </Stack>
     </Stack>
   );
 }
