@@ -11,7 +11,9 @@ import {
   getDoc,
   getDocs,
   orderBy,
+  increment,
   Timestamp,
+  updateDoc,
   collection,
   startAfter,
   writeBatch,
@@ -30,6 +32,9 @@ import { AuthContext } from './auth-context';
 const firebaseApp = initializeApp(FIREBASE_API);
 const STORAGE = getStorage(firebaseApp);
 const DB = getFirestore(firebaseApp);
+
+const THIS_MONTH = new Date().getMonth();
+const THIS_YEAR = new Date().getFullYear();
 
 // ----------------------------------------------------------------------
 
@@ -126,6 +131,15 @@ export function AuthProvider({ children }) {
     },
     [fsGetImgDownloadUrl]
   );
+  // ----------------------------------------------------------------------------
+
+  const fsUpdatePartStatistics = useCallback(async (partID, source) => {
+    const docRef = doc(DB, `/websites/${SITE_NAME}/partsData/${partID}`);
+
+    await updateDoc(docRef, {
+      [`statistics.${source}.${THIS_YEAR}.${THIS_MONTH}`]: increment(1),
+    });
+  }, []);
   // ----------------------------------------------------------------------------
 
   const fsWriteBatchPartsData = useCallback(async () => {
@@ -264,6 +278,7 @@ export function AuthProvider({ children }) {
     () => ({
       addNewForm,
       fsGetPartDetails,
+      fsUpdatePartStatistics,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       fsGetProductsByPage,
@@ -274,6 +289,7 @@ export function AuthProvider({ children }) {
     [
       addNewForm,
       fsGetPartDetails,
+      fsUpdatePartStatistics,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       fsGetProductsByPage,

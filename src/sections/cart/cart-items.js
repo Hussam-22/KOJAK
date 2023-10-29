@@ -18,6 +18,7 @@ import {
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
+import { CART_FORM } from 'src/config-global';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
@@ -25,7 +26,12 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
-import { rdxUpdateCart, rdxToggleDrawer, rdxUpdatePartQty } from 'src/redux/slices/products';
+import {
+  rdxUpdateCart,
+  rdxFormPayload,
+  rdxToggleDrawer,
+  rdxUpdatePartQty,
+} from 'src/redux/slices/products';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -37,6 +43,8 @@ function CartItems() {
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
 
   const openDrawerHandler = () => {
+    const parts = cartItems.map((item) => item.partData.docID);
+    dispatch(rdxFormPayload({ source: CART_FORM, parts }));
     dispatch(rdxToggleDrawer());
   };
 

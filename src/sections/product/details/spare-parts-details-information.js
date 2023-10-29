@@ -57,7 +57,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
 
   return (
     partDetails?.id && (
-      <Box sx={{ px: 3 }}>
+      <Box>
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
           <Box>
             <Label color={getStockInfo(partDetails.stock).color} sx={{ fontSize: 14, p: 1 }}>

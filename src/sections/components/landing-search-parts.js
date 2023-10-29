@@ -183,7 +183,7 @@ function SearchAdvanced() {
             size="large"
             type="submit"
             variant="contained"
-            color="primary"
+            color="info"
             loading={loading}
             sx={{
               whiteSpace: 'nowrap',
@@ -241,15 +241,15 @@ function SearchPartNumber() {
           label="Part Number"
           variant="outlined"
           fullWidth
-          size={mdUp ? 'large' : 'small'}
+          size={mdUp ? 'large' : 'unset'}
         />
 
         <Box sx={{ textAlign: 'center' }}>
           <LoadingButton
-            size={mdUp ? 'large' : 'small'}
+            size="large"
             type="submit"
             variant="contained"
-            color="primary"
+            color="info"
             loading={isSubmitting}
             sx={{
               whiteSpace: 'nowrap',

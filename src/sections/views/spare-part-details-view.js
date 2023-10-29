@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Stack, Divider, Container, Typography } from '@mui/material';
 
+import { PAGE_VISIT } from 'src/config-global';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import SideDrawer from 'src/components/drawer/side-drawer';
@@ -17,7 +18,7 @@ function SparePartDetailsView() {
   const dispatch = useDispatch();
   const { partDocID } = useParams();
   const [partDetails, setPartDetails] = useState({});
-  const { fsGetPartDetails } = useAuthContext();
+  const { fsGetPartDetails, fsUpdatePartStatistics } = useAuthContext();
   const { isDrawerOpen } = useSelector((state) => state.products);
 
   const onDrawerCloseHandler = () => dispatch(rdxToggleDrawer());
@@ -35,11 +36,17 @@ function SparePartDetailsView() {
     })();
   }, [fsGetPartDetails, partDocID]);
 
+  useEffect(() => {
+    (async () => {
+      if (partDetails.docID) await fsUpdatePartStatistics(partDetails.docID, PAGE_VISIT);
+    })();
+  }, [fsUpdatePartStatistics, partDetails]);
+
   return (
     <Box sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container maxWidth="xl">
-        <Grid container spacing={2}>
-          <Grid md={6}>
+        <Grid container spacing={3}>
+          <Grid md={6} xs={12}>
             <Box
               sx={{
                 bgcolor: 'background.paper',
@@ -62,7 +69,7 @@ function SparePartDetailsView() {
               />
             </Box>
           </Grid>
-          <Grid md={6}>
+          <Grid md={6} xs={12}>
             <Stack direction="column" justifyContent="space-between" sx={{ height: 1 }} spacing={2}>
               <SparePartsDetailsInformation
                 productDescription={productDescription}

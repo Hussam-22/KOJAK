@@ -1,20 +1,20 @@
 import * as Yup from 'yup';
-import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMemo, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Stack, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Stack, Divider, MenuItem, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { CART_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
-import { rdxToggleDrawer, rdxLoadCartFromStorage } from 'src/redux/slices/products';
+import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
+import { rdxFormPayload, rdxToggleDrawer, rdxLoadCartFromStorage } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 const DIALOG_CONTENT = {
@@ -22,13 +22,18 @@ const DIALOG_CONTENT = {
   en: 'We have received the parts list, we will get back to you soon',
 };
 
+const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
+const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
+
 export default function CartDrawerForm() {
   const dispatch = useDispatch();
-  const { addNewForm } = useAuthContext();
+  const { addNewForm, fsUpdatePartStatistics } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
-  const { cart } = useSelector((state) => state.products);
+  const { cart, formPayload } = useSelector((state) => state.products);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
+
+  console.log(formPayload);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,6 +41,19 @@ export default function CartDrawerForm() {
 
   const handleClose = () => {
     dispatch(rdxToggleDrawer());
+    dispatch(
+      rdxFormPayload({
+        fullName: '',
+        mobile: '',
+        email: '',
+        subject: '',
+        messageText: '',
+        hearAbout: '',
+        source: '',
+        parts: [],
+      })
+    );
+
     setOpen(false);
   };
 
@@ -45,7 +63,7 @@ export default function CartDrawerForm() {
       .required('Mobile number is required')
       .min(9, 'Contact Number must be at least 9 numbers'),
     email: Yup.string().required('Email is Required').email('That is not an email'),
-    // messageText: Yup.string().required('Message is required'),
+    hearAbout: Yup.string().required('How did you hear about us is required'),
   });
 
   const defaultValues = useMemo(
@@ -54,6 +72,7 @@ export default function CartDrawerForm() {
       mobile: '',
       email: '',
       messageText: '',
+      hearAbout: '',
     }),
     []
   );
@@ -84,15 +103,21 @@ export default function CartDrawerForm() {
         credentials: 'omit', // This is equivalent to withCredentials: false in Axios
       };
 
-      // // Add Form Submit to Slack Channel
+      // Add Form Submit to Slack Channel
       await fetch(SLACK_WEBHOOK_URL, requestOptions);
 
+      // ADD FORM SUBMIT AND SEND EMAIL
       addNewForm({
         ...formData,
         parts: slackCart.join('\r\n').replaceAll('%', '<p>').replaceAll('*', '</p>'),
         source: CART_FORM,
       });
 
+      // UPDATE PART(S) STATISTICS
+      if (formPayload.parts.length !== 0)
+        formPayload.parts.map((part) => fsUpdatePartStatistics(part, formPayload.source));
+
+      // CLEAR LOCAL-STORAGE AND CLOSE
       await new Promise((resolve) =>
         setTimeout(() => {
           dispatch(rdxLoadCartFromStorage([]));
@@ -101,6 +126,7 @@ export default function CartDrawerForm() {
           return resolve();
         }, 500)
       );
+
       reset();
     } catch (error) {
       console.error(error);
@@ -121,6 +147,16 @@ export default function CartDrawerForm() {
           />
 
           <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
+
+          <RHFSelect name="hearAbout" label={translate('form.hearAbout')} variant="outlined">
+            <MenuItem value="">None</MenuItem>
+            <Divider sx={{ borderStyle: 'dashed' }} />
+            {[...(currentLang.value === 'en' ? hearAboutEn : hearAboutAr)].map((item, index) => (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </RHFSelect>
 
           <RHFTextField
             name="messageText"

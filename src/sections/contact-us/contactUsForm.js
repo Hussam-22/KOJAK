@@ -25,7 +25,7 @@ const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mo
 const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
 
 export default function ContactUsForm() {
-  const { addNewForm } = useAuthContext();
+  const { addNewForm, fsUpdatePartStatistics } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
   const { formPayload } = useSelector((state) => state.products);
@@ -62,6 +62,8 @@ export default function ContactUsForm() {
         subject: '',
         messageText: '',
         hearAbout: '',
+        source: '',
+        parts: [],
       })
     );
   };
@@ -101,11 +103,6 @@ export default function ContactUsForm() {
     formState: { isSubmitting, errors },
   } = methods;
 
-  // useEffect(() => {
-  //   if (payload?.subject !== undefined || payload?.subject !== '')
-  //     setValue('subject', payload?.subject);
-  // }, [payload?.subject, setValue]);
-
   const onSubmit = handleSubmit(async (formData) => {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
@@ -123,6 +120,9 @@ export default function ContactUsForm() {
         subject: `${SITE_NAME} - ${formData.subject}`,
         source: CONTACT_US_FORM,
       });
+
+      if (formPayload.parts.length !== 0)
+        formPayload.parts.map((part) => fsUpdatePartStatistics(part, formPayload.source));
 
       await new Promise((resolve) =>
         setTimeout(() => {
