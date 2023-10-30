@@ -126,12 +126,14 @@ export function palette(mode) {
       disabled: GREY[400],
       white: '#000000',
       warning: WARNING.main,
+      opposite: '#FFFFFF',
     },
     background: {
       paper: GREY[100],
       default: '#FFFFFF',
       neutral: alpha(GREY[200], 0.7),
       primary: PRIMARY.lighter,
+      opposite: '#000000',
     },
     action: {
       ...COMMON.action,
@@ -148,12 +150,14 @@ export function palette(mode) {
       disabled: GREY[400],
       white: '#FFFFFF',
       warning: WARNING.main,
+      opposite: '#000000',
     },
     background: {
       paper: '#191919',
       default: '#121212',
       neutral: alpha(GREY[800], 0.8),
       primary: '#191919',
+      opposite: '#FFFFFF',
     },
     action: {
       ...COMMON.action,
