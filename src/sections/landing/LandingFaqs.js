@@ -77,7 +77,6 @@ export default function LandingFaqs() {
     <Box
       sx={{
         py: 15,
-        bgcolor: 'background.neutral',
         position: 'relative',
       }}
     >
@@ -89,9 +88,7 @@ export default function LandingFaqs() {
                 FAQ
               </Typography>
               <Stack spacing={3}>
-                <Typography variant="h1" sx={{ color: 'common.white' }}>
-                  Frequently Asked Questions
-                </Typography>
+                <Typography variant="h1">Frequently Asked Questions</Typography>
                 <Typography
                   variant="h5"
                   sx={{

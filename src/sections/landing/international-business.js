@@ -10,6 +10,7 @@ import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
+import SvgColor from 'src/components/svg-color/svg-color';
 import { rdxFormPayload } from 'src/redux/slices/products';
 
 function InternationalBusiness() {
@@ -28,7 +29,6 @@ function InternationalBusiness() {
     <Box
       sx={{
         py: 8,
-        bgcolor: 'background.neutral',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -68,7 +68,10 @@ function InternationalBusiness() {
             xs={0}
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
-            <Image src="/assets/illustrations/illustration_map.svg" />
+            <SvgColor
+              src="/assets/illustrations/illustration_map.svg"
+              sx={{ width: 1, height: 1 }}
+            />
           </Grid>
         </Grid>
       </Container>

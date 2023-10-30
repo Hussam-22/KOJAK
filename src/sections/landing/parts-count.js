@@ -9,6 +9,7 @@ import Iconify from 'src/components/iconify';
 import Image from 'src/components/image/Image';
 import { fNumber } from 'src/utils/format-number';
 import randomNumber from 'src/utils/randomNumber';
+import SvgColor from 'src/components/svg-color/svg-color';
 import { _partsCategory } from 'src/_mock/_partsCategory';
 import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
@@ -20,6 +21,7 @@ function PartsCount() {
     <Box
       sx={{
         py: 8,
+        bgcolor: 'background.neutral',
       }}
     >
       <Container maxWidth="xl">
@@ -45,15 +47,15 @@ function PartsCount() {
               </Typography>
             </Stack>
           </Grid>
-          <Grid
-            md={12}
-            xs={12}
-            // sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-          >
+          <Grid md={12} xs={12}>
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: { md: `repeat(6,1fr)`, xs: `repeat(2,1fr)` },
+                gridTemplateColumns: {
+                  lg: `repeat(7,1fr)`,
+                  md: `repeat(5,1fr)`,
+                  xs: `repeat(2,1fr)`,
+                },
                 gap: 2,
                 px: 1,
                 mt: 2,
@@ -64,7 +66,7 @@ function PartsCount() {
                 .map((option) => (
                   <Stack
                     spacing={1}
-                    component={Button}
+                    // component={Button}
                     key={option.category}
                     direction="column"
                     alignItems="center"
@@ -72,9 +74,13 @@ function PartsCount() {
                     justifyContent="center"
                     sx={{ border: 'solid 1px #333', borderRadius: 1, py: 3 }}
                   >
-                    <Image src={`/assets/images/icons/${option.icon}.svg`} width={82} height={82} />
+                    <SvgColor
+                      src={`/assets/images/icons/${option.icon}.svg`}
+                      sx={{ width: 48, height: 48 }}
+                    />
+                    {/* <Image src={`/assets/images/icons/${option.icon}.svg`} width={82} height={82} /> */}
                     {option.category}
-                    <Typography color="primary" variant="h5">
+                    <Typography color="primary" variant="h6">
                       {fNumber(randomNumber(100, 3595))}{' '}
                       <Box
                         component="span"

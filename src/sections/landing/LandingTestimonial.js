@@ -49,6 +49,7 @@ export default function LandingTestimonial() {
         overflow: 'hidden',
         position: 'relative',
         py: 15,
+        bgcolor: 'background.neutral',
       }}
     >
       <Container maxWidth="xl">
@@ -90,7 +91,7 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
     <Box
       sx={{
         p: 4,
-        bgcolor: 'common.black',
+        bgcolor: 'background.default',
         borderRadius: 1,
         minHeight: 250,
       }}
@@ -116,6 +117,7 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
           sx={{
             lineHeight: 1.75,
             fontWeight: theme.typography.fontWeightLight,
+            // color: 'common.white',
           }}
         >
           {review}

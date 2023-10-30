@@ -57,11 +57,15 @@ const LandingHero = () => {
               </Typography>
 
               <Typography variant="h1">
-                <Box component="span">{translate('landing.hero.partOne')}</Box>
+                <Box component="span" sx={{ color: 'common.white' }}>
+                  {translate('landing.hero.partOne')}
+                </Box>
                 <Box component="span" sx={{ ...textGradientColor }}>
                   {translate('landing.hero.partTwo')}
                 </Box>
-                <Box component="span">{translate('landing.hero.partThree')}</Box>
+                <Box component="span" sx={{ color: 'common.white' }}>
+                  {translate('landing.hero.partThree')}
+                </Box>
               </Typography>
             </Box>
           </Grid>
@@ -117,7 +121,7 @@ function ProofIcon({ icon, text }) {
   return (
     <Stack direction="column" spacing={1} alignItems="center">
       <Iconify icon={icon} width={32} height={32} sx={{ color: 'primary.main' }} />
-      <Typography>{text}</Typography>
+      <Typography color="white">{text}</Typography>
     </Stack>
   );
 }

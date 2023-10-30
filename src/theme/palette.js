@@ -121,16 +121,17 @@ export function palette(mode) {
     ...COMMON,
     mode: 'light',
     text: {
-      primary: '#FFFFFF',
+      primary: '#000000',
       secondary: GREY[600],
       disabled: GREY[400],
-      white: '#FFFFFF',
+      white: '#000000',
       warning: WARNING.main,
     },
     background: {
-      paper: GREY[800],
-      default: '#121212',
-      neutral: alpha(GREY[800], 0.8),
+      paper: GREY[100],
+      default: '#FFFFFF',
+      neutral: alpha(GREY[200], 0.7),
+      primary: PRIMARY.lighter,
     },
     action: {
       ...COMMON.action,
@@ -143,18 +144,20 @@ export function palette(mode) {
     mode: 'dark',
     text: {
       primary: '#FFFFFF',
-      secondary: GREY[500],
-      disabled: GREY[600],
+      secondary: GREY[600],
+      disabled: GREY[400],
+      white: '#FFFFFF',
+      warning: WARNING.main,
     },
     background: {
-      paper: GREY[800],
-      default: GREY[900],
-      neutral: alpha(GREY[500], 0.12),
-      peach: alpha(GREY[500], 0.12),
+      paper: '#191919',
+      default: '#121212',
+      neutral: alpha(GREY[800], 0.8),
+      primary: '#191919',
     },
     action: {
       ...COMMON.action,
-      active: GREY[500],
+      active: GREY[600],
     },
   };
 

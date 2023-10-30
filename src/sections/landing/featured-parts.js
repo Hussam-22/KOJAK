@@ -100,9 +100,7 @@ function FeaturedSection({ caption, title, description, data }) {
           <Typography variant="overline" color="primary">
             {caption}
           </Typography>
-          <Typography variant="h1" color="white">
-            {title}
-          </Typography>
+          <Typography variant="h1">{title}</Typography>
         </Box>
 
         <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>

@@ -54,7 +54,14 @@ function LandingSearchParts() {
         }}
       >
         {TABS.map((tab) => (
-          <Tab disableRipple key={tab.index} label={tab.value} icon={tab.icon} value={tab.index} />
+          <Tab
+            disableRipple
+            key={tab.index}
+            label={tab.value}
+            icon={tab.icon}
+            value={tab.index}
+            sx={{ color: 'common.white' }}
+          />
         ))}
       </Tabs>
 
@@ -67,7 +74,7 @@ function LandingSearchParts() {
             <Box
               key={tab.index}
               id={tab.index}
-              sx={{ bgcolor: 'background.neutral', p: 2, borderRadius: 1 }}
+              sx={{ bgcolor: 'background.paper', p: 2, borderRadius: 1 }}
             >
               {tab.component}
             </Box>

@@ -1,6 +1,7 @@
-import { Box, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import SvgColor from 'src/components/svg-color';
 import { useResponsive } from 'src/hooks/use-responsive';
 import {
   AUTO_URL,
@@ -45,87 +46,50 @@ const GROUPS = [
 ];
 
 function VisitGroupsWebsite() {
-  const theme = useTheme();
-  const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const POSITION_VALUE = () => {
-    if (currentLang.value === 'ar' && mdUp) return '-190px';
-    if (currentLang.value === 'ar' && !mdUp) return '-120px';
-    return '190px';
-  };
-
   const renderGroupCard = (item, index) => (
-    <Box
+    <Stack
+      spacing={2}
       key={item.title}
       sx={{
-        backgroundImage: `url(/assets/shape/bg-blurry.svg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        p: 3,
+        borderRadius: 1,
         minHeight: 200,
-        transition: '0.5s',
-        '&:hover': {
-          backgroundImage: `url(/assets/shape/bg-blurry-hover.svg)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        },
+        alignItems: 'left',
+        justifyContent: 'space-between',
+        textAlign: 'left',
+        bgcolor: 'background.default',
       }}
     >
-      <Box
-        sx={{
-          p: 3,
-          borderRadius: 1,
-          display: 'flex',
-          alignItems: 'left',
-          justifyContent: 'space-between',
-          textAlign: 'left',
-          flexDirection: 'column',
-          height: 1,
-          // bgcolor: 'common.black',
-          backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
-          backgroundSize: 'contain',
-          backgroundPositionX: POSITION_VALUE(),
-          backgroundPositionY: '90px',
-          backgroundRepeat: 'no-repeat',
-          gap: 3,
-          position: 'relative',
-          overflow: 'visible',
-        }}
-      >
-        <Box>
-          <Typography variant="overline">{translate('common.brand')}</Typography>
-          <Typography variant="h3">{translate(`common.${item.title}`)}</Typography>
-        </Box>
-
-        <Box sx={{ width: { md: '60%' } }}>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: theme.typography.fontWeightLight,
-            }}
-          >
-            {translate(`landing.visit.cardText.${item.title}`)}
-          </Typography>
-        </Box>
-        <Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mt: 1, color: 'common.black' }}
-            href={item?.link}
-            target="_blank"
-            rel="noopener"
-            aria-label={item.ariaLabel}
-          >
-            {translate(`common.visitWebsite`)}
-          </Button>
-        </Box>
+      <SvgColor src={`/assets/illustrations/${item.icon}.svg`} sx={{ width: 40, height: 40 }} />
+      <Box>
+        <Typography variant="overline">{translate('common.brand')}</Typography>
+        <Typography variant="h3" sx={{ whiteSpace: 'nowrap' }}>
+          {translate(`common.${item.title}`)}
+        </Typography>
       </Box>
-    </Box>
+
+      <Box>
+        <Typography variant="body2">{translate(`landing.visit.cardText.${item.title}`)}</Typography>
+      </Box>
+      <Box>
+        <Button
+          variant="contained"
+          color="primary"
+          href={item?.link}
+          target="_blank"
+          rel="noopener"
+          aria-label={item.ariaLabel}
+        >
+          {translate(`common.visitWebsite`)}
+        </Button>
+      </Box>
+    </Stack>
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.default', py: 15, px: 1 }}>
+    <Box sx={{ bgcolor: 'background.primary', py: 15, px: 1 }}>
       <Container maxWidth="xl">
         <Typography variant="overline" color="primary">
           {translate(`landing.visit.overline`)}
@@ -135,7 +99,7 @@ function VisitGroupsWebsite() {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gridTemplateColumns: { lg: 'repeat(4,1fr)', md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
             gap: 3,
             mt: 5,
           }}

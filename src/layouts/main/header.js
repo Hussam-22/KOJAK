@@ -15,6 +15,7 @@ import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
+import ModeIcon from 'src/layouts/main/mode-icon';
 import Iconify from 'src/components/iconify/Iconify';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -114,7 +115,7 @@ export default function Header({ headerOnDark }) {
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
                   {/* <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} /> */}
-
+                  <ModeIcon light={offset} />
                   <OpenCartIconButton />
                 </Stack>
               )}
