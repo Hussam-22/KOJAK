@@ -10,16 +10,17 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
-import { useLocales } from 'src/locales';
+import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
 import ModeIcon from 'src/layouts/main/mode-icon';
 import Iconify from 'src/components/iconify/Iconify';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 import TranslateIcon from 'src/layouts/main/translate-icon';
+import { useSettingsContext } from 'src/components/settings';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
 import { HEADER } from '../config-layout';
@@ -40,8 +41,11 @@ export default function Header({ headerOnDark }) {
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
   const pathName = usePathname();
+  const { themeMode } = useSettingsContext();
 
-  const light = true;
+  console.log({ headerOnDark, offset, themeMode });
+
+  const light = headerOnDark && offset;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
