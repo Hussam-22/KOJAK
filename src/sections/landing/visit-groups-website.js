@@ -64,54 +64,46 @@ function VisitGroupsWebsite() {
       }}
     >
       <Box>
-        <m.div variants={varFade().inUp}>
-          <Typography variant="overline" color="secondary">
-            {translate('common.brand')}
-          </Typography>
-          <Typography variant="h3" color="secondary">
-            {translate(`common.${item.title}`)}
-          </Typography>
-        </m.div>
+        <Typography variant="overline" color="secondary">
+          {translate('common.brand')}
+        </Typography>
+        <Typography variant="h3" color="secondary">
+          {translate(`common.${item.title}`)}
+        </Typography>
       </Box>
 
-      <m.div variants={varFade().inUp} style={{ width: '60%' }}>
-        <Typography
-          variant="body2"
-          color="secondary"
-          sx={{
-            fontWeight: theme.typography.fontWeightLight,
-          }}
-        >
-          {translate(`landing.visit.cardText.${item.title}`)}
-        </Typography>
-      </m.div>
+      <Typography
+        variant="body2"
+        color="secondary"
+        sx={{
+          fontWeight: theme.typography.fontWeightLight,
+        }}
+      >
+        {translate(`landing.visit.cardText.${item.title}`)}
+      </Typography>
 
-      <m.div variants={varFade().inUp}>
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{ mt: 1 }}
-          href={item?.link}
-          target="_blank"
-          rel="noopener"
-        >
-          {translate(`common.visitWebsite`)}
-        </Button>
-      </m.div>
+      <Button
+        variant="contained"
+        color="secondary"
+        sx={{ mt: 1 }}
+        href={item?.link}
+        target="_blank"
+        rel="noopener"
+      >
+        {translate(`common.visitWebsite`)}
+      </Button>
     </Card>
   );
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }} component={MotionViewport}>
-        <m.div variants={varSlide().inRight}>
-          <Typography variant="overline" color="primary">
-            {translate(`landing.visit.overline`)}
-          </Typography>
-          <Typography variant="h1" sx={{ color: 'common.black' }}>
-            {translate(`landing.visit.title`)}
-          </Typography>
-        </m.div>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
+        <Typography variant="overline" color="primary">
+          {translate(`landing.visit.overline`)}
+        </Typography>
+        <Typography variant="h1" sx={{ color: 'common.black' }}>
+          {translate(`landing.visit.title`)}
+        </Typography>
 
         <Box
           sx={{
