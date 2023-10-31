@@ -181,9 +181,6 @@ export default function CartDrawerForm() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
-            sx={{
-              mx: { xs: 'auto !important', md: 'unset !important' },
-            }}
             endIcon={<Iconify icon="fluent:slide-arrow-right-20-regular" width={24} height={24} />}
           >
             {translate('form.inquire')}

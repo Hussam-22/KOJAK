@@ -99,7 +99,7 @@ function VisitGroupsWebsite() {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { lg: 'repeat(4,1fr)', md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
+            gridTemplateColumns: { md: 'repeat(4,1fr)', sm: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
             gap: 3,
             mt: 5,
           }}

@@ -41,7 +41,14 @@ function InternationalBusiness() {
                 {translate('landing.international.overline')}
               </Typography>
               <Typography variant="h1">{translate('landing.international.title')}</Typography>
-              {!mdUp && <Image src="/assets/illustrations/illustration_map.svg" />}
+              {!mdUp && (
+                <Box sx={{ textAlign: 'center' }}>
+                  <SvgColor
+                    src="/assets/illustrations/illustration_map.svg"
+                    sx={{ width: '80dvw', height: '80dvw' }}
+                  />
+                </Box>
+              )}
               <Typography
                 sx={{
                   whiteSpace: 'pre-line',

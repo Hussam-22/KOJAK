@@ -26,7 +26,7 @@ function CartDrawer() {
       anchor="right"
       open={isDrawerOpen}
       onClose={toggleDrawer}
-      PaperProps={{ sx: { bgcolor: 'grey.800', boxShadow: 0 } }}
+      PaperProps={{ sx: { bgcolor: 'background.default', boxShadow: 0 } }}
     >
       <Box sx={{ width: { md: '25dvw', xs: '75dvw' }, p: 3 }}>
         <Typography variant="h5" color="primary">

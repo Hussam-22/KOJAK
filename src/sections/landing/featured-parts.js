@@ -140,17 +140,20 @@ function FeaturedSection({ caption, title, description, data }) {
               <Card
                 key={index}
                 sx={{
-                  height: '100%',
+                  height: 1,
                   borderRadius: 1,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  maxWidth: '82dvw',
+                  maxWidth: '75dvw',
+                  px: 2,
                 }}
               >
-                <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="3/4" />
-                <Typography sx={{ p: 2, alignSelf: 'center' }}>{item.description}</Typography>
-                <Button variant="contained" color="primary">
+                <Image src={item.imageUrl} sx={{ borderRadius: 1 }} ratio="1/1" />
+                <Typography sx={{ p: 2, alignSelf: 'center', flexGrow: 1 }}>
+                  {item.description}
+                </Typography>
+                <Button variant="contained" color="primary" size="large" fullWidth>
                   More Details
                 </Button>
               </Card>
