@@ -13,29 +13,25 @@ export default function SparePartsViewFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
 
   const renderContent = (
-    <Stack spacing={2} alignItems="flex-start" direction={{ xs: 'column', md: 'row' }}>
-      <Block title="Search By Part Info">
-        <FilterBrand closeDrawer={onClose} />
-      </Block>
+    <FilterBrand closeDrawer={onClose} />
 
-      {/* <Block
-        title="Filter Results By Category"
-        sx={{
-          visibility: isDisabled ? 'hidden' : 'visible',
-          opacity: isDisabled ? 0 : 1,
-          height: isDisabled ? 0 : 1,
-          transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
-        }}
-      >
-        <FilterCategory />
-      </Block> */}
-    </Stack>
+    //  <Block
+    //   title="Filter Results By Category"
+    //   sx={{
+    //     visibility: isDisabled ? 'hidden' : 'visible',
+    //     opacity: isDisabled ? 0 : 1,
+    //     height: isDisabled ? 0 : 1,
+    //     transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
+    //   }}
+    // >
+    //   <FilterCategory />
+    // </Block>
   );
 
   return (
     <>
       {mdUp ? (
-        renderContent
+        <Box sx={{ bgcolor: 'background.paper', p: 3, borderRadius: 1 }}>{renderContent}</Box>
       ) : (
         <Drawer
           anchor="right"

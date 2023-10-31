@@ -10,11 +10,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
 import Logo from 'src/components/logo';
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
+import ModeIcon from 'src/layouts/main/mode-icon';
 import { useBoolean } from 'src/hooks/use-boolean';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 
@@ -42,7 +43,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
     <>
       <Stack direction="row" spacing={0}>
         <OpenCartIconButton />
-
+        <ModeIcon light={useLightIcon} />
         {/* <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton

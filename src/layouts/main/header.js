@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
+import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -10,10 +10,10 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
-import { paths } from 'src/routes/paths';
+import { bgBlur } from 'src/theme/css';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 import ModeIcon from 'src/layouts/main/mode-icon';
 import Iconify from 'src/components/iconify/Iconify';
@@ -43,9 +43,15 @@ export default function Header({ headerOnDark }) {
   const pathName = usePathname();
   const { themeMode } = useSettingsContext();
 
-  console.log({ headerOnDark, offset, themeMode });
-
-  const light = headerOnDark && offset;
+  const getIsLight = useCallback(() => {
+    if (themeMode === 'dark' || (headerOnDark && !offset)) {
+      return true;
+    }
+    if (themeMode === 'light' || (!headerOnDark && !offset)) {
+      return false;
+    }
+    return true;
+  }, [headerOnDark, offset, themeMode]);
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -73,7 +79,8 @@ export default function Header({ headerOnDark }) {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.shorter,
             }),
-            color: 'common.white',
+            color: getIsLight() ? 'common.white' : 'common.black',
+
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
               // borderBottom: `solid 1px ${theme.palette.primary.light}`,
@@ -94,7 +101,7 @@ export default function Header({ headerOnDark }) {
             maxWidth="xl"
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small light={light} />
+              <Logo small light={getIsLight()} />
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -119,8 +126,8 @@ export default function Header({ headerOnDark }) {
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
                   {/* <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} /> */}
-                  <ModeIcon light={offset} />
-                  <OpenCartIconButton />
+                  <ModeIcon light={getIsLight()} />
+                  <OpenCartIconButton light={getIsLight()} />
                 </Stack>
               )}
             </Stack>
@@ -129,7 +136,7 @@ export default function Header({ headerOnDark }) {
               <NavMobile
                 data={navConfig}
                 toggleLanguage={toggleLanguageHandler}
-                useLightIcon={light}
+                useLightIcon={getIsLight()}
               />
             )}
           </Container>

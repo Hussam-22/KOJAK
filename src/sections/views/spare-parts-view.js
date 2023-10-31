@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { Divider, useTheme } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
@@ -26,6 +27,7 @@ export default function SparePartsView() {
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const theme = useTheme();
   const [showBackDrop, setShowBackDrop] = useState(false);
   const {
     currentPage,
@@ -75,7 +77,7 @@ export default function SparePartsView() {
   }, [fsGetProductsDocumentsCount, filter, dispatch]);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 12 }}>
+    <Container maxWidth="xl" sx={{ py: 5 }}>
       <Stack direction="column" alignItems="left" justifyContent="space-between">
         <Stack sx={{ mb: 2 }}>
           <Typography variant="h1" id="scrollToHere">
@@ -102,9 +104,9 @@ export default function SparePartsView() {
         )}
       </Stack>
 
-      <Stack direction="column" spacing={5} sx={{ mb: { xs: 8, md: 10 } }}>
+      <Stack direction="column" spacing={2} sx={{ mb: 2 }}>
         <SparePartsViewFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-
+        {/* <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} /> */}
         <SparePartsList
           loading={loading}
           products={productsData}

@@ -61,7 +61,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
       return (
         <NoResultsReturned
           text="Lets help you find the right part for your Mercedes"
-          illustration="/assets/illustrations/mercedes-logo.svg"
+          illustration="/assets/illustrations/search.svg"
           color="primary.main"
         />
       );
@@ -104,7 +104,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
             md: 'repeat(3, 1fr)',
             lg: 'repeat(5, 1fr)',
           }}
-          sx={{ bgcolor: 'background.neutral', p: 3, borderRadius: 2 }}
+          sx={{ bgcolor: 'background.paper', p: 3, borderRadius: 1 }}
         >
           {(loading ? [...Array(16)] : products).map((product, index) =>
             product ? (
