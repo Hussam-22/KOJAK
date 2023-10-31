@@ -35,7 +35,7 @@ import {
 
 function CartItems() {
   const dispatch = useDispatch();
-  const isMobile = useResponsive('down', 'sm');
+  const smUp = useResponsive('up', 'sm');
   const theme = useTheme();
   const { fsGetCartParts } = useAuthContext();
   const { cart } = useSelector((state) => state.products);
@@ -96,7 +96,7 @@ function CartItems() {
   };
 
   return (
-    <Box sx={{ py: 4, px: { xs: 1 } }}>
+    <Box sx={{ py: 4 }}>
       {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
       {cart.length === 0 && cartItems.length === 0 && <YourCartIsEmpty />}
 
@@ -108,56 +108,41 @@ function CartItems() {
               .map((cartItem, index) => (
                 <Box
                   key={cartItem.partData.partNumber}
-                  sx={{ borderRadius: 1, bgcolor: 'background.default' }}
+                  sx={{ borderRadius: 1, bgcolor: 'background.neutral', p: 2 }}
                   component={m.div}
                   {...getVariant('fadeInLeft')}
                 >
                   <Stack
-                    direction={{ md: 'row', sm: 'column' }}
-                    spacing={2}
+                    direction="row"
                     justifyContent="space-between"
-                    alignItems={{ md: 'center', xs: 'unset' }}
+                    alignItems="center"
+                    spacing={2}
                   >
-                    <Stack direction="row" justifyContent="space-between" alignItems="center">
-                      <Link
-                        component={RouterLink}
-                        to={paths.website.sparePartDetails + cartItem.partData.docID}
-                      >
-                        <Image
-                          src={
-                            cartItem.imageUrl === undefined
-                              ? '/assets/illustrations/part-unavailable.svg'
-                              : cartItem.imageUrl
-                          }
-                          width={85}
-                          height={85}
-                          alt={`spare-part${cartItem.partData.partNumber}`}
-                          sx={{ borderRadius: 1 }}
-                        />
-                      </Link>
-                      {isMobile && (
-                        <ActionButtons
-                          partNumber={cartItem.partData.partNumber}
-                          qty={cartItem.qty}
-                          onDeleteClickHandler={onDeleteClickHandler}
-                          onUpdateQtyClickHandler={onUpdateQtyClickHandler}
-                        />
-                      )}
-                    </Stack>
-                    <PartInfo partData={cartItem.partData} />
-                    {!isMobile && (
-                      <ActionButtons
-                        partNumber={cartItem.partData.partNumber}
-                        qty={cartItem.qty}
-                        onDeleteClickHandler={onDeleteClickHandler}
-                        onUpdateQtyClickHandler={onUpdateQtyClickHandler}
+                    <Link
+                      component={RouterLink}
+                      to={paths.website.sparePartDetails + cartItem.partData.docID}
+                    >
+                      <Image
+                        src={
+                          cartItem.imageUrl === undefined
+                            ? '/assets/illustrations/part-unavailable.svg'
+                            : cartItem.imageUrl
+                        }
+                        width={85}
+                        height={85}
+                        alt={`spare-part${cartItem.partData.partNumber}`}
+                        sx={{ borderRadius: 1 }}
                       />
-                    )}
+                    </Link>
+                    {smUp && <PartInfo partData={cartItem.partData} />}
+                    <ActionButtons
+                      partNumber={cartItem.partData.partNumber}
+                      qty={cartItem.qty}
+                      onDeleteClickHandler={onDeleteClickHandler}
+                      onUpdateQtyClickHandler={onUpdateQtyClickHandler}
+                    />
                   </Stack>
-                  <Divider
-                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider, my: 2 }}
-                    flexItem
-                  />
+                  {!smUp && <PartInfo partData={cartItem.partData} />}
                 </Box>
               ))}
           </AnimatePresence>
@@ -165,7 +150,7 @@ function CartItems() {
       )}
 
       {cartItems.length !== 0 && (
-        <Box sx={{ display: 'flex', justifyContent: { md: 'flex-end', xs: 'center' }, pt: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: { sm: 'flex-end', xs: 'center' }, pt: 4 }}>
           <Button
             variant="contained"
             color="primary"
@@ -251,12 +236,8 @@ function PartInfo({ partData }) {
         {description}
       </Link>
       {/* <Typography color="primary">{description}</Typography> */}
-      <Typography color="white" variant="body2">
-        {category}
-      </Typography>
-      <Typography color="white" variant="body2">
-        {itemGroup}
-      </Typography>
+      <Typography variant="body2">{category}</Typography>
+      <Typography variant="body2">{itemGroup}</Typography>
 
       <Stack
         direction="row"
