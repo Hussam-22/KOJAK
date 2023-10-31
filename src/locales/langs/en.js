@@ -79,7 +79,7 @@ const en = {
       title: 'Visit Our Group Websites',
       cardText: {
         auto: `Specialized in Mercedes-Benz Since 1983`,
-        sparePart: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
+        spareparts: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
         exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
         building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
       },
