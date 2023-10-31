@@ -147,10 +147,10 @@ export default function FilterBrand({ closeDrawer }) {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack direction="column" spacing={2.5}>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={2.5}>
         <RHFTextField name="partNo" label="Part Number" variant="outlined" />
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Divider sx={{ borderStyle: 'dashed' }} orientation="vertical" flexItem />
 
         <RHFSelect name="class" label="Mercedes Class" variant="outlined">
           <MenuItem value="">None</MenuItem>
@@ -194,36 +194,26 @@ export default function FilterBrand({ closeDrawer }) {
           ))}
         </RHFSelect>
 
-        <Stack spacing={2}>
+        <Stack spacing={2} direction="row">
           <LoadingButton
-            size="large"
             type="submit"
             variant="contained"
             color="primary"
             loading={isSubmitting}
             disabled={!isDirty}
-            sx={{
-              whiteSpace: 'nowrap',
-            }}
-            startIcon={<Iconify icon="octicon:search-16" />}
-            fullWidth
+            size="large"
           >
-            Find Part
+            <Iconify icon="octicon:search-16" />
           </LoadingButton>
           <LoadingButton
-            size="large"
             variant="contained"
             color="error"
             loading={isSubmitting}
             disabled={values.model === '' && values.partNo === ''}
             onClick={resetSearchHandler}
-            sx={{
-              whiteSpace: 'nowrap',
-            }}
-            startIcon={<Iconify icon="octicon:search-16" />}
-            fullWidth
+            size="large"
           >
-            Reset Search
+            <Iconify icon="system-uicons:reset" />
           </LoadingButton>
         </Stack>
       </Stack>

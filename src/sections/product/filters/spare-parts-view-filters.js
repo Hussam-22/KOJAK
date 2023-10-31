@@ -13,17 +13,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
 
   const renderContent = (
-    <Stack
-      spacing={3}
-      alignItems="flex-start"
-      sx={{
-        // flexShrink: 0,
-        height: 1,
-        width: { xs: 1, md: 320 },
-        borderRight: { md: 'dashed 1px #333' },
-        pr: { md: 5 },
-      }}
-    >
+    <Stack spacing={2} alignItems="flex-start" direction={{ xs: 'column', md: 'row' }}>
       <Block title="Search By Part Info">
         <FilterBrand closeDrawer={onClose} />
       </Block>
@@ -57,7 +47,7 @@ export default function SparePartsViewFilters({ open, onClose }) {
               px: 3,
               width: 280,
               boxShadow: 0,
-              bgcolor: 'common.black',
+              bgcolor: 'background.default',
             },
           }}
         >

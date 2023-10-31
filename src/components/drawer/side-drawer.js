@@ -13,7 +13,7 @@ function SideDrawer({ open, onClose, children }) {
       anchor="right"
       open={open}
       onClose={onClose}
-      PaperProps={{ sx: { bgcolor: 'grey.800', boxShadow: 0 } }}
+      PaperProps={{ sx: { bgcolor: 'background.default', boxShadow: 0 } }}
     >
       <Box sx={{ width: { md: '25dvw', xs: '75dvw' }, p: 3 }}>{children}</Box>
     </Drawer>

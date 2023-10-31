@@ -102,8 +102,9 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           gridTemplateColumns={{
             xs: 'repeat(2, 1fr)',
             md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
+            lg: 'repeat(5, 1fr)',
           }}
+          sx={{ bgcolor: 'background.neutral', p: 3, borderRadius: 2 }}
         >
           {(loading ? [...Array(16)] : products).map((product, index) =>
             product ? (

@@ -75,15 +75,8 @@ export default function SparePartsView() {
   }, [fsGetProductsDocumentsCount, filter, dispatch]);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 8 }}>
-      <Stack
-        direction={{ md: 'row', xs: 'column' }}
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{
-          py: 5,
-        }}
-      >
+    <Container maxWidth="xl" sx={{ py: 12 }}>
+      <Stack direction="column" alignItems="left" justifyContent="space-between">
         <Stack sx={{ mb: 2 }}>
           <Typography variant="h1" id="scrollToHere">
             CATALOG
@@ -95,8 +88,9 @@ export default function SparePartsView() {
 
         {/* <Button onClick={addParts}>Add Parts</Button> */}
         {!mdUp && (
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: 1 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: 1, mb: 3 }}>
             <Button
+              size="large"
               color="primary"
               variant="contained"
               startIcon={<Iconify icon="carbon:filter" width={18} />}
@@ -108,29 +102,15 @@ export default function SparePartsView() {
         )}
       </Stack>
 
-      <Stack
-        direction={{
-          xs: 'column-reverse',
-          md: 'row',
-        }}
-        sx={{ mb: { xs: 8, md: 10 } }}
-      >
+      <Stack direction="column" spacing={5} sx={{ mb: { xs: 8, md: 10 } }}>
         <SparePartsViewFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
 
-        <Box
-          sx={{
-            flexGrow: 1,
-            pl: { md: 4 },
-            width: { md: `calc(100% - ${300}px)` },
-          }}
-        >
-          <SparePartsList
-            loading={loading}
-            products={productsData}
-            totalDocs={recordsCount}
-            recordsLimit={RECORDS_LIMIT}
-          />
-        </Box>
+        <SparePartsList
+          loading={loading}
+          products={productsData}
+          totalDocs={recordsCount}
+          recordsLimit={RECORDS_LIMIT}
+        />
       </Stack>
     </Container>
   );

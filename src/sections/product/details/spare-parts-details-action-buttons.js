@@ -145,7 +145,12 @@ function AvailableStockActionBar({ partDetails }) {
         </LoadingButton>
 
         <IconButton disableRipple onClick={handleShare}>
-          <Iconify icon="tdesign:share" width={24} height={24} sx={{ color: 'common.white' }} />
+          <Iconify
+            icon="tdesign:share"
+            width={24}
+            height={24}
+            sx={{ color: 'background.opposite' }}
+          />
         </IconButton>
       </Stack>
     </Stack>

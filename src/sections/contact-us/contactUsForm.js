@@ -186,9 +186,9 @@ export default function ContactUsForm() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
-            sx={{
-              mx: { xs: 'auto !important', md: 'unset !important' },
-            }}
+            // sx={{
+            //   mx: { xs: 'auto !important', md: 'unset !important' },
+            // }}
           >
             {translate('form.sendMsg')}
           </LoadingButton>
