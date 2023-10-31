@@ -1,127 +1,112 @@
-import { m } from 'framer-motion';
-
-import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
+import SvgColor from 'src/components/svg-color';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
-import { varFade, varSlide, MotionViewport } from 'src/components/animate';
+import {
+  AUTO_URL,
+  SITE_NAME,
+  GROUP_URL,
+  BUILDING_URL,
+  EXCLUSIVE_URL,
+  SPARE_PART_URL,
+} from 'src/config-global';
 
 const GROUPS = [
   {
-    title: 'sparePart',
-    link: '#',
-    icon: 'spare-parts-icon',
+    title: 'kojak-group',
+    link: GROUP_URL,
+    icon: 'mercedes-logo',
+    ariaLabel: 'Kojak Group Website',
   },
   {
     title: 'auto',
     link: AUTO_URL,
     icon: 'auto-icon',
+    ariaLabel: 'Kojak Auto Maintenance Website',
   },
   {
     title: 'exclusive',
     link: EXCLUSIVE_URL,
     icon: 'exclusive-icon',
+    ariaLabel: 'Kojak K-Exclusive Website',
   },
   {
     title: 'building',
     link: BUILDING_URL,
     icon: 'building-icon',
+    ariaLabel: 'Kojak Building Website',
+  },
+  {
+    title: 'spareparts',
+    link: SPARE_PART_URL,
+    icon: 'spare-parts-icon',
+    ariaLabel: 'Kojak Spare-Parts Website',
   },
 ];
 
 function VisitGroupsWebsite() {
-  const theme = useTheme();
-  const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const POSITION_VALUE = () => {
-    if (currentLang.value === 'ar' && mdUp) return '-190px';
-    if (currentLang.value === 'ar' && !mdUp) return '-120px';
-    return '190px';
-  };
-
   const renderGroupCard = (item, index) => (
-    <Card
+    <Stack
+      spacing={2}
       key={item.title}
       sx={{
         p: 3,
         borderRadius: 1,
-        display: 'flex',
+        minHeight: 200,
         alignItems: 'left',
         justifyContent: 'space-between',
         textAlign: 'left',
-        flexDirection: 'column',
-        minHeight: 200,
-        backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
-        backgroundSize: 'contain',
-        backgroundPositionX: POSITION_VALUE(),
-        backgroundPositionY: '90px',
-        backgroundRepeat: 'no-repeat',
-        gap: 3,
-        position: 'relative',
-        overflow: 'visible',
+        bgcolor: 'background.default',
       }}
     >
+      <SvgColor src={`/assets/illustrations/${item.icon}.svg`} sx={{ width: 40, height: 40 }} />
       <Box>
-        <m.div variants={varFade().inUp}>
-          <Typography variant="overline" color="secondary">
-            {translate('common.brand')}
-          </Typography>
-          <Typography variant="h3" color="secondary">
-            {translate(`common.${item.title}`)}
-          </Typography>
-        </m.div>
+        <Typography variant="overline">{translate('common.brand')}</Typography>
+        <Typography variant="h3" sx={{ whiteSpace: 'nowrap' }}>
+          {translate(`common.${item.title}`)}
+        </Typography>
       </Box>
 
-      <m.div variants={varFade().inUp} style={{ width: '60%' }}>
-        <Typography
-          variant="body2"
-          color="secondary"
-          sx={{
-            fontWeight: theme.typography.fontWeightLight,
-          }}
-        >
-          {translate(`landing.visit.cardText.${item.title}`)}
-        </Typography>
-      </m.div>
-
-      <m.div variants={varFade().inUp}>
+      <Box>
+        <Typography variant="body2">{translate(`landing.visit.cardText.${item.title}`)}</Typography>
+      </Box>
+      <Box>
         <Button
           variant="contained"
-          color="secondary"
-          sx={{ mt: 1 }}
+          color="primary"
           href={item?.link}
           target="_blank"
           rel="noopener"
+          aria-label={item.ariaLabel}
         >
           {translate(`common.visitWebsite`)}
         </Button>
-      </m.div>
-    </Card>
+      </Box>
+    </Stack>
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth="xl" sx={{ py: 8 }} component={MotionViewport}>
-        <m.div variants={varSlide().inRight}>
-          <Typography variant="overline" color="primary">
-            {translate(`landing.visit.overline`)}
-          </Typography>
-          <Typography variant="h1" sx={{ color: 'common.black' }}>
-            {translate(`landing.visit.title`)}
-          </Typography>
-        </m.div>
+    <Box sx={{ bgcolor: 'background.light', py: 15, px: 1 }}>
+      <Container maxWidth="xl">
+        <Typography variant="overline" color="primary">
+          {translate(`landing.visit.overline`)}
+        </Typography>
+        <Typography variant="h1">{translate(`landing.visit.title`)}</Typography>
 
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gridTemplateColumns: { lg: 'repeat(4,1fr)', md: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
             gap: 3,
             mt: 5,
           }}
         >
-          {GROUPS.map((item, index) => renderGroupCard(item, index))}
+          {GROUPS.filter((website) => website.title !== SITE_NAME).map((item, index) =>
+            renderGroupCard(item, index)
+          )}
         </Box>
       </Container>
     </Box>
