@@ -23,6 +23,7 @@ import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import { useResponsive } from 'src/hooks/use-responsive';
+import SvgColor from 'src/components/svg-color/svg-color';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
@@ -31,6 +32,7 @@ import {
   rdxFormPayload,
   rdxToggleDrawer,
   rdxUpdatePartQty,
+  rdxLoadCartFromStorage,
 } from 'src/redux/slices/products';
 
 function CartItems() {
@@ -95,6 +97,12 @@ function CartItems() {
     });
   };
 
+  const removeAllItemsHandler = () => {
+    // CLEAR LOCAL-STORAGE AND CLOSE
+    dispatch(rdxLoadCartFromStorage([]));
+    setLocalStorageCart([]);
+  };
+
   return (
     <Box sx={{ py: 4 }}>
       {cart.length !== 0 && cartItems.length === 0 && <PartsSkeleton cartLength={cart.length} />}
@@ -150,7 +158,20 @@ function CartItems() {
       )}
 
       {cartItems.length !== 0 && (
-        <Box sx={{ display: 'flex', justifyContent: { sm: 'flex-end', xs: 'center' }, pt: 4 }}>
+        <Stack
+          direction={{ sm: 'row', xs: 'column' }}
+          spacing={2}
+          sx={{ justifyContent: { sm: 'flex-end', xs: 'center' }, pt: 4 }}
+        >
+          <Button
+            variant="contained"
+            color="error"
+            size="large"
+            startIcon={<Iconify icon="ant-design:dollar-twotone" width={24} height={24} />}
+            onClick={removeAllItemsHandler}
+          >
+            Remove All
+          </Button>
           <Button
             variant="contained"
             color="primary"
@@ -160,7 +181,7 @@ function CartItems() {
           >
             Inquire About Part Price(s)
           </Button>
-        </Box>
+        </Stack>
       )}
     </Box>
   );
@@ -175,7 +196,7 @@ function YourCartIsEmpty() {
   return (
     <Stack direction="column" spacing={2} alignItems="center">
       <Divider sx={{ borderStyle: 'dashed', borderColor: theme.palette.divider }} flexItem />
-      <OpenCartIconButton disabled />
+      <SvgColor src="/assets/illustrations/cart-icon.svg" sx={{ width: 200, height: 200 }} />
       <Typography variant="h3" sx={{ color: 'secondary.main' }}>
         Your Cart is Empty !!
       </Typography>

@@ -137,6 +137,7 @@ export default function Header({ headerOnDark }) {
                 data={navConfig}
                 toggleLanguage={toggleLanguageHandler}
                 useLightIcon={getIsLight()}
+                themeMode={themeMode}
               />
             )}
           </Container>

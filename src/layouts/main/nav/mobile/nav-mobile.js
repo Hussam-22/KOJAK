@@ -25,12 +25,14 @@ import NavList from './nav-list';
 
 // ----------------------------------------------------------------------
 
-export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
+export default function NavMobile({ data, toggleLanguage, useLightIcon, themeMode }) {
   const theme = useTheme();
   const pathname = usePathname();
   const navigate = useNavigate();
   const mobileOpen = useBoolean();
   const { translate, currentLang, onChangeLang } = useLocales();
+
+  const useLightLogo = themeMode === 'light';
 
   useEffect(() => {
     if (mobileOpen.value) {
@@ -42,8 +44,8 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        <OpenCartIconButton />
         <ModeIcon light={useLightIcon} />
+        <OpenCartIconButton light={themeMode} />
         {/* <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton
@@ -66,7 +68,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
         }}
       >
         <Scrollbar>
-          <Logo sx={{ ml: 1.5, my: 3 }} small light />
+          <Logo sx={{ ml: 1.5, my: 3 }} small light={!useLightLogo} />
 
           <List component="nav" disablePadding>
             {data.map((link) => (
@@ -93,4 +95,5 @@ NavMobile.propTypes = {
   data: PropTypes.array,
   toggleLanguage: PropTypes.func,
   useLightIcon: PropTypes.bool,
+  themeMode: PropTypes.string,
 };

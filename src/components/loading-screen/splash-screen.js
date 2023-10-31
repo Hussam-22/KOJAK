@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
 import { bgBlur } from 'src/theme/css';
+import { useSettingsContext } from 'src/components/settings';
 
 import Logo from '../logo';
 import ProgressBar from '../progress-bar';
@@ -30,6 +31,12 @@ const StyledRoot = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function SplashScreen({ sx }) {
+  const { themeMode } = useSettingsContext();
+
+  const isLight = themeMode === 'light';
+
+  console.log(isLight);
+
   return (
     <>
       <ProgressBar />
@@ -47,7 +54,7 @@ export default function SplashScreen({ sx }) {
             repeat: Infinity,
           }}
         >
-          <Logo single light sx={{ width: 128, height: 128 }} />
+          <Logo single light={!isLight} sx={{ width: 128, height: 128 }} />
         </m.div>
       </StyledRoot>
 

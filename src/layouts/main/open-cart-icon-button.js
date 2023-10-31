@@ -8,6 +8,7 @@ import { Box, Badge, styled, IconButton } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -23,9 +24,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function CartIconButton({ light }) {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state.products);
+  const smUp = useResponsive('up', 'sm');
 
   const cartItemsQty = cart.reduce((accum, item) => accum + item.qty, 0);
 
+  const iconSize = smUp ? 40 : 26;
   const COLOR = light ? '#FFFFFF' : '#000000';
 
   const cartIcon = (
@@ -57,7 +60,7 @@ function CartIconButton({ light }) {
   return (
     <Box component={IconButton} onClick={() => navigate(paths.website.cart)} aria-label="open-cart">
       <StyledBadge badgeContent={cartItemsQty} color="info">
-        <Box sx={{ width: 40, height: 40 }}>{cartIcon}</Box>
+        <Box sx={{ width: iconSize, height: iconSize }}>{cartIcon}</Box>
       </StyledBadge>
     </Box>
   );

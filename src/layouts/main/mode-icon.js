@@ -2,10 +2,11 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
+import { Box, IconButton } from '@mui/material';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, IconButton } from '@mui/material';
 
+import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';
 import { stopLoading, startLoading } from 'src/redux/slices/siteStore';
 
@@ -15,6 +16,9 @@ function ModeIcon({ light }) {
   const settings = useSettingsContext();
   const dispatch = useDispatch();
   const COLOR = light ? '#FFDC45' : '#000000';
+  const smUp = useResponsive('up', 'sm');
+
+  const iconSize = smUp ? 54 : 42;
 
   const toggleMode = () => {
     dispatch(startLoading());
@@ -197,7 +201,7 @@ function ModeIcon({ light }) {
 
   return (
     <Box
-      sx={{ width: 54, height: 54 }}
+      sx={{ width: iconSize, height: iconSize }}
       component={IconButton}
       onClick={toggleMode}
       aria-label="switch-language"
