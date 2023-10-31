@@ -166,7 +166,7 @@ const ar = {
   common: {
     mercedes: 'مرسيدس',
     brand: 'كوجك',
-    sparePart: 'لقطع غيار السيارات',
+    spareparts: 'لقطع غيار السيارات',
     auto: 'لصيانة السيارات',
     exclusive: 'ك إكسكلوسيف كارس',
     building: 'بناء',

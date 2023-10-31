@@ -164,7 +164,7 @@ const en = {
 
   common: {
     brand: 'KOJAK',
-    sparePart: 'Spare Parts',
+    spareparts: 'Spare Parts',
     auto: 'Auto Maintenance',
     exclusive: 'K Exclusive',
     building: 'Building',
