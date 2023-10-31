@@ -33,8 +33,6 @@ export default function ContactUsForm() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   useEffect(
     () => () =>
       // clear any form payload on navigate away
@@ -96,8 +94,6 @@ export default function ContactUsForm() {
     }),
     [formPayload]
   );
-
-  console.log(formPayload);
 
   const methods = useForm({
     resolver: yupResolver(schema),

@@ -37,7 +37,9 @@ export default function ContactUsView() {
             md={5}
             sx={{
               p: 3,
-              borderRight: 'dashed 1px #222',
+              borderRight: { md: 'dashed 1px #222' },
+              borderBottom: { xs: 'dashed 1px #999', md: 'unset' },
+              mb: { xs: 2, md: 'unset' },
             }}
           >
             <ContactUsInfo />
