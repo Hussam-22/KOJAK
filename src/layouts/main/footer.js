@@ -21,7 +21,7 @@ const GROUPS = [
     url: 'www.kojak-exclusive.com',
   },
   {
-    title: 'sparePart',
+    title: 'spareparts',
     url: 'www.kojak-spareparts.com',
   },
   {
