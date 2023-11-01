@@ -112,7 +112,7 @@ export default function WhatsAppForm() {
             zIndex: 99,
           }}
         >
-          <Card sx={{ p: 3, bgcolor: 'common.black' }}>
+          <Card sx={{ p: 3, bgcolor: 'background.paper' }}>
             <IconButton
               aria-label="delete"
               sx={{ position: 'absolute', top: 5, right: 5 }}
