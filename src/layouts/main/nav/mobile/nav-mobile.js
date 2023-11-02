@@ -45,7 +45,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon, themeMod
     <>
       <Stack direction="row" spacing={0}>
         <ModeIcon light={useLightIcon} />
-        <OpenCartIconButton light={themeMode} />
+        <OpenCartIconButton light={useLightIcon} />
         {/* <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton

@@ -57,8 +57,9 @@ export default function SparePartsListViewGridItem({
   return (
     <Card
       sx={{
-        bgcolor: 'background.paper',
+        bgcolor: 'background.neutral',
         borderRadius: 1,
+        border: `dashed 1px ${theme.palette.divider}`,
       }}
     >
       <Stack

@@ -22,6 +22,33 @@ const cars = [
 
 // ----------------------------------------------------------------------
 
+const REVIEWS = [
+  {
+    en: 'High-quality parts and excellent customer service. I highly recommend this website for all your Mercedes spare part needs.',
+    ar: 'قطع الغيار عالية الجودة وخدمة عملاء ممتازة. أوصي بشدة بهذا الموقع لجميع احتياجات قطع الغيار لمرسيدس الخاصة بك.',
+  },
+  {
+    en: "Fast shipping and competitive prices. I'm a satisfied customer and will definitely shop here again.",
+    ar: 'شحن سريع وأسعار تنافسية. أنا عميل راض وبالتأكيد سأتسوق هنا مرة أخرى.',
+  },
+  {
+    en: "This website has a wide range of Mercedes spare parts. It's a one-stop shop for all your automotive needs.",
+    ar: 'هذا الموقع يحتوي على مجموعة واسعة من قطع غيار مرسيدس. إنها متجر واحد لجميع احتياجات السيارات الخاصة بك.',
+  },
+  {
+    en: "The parts I ordered fit perfectly and were of the highest quality. I'm very happy with my purchase.",
+    ar: 'القطع التي طلبتها تناسبت بشكل مثالي وكانت عالية الجودة. أنا سعيد جدًا بشرائي.',
+  },
+  {
+    en: 'Outstanding service and a user-friendly website. I found it easy to locate the parts I needed.',
+    ar: 'خدمة متميزة وموقع ودي للمستخدم. وجدت أنه من السهل تحديد المكونات التي أحتاجها.',
+  },
+  {
+    en: "Great selection and prompt delivery. I'm impressed with the overall experience of shopping here.",
+    ar: 'اختيار رائع وتسليم سريع. أنا معجب بالتجربة العامة للتسوق هنا.',
+  },
+];
+
 export const _testimonials = [...Array(8)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.fullName(index),
@@ -30,8 +57,7 @@ export const _testimonials = [...Array(8)].map((_, index) => ({
   createdAt: _mock.time(index),
   ratingNumber: 5,
   car: cars[index],
-  review:
-    'Amazing experience i love it a lot. Thanks to the team that dreams come true, great! I appreciate there attitude and approach.',
+  review: REVIEWS[index],
 }));
 
 // ----------------------------------------------------------------------

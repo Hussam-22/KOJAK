@@ -122,7 +122,7 @@ export function palette(mode) {
     mode: 'light',
     text: {
       primary: '#000000',
-      secondary: GREY[600],
+      secondary: GREY[400],
       disabled: GREY[400],
       white: '#000000',
       warning: WARNING.main,

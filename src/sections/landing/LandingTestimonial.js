@@ -120,7 +120,7 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
             // color: 'common.white',
           }}
         >
-          {review}
+          {review.en}
         </Typography>
 
         <Box>

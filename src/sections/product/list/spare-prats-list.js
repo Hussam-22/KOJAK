@@ -100,7 +100,8 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           columnGap={2}
           display="grid"
           gridTemplateColumns={{
-            xs: 'repeat(2, 1fr)',
+            xs: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
             md: 'repeat(3, 1fr)',
             lg: 'repeat(5, 1fr)',
           }}

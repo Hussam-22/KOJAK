@@ -202,8 +202,9 @@ export default function FilterBrand({ closeDrawer }) {
             loading={isSubmitting}
             disabled={!isDirty}
             size="large"
+            startIcon={<Iconify icon="octicon:search-16" />}
           >
-            <Iconify icon="octicon:search-16" />
+            search
           </LoadingButton>
           <LoadingButton
             variant="contained"
@@ -212,8 +213,9 @@ export default function FilterBrand({ closeDrawer }) {
             disabled={values.model === '' && values.partNo === ''}
             onClick={resetSearchHandler}
             size="large"
+            startIcon={<Iconify icon="system-uicons:reset" />}
           >
-            <Iconify icon="system-uicons:reset" />
+            reset
           </LoadingButton>
         </Stack>
       </Stack>

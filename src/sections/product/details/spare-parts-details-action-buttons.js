@@ -88,7 +88,7 @@ function AvailableStockActionBar({ partDetails }) {
       navigator
         .share({
           title: `${partDetails.partNumber} - ${partDetails.description}`,
-          text: `Check out this part on Kojak Spare Parts website`,
+          text: `${partDetails.partNumber} - Check out this part on Kojak Spare Parts website`,
           url: window.location.href,
         })
         .then(() => true)

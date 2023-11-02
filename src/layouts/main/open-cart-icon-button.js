@@ -13,10 +13,9 @@ import { useResponsive } from 'src/hooks/use-responsive';
 // ----------------------------------------------------------------------
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    right: 10,
-    top: 13,
-    border: `2px solid ${theme.palette.common.dark}`,
-    padding: 5,
+    right: 0,
+    top: 5,
+    padding: 1,
     fontSize: '16px',
   },
 }));

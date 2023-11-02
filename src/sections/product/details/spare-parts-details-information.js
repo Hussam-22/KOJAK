@@ -88,8 +88,10 @@ function Block({ title, description }) {
   const theme = useTheme();
   return (
     <Stack spacing={0}>
-      <Typography color="secondary">{title}</Typography>
-      <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>
+      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+        {title}
+      </Typography>
+      <Typography>{description}</Typography>
     </Stack>
   );
 }

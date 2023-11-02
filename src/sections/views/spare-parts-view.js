@@ -5,13 +5,14 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import { Divider, useTheme } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
+import InquirySteps from 'src/sections/product/item/inquiry-steps';
 import SparePartsList from 'src/sections/product/list/spare-prats-list';
 import { rdxSetProducts, rdxGetRecordsCount } from 'src/redux/slices/products';
 
@@ -23,7 +24,7 @@ const RECORDS_LIMIT = 24;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {
-  const mdUp = useResponsive('up', 'md');
+  const mdUp = useResponsive('up', 'sm');
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -83,9 +84,7 @@ export default function SparePartsView() {
           <Typography variant="h1" id="scrollToHere">
             CATALOG
           </Typography>
-          <Typography>
-            Add Items to cart, send them to our sales team, get quote within 1 hour
-          </Typography>
+          {mdUp && <InquirySteps />}
         </Stack>
 
         {/* <Button onClick={addParts}>Add Parts</Button> */}

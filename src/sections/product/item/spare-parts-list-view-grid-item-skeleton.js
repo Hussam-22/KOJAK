@@ -4,7 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 // ----------------------------------------------------------------------
 
-export default function EcommerceProductViewGridItemSkeleton() {
+export default function ProductViewGridItemSkeleton() {
   return (
     <Stack spacing={2}>
       <Box
