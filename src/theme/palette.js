@@ -104,7 +104,7 @@ const COMMON = {
   error: ERROR,
   custom: CUSTOM,
   grey: GREY,
-  divider: '#333',
+
   action: {
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.16),
@@ -120,6 +120,7 @@ export function palette(mode) {
   const light = {
     ...COMMON,
     mode: 'light',
+    divider: GREY[300],
     text: {
       primary: '#000000',
       secondary: GREY[400],
@@ -144,6 +145,7 @@ export function palette(mode) {
   const dark = {
     ...COMMON,
     mode: 'dark',
+    divider: GREY[700],
     text: {
       primary: '#FFFFFF',
       secondary: GREY[600],

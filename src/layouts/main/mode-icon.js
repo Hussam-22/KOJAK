@@ -24,8 +24,10 @@ function ModeIcon({ light }) {
     dispatch(startLoading());
     setTimeout(() => {
       settings.onUpdate('themeMode', settings.themeMode === 'dark' ? 'light' : 'dark');
-      dispatch(stopLoading());
-    }, 500);
+      setTimeout(() => {
+        dispatch(stopLoading());
+      }, 200);
+    }, 1000);
   };
 
   const singleLogo = (

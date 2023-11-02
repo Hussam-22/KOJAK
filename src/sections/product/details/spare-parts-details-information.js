@@ -59,7 +59,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
           <Typography variant="h4">{partDetails.partName}</Typography>
           <Typography variant="caption">{productDescription}</Typography>
         </Stack>
-        <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
+        <Divider sx={{ borderStyle: 'dashed', my: 2, borderColor: theme.palette.divider }} />
 
         <Stack direction="column" spacing={1} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
           <Stack spacing={0}>

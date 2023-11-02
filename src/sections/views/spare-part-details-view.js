@@ -6,13 +6,14 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Link, Stack, Divider, Container, Typography, Breadcrumbs } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import { PAGE_VISIT } from 'src/config-global';
 import Image from 'src/components/image/Image';
+import { PAGE_VISIT } from 'src/config-global';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import SideDrawer from 'src/components/drawer/side-drawer';
 import { rdxToggleDrawer } from 'src/redux/slices/products';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
+import CustomBreadcrumbs from 'src/components/custom-breadcrumbs/custom-breadcrumbs';
 import SparePartsDetailsInformation from 'src/sections/product/details/spare-parts-details-information';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
@@ -47,18 +48,13 @@ function SparePartDetailsView() {
   return (
     <Box sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container maxWidth="xl">
-        <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2, px: 1 }}>
-          <Link
-            component={RouterLink}
-            href={paths.website.spareParts}
-            underline="hover"
-            color="info"
-          >
-            Spare Parts List
-          </Link>
-          <Typography>{partDetails?.partNumber}</Typography>
-        </Breadcrumbs>
-
+        <CustomBreadcrumbs
+          links={[
+            { name: 'Spare Parts List', href: paths.website.spareParts },
+            { name: partDetails?.partNumber },
+          ]}
+          sx={{ my: 1, px: 1 }}
+        />
         <Grid container spacing={3}>
           <Grid md={6} xs={12}>
             <Box

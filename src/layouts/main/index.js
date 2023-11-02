@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
+import SimpleBackdrop from 'src/components/backdrop';
+import { stopLoading } from 'src/redux/slices/siteStore';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 import ModernHeader from 'src/layouts/main/modern-header';
 import { SplashScreen } from 'src/components/loading-screen';
@@ -13,8 +15,8 @@ import { rdxLoadCartFromStorage } from 'src/redux/slices/products';
 
 import { HEADER } from '../config-layout';
 
-import Header from './header';
 import Footer from './footer';
+import Header from './header';
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +36,8 @@ export default function MainLayout({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onBackDropClose = () => dispatch(stopLoading());
+
   return (
     <>
       <Box
@@ -44,7 +48,6 @@ export default function MainLayout({ children }) {
         }}
       >
         <Header headerOnDark={actionPage(pathsOnDark)} />
-        {/* <ModernHeader /> */}
         <Box
           component="main"
           sx={{
@@ -52,12 +55,13 @@ export default function MainLayout({ children }) {
           }}
         >
           {!actionPage(spacingLayout) && <Spacing />}
-          {isLoading && <SplashScreen />}
+          {/* {isLoading && <SplashScreen />} */}
           {children}
         </Box>
 
         <Footer />
       </Box>
+      <SimpleBackdrop open={isLoading} handleClose={onBackDropClose} />
       <WhatsAppForm />
     </>
   );
