@@ -9,7 +9,7 @@ import { fNumber } from 'src/utils/format-number';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 
 function FeaturesBar({ vehicleInfo }) {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
   const { year, price, milage, engineType } = vehicleInfo;
 
@@ -33,36 +33,15 @@ function FeaturesBar({ vehicleInfo }) {
         <VehicleFeature icon="tdesign:money" value={price} />
         <VehicleFeature icon="fa-solid:road" value={`${fNumber(milage)} Km`} />
         <VehicleFeature icon="ph:engine" value={engineType} />
-
-        <Stack direction="column" alignItems="center" spacing={1}>
-          <Typography sx={{ color: 'common.white' }}> {translate('common.color')}</Typography>
-          <Stack direction="row" spacing={1}>
-            <Box
-              sx={{
-                width: 25,
-                height: 25,
-                border: 'solid 1px #FFF',
-                borderRadius: '50%',
-                backgroundColor: vehicleInfo.interiorColor,
-              }}
-            />
-            <Box
-              sx={{
-                width: 25,
-                height: 25,
-                border: 'solid 1px #FFF',
-                borderRadius: '50%',
-                backgroundColor: vehicleInfo.exteriorColor,
-              }}
-            />
-          </Stack>
-        </Stack>
-
+        <VehicleFeature icon="mdi:car-seat" value={vehicleInfo.interiorColorString} />
+        <VehicleFeature icon="mdi:car-door" value={vehicleInfo.exteriorColorString} />
         <Box>
           <Button
             variant="contained"
             size="small"
-            onClick={() => navigate(paths.website.servicesDetails + vehicleInfo.id)}
+            onClick={() =>
+              navigate(paths(currentLang.value).website.servicesDetails + vehicleInfo.id)
+            }
             color="primary"
           >
             {translate('common.moreDetails')}

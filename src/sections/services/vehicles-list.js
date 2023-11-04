@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, useTheme, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, Skeleton, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
@@ -9,7 +9,7 @@ import VehicleCard from 'src/sections/services/vehicle-card';
 function VehiclesList() {
   const theme = useTheme();
   const { translate } = useLocales();
-  const { addNewCar, getCars, fsListAllFolderItems } = useAuthContext();
+  const { addNewCar, getCars, fsListAllFolderItems, fsUpdateDoc } = useAuthContext();
   const [vehiclesList, setVehiclesList] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ function VehiclesList() {
     })();
   }, [fsListAllFolderItems, getCars]);
 
-  const addCar = async () => addNewCar();
+  // const addCar = async () => addNewCar();
+  // const addCar = async () => fsUpdateDoc();
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>

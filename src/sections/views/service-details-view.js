@@ -123,15 +123,13 @@ export default function ServiceDetailsView() {
                   >
                     <VehicleFeature
                       icon="mdi:car-door"
-                      value={vehicleInfo?.exteriorColor}
+                      value={vehicleInfo?.exteriorColorString}
                       large={!!mdUp}
-                      color
                     />
                     <VehicleFeature
                       icon="mdi:car-seat"
-                      value={vehicleInfo?.interiorColor}
+                      value={vehicleInfo?.interiorColorString}
                       large={!!mdUp}
-                      color
                     />
 
                     <VehicleFeature icon="uim:calender" value={vehicleInfo?.year} large={!!mdUp} />

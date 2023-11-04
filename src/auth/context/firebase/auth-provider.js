@@ -4,10 +4,10 @@ import { useMemo, useCallback } from 'react';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  where,
   query,
-  setDoc,
+  where,
   getDoc,
+  setDoc,
   getDocs,
   updateDoc,
   Timestamp,
@@ -107,28 +107,35 @@ export function AuthProvider({ children }) {
     setDoc(docRef, {
       id: docRef.id,
       brand: 'Mercedes',
-      model: 'G 400 D',
-      price: '690,000 AED',
-      year: 2023,
-      exteriorColor: '#000000',
-      interiorColor: '#D64343',
+      model: 'S 63 E Performance',
+      price: '1,195,000 AED',
+      year: 2024,
+      exteriorColorString: 'White',
+      interiorColorString: 'Red',
       engineType: 'Petrol',
       milage: 0,
       isActive: true,
       isFeatured: true,
       creationDate: new Date(),
-      features: `20” AMG Light alloy wheel painted black%
-      360° camera All round viewing system%
-      PARKTRONIC Park Assist%
-      Electric sunroof, glass version%
-      Anti-theft protection package plus%
-      Burmester 3D surround sound system%
-      Ambient lighting showcased%
-      AMG LINE%
-      9G Tronic Automatic Transmission%
-      Active Distance Assist DISTRONIC%
-      Night package%
-      Energizing comfort control%`,
+      features: `Electric backrest adjustment and head restraints		
+      Digital LED headlamps		
+      Climatised front seats		
+      Rear seat climate control		
+      Automatic panoramic sliding sunroof		
+      Central display size L		
+      Magic Vision Control		
+      Premium ambiance illumination		
+      AMG HP battery (12P100S)		
+      Trim elements line wood		
+      Active Lane Change Assist		
+      MBUX Navigation Premium		
+      Remote Parking package		
+      Head-up display		
+      KEYLESS-GO		
+      Sun protection package		
+      360° camera		
+      Automatic climate control		
+      AMG multi-spoke wheels 21"`,
     });
   }, []);
 
@@ -162,19 +169,42 @@ export function AuthProvider({ children }) {
   }, []);
 
   const fsUpdateDoc = useCallback(async () => {
-    const docRef = doc(DB, `/websites/kexclusive/vehicles/TVFk1tQoM9LbAzo80gLQ`);
-    const docSnap = await updateDoc(docRef, {
-      features: `Climatised Front Seat
-    Automatic panoramic sliding sunroof
-    360° camera
-    KEYLESS-GO
-    Sun protection package
-    Rear seat climate control
-    Air conditioning rear
-    AMG Line
-    Driver assistant package plus`,
-    });
-    return docSnap.data();
+    const docCollRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', false));
+    const querySnapshot = await getDocs(docCollRef);
+    const documents = [];
+
+    querySnapshot.forEach((document) => documents.push(document.data()));
+
+    console.log(documents);
+
+    const toResolve = [];
+
+    documents
+      .filter(
+        (item) =>
+          !['"atjDzMOAT5uiAeoWxCWA"', 'Dv6pel2OJEiST3SC0SmL', 'llQFPpOxERxhlZe9HJEr'].includes(
+            item.id
+          )
+      )
+      .forEach((element) => {
+        const update = async () => {
+          const docRef = doc(DB, `/websites/kexclusive/vehicles/${element.id}`);
+          await updateDoc(docRef, {
+            exteriorColorString: '',
+            interiorColorString: '',
+          });
+        };
+        toResolve.push(update());
+      });
+
+    await Promise.all(toResolve);
+
+    // const docRef = doc(DB, `/websites/kexclusive/vehicles/TVFk1tQoM9LbAzo80gLQ`);
+    // const docSnap = await updateDoc(docRef, {
+    //   exteriorColorString: '',
+    //   interiorColorString: '',
+    // });
+    // return docSnap.data();
   }, []);
 
   // --------------------------------------------------------------------
