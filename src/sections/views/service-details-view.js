@@ -49,6 +49,9 @@ export default function ServiceDetailsView() {
       ? 'Export price outside GCC countries - Price Without VAT & Without Customs Duty'
       : 'سعر التصدير خارج دول مجلس التعاون الخليجي - السعر بدون ضريبة القيمة المضافة وبدون الرسوم الجمركية';
 
+  const isNewText = vehicleInfo?.milage === 0 ? 'Brand New' : 'Used';
+  const vehicleDescription = `A ${vehicleInfo?.year} ${isNewText} ${vehicleInfo?.brand} ${vehicleInfo?.model}`;
+
   useEffect(() => {
     const fakeLoading = async () => {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -102,24 +105,27 @@ export default function ServiceDetailsView() {
                     {currentLang.value === 'en' ? 'SOLD' : 'بيعت'}
                   </Typography>
                 )}
-                <Stack
-                  direction={{ md: 'row', xs: 'column' }}
-                  spacing={mdUp ? 2 : 0}
-                  sx={{ mb: 2 }}
-                >
-                  <Typography variant={mdUp ? 'h2' : 'h3'}>
-                    {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
-                  </Typography>
-                  <Typography variant={mdUp ? 'h2' : 'h3'}>{vehicleInfo?.model}</Typography>
-                </Stack>
 
-                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      width: { md: '40%', xs: '100%' },
-                    }}
+                <Stack
+                  direction={{ lg: 'row', xs: 'column' }}
+                  justifyContent="space-between"
+                  spacing={2}
+                >
+                  <Stack direction="column">
+                    <Stack direction={{ md: 'row', xs: 'column' }} spacing={mdUp ? 1 : 0}>
+                      <Typography variant={mdUp ? 'h2' : 'h3'}>
+                        {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
+                      </Typography>
+                      <Typography variant={mdUp ? 'h2' : 'h3'}>{vehicleInfo?.model}</Typography>
+                    </Stack>
+                    {/* <Typography variant="body2">{vehicleDescription}</Typography> */}
+                  </Stack>
+
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={4}
                   >
                     <VehicleFeature
                       icon="mdi:car-door"
@@ -143,7 +149,7 @@ export default function ServiceDetailsView() {
                       value={vehicleInfo?.engineType}
                       large={!!mdUp}
                     />
-                  </Box>
+                  </Stack>
                 </Stack>
               </Card>
             </Grid>
@@ -157,8 +163,15 @@ export default function ServiceDetailsView() {
 
           <Grid xs={12} md={6}>
             <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
-              <Typography variant="h2">{translate('inventory.vehicleDetails')}</Typography>
-              <Typography variant="h6" sx={{ whiteSpace: 'pre-line', textTransform: 'capitalize' }}>
+              <Typography variant="h3">{translate('inventory.vehicleDetails')}</Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  whiteSpace: 'pre-line',
+                  textTransform: 'capitalize',
+                  fontWeight: theme.typography.fontWeightLight,
+                }}
+              >
                 {currentLang.value === 'en'
                   ? vehicleInfo?.translated.en.replaceAll('%', '\n')
                   : vehicleInfo?.translated.ar.replaceAll('%', '\n')}
@@ -173,7 +186,7 @@ export default function ServiceDetailsView() {
           {vehicleInfo?.isActive && (
             <Grid xs={12} md={6}>
               <Card sx={{ p: 3, display: 'flex', height: 1, flexDirection: 'column' }}>
-                <Typography variant="h2" sx={{ mb: 2 }}>
+                <Typography variant="h3" sx={{ mb: 2 }}>
                   {translate('inventory.makeItYours')}
                 </Typography>
                 {vehicleInfo?.id !== undefined && <ContactUsForm payload={payload} />}

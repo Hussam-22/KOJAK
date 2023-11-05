@@ -1,122 +1,111 @@
-import { m } from 'framer-motion';
-
-import { Box, Card, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { varSlide } from 'src/components/animate';
-import { useResponsive } from 'src/hooks/use-responsive';
-import { AUTO_URL, GROUP_URL, BUILDING_URL } from 'src/config-global';
+import SvgColor from 'src/components/svg-color';
+import {
+  AUTO_URL,
+  SITE_NAME,
+  GROUP_URL,
+  BUILDING_URL,
+  EXCLUSIVE_URL,
+  SPARE_PART_URL,
+} from 'src/config-global';
 
 const GROUPS = [
   {
     title: 'group',
     link: GROUP_URL,
     icon: 'mercedes-logo',
-  },
-  {
-    title: 'sparePart',
-    link: '#',
-    icon: 'spare-parts-icon',
+    ariaLabel: 'Kojak Group Website',
   },
   {
     title: 'auto',
     link: AUTO_URL,
     icon: 'auto-icon',
+    ariaLabel: 'Kojak Auto Maintenance Website',
   },
-
+  {
+    title: 'kexclusive',
+    link: EXCLUSIVE_URL,
+    icon: 'exclusive-icon',
+    ariaLabel: 'Kojak K-Exclusive Website',
+  },
+  {
+    title: 'sparePart',
+    link: SPARE_PART_URL,
+    icon: 'spare-parts-icon',
+    ariaLabel: 'Kojak Spare-Parts Website',
+  },
   {
     title: 'building',
     link: BUILDING_URL,
     icon: 'building-icon',
+    ariaLabel: 'Kojak Building Website',
   },
 ];
 
 function VisitGroupsWebsite() {
-  const theme = useTheme();
-  const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const POSITION_VALUE = () => {
-    if (currentLang.value === 'ar' && mdUp) return '-125px';
-    if (currentLang.value === 'ar' && !mdUp) return '-120px';
-    return '190px';
-  };
-
   const renderGroupCard = (item, index) => (
-    <Card
+    <Stack
+      spacing={2}
       key={item.title}
       sx={{
         p: 3,
         borderRadius: 1,
-        display: 'flex',
+        minHeight: 200,
         alignItems: 'left',
         justifyContent: 'space-between',
         textAlign: 'left',
-        flexDirection: 'column',
-        minHeight: 200,
-        backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
-        backgroundSize: 'contain',
-        backgroundPositionX: POSITION_VALUE(),
-        backgroundPositionY: '90px',
-        backgroundRepeat: 'no-repeat',
-        gap: 3,
-        position: 'relative',
-        overflow: 'visible',
+        bgcolor: 'background.default',
       }}
     >
+      <SvgColor src={`/assets/illustrations/${item.icon}.svg`} sx={{ width: 40, height: 40 }} />
       <Box>
-        <Typography variant="overline" color="secondary">
-          {translate('common.brand')}
-        </Typography>
-        <Typography variant="h3" color="secondary">
+        <Typography variant="overline">{translate('common.brand')}</Typography>
+        <Typography variant="h3" sx={{ whiteSpace: 'nowrap' }}>
           {translate(`common.${item.title}`)}
         </Typography>
       </Box>
 
-      <Typography
-        variant="body2"
-        color="secondary"
-        sx={{
-          fontWeight: theme.typography.fontWeightLight,
-          width: '60%',
-        }}
-      >
-        {translate(`visit.cardText.${item.title}`)}
-      </Typography>
-
+      <Box>
+        <Typography variant="body2">{translate(`landing.visit.cardText.${item.title}`)}</Typography>
+      </Box>
       <Box>
         <Button
           variant="contained"
-          color="secondary"
-          sx={{ mt: 1 }}
+          color="primary"
           href={item?.link}
           target="_blank"
           rel="noopener"
+          aria-label={item.ariaLabel}
         >
           {translate(`common.visitWebsite`)}
         </Button>
       </Box>
-    </Card>
+    </Stack>
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.neutral', py: 15 }}>
+    <Box sx={{ bgcolor: 'primary.lighter', py: 15, px: 1 }}>
       <Container maxWidth="xl">
-        <m.div variants={varSlide().inRight}>
-          <Typography variant="h1" sx={{ color: 'common.black' }}>
-            {translate(`visit.title`)}
-          </Typography>
-        </m.div>
+        <Typography variant="overline" color="primary">
+          {translate(`landing.visit.overline`)}
+        </Typography>
+        <Typography variant="h1">{translate(`landing.visit.title`)}</Typography>
 
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gridTemplateColumns: { md: 'repeat(4,1fr)', sm: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
             gap: 3,
             mt: 5,
           }}
         >
-          {GROUPS.map((item, index) => renderGroupCard(item, index))}
+          {GROUPS.filter((website) => website.title !== SITE_NAME).map((item, index) =>
+            renderGroupCard(item, index)
+          )}
         </Box>
       </Container>
     </Box>

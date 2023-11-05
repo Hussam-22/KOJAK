@@ -53,6 +53,18 @@ const en = {
         'Looking for Mercedes Auto Repair Services, Visit Kojak Auto Maintenance website and explore all our services provided by experts',
       buttonText: 'Visit Kojak Auto Maintenance Website',
     },
+
+    visit: {
+      overline: 'GROUP WEBSITES',
+      title: 'Visit Our Group Websites',
+      cardText: {
+        auto: `Specialized in Mercedes-Benz Since 1983`,
+        sparePart: `Your Ultimate Destination for your Mercedes-Benz Spare Parts Quest`,
+        exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
+        building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
+        group: 'A Legacy of Mercedes-Benz Mastery Since 1983',
+      },
+    },
   },
 
   about: {
@@ -151,18 +163,6 @@ Reliable Support: Our commitment to customer satisfaction knows no borders. Whet
 Experience the luxury, performance, and prestige of Mercedes-Benz, no matter where you are in the world. Trust [Your Company Name] to facilitate a seamless export process, ensuring you receive your Mercedes-Benz vehicle with ease and convenience.
 
 To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your location, please contact our dedicated export team. We're excited to bring the Mercedes-Benz experience to your doorstep.`,
-    },
-  },
-
-  visit: {
-    overline: 'GROUP WEBSITES',
-    title: 'Visit Our Group Websites',
-    cardText: {
-      auto: `Specialized in Mercedes-Benz Since 1983`,
-      sparePart: `Genuine Mercedes-Benz Parts At Your Finger Tip`,
-      exclusive: `Your Dream Mercedes, Now More Affordable Than Ever.`,
-      building: `Find Your Perfect Space For Living Or Business Thriving With KOJAK`,
-      group: 'A Legacy of Mercedes-Benz Mastery Since 1983',
     },
   },
 
