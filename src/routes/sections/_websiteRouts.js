@@ -25,4 +25,17 @@ export const _websiteRouts = [
       { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
     ],
   },
+  {
+    path: '/ar',
+    children: [
+      { element: <KojakBuildingLandingPage />, index: true },
+      { path: 'ar/spare-parts', element: <SparePartsPage /> },
+      { path: 'ar/spare-parts/:partDocID', element: <SparePartDetailsPage /> },
+      { path: 'ar/cart', element: <CartPage /> },
+      { path: 'ar/about', element: <KojakBuildingAboutPage /> },
+      { path: 'ar/contact-us', element: <ContactUsPage /> },
+      { path: 'ar/blog-posts', element: <BlogPostsPage /> },
+      { path: 'ar/blog-posts/:postTitle', element: <BlogItemPage /> },
+    ],
+  },
 ];
