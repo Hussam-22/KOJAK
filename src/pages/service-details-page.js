@@ -1,39 +1,59 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Helmet } from 'react-helmet-async';
+import { useState, useEffect } from 'react';
 
 import { useLocales } from 'src/locales';
+import { useAuthContext } from 'src/auth/hooks';
 import ServiceDetailsView from 'src/sections/views/service-details-view';
 
 export default function ServiceDetailsPage() {
   const { vehicleID } = useParams();
-  const { onChangeLang, currentLang } = useLocales();
+  const { onChangeLang, currentLang, translate } = useLocales();
+  const { getVehicleInfo } = useAuthContext();
+  const [vehicleInfo, setVehicleInfo] = useState();
 
   useEffect(() => {
     onChangeLang('en');
+    (async () => {
+      setVehicleInfo(await getVehicleInfo(vehicleID));
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <Helmet>
-        <title>Kojak Exclusive Cars - Find Your Dream Car, make it yours !!</title>
-        <meta
-          name="description"
-          content="We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
-        />
+        {vehicleInfo?.brand && (
+          <title>
+            {`Kojak Exclusive Cars - ${translate(`common.${vehicleInfo?.brand.toLowerCase()}`)} ${
+              vehicleInfo?.model
+            } for sale`}
+          </title>
+        )}
+        {vehicleInfo?.brand && (
+          <meta
+            name="description"
+            content={`Kojak Exclusive Cars - ${translate(
+              `common.${vehicleInfo?.brand.toLowerCase()}`
+            )} ${vehicleInfo?.model} ${vehicleInfo?.year} for sale`}
+          />
+        )}
         <meta
           name="keywords"
-          content="Kojak Exclusive Cars, luxury Mercedes, Mercedes-Benz, Sharjah, Dubai, UAE, luxury cars, luxury car dealership"
+          content="Kojak Exclusive Cars, luxury Mercedes, Mercedes-Benz, Sharjah, Dubai, UAE, luxury cars, luxury car dealership, sale, brand new, used car"
         />
         <meta
           property="og:title"
           content="Kojak Exclusive Cars - Find Your Dream Car, make it yours !!"
         />
-        <meta
-          property="og:description"
-          content="We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
-        />
+        {vehicleInfo?.brand && (
+          <meta
+            property="og:description"
+            content={`Kojak Exclusive Cars - ${translate(
+              `common.${vehicleInfo?.brand.toLowerCase()}`
+            )} ${vehicleInfo?.model} ${vehicleInfo?.year} for sale`}
+          />
+        )}
         <meta property="og:image" content="https://www.kojak-exclusive.com/assets/kojak-logo.svg" />
         <meta
           property="og:url"
@@ -89,7 +109,7 @@ export default function ServiceDetailsPage() {
           hrefLang="ar"
         />
       </Helmet>
-      {currentLang.value === 'en' && <ServiceDetailsView />}
+      {currentLang.value === 'en' && <ServiceDetailsView vehicleInfo={vehicleInfo} />}
     </>
   );
 }

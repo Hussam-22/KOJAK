@@ -1,5 +1,5 @@
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
@@ -7,27 +7,24 @@ import { Box, Card, Stack, useTheme, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
-import { useAuthContext } from 'src/auth/hooks';
 import { fNumber } from 'src/utils/format-number';
 // import { _products } from 'src/_mock';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { SplashScreen } from 'src/components/loading-screen';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 import ProductDetailsCarousel from 'src/sections/services/components/product-details-carousel';
 
 // ----------------------------------------------------------------------
 
-export default function ServiceDetailsView() {
+export default function ServiceDetailsView({ vehicleInfo }) {
+  console.log(vehicleInfo);
   const theme = useTheme();
   const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   const loading = useBoolean(true);
-  const { vehicleID } = useParams();
-  const { getVehicleInfo } = useAuthContext();
-  const [vehicleInfo, setVehicleInfo] = useState();
 
   const payload = {
     subject: `${translate('inventory.formText')} ${translate(
@@ -60,11 +57,11 @@ export default function ServiceDetailsView() {
     fakeLoading();
   }, [loading]);
 
-  useEffect(() => {
-    (async () => {
-      setVehicleInfo(await getVehicleInfo(vehicleID));
-    })();
-  }, [getVehicleInfo, vehicleID]);
+  // useEffect(() => {
+  //   (async () => {
+  //     setVehicleInfo(await getVehicleInfo(vehicleID));
+  //   })();
+  // }, [getVehicleInfo, vehicleID]);
 
   if (loading.value) {
     return <SplashScreen />;
@@ -221,3 +218,7 @@ export default function ServiceDetailsView() {
     </Box>
   );
 }
+
+ServiceDetailsView.propTypes = {
+  vehicleInfo: PropTypes.object,
+};
