@@ -15,10 +15,10 @@ export default function ServicesPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Exclusive Cars - Find Your Dream Car, make it yours !!</title>
+        <title>Kojak Exclusive Cars - Brand new & Used Mercedes cars for sale</title>
         <meta
           name="description"
-          content="We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
+          content="We take pride in offering a wide range of brand new and used Mercedes vehicles that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
         />
         <meta
           name="keywords"
@@ -26,11 +26,11 @@ export default function ServicesPage() {
         />
         <meta
           property="og:title"
-          content="Kojak Exclusive Cars - Find Your Dream Car, make it yours !!"
+          content="Kojak Exclusive Cars - Brand new & Used Mercedes cars for sale"
         />
         <meta
           property="og:description"
-          content="We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
+          content="We take pride in offering a wide range of brand new and used Mercedes vehicles that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone."
         />
         <meta property="og:image" content="https://www.kojak-exclusive.com/assets/kojak-logo.svg" />
         <meta property="og:url" content="https://www.kojak-exclusive.com/inventory" />
@@ -44,7 +44,7 @@ export default function ServicesPage() {
         "@type": "AutoDealer",
         "name": "Kojak Exclusive Cars",
         "url": "https://www.kojak-exclusive.com/inventory",
-        "description": "We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.",
+        "description": "We take pride in offering a wide range of brand new and used Mercedes vehicles that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Showroom no.37 - block no.4 Al Aweer - Ras Al Khor Auto Market Dubai",

@@ -96,30 +96,30 @@ export default function ServiceDetailsView() {
           {vehicleInfo?.id !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
-                {vehicleInfo?.isActive ? (
-                  <Typography variant="h4" color="primary">
-                    {vehicleInfo?.price.replace('AED', currentLang.value === 'en' ? 'AED' : 'درهم')}
-                  </Typography>
-                ) : (
-                  <Typography variant="h4" color="primary">
-                    {currentLang.value === 'en' ? 'SOLD' : 'بيعت'}
-                  </Typography>
-                )}
-
                 <Stack
                   direction={{ lg: 'row', xs: 'column' }}
                   justifyContent="space-between"
-                  spacing={2}
+                  spacing={1}
+                  alignItems="center"
                 >
                   <Stack direction="column">
-                    <Stack direction={{ md: 'row', xs: 'column' }} spacing={mdUp ? 1 : 0}>
-                      <Typography variant={mdUp ? 'h2' : 'h3'}>
-                        {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)}
+                    {vehicleInfo?.isActive ? (
+                      <Typography variant="h6" color="primary">
+                        {vehicleInfo?.price.replace(
+                          'AED',
+                          currentLang.value === 'en' ? 'AED' : 'درهم'
+                        )}
                       </Typography>
-                      <Typography variant={mdUp ? 'h2' : 'h3'}>{vehicleInfo?.model}</Typography>
-                    </Stack>
-                    {/* <Typography variant="body2">{vehicleDescription}</Typography> */}
+                    ) : (
+                      <Typography variant="h6" color="primary">
+                        {currentLang.value === 'en' ? 'SOLD' : 'بيعت'}
+                      </Typography>
+                    )}
+                    <Typography variant={mdUp ? 'h3' : 'h4'}>
+                      {translate(`common.${vehicleInfo?.brand.toLowerCase()}`)} {vehicleInfo?.model}
+                    </Typography>
                   </Stack>
+                  {/* <Typography variant="body2">{vehicleDescription}</Typography> */}
 
                   <Stack
                     direction="row"

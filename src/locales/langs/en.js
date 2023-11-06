@@ -128,7 +128,7 @@ const en = {
     formText: 'I would like to inquire about,',
     title: 'Find your dream car, ',
     titlePartTwo: 'make it yours !!',
-    subTitle: `We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.`,
+    subTitle: `We take pride in offering a wide range of brand new and used Mercedes vehicles that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.`,
     warranty: {
       title: 'Warranty',
       text: `At Kojak, we stand behind the exceptional quality and reliability of every Mercedes-Benz we sell. We understand that peace of mind is paramount when investing in a luxury vehicle. That's why we offer comprehensive warranty coverage and top-tier after-sale services to ensure your ownership experience is as hassle-free as possible.

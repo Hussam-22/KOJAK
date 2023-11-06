@@ -14,10 +14,10 @@ export default function ServicesPageAr() {
   return (
     <>
       <Helmet>
-        <title>كوجك إكسكلوسيف كارس - ابحث عن سيارت أحلامك اجعلها ملكك !!</title>
+        <title>كوجك إكسكلوسيف كارس - سيارات مرسيدس جديدة و مستعملة للبيع !!</title>
         <meta
           name="description"
-          content="نفخر بتقديم مجموعة واسعة من المنتجات التي تلبي مختلف التفضيلات والمتطلبات. سواء كنت متسوقًا عاديًا أو مجمعًا مخصصًا، هناك شيء للجميع هنا."
+          content="نفخر بتقديم مجموعة واسعة من سيارات مرسيدس الجديدة والمستعملة التي تلبي مختلف التفضيلات والمتطلبات. سواء كنت متسوقًا عاديًا أو مجمعًا مخصصًا، هناك شيء للجميع هنا."
         />
         <meta
           name="keywords"
@@ -25,7 +25,7 @@ export default function ServicesPageAr() {
         />
         <meta
           property="og:title"
-          content="كوجك إكسكلوسيف كارس - ابحث عن سيارت أحلامك اجعلها ملكك !!"
+          content="كوجك إكسكلوسيف كارس - سيارات مرسيدس جديدة و مستعملة للبيع !!"
         />
         <meta property="og:description" content="" />
         <meta property="og:image" content="https://www.kojak-exclusive.com/assets/kojak-logo.svg" />
@@ -40,7 +40,7 @@ export default function ServicesPageAr() {
         "@type": "AutoDealer",
         "name": "كوجك إكسكلوسيف كارس",
         "url": "https://www.kojak-exclusive.com/ar/inventory",
-        "description": "نفخر بتقديم مجموعة واسعة من المنتجات التي تلبي مختلف التفضيلات والمتطلبات. سواء كنت متسوقًا عاديًا أو مجمعًا مخصصًا، هناك شيء للجميع هنا.",
+        "description": "نفخر بتقديم مجموعة واسعة من سيارات مرسيدس الجديدة والمستعملة التي تلبي مختلف التفضيلات والمتطلبات. سواء كنت متسوقًا عاديًا أو مجمعًا مخصصًا، هناك شيء للجميع هنا.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "معرض رقم 37 - قطعة رقم 4 العوير - سوق رأس الخور للسيارات دبي",
