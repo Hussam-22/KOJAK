@@ -26,7 +26,7 @@ export default function InquirySteps() {
         }
       >
         {steps.map((step, index) => (
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1} key={step.title}>
             <Typography sx={{ whiteSpace: 'nowrap' }}>
               {index + 1}- {step.title}
             </Typography>

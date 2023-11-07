@@ -125,11 +125,7 @@ export default function SparePartsListViewGridItem({
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.id} - {product.partNumber}
           </Typography>
-          <Link
-            component={RouterLink}
-            to={paths.website.sparePartDetails + product.docID}
-            sx={{ textDecoration: 'underline' }}
-          >
+          <Link component={RouterLink} to={product.docID} sx={{ textDecoration: 'underline' }}>
             <TextMaxLine line={1} color="primary">
               {product?.description}
             </TextMaxLine>

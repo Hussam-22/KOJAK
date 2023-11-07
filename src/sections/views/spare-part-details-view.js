@@ -1,13 +1,14 @@
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Link, Stack, Divider, Container, Typography, Breadcrumbs } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
 import { PAGE_VISIT } from 'src/config-global';
+import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import SideDrawer from 'src/components/drawer/side-drawer';
