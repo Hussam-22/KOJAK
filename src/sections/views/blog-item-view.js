@@ -8,18 +8,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { blogPosts } from 'src/_mock';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 // ----------------------------------------------------------------------
-export default function BlogItemView() {
-  const { postTitle } = useParams();
-  const { title, description, content } = blogPosts.find(
-    (post) => post.title.replaceAll(' ', '-') === postTitle
-  );
-
+export default function BlogItemView({ title, description, content }) {
   return (
     <>
       <Divider />
@@ -55,6 +49,11 @@ export default function BlogItemView() {
     </>
   );
 }
+BlogItemView.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  content: PropTypes.array,
+};
 
 function ContentMarkdown({ content, postTitle }) {
   const { title, text, imageURL } = content;

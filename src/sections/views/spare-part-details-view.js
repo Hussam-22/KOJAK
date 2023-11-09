@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -18,33 +19,11 @@ import CustomBreadcrumbs from 'src/components/custom-breadcrumbs/custom-breadcru
 import SparePartsDetailsInformation from 'src/sections/product/details/spare-parts-details-information';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
-function SparePartDetailsView() {
+function SparePartDetailsView({ partDetails, productDescription }) {
   const dispatch = useDispatch();
-  const { partDocID } = useParams();
-  const [partDetails, setPartDetails] = useState({});
-  const { fsGetPartDetails, fsUpdatePartStatistics } = useAuthContext();
   const { isDrawerOpen } = useSelector((state) => state.products);
 
   const onDrawerCloseHandler = () => dispatch(rdxToggleDrawer());
-
-  const productDescription =
-    (partDetails?.id &&
-      `${partDetails.description}, ${partDetails.category}, ` +
-        `applicable for Mercedes Class: ${partDetails.brandClass.join(', ')}, ` +
-        `and Mercedes Model: ${partDetails.brandModel.join(', ')}`) ||
-    '';
-
-  useEffect(() => {
-    (async () => {
-      setPartDetails(await fsGetPartDetails(partDocID));
-    })();
-  }, [fsGetPartDetails, partDocID]);
-
-  useEffect(() => {
-    (async () => {
-      if (partDetails.docID) await fsUpdatePartStatistics(partDetails.docID, PAGE_VISIT);
-    })();
-  }, [fsUpdatePartStatistics, partDetails]);
 
   return (
     <Box sx={{ py: 8, bgcolor: 'background.default' }}>
@@ -76,7 +55,7 @@ function SparePartDetailsView() {
                 }
                 sx={{ borderRadius: 1 }}
                 // ratio="1/1"
-                alt={`${productDescription} - www.kojak-spare-parts.com`}
+                alt={`${productDescription} - www.kojak-spareparts.com`}
               />
             </Box>
           </Grid>
@@ -100,4 +79,8 @@ function SparePartDetailsView() {
   );
 }
 export default SparePartDetailsView;
-// SparePartDetailsView.propTypes = { tables: PropTypes.array };
+
+SparePartDetailsView.propTypes = {
+  partDetails: PropTypes.object,
+  productDescription: PropTypes.string,
+};
