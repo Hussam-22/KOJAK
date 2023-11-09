@@ -36,17 +36,17 @@ export default function MainLayout({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    setCart((prevState) =>
-      prevState
-        ? [...prevState, { partNumber: '1122334455', qty: 22 }, { partNumber: '555555', qty: 4 }]
-        : [
-            { partNumber: '1122334455', qty: 22 },
-            { partNumber: '555555', qty: 4 },
-          ]
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   setCart((prevState) =>
+  //     prevState
+  //       ? [...prevState, { partNumber: '1122334455', qty: 22 }, { partNumber: '555555', qty: 4 }]
+  //       : [
+  //           { partNumber: '1122334455', qty: 22 },
+  //           { partNumber: '555555', qty: 4 },
+  //         ]
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const onBackDropClose = () => dispatch(stopLoading());
 
