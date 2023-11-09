@@ -206,7 +206,7 @@ function ModeIcon({ light }) {
       sx={{ width: iconSize, height: iconSize }}
       component={IconButton}
       onClick={toggleMode}
-      aria-label="switch-language"
+      aria-label="switch color mode"
     >
       {singleLogo}
     </Box>

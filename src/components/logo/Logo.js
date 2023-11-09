@@ -88,7 +88,7 @@ c74 102 137 186 140 186 4 0 49 -46 100 -102z"
       component={RouterLink}
       to="/"
       color="inherit"
-      aria-label="go to homepage"
+      aria-label="kojak spare parts"
       sx={{ lineHeight: 0, '&:hover': { textDecoration: 'unset' } }}
     >
       <Stack direction="row" spacing={1} alignItems="center">

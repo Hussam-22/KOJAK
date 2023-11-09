@@ -28,11 +28,23 @@ export default function MainLayout({ children }) {
   const pathname = usePathname();
   const actionPage = (arr) => arr.some((path) => pathname === path);
   const { isLoading } = useSelector((state) => state.siteStore);
-  const [cart, _] = useLocalStorage('cart');
+  const [cart, setCart] = useLocalStorage('cart');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(rdxLoadCartFromStorage(cart || []));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setCart((prevState) =>
+      prevState
+        ? [...prevState, { partNumber: '1122334455', qty: 22 }, { partNumber: '555555', qty: 4 }]
+        : [
+            { partNumber: '1122334455', qty: 22 },
+            { partNumber: '555555', qty: 4 },
+          ]
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
