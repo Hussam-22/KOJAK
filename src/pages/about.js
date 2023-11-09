@@ -6,16 +6,40 @@ export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>Kojak Group | About</title>
-        {/* <meta
+        <title>About Us - Kojak Spare Parts</title>
+        <meta
           name="description"
-          content="At Kojak we are more than just a property rental company – we are your partners in finding the perfect space that aligns with your lifestyle and business needs. Whether you are searching for your dream home or a strategic location for your business, Kojak offers a diverse portfolio of residential and commercial spaces tailored to cater to your unique requirements."
+          content="Learn more about Kojak Spare Parts, your trusted source for Genuine Mercedes Spare Parts. Discover our history, values, and commitment to quality."
         />
         <meta
           name="keywords"
-          content="kojak,building,kojak building,rent,sharjah,dubai,space,property"
+          content="About us, Kojak Spare Parts, Genuine Mercedes parts, Auto parts, Mercedes spare parts"
         />
-        <meta name="author" content="KOJAK GROUP" /> */}
+        <meta property="og:title" content="About Us - Kojak Spare Parts" />
+        <meta
+          property="og:description"
+          content="Learn more about Kojak Spare Parts, your trusted source for Genuine Mercedes Spare Parts. Discover our history, values, and commitment to quality."
+        />
+        <meta
+          property="og:image"
+          content="https://www.kojak-spareparts.com/assets/kojak-logo.svg"
+        />
+        <meta property="og:url" content="https://www.kojak-spareparts.com/about" />
+        <meta property="og:type" content="website" />
+
+        {/* Schema.org JSON-LD Markup */}
+        <script type="application/ld+json">
+          {`//<![CDATA[
+      {
+        "@context": "http://schema.org",
+        "@type": "WebPage",
+        "name": "About Us - Kojak Spare Parts",
+        "description": "Learn more about Kojak Spare Parts, your trusted source for Genuine Mercedes Spare Parts. Discover our history, values, and commitment to quality.",
+        "url": "https://www.kojak-spareparts.com/about",
+        "image": "https://www.kojak-spareparts.com/assets/kojak-logo.svg"
+      }
+    //]]>`}
+        </script>
       </Helmet>
 
       <AboutView />

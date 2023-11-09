@@ -20,7 +20,7 @@ import SparePartsViewFilters from '../product/filters/spare-parts-view-filters';
 
 // ----------------------------------------------------------------------
 
-const RECORDS_LIMIT = 24;
+const RECORDS_LIMIT = 25;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {

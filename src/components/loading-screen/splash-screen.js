@@ -35,8 +35,6 @@ export default function SplashScreen({ sx }) {
 
   const isLight = themeMode === 'light';
 
-  console.log(isLight);
-
   return (
     <>
       <ProgressBar />

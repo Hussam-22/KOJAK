@@ -57,7 +57,7 @@ function CartIconButton({ light }) {
   );
 
   return (
-    <Box component={IconButton} onClick={() => navigate(paths.website.cart)} aria-label="open-cart">
+    <Box component={IconButton} onClick={() => navigate(paths.website.cart)} aria-label="cart">
       <StyledBadge badgeContent={cartItemsQty} color="info">
         <Box sx={{ width: iconSize, height: iconSize }}>{cartIcon}</Box>
       </StyledBadge>

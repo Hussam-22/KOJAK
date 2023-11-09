@@ -106,7 +106,8 @@ export default function Header({ headerOnDark }) {
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
               {mdUp && (
-                <NavDesktop data={navConfig.filter((link) => link.title !== 'spareParts')} />
+                // <NavDesktop data={navConfig.filter((link) => link.title !== 'spareParts')} />
+                <NavDesktop data={navConfig} />
               )}
 
               {mdUp && (

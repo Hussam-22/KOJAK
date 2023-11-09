@@ -69,7 +69,11 @@ export default function AboutUs() {
 
         {mdUp && (
           <Box sx={{ position: 'absolute', top: 0, right: 0, zIndex: 0 }}>
-            <Image src="/assets/illustrations/engine.svg" height={mdUp ? 500 : 300} />
+            <Image
+              src="/assets/illustrations/engine.svg"
+              height={mdUp ? 500 : 300}
+              alt="engine vector drawing"
+            />
           </Box>
         )}
       </Container>
