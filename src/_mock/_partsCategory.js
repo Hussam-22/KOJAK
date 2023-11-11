@@ -1,6 +1,7 @@
 export const _partsCategory = [
   {
     category: 'Engine',
+    totalAvailable: 1092,
     icon: 'engine',
     description: "Parts related to the car's engine system.",
     subcategories: [
@@ -25,7 +26,6 @@ export const _partsCategory = [
       'Throttle Body',
       'EGR Valve',
       'PCV Valve',
-      // ---------- custom -------------
       'AIR CLEANER AND ENGINE CHARGING',
       'ENGINE',
       'ENGINE LUBRICATION',
@@ -36,6 +36,7 @@ export const _partsCategory = [
   },
   {
     category: 'Transmission',
+    totalAvailable: 1427,
     icon: 'transmission',
     description: "Parts related to the car's transmission system.",
     subcategories: [
@@ -50,7 +51,6 @@ export const _partsCategory = [
       'CV Joint',
       'Driveshaft',
       'Shift Solenoid',
-
       'AUTOMATIC TRANSMISSION',
       'MB AUTOMATIC TRANSMISSION',
       'MB PARTS',
@@ -59,6 +59,7 @@ export const _partsCategory = [
   },
   {
     category: 'Brakes',
+    totalAvailable: 856,
     icon: 'brakes',
     description: "Parts related to the car's braking system.",
     subcategories: [
@@ -71,13 +72,13 @@ export const _partsCategory = [
       'Brake Booster',
       'ABS Sensor',
       'Parking Brake Cable',
-
       'BRAKES',
       'SERVICE PARTS',
     ],
   },
   {
     category: 'Suspension',
+    totalAvailable: 1765,
     icon: 'suspension',
     description: "Parts related to the car's suspension system.",
     subcategories: [
@@ -91,13 +92,13 @@ export const _partsCategory = [
       'Wheel Bearings',
       'Stabilizer Bar',
       'Air Suspension Components',
-
       'SPRINGS,​SUSPENSION AND HYDRAULICS',
       'SUSPENSION',
     ],
   },
   {
     category: 'Electrical',
+    totalAvailable: 631,
     icon: 'electrical',
     description: "Parts related to the car's electrical system.",
     subcategories: [
@@ -117,7 +118,6 @@ export const _partsCategory = [
       'Turn Signal Switch',
       'Window Regulator/Motor',
       'Power Window Switch',
-
       'BATTERY',
       'ELEC',
       'ELECTRICAL EQUIPMENT AND INSTRUMENTS',
@@ -127,6 +127,7 @@ export const _partsCategory = [
   },
   {
     category: 'Cooling',
+    totalAvailable: 1199,
     icon: 'cooling',
     description: "Parts related to the car's cooling system.",
     subcategories: [
@@ -140,7 +141,6 @@ export const _partsCategory = [
       'Expansion Tank',
       'Heater Core',
       'Thermostat Housing',
-
       'COOLER',
       'COOLING/AUXILIARY HEATING',
       'ENGINE COOLING',
@@ -152,6 +152,7 @@ export const _partsCategory = [
   },
   {
     category: 'Exhaust',
+    totalAvailable: 1234,
     icon: 'exhaust',
     description: "Parts related to the car's exhaust system.",
     subcategories: [
@@ -162,7 +163,6 @@ export const _partsCategory = [
       'Oxygen Sensor',
       'Exhaust Gaskets',
       'EGR Valve',
-
       'CHASSIS SHEET METAL / AIR INTAKE',
       'EXHAUST SYSTEM',
       'INTAKE AND EXHAUST MANIFOLDS',
@@ -170,6 +170,7 @@ export const _partsCategory = [
   },
   {
     category: 'Filters',
+    totalAvailable: 695,
     icon: 'filters',
     description: "Various filters for the car's systems.",
     subcategories: [
@@ -179,7 +180,6 @@ export const _partsCategory = [
       'Cabin Air Filter',
       'Transmission Filter',
       'Oil Separator/Catch Can',
-
       'OIL  AND LUBRICANTS',
       'OIL AND ACCESSORIES',
       'PANELLING',
@@ -187,6 +187,7 @@ export const _partsCategory = [
   },
   {
     category: 'Interior',
+    totalAvailable: 1833,
     icon: 'interior',
     description: "Parts related to the car's interior.",
     subcategories: [
@@ -204,12 +205,12 @@ export const _partsCategory = [
       'Center Console',
       'Instrument Cluster',
       'Shift Knob',
-
       'INTERIOR',
     ],
   },
   {
     category: 'Exterior',
+    totalAvailable: 1022,
     icon: 'exterior',
     description: "Parts related to the car's exterior.",
     subcategories: [
@@ -229,7 +230,6 @@ export const _partsCategory = [
       'Fenders',
       'Hoods',
       'Trunk/Hatch',
-
       'BODY KIT',
       'COWL,​FRONT PANEL',
       'DOORS',
@@ -248,23 +248,9 @@ export const _partsCategory = [
       'WINDSHIELD WASHER,EMERGENCY EQUIPMT',
     ],
   },
-  // {
-  //   category: 'Air Conditioning',
-  //   icon: 'air-conditioning',
-  //   description: "Parts related to the car's air conditioning system.",
-  //   subcategories: [
-  //     'A/C Compressor',
-  //     'A/C Condenser',
-  //     'A/C Evaporator',
-  //     'A/C Expansion Valve',
-  //     'A/C Receiver Drier',
-  //     'A/C Blower Motor',
-  //     'A/C Control Module',
-  //     'A/C Pressure Switch',
-  //   ],
-  // },
   {
     category: 'Accessories',
+    totalAvailable: 789,
     icon: 'air-conditioning',
     description: "Parts related to the car's air conditioning system.",
     subcategories: [
@@ -276,6 +262,7 @@ export const _partsCategory = [
   },
   {
     category: 'Fuel System',
+    totalAvailable: 1610,
     icon: 'fuel',
     description: "Parts related to the car's fuel system.",
     subcategories: [
@@ -286,13 +273,13 @@ export const _partsCategory = [
       'Fuel Pressure Regulator',
       'Throttle Body',
       'Fuel Cap',
-
       'FUEL INJECTION',
       'FUEL SYSTEM',
     ],
   },
   {
     category: 'Steering',
+    totalAvailable: 675,
     icon: 'steering',
     description: "Parts related to the car's steering system.",
     subcategories: [
@@ -304,13 +291,13 @@ export const _partsCategory = [
       'Tie Rod End',
       'Pitman Arm',
       'Idler Arm',
-
       'FRONT AXLE',
       'STEERING',
     ],
   },
   {
     category: 'Wheels',
+    totalAvailable: 1488,
     icon: 'wheels',
     description: "Parts related to the car's wheels and tires.",
     subcategories: [
@@ -323,7 +310,6 @@ export const _partsCategory = [
       'Wheel Lug Nuts',
       'Wheel Locks',
       'Wheel Studs',
-
       'COVERING AND LINING',
       'REAR AXLE',
       'WHEELS',

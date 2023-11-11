@@ -261,6 +261,33 @@ export function AuthProvider({ children }) {
     [fsGetImgDownloadUrl]
   );
 
+  const fsGetArrayOfParts = useCallback(
+    async (partsArray) => {
+      const docRef = query(collectionGroup(DB, 'partsData'), where('partNumber', 'in', partsArray));
+
+      const querySnapshot = await getDocs(docRef);
+      const documents = [];
+
+      const asyncOperations = [];
+
+      querySnapshot.forEach((document) => {
+        const asyncOperation = async () => {
+          const imageUrl = await fsGetImgDownloadUrl(document.data().imageName);
+          documents.push({
+            partData: document.data(),
+            imageUrl,
+          });
+        };
+        asyncOperations.push(asyncOperation());
+      });
+
+      await Promise.all(asyncOperations);
+
+      return documents;
+    },
+    [fsGetImgDownloadUrl]
+  );
+
   // ------------------ | Get image Download URL | ------------------
   const fsGetFolderImages = useCallback(async (folderID) => {
     const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
@@ -285,6 +312,7 @@ export function AuthProvider({ children }) {
       fsGetProductsDocumentsCount,
       fsWriteBatchPartsData,
       fsGetCartParts,
+      fsGetArrayOfParts,
     }),
     [
       addNewForm,
@@ -296,6 +324,7 @@ export function AuthProvider({ children }) {
       fsGetProductsDocumentsCount,
       fsWriteBatchPartsData,
       fsGetCartParts,
+      fsGetArrayOfParts,
     ]
   );
 

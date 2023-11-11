@@ -81,7 +81,7 @@ function PartsCount() {
                     {/* <Image src={`/assets/images/icons/${option.icon}.svg`} width={82} height={82} /> */}
                     {option.category}
                     <Typography color="primary" variant="h6">
-                      {fNumber(randomNumber(100, 3595))}{' '}
+                      {option.totalAvailable}{' '}
                       <Box
                         component="span"
                         sx={{ typography: 'caption', color: 'secondary.light' }}

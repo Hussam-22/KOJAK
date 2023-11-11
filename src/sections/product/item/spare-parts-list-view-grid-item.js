@@ -114,10 +114,12 @@ export default function SparePartsListViewGridItem({
           )}
 
           <Box sx={{ p: imgUrl === undefined ? 4 : 0 }}>
-            <Image
-              src={imgUrl === undefined ? '/assets/illustrations/part-unavailable.svg' : imgUrl}
-              ratio="1/1"
-            />
+            <Link component={RouterLink} to={product.docID} sx={{ textDecoration: 'underline' }}>
+              <Image
+                src={imgUrl === undefined ? '/assets/illustrations/part-unavailable.svg' : imgUrl}
+                ratio="1/1"
+              />
+            </Link>
           </Box>
         </Box>
 
