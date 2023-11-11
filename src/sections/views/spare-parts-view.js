@@ -24,7 +24,7 @@ const RECORDS_LIMIT = 25;
 // ----------------------------------------------------------------------
 
 export default function SparePartsView() {
-  const mdUp = useResponsive('up', 'sm');
+  const mdUp = useResponsive('up', 'md');
   const mobileOpen = useBoolean();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
