@@ -32,14 +32,9 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   //   </Typography>
   // ));
 
-  const applicableModels = filteredClasses.map((item) => (
-    <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
-      <Box component="span" sx={{ color: 'info.main' }}>
-        {item.class}
-      </Box>{' '}
-      - {partDetails.brandModel.join(', ')}
-    </Typography>
-  ));
+  const applicableModels = filteredClasses.map(
+    (item) => `${item.class} - ${partDetails.brandModel.join(', ')}`
+  );
 
   return (
     partDetails?.id && (
@@ -62,10 +57,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
         <Divider sx={{ borderStyle: 'dashed', my: 2, borderColor: theme.palette.divider }} />
 
         <Stack direction="column" spacing={1} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
-          <Stack spacing={0}>
-            <Typography color="secondary">Applicable Model(s)</Typography>
-            {applicableModels}
-          </Stack>
+          <Block title="Applicable Model(s)" description={applicableModels} />
           <Block title="Category" description={partDetails.category} />
           <Block title="Part Group" description={partDetails.itemGroup} />
           <Block title="Part Number/OEM" description={partDetails.partNumber} />
@@ -85,7 +77,6 @@ SparePartsDetailsInformation.propTypes = {
 // ----------------------------------------------------------------------------
 
 function Block({ title, description }) {
-  const theme = useTheme();
   return (
     <Stack spacing={0}>
       <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -97,5 +88,5 @@ function Block({ title, description }) {
 }
 Block.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.any]),
 };
