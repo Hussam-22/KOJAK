@@ -1,5 +1,5 @@
 import { _mock } from 'src/_mock/_mock';
-import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 const history = [
   {
@@ -17,7 +17,7 @@ const history = [
     description:
       'The same year, Kojak Spare-Parts emerged as the embodiment of our commitment to quality and service, specializing exclusively in Mercedes-Benz spare parts. We quickly became a trusted name in the industry, catering to the ever-evolving needs of Mercedes-Benz enthusiasts.',
     coverUrl: '/assets/images/group/spare-parts.webp',
-    websiteLink: '#',
+    websiteLink: SPARE_PART_URL,
     buttonText: 'Search Spare-Parts',
   },
   {
