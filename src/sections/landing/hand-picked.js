@@ -52,7 +52,6 @@ function HandPicked() {
     <Box>
       <Container maxWidth="xl" sx={{ py: 8 }}>
         <Stack
-          component={MotionViewport}
           direction="column"
           alignItems="left"
           justifyContent={{ xs: 'left', md: 'space-between' }}
@@ -62,14 +61,10 @@ function HandPicked() {
             //   maxWidth: { md: '65%' },
           }}
         >
-          <m.div variants={varFade().inLeft}>
-            <Typography variant="overline" color="primary">
-              {translate('landing.glance.overline')}
-            </Typography>
-          </m.div>
-          <m.div variants={varFade().inRight}>
-            <Typography variant="h1">{translate('landing.glance.title')}</Typography>
-          </m.div>
+          <Typography variant="overline" color="primary">
+            {translate('landing.glance.overline')}
+          </Typography>
+          <Typography variant="h1">{translate('landing.glance.title')}</Typography>
         </Stack>
 
         <>

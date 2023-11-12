@@ -4,10 +4,11 @@ export const CONTACT_US_FORM = 'CONTACT-US';
 export const NEWSLETTER_FORM = 'NEWSLETTER';
 export const WHATSAPP_FORM = 'WHATSAPP';
 
-export const AUTO_URL = 'https://kojak-auto-maintenance.com/';
-export const SPARE_PART_URL = '#';
-export const EXCLUSIVE_URL = '#';
+export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
+export const SPARE_PART_URL = 'https://kojak-spareparts.com/';
+export const EXCLUSIVE_URL = 'https://kojak-exclusive.com/';
 export const BUILDING_URL = 'https://kojak-building.com/';
+export const GROUP_URL = 'https://kojakgroup.com/';
 
 export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';

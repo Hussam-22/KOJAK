@@ -12,7 +12,7 @@ export default function LandingView() {
       <LandingHero />
       <History />
       <InternationalBusiness />
-      <HandPicked />
+      {/* <HandPicked /> */}
       <VisitGroupsWebsite />
       <LatestPosts posts={blogPosts} />
     </>
