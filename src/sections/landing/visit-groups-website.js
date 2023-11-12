@@ -59,7 +59,7 @@ function VisitGroupsWebsite() {
         alignItems: 'left',
         justifyContent: 'space-between',
         textAlign: 'left',
-        bgcolor: 'background.default',
+        bgcolor: 'background.light',
       }}
     >
       <SvgColor src={`/assets/illustrations/${item.icon}.svg`} sx={{ width: 40, height: 40 }} />
@@ -89,7 +89,7 @@ function VisitGroupsWebsite() {
   );
 
   return (
-    <Box sx={{ bgcolor: 'background.light', py: 15, px: 1 }}>
+    <Box sx={{ bgcolor: 'background.default', py: 15, px: 1 }}>
       <Container maxWidth="xl">
         <Typography variant="overline" color="primary">
           {translate(`landing.visit.overline`)}
