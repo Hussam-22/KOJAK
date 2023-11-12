@@ -115,6 +115,7 @@ export default function Header({ headerOnDark }) {
                   <Button
                     variant="contained"
                     color="info"
+                    size="large"
                     onClick={() => navigate(paths.website.spareParts)}
                     startIcon={<Iconify icon="octicon:search-16" />}
                   >

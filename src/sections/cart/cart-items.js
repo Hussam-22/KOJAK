@@ -27,6 +27,7 @@ import SvgColor from 'src/components/svg-color/svg-color';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import getVariant from 'src/components/animate/variants/get-variant';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
+import DeleteConfirmationDialog from 'src/components/Dialog/deleteConfirmationDialog';
 import {
   rdxUpdateCart,
   rdxFormPayload,
@@ -43,6 +44,7 @@ function CartItems() {
   const { cart } = useSelector((state) => state.products);
   const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
+  const [open, setOpen] = useState(false);
 
   const openDrawerHandler = () => {
     const parts = cartItems.map((item) => item.partData.docID);
@@ -97,10 +99,13 @@ function CartItems() {
     });
   };
 
-  const removeAllItemsHandler = () => {
-    // CLEAR LOCAL-STORAGE AND CLOSE
-    dispatch(rdxLoadCartFromStorage([]));
-    setLocalStorageCart([]);
+  const removeAllItemsHandler = (action) => {
+    if (action) {
+      // CLEAR LOCAL-STORAGE AND CLOSE
+      dispatch(rdxLoadCartFromStorage([]));
+      setLocalStorageCart([]);
+      setOpen(false);
+    }
   };
 
   return (
@@ -167,8 +172,9 @@ function CartItems() {
             variant="contained"
             color="error"
             size="large"
-            startIcon={<Iconify icon="ant-design:dollar-twotone" width={24} height={24} />}
-            onClick={removeAllItemsHandler}
+            startIcon={<Iconify icon="pepicons-pencil:trash-circle" width={24} height={24} />}
+            // onClick={removeAllItemsHandler}
+            onClick={() => setOpen(true)}
           >
             Remove All
           </Button>
@@ -183,6 +189,12 @@ function CartItems() {
           </Button>
         </Stack>
       )}
+      <DeleteConfirmationDialog
+        open={open}
+        content="Are you sure you want to remove all parts from the cart ?"
+        handleClose={() => setOpen(false)}
+        action={(action) => removeAllItemsHandler(action)}
+      />
     </Box>
   );
 }

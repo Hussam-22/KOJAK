@@ -34,6 +34,14 @@ const BODY_KIT = [
 
 const ENGINE = ['A1760100400 47069KM B', 'A1780109400 B', 'A1770109102 B', 'A1330100000 B'];
 
+// title="Experience Peak Performance with Our Premium Mercedes-Benz Service Kits"
+//             description={`Elevate your driving experience and ensure your Mercedes-Benz operates at its best
+//     with our meticulously designed service kits. Crafted to meet the exacting standards of
+//     Mercedes-Benz engineering, our premium kits offer a seamless blend of precision and
+//     quality. Maintain your luxury car's top-tier performance, all while enjoying the peace
+//     of mind that comes with our specialized service solutions. Explore our range of
+//     service kits and give your Mercedes the care it deserves.`}
+
 function FeaturedParts() {
   return (
     <Box sx={{ py: 8 }}>
@@ -41,20 +49,19 @@ function FeaturedParts() {
         <Stack spacing={8} divider={<Divider />}>
           <FeaturedSection
             caption="Body Kit"
-            title="Experience Peak Performance with Our Premium Mercedes-Benz Service Kits"
-            description={`Elevate your driving experience and ensure your Mercedes-Benz operates at its best
-    with our meticulously designed service kits. Crafted to meet the exacting standards of
-    Mercedes-Benz engineering, our premium kits offer a seamless blend of precision and
-    quality. Maintain your luxury car's top-tier performance, all while enjoying the peace
-    of mind that comes with our specialized service solutions. Explore our range of
-    service kits and give your Mercedes the care it deserves.`}
+            title="Discover Unmatched Elegance: Genuine Mercedes Body Kits"
+            description={`At Kojak Spare Parts, we bring you an exclusive selection of genuine Mercedes body kits to redefine the look and feel of your vehicle. As a dedicated reseller of authentic parts, we ensure that each body kit is sourced directly from trusted manufacturers, guaranteeing quality, authenticity, and a perfect fit for your Mercedes model.
+            Choosing Kojak Spare Parts means embracing authenticity and reliability. Our commitment to providing genuine Mercedes body kits ensures that your vehicle not only achieves a distinctive look but also maintains its original integrity and performance.
+            Explore our range today and elevate your Mercedes with genuine, high-quality body kits that reflect your individuality and style.
+            `}
             partsArray={BODY_KIT}
           />
 
           <FeaturedSection
             caption="Engines"
-            title="Elevate Your Mercedes-Benz with Premium Body Kits and Engine Upgrades"
-            description="Discover a world of enhanced performance and style for your Mercedes-Benz with Kojak's meticulously curated selection of premium body kits and engine upgrades. Our products are sourced from reputable suppliers, ensuring both aesthetics and power are optimized. Transform your Mercedes-Benz with our body kits, offering a captivating blend of style and aerodynamics, while our engine upgrades adhere to Mercedes-Benz engineering standards to boost your vehicle's performance. Elevate your luxury car and redefine the road with Kojak. Experience the excellence your Mercedes-Benz deserves, available exclusively at Kojak."
+            title="Unleash Performance: Authentic Mercedes Engines at Kojak Spare Parts"
+            description="At Kojak Spare Parts, we present a premium selection of authentic Mercedes engines, tailored to rejuvenate and elevate the performance of your vehicle. As a dedicated reseller of genuine Mercedes parts, we bring you a comprehensive inventory of meticulously inspected and certified engines directly sourced from trusted manufacturers.
+            Experience the unparalleled quality and precision of Mercedes engines. Explore our range today and discover the perfect power source to elevate your driving experience to new heights."
             partsArray={ENGINE}
           />
         </Stack>
@@ -99,10 +106,15 @@ function FeaturedSection({ caption, title, description, partsArray }) {
             ratio="3/4"
             alt={getPartDescription(item.partData)}
           />
-          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            {item.partData.partNumber}
-          </Typography>
-          <Typography sx={{ alignSelf: 'center' }}>{getPartDescription(item.partData)}</Typography>
+          <Stack>
+            <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+              {item.partData.partNumber}
+            </Typography>
+            <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
+              {item.partData.brandClass[0]} - {item.partData.brandModel[0]}
+            </Typography>
+          </Stack>
+          <Typography variant="body2">{getPartDescription(item.partData)}</Typography>
         </Stack>
 
         <Link
@@ -124,10 +136,10 @@ function FeaturedSection({ caption, title, description, partsArray }) {
           <Typography variant="overline" color="primary">
             {caption}
           </Typography>
-          <Typography variant="h1">{title}</Typography>
+          <Typography variant="h2">{title}</Typography>
         </Box>
 
-        <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>{description}</Typography>
+        <Typography sx={{ whiteSpace: 'pre-line' }}>{description}</Typography>
       </Stack>
 
       {mdUp ? (
