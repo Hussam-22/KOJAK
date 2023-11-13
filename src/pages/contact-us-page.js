@@ -1,11 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 
-import { useLocaleText } from '@mui/x-date-pickers/internals';
-
+import { useLocales } from 'src/locales';
 import ContactUsView from 'src/sections/views/contact-us-view';
 
 export default function ContactUs() {
-  const { currentLang } = useLocaleText();
+  const { currentLang } = useLocales();
 
   const englishData = {
     title: 'Contact Us - Kojak Mercedes Auto Repair/Maintenance',
