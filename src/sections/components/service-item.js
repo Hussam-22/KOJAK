@@ -19,65 +19,70 @@ export default function ServiceItem({ service, major }) {
 
   return (
     <>
-      <Box
+      <Stack
+        direction={isMobile ? 'column' : 'row'}
         sx={{
           ...(major && {
             borderRadius: 2,
           }),
+          mx: { xs: 1, sm: 'unset' },
+          height: { xs: 280, sm: 1 },
         }}
       >
-        <Stack direction={isMobile ? 'column' : 'row'} sx={{ height: 1 }}>
-          <Stack
-            direction="column"
-            spacing={2}
-            sx={{
-              width: isMobile ? '100%' : '80%',
-              bgcolor: 'secondary.main',
-              p: 2,
-              borderRadius: '10px 0 0 10px',
-            }}
-          >
-            {isMobile && (
-              <Image
-                src={`/assets/images/service-icons/${icon}.svg`}
-                alt={serviceName}
-                width="25%"
-                sx={{ mb: 2, bgcolor: major && 'primary.main', borderRadius: major && 2 }}
-              />
-            )}
-            <Typography variant={major ? 'h4' : 'h6'} color="primary">
+        <Stack
+          direction="column"
+          spacing={2}
+          sx={{
+            p: 2,
+            width: isMobile ? '100%' : '80%',
+            bgcolor: 'secondary.main',
+            borderRadius: '10px 0 0 10px',
+            height: 1,
+            justifyContent: 'space-between',
+          }}
+        >
+          {isMobile && (
+            <Image
+              src={`/assets/images/service-icons/${icon}.svg`}
+              alt={serviceName}
+              width="25%"
+              sx={{ mb: 2, bgcolor: major && 'info.main', borderRadius: major && 2 }}
+            />
+          )}
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography variant={major ? 'h4' : 'h6'} sx={{ color: major ? 'info.main' : 'unset' }}>
               {translate(`services.items.${icon}.serviceName`)}
             </Typography>
             <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
               {translate(`services.items.${icon}.description`)}
             </Typography>
+          </Box>
 
-            {major && (
-              <Box>
-                <Button variant="outlined" color="inherit" onClick={() => setOpen(true)}>
-                  {translate(`common.showIncluded`)}
-                </Button>
-              </Box>
-            )}
-          </Stack>
-
-          {!isMobile && (
-            <Box
-              sx={{
-                width: '21%',
-                p: 2,
-                bgcolor: major ? 'primary.main' : theme.palette.grey[600],
-                borderRadius: '0 5px 5px 0',
-                backgroundImage: `url(/assets/images/service-icons/${icon}.svg)`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundOrigin: 'content-box',
-              }}
-            />
+          {major && (
+            <Box>
+              <Button variant="outlined" color="inherit" onClick={() => setOpen(true)}>
+                {translate(`common.showIncluded`)}
+              </Button>
+            </Box>
           )}
         </Stack>
-      </Box>
+
+        {!isMobile && (
+          <Box
+            sx={{
+              width: '21%',
+              p: 2,
+              bgcolor: major ? 'info.main' : theme.palette.grey[600],
+              borderRadius: '0 5px 5px 0',
+              backgroundImage: `url(/assets/images/service-icons/${icon}.svg)`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundOrigin: 'content-box',
+            }}
+          />
+        )}
+      </Stack>
       <ServiceDialog open={open} handleClose={handleClose} service={service} />
     </>
   );

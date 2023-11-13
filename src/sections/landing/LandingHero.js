@@ -12,9 +12,11 @@ import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
+import SvgColor from 'src/components/svg-color/svg-color';
 
 export default function KojakBuildingLandingHero() {
   const mdUp = useResponsive('up', 'md');
+  const { currentLang } = useLocales();
 
   return mdUp ? <RenderDesktopHero /> : <RenderMobileHero />;
 }
@@ -65,6 +67,7 @@ function RenderDesktopHero() {
               }}
               spacing={3}
             >
+              <SvgColor src="/assets/mercedes-logo.svg" sx={{ width: 175, height: 175 }} />
               <Typography
                 sx={{
                   textTransform: 'capitalize',
@@ -92,7 +95,7 @@ function RenderDesktopHero() {
                   variant="contained"
                   color="primary"
                   size="large"
-                  onClick={() => navigate(paths.website.bookAppointment)}
+                  onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
                 >
                   {translate('common.bookAppointment')}
                 </Button>
@@ -126,11 +129,10 @@ function RenderMobileHero() {
       }}
     >
       <Stack spacing={3} sx={{ p: 3, alignItems: 'center', textAlign: 'center', py: 11 }}>
-        {/* <Image
-          src="/assets/images/hero/hero-mobile.png"
-          alt="kojak-auto-maintenance-hero-img"
-          height="25dvh"
-        /> */}
+        <SvgColor
+          src="/assets/mercedes-logo.svg"
+          sx={{ width: { sm: 200, xs: 125 }, height: { sm: 200, xs: 125 } }}
+        />
         <Typography
           sx={{
             textTransform: 'capitalize',
@@ -159,7 +161,7 @@ function RenderMobileHero() {
             variant="contained"
             color="primary"
             size="large"
-            onClick={() => navigate(paths.website.bookAppointment)}
+            onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
           >
             {translate('common.bookAppointment')}
           </Button>

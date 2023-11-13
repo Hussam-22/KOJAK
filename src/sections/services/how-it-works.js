@@ -47,7 +47,7 @@ const COLORS = ['primary', 'info', 'error', 'warning', 'success'];
 export default function ServicesHowItWork() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Box>
       <Timeline position="right">
@@ -92,7 +92,7 @@ export default function ServicesHowItWork() {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={() => navigate(paths.website.bookAppointment)}
+                  onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
                   sx={{ mt: 2 }}
                 >
                   {translate(`common.bookAppointment`)}

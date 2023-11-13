@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -10,12 +10,12 @@ import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
 
-import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
-import { useLocales } from 'src/locales';
+import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
-import { useOffSetTop } from 'src/hooks/use-off-set-top';
+import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import TranslateIcon from 'src/components/logo/translate-icon';
 
 import { HEADER } from '../config-layout';
@@ -29,20 +29,24 @@ import { navConfig } from './config-navigation';
 
 export default function Header({ headerOnDark }) {
   const theme = useTheme();
-  const offset = useOffSetTop();
-  const [isLoading, setIsLoading] = useState(false);
-  const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
+  const offset = useOffSetTop();
+  const mdUp = useResponsive('up', 'md');
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
+  const [isLoading, setIsLoading] = useState(false);
+  const { pathname } = useLocation();
 
   const light = true;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
+
     setTimeout(() => {
       onChangeLang(currentLang.value === 'ar' ? 'en' : 'ar');
       setIsLoading(false);
+      if (currentLang.value === 'en') navigate(`/ar${pathname}`);
+      if (currentLang.value === 'ar') navigate(pathname.replace('/ar', ''));
     }, 500);
   };
   return (
@@ -90,17 +94,18 @@ export default function Header({ headerOnDark }) {
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-              {mdUp && <NavDesktop data={navConfig} />}
+              {mdUp && <NavDesktop data={navConfig(currentLang.value)} />}
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate(paths.website.bookAppointment)}
+                    onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
                   >
                     {translate('common.bookAppointment')}
                   </Button>
+
                   <Divider
                     orientation="vertical"
                     flexItem
@@ -113,7 +118,7 @@ export default function Header({ headerOnDark }) {
 
             {!mdUp && (
               <NavMobile
-                data={navConfig}
+                data={navConfig(currentLang.value)}
                 toggleLanguage={toggleLanguageHandler}
                 useLightIcon={light}
               />

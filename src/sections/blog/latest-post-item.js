@@ -5,8 +5,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image';
 import { fDate } from 'src/utils/format-time';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
@@ -17,6 +18,7 @@ import PostTimeBlock from './common/post-time-block';
 
 export default function LatestPostItem({ post, order, largePost }) {
   const theme = useTheme();
+  const { currentLang } = useLocales();
 
   return (
     <Stack
@@ -68,7 +70,7 @@ export default function LatestPostItem({ post, order, largePost }) {
 
         <Link
           component={RouterLink}
-          href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
+          href={paths(currentLang.value).website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
         >
           <TextMaxLine variant={largePost ? 'h3' : 'h6'}>{post.title}</TextMaxLine>

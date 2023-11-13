@@ -1,113 +1,111 @@
-import { Box, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import { useResponsive } from 'src/hooks/use-responsive';
-import { GROUP_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
+import SvgColor from 'src/components/svg-color';
+import {
+  AUTO_URL,
+  SITE_NAME,
+  GROUP_URL,
+  BUILDING_URL,
+  EXCLUSIVE_URL,
+  SPARE_PART_URL,
+} from 'src/config-global';
 
 const GROUPS = [
   {
     title: 'group',
     link: GROUP_URL,
     icon: 'mercedes-logo',
+    ariaLabel: 'Kojak Group Website',
   },
   {
-    title: 'sparePart',
-    link: SPARE_PART_URL,
-    icon: 'spare-parts-icon',
+    title: 'autoMaintenance',
+    link: AUTO_URL,
+    icon: 'auto-icon',
+    ariaLabel: 'Kojak Auto Maintenance Website',
   },
   {
     title: 'exclusive',
     link: EXCLUSIVE_URL,
     icon: 'exclusive-icon',
+    ariaLabel: 'Kojak K-Exclusive Website',
   },
   {
     title: 'building',
     link: BUILDING_URL,
     icon: 'building-icon',
+    ariaLabel: 'Kojak Building Website',
+  },
+  {
+    title: 'sparePart',
+    link: SPARE_PART_URL,
+    icon: 'spare-parts-icon',
+    ariaLabel: 'Kojak Spare-Parts Website',
   },
 ];
 
 function VisitGroupsWebsite() {
-  const theme = useTheme();
-  const mdUp = useResponsive('up', 'md');
   const { translate, currentLang } = useLocales();
 
-  const POSITION_VALUE = () => {
-    if (currentLang.value === 'ar' && mdUp) return '-140px';
-    if (currentLang.value === 'ar' && !mdUp) return '-120px';
-    return '175px';
-  };
-
   const renderGroupCard = (item, index) => (
-    <Box
+    <Stack
+      spacing={2}
       key={item.title}
       sx={{
         p: 3,
         borderRadius: 1,
-        display: 'flex',
+        minHeight: 200,
         alignItems: 'left',
         justifyContent: 'space-between',
         textAlign: 'left',
-        flexDirection: 'column',
-        minHeight: 200,
-        bgcolor: '#FFFFFF',
-        backgroundImage: `url(/assets/illustrations/${item.icon}.svg)`,
-        backgroundSize: 'contain',
-        backgroundPositionX: POSITION_VALUE(),
-        backgroundPositionY: '90px',
-        backgroundRepeat: 'no-repeat',
-        gap: 3,
-        position: 'relative',
-        overflow: 'visible',
+        bgcolor: 'background.paper',
       }}
     >
+      <SvgColor src={`/assets/illustrations/${item.icon}.svg`} sx={{ width: 40, height: 40 }} />
       <Box>
-        <Typography variant="overline" color="secondary">
-          {translate('common.brand')}
-        </Typography>
-        <Typography variant="h3" color="secondary">
+        <Typography variant="overline">{translate('common.brand')}</Typography>
+        <Typography variant="h3" sx={{ whiteSpace: 'nowrap' }}>
           {translate(`common.${item.title}`)}
         </Typography>
       </Box>
 
-      <Typography
-        color="secondary"
-        sx={{
-          width: '50%',
-        }}
-      >
-        {translate(`visit.cardText.${item.title}`)}
-      </Typography>
-
+      <Box>
+        <Typography variant="body2">{translate(`visit.cardText.${item.title}`)}</Typography>
+      </Box>
       <Box>
         <Button
           variant="contained"
-          color="secondary"
-          sx={{ mt: 1 }}
+          color="primary"
           href={item?.link}
           target="_blank"
           rel="noopener"
+          aria-label={item.ariaLabel}
         >
           {translate(`common.visitWebsite`)}
         </Button>
       </Box>
-    </Box>
+    </Stack>
   );
 
   return (
-    <Box>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+    <Box sx={{ bgcolor: 'background.primary', py: 15, px: 1 }}>
+      <Container maxWidth="xl">
+        <Typography variant="overline" color="primary">
+          {translate(`visit.overline`)}
+        </Typography>
         <Typography variant="h1">{translate(`visit.title`)}</Typography>
 
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gridTemplateColumns: { md: 'repeat(4,1fr)', sm: 'repeat(2,1fr)', xs: 'repeat(1,1fr)' },
             gap: 3,
             mt: 5,
           }}
         >
-          {GROUPS.map((item, index) => renderGroupCard(item, index))}
+          {GROUPS.filter((website) => website.title !== SITE_NAME).map((item, index) =>
+            renderGroupCard(item, index)
+          )}
         </Box>
       </Container>
     </Box>

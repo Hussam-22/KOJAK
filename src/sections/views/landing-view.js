@@ -17,7 +17,6 @@ export default function LandingView() {
       <LandingAbout />
       <LandingTestimonial />
       <FAQs />
-      {/* <GroupAd /> */}
       <VisitGroupsWebsite />
       <LatestPosts posts={blogPosts.slice(0, 6)} />
     </>

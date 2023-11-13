@@ -84,7 +84,7 @@ export default function JoinNewsletter() {
           <Box>
             <Image
               src="/assets/illustrations/mail.svg"
-              width={!mdUp ? '40%' : '30%'}
+              width={!mdUp ? '20%' : '30%'}
               alt="newsletter-illustration"
             />
           </Box>

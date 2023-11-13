@@ -24,7 +24,7 @@ import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 export default function Offers() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const { addOffer, getOffers } = useAuthContext();
   const [offers, setOffers] = useState([]);
 
@@ -86,7 +86,7 @@ export default function Offers() {
               variant="outlined"
               color="primary"
               size="large"
-              onClick={() => navigate(paths.website.bookAppointment)}
+              onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
               // onClick={() => addOffer()}
             >
               {translate('common.bookAppointment')}

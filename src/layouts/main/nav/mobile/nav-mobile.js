@@ -78,7 +78,7 @@ export default function NavMobile({ data, toggleLanguage }) {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(paths.website.bookAppointment)}
+              onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
             >
               {translate('common.bookAppointment')}
             </Button>

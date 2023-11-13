@@ -14,20 +14,26 @@ export const _websiteRouts = [
   {
     path: '/',
     children: [
-      { element: <KojakBuildingLandingPage />, index: true },
       { path: 'services', element: <ServicesPage /> },
-      // { path: 'properties/:propertyID', element: <PropertyDetailsPage /> },
       { path: 'about', element: <KojakBuildingAboutPage /> },
       { path: 'contact-us', element: <ContactUsPage /> },
       { path: 'blog-posts', element: <BlogPostsPage /> },
       { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
       { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
       { path: 'book-appointment', element: <BookAppointmentPage /> },
-      // { path: 'job', element: <JobPage /> },
-      // { path: 'posts', element: <BlogPage /> },
-      // { path: 'post', element: <PostPage /> },
-      // { path: 'about', element: <AboutPage /> },
-      // { path: 'contact', element: <ContactPage /> },
+    ],
+  },
+  {
+    path: '/ar',
+    children: [
+      { element: <KojakBuildingLandingPage />, index: true },
+      { path: '/ar/services', element: <ServicesPage /> },
+      { path: '/ar/about', element: <KojakBuildingAboutPage /> },
+      { path: '/ar/contact-us', element: <ContactUsPage /> },
+      { path: '/ar/blog-posts', element: <BlogPostsPage /> },
+      { path: '/ar/blog-posts/:postTitle', element: <BlogItemPage /> },
+      { path: '/ar/blog-posts/:postTitle', element: <BlogItemPage /> },
+      { path: '/ar/book-appointment', element: <BookAppointmentPage /> },
     ],
   },
 ];

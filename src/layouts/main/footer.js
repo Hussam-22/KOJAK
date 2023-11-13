@@ -39,7 +39,7 @@ const GROUPS = [
 
 export default function Footer() {
   const mUItheme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   return (
     <footer>
@@ -90,7 +90,7 @@ export default function Footer() {
                 {translate('footer.sitemap')}
               </Typography>
               <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
-                {navConfig.map((list) => (
+                {navConfig(currentLang.value).map((list) => (
                   <Typography key={list.title} variant="body2">
                     <Link
                       component={RouterLink}

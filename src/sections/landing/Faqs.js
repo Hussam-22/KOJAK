@@ -25,7 +25,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 export default function FAQs() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const mdUp = useResponsive('up', 'md');
 
@@ -98,7 +98,7 @@ export default function FAQs() {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => navigate(paths.website.bookAppointment)}
+                        onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
                       >
                         {translate(`faq.${index + 1}.buttonText`)}
                       </Button>
