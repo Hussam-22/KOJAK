@@ -10,7 +10,7 @@ import CareerListCard from 'src/sections/career/list/career-list-card';
 function CareerListView() {
   const { addNewCareerPost, getCareersList } = useAuthContext();
   const [careersList, setCareersList] = useState(null);
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const addNewJobHandler = async () => addNewCareerPost();
 

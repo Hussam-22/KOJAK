@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { varFade } from 'src/components/animate';
 import { RouterLink } from 'src/routes/components';
@@ -22,12 +22,12 @@ import PostItemMobile from './common/post-item-mobile';
 export default function LatestPosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   const viewAllBtn = (
     <Button
       component={RouterLink}
-      href={paths.website.blogPosts}
+      href={paths(currentLang.value).website.blogPosts}
       color="inherit"
       endIcon={
         <Iconify

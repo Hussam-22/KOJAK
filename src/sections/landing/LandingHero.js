@@ -16,7 +16,7 @@ const LandingHero = () => {
   const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
   const handleContactUsClick = () => {
-    navigate(paths.website.contactUs);
+    navigate(paths(currentLang.value).website.contactUs);
   };
 
   return (

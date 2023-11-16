@@ -54,7 +54,7 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AboutUs() {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   return (
     <Box sx={{ bgcolor: 'primary.lighter' }}>

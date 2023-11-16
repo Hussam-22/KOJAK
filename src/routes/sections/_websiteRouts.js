@@ -14,6 +14,17 @@ export const _websiteRouts = [
   {
     path: '/',
     children: [
+      { path: 'career', element: <CareerPage /> },
+      { path: 'career/:jobID', element: <CareerItemPage /> },
+      { path: 'about', element: <KojakBuildingAboutPage /> },
+      { path: 'contact-us', element: <ContactUsPage /> },
+      { path: 'blog-posts', element: <BlogPostsPage /> },
+      { path: 'blog-posts/:postTitle', element: <BlogItemPage /> },
+    ],
+  },
+  {
+    path: '/ar',
+    children: [
       { element: <KojakBuildingLandingPage />, index: true },
       { path: 'career', element: <CareerPage /> },
       { path: 'career/:jobID', element: <CareerItemPage /> },

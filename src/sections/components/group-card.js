@@ -10,7 +10,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 function GroupCard({ title, description, img, imgMobile, small, index }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Card
       sx={{

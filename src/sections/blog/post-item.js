@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
+import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
 import { fDate } from 'src/utils/format-time';
@@ -15,6 +16,7 @@ import PostTimeBlock from './common/post-time-block';
 // ----------------------------------------------------------------------
 
 export default function PostItem({ post, index }) {
+  const { currentLang } = useLocales();
   // const noImage = index === 1 || index === 4;
   const noImage = false;
   const theme = useTheme();
@@ -53,7 +55,7 @@ export default function PostItem({ post, index }) {
 
         <Link
           component={RouterLink}
-          href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
+          href={paths(currentLang.value).website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
           variant="h5"
           sx={{

@@ -68,7 +68,7 @@ export default function LatestPostItem({ post, order, largePost }) {
 
         <Link
           component={RouterLink}
-          href={paths.website.blogItem + post.title.replaceAll(' ', '-')}
+          href={paths(currentLang.value).website.blogItem + post.title.replaceAll(' ', '-')}
           color="inherit"
         >
           <TextMaxLine variant={largePost ? 'h3' : 'h6'}>{post.title}</TextMaxLine>

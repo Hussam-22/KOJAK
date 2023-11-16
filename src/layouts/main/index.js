@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 
 import { usePathname } from 'src/routes/hooks';
-import ModernHeader from 'src/layouts/main/modern-header';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
 import { SplashScreen } from 'src/components/loading-screen';
 
@@ -15,7 +14,7 @@ import Header from './header';
 
 // ----------------------------------------------------------------------
 
-const pathsOnDark = ['/'];
+const pathsOnDark = ['/', '/ar/'];
 
 const spacingLayout = [...pathsOnDark];
 

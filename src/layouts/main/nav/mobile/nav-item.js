@@ -13,7 +13,7 @@ import { StyledNavItem } from './styles';
 // ----------------------------------------------------------------------
 
 export default function NavItem({ item, open, active, externalLink, ...other }) {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const renderContent = (
     <StyledNavItem active={active} {...other}>
       <ListItemIcon> {item.icon} </ListItemIcon>

@@ -10,7 +10,7 @@ import PostsMasonry from '../blog/posts-masonry';
 // ----------------------------------------------------------------------
 
 export default function BlogPostsView() {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
       <Container

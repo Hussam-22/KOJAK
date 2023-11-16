@@ -9,7 +9,7 @@ import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function Vision() {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   return (
     <Box

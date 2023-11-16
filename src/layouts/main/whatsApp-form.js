@@ -17,7 +17,7 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function WhatsAppForm() {
   const mdUp = useResponsive('up', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const { addNewForm } = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
   const [hide, setHide] = useState(false);

@@ -11,7 +11,7 @@ export default function ServiceItem({ service }) {
   const { icon } = service;
   const theme = useTheme();
   const isMobile = useResponsive('down', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   return (
     <Stack

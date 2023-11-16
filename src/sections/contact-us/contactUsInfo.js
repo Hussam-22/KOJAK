@@ -9,7 +9,7 @@ import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const theme = useTheme();
   return (
     <Stack

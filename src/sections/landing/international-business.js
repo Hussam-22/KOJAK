@@ -10,7 +10,7 @@ import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
 function InternationalBusiness() {
   const theme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   return (
     <Box
