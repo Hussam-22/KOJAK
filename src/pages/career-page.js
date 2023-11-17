@@ -8,30 +8,31 @@ function CareerPage() {
 
   const englishData = {
     title:
-      'Kojak: Your Trusted Destination for Mercedes Auto Repair, Maintenance, Parts, Sales, and Property Solutions in Sharjah, UAE',
+      'Kojak: Your Trusted Destination for Mercedes Auto Repair/Maintenance,Mercedes Spare Parts, Mercedes Sales, UAE | Careers',
     description:
-      'Discover excellence at Kojak in Sharjah, UAE, your premier destination for comprehensive Mercedes services. From expert auto repair and maintenance to genuine Mercedes spare parts, we are your one-stop solution. Explore our extensive collection of Mercedes vehicles for sale and take advantage of our flexible leasing and renting options for both commercial and residential spaces. Trust in Kojak for unparalleled quality and service, making us the preferred choice for all your automotive and property needs in the United Arab Emirates',
+      'Discover excellence at Kojak UAE, your premier destination for comprehensive Mercedes services. From expert auto repair and maintenance to genuine Mercedes spare parts, we are your one-stop solution. Explore our extensive collection of Mercedes vehicles for sale and take advantage of our flexible leasing and renting options for both commercial and residential spaces. Trust in Kojak for unparalleled quality and service, making us the preferred choice for all your automotive and property needs in the United Arab Emirates',
     keywords:
-      'Mercedes Auto Repair, Maintenance, Genuine Parts, Vehicle Sales, Leasing, Renting, Commercial & Residential Spaces by Kojak in Sharjah, UAE',
+      'Mercedes Auto Repair, Maintenance, Genuine Spare Parts, Vehicle Sales, Leasing, Renting, Commercial & Residential Spaces by Kojak UAE',
     ogTitle:
-      'Kojak: Your Trusted Destination for Mercedes Auto Repair, Maintenance, Parts, Sales, and Property Solutions in Sharjah, UAE',
+      'Kojak: Your Trusted Destination for Mercedes Auto Repair/Maintenance,Mercedes Spare Parts, Mercedes Sales, UAE | Careers',
     ogDescription:
-      'Discover excellence at Kojak in Sharjah, UAE, your premier destination for comprehensive Mercedes services. From expert auto repair and maintenance to genuine Mercedes spare parts, we are your one-stop solution. Explore our extensive collection of Mercedes vehicles for sale and take advantage of our flexible leasing and renting options for both commercial and residential spaces. Trust in Kojak for unparalleled quality and service, making us the preferred choice for all your automotive and property needs in the United Arab Emirates',
-    ogImage: 'https://kojakgroup.com/assets/kojak-logo.svg', // Replace with your image URL
-    ogUrl: 'https://kojakgroup.com/', // Replace with your website URL
+      'Discover excellence at Kojak UAE, your premier destination for comprehensive Mercedes services. From expert auto repair and maintenance to genuine Mercedes spare parts, we are your one-stop solution. Explore our extensive collection of Mercedes vehicles for sale and take advantage of our flexible leasing and renting options for both commercial and residential spaces. Trust in Kojak for unparalleled quality and service, making us the preferred choice for all your automotive and property needs in the United Arab Emirates',
+    ogImage: 'https://kojakgroup.com/assets/kojak-logo.svg',
+    ogUrl: 'https://kojakgroup.com/',
   };
 
   const arabicData = {
-    title: 'خبراء إصلاح وصيانة مرسيدس في الشارقة، الإمارات: خدمة من الدرجة الأولى وقطع غيار أصلية',
+    title:
+      'كوجاك: وجهتك الموثوقة لتصليح سيارات مرسيدس / الصيانة وقطع غيار مرسيدس الأصلية وبيع سيارات مرسيدس الإمارات العربية المتحدة | تعرف أكثر',
     description:
-      'استمتع بالفرق مع خدمات إصلاح وصيانة مرسيدس الخاصة بنا في الشارقة، الإمارات: ثق في فنيينا المهرة، وقطع الغيار الأصلية، والتزامنا الراسخ برضا العملاء.',
+      'اكتشف التميز في كوجاك بالشارقة، الإمارات العربية المتحدة، وجهتك الأولى للحصول على خدمات مرسيدس الشاملة. من إصلاح وصيانة السيارات الخبراء إلى قطع غيار مرسيدس الأصلية، نحن الحل الشامل لك. استكشف مجموعتنا الواسعة من سيارات مرسيدس للبيع واستفد من خيارات التأجير المرنة الخاصة بنا للمساحات التجارية والسكنية. ثق في كوجاك للحصول على جودة وخدمة لا مثيل لها، مما يجعلنا الخيار الأفضل لجميع احتياجاتك الخاصة بالسيارات والعقارات في الإمارات العربية المتحدة.',
     keywords:
-      'إصلاح مرسيدس الشارقة، صيانة مرسيدس الشارقة، مركز خدمة مرسيدس الشارقة، قطع غيار مرسيدس الأصلية الشارقة، إصلاح مرسيدس بالقرب مني، صيانة مرسيدس بالقرب مني، مركز خدمة مرسيدس بالقرب مني',
+      'إصلاح سيارات مرسيدس، صيانة، قطع غيار أصلية، مبيعات السيارات، تأجير، إيجار، فضاءات تجارية وسكنية بواسطة كوجاك الإمارات العربية المتحدة',
     ogTitle:
-      'خبراء إصلاح وصيانة مرسيدس في الشارقة، الإمارات: خدمة من الدرجة الأولى وقطع غيار أصلية',
+      'كوجاك: وجهتك الموثوقة لتصليح سيارات مرسيدس / الصيانة وقطع غيار مرسيدس الأصلية وبيع سيارات مرسيدس الإمارات العربية المتحدة | تعرف أكثر',
     ogDescription:
-      'استمتع بالفرق مع خدمات إصلاح وصيانة مرسيدس الخاصة بنا في الشارقة، الإمارات: ثق في فنيينا المهرة، وقطع الغيار الأصلية، والتزامنا الراسخ برضا العملاء.',
-    ogImage: 'https://kojakgroup.com/assets/kojak-logo.svg', // Replace with your Arabic image URL
+      'اكتشف التميز في كوجاك بالشارقة، الإمارات العربية المتحدة، وجهتك الأولى للحصول على خدمات مرسيدس الشاملة. من إصلاح وصيانة السيارات الخبراء إلى قطع غيار مرسيدس الأصلية، نحن الحل الشامل لك. استكشف مجموعتنا الواسعة من سيارات مرسيدس للبيع واستفد من خيارات التأجير المرنة الخاصة بنا للمساحات التجارية والسكنية. ثق في كوجاك للحصول على جودة وخدمة لا مثيل لها، مما يجعلنا الخيار الأفضل لجميع احتياجاتك الخاصة بالسيارات والعقارات في الإمارات العربية المتحدة.',
+    ogImage: 'https://kojakgroup.com/assets/kojak-logo-arabic.svg', // Replace with your Arabic image URL
     ogUrl: 'https://kojakgroup.com/ar', // Replace with your Arabic website URL
   };
 

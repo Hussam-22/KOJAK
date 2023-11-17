@@ -100,7 +100,9 @@ export default function Header({ headerOnDark }) {
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-              {mdUp && <NavDesktop data={NavConfig()} />}
+              {mdUp && (
+                <NavDesktop data={NavConfig().filter((path) => path.title !== 'contactUs')} />
+              )}
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
@@ -123,7 +125,7 @@ export default function Header({ headerOnDark }) {
 
             {!mdUp && (
               <NavMobile
-                data={NavConfig()}
+                data={NavConfig().filter((path) => path.title !== 'contactUs')}
                 toggleLanguage={toggleLanguageHandler}
                 useLightIcon={light}
               />
