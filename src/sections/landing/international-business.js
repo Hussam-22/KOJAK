@@ -31,7 +31,11 @@ function InternationalBusiness() {
               alignContent: 'center',
             }}
           >
-            <Image src="/assets/illustrations/illustration_map.svg" />
+            <Image
+              src="/assets/illustrations/illustration_map.svg"
+              alt="globe vector"
+              sx={{ width: { xs: 250, sm: 500 }, height: { xs: 200, sm: 400 } }}
+            />
           </Grid>
 
           <Grid md={8} xs={12} sx={{ p: 3 }}>

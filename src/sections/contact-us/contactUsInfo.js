@@ -12,24 +12,20 @@ export default function ContactUsInfo({ light, small }) {
   const { translate, currentLang } = useLocales();
   const theme = useTheme();
   return (
-    <Stack
-      spacing={small ? 2.5 : 5}
-      alignItems="flex-start"
-      sx={{ color: light ? 'common.white' : 'unset' }}
-    >
+    <Stack spacing={3} sx={{ color: light ? 'common.white' : 'unset' }}>
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
 
         <Stack
-          direction={small ? 'row' : 'column'}
           spacing={1}
-          alignItems={small ? 'center' : 'unset'}
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={{ xs: 'unset', md: 'center' }}
         >
           <Link color="inherit" href="mailto:queries@kojak-group.com">
             queries@kojak-group.com
           </Link>
           <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For General Inquires)
+            (General Inquires)
           </Typography>
         </Stack>
       </Stack>
@@ -38,15 +34,15 @@ export default function ContactUsInfo({ light, small }) {
         <Iconify icon="carbon:email" width={24} />
 
         <Stack
-          direction={small ? 'row' : 'column'}
           spacing={1}
-          alignItems={small ? 'center' : 'unset'}
+          direction={{ xs: 'column', md: 'row' }}
+          alignItems={{ xs: 'unset', md: 'center' }}
         >
           <Link color="inherit" href="mailto: customercare@kojak-group.com">
             customercare@kojak-group.com
           </Link>
           <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For Complaints)
+            (Complaints)
           </Typography>
         </Stack>
       </Stack>
@@ -56,7 +52,7 @@ export default function ContactUsInfo({ light, small }) {
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography>06-5334312</Typography>
           <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For General Inquires)
+            (General Inquires)
           </Typography>
         </Stack>
       </Stack>
@@ -66,7 +62,7 @@ export default function ContactUsInfo({ light, small }) {
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
           <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For Complaints)
+            (Complaints)
           </Typography>
         </Stack>
       </Stack>

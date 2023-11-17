@@ -13,6 +13,6 @@ export default function NavConfig() {
     { title: 'about', path: paths(lang).website.about },
     { title: 'career', path: paths(lang).website.career },
     { title: 'blog', path: paths(lang).website.blogPosts },
-    // { title: 'contactUs', path: paths(lang).website.contactUs },
+    { title: 'contactUs', path: paths(lang).website.contactUs },
   ];
 }
