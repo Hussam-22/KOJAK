@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 
 import { Box, Link, Card, Stack, Divider, Typography } from '@mui/material';
 
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
 
 function CareerListCard({ jobDetails }) {
+  const { currentLang } = useLocales();
   const { id, jobID, jobTitle, department, location, jobType, experienceYears, salary, createdAt } =
     jobDetails;
   return (
