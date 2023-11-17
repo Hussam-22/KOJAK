@@ -123,7 +123,7 @@ export default function Header({ headerOnDark }) {
 
             {!mdUp && (
               <NavMobile
-                data={NavConfig}
+                data={NavConfig()}
                 toggleLanguage={toggleLanguageHandler}
                 useLightIcon={light}
               />
