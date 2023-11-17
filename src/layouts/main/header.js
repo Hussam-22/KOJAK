@@ -15,16 +15,16 @@ import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
-import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import TranslateIcon from 'src/components/logo/translate-icon';
+import NavDesktop from 'src/layouts/main/nav/desktop/nav-desktop';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
 
 import NavMobile from './nav/mobile';
-import NavDesktop from './nav/desktop';
-import { navConfig } from './config-navigation';
+import NavConfig from './config-navigation';
 
 // ----------------------------------------------------------------------
 
@@ -38,16 +38,20 @@ export default function Header({ headerOnDark }) {
   const { translate } = useLocales();
   const pathName = usePathname();
 
-  const useDarkLogo = pathName !== '/';
+  const useDarkLogo = pathName !== '/' && pathName !== '/ar/';
   const light = !useDarkLogo && !offset;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
+
     setTimeout(() => {
       onChangeLang(currentLang.value === 'ar' ? 'en' : 'ar');
       setIsLoading(false);
+      if (currentLang.value === 'en') navigate(`/ar${pathName}`);
+      if (currentLang.value === 'ar') navigate(pathName.replace('/ar', ''));
     }, 500);
   };
+
   return (
     <>
       {isLoading && (
@@ -96,14 +100,16 @@ export default function Header({ headerOnDark }) {
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-              {mdUp && <NavDesktop data={navConfig} />}
+              {mdUp && (
+                <NavDesktop data={NavConfig().filter((path) => path.title !== 'contactUs')} />
+              )}
 
               {mdUp && (
                 <Stack direction="row" spacing={1}>
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => navigate(paths.website.contactUs)}
+                    onClick={() => navigate(paths(currentLang.value).website.contactUs)}
                   >
                     {translate('header.contactUs')}
                   </Button>
@@ -119,7 +125,7 @@ export default function Header({ headerOnDark }) {
 
             {!mdUp && (
               <NavMobile
-                data={navConfig}
+                data={NavConfig().filter((path) => path.title !== 'contactUs')}
                 toggleLanguage={toggleLanguageHandler}
                 useLightIcon={light}
               />

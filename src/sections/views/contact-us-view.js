@@ -12,7 +12,7 @@ import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 export default function ContactUsView() {
   const theme = useTheme();
   const isMdUp = useResponsive('up', 'md');
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
 
   return (
     <Box

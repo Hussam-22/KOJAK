@@ -7,7 +7,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { paths } from 'src/routes/paths';
+import SvgColor from 'src/components/svg-color';
 import { useResponsive } from 'src/hooks/use-responsive';
 import getVariant from 'src/components/animate/variants/get-variant';
 
@@ -16,7 +18,7 @@ const LandingHero = () => {
   const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
   const handleContactUsClick = () => {
-    navigate(paths.website.contactUs);
+    navigate(paths(currentLang.value).website.contactUs);
   };
 
   return (
@@ -55,6 +57,13 @@ const LandingHero = () => {
               gap: 3,
             }}
           >
+            <Box component={m.div} {...getVariant('fadeInRight')}>
+              <SvgColor
+                src="/assets/mercedes-logo.svg"
+                sx={{ width: { sm: 175, xs: 75 }, height: { sm: 175, xs: 75 }, bgcolor: '#FFF' }}
+                alt="mercedes-logo"
+              />
+            </Box>
             <Box component={m.div} {...getVariant('fadeInUp')}>
               <Typography variant="overline" color="primary">
                 {translate('landing.hero.heroText')}

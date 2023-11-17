@@ -15,7 +15,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 export default function LandingTestimonial() {
   const theme = useTheme();
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ export default function LandingTestimonial() {
               color="primary"
               size="large"
               sx={{ mt: 2 }}
-              onClick={() => navigate(paths.website.bookAppointment)}
+              onClick={() => navigate(paths(currentLang.value).website.bookAppointment)}
             >
               {translate('common.bookAppointment')}
             </Button>
@@ -85,7 +85,7 @@ export default function LandingTestimonial() {
                 color="primary"
                 size="large"
                 sx={{ mt: 4 }}
-                // onClick={() => navigate(paths.website.properties)}
+                // onClick={() => navigate(paths(currentLang.value).website.properties)}
               >
                 {translate('common.exploreProperties')}
               </Button>

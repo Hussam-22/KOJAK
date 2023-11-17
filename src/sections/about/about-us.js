@@ -54,7 +54,7 @@ const StyledOverlay = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AboutUs() {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
   return (
     <Box sx={{ bgcolor: 'primary.lighter' }}>
@@ -83,8 +83,12 @@ export default function AboutUs() {
           </Grid>
 
           <Grid md={4} xs={12}>
-            <Box sx={{ p: 10 }}>
-              <Image src="/assets/mercedes-logo.svg" />
+            <Box sx={{ textAlign: 'center' }}>
+              <Image
+                src="/assets/mercedes-logo.svg"
+                alt="mercedes-logo"
+                sx={{ width: 175, height: 175 }}
+              />
             </Box>
           </Grid>
         </Grid>

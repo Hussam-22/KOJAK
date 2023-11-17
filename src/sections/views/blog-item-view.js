@@ -9,12 +9,14 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { blogPosts } from 'src/_mock';
+import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image/Image';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 // ----------------------------------------------------------------------
 export default function BlogItemView() {
+  const { currentLang } = useLocales();
   const { postTitle } = useParams();
   const { title, description, content } = blogPosts.find(
     (post) => post.title.replaceAll(' ', '-') === postTitle
@@ -30,7 +32,7 @@ export default function BlogItemView() {
             <CustomBreadcrumbs
               links={[
                 { name: 'Home', href: '/' },
-                { name: 'Blog', href: paths.website.blogPosts },
+                { name: 'Blog', href: paths(currentLang.value).website.blogPosts },
                 { name: title },
               ]}
               sx={{ my: 5 }}

@@ -12,7 +12,7 @@ import { StyledNavItem } from './styles';
 
 export const NavItem = forwardRef(
   ({ item, open, active, subItem, externalLink, ...other }, ref) => {
-    const { translate } = useLocales();
+    const { translate, currentLang } = useLocales();
     const renderContent = (
       <StyledNavItem
         ref={ref}

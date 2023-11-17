@@ -75,7 +75,7 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon }) {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(paths.website.contactUs)}
+              onClick={() => navigate(paths(currentLang.value).website.contactUs)}
             >
               {translate('header.contactUs')}
             </Button>

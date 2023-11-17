@@ -21,7 +21,7 @@ const CORE_VALUES = [
 // ----------------------------------------------------------------------
 
 export default function CoreValues() {
-  const { translate } = useLocales();
+  const { translate, currentLang } = useLocales();
   const theme = useTheme();
   return (
     <Box
