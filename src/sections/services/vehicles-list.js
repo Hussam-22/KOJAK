@@ -67,7 +67,9 @@ function VehiclesList() {
                   sx={{ borderRadius: 3 }}
                 />
               ))
-            : vehiclesList.map((vehicle) => <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />)}
+            : vehiclesList.map((vehicle) => (
+                <VehicleCard vehicleInfo={vehicle} key={vehicle.data.id} />
+              ))}
         </Box>
       </Container>
     </Box>

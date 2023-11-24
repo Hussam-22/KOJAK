@@ -11,16 +11,16 @@ import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 function FeaturesBar({ vehicleInfo }) {
   const { translate, currentLang } = useLocales();
   const navigate = useNavigate();
-  const { year, price, milage, engineType } = vehicleInfo;
+  const { year, price, milage, engineType } = vehicleInfo.data;
 
   return (
     <Box>
       <Stack direction="column" sx={{ mb: 2 }}>
         <Typography variant="overline" sx={{ color: 'common.white' }}>
-          {translate(`common.${vehicleInfo.brand.toLowerCase()}`)}
+          {translate(`common.${vehicleInfo.data.brand.toLowerCase()}`)}
         </Typography>
         <Typography variant="h3" sx={{ color: 'common.white' }}>
-          {vehicleInfo.model}
+          {vehicleInfo.data.model}
         </Typography>
       </Stack>
 
@@ -33,14 +33,14 @@ function FeaturesBar({ vehicleInfo }) {
         <VehicleFeature icon="tdesign:money" value={price} />
         <VehicleFeature icon="fa-solid:road" value={`${fNumber(milage)} Km`} />
         <VehicleFeature icon="ph:engine" value={engineType} />
-        <VehicleFeature icon="mdi:car-seat" value={vehicleInfo.interiorColorString} />
-        <VehicleFeature icon="mdi:car-door" value={vehicleInfo.exteriorColorString} />
+        <VehicleFeature icon="mdi:car-seat" value={vehicleInfo.data.interiorColorString} />
+        <VehicleFeature icon="mdi:car-door" value={vehicleInfo.data.exteriorColorString} />
         <Box>
           <Button
             variant="contained"
             size="small"
             onClick={() =>
-              navigate(paths(currentLang.value).website.servicesDetails + vehicleInfo.id)
+              navigate(paths(currentLang.value).website.servicesDetails + vehicleInfo.data.id)
             }
             color="primary"
           >

@@ -6,8 +6,6 @@ function VehicleDetailsInfo({ vehicleInfo }) {
   const vehicleFeatures = Object.values(vehicleInfo?.features || {});
   const theme = useTheme();
 
-  console.log(vehicleFeatures);
-
   return (
     <table cellSpacing={10}>
       <tbody>

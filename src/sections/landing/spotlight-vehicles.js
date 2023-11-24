@@ -79,12 +79,12 @@ export default function SpotlightVehicles() {
               featuredCars.map((vehicle, index) =>
                 mdUp ? (
                   <CarouselItem
-                    key={vehicle.id}
+                    key={vehicle.data.id}
                     vehicleInfo={vehicle}
                     active={index === carousel.currentIndex}
                   />
                 ) : (
-                  <VehicleCard vehicleInfo={vehicle} key={vehicle.id} />
+                  <VehicleCard vehicleInfo={vehicle} key={vehicle.data.id} />
                 )
               )}
           </Carousel>
@@ -111,20 +111,13 @@ export default function SpotlightVehicles() {
 
 function CarouselItem({ vehicleInfo, active }) {
   const theme = useTheme();
-  const { fsGetImgDownloadUrl } = useAuthContext();
   const [coverUrl, setCoverUrl] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      setCoverUrl(await fsGetImgDownloadUrl(vehicleInfo.id, 0));
-    })();
-  }, [fsGetImgDownloadUrl, vehicleInfo.id]);
 
   const variants = theme.direction === 'rtl' ? varFade().inLeft : varFade().inRight;
 
   return (
     <Paper sx={{ position: 'relative' }}>
-      <Image dir="ltr" alt={vehicleInfo.model} src={coverUrl} ratio="16/9" />
+      <Image dir="ltr" alt={vehicleInfo.data.model} src={vehicleInfo.thumbnail} ratio="16/9" />
 
       <Box
         sx={{
@@ -164,9 +157,12 @@ function CarouselItem({ vehicleInfo, active }) {
 CarouselItem.propTypes = {
   active: PropTypes.bool,
   vehicleInfo: PropTypes.shape({
-    coverUrl: PropTypes.string,
-    brand: PropTypes.string,
-    model: PropTypes.string,
-    id: PropTypes.string,
+    thumbnail: PropTypes.string,
+    data: PropTypes.shape({
+      coverUrl: PropTypes.string,
+      brand: PropTypes.string,
+      model: PropTypes.string,
+      id: PropTypes.string,
+    }),
   }),
 };

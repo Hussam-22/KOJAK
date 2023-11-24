@@ -29,6 +29,35 @@ const DB = getFirestore(firebaseApp);
 // ----------------------------------------------------------------------
 
 export function AuthProvider({ children }) {
+  // ------------------ | Get image Download URL | ------------------
+  const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
+    let url = '';
+    try {
+      url = await getDownloadURL(
+        ref(
+          STORAGE,
+          `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
+        )
+      );
+    } catch (error) {
+      url = undefined;
+    }
+
+    return url;
+  }, []);
+
+  // ------------------ | Get image Download URL | ------------------
+  const fsGetFolderImages = useCallback(async (folderID) => {
+    const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
+    const imagesList = await listAll(listRef);
+    const imagesUrl = await Promise.all(
+      imagesList.items.map(async (imageRef) => getDownloadURL(ref(STORAGE, imageRef)))
+    );
+    const thumbnail = imagesUrl.filter((url) => url.includes('200x200'));
+    const largeImage = imagesUrl.filter((url) => url.includes('1920x1080'));
+    return [thumbnail, largeImage];
+  }, []);
+
   // add new request-callback form
   const addNewForm = useCallback(async (payload) => {
     const newDocRef = doc(collection(DB, `/websites/${SITE_NAME}/forms/`));
@@ -82,8 +111,20 @@ export function AuthProvider({ children }) {
     const docRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', true));
     const querySnapshot = await getDocs(docRef);
     const documents = [];
+    const asyncOperations = [];
 
-    querySnapshot.forEach((document) => documents.push(document.data()));
+    querySnapshot.forEach((document) => {
+      const asyncOperation = async () => {
+        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().id}`);
+        const imagesList = await listAll(listRef);
+        const thumbnail = await getDownloadURL(
+          ref(STORAGE, `gs://kojak-exclusive/${document.data().id}/${imagesList?.items[0]?.name}`)
+        );
+        documents.push({ data: document.data(), thumbnail });
+      };
+      asyncOperations.push(asyncOperation());
+    });
+    await Promise.all(asyncOperations);
 
     return documents;
   }, []);
@@ -96,76 +137,22 @@ export function AuthProvider({ children }) {
     );
     const querySnapshot = await getDocs(docRef);
     const documents = [];
+    const asyncOperations = [];
 
-    querySnapshot.forEach((document) => documents.push(document.data()));
+    querySnapshot.forEach((document) => {
+      const asyncOperation = async () => {
+        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().id}`);
+        const imagesList = await listAll(listRef);
+        const thumbnail = await getDownloadURL(
+          ref(STORAGE, `gs://kojak-exclusive/${document.data().id}/${imagesList?.items[0]?.name}`)
+        );
+        documents.push({ data: document.data(), thumbnail });
+      };
+      asyncOperations.push(asyncOperation());
+    });
+    await Promise.all(asyncOperations);
 
     return documents;
-  }, []);
-
-  const addNewCar = useCallback(() => {
-    const docRef = doc(collection(DB, `/websites/${SITE_NAME}/vehicles/`));
-    setDoc(docRef, {
-      id: docRef.id,
-      brand: 'Mercedes',
-      model: 'S 63 E Performance',
-      price: '1,195,000 AED',
-      year: 2024,
-      exteriorColorString: 'White',
-      interiorColorString: 'Red',
-      engineType: 'Petrol',
-      milage: 0,
-      isActive: true,
-      isFeatured: true,
-      creationDate: new Date(),
-      features: `Electric backrest adjustment and head restraints		
-      Digital LED headlamps		
-      Climatised front seats		
-      Rear seat climate control		
-      Automatic panoramic sliding sunroof		
-      Central display size L		
-      Magic Vision Control		
-      Premium ambiance illumination		
-      AMG HP battery (12P100S)		
-      Trim elements line wood		
-      Active Lane Change Assist		
-      MBUX Navigation Premium		
-      Remote Parking package		
-      Head-up display		
-      KEYLESS-GO		
-      Sun protection package		
-      360° camera		
-      Automatic climate control		
-      AMG multi-spoke wheels 21"`,
-    });
-  }, []);
-
-  // ------------------ | Get image Download URL | ------------------
-  const fsGetImgDownloadUrl = useCallback(async (folderID, imgID, thumbnail = false) => {
-    let url = '';
-    try {
-      url = await getDownloadURL(
-        ref(
-          STORAGE,
-          `gs://kojak-exclusive/${folderID}/${imgID}_${thumbnail ? '200x200' : '1920x1080'}.webp`
-        )
-      );
-    } catch (error) {
-      url = undefined;
-    }
-
-    return url;
-  }, []);
-
-  // ------------------ | Get image Download URL | ------------------
-  const fsGetFolderImages = useCallback(async (folderID) => {
-    const listRef = ref(STORAGE, `gs://kojak-exclusive/${folderID}`);
-    const imagesList = await listAll(listRef);
-    const imagesUrl = await Promise.all(
-      imagesList.items.map(async (imageRef) => getDownloadURL(ref(STORAGE, imageRef)))
-    );
-    const thumbnail = imagesUrl.filter((url) => url.includes('200x200'));
-    const largeImage = imagesUrl.filter((url) => url.includes('1920x1080'));
-    return [thumbnail, largeImage];
   }, []);
 
   const fsUpdateDoc = useCallback(async () => {
@@ -213,7 +200,6 @@ export function AuthProvider({ children }) {
       addNewForm,
       getCars,
       getFeaturedCars,
-      addNewCar,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
@@ -223,7 +209,6 @@ export function AuthProvider({ children }) {
       addNewForm,
       getCars,
       getFeaturedCars,
-      addNewCar,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,

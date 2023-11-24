@@ -20,7 +20,6 @@ import ProductDetailsCarousel from 'src/sections/services/components/product-det
 // ----------------------------------------------------------------------
 
 export default function ServiceDetailsView({ vehicleInfo }) {
-  console.log(vehicleInfo);
   const theme = useTheme();
   const { translate, currentLang } = useLocales();
   const mdUp = useResponsive('up', 'md');
@@ -29,10 +28,7 @@ export default function ServiceDetailsView({ vehicleInfo }) {
   const payload = {
     subject: `${translate('inventory.formText')} ${translate(
       `common.${vehicleInfo?.brand?.toLowerCase() || ''}`
-    )} ${vehicleInfo?.model} ${vehicleInfo?.price.replace(
-      'AED',
-      currentLang.value === 'en' ? 'AED' : 'درهم'
-    )}`,
+    )} ${vehicleInfo?.model} ${vehicleInfo?.price} ${currentLang.value === 'en' ? 'AED' : 'درهم'}`,
     source: 'Vehicle Inquiry',
   };
 
@@ -102,10 +98,7 @@ export default function ServiceDetailsView({ vehicleInfo }) {
                   <Stack direction="column">
                     {vehicleInfo?.isActive ? (
                       <Typography variant="h6" color="primary">
-                        {vehicleInfo?.price.replace(
-                          'AED',
-                          currentLang.value === 'en' ? 'AED' : 'درهم'
-                        )}
+                        {vehicleInfo?.price} {currentLang.value === 'en' ? 'AED' : 'درهم'}
                       </Typography>
                     ) : (
                       <Typography variant="h6" color="primary">

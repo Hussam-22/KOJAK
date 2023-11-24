@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
 
 import { Box, Link, Card, Stack, Button, Divider, useTheme, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
+import { useLocales } from 'src/locales';
 import Label from 'src/components/label/Label';
-import { useAuthContext } from 'src/auth/hooks';
+import Image from 'src/components/image/Image';
 import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
 import Iconify from 'src/components/iconify/Iconify';
@@ -19,18 +17,10 @@ import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 function VehicleCard({ vehicleInfo }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
-  const { brand, model, year, price, engineType, milage, id, isFeatured, qty } = vehicleInfo;
-  const { fsGetImgDownloadUrl } = useAuthContext();
-  const [imageURL, setImageURL] = useState(null);
+  const { brand, model, year, price, engineType, milage, id, isFeatured } = vehicleInfo.data;
   const { translate, currentLang } = useLocales();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    (async () => {
-      setImageURL(await fsGetImgDownloadUrl(id, 0));
-    })();
-  }, [fsGetImgDownloadUrl, id]);
 
   return (
     <Card
@@ -50,7 +40,7 @@ function VehicleCard({ vehicleInfo }) {
         </Label>
       )}
 
-      <Image src={imageURL || '/assets/images/no_preview.jpg'} ratio="6/4" />
+      <Image src={vehicleInfo.thumbnail || '/assets/images/no_preview.jpg'} ratio="6/4" />
 
       <Stack sx={{ p: 3 }} spacing={2}>
         <Stack direction="row" alignItems="flex-end" justifyContent="space-between">
