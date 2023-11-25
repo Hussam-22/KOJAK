@@ -1,15 +1,16 @@
 import { useParams } from 'react-router';
-import { Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import { useLocales } from 'src/locales';
+import { PAGE_VISIT } from 'src/config-global';
 import { useAuthContext } from 'src/auth/hooks';
 import ServiceDetailsView from 'src/sections/views/service-details-view';
 
 export default function ServiceDetailsPage() {
   const { vehicleID } = useParams();
   const { onChangeLang, currentLang, translate } = useLocales();
-  const { getVehicleInfo } = useAuthContext();
+  const { getVehicleInfo, fsUpdateStatistics } = useAuthContext();
   const [vehicleInfo, setVehicleInfo] = useState();
 
   useEffect(() => {
@@ -19,6 +20,14 @@ export default function ServiceDetailsPage() {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (vehicleInfo?.id) {
+        await fsUpdateStatistics(vehicleInfo?.id, PAGE_VISIT);
+      }
+    })();
+  }, [fsUpdateStatistics, vehicleInfo?.id]);
 
   return (
     <>

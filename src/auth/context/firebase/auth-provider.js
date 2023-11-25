@@ -4,13 +4,14 @@ import { useMemo, useCallback } from 'react';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  query,
   where,
-  getDoc,
+  query,
   setDoc,
+  getDoc,
   getDocs,
-  updateDoc,
+  increment,
   Timestamp,
+  updateDoc,
   collection,
   getFirestore,
   collectionGroup,
@@ -25,6 +26,9 @@ import { AuthContext } from './auth-context';
 const firebaseApp = initializeApp(FIREBASE_API);
 const STORAGE = getStorage(firebaseApp);
 const DB = getFirestore(firebaseApp);
+
+const THIS_MONTH = new Date().getMonth();
+const THIS_YEAR = new Date().getFullYear();
 
 // ----------------------------------------------------------------------
 
@@ -155,6 +159,14 @@ export function AuthProvider({ children }) {
     return documents;
   }, []);
 
+  const fsUpdateStatistics = useCallback(async (docID, source) => {
+    const docRef = doc(DB, `/websites/${SITE_NAME}/vehicles/${docID}`);
+
+    await updateDoc(docRef, {
+      [`statistics.${source}.${THIS_YEAR}.${THIS_MONTH}`]: increment(1),
+    });
+  }, []);
+
   const fsUpdateDoc = useCallback(async () => {
     const docCollRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', false));
     const querySnapshot = await getDocs(docCollRef);
@@ -204,6 +216,7 @@ export function AuthProvider({ children }) {
       fsGetFolderImages,
       getVehicleInfo,
       fsUpdateDoc,
+      fsUpdateStatistics,
     }),
     [
       addNewForm,
@@ -213,6 +226,7 @@ export function AuthProvider({ children }) {
       fsGetFolderImages,
       getVehicleInfo,
       fsUpdateDoc,
+      fsUpdateStatistics,
     ]
   );
 

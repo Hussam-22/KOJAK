@@ -3,6 +3,9 @@ export const SITE_NAME = 'kexclusive';
 export const CONTACT_US_FORM = 'CONTACT-US';
 export const NEWSLETTER_FORM = 'NEWSLETTER';
 export const WHATSAPP_FORM = 'WHATSAPP';
+export const CART_FORM = 'CART';
+export const PAGE_VISIT = 'PAGE_VISIT';
+export const OUT_OF_STOCK = 'OUT_OF_STOCK';
 
 export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
 export const SPARE_PART_URL = 'https://kojak-spareparts.com/';
