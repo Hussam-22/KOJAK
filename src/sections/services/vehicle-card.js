@@ -17,7 +17,7 @@ import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 function VehicleCard({ vehicleInfo }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
-  const { brand, model, year, price, engineType, milage, id, isFeatured } = vehicleInfo.data;
+  const { brand, model, year, price, engineType, milage, docID, isFeatured } = vehicleInfo.data;
   const { translate, currentLang } = useLocales();
 
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ function VehicleCard({ vehicleInfo }) {
           <Box>
             <Link
               component={RouterLink}
-              href={paths(currentLang.value).website.servicesDetails + id}
+              href={paths(currentLang.value).website.servicesDetails + docID}
               // underline="none"
               sx={{ color: 'secondary.main' }}
             >
@@ -65,7 +65,7 @@ function VehicleCard({ vehicleInfo }) {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => navigate(paths(currentLang.value).website.servicesDetails + id)}
+              onClick={() => navigate(paths(currentLang.value).website.servicesDetails + docID)}
               sx={{ whiteSpace: 'nowrap' }}
             >
               {translate('common.moreDetails')}

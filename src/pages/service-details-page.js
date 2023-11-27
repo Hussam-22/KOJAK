@@ -23,11 +23,11 @@ export default function ServiceDetailsPage() {
 
   useEffect(() => {
     (async () => {
-      if (vehicleInfo?.id) {
-        await fsUpdateStatistics(vehicleInfo?.id, PAGE_VISIT);
+      if (vehicleInfo?.docID) {
+        await fsUpdateStatistics(vehicleInfo?.docID, PAGE_VISIT);
       }
     })();
-  }, [fsUpdateStatistics, vehicleInfo?.id]);
+  }, [fsUpdateStatistics, vehicleInfo?.docID]);
 
   return (
     <>

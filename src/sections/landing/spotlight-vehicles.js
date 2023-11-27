@@ -79,12 +79,12 @@ export default function SpotlightVehicles() {
               featuredCars.map((vehicle, index) =>
                 mdUp ? (
                   <CarouselItem
-                    key={vehicle.data.id}
+                    key={vehicle.data.docID}
                     vehicleInfo={vehicle}
                     active={index === carousel.currentIndex}
                   />
                 ) : (
-                  <VehicleCard vehicleInfo={vehicle} key={vehicle.data.id} />
+                  <VehicleCard vehicleInfo={vehicle} key={vehicle.data.docID} />
                 )
               )}
           </Carousel>

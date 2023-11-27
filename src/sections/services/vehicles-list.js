@@ -68,7 +68,7 @@ function VehiclesList() {
                 />
               ))
             : vehiclesList.map((vehicle) => (
-                <VehicleCard vehicleInfo={vehicle} key={vehicle.data.id} />
+                <VehicleCard vehicleInfo={vehicle} key={vehicle.data.docID} />
               ))}
         </Box>
       </Container>

@@ -86,7 +86,7 @@ export default function ServiceDetailsView({ vehicleInfo }) {
         />
 
         <Grid container spacing={3}>
-          {vehicleInfo?.id !== undefined && (
+          {vehicleInfo?.docID !== undefined && (
             <Grid xs={12}>
               <Card sx={{ p: 3 }}>
                 <Stack
@@ -179,7 +179,7 @@ export default function ServiceDetailsView({ vehicleInfo }) {
                 <Typography variant="h3" sx={{ mb: 2 }}>
                   {translate('inventory.makeItYours')}
                 </Typography>
-                {vehicleInfo?.id !== undefined && <ContactUsForm payload={payload} />}
+                {vehicleInfo?.docID !== undefined && <ContactUsForm payload={payload} />}
               </Card>
             </Grid>
           )}

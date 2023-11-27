@@ -119,10 +119,13 @@ export function AuthProvider({ children }) {
 
     querySnapshot.forEach((document) => {
       const asyncOperation = async () => {
-        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().id}`);
+        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().docID}`);
         const imagesList = await listAll(listRef);
         const thumbnail = await getDownloadURL(
-          ref(STORAGE, `gs://kojak-exclusive/${document.data().id}/${imagesList?.items[0]?.name}`)
+          ref(
+            STORAGE,
+            `gs://kojak-exclusive/${document.data().docID}/${imagesList?.items[0]?.name}`
+          )
         );
         documents.push({ data: document.data(), thumbnail });
       };
@@ -145,10 +148,13 @@ export function AuthProvider({ children }) {
 
     querySnapshot.forEach((document) => {
       const asyncOperation = async () => {
-        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().id}`);
+        const listRef = ref(STORAGE, `gs://kojak-exclusive/${document.data().docID}`);
         const imagesList = await listAll(listRef);
         const thumbnail = await getDownloadURL(
-          ref(STORAGE, `gs://kojak-exclusive/${document.data().id}/${imagesList?.items[0]?.name}`)
+          ref(
+            STORAGE,
+            `gs://kojak-exclusive/${document.data().docID}/${imagesList?.items[0]?.name}`
+          )
         );
         documents.push({ data: document.data(), thumbnail });
       };
@@ -167,45 +173,6 @@ export function AuthProvider({ children }) {
     });
   }, []);
 
-  const fsUpdateDoc = useCallback(async () => {
-    const docCollRef = query(collectionGroup(DB, 'vehicles'), where('isActive', '==', false));
-    const querySnapshot = await getDocs(docCollRef);
-    const documents = [];
-
-    querySnapshot.forEach((document) => documents.push(document.data()));
-
-    console.log(documents);
-
-    const toResolve = [];
-
-    documents
-      .filter(
-        (item) =>
-          !['"atjDzMOAT5uiAeoWxCWA"', 'Dv6pel2OJEiST3SC0SmL', 'llQFPpOxERxhlZe9HJEr'].includes(
-            item.id
-          )
-      )
-      .forEach((element) => {
-        const update = async () => {
-          const docRef = doc(DB, `/websites/kexclusive/vehicles/${element.id}`);
-          await updateDoc(docRef, {
-            exteriorColorString: '',
-            interiorColorString: '',
-          });
-        };
-        toResolve.push(update());
-      });
-
-    await Promise.all(toResolve);
-
-    // const docRef = doc(DB, `/websites/kexclusive/vehicles/TVFk1tQoM9LbAzo80gLQ`);
-    // const docSnap = await updateDoc(docRef, {
-    //   exteriorColorString: '',
-    //   interiorColorString: '',
-    // });
-    // return docSnap.data();
-  }, []);
-
   // --------------------------------------------------------------------
   const memoizedValue = useMemo(
     () => ({
@@ -215,7 +182,6 @@ export function AuthProvider({ children }) {
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
-      fsUpdateDoc,
       fsUpdateStatistics,
     }),
     [
@@ -225,7 +191,6 @@ export function AuthProvider({ children }) {
       fsGetImgDownloadUrl,
       fsGetFolderImages,
       getVehicleInfo,
-      fsUpdateDoc,
       fsUpdateStatistics,
     ]
   );

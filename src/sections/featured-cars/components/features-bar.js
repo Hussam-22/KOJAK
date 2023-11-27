@@ -40,7 +40,7 @@ function FeaturesBar({ vehicleInfo }) {
             variant="contained"
             size="small"
             onClick={() =>
-              navigate(paths(currentLang.value).website.servicesDetails + vehicleInfo.data.id)
+              navigate(paths(currentLang.value).website.servicesDetails + vehicleInfo.data.docID)
             }
             color="primary"
           >
