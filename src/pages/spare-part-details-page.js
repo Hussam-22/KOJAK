@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import { Helmet } from 'react-helmet-async';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { PAGE_VISIT } from 'src/config-global';
 import { useAuthContext } from 'src/auth/hooks';
@@ -32,7 +32,7 @@ export default function SparePartDetailsPage() {
       : partDetails.imgUrl;
 
   const partNumber = partDetails?.partNumber || '';
-  const partName = partDetails?.description || '';
+  const partName = partDetails?.partName || '';
 
   const productDescription = getPartDescription(partDetails);
 

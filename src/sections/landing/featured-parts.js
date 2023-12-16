@@ -1,8 +1,6 @@
-import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import {
   Box,
   Link,
@@ -16,7 +14,6 @@ import {
 } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
@@ -32,7 +29,7 @@ const BODY_KIT = [
   'A463 BODY KIT 2019 C',
 ];
 
-const ENGINE = ['A1760100400 47069KM B', 'A1780109400 B', 'A1770109102 B', 'A1330100000 B'];
+const ENGINE = ['A2640105004 B', 'A2700101602 B', 'A2700104302 B', 'A1780109400 B'];
 
 // title="Experience Peak Performance with Our Premium Mercedes-Benz Service Kits"
 //             description={`Elevate your driving experience and ensure your Mercedes-Benz operates at its best
@@ -111,7 +108,7 @@ function FeaturedSection({ caption, title, description, partsArray }) {
               {item.partData.partNumber}
             </Typography>
             <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-              {item.partData.brandClass[0]} - {item.partData.brandModel[0]}
+              {item.partData.brandClass} - {item.partData.brandModel}
             </Typography>
           </Stack>
           <Typography variant="body2">{getPartDescription(item.partData)}</Typography>

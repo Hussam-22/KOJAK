@@ -1,6 +1,6 @@
 // @mui
 
-import { Box, Stack, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 // components
 import { useLocales } from 'src/locales';

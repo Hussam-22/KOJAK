@@ -8,7 +8,6 @@ import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/materi
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 import SvgColor from 'src/components/svg-color/svg-color';
 import { rdxFormPayload } from 'src/redux/slices/products';

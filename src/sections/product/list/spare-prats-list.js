@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useMemo, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import { Stack, Button, Typography, IconButton } from '@mui/material';
-import Pagination, { paginationClasses } from '@mui/material/Pagination';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';

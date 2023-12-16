@@ -1,23 +1,16 @@
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Link, Stack, Divider, Container, Typography, Breadcrumbs } from '@mui/material';
+import { Box, Divider, Container, Typography } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import { PAGE_VISIT } from 'src/config-global';
 import Image from 'src/components/image/Image';
-import { useAuthContext } from 'src/auth/hooks';
-import { RouterLink } from 'src/routes/components';
 import SideDrawer from 'src/components/drawer/side-drawer';
 import { rdxToggleDrawer } from 'src/redux/slices/products';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs/custom-breadcrumbs';
 import SparePartsDetailsInformation from 'src/sections/product/details/spare-parts-details-information';
-import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
 function SparePartDetailsView({ partDetails, productDescription }) {
   const dispatch = useDispatch();

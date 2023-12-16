@@ -2,12 +2,10 @@ import Box from '@mui/material/Box';
 import { Stack, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import Image from 'src/components/image';
 import { useLocales } from 'src/locales';
-import { bgGradient } from 'src/theme/css';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------

@@ -1,23 +1,19 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import { Card, Button, useTheme, Typography } from '@mui/material';
+import { Card, useTheme, Typography } from '@mui/material';
 
 import Image from 'src/components/image';
 import Label from 'src/components/label';
-import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
-import { _partsCategory } from 'src/_mock/_partsCategory';
-import { useLocalStorage } from 'src/hooks/use-local-storage';
 
 // ----------------------------------------------------------------------
 
@@ -125,16 +121,15 @@ export default function SparePartsListViewGridItem({
 
         <Stack spacing={0.5} sx={{ p: 2 }}>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-            {product.id} - {product.partNumber}
+            {product.docID}
           </Typography>
           <Link component={RouterLink} to={product.docID} sx={{ textDecoration: 'underline' }}>
             <TextMaxLine line={1} color="primary">
-              {product?.description}
+              {product?.partNumber}
             </TextMaxLine>
           </Link>
           <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.category}
-            {/* {mainCategory?.category} */}
           </Typography>
         </Stack>
       </Stack>
@@ -153,9 +148,9 @@ SparePartsListViewGridItem.propTypes = {
     imageName: PropTypes.string,
     category: PropTypes.string,
     subCategory: PropTypes.string,
-    brandModel: PropTypes.array,
-    brandClass: PropTypes.array,
-    stock: PropTypes.number,
+    brandModel: PropTypes.string,
+    brandClass: PropTypes.string,
+    stock: PropTypes.string,
   }),
   sx: PropTypes.object,
   addToCartOnClickHandler: PropTypes.func,

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
 import { useTheme } from '@mui/system';
-import { Box, List, Stack, Drawer, Button, IconButton } from '@mui/material';
+import { Box, List, Stack, Drawer, IconButton } from '@mui/material';
 
 import { bgBlur } from 'src/theme/css';
 import { paths } from 'src/routes/paths';

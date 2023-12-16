@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import { LoadingButton } from '@mui/lab';
-import { Box, Stack, Button, Divider, Typography, IconButton } from '@mui/material';
+import { Box, Stack, Button, Divider, IconButton } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';

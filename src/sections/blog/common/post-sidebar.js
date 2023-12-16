@@ -14,8 +14,6 @@ import { _socials } from 'src/_mock';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import Advertisement from '../../advertisement';
-
 import PostItemMobile from './post-item-mobile';
 
 // ----------------------------------------------------------------------
@@ -134,8 +132,6 @@ export default function PostSidebar({
         {renderRecentPosts}
 
         {renderPopularTags}
-
-        {advertisement && <Advertisement advertisement={advertisement} />}
       </Stack>
     </>
   );

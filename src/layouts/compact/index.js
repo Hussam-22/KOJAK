@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 
-import Logo from 'src/components/logo/Logo';
-
-import Header from '../common/header-simple';
 
 // ----------------------------------------------------------------------
 

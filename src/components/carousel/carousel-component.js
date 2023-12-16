@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 
 import useCarousel from 'src/components/carousel/use-carousel';
 import Carousel, { CarouselArrows } from 'src/components/carousel';

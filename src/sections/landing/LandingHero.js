@@ -1,6 +1,5 @@
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,7 +8,6 @@ import { Stack, useTheme, Container } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
-import { paths } from 'src/routes/paths';
 import { textGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';

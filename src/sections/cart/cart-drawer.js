@@ -1,18 +1,13 @@
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Box,
-  Stack,
   Drawer,
-  Button,
   Divider,
   useTheme,
-  Container,
   Typography,
 } from '@mui/material';
 
-import Image from 'src/components/image/Image';
 import { rdxToggleDrawer } from 'src/redux/slices/products';
 import CartDrawerForm from 'src/sections/cart/cart-drawer-form';
 

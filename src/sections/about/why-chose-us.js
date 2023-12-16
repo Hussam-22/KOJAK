@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 
-import { Box, Card, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Stack, Container, Typography } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const DATA = [

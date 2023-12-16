@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Card, Stack, Rating, Container, Typography } from '@mui/material';
+import { Box, Stack, Rating, Container, Typography } from '@mui/material';
 
 // components
 import { _testimonials } from 'src/_mock';

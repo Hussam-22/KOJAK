@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Divider, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import Iconify from 'src/components/iconify';
@@ -38,10 +38,7 @@ export default function SparePartsView() {
     recordsCount,
     startAfterDocument,
   } = useSelector((state) => state.products);
-  const { fsGetProductsByPage, fsGetProductsDocumentsCount, fsWriteBatchPartsData } =
-    useAuthContext();
-
-  const addParts = async () => fsWriteBatchPartsData();
+  const { fsGetProductsByPage, fsGetProductsDocumentsCount } = useAuthContext();
 
   // GET SPARE-PARTS DATA  ------------------------------------
   useEffect(() => {

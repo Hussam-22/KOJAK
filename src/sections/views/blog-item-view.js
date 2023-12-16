@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router';
 
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';

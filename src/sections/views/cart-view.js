@@ -1,6 +1,5 @@
-import { useLoaderData } from 'react-router';
 
-import { Box, Divider, Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 import CartItems from 'src/sections/cart/cart-items';
 import CartDrawer from 'src/sections/cart/cart-drawer';

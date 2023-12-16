@@ -26,7 +26,6 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import SvgColor from 'src/components/svg-color/svg-color';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import getVariant from 'src/components/animate/variants/get-variant';
-import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 import DeleteConfirmationDialog from 'src/components/Dialog/deleteConfirmationDialog';
 import {
   rdxUpdateCart,
@@ -283,21 +282,8 @@ function PartInfo({ partData }) {
           />
         }
       >
-        <Stack direction="row" spacing={2}>
-          {brandClass.map((classValue) => (
-            <Typography key={classValue} variant="caption">
-              {classValue}
-            </Typography>
-          ))}
-        </Stack>
-
-        <Stack direction="row" spacing={2}>
-          {brandModel.map((modelValue) => (
-            <Typography key={modelValue} variant="caption">
-              {modelValue}
-            </Typography>
-          ))}
-        </Stack>
+        <Typography variant="caption">{brandClass}</Typography>
+        <Typography variant="caption">{brandModel}</Typography>
       </Stack>
     </Stack>
   );
