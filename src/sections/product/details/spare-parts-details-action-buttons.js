@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import { LoadingButton } from '@mui/lab';
-import { Box, Stack, Button, Divider, IconButton } from '@mui/material';
+import { Box, Button, IconButton } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
@@ -100,60 +100,53 @@ function AvailableStockActionBar({ partDetails }) {
 
   // ----------------------------------------------------------------------------
   return (
-    <Stack
-      direction={{ md: 'row', xs: 'column' }}
-      alignItems="center"
-      justifyContent="space-between"
-      divider={<Divider orientation="vertical" flexItem sx={{ borderStyle: 'dashed' }} />}
-    >
-      <Stack direction="row" spacing={1}>
-        <LoadingButton
-          variant="text"
-          loading={loading.delete}
-          onClick={onRemoveClickHandler}
-          disabled={cartQty === 0}
-        >
-          <Iconify
-            icon="ph:trash"
-            width={24}
-            height={24}
-            sx={{ color: cartQty === 0 ? 'grey[400]' : 'error.main' }}
-          />
-        </LoadingButton>
+    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 0 }}>
+      <LoadingButton
+        variant="text"
+        loading={loading.delete}
+        onClick={onRemoveClickHandler}
+        disabled={cartQty === 0}
+      >
+        <Iconify
+          icon="ph:trash"
+          width={24}
+          height={24}
+          sx={{ color: cartQty === 0 ? 'grey[400]' : 'error.main' }}
+        />
+      </LoadingButton>
 
-        <LoadingButton
-          variant="text"
-          loading={loading.add}
-          onClick={onAddClickHandler}
-          disabled={cartQty > 0}
-        >
-          <Iconify
-            icon="carbon:shopping-cart-plus"
-            width={24}
-            height={24}
-            sx={{ color: cartQty > 0 ? 'grey[400]' : 'primary.main' }}
-          />
-        </LoadingButton>
+      <LoadingButton
+        variant="text"
+        loading={loading.add}
+        onClick={onAddClickHandler}
+        disabled={cartQty > 0}
+      >
+        <Iconify
+          icon="carbon:shopping-cart-plus"
+          width={24}
+          height={24}
+          sx={{ color: cartQty > 0 ? 'grey[400]' : 'primary.main' }}
+        />
+      </LoadingButton>
 
-        <LoadingButton variant="text" loading={loading.whatsApp} onClick={onWhatsAppClickHandler}>
-          <Iconify
-            icon="ic:baseline-whatsapp"
-            width={24}
-            height={24}
-            sx={{ color: 'success.main' }}
-          />
-        </LoadingButton>
+      <LoadingButton variant="text" loading={loading.whatsApp} onClick={onWhatsAppClickHandler}>
+        <Iconify
+          icon="ic:baseline-whatsapp"
+          width={24}
+          height={24}
+          sx={{ color: 'success.main' }}
+        />
+      </LoadingButton>
 
-        <IconButton disableRipple onClick={handleShare}>
-          <Iconify
-            icon="tdesign:share"
-            width={24}
-            height={24}
-            sx={{ color: 'background.opposite' }}
-          />
-        </IconButton>
-      </Stack>
-    </Stack>
+      <IconButton disableRipple onClick={handleShare}>
+        <Iconify
+          icon="tdesign:share"
+          width={24}
+          height={24}
+          sx={{ color: 'background.opposite' }}
+        />
+      </IconButton>
+    </Box>
   );
 }
 AvailableStockActionBar.propTypes = { partDetails: PropTypes.object };
