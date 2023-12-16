@@ -19,7 +19,7 @@ export const _mercedesClasses = [
   { class: 'GLC Class', models: ['C253 - 2022-Present'] },
   { class: 'GLE Class', models: ['W166 - 2012-2019', 'W167 - 2019-Present'] },
   { class: 'GLS Class', models: ['X166 - 2012-2019', 'X167 - 2019-Present'] },
-  { class: 'AMG GT Class', models: ['AMG GT - 2015-Present'] },
+  { class: 'AMG GT Class', models: ['AMG GT 2015-Present'] },
   { class: 'R Class', models: ['W251 - 2006–2013'] },
   {
     class: 'S Class',
