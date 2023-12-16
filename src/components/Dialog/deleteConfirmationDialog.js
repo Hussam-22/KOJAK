@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 
+import { Box } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-import { Box, Divider, Typography } from '@mui/material';
+import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 
 import Image from 'src/components/image';
-import { useLocales } from 'src/locales';
-import SvgColor from 'src/components/svg-color/svg-color';
 
 export default function DeleteConfirmationDialog({ content, open, handleClose, action }) {
   return (

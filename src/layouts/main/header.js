@@ -19,7 +19,6 @@ import ModeIcon from 'src/layouts/main/mode-icon';
 import Iconify from 'src/components/iconify/Iconify';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
-import TranslateIcon from 'src/layouts/main/translate-icon';
 import { useSettingsContext } from 'src/components/settings';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
 

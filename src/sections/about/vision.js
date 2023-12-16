@@ -1,12 +1,11 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
-import { Divider, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 const DATA = [

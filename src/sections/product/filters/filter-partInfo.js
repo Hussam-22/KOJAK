@@ -1,10 +1,9 @@
-import { useFormContext } from 'react-hook-form';
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingButton } from '@mui/lab';
 import TextField from '@mui/material/TextField';
-import { Stack, Button, IconButton, FormControl } from '@mui/material';
+import { Stack, FormControl } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';

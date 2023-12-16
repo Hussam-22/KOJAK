@@ -1,17 +1,11 @@
 import React from 'react';
-import { m } from 'framer-motion';
 
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Iconify from 'src/components/iconify';
-import Image from 'src/components/image/Image';
-import { fNumber } from 'src/utils/format-number';
-import randomNumber from 'src/utils/randomNumber';
 import SvgColor from 'src/components/svg-color/svg-color';
 import { _partsCategory } from 'src/_mock/_partsCategory';
-import { varZoom, varSlide, MotionViewport } from 'src/components/animate';
 
 function PartsCount() {
   const theme = useTheme();

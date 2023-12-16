@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router';
 import { useMemo, useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 

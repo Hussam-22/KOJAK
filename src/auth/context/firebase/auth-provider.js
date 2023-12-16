@@ -16,13 +16,11 @@ import {
   updateDoc,
   collection,
   startAfter,
-  writeBatch,
   getFirestore,
   collectionGroup,
   getCountFromServer,
 } from 'firebase/firestore';
 
-import { _partsData } from 'src/_mock/_partsData';
 // config
 import { CART_FORM, SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
 
@@ -40,10 +38,13 @@ const THIS_YEAR = new Date().getFullYear();
 
 export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
-  const fsGetImgDownloadUrl = useCallback(async (imgID) => {
+  const fsGetImgDownloadUrl = useCallback(async (imgID, resolution = '480x480') => {
     let url = '';
+    const webpImage = imgID.replace(/\.\w+$/, `_${resolution}.webp`);
     try {
-      url = await getDownloadURL(ref(STORAGE, `gs://kojak-spare-parts/large/${imgID}`));
+      url = await getDownloadURL(
+        ref(STORAGE, `gs://kojak-spare-parts/spare-parts-images/${webpImage}`)
+      );
     } catch (error) {
       url = undefined;
     }
@@ -124,9 +125,9 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
   const fsGetPartDetails = useCallback(
     async (partID) => {
-      const docRef = doc(DB, `/websites/${SITE_NAME}/partsData/${partID}`);
+      const docRef = doc(DB, `/websites/${SITE_NAME}/spare-parts-list/${partID}`);
       const docSnap = await getDoc(docRef);
-      const imgUrl = await fsGetImgDownloadUrl(docSnap.data().imageName);
+      const imgUrl = await fsGetImgDownloadUrl(docSnap.data().imageName, '1080x720');
       return { ...docSnap.data(), imgUrl };
     },
     [fsGetImgDownloadUrl]
@@ -134,7 +135,7 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
 
   const fsUpdatePartStatistics = useCallback(async (partID, source) => {
-    const docRef = doc(DB, `/websites/${SITE_NAME}/partsData/${partID}`);
+    const docRef = doc(DB, `/websites/${SITE_NAME}/spare-parts-list/${partID}`);
 
     await updateDoc(docRef, {
       [`statistics.${source}.${THIS_YEAR}.${THIS_MONTH}`]: increment(1),
@@ -142,28 +143,8 @@ export function AuthProvider({ children }) {
   }, []);
   // ----------------------------------------------------------------------------
 
-  const fsWriteBatchPartsData = useCallback(async () => {
-    const batch = writeBatch(DB);
-    const partsToAdd = _partsData.slice(7501, 7727);
-
-    partsToAdd.forEach((element) => {
-      const docRef = doc(collection(DB, `/websites/${SITE_NAME}/partsData`));
-      batch.set(docRef, {
-        ...element,
-        id: +element.ID,
-        stock: +element.stock,
-        brandClass: [element.brandClass],
-        brandModel: [element.brandModel],
-        docID: docRef.id,
-        imageName: `${element.ID}.webp`,
-      });
-    });
-
-    await batch.commit();
-  }, []);
-  // ----------------------------------------------------------------------------
   const fsGetProductsDocumentsCount = useCallback(async (filter) => {
-    let docRef = collectionGroup(DB, 'partsData');
+    let docRef = collectionGroup(DB, 'spare-parts-list');
     docRef = query(docRef, orderBy('partNumber', 'desc'));
 
     if (filter.partNo) {
@@ -179,7 +160,7 @@ export function AuthProvider({ children }) {
     }
 
     if (filter.model && filter.model.length > 0) {
-      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+      docRef = query(docRef, where('brandModel', '==', filter.model));
     }
 
     if (filter.category !== '') {
@@ -193,7 +174,7 @@ export function AuthProvider({ children }) {
   // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
     const dataArr = [];
-    let docRef = collectionGroup(DB, 'partsData');
+    let docRef = collectionGroup(DB, 'spare-parts-list');
     docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
 
     // Conditionally add filters based on the provided filter object
@@ -210,7 +191,7 @@ export function AuthProvider({ children }) {
     }
 
     if (filter.model && filter.model.length > 0) {
-      docRef = query(docRef, where('brandModel', 'array-contains', filter.model));
+      docRef = query(docRef, where('brandModel', '==', filter.model));
     }
 
     if (filter.category !== '') {
@@ -232,7 +213,7 @@ export function AuthProvider({ children }) {
     async (cartPartsArray) => {
       const partsNumbersArray = cartPartsArray.map((part) => part.partNumber);
       const docRef = query(
-        collectionGroup(DB, 'partsData'),
+        collectionGroup(DB, 'spare-parts-list'),
         where('partNumber', 'in', partsNumbersArray)
       );
 
@@ -263,7 +244,10 @@ export function AuthProvider({ children }) {
 
   const fsGetArrayOfParts = useCallback(
     async (partsArray) => {
-      const docRef = query(collectionGroup(DB, 'partsData'), where('partNumber', 'in', partsArray));
+      const docRef = query(
+        collectionGroup(DB, 'spare-parts-list'),
+        where('partNumber', 'in', partsArray)
+      );
 
       const querySnapshot = await getDocs(docRef);
       const documents = [];
@@ -295,7 +279,7 @@ export function AuthProvider({ children }) {
     const imagesUrl = await Promise.all(
       imagesList.items.map(async (imageRef) => getDownloadURL(ref(STORAGE, imageRef)))
     );
-    const thumbnail = imagesUrl.filter((url) => url.includes('200x200'));
+    const thumbnail = imagesUrl.filter((url) => url.includes('480x480'));
     const largeImage = imagesUrl.filter((url) => url.includes('1920x1080'));
     return [thumbnail, largeImage];
   }, []);
@@ -310,7 +294,6 @@ export function AuthProvider({ children }) {
       fsGetFolderImages,
       fsGetProductsByPage,
       fsGetProductsDocumentsCount,
-      fsWriteBatchPartsData,
       fsGetCartParts,
       fsGetArrayOfParts,
     }),
@@ -322,7 +305,6 @@ export function AuthProvider({ children }) {
       fsGetFolderImages,
       fsGetProductsByPage,
       fsGetProductsDocumentsCount,
-      fsWriteBatchPartsData,
       fsGetCartParts,
       fsGetArrayOfParts,
     ]

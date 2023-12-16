@@ -1,8 +1,6 @@
-import PropTypes from 'prop-types';
 
-import { Box, Stack, Button, Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-import Image from 'src/components/image/Image';
 
 function CartHeader() {
   return (

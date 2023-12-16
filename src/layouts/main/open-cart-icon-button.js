@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router';
 import { Box, Badge, styled, IconButton } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 // ----------------------------------------------------------------------

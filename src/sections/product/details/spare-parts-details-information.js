@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { Box, Stack, Divider, useTheme, Typography, IconButton } from '@mui/material';
+import { Box, Stack, Divider, useTheme, Typography } from '@mui/material';
 
 import Label from 'src/components/label';
-import { _mercedesClasses } from 'src/_mock';
-import Iconify from 'src/components/iconify';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
 function SparePartsDetailsInformation({ partDetails, productDescription }) {
@@ -16,36 +14,18 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
     return { text: 'AVAILABLE', color: 'success' };
   };
 
-  const filteredClasses =
-    _mercedesClasses.filter((vehicle) => partDetails?.brandClass?.includes(vehicle.class)) || {};
-
-  // const applicableModels = filteredClasses.map((item) => (
-  //   <Typography key={item.class} sx={{ fontWeight: theme.typography.fontWeightLight }}>
-  //     <Box component="span" sx={{ color: 'info.main' }}>
-  //       {item.class}
-  //     </Box>{' '}
-  //     -{' '}
-  //     {item.models
-  //       .filter((model) => partDetails.brandModel.slice(0, 4).includes(model.model))
-  //       .map((modelItem) => `(${modelItem.model}) ${modelItem.productionYears}`)
-  //       .join(', ')}
-  //   </Typography>
-  // ));
-
-  const applicableModels = filteredClasses.map(
-    (item) => `${item.class} - ${partDetails.brandModel.join(', ')}`
-  );
+  const applicableModels = `${partDetails.brandClass} - ${partDetails.brandModel}`;
 
   return (
-    partDetails?.id && (
+    partDetails?.docID && (
       <Box>
         <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
           <Box>
             <Label
-              color={getStockInfo(partDetails.stock).color}
+              color={getStockInfo(+partDetails.stock).color}
               sx={{ fontSize: 14, p: 1, fontWeight: theme.typography.fontWeightMedium }}
             >
-              {getStockInfo(partDetails.stock).text}
+              {getStockInfo(+partDetails.stock).text}
             </Label>
           </Box>
           <SparePartsDetailsActionButtons partDetails={partDetails} />
@@ -61,6 +41,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
           <Block title="Category" description={partDetails.category} />
           <Block title="Part Group" description={partDetails.itemGroup} />
           <Block title="Part Number/OEM" description={partDetails.partNumber} />
+          <Block title="ID" description={partDetails.docID} />
         </Stack>
         <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
       </Box>

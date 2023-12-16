@@ -1,8 +1,7 @@
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import SvgColor from 'src/components/svg-color';
-import { useResponsive } from 'src/hooks/use-responsive';
 import {
   AUTO_URL,
   SITE_NAME,

@@ -1,28 +1,20 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { useRef, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
 import { LoadingButton } from '@mui/lab';
 import {
-  Box,
-  Button,
-  Select,
   Divider,
   MenuItem,
-  IconButton,
-  InputLabel,
-  FormControl,
-  InputAdornment,
 } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 import { _mercedesClasses } from 'src/_mock/_mercedesClasses';
 import FormProvider from 'src/components/hook-form/form-provider';
-import { RHFSelect, RHFSwitch, RHFTextField } from 'src/components/hook-form';
+import { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { rdxUpdatePage, rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
 const TEMP_CATEGORY = [

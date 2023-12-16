@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import { Box, IconButton } from '@mui/material';
 // @mui
-import { useTheme } from '@mui/material/styles';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';

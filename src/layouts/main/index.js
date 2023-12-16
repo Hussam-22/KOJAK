@@ -8,8 +8,6 @@ import { usePathname } from 'src/routes/hooks';
 import SimpleBackdrop from 'src/components/backdrop';
 import { stopLoading } from 'src/redux/slices/siteStore';
 import WhatsAppForm from 'src/layouts/main/whatsApp-form';
-import ModernHeader from 'src/layouts/main/modern-header';
-import { SplashScreen } from 'src/components/loading-screen';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { rdxLoadCartFromStorage } from 'src/redux/slices/products';
 

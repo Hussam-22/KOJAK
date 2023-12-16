@@ -15,7 +15,26 @@ import rootReducer from './rootReducer';
 //     }),
 // });
 
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActionPaths: [
+          'products.products',
+          'products.payload.sparePartsData',
+          'payload.sparePartsData',
+        ],
+        ignoredPaths: [
+          'products.products',
+          'products.payload.sparePartsData',
+          'payload.sparePartsData',
+          'products.filteredProducts',
+          'products.filteredProducts.0.creationDate',
+        ],
+      },
+    }),
+});
 
 // const persistor = persistStore(store);
 
