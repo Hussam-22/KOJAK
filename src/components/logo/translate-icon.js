@@ -13,8 +13,8 @@ function TranslateIcon({ light, toggleLanguageHandler, sx }) {
 
   const singleLogo = (
     <svg
-      width="800px"
-      height="800px"
+      width="50px"
+      height="50px"
       viewBox="0 0 16 16"
       xmlns="http://www.w3.org/2000/svg"
       fill={COLOR}

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { initializeApp } from 'firebase/app';
-import { ref, getStorage, getDownloadURL } from 'firebase/storage';
 import { useMemo, useEffect, useReducer, useCallback } from 'react';
+import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
   where,
@@ -173,10 +173,54 @@ export function AuthProvider({ children }) {
 
   // ! ----------------------------------------------------------------------
   // ! ----------------------------------------------------------------------
+  const fsGetImgDownloadUrl = useCallback(async (bucketPath, imgID) => {
+    let url = '';
+    try {
+      url = await getDownloadURL(ref(STORAGE, `gs://${bucketPath}${imgID}`));
+    } catch (error) {
+      url = undefined;
+    }
+    return url;
+  }, []);
 
-  // get website info
-  const getWebsiteInfo = useCallback(async () => {
-    const docRef = doc(DB, `/websites/building/`);
+  const fsGetFolderImages = useCallback(async (bucket, folderID) => {
+    const listRef = ref(STORAGE, `gs://${bucket}/${folderID}`);
+    const imagesList = await listAll(listRef);
+    const imagesUrl = await Promise.all(
+      imagesList.items.map(async (imageRef) => getDownloadURL(ref(STORAGE, imageRef)))
+    );
+    const thumbnail = imagesUrl.filter((url) => url.includes('200x200'));
+    const largeImage = imagesUrl.filter((url) => url.includes('1920x1080'));
+    return [thumbnail, largeImage];
+  }, []);
+
+  const fsGetSpaces = useCallback(async () => {
+    const docRef = query(collectionGroup(DB, 'spaces-list'));
+    const querySnapshot = await getDocs(docRef);
+
+    const documents = [];
+    const asyncOperations = [];
+
+    querySnapshot.forEach((document) => {
+      const asyncOperation = async () => {
+        const listRef = ref(STORAGE, `gs://kojak-building/${document.data().docID}`);
+        const imagesList = await listAll(listRef);
+        const thumbnail = await fsGetImgDownloadUrl(
+          `kojak-building/${document.data().docID}/`,
+          imagesList?.items.filter((imageName) => imageName.name.includes('1920x1080'))[0]?.name
+        );
+
+        documents.push({ data: document.data(), thumbnail });
+      };
+      asyncOperations.push(asyncOperation());
+    });
+    await Promise.all(asyncOperations);
+
+    return documents;
+  }, [fsGetImgDownloadUrl]);
+
+  const fsGetSpace = useCallback(async (spaceID) => {
+    const docRef = doc(DB, `/websites/building/spaces-list/${spaceID}`);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   }, []);
@@ -212,48 +256,6 @@ export function AuthProvider({ children }) {
     const docRef = doc(DB, `/websites/building/spaces/${spaceID}`);
     const docSnap = await getDoc(docRef);
     return docSnap.data();
-  }, []);
-
-  // add new space
-  const addNewSpace = useCallback(async () => {
-    const id = 'C1003-3';
-    const data = await setDoc(doc(DB, '/websites/building/spaces/', id), {
-      id,
-      bucketID: 'C1001-1',
-      type: 'commercial'.toLowerCase(),
-      spaceType: 'Offices',
-      description: 'Second Floor - Office Space',
-      city: 'Dubai',
-      location: 'Motor City',
-      buildingName: 'Kojak',
-      rent: 0,
-      rentSale: 0,
-      coverImgID: '1',
-      imagesIDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-      isAvailable: false,
-      features: {
-        area: '400-4000',
-        bedrooms: 0,
-        bathrooms: 0,
-        ac: 'Emicool',
-        parking: 100,
-        healthClub: false,
-        security: true,
-        cctv: true,
-        chequesNo: '4-6',
-        kitchen: 0,
-      },
-      contactDetails: {
-        email: 'mohamed@kojak-group.com',
-        mobile: '0529242623',
-        fullName: 'Mohamed',
-      },
-      listingDate: {
-        seconds: 1690400112,
-        nanoseconds: 896000000,
-      },
-    });
-    return data;
   }, []);
 
   // add new request-callback form
@@ -296,16 +298,6 @@ export function AuthProvider({ children }) {
     });
     return newDocRef.id;
   }, []);
-  // ------------------ | Get image Download URL | ------------------
-  const fsGetImgDownloadUrl = useCallback(async (projectID, imgID) => {
-    // getDownloadURL(ref(STORAGE, `${state.user.id}/menusCover/${dataObj.cover.id}_800x800.webp`))
-    const url = await getDownloadURL(
-      ref(STORAGE, `gs://kojak-building/${projectID}/${imgID}_800x800.webp`)
-    );
-    // .then((response) => response)
-    // .catch((error) => console.log(error));
-    return url;
-  }, []);
 
   const checkAuthenticated = state.user?.emailVerified ? 'authenticated' : 'unauthenticated';
 
@@ -327,11 +319,9 @@ export function AuthProvider({ children }) {
       loginWithGithub,
       loginWithTwitter,
       //
-      getWebsiteInfo,
-      getAllSpacesInfo,
+      fsGetSpaces,
       getSpaceInfo,
       fsGetFeaturedProperty,
-      addNewSpace,
       addNewForm,
       updatePageAnalytic,
       fsGetImgDownloadUrl,
@@ -348,11 +338,9 @@ export function AuthProvider({ children }) {
       loginWithGoogle,
       loginWithTwitter,
       //
-      getWebsiteInfo,
-      getAllSpacesInfo,
+      fsGetSpaces,
       getSpaceInfo,
       fsGetFeaturedProperty,
-      addNewSpace,
       addNewForm,
       updatePageAnalytic,
       fsGetImgDownloadUrl,

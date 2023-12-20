@@ -12,24 +12,19 @@ import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properti
 // ----------------------------------------------------------------------
 
 export default function PropertiesList() {
-  const [properties, setProperties] = useState([]);
+  const [spacesList, setSpacesList] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
-  const { getAllSpacesInfo, addNewSpace } = useAuthContext();
+  const { fsGetSpaces, addNewSpace } = useAuthContext();
   const { rdxFilter } = useSelector((state) => state.properties);
-
-  // const addListing = async () => {
-  //   const data = await addNewSpace();
-  //   console.log(data);
-  // };
 
   useEffect(() => {
     (async () => {
-      setProperties(await getAllSpacesInfo());
+      setSpacesList(await fsGetSpaces());
     })();
-  }, [getAllSpacesInfo]);
+  }, [fsGetSpaces]);
 
   useEffect(() => {
-    let propertiesToFilter = properties;
+    let propertiesToFilter = spacesList;
 
     if (rdxFilter.type.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
@@ -58,21 +53,21 @@ export default function PropertiesList() {
       rdxFilter.city.length === 0 &&
       rdxFilter.isAvailable.length === 0
     ) {
-      setFilteredProperties(properties);
+      setFilteredProperties(spacesList);
     } else {
       setFilteredProperties(propertiesToFilter);
     }
-  }, [properties, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
+  }, [spacesList, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
 
   return (
     <Stack spacing={4} sx={{ mb: 6 }}>
-      {properties.length === 0 &&
-        [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
+      {spacesList.length === 0 &&
+        [...Array(5)].map((_, index) => <PropertyCardSkeleton key={index} />)}
 
       {filteredProperties.length !== 0 &&
         filteredProperties
           .sort((a, b) => b.isAvailable - a.isAvailable)
-          .map((property) => <PropertyCard key={property.id} space={property} />)}
+          .map((property) => <PropertyCard key={property.data.docID} space={property} />)}
 
       {filteredProperties.length === 0 && (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

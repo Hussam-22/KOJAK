@@ -230,7 +230,7 @@ const ar = {
     dubai: 'دبي',
     flat: 'شقة',
     showrooms: 'معرض',
-    gym: 'نادي صحي / مسبح',
+    'healthclub/swimmingpool': 'نادي صحي / مسبح',
     labourcamp: 'سكن عمال',
     shops: 'محلات',
     restaurant: 'مطعم',
