@@ -8,21 +8,30 @@ const initialState = {
   products: [],
   filteredProducts: [],
   filterDefaultValues: {
-    isCommercial: undefined,
-    spaceType: [
-      'flat',
-      'showrooms',
-      'health club / swimming pool',
-      'labourcamp',
-      'shops',
-      'restaurant',
-      'offices',
+    isCommercial: [
+      { label: 'Commercial', value: true },
+      { label: 'Residential', value: false },
     ],
-    city: ['sharjah', 'dubai'],
-    isActive: [true, false],
+    spaceType: [
+      { value: 'flat', label: 'Flat' },
+      { value: 'showrooms', label: 'Showroom' },
+      { value: 'health club / swimming pool', label: 'Health Club / Swimming Pool' },
+      { value: 'laborCamp', label: 'Labor Camp' },
+      { value: 'shops', label: 'Shop' },
+      { value: 'restaurant', label: 'Restaurant' },
+      { value: 'offices', label: 'Office' },
+    ],
+    city: [
+      { value: 'Sharjah', label: 'Sharjah' },
+      { value: 'Dubai', label: 'Dubai' },
+    ],
+    isActive: [
+      { label: 'Available', value: true },
+      { label: 'Not Available', value: false },
+    ],
   },
   rdxFilter: {
-    type: [],
+    isCommercial: [],
     spaceType: [],
     city: [],
     isActive: [],

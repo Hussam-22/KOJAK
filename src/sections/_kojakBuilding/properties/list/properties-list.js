@@ -17,49 +17,56 @@ export default function PropertiesList() {
   const { fsGetSpaces, addNewSpace } = useAuthContext();
   const { rdxFilter } = useSelector((state) => state.properties);
 
+  console.log(rdxFilter);
+
   useEffect(() => {
     (async () => {
       setSpacesList(await fsGetSpaces());
     })();
   }, [fsGetSpaces]);
 
-  console.log(spacesList);
-
   useEffect(() => {
     let propertiesToFilter = spacesList;
 
-    if (rdxFilter.type.length !== 0) {
+    if (rdxFilter.isCommercial !== undefined) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.type.includes(property.data.type)
+        rdxFilter.isCommercial.includes(property.data.isCommercial)
       );
     }
     if (rdxFilter.spaceType.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.spaceType.includes(property.data.spaceType.toLowerCase())
+        rdxFilter.spaceType.includes(property.data.spaceType)
       );
     }
     if (rdxFilter.city.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.city.includes(property.data.city.toLowerCase())
+        rdxFilter.city.includes(property.data.city)
       );
+      console.log(propertiesToFilter);
     }
-    if (rdxFilter.isAvailable.length !== 0) {
+    if (rdxFilter.isActive.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.isAvailable.includes(property.data.isAvailable)
+        rdxFilter.isActive.includes(property.data.isActive)
       );
     }
-
     if (
-      rdxFilter.type.length === 0 &&
+      rdxFilter.isCommercial.length === 0 &&
       rdxFilter.spaceType.length === 0 &&
       rdxFilter.city.length === 0 &&
-      rdxFilter.isAvailable.length === 0
+      rdxFilter.isActive.length === 0
     ) {
       setFilteredProperties(spacesList);
     } else {
       setFilteredProperties(propertiesToFilter);
     }
-  }, [spacesList, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
+  }, [
+    spacesList,
+    rdxFilter.spaceType,
+    rdxFilter.city,
+    rdxFilter.isCommercial,
+    rdxFilter.isActive.length,
+    rdxFilter.isActive,
+  ]);
 
   return (
     <Stack spacing={4} sx={{ mb: 6 }}>

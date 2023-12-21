@@ -17,9 +17,9 @@ import FilterType from './filter-type';
 
 export default function WebsiteFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
-  const { rdxFilter, filterDefaultValues } = useSelector((state) => state.properties);
   const dispatch = useDispatch();
   const { translate } = useLocales();
+  const { rdxFilter, filterDefaultValues } = useSelector((state) => state.properties);
 
   const clearFilter = () => {
     dispatch(rdxClearFilter());
@@ -52,9 +52,9 @@ export default function WebsiteFilters({ open, onClose }) {
     >
       <Block title={translate('websiteFilter.type.propertyType')}>
         <FilterType
-          filterType={rdxFilter.type}
+          filterType={rdxFilter.isCommercial}
           onChangeType={(e) => handleChangeType(e, 'isCommercial')}
-          filters={filterDefaultValues.type}
+          filters={filterDefaultValues.isCommercial}
           selectedAllText={translate('websiteFilter.all.type')}
         />
       </Block>
@@ -79,9 +79,9 @@ export default function WebsiteFilters({ open, onClose }) {
 
       <Block title={translate('websiteFilter.type.availability')}>
         <FilterType
-          filterType={rdxFilter.isAvailable}
-          onChangeType={(e) => handleChangeType(e, 'isAvailable')}
-          filters={filterDefaultValues.isAvailable}
+          filterType={rdxFilter.isActive}
+          onChangeType={(e) => handleChangeType(e, 'isActive')}
+          filters={filterDefaultValues.isActive}
           selectedAllText={translate('websiteFilter.all.all')}
         />
       </Block>
