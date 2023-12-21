@@ -53,7 +53,7 @@ export default function WebsiteFilters({ open, onClose }) {
       <Block title={translate('websiteFilter.type.propertyType')}>
         <FilterType
           filterType={rdxFilter.type}
-          onChangeType={(e) => handleChangeType(e, 'type')}
+          onChangeType={(e) => handleChangeType(e, 'isCommercial')}
           filters={filterDefaultValues.type}
           selectedAllText={translate('websiteFilter.all.type')}
         />

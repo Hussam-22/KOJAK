@@ -130,7 +130,7 @@ export default function PropertyCard({ space, vertical }) {
 
           {bedrooms !== 0 && <IconWithText icon="fluent:bed-24-regular" text={bedrooms} />}
           {bathrooms !== 0 && <IconWithText icon="cil:shower" text={bathrooms} />}
-          {kitchens !== 0 && <IconWithText icon="tabler:tools-kitchen-2" text={kitchens} />}
+          {/* {kitchens !== 0 && <IconWithText icon="tabler:tools-kitchen-2" text={kitchens} />} */}
           <IconWithText icon="iconoir:air-conditioner" text={acType} />
         </Stack>
 

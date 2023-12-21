@@ -23,27 +23,29 @@ export default function PropertiesList() {
     })();
   }, [fsGetSpaces]);
 
+  console.log(spacesList);
+
   useEffect(() => {
     let propertiesToFilter = spacesList;
 
     if (rdxFilter.type.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.type.includes(property.type)
+        rdxFilter.type.includes(property.data.type)
       );
     }
     if (rdxFilter.spaceType.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.spaceType.includes(property.spaceType.toLowerCase())
+        rdxFilter.spaceType.includes(property.data.spaceType.toLowerCase())
       );
     }
     if (rdxFilter.city.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.city.includes(property.city.toLowerCase())
+        rdxFilter.city.includes(property.data.city.toLowerCase())
       );
     }
     if (rdxFilter.isAvailable.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.isAvailable.includes(property.isAvailable)
+        rdxFilter.isAvailable.includes(property.data.isAvailable)
       );
     }
 

@@ -8,16 +8,24 @@ const initialState = {
   products: [],
   filteredProducts: [],
   filterDefaultValues: {
-    type: ['residential', 'commercial'],
-    spaceType: ['flat', 'showrooms', 'gym', 'labourcamp', 'shops', 'restaurant', 'offices'],
+    isCommercial: undefined,
+    spaceType: [
+      'flat',
+      'showrooms',
+      'health club / swimming pool',
+      'labourcamp',
+      'shops',
+      'restaurant',
+      'offices',
+    ],
     city: ['sharjah', 'dubai'],
-    isAvailable: [true, false],
+    isActive: [true, false],
   },
   rdxFilter: {
     type: [],
     spaceType: [],
     city: [],
-    isAvailable: [],
+    isActive: [],
   },
 };
 
