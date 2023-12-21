@@ -8,7 +8,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
+import { Button, Backdrop, CircularProgress } from '@mui/material';
 
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
@@ -17,7 +17,6 @@ import { useLocales } from 'src/locales';
 import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
-import TranslateIcon from 'src/components/logo/translate-icon';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
@@ -105,12 +104,12 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.exploreProperties')}
                   </Button>
-                  <Divider
+                  {/* <Divider
                     orientation="vertical"
                     flexItem
                     sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
-                  <TranslateIcon light={false} toggleLanguageHandler={toggleLanguageHandler} />
+                  <TranslateIcon light={false} toggleLanguageHandler={toggleLanguageHandler} /> */}
                 </Stack>
               )}
             </Stack>

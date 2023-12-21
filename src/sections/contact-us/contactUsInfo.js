@@ -19,56 +19,14 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-
-        <Stack
-          direction={small ? 'row' : 'column'}
-          spacing={1}
-          alignItems={small ? 'center' : 'unset'}
-        >
-          <Link color="inherit" href="mailto:queries@kojak-group.com">
-            queries@kojak-group.com
-          </Link>
-          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For General Inquires)
-          </Typography>
-        </Stack>
-      </Stack>
-
-      <Stack spacing={1} direction="row">
-        <Iconify icon="carbon:email" width={24} />
-
-        <Stack
-          direction={small ? 'row' : 'column'}
-          spacing={1}
-          alignItems={small ? 'center' : 'unset'}
-        >
-          <Link color="inherit" href="mailto: customercare@kojak-group.com">
-            customercare@kojak-group.com
-          </Link>
-          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For Complaints)
-          </Typography>
-        </Stack>
-      </Stack>
-
-      <Stack direction="row" spacing={1}>
-        <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Typography>06-5334312</Typography>
-          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For General Inquires)
-          </Typography>
-        </Stack>
+        <Link color="inherit" href="mailto:queriesksp@kojak-group.com">
+          queriesksp@kojak-group.com
+        </Link>
       </Stack>
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
-          <Typography variant="caption" sx={{ color: theme.palette.text.disabled }}>
-            (For Complaints)
-          </Typography>
-        </Stack>
+        <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
@@ -96,8 +54,6 @@ export default function ContactUsInfo({ light, small }) {
 
         <Typography>{translate('contactUs.details.hours')}</Typography>
       </Stack>
-
-      {/* <Divider sx={{ border: 'dashed 1px #CCCCCC' }} flexItem /> */}
 
       <Stack spacing={1}>
         <Typography variant="overline">{translate('contactUs.details.follow')}</Typography>
