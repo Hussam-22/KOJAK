@@ -14,10 +14,8 @@ import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properti
 export default function PropertiesList() {
   const [spacesList, setSpacesList] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
-  const { fsGetSpaces, addNewSpace } = useAuthContext();
+  const { fsGetSpaces } = useAuthContext();
   const { rdxFilter } = useSelector((state) => state.properties);
-
-  console.log(rdxFilter);
 
   useEffect(() => {
     (async () => {
@@ -28,9 +26,15 @@ export default function PropertiesList() {
   useEffect(() => {
     let propertiesToFilter = spacesList;
 
-    if (rdxFilter.isCommercial !== undefined) {
+    if (rdxFilter.isCommercial.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
         rdxFilter.isCommercial.includes(property.data.isCommercial)
+      );
+    }
+
+    if (rdxFilter.city.length !== 0) {
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.city.includes(property.data.city)
       );
     }
     if (rdxFilter.spaceType.length !== 0) {
@@ -38,12 +42,7 @@ export default function PropertiesList() {
         rdxFilter.spaceType.includes(property.data.spaceType)
       );
     }
-    if (rdxFilter.city.length !== 0) {
-      propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.city.includes(property.data.city)
-      );
-      console.log(propertiesToFilter);
-    }
+
     if (rdxFilter.isActive.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
         rdxFilter.isActive.includes(property.data.isActive)

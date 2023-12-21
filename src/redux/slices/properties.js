@@ -13,13 +13,13 @@ const initialState = {
       { label: 'Residential', value: false },
     ],
     spaceType: [
-      { value: 'flat', label: 'Flat' },
-      { value: 'showrooms', label: 'Showroom' },
-      { value: 'health club / swimming pool', label: 'Health Club / Swimming Pool' },
+      { value: 'Flat', label: 'Flat' },
+      { value: 'Showrooms', label: 'Showroom' },
+      { value: 'Health Club / Swimming Pool', label: 'Health Club / Swimming Pool' },
       { value: 'laborCamp', label: 'Labor Camp' },
-      { value: 'shops', label: 'Shop' },
-      { value: 'restaurant', label: 'Restaurant' },
-      { value: 'offices', label: 'Office' },
+      { value: 'Shops', label: 'Shop' },
+      { value: 'Restaurant', label: 'Restaurant' },
+      { value: 'Offices', label: 'Office' },
     ],
     city: [
       { value: 'Sharjah', label: 'Sharjah' },
@@ -65,10 +65,10 @@ const slice = createSlice({
 
     rdxClearFilter(state) {
       state.rdxFilter = {
-        type: [],
+        isCommercial: [],
         spaceType: [],
         city: [],
-        isAvailable: [],
+        isActive: [],
       };
     },
 
