@@ -120,17 +120,18 @@ export default function SparePartsListViewGridItem({
         </Box>
 
         <Stack spacing={0.5} sx={{ p: 2 }}>
-          <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+          {/* <Typography variant="caption" sx={{ color: 'text.disabled' }}>
             {product.docID}
-          </Typography>
-          <Link component={RouterLink} to={product.docID} sx={{ textDecoration: 'underline' }}>
-            <TextMaxLine line={1} color="primary">
-              {product?.partNumber}
-            </TextMaxLine>
-          </Link>
-          <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+          </Typography> */}
+          <Typography sx={{ color: 'text.disabled', fontSize: '0.68rem' }}>
             {product.category}
           </Typography>
+          <TextMaxLine line={1}>{product.partName}</TextMaxLine>
+          <Link component={RouterLink} to={product.docID}>
+            <Typography variant="caption" sx={{ textDecoration: 'underline' }}>
+              {product?.partNumber}
+            </Typography>
+          </Link>
         </Stack>
       </Stack>
     </Card>
@@ -143,6 +144,7 @@ SparePartsListViewGridItem.propTypes = {
     docID: PropTypes.string,
     id: PropTypes.number,
     itemGroup: PropTypes.string,
+    partName: PropTypes.string,
     partNumber: PropTypes.any,
     price: PropTypes.number,
     imageName: PropTypes.string,
