@@ -1,90 +1,32 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
 import { LoadingButton } from '@mui/lab';
-import {
-  Divider,
-  MenuItem,
-} from '@mui/material';
+import { Divider, MenuItem } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
-import { _mercedesClasses } from 'src/_mock/_mercedesClasses';
+import { useAuthContext } from 'src/auth/hooks';
+import { _partsCategory } from 'src/_mock/_partsCategory';
 import FormProvider from 'src/components/hook-form/form-provider';
 import { RHFSelect, RHFTextField } from 'src/components/hook-form';
 import { rdxUpdatePage, rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
 
-const TEMP_CATEGORY = [
-  'ACCESSORIES',
-  'ATTACHMENT PARTS',
-  'ATTACHMENT PARTS FOR UNITS',
-  'ATTACHMENT/BODY PARTS',
-  'BRAKES',
-  'SERVICE PARTS',
-  'COOLER',
-  'COOLING/AUXILIARY HEATING',
-  'ENGINE COOLING',
-  'FANS',
-  'HEATING AND VENTILATION',
-  'POWER STEERING PUMP, AC COMPRESSOR',
-  'RADIATOR',
-  'BATTERY',
-  'ELEC',
-  'ELECTRICAL EQUIPMENT AND INSTRUMENTS',
-  'ELECTRICAL SYSTEM',
-  'ENGINE ELECTRICAL EQUIPMENT',
-  'AIR CLEANER AND ENGINE CHARGING',
-  'ENGINE',
-  'ENGINE LUBRICATION',
-  'ENGINE SUSPENSION',
-  'ENGINE TIMING',
-  'SHEET METAL PARTS',
-  'CHASSIS SHEET METAL / AIR INTAKE',
-  'EXHAUST SYSTEM',
-  'INTAKE AND EXHAUST MANIFOLDS',
-  'BODY KIT',
-  'COWL,​FRONT PANEL',
-  'DOORS',
-  'FENDER',
-  'FRONT DOORS',
-  'FRONT-END ASSEMBLY, FRONT PANEL',
-  'REAR DOORS',
-  'SIDE PANELS',
-  'SLIDING ROOF',
-  'SUBFRAME',
-  'SUBSTRUCTURE',
-  'TRANSFER CASE',
-  'TRUNK LID',
-  'TRUNKS AND CASES',
-  'WINDOWS',
-  'WINDSHIELD WASHER,EMERGENCY EQUIPMT',
-  'OIL  AND LUBRICANTS',
-  'OIL AND ACCESSORIES',
-  'PANELLING',
-  'FUEL INJECTION',
-  'FUEL SYSTEM',
-  'INTERIOR',
-  'FRONT AXLE',
-  'STEERING',
-  'SPRINGS,​SUSPENSION AND HYDRAULICS',
-  'SUSPENSION',
-  'COVERING AND LINING',
-  'REAR AXLE',
-  'WHEELS',
-  'AUTOMATIC TRANSMISSION',
-  'MB AUTOMATIC TRANSMISSION',
-  'MB PARTS',
-  'PROPELLER SHAFT',
-];
-
-// ----------------------------------------------------------------------
-
 export default function FilterBrand({ closeDrawer }) {
   const dispatch = useDispatch();
   const { filter } = useSelector((state) => state.products);
+  const [classModelsList, setClassModelsList] = useState([]);
+  const { getClassModelsList } = useAuthContext();
+
+  useEffect(() => {
+    (async () => {
+      setClassModelsList(await getClassModelsList());
+    })();
+  }, [getClassModelsList]);
 
   const schema = Yup.object().shape({
     class: Yup.string().when('partNo', {
@@ -144,7 +86,7 @@ export default function FilterBrand({ closeDrawer }) {
 
         <Divider sx={{ borderStyle: 'dashed' }} orientation="vertical" flexItem />
 
-        <RHFSelect name="class" label="Mercedes Class" variant="outlined">
+        {/* <RHFSelect name="class" label="Mercedes Class" variant="outlined">
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {_mercedesClasses.map((option) => (
@@ -169,9 +111,57 @@ export default function FilterBrand({ closeDrawer }) {
                   {option}
                 </MenuItem>
               ))}
+        </RHFSelect> */}
+
+        <RHFSelect
+          native
+          name="class"
+          label="Class"
+          InputLabelProps={{ shrink: true }}
+          variant="outlined"
+        >
+          <option key={0} value={0}>
+            Select Class
+          </option>
+          {classModelsList.length !== 0 &&
+            classModelsList.map((item) => (
+              <option key={item.class} value={item.class}>
+                {item.class}
+              </option>
+            ))}
         </RHFSelect>
 
         <RHFSelect
+          native
+          name="model"
+          label="model"
+          InputLabelProps={{ shrink: true }}
+          variant="outlined"
+        >
+          <option key={0} value={0}>
+            Select Model
+          </option>
+          {classModelsList.length !== 0 &&
+            classModelsList
+              .filter((item) => item.class === values.class)[0]
+              ?.models.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+        </RHFSelect>
+
+        <RHFSelect name="category" label="Part Category" variant="outlined">
+          <MenuItem value="">None</MenuItem>
+          <Divider sx={{ borderStyle: 'dashed' }} />
+          {_partsCategory.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </RHFSelect>
+
+        {/* <RHFSelect
           name="category"
           label="Category"
           variant="outlined"
@@ -184,7 +174,7 @@ export default function FilterBrand({ closeDrawer }) {
               {option}
             </MenuItem>
           ))}
-        </RHFSelect>
+        </RHFSelect> */}
 
         <Stack spacing={2} direction="row">
           <LoadingButton

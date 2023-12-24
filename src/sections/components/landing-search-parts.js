@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { LoadingButton } from '@mui/lab';
@@ -10,7 +10,7 @@ import { Box, Tab, Tabs, Stack, Divider, MenuItem } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
-import { _mercedesClasses } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { _partsCategory } from 'src/_mock/_partsCategory';
 import FormProvider from 'src/components/hook-form/form-provider';
@@ -95,8 +95,16 @@ function SearchAdvanced() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [classModelsList, setClassModelsList] = useState([]);
+  const { getClassModelsList } = useAuthContext();
 
-  const CareerContactSchema = Yup.object().shape({
+  useEffect(() => {
+    (async () => {
+      setClassModelsList(await getClassModelsList());
+    })();
+  }, [getClassModelsList]);
+
+  const schema = Yup.object().shape({
     class: Yup.string().required('Car Class is required'),
     model: Yup.string().when('class', {
       is: (selectedClass) => selectedClass !== '', // Only apply validation when "class" is selected
@@ -111,7 +119,7 @@ function SearchAdvanced() {
   };
 
   const methods = useForm({
-    resolver: yupResolver(CareerContactSchema),
+    resolver: yupResolver(schema),
     defaultValues,
   });
 
@@ -142,7 +150,7 @@ function SearchAdvanced() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
-        <RHFSelect
+        {/* <RHFSelect
           name="class"
           label="Mercedes Class"
           variant="outlined"
@@ -150,23 +158,64 @@ function SearchAdvanced() {
         >
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
-          {_mercedesClasses.map((option) => (
-            <MenuItem key={option.class} value={option.class}>
-              {option.class}
-            </MenuItem>
-          ))}
+          {classModelsList.length !== 0 &&
+            classModelsList.map((option) => (
+              <MenuItem key={option.class} value={option.class}>
+                {option.class}
+              </MenuItem>
+            ))}
         </RHFSelect>
 
         <RHFSelect name="model" label="Model" variant="outlined" size={mdUp ? 'large' : 'unset'}>
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
-          {values.class !== '' &&
-            _mercedesClasses
-              .find((option) => option.class === values.class)
+          {classModelsList.length !== 0 &&
+            classModelsList
+              .filter((option) => option.class === values.class)[0]
               .models.map((option) => (
                 <MenuItem key={option} value={option}>
                   {`${option}`}
                 </MenuItem>
+              ))}
+        </RHFSelect> */}
+
+        <RHFSelect
+          native
+          name="class"
+          label="Class"
+          InputLabelProps={{ shrink: true }}
+          variant="outlined"
+          size={mdUp ? 'large' : 'unset'}
+        >
+          <option key={0} value={0}>
+            Select Class
+          </option>
+          {classModelsList.length !== 0 &&
+            classModelsList.map((item) => (
+              <option key={item.class} value={item.class}>
+                {item.class}
+              </option>
+            ))}
+        </RHFSelect>
+
+        <RHFSelect
+          native
+          name="model"
+          label="model"
+          InputLabelProps={{ shrink: true }}
+          variant="outlined"
+          size={mdUp ? 'large' : 'unset'}
+        >
+          <option key={0} value={0}>
+            Select Model
+          </option>
+          {classModelsList.length !== 0 &&
+            classModelsList
+              .filter((item) => item.class === values.class)[0]
+              ?.models.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
               ))}
         </RHFSelect>
 
@@ -179,8 +228,8 @@ function SearchAdvanced() {
           <MenuItem value="">None</MenuItem>
           <Divider sx={{ borderStyle: 'dashed' }} />
           {_partsCategory.map((option) => (
-            <MenuItem key={option.category} value={option.category}>
-              {option.category}
+            <MenuItem key={option} value={option}>
+              {option}
             </MenuItem>
           ))}
         </RHFSelect>
@@ -212,7 +261,7 @@ function SearchPartNumber() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const CareerContactSchema = Yup.object().shape({
+  const schema = Yup.object().shape({
     partNo: Yup.string().required('Car Class is required'),
   });
 
@@ -221,7 +270,7 @@ function SearchPartNumber() {
   };
 
   const methods = useForm({
-    resolver: yupResolver(CareerContactSchema),
+    resolver: yupResolver(schema),
     defaultValues,
   });
 

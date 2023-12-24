@@ -3,13 +3,11 @@ import React from 'react';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import SvgColor from 'src/components/svg-color/svg-color';
-import { _partsCategory } from 'src/_mock/_partsCategory';
+import { _partsCategoryWithIcon } from 'src/_mock/_partsCategory';
 
 function PartsCount() {
   const theme = useTheme();
-  const { translate } = useLocales();
 
   return (
     <Box
@@ -55,7 +53,7 @@ function PartsCount() {
                 mt: 2,
               }}
             >
-              {_partsCategory
+              {_partsCategoryWithIcon
                 .sort((a, b) => a.icon.localeCompare(b.icon))
                 .map((option) => (
                   <Stack
