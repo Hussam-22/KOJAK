@@ -1,13 +1,13 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { useTheme, Backdrop, CircularProgress } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
@@ -40,22 +40,7 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        <IconButton
-          disableFocusRipple
-          disableTouchRipple
-          disableRipple
-          color="primary"
-          size="small"
-          sx={{
-            bgcolor: 'common.black',
-            color: 'common.white',
-            // p: 0.75,
-            px: currentLang.value === 'en' ? 1.75 : 1,
-          }}
-          onClick={toggleLanguage}
-        >
-          {currentLang.value === 'en' ? 'ع' : 'En'}
-        </IconButton>
+        {/* <TranslateIcon light={false} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
           <Iconify icon="carbon:menu" />

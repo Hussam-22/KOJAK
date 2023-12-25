@@ -1,38 +1,24 @@
-import { m } from 'framer-motion';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 import { memo, useState, useEffect } from 'react';
 
-import { Masonry } from '@mui/lab';
 import { useTheme } from '@mui/system';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, Stack, Button, Divider, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Stack, Button, Divider } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import { useLocales } from 'src/locales';
-import Image from 'src/components/image/Image';
+import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
-import { varFade } from 'src/components/animate';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
 import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
-import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/details/property-details-gallery';
 
 function FeaturedProperty() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isMdUp = useResponsive('up', 'md');
-  const { fsGetFeaturedProperty, fsGetImgDownloadUrl } = useAuthContext();
+  const { fsGetFeaturedProperty, fsGetFolderImages } = useAuthContext();
   const [images, setImages] = useState([]);
   const [featuredProperty, setFeaturedProperty] = useState([]);
-  const { translate, currentLang } = useLocales();
-
-  const descriptionValue =
-    currentLang.value === 'ar'
-      ? featuredProperty.descriptionAr?.ar || ''
-      : featuredProperty.description;
 
   useEffect(() => {
     (async () => {
@@ -41,61 +27,50 @@ function FeaturedProperty() {
   }, [fsGetFeaturedProperty]);
 
   useEffect(() => {
-    if (Object.entries(featuredProperty).length !== 0) {
-      (async () => {
-        const getImages = [...Array(5)].map(async (_, index) =>
-          fsGetImgDownloadUrl(featuredProperty.bucketID, index + 1)
-        );
-        setImages(await Promise.all([...getImages]));
-      })();
-    }
-  }, [featuredProperty, fsGetImgDownloadUrl]);
+    (async () => {
+      if (featuredProperty?.docID) setImages(await fsGetFolderImages(featuredProperty.docID));
+    })();
+  }, [featuredProperty.docID, fsGetFolderImages]);
 
   return (
     <Box
       sx={{
-        border: `solid 3px ${theme.palette.primary.main}`,
-        borderRadius: 3,
-        bgcolor: 'common.white',
+        borderRadius: 1,
         p: { md: 5, xs: 2 },
+        boxShadow: `-10px 10px 0 0 ${theme.palette.primary.main}`,
+        border: `solid 2px ${theme.palette.common.black}`,
+        bgcolor: 'background.default',
       }}
     >
       <Stack
         direction={{ md: 'row', xs: 'column' }}
-        justifyContent="space-between"
         textAlign={{ md: 'unset', xs: 'center' }}
+        justifyContent="space-between"
         alignItems="center"
+        spacing={2}
+        sx={{ mb: 3 }}
       >
-        <Typography variant="h2" sx={{ mb: 3 }}>
-          {translate('featuredProperty.title')}
+        <Typography variant="h2">
+          Hot Deal Property
           <Iconify icon="noto:fire" width={54} />
         </Typography>
 
         <Button
-          variant="soft"
+          variant="contained"
           color="primary"
-          onClick={() => navigate(`/properties/${featuredProperty.id}`)}
+          onClick={() => navigate(`/properties/${featuredProperty?.docID}`)}
         >
-          {translate('common.moreDetails')}
+          View Property
         </Button>
       </Stack>
+      <Image src={images[0]} />
+      {/* {images.length !== 0 && <PropertyDetailsGallery images={images} />} */}
+      {featuredProperty?.docID && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
-      <Typography variant="h4" sx={{ mb: 3 }}>
-        {descriptionValue}
-      </Typography>
+      <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
-      {images.length !== 0 && <PropertyDetailsGallery images={images} />}
-
-      {featuredProperty.id !== undefined && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
-
-      <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
-
-      {featuredProperty.id !== undefined && (
-        <PropertyDetailsSummary
-          spaceFeatures={featuredProperty.features}
-          spaceType={featuredProperty.spaceType}
-          hideSummery
-        />
+      {featuredProperty?.docID && (
+        <PropertyDetailsSummary spaceInfo={featuredProperty} hideSummery />
       )}
     </Box>
   );

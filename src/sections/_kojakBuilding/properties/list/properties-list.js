@@ -12,67 +12,71 @@ import DidNotFindWhatYouAreLookingFor from 'src/sections/_kojakBuilding/properti
 // ----------------------------------------------------------------------
 
 export default function PropertiesList() {
-  const [properties, setProperties] = useState([]);
+  const [spacesList, setSpacesList] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
-  const { getAllSpacesInfo, addNewSpace } = useAuthContext();
+  const { fsGetSpaces } = useAuthContext();
   const { rdxFilter } = useSelector((state) => state.properties);
-
-  // const addListing = async () => {
-  //   const data = await addNewSpace();
-  //   console.log(data);
-  // };
 
   useEffect(() => {
     (async () => {
-      setProperties(await getAllSpacesInfo());
+      setSpacesList(await fsGetSpaces());
     })();
-  }, [getAllSpacesInfo]);
+  }, [fsGetSpaces]);
 
   useEffect(() => {
-    let propertiesToFilter = properties;
+    let propertiesToFilter = spacesList;
 
-    if (rdxFilter.type.length !== 0) {
+    if (rdxFilter.isCommercial.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.type.includes(property.type)
+        rdxFilter.isCommercial.includes(property.data.isCommercial)
+      );
+    }
+
+    if (rdxFilter.city.length !== 0) {
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.city.includes(property.data.city)
       );
     }
     if (rdxFilter.spaceType.length !== 0) {
       propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.spaceType.includes(property.spaceType.toLowerCase())
-      );
-    }
-    if (rdxFilter.city.length !== 0) {
-      propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.city.includes(property.city.toLowerCase())
-      );
-    }
-    if (rdxFilter.isAvailable.length !== 0) {
-      propertiesToFilter = propertiesToFilter.filter((property) =>
-        rdxFilter.isAvailable.includes(property.isAvailable)
+        rdxFilter.spaceType.includes(property.data.spaceType)
       );
     }
 
+    if (rdxFilter.isActive.length !== 0) {
+      propertiesToFilter = propertiesToFilter.filter((property) =>
+        rdxFilter.isActive.includes(property.data.isActive)
+      );
+    }
     if (
-      rdxFilter.type.length === 0 &&
+      rdxFilter.isCommercial.length === 0 &&
       rdxFilter.spaceType.length === 0 &&
       rdxFilter.city.length === 0 &&
-      rdxFilter.isAvailable.length === 0
+      rdxFilter.isActive.length === 0
     ) {
-      setFilteredProperties(properties);
+      setFilteredProperties(spacesList);
     } else {
       setFilteredProperties(propertiesToFilter);
     }
-  }, [properties, rdxFilter.spaceType, rdxFilter.city, rdxFilter.isAvailable, rdxFilter.type]);
+  }, [
+    spacesList,
+    rdxFilter.spaceType,
+    rdxFilter.city,
+    rdxFilter.isCommercial,
+    rdxFilter.isActive.length,
+    rdxFilter.isActive,
+  ]);
 
   return (
     <Stack spacing={4} sx={{ mb: 6 }}>
-      {properties.length === 0 &&
-        [...Array(10)].map((_, index) => <PropertyCardSkeleton key={index} />)}
+      {spacesList.length === 0 &&
+        [...Array(5)].map((_, index) => <PropertyCardSkeleton key={index} />)}
 
       {filteredProperties.length !== 0 &&
         filteredProperties
-          .sort((a, b) => b.isAvailable - a.isAvailable)
-          .map((property) => <PropertyCard key={property.id} space={property} />)}
+          .sort((a, b) => b.data.isFeatured - a.data.isFeatured)
+          .sort((a, b) => b.data.isActive - a.data.isActive)
+          .map((property) => <PropertyCard key={property.data.docID} space={property} />)}
 
       {filteredProperties.length === 0 && (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

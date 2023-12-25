@@ -4,19 +4,19 @@ import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import { Backdrop, IconButton, CircularProgress } from '@mui/material';
+import { Button, Backdrop, CircularProgress } from '@mui/material';
 
-import Logo from 'src/components/logo';
 import { bgBlur } from 'src/theme/css';
+import Logo from 'src/components/logo';
 import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
-import { useResponsive } from 'src/hooks/use-responsive';
+import { usePathname } from 'src/routes/hooks';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 import { HEADER } from '../config-layout';
 import HeaderShadow from '../common/header-shadow';
@@ -35,6 +35,10 @@ export default function Header({ headerOnDark }) {
   const navigate = useNavigate();
   const { currentLang, onChangeLang } = useLocales();
   const { translate } = useLocales();
+  const pathName = usePathname();
+
+  const useDarkLogo = true;
+  const light = useDarkLogo && !offset;
 
   const toggleLanguageHandler = () => {
     setIsLoading(true);
@@ -62,12 +66,12 @@ export default function Header({ headerOnDark }) {
               easing: theme.transitions.easing.easeInOut,
               duration: theme.transitions.duration.shorter,
             }),
-            ...(headerOnDark && {
-              color: 'common.white',
-            }),
+            ...(!offset &&
+              headerOnDark && {
+                color: 'common.white',
+              }),
             ...(offset && {
               ...bgBlur({ color: theme.palette.background.default }),
-              color: 'text.primary',
               height: {
                 md: HEADER.H_DESKTOP - 16,
               },
@@ -85,6 +89,7 @@ export default function Header({ headerOnDark }) {
           >
             <Box sx={{ lineHeight: 0, position: 'relative' }}>
               <Logo small />
+              {/* <Logo small /> */}
             </Box>
 
             <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -99,27 +104,23 @@ export default function Header({ headerOnDark }) {
                   >
                     {translate('common.exploreProperties')}
                   </Button>
-                  <IconButton
-                    color="primary"
-                    size="small"
-                    sx={{
-                      backgroundColor: 'secondary.main',
-                      color: 'common.white',
-                      px: currentLang.value === 'en' ? 1.75 : 1.15,
-                      '&:hover': {
-                        color: 'common.black',
-                        backgroundColor: 'common.white',
-                      },
-                    }}
-                    onClick={toggleLanguageHandler}
-                  >
-                    {currentLang.value === 'en' ? 'ع' : 'En'}
-                  </IconButton>
+                  {/* <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
+                  />
+                  <TranslateIcon light={false} toggleLanguageHandler={toggleLanguageHandler} /> */}
                 </Stack>
               )}
             </Stack>
 
-            {!mdUp && <NavMobile data={navConfig} toggleLanguage={toggleLanguageHandler} />}
+            {!mdUp && (
+              <NavMobile
+                data={navConfig}
+                toggleLanguage={toggleLanguageHandler}
+                useLightIcon={light}
+              />
+            )}
           </Container>
         </Toolbar>
 

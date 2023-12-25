@@ -8,16 +8,33 @@ const initialState = {
   products: [],
   filteredProducts: [],
   filterDefaultValues: {
-    type: ['residential', 'commercial'],
-    spaceType: ['flat', 'showrooms', 'gym', 'labourcamp', 'shops', 'restaurant', 'offices'],
-    city: ['sharjah', 'dubai'],
-    isAvailable: [true, false],
+    isCommercial: [
+      { label: 'Commercial', value: true },
+      { label: 'Residential', value: false },
+    ],
+    spaceType: [
+      { value: 'Flat', label: 'Flat' },
+      { value: 'Showroom', label: 'Showroom' },
+      { value: 'Health Club / Swimming Pool', label: 'Health Club / Swimming Pool' },
+      { value: 'Labor Camp', label: 'Labor Camp' },
+      { value: 'Shops', label: 'Shop' },
+      { value: 'Restaurant', label: 'Restaurant' },
+      { value: 'Offices', label: 'Office' },
+    ],
+    city: [
+      { value: 'Sharjah', label: 'Sharjah' },
+      { value: 'Dubai', label: 'Dubai' },
+    ],
+    isActive: [
+      { label: 'Available', value: true },
+      { label: 'Not Available', value: false },
+    ],
   },
   rdxFilter: {
-    type: [],
+    isCommercial: [],
     spaceType: [],
     city: [],
-    isAvailable: [],
+    isActive: [],
   },
 };
 
@@ -48,10 +65,10 @@ const slice = createSlice({
 
     rdxClearFilter(state) {
       state.rdxFilter = {
-        type: [],
+        isCommercial: [],
         spaceType: [],
         city: [],
-        isAvailable: [],
+        isActive: [],
       };
     },
 

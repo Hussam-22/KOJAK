@@ -11,20 +11,20 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideSummery = false }) {
+export default function PropertyDetailsSummary({ spaceInfo, hideSummery }) {
   const {
-    area,
+    spaceType,
+    totalArea,
     bedrooms,
     bathrooms,
-    ac,
+    kitchens,
+    acType,
+    paymentTerms,
     parking,
     cctv,
     security,
     healthClub,
-    chequesNo,
-    mezzanine,
-    kitchen = 0,
-  } = spaceFeatures;
+  } = spaceInfo;
 
   const { translate } = useLocales();
 
@@ -43,91 +43,44 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
             },
           }}
         >
-          <OverviewItem
-            icon="tabler:ruler-measure"
-            label={translate('propertyCard.totalArea')}
-            text={`${area} sqft`}
-          />
-          <OverviewItem
-            icon="carbon:floorplan"
-            label={translate('propertyCard.spaceType')}
-            text={translate(`propertyCard.${spaceType.toLowerCase().replace(' ', '')}`)}
-          />
+          <OverviewItem icon="tabler:ruler-measure" label="Total Area" text={`${totalArea} sqft`} />
+          <OverviewItem icon="carbon:floorplan" label="Space Type" text={spaceType} />
+          <OverviewItem icon="iconoir:air-conditioner" label="AC Type" text={acType} />
+
           {bedrooms !== 0 && (
-            <OverviewItem
-              icon="fluent:bed-24-regular"
-              label={translate('propertyCard.bedrooms')}
-              text={bedrooms}
-            />
+            <OverviewItem icon="fluent:bed-24-regular" label="Bedrooms" text={bedrooms} />
           )}
           {bathrooms !== 0 && (
-            <OverviewItem
-              icon="cil:shower"
-              label={translate('propertyCard.bathrooms')}
-              text={`${bathrooms}`}
-            />
+            <OverviewItem icon="cil:shower" label="Bathrooms" text={`${bathrooms}`} />
           )}
-          {kitchen !== 0 && (
-            <OverviewItem
-              icon="tabler:tools-kitchen-2"
-              label={translate('propertyCard.kitchen')}
-              text={kitchen}
-            />
+          {kitchens !== 0 && (
+            <OverviewItem icon="tabler:tools-kitchen-2" label="Kitchen" text={kitchens} />
           )}
-          {mezzanine && (
-            <OverviewItem
-              icon="lucide:m-square"
-              label={translate('propertyCard.mezzanine')}
-              text={translate('propertyCard.available')}
-            />
-          )}
-
-          <OverviewItem
-            icon="iconoir:air-conditioner"
-            label={translate('propertyCard.ac')}
-            text={ac}
-          />
 
           <OverviewItem
             icon="tabler:parking"
             label={translate('propertyCard.parking')}
-            text={parking === 0 ? translate('propertyCard.notAvailable') : `${parking}`}
+            text={parking ? 'Available' : 'Not Available'}
           />
 
-          <OverviewItem
-            icon="bx:cctv"
-            label={translate('propertyCard.cctv')}
-            text={
-              cctv === true
-                ? translate('propertyCard.available')
-                : translate('propertyCard.notAvailable')
-            }
-          />
+          <OverviewItem icon="bx:cctv" label="CCTV" text={cctv ? 'Available' : 'Not Available'} />
 
           <OverviewItem
             icon="healthicons:security-worker-outline"
-            label={translate('propertyCard.security')}
-            text={
-              security === true
-                ? translate('propertyCard.available')
-                : translate('propertyCard.notAvailable')
-            }
+            label="Security"
+            text={security ? 'Available' : 'Not Available'}
           />
 
           <OverviewItem
             icon="iconoir:gym"
-            label={translate('propertyCard.gym')}
-            text={
-              healthClub === true
-                ? translate('propertyCard.available')
-                : translate('propertyCard.notAvailable')
-            }
+            label="GYM / Health Club"
+            text={healthClub ? 'Available' : 'Not Available'}
           />
 
           <OverviewItem
             icon="material-symbols:payments-outline"
-            label={translate('propertyCard.payment')}
-            text={`${chequesNo} ${translate('propertyCard.cheques')}`}
+            label="Payment Terms"
+            text={`${paymentTerms}`}
           />
         </Box>
       </Stack>
@@ -175,21 +128,27 @@ export default function PropertyDetailsSummary({ spaceFeatures, spaceType, hideS
 }
 
 PropertyDetailsSummary.propTypes = {
-  spaceType: PropTypes.string,
-  hideSummery: PropTypes.bool,
-  spaceFeatures: PropTypes.shape({
-    area: PropTypes.string,
+  spaceInfo: PropTypes.shape({
+    spaceType: PropTypes.string,
+    description: PropTypes.string,
+    city: PropTypes.string,
+    location: PropTypes.string,
+    totalArea: PropTypes.string,
     bedrooms: PropTypes.number,
     bathrooms: PropTypes.number,
-    ac: PropTypes.string,
-    parking: PropTypes.number,
-    kitchen: PropTypes.number,
+    kitchens: PropTypes.number,
+    acType: PropTypes.string,
+    rent: PropTypes.number,
+    paymentTerms: PropTypes.string,
+    isFeatured: PropTypes.bool,
+    isActive: PropTypes.bool,
+    parking: PropTypes.bool,
     cctv: PropTypes.bool,
     security: PropTypes.bool,
     healthClub: PropTypes.bool,
-    mezzanine: PropTypes.bool,
-    chequesNo: PropTypes.string,
+    isCommercial: PropTypes.bool,
   }),
+  hideSummery: PropTypes.bool,
 };
 
 // ----------------------------------------------------------------------

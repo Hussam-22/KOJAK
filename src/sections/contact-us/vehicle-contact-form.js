@@ -15,7 +15,7 @@ import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
 const DIALOG_CONTENT = {
-  ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
+  ar: 'شكرًا للتواصل مع كوجك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
 
@@ -32,12 +32,10 @@ export default function ContactUsForm() {
     setOpen(false);
   };
 
-  const schema = Yup.object().shape({
+  const CareerContactSchema = Yup.object().shape({
     fullName: Yup.string().required('Full name is required'),
-    mobile: Yup.string()
-      .required('Mobile number is required')
-      .min(9, 'Contact Number must be at least 9 numbers'),
-    email: Yup.string().required().email('That is not an email'),
+    mobile: Yup.string().required('Mobile number is required'),
+    email: Yup.string().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
   });
@@ -51,7 +49,7 @@ export default function ContactUsForm() {
   };
 
   const methods = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(CareerContactSchema),
     defaultValues,
   });
 
@@ -64,6 +62,8 @@ export default function ContactUsForm() {
   const onSubmit = handleSubmit(async (formData) => {
     try {
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
+      // const url =
+      //   'https://hooks.slack.com/services/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';
 
       const requestOptions = {
         method: 'POST',
@@ -101,21 +101,26 @@ export default function ContactUsForm() {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField variant="outlined" name="fullName" label={translate('form.name')} />
+          <RHFTextField name="fullName" label={translate('form.name')} variant="outlined" />
 
-          <RHFTextField variant="outlined" name="mobile" label={translate('form.mobile')} />
+          <RHFTextField
+            name="mobile"
+            label={translate('form.mobile')}
+            type="number"
+            variant="outlined"
+          />
 
-          <RHFTextField variant="outlined" name="email" label={translate('form.email')} />
+          <RHFTextField name="email" label={translate('form.email')} variant="outlined" />
 
-          <RHFTextField variant="outlined" name="subject" label={translate('form.subject')} />
+          <RHFTextField name="subject" label={translate('form.subject')} variant="outlined" />
 
           <RHFTextField
             name="messageText"
-            variant="outlined"
             multiline
             rows={4}
             label={translate('form.message')}
             sx={{ pb: 2.5 }}
+            variant="outlined"
           />
 
           <LoadingButton

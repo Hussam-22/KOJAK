@@ -33,6 +33,8 @@ export function button(theme) {
         ...(containedVariant && {
           color: isLight ? theme.palette.common.white : theme.palette.grey[800],
           backgroundColor: isLight ? theme.palette.grey[800] : theme.palette.common.white,
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: isLight ? theme.palette.grey[700] : theme.palette.grey[400],
           },
@@ -40,12 +42,16 @@ export function button(theme) {
         // OUTLINED
         ...(outlinedVariant && {
           borderColor: alpha(theme.palette.grey[500], 0.32),
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
         }),
         // TEXT
         ...(textVariant && {
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: theme.palette.action.hover,
           },
@@ -54,12 +60,15 @@ export function button(theme) {
         ...(softVariant && {
           color: theme.palette.text.primary,
           backgroundColor: alpha(theme.palette.grey[500], 0.08),
+          fontWeight: theme.typography.fontWeightRegular,
+          borderRadius: 3,
           '&:hover': {
             backgroundColor: alpha(theme.palette.grey[500], 0.24),
           },
         }),
       }),
       ...(outlinedVariant && {
+        fontWeight: theme.typography.fontWeightRegular,
         '&:hover': {
           borderColor: 'currentColor',
           boxShadow: '0 0 0 0.5px currentColor',
@@ -79,15 +88,18 @@ export function button(theme) {
       ...(ownerState.color === color && {
         // CONTAINED
         ...(containedVariant && {
-          backgroundImage: `linear-gradient(to right, ${theme.palette[color].main} 0%, ${theme.palette[color].dark}  100%)`,
-          fontWeight: '500',
-          transform: 'translateY(0px)',
-          transition: 'transform 0.5s',
-          '&:hover': {
-            // boxShadow: theme.customShadows[color],
-            transform: 'translateY(-2px)',
-            transition: 'transform 0.5s',
-          },
+          // backgroundImage: `linear-gradient(to right, ${theme.palette[color].main} 0%, ${theme.palette[color].dark}  100%)`,
+
+          backgroundColor: theme.palette[color].main,
+          fontWeight: '600',
+          // transform: 'translateY(0px)',
+          // transition: 'transform 0.5s',
+          borderRadius: 3,
+          // '&:hover': {
+          //   // boxShadow: theme.customShadows[color],
+          //   transform: 'translateY(-2px)',
+          //   transition: 'transform 0.5s',
+          // },
         }),
         // SOFT
         ...(softVariant && {
@@ -129,10 +141,10 @@ export function button(theme) {
         }),
       }),
       ...(largeSize && {
-        height: 48,
+        height: 55,
         fontSize: 15,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: 22,
+        paddingRight: 22,
         ...(textVariant && {
           paddingLeft: 10,
           paddingRight: 10,

@@ -7,17 +7,15 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 
-import { useLocales } from 'src/locales';
-
 // ----------------------------------------------------------------------
 
 export default function FilterType({ filterType, onChangeType, filters, selectedAllText }) {
-  const { translate } = useLocales();
   return (
     <FormControl fullWidth hiddenLabel>
       <Select
         multiple
         displayEmpty
+        variant="outlined"
         value={filterType}
         onChange={onChangeType}
         renderValue={(selected) => {
@@ -36,10 +34,10 @@ export default function FilterType({ filterType, onChangeType, filters, selected
         }}
       >
         {filters.map((filterKey) => (
-          <MenuItem key={filterKey} value={filterKey}>
+          <MenuItem key={filterKey.value} value={filterKey.value}>
             <Checkbox
               size="small"
-              checked={filterType.includes(filterKey)}
+              checked={filterType.includes(filterKey.value)}
               sx={{
                 [`&.${checkboxClasses.root}`]: {
                   p: 0,
@@ -47,11 +45,7 @@ export default function FilterType({ filterType, onChangeType, filters, selected
                 },
               }}
             />
-            {typeof filterKey === 'boolean'
-              ? filterKey === false
-                ? translate('propertyCard.notAvailable')
-                : translate('propertyCard.available')
-              : translate(`websiteFilter.filterDefaultValues.${filterKey}`)}
+            {filterKey.label}
           </MenuItem>
         ))}
       </Select>

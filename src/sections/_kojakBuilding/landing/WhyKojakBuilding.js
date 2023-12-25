@@ -22,54 +22,54 @@ export default function WhyKojakBuilding() {
   const theme = useTheme();
   const { translate } = useLocales();
   return (
-    <Container maxWidth="xl" sx={{ my: 15 }}>
-      <Stack
-        spacing={3}
-        direction="column"
-        justifyContent={{ md: 'space-between' }}
-        sx={{
-          my: 8,
-          maxWidth: { md: '60%', xs: '100%' },
-          textAlign: { md: 'left', xs: 'center' },
-        }}
-      >
-        <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
-          {translate('why.title')}
-        </Typography>
+    <Box sx={{ bgcolor: 'background.default', py: 8 }}>
+      <Container maxWidth="xl">
+        <Stack
+          spacing={3}
+          direction="column"
+          justifyContent={{ md: 'space-between' }}
+          sx={{
+            maxWidth: { md: '60%', xs: '100%' },
+            textAlign: { md: 'left', xs: 'center' },
+          }}
+        >
+          <Typography variant="h2" sx={{ textTransform: 'capitalize' }}>
+            {translate('why.title')}
+          </Typography>
 
-        <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
-          {translate('why.subTitle')}
-        </Typography>
-      </Stack>
+          <Typography variant="h6" sx={{ fontWeight: theme.typography.fontWeightLight }}>
+            {translate('why.subTitle')}
+          </Typography>
+        </Stack>
 
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
-          gap: 3,
-        }}
-      >
-        {CORE_VALUES.map((value, index) => (
-          <Card
-            key={value}
-            sx={{
-              textAlign: 'center',
-              p: 3,
-              bgcolor: 'primary.lighter',
-            }}
-          >
-            <Image src={`/assets/kojak-building/illustration/${value}.svg`} alt={value} />
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { md: 'repeat(4,1fr)', xs: 'repeat(1,1fr)' },
+            gap: 3,
+          }}
+        >
+          {CORE_VALUES.map((value, index) => (
+            <Card
+              key={value}
+              sx={{
+                textAlign: 'center',
+                p: 3,
+              }}
+            >
+              <Image src={`/assets/kojak-building/illustration/${value}.svg`} alt={value} />
 
-            <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
-              {translate(`why.cards.${index + 1}.title`)}
-            </Typography>
+              <Typography variant="h5" sx={{ mt: 2, mb: 2 }}>
+                {translate(`why.cards.${index + 1}.title`)}
+              </Typography>
 
-            <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
-              {translate(`why.cards.${index + 1}.subTitle`)}
-            </Typography>
-          </Card>
-        ))}
-      </Box>
-    </Container>
+              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }}>
+                {translate(`why.cards.${index + 1}.subTitle`)}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
+      </Container>
+    </Box>
   );
 }

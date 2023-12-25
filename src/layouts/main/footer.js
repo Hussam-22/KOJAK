@@ -1,220 +1,157 @@
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
+import { Box, useTheme } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, Card, useTheme } from '@mui/material';
 
 import Logo from 'src/components/logo';
 import { useLocales } from 'src/locales';
-import Iconify from 'src/components/iconify';
 import { RouterLink } from 'src/routes/components';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { navConfig } from 'src/layouts/main/config-navigation';
-import ContactUsInfo from 'src/sections/_kojakBuilding/contact-us/contactUsInfo';
+import JoinNewsletter from 'src/sections/about/join-newsletter';
+import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
+import { AUTO_URL, GROUP_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
 const GROUPS = [
   {
-    title: 'exclusive',
-    url: 'www.kojak-spareparts.com',
-    image: 'k-exclusive',
+    title: 'K Exclusive',
+    url: EXCLUSIVE_URL,
   },
   {
-    title: 'spareParts',
-    url: 'www.kojak-spareparts.com',
-    image: 'spare-parts',
+    title: 'Spare Parts',
+    url: SPARE_PART_URL,
   },
   {
-    title: 'auto',
-    url: 'www.kojak-auto-maintenance.com',
-    image: 'auto-main',
+    title: 'Auto Maintenance',
+    url: AUTO_URL,
+  },
+  {
+    title: 'Kojak Group',
+    url: GROUP_URL,
   },
 ];
+
 // ----------------------------------------------------------------------
 
 export default function Footer() {
-  const mdUp = useResponsive('up', 'md');
   const mUItheme = useTheme();
   const { translate } = useLocales();
 
-  const mainFooter = (
-    <Box sx={{ bgcolor: 'common.black' }}>
-      <Divider />
-
-      <Container
+  return (
+    <footer>
+      <Box
         sx={{
-          overflow: 'hidden',
-          py: { xs: 1.5, md: 3 },
+          bgcolor: 'common.black',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
         }}
-        maxWidth="xl"
       >
-        <Grid container spacing={6} justifyContent={{ md: 'space-between' }}>
-          <Grid xs={12} md={5}>
-            <Stack spacing={2}>
-              <Logo small light />
-              <Typography
-                variant="body2"
-                sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
-              >
-                {translate('footer.about')}
-              </Typography>
+        <Container
+          sx={{
+            overflow: 'hidden',
+            py: { xs: 1.5, md: 3 },
+            alignSelf: 'flex-end',
+          }}
+          maxWidth="xl"
+        >
+          <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
+            <Grid xs={12} md={5}>
+              <Stack spacing={2}>
+                <Logo small light />
+                <Typography
+                  variant="body2"
+                  sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
+                >
+                  {translate('footer.about')}
+                </Typography>
 
-              <ContactUsInfo light small />
-            </Stack>
-          </Grid>
+                <ContactUsInfo small light />
+              </Stack>
+            </Grid>
 
-          {!mdUp && (
-            <Grid xs={6} md={2}>
-              <Typography variant="h6" sx={{ color: 'common.white' }}>
+            <Grid xs={12} md={3}>
+              <Typography variant="h6" sx={{ color: 'primary.main' }}>
                 {translate('footer.groupTitle')}
               </Typography>
               <Stack spacing={2} sx={{ mt: 2 }}>
                 {GROUPS.map((group) => (
-                  <Link href={group.url} target="_blank" rel="noopener" key={group.title}>
-                    {translate(`footer.${group.title}.title`)}
+                  <Link
+                    href={group.url}
+                    target="_blank"
+                    rel="noopener"
+                    key={group.title}
+                    sx={{ color: 'common.white' }}
+                  >
+                    {group.title}
                   </Link>
                 ))}
               </Stack>
-            </Grid>
-          )}
 
-          <Grid xs={6} md={2}>
-            <Typography variant="h6" sx={{ color: 'common.white' }}>
-              {translate('footer.sitemap')}
-            </Typography>
-            <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
-              {navConfig.map((list) => (
-                <Typography key={list.title} variant="body2">
-                  <Link
-                    component={RouterLink}
-                    href={list.path}
-                    rel="noopener"
-                    sx={{ color: 'primary.light' }}
-                  >
-                    {translate(`header.${list.title}`)}
-                  </Link>
-                </Typography>
-              ))}
-            </Stack>
-          </Grid>
+              <Divider sx={{ my: 2 }} />
 
-          {mdUp && (
-            <Grid xs={12} md={5}>
-              <GroupsCard />
-            </Grid>
-          )}
-        </Grid>
-
-        <Divider sx={{ p: 1 }} />
-
-        <Stack spacing={1} direction="column" sx={{ pt: 1, textAlign: 'center' }}>
-          <Typography
-            variant="caption"
-            sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
-          >
-            {translate('footer.allRights')}
-          </Typography>
-
-          <Link
-            href="mailto:hello@prozeffect.com"
-            variant="caption"
-            sx={{ color: 'primary.light' }}
-          >
-            {translate('footer.designedBy')}
-          </Link>
-        </Stack>
-      </Container>
-    </Box>
-  );
-
-  // return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
-  return <footer>{mainFooter}</footer>;
-}
-
-function GroupsCard() {
-  const { translate } = useLocales();
-  const theme = useTheme();
-  const renderOverlay = (
-    <Box
-      sx={{
-        backgroundColor: alpha('#000000', 0.45),
-        top: 0,
-        left: 0,
-        zIndex: -1,
-        width: 1,
-        height: 1,
-        position: 'absolute',
-      }}
-    />
-  );
-
-  return (
-    <>
-      <Typography variant="h6" sx={{ mb: 2, color: 'common.white' }}>
-        {translate(`footer.groupTitle`)}
-      </Typography>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3,1fr)',
-          columnGap: 1,
-          height: '90%',
-        }}
-      >
-        {GROUPS.map((group, index) => (
-          <Card
-            key={index}
-            sx={{
-              borderRadius: 0.5,
-              p: 1,
-              backgroundImage: `url(/assets/kojak-building/group/${group.image}.webp)`,
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              textAlign: 'center',
-            }}
-          >
-            <Box sx={{ my: 'auto' }}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'common.white',
-                }}
-              >
-                {translate(`footer.${group.title}.title`)}
+              <Typography variant="h6" sx={{ color: 'primary.main' }}>
+                {translate('footer.sitemap')}
               </Typography>
-              <Typography
-                sx={{
-                  color: 'common.white',
-                  fontWeight: theme.typography.fontWeightLight,
-                }}
-              >
-                {translate(`footer.${group.title}.text`)}
-              </Typography>
-            </Box>
-            <Link
-              href={group.url}
-              target="_blank"
-              rel="noopener"
+              <Stack spacing={{ md: 2, xs: 1 }} sx={{ mt: 2 }}>
+                {navConfig.map((list) => (
+                  <Typography key={list.title} variant="body2">
+                    <Link
+                      component={RouterLink}
+                      href={list.path}
+                      rel="noopener"
+                      sx={{ color: 'common.white' }}
+                    >
+                      {translate(`header.${list.title}`)}
+                    </Link>
+                  </Typography>
+                ))}
+              </Stack>
+            </Grid>
+
+            <Grid
+              md={4}
+              xs={12}
               sx={{
-                m: 2,
-                color: 'common.white',
-                fontWeight: theme.typography.fontWeightLight,
+                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              {translate(`footer.visitWebsite`)} <Iconify icon="quill:link-out" />
+              <JoinNewsletter />
+            </Grid>
+          </Grid>
+
+          <Divider sx={{ p: 1 }} />
+
+          <Stack
+            spacing={1}
+            direction={{ md: 'row', xs: 'column' }}
+            justifyContent="space-between"
+            sx={{ pt: 1, textAlign: 'center' }}
+          >
+            <Typography
+              variant="caption"
+              sx={{ color: 'common.white', fontWeight: mUItheme.typography.fontWeightLight }}
+            >
+              {translate('footer.allRights')}
+            </Typography>
+
+            <Link
+              href="mailto:hello@prozeffect.com"
+              variant="caption"
+              sx={{ color: 'primary.main' }}
+            >
+              {translate('footer.designedBy')}
             </Link>
-            {renderOverlay}
-          </Card>
-        ))}
+          </Stack>
+        </Container>
       </Box>
-    </>
+    </footer>
   );
 }

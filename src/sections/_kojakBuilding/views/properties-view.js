@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
+import { rdxClearFilter } from 'src/redux/slices/properties';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/website-filters';
 
@@ -15,11 +15,8 @@ import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/websi
 export default function PropertiesView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
-  const mdUp = useResponsive('up', 'md');
-  const { addNewSpace } = useAuthContext();
   const { translate } = useLocales();
-
-  // const addSpaceHandler = async () => addNewSpace();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -27,7 +24,8 @@ export default function PropertiesView() {
       loading.onFalse();
     };
     fakeLoading();
-  }, [loading]);
+    dispatch(rdxClearFilter());
+  }, [dispatch, loading]);
 
   return (
     <Container>
@@ -55,11 +53,9 @@ export default function PropertiesView() {
         </Button>
       </Stack>
 
-      <Grid container spacing={5}>
+      <Grid container spacing={2}>
         <Grid md={3}>
-          <Stack spacing={3}>
-            <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
-          </Stack>
+          <WebsiteFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
         </Grid>
         <Grid md={9}>
           <PropertiesList />

@@ -107,13 +107,19 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
 
         <FormProvider methods={methods} onSubmit={onSubmit}>
           <Stack spacing={2.5}>
-            <RHFTextField name="fullName" label={translate('form.name')} />
+            <RHFTextField variant="outlined" name="fullName" label={translate('form.name')} />
 
-            <RHFTextField name="mobile" label={translate('form.mobile')} />
+            <RHFTextField variant="outlined" name="mobile" label={translate('form.mobile')} />
 
-            <RHFTextField name="email" label={translate('form.email')} />
+            <RHFTextField variant="outlined" name="email" label={translate('form.email')} />
 
-            <RHFTextField name="inquiry" multiline rows={4} label={translate('form.message')} />
+            <RHFTextField
+              variant="outlined"
+              name="inquiry"
+              multiline
+              rows={4}
+              label={translate('form.message')}
+            />
 
             <Stack alignItems="center" width={1}>
               <LoadingButton
@@ -130,8 +136,8 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         </FormProvider>
       </Card>
       <ConfirmationDialog
-        title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}
-        content={currentLang.value === 'ar' ? DIALOG_CONTENT.ar : DIALOG_CONTENT.en}
+        title={DIALOG_TEXT.en}
+        content={DIALOG_CONTENT.en}
         open={open}
         handleClose={handleClose}
       />
