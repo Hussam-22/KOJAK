@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
@@ -87,32 +86,23 @@ export default function Header({ headerOnDark }) {
             }}
             maxWidth="xl"
           >
-            <Box sx={{ lineHeight: 0, position: 'relative' }}>
-              <Logo small />
-              {/* <Logo small /> */}
+            <Box>
+              <Box sx={{ lineHeight: 0, position: 'relative', mr: 6 }}>
+                <Logo small />
+                {/* <Logo small /> */}
+              </Box>
             </Box>
+            {mdUp && <NavDesktop data={navConfig} />}
 
-            <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
-              {mdUp && <NavDesktop data={navConfig} />}
-
-              {mdUp && (
-                <Stack direction="row" spacing={1}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => navigate(paths.website.properties)}
-                  >
-                    {translate('common.exploreProperties')}
-                  </Button>
-                  {/* <Divider
-                    orientation="vertical"
-                    flexItem
-                    sx={{ borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
-                  />
-                  <TranslateIcon light={false} toggleLanguageHandler={toggleLanguageHandler} /> */}
-                </Stack>
-              )}
-            </Stack>
+            {mdUp && (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate(paths.website.properties)}
+              >
+                {translate('common.exploreProperties')}
+              </Button>
+            )}
 
             {!mdUp && (
               <NavMobile
