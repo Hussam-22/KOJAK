@@ -5,13 +5,12 @@ import { useTheme } from '@mui/system';
 import Typography from '@mui/material/Typography';
 import { Box, Stack, Button, Divider } from '@mui/material';
 
-import { useLocales } from 'src/locales';
+import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
 import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
-import PropertyDetailsGallery from 'src/sections/_kojakBuilding/properties/details/property-details-gallery';
 
 function FeaturedProperty() {
   const theme = useTheme();
@@ -20,7 +19,6 @@ function FeaturedProperty() {
   const { fsGetFeaturedProperty, fsGetFolderImages } = useAuthContext();
   const [images, setImages] = useState([]);
   const [featuredProperty, setFeaturedProperty] = useState([]);
-  const { translate, currentLang } = useLocales();
 
   useEffect(() => {
     (async () => {
@@ -53,7 +51,7 @@ function FeaturedProperty() {
         sx={{ mb: 3 }}
       >
         <Typography variant="h2">
-          {translate('featuredProperty.title')}
+          Hot Deal Property
           <Iconify icon="noto:fire" width={54} />
         </Typography>
 
@@ -62,12 +60,11 @@ function FeaturedProperty() {
           color="primary"
           onClick={() => navigate(`/properties/${featuredProperty?.docID}`)}
         >
-          {translate('common.moreDetails')}
+          View Property
         </Button>
       </Stack>
-
-      {images.length !== 0 && <PropertyDetailsGallery images={images} />}
-
+      <Image src={images[0]} />
+      {/* {images.length !== 0 && <PropertyDetailsGallery images={images} />} */}
       {featuredProperty?.docID && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
       <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
