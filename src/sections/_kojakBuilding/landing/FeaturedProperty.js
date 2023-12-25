@@ -63,7 +63,7 @@ function FeaturedProperty() {
           View Property
         </Button>
       </Stack>
-      <Image src={images[0]} />
+      <Image src={images[0]} alt={featuredProperty.description} sx={{ borderRadius: 1 }} />
       {/* {images.length !== 0 && <PropertyDetailsGallery images={images} />} */}
       {featuredProperty?.docID && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
