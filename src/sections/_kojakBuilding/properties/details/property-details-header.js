@@ -4,54 +4,34 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
+import { fNumber } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
 export default function PropertyDetailsHeader({ spaceInfo }) {
-  const {
-    id,
-    type,
-    spaceType,
-    rent,
-    city,
-    location,
-    description,
-    descriptionAr,
-    listingDate,
-    isAvailable,
-    features: { bedrooms },
-  } = spaceInfo;
-  const listingDateTime = new Date(listingDate.seconds * 1000).toDateString();
-  const { translate, currentLang } = useLocales();
-
-  const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description || '';
+  const { spaceType, description, city, location, rent, isActive } = spaceInfo;
 
   return (
     <Box>
-      {isAvailable && (
-        <Typography variant="h2" sx={{ mb: 1 }}>
-          {`${translate('common.aed')} ${rent}`}
+      {isActive && (
+        <Typography variant="h2" color="primary" sx={{ mb: 1 }}>
+          {`AED ${fNumber(rent)}`}
+        </Typography>
+      )}
+      {!isActive && (
+        <Typography variant="h4" color="primary" sx={{ mb: 1 }}>
+          Currently Not Available for Rent
         </Typography>
       )}
       <Stack spacing={1} direction={{ xs: 'column', md: 'row' }}>
         <Typography sx={{ textTransform: 'capitalize' }}>
-          {`${translate(`propertyCard.${type}`)} - ${descriptionValue}`}
+          {`${spaceType} - ${description}`}
         </Typography>
-        <Stack spacing={0.5} direction="row" alignItems="center">
-          {!isAvailable && (
-            <Box sx={{ typography: 'h6' }}>{translate(`propertyCard.notAvailable`)}</Box>
-          )}
-        </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
           <Iconify icon="carbon:location" sx={{ mr: 0.5 }} />
-          {translate(`propertyCard.${city.toLowerCase()}`)} - {location}
-        </Stack>
-
-        <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="clarity:date-line" sx={{ mr: 0.5 }} /> {listingDateTime}
+          {location} - {city}
         </Stack>
       </Stack>
     </Box>
@@ -60,21 +40,11 @@ export default function PropertyDetailsHeader({ spaceInfo }) {
 
 PropertyDetailsHeader.propTypes = {
   spaceInfo: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
     spaceType: PropTypes.string,
-    rent: PropTypes.any,
-    city: PropTypes.string,
-    location: PropTypes.string,
     description: PropTypes.string,
-    descriptionAr: PropTypes.object,
-    listingDate: PropTypes.object,
-    isAvailable: PropTypes.bool,
-
-    features: PropTypes.shape({
-      bedrooms: PropTypes.number,
-      bathrooms: PropTypes.number,
-      area: PropTypes.string,
-    }),
+    location: PropTypes.string,
+    city: PropTypes.string,
+    rent: PropTypes.number,
+    isActive: PropTypes.bool,
   }),
 };

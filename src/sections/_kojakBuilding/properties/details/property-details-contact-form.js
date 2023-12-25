@@ -130,8 +130,8 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         </FormProvider>
       </Card>
       <ConfirmationDialog
-        title={currentLang.value === 'ar' ? DIALOG_TEXT.ar : DIALOG_TEXT.en}
-        content={currentLang.value === 'ar' ? DIALOG_CONTENT.ar : DIALOG_CONTENT.en}
+        title={DIALOG_TEXT.en}
+        content={DIALOG_CONTENT.en}
         open={open}
         handleClose={handleClose}
       />

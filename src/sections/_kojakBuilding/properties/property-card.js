@@ -60,8 +60,10 @@ export default function PropertyCard({ space, vertical }) {
         borderRadius: 1,
         textDecoration: 'none',
         position: 'relative',
-        border: isFeatured && `solid 4px ${theme.palette.primary.main}`,
-        boxShadow: '4px 4px 0 0',
+        border: isFeatured && `solid 2px ${theme.palette.primary.main}`,
+        boxShadow: `4px 4px 0 0 ${
+          isFeatured ? theme.palette.primary.main : theme.palette.common.black
+        }`,
       }}
       component={RouterLink}
       href={paths.website.propertyDetails + docID}
@@ -94,7 +96,7 @@ export default function PropertyCard({ space, vertical }) {
             ...(vertical && {
               width: { xs: 1 },
             }),
-            filter: !isActive && 'grayscale(1) blur(1px)',
+            filter: !isActive && 'grayscale(1)',
           }}
         />
       </Box>
@@ -113,11 +115,13 @@ export default function PropertyCard({ space, vertical }) {
             text={`${translate(`propertyCard.${city.toLowerCase()}`)} - ${location}`}
           />
         </Box>
-        <Typography variant="h3" sx={{ color: isActive ? 'primary.main' : 'text.disabled' }}>
-          {finalRent.length > 7
-            ? `${translate('common.aed')}${finalRent}`
-            : `${translate('common.aed')} ${fNumber(finalRent)}`}
-        </Typography>
+        {isActive && (
+          <Typography variant="h3" sx={{ color: isActive ? 'primary.main' : 'text.disabled' }}>
+            {finalRent.length > 7
+              ? `${translate('common.aed')}${finalRent}`
+              : `${translate('common.aed')} ${fNumber(finalRent)}`}
+          </Typography>
+        )}
         <Typography sx={{ color: 'text.disabled' }}>
           {`${translate(`propertyCard.${spaceType.toLowerCase().replaceAll(' ', '')}`)} - ${
             isCommercial ? 'Commercial' : 'Residential'

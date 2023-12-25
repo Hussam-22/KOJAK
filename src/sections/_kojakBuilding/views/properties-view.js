@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
@@ -7,6 +8,7 @@ import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { rdxClearFilter } from 'src/redux/slices/properties';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/website-filters';
 
@@ -18,6 +20,7 @@ export default function PropertiesView() {
   const mdUp = useResponsive('up', 'md');
   const { addNewSpace } = useAuthContext();
   const { translate } = useLocales();
+  const dispatch = useDispatch();
 
   // const addSpaceHandler = async () => addNewSpace();
 
@@ -27,7 +30,8 @@ export default function PropertiesView() {
       loading.onFalse();
     };
     fakeLoading();
-  }, [loading]);
+    dispatch(rdxClearFilter());
+  }, [dispatch, loading]);
 
   return (
     <Container>
