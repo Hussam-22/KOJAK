@@ -5,9 +5,7 @@ import { Stack, Button, Container, Typography, Unstable_Grid2 as Grid } from '@m
 
 import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxClearFilter } from 'src/redux/slices/properties';
 import PropertiesList from 'src/sections/_kojakBuilding/properties/list/properties-list';
 import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/website-filters';
@@ -17,12 +15,8 @@ import WebsiteFilters from 'src/sections/_kojakBuilding/properties/filters/websi
 export default function PropertiesView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
-  const mdUp = useResponsive('up', 'md');
-  const { addNewSpace } = useAuthContext();
   const { translate } = useLocales();
   const dispatch = useDispatch();
-
-  // const addSpaceHandler = async () => addNewSpace();
 
   useEffect(() => {
     const fakeLoading = async () => {

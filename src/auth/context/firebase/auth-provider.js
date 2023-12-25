@@ -4,11 +4,13 @@ import { useMemo, useCallback } from 'react';
 import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
   doc,
-  where,
   query,
-  getDoc,
+  where,
   setDoc,
+  getDoc,
   getDocs,
+  increment,
+  updateDoc,
   Timestamp,
   collection,
   getFirestore,
@@ -79,7 +81,7 @@ export function AuthProvider({ children }) {
 
   // get featured property
   const fsGetFeaturedProperty = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'spaces'), where('isFeatured', '==', true));
+    const docRef = query(collectionGroup(DB, 'spaces-list'), where('isFeatured', '==', true));
     const querySnapshot = await getDocs(docRef);
     const dataArr = [];
     querySnapshot.forEach((document) => dataArr.push(document.data()));
@@ -115,16 +117,15 @@ export function AuthProvider({ children }) {
     return newDocRef.id;
   }, []);
 
-  // add new request-callback form
-  const updatePageAnalytic = useCallback(async (page, pageDetails = '') => {
-    const newDocRef = doc(collection(DB, `/websites/building/analytics/`));
-    setDoc(newDocRef, {
-      id: newDocRef.id,
-      createdAt: Timestamp.fromDate(new Date()),
-      page,
-      pageDetails,
+  const fsUpdateDocStatistics = useCallback(async (docID) => {
+    const THIS_MONTH = new Date().getMonth();
+    const THIS_YEAR = new Date().getFullYear();
+
+    const docRef = doc(DB, `/websites/building/spaces-list/${docID}`);
+
+    await updateDoc(docRef, {
+      [`statistics.PAGE_VISIT.${THIS_YEAR}.${THIS_MONTH}`]: increment(1),
     });
-    return newDocRef.id;
   }, []);
 
   const memoizedValue = useMemo(
@@ -133,7 +134,7 @@ export function AuthProvider({ children }) {
       fsGetSpace,
       fsGetFeaturedProperty,
       addNewForm,
-      updatePageAnalytic,
+      fsUpdateDocStatistics,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
     }),
@@ -142,7 +143,7 @@ export function AuthProvider({ children }) {
       fsGetSpace,
       fsGetFeaturedProperty,
       addNewForm,
-      updatePageAnalytic,
+      fsUpdateDocStatistics,
       fsGetImgDownloadUrl,
       fsGetFolderImages,
     ]

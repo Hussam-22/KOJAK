@@ -19,14 +19,16 @@ export default function PropertyDetails() {
   const { propertyID } = useParams();
   const [spaceInfo, setSpaceInfo] = useState('');
   const [galleryURLs, setGalleryURLs] = useState([]);
-  const { fsGetFolderImages, fsGetSpace } = useAuthContext();
+  const { fsGetFolderImages, fsGetSpace, fsUpdateDocStatistics } = useAuthContext();
 
   useEffect(() => {
     (async () => {
+      await fsUpdateDocStatistics(propertyID);
       setSpaceInfo(await fsGetSpace(propertyID));
       setGalleryURLs(await fsGetFolderImages(propertyID));
     })();
-  }, [fsGetFolderImages, fsGetSpace, propertyID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container sx={{ overflow: 'hidden' }}>
