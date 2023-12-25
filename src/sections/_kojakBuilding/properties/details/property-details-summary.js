@@ -11,7 +11,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function PropertyDetailsSummary({ spaceInfo }) {
+export default function PropertyDetailsSummary({ spaceInfo, hideSummery }) {
   const {
     spaceType,
     totalArea,
@@ -20,12 +20,10 @@ export default function PropertyDetailsSummary({ spaceInfo }) {
     kitchens,
     acType,
     paymentTerms,
-    isActive,
     parking,
     cctv,
     security,
     healthClub,
-    isCommercial,
   } = spaceInfo;
 
   const { translate } = useLocales();
@@ -87,9 +85,9 @@ export default function PropertyDetailsSummary({ spaceInfo }) {
         </Box>
       </Stack>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+      {!hideSummery && <Divider sx={{ borderStyle: 'dashed' }} />}
 
-      {
+      {!hideSummery && (
         <Stack spacing={4}>
           <Stack>
             <Typography variant="h5">
@@ -124,7 +122,7 @@ export default function PropertyDetailsSummary({ spaceInfo }) {
             <Typography>{translate('propertyCard.summery.locations.text')}</Typography>
           </Stack>
         </Stack>
-      }
+      )}
     </Stack>
   );
 }
@@ -150,6 +148,7 @@ PropertyDetailsSummary.propTypes = {
     healthClub: PropTypes.bool,
     isCommercial: PropTypes.bool,
   }),
+  hideSummery: PropTypes.bool,
 };
 
 // ----------------------------------------------------------------------

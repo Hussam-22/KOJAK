@@ -14,9 +14,9 @@ const initialState = {
     ],
     spaceType: [
       { value: 'Flat', label: 'Flat' },
-      { value: 'Showrooms', label: 'Showroom' },
+      { value: 'Showroom', label: 'Showroom' },
       { value: 'Health Club / Swimming Pool', label: 'Health Club / Swimming Pool' },
-      { value: 'laborCamp', label: 'Labor Camp' },
+      { value: 'Labor Camp', label: 'Labor Camp' },
       { value: 'Shops', label: 'Shop' },
       { value: 'Restaurant', label: 'Restaurant' },
       { value: 'Offices', label: 'Office' },

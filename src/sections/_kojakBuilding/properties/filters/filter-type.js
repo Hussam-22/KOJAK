@@ -7,17 +7,15 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 
-import { useLocales } from 'src/locales';
-
 // ----------------------------------------------------------------------
 
 export default function FilterType({ filterType, onChangeType, filters, selectedAllText }) {
-  const { translate } = useLocales();
   return (
     <FormControl fullWidth hiddenLabel>
       <Select
         multiple
         displayEmpty
+        variant="outlined"
         value={filterType}
         onChange={onChangeType}
         renderValue={(selected) => {

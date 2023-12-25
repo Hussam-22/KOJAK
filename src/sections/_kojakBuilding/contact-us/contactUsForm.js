@@ -101,16 +101,17 @@ export default function ContactUsForm() {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField name="fullName" label={translate('form.name')} />
+          <RHFTextField variant="outlined" name="fullName" label={translate('form.name')} />
 
-          <RHFTextField name="mobile" label={translate('form.mobile')} />
+          <RHFTextField variant="outlined" name="mobile" label={translate('form.mobile')} />
 
-          <RHFTextField name="email" label={translate('form.email')} />
+          <RHFTextField variant="outlined" name="email" label={translate('form.email')} />
 
-          <RHFTextField name="subject" label={translate('form.subject')} />
+          <RHFTextField variant="outlined" name="subject" label={translate('form.subject')} />
 
           <RHFTextField
             name="messageText"
+            variant="outlined"
             multiline
             rows={4}
             label={translate('form.message')}

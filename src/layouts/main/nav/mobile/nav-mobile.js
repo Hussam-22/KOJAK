@@ -16,7 +16,6 @@ import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
 import { useBoolean } from 'src/hooks/use-boolean';
-import TranslateIcon from 'src/components/logo/translate-icon';
 
 import { NAV } from '../../../config-layout';
 
@@ -41,7 +40,7 @@ export default function NavMobile({ data, toggleLanguage }) {
   return (
     <>
       <Stack direction="row" spacing={0}>
-        <TranslateIcon light={false} toggleLanguageHandler={toggleLanguage} />
+        {/* <TranslateIcon light={false} toggleLanguageHandler={toggleLanguage} /> */}
 
         <IconButton onClick={mobileOpen.onTrue} sx={{ ml: 1, color: 'inherit' }}>
           <Iconify icon="carbon:menu" />

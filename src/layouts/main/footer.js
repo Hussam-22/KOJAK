@@ -12,25 +12,26 @@ import { RouterLink } from 'src/routes/components';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
+import { AUTO_URL, GROUP_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
 const GROUPS = [
   {
-    title: 'exclusive',
-    url: 'www.kojak-exclusive.com',
+    title: 'K Exclusive',
+    url: EXCLUSIVE_URL,
   },
   {
-    title: 'spareparts',
-    url: 'www.kojak-spareparts.com',
+    title: 'Spare Parts',
+    url: SPARE_PART_URL,
   },
   {
-    title: 'auto',
-    url: 'www.kojak-auto-maintenance.com',
+    title: 'Auto Maintenance',
+    url: AUTO_URL,
   },
   {
-    title: 'building',
-    url: 'www.kojak-building.com',
+    title: 'Kojak Group',
+    url: GROUP_URL,
   },
 ];
 
@@ -86,7 +87,7 @@ export default function Footer() {
                     key={group.title}
                     sx={{ color: 'common.white' }}
                   >
-                    {translate(`common.${group.title}`)}
+                    {group.title}
                   </Link>
                 ))}
               </Stack>

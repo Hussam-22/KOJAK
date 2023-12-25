@@ -89,13 +89,13 @@ export default function JoinNewsletter() {
             />
           </Box>
 
-          <Typography variant="h3" color="white">
+          <Typography variant="h4" color="white">
             {translate('newsLetter.title')}
           </Typography>
           <Typography color="white">{translate('newsLetter.subTitle')}</Typography>
 
           <Stack direction="row" spacing={1}>
-            <RHFTextField name="email" label={translate('form.email')} />
+            <RHFTextField variant="outlined" name="email" label={translate('form.email')} focused />
 
             <LoadingButton
               size="large"

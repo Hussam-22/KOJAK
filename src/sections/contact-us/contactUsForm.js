@@ -105,7 +105,7 @@ export default function ContactUsForm({ payload }) {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
-          <RHFTextField name="fullName" label={translate('form.name')} variant="outlined" />
+          <RHFTextField name="fullName" label={translate('form.name')} />
 
           <RHFTextField
             name="mobile"

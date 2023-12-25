@@ -31,18 +31,16 @@ export default function KojakBuildingLandingHero() {
     <Box
       sx={{
         height: '100dvh',
-        backgroundImage: mdUp
-          ? `url(/assets/kojak-building/hero/hero-${currentLang.value}.png)`
-          : 'unset',
+        backgroundImage: `url(/assets/kojak-building/hero/hero.webp)`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative',
       }}
     >
       <Container maxWidth="xl" sx={{ height: '100%' }}>
         <Grid container sx={{ alignItems: 'center', height: '100%' }}>
-          <Grid md={5} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
+          <Grid md={4} xs={12} sx={{ order: mdUp ? 0 : 1 }}>
             <Stack spacing={1}>
               {/* <Typography variant="overline">{translate('hero.overlineText')}</Typography> */}
 

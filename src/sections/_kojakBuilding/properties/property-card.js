@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -11,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import Image from 'src/components/image';
 import Label from 'src/components/label';
-import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
@@ -30,25 +28,12 @@ export default function PropertyCard({ space, vertical }) {
     isActive,
     isCommercial,
     isFeatured,
-    kitchens,
     location,
     rent,
-    rentSale,
     spaceType,
     totalArea,
   } = space.data;
-  const navigate = useNavigate();
-  const { translate, currentLang } = useLocales();
   const theme = useTheme();
-
-  // const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description;
-  const descriptionValue = description;
-
-  const openSpaceCard = () => {
-    navigate(paths.website.propertyDetails + docID);
-  };
-
-  const finalRent = rentSale || rent;
 
   return (
     <Card
@@ -110,26 +95,19 @@ export default function PropertyCard({ space, vertical }) {
         flexGrow={1}
       >
         <Box>
-          <IconWithText
-            icon="ion:location-outline"
-            text={`${translate(`propertyCard.${city.toLowerCase()}`)} - ${location}`}
-          />
+          <IconWithText icon="ion:location-outline" text={`${city} - ${location}`} />
         </Box>
         {isActive && (
           <Typography variant="h3" sx={{ color: isActive ? 'primary.main' : 'text.disabled' }}>
-            {finalRent.length > 7
-              ? `${translate('common.aed')}${finalRent}`
-              : `${translate('common.aed')} ${fNumber(finalRent)}`}
+            AED {fNumber(rent)}
           </Typography>
         )}
         <Typography sx={{ color: 'text.disabled' }}>
-          {`${translate(`propertyCard.${spaceType.toLowerCase().replaceAll(' ', '')}`)} - ${
-            isCommercial ? 'Commercial' : 'Residential'
-          }`}
+          {`${spaceType} - ${isCommercial ? 'Commercial' : 'Residential'}`}
         </Typography>
 
         <TextMaxLine line={1} variant="h5">
-          {descriptionValue === '' ? translate('propertyCard.noDesc') : descriptionValue}
+          {description}
         </TextMaxLine>
 
         <Stack
@@ -145,11 +123,8 @@ export default function PropertyCard({ space, vertical }) {
 
           {bedrooms !== 0 && <IconWithText icon="fluent:bed-24-regular" text={bedrooms} />}
           {bathrooms !== 0 && <IconWithText icon="cil:shower" text={bathrooms} />}
-          {/* {kitchens !== 0 && <IconWithText icon="tabler:tools-kitchen-2" text={kitchens} />} */}
           <IconWithText icon="iconoir:air-conditioner" text={acType} />
         </Stack>
-
-        {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
       </Stack>
     </Card>
   );

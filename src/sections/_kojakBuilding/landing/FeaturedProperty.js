@@ -17,15 +17,10 @@ function FeaturedProperty() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isMdUp = useResponsive('up', 'md');
-  const { fsGetFeaturedProperty, fsGetImgDownloadUrl } = useAuthContext();
+  const { fsGetFeaturedProperty, fsGetFolderImages } = useAuthContext();
   const [images, setImages] = useState([]);
   const [featuredProperty, setFeaturedProperty] = useState([]);
   const { translate, currentLang } = useLocales();
-
-  const descriptionValue =
-    currentLang.value === 'ar'
-      ? featuredProperty.descriptionAr?.ar || ''
-      : featuredProperty.description;
 
   useEffect(() => {
     (async () => {
@@ -34,15 +29,10 @@ function FeaturedProperty() {
   }, [fsGetFeaturedProperty]);
 
   useEffect(() => {
-    if (Object.entries(featuredProperty).length !== 0) {
-      (async () => {
-        const getImages = [...Array(5)].map(async (_, index) =>
-          fsGetImgDownloadUrl(featuredProperty.bucketID, index + 1)
-        );
-        setImages(await Promise.all([...getImages]));
-      })();
-    }
-  }, [featuredProperty, fsGetImgDownloadUrl]);
+    (async () => {
+      if (featuredProperty?.docID) setImages(await fsGetFolderImages(featuredProperty.docID));
+    })();
+  }, [featuredProperty.docID, fsGetFolderImages]);
 
   return (
     <Box
@@ -70,7 +60,7 @@ function FeaturedProperty() {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => navigate(`/properties/${featuredProperty.id}`)}
+          onClick={() => navigate(`/properties/${featuredProperty?.docID}`)}
         >
           {translate('common.moreDetails')}
         </Button>
@@ -78,16 +68,12 @@ function FeaturedProperty() {
 
       {images.length !== 0 && <PropertyDetailsGallery images={images} />}
 
-      {featuredProperty.id !== undefined && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
+      {featuredProperty?.docID && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
 
       <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
-      {featuredProperty.id !== undefined && (
-        <PropertyDetailsSummary
-          spaceFeatures={featuredProperty.features}
-          spaceType={featuredProperty.spaceType}
-          hideSummery
-        />
+      {featuredProperty?.docID && (
+        <PropertyDetailsSummary spaceInfo={featuredProperty} hideSummery />
       )}
     </Box>
   );

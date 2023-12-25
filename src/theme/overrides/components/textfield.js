@@ -8,9 +8,9 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
 export function textField(theme) {
   const color = {
-    focused: theme.palette.text.primary,
-    active: theme.palette.text.secondary,
-    placeholder: theme.palette.text.disabled,
+    focused: theme.palette.primary.main,
+    active: theme.palette.primary.main,
+    placeholder: theme.palette.primary.main,
   };
 
   const font = {
@@ -96,6 +96,7 @@ export function textField(theme) {
           [`&.${outlinedInputClasses.focused}`]: {
             [`& .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: color.focused,
+              color: theme.palette.common.white,
             },
           },
           [`&.${outlinedInputClasses.error}`]: {
@@ -123,17 +124,17 @@ export function textField(theme) {
       styleOverrides: {
         root: {
           borderRadius: theme.shape.borderRadius,
-          backgroundColor: alpha(theme.palette.grey[500], 0.08),
+          backgroundColor: alpha(theme.palette.grey[500], 0.55),
           '&:hover': {
-            backgroundColor: alpha(theme.palette.grey[500], 0.16),
+            backgroundColor: alpha(theme.palette.grey[500], 0.55),
           },
           [`&.${filledInputClasses.focused}`]: {
-            backgroundColor: alpha(theme.palette.grey[500], 0.16),
+            backgroundColor: alpha(theme.palette.common.white, 1),
           },
           [`&.${filledInputClasses.error}`]: {
-            backgroundColor: alpha(theme.palette.error.main, 0.08),
+            backgroundColor: alpha(theme.palette.error.main, 0.55),
             [`&.${filledInputClasses.focused}`]: {
-              backgroundColor: alpha(theme.palette.error.main, 0.16),
+              backgroundColor: alpha(theme.palette.error.main, 0.55),
             },
           },
           [`&.${filledInputClasses.disabled}`]: {

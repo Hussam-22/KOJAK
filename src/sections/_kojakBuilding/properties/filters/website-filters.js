@@ -42,13 +42,14 @@ export default function WebsiteFilters({ open, onClose }) {
 
   const renderContent = (
     <Stack
-      spacing={2.5}
-      sx={
-        {
-          // flexShrink: 0,
-          // width: { xs: 1, md: 280 },
-        }
-      }
+      spacing={2}
+      sx={{
+        // flexShrink: 0,
+        // width: { xs: 1, md: 280 },
+        bgcolor: 'background.paper',
+        p: 2,
+        borderRadius: 1,
+      }}
     >
       <Block title={translate('websiteFilter.type.propertyType')}>
         <FilterType
