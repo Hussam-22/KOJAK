@@ -74,7 +74,8 @@ export default function PropertiesList() {
 
       {filteredProperties.length !== 0 &&
         filteredProperties
-          .sort((a, b) => b.isAvailable - a.isAvailable)
+          .sort((a, b) => b.data.isFeatured - a.data.isFeatured)
+          .sort((a, b) => b.data.isActive - a.data.isActive)
           .map((property) => <PropertyCard key={property.data.docID} space={property} />)}
 
       {filteredProperties.length === 0 && (

@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-import Label from 'src/components/label';
-import Image from 'src/components/image';
-import { useLocales } from 'src/locales';
 import { paths } from 'src/routes/paths';
+import Image from 'src/components/image';
+import Label from 'src/components/label';
+import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
 import { fNumber } from 'src/utils/format-number';
 import { RouterLink } from 'src/routes/components';
@@ -38,6 +39,7 @@ export default function PropertyCard({ space, vertical }) {
   } = space.data;
   const navigate = useNavigate();
   const { translate, currentLang } = useLocales();
+  const theme = useTheme();
 
   // const descriptionValue = currentLang.value === 'ar' ? descriptionAr?.ar || '' : description;
   const descriptionValue = description;
@@ -58,15 +60,24 @@ export default function PropertyCard({ space, vertical }) {
         borderRadius: 1,
         textDecoration: 'none',
         position: 'relative',
+        border: isFeatured && `solid 4px ${theme.palette.primary.main}`,
+        boxShadow: '4px 4px 0 0',
       }}
       component={RouterLink}
       href={paths.website.propertyDetails + docID}
     >
-      {isFeatured && (
+      {isFeatured && isActive && (
         <Label variant="outlined" color="info" sx={{ position: 'absolute', top: 10, right: 10 }}>
           Featured
         </Label>
       )}
+
+      {!isActive && (
+        <Label variant="outlined" sx={{ position: 'absolute', top: 10, right: 10 }}>
+          Not Available
+        </Label>
+      )}
+
       <Box sx={{ flexShrink: { sm: 0 } }}>
         <Image
           alt={`Kojak - ${description}`}
@@ -102,7 +113,7 @@ export default function PropertyCard({ space, vertical }) {
             text={`${translate(`propertyCard.${city.toLowerCase()}`)} - ${location}`}
           />
         </Box>
-        <Typography variant="h3" color="primary">
+        <Typography variant="h3" sx={{ color: isActive ? 'primary.main' : 'text.disabled' }}>
           {finalRent.length > 7
             ? `${translate('common.aed')}${finalRent}`
             : `${translate('common.aed')} ${fNumber(finalRent)}`}
