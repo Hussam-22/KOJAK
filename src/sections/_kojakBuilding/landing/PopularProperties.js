@@ -6,7 +6,7 @@ import FeaturedProperty from 'src/sections/_kojakBuilding/landing/FeaturedProper
 // ----------------------------------------------------------------------
 export default function PopularProperties() {
   return (
-    <Box sx={{ backgroundImage: 'url(/assets/background/hot-bg.jpg)' }}>
+    <Box sx={{ backgroundImage: 'url(/assets/background/hot-bg.webp)' }}>
       <Container
         sx={{
           py: { xs: 5, md: 10 },
