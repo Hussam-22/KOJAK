@@ -7,8 +7,8 @@ export const CART_FORM = 'CART';
 export const PAGE_VISIT = 'PAGE_VISIT';
 export const OUT_OF_STOCK = 'OUT_OF_STOCK';
 
-export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
-export const SPARE_PART_URL = 'https://kojak-spare-parts-staging.netlify.app/';
+export const AUTO_URL = 'https://kojak-auto-maintenance.com/';
+export const SPARE_PART_URL = 'https://kojak-spareparts/';
 export const EXCLUSIVE_URL = 'https://kojak-exclusive.com/';
 export const BUILDING_URL = 'https://kojak-building.com/';
 export const GROUP_URL = 'https://kojakgroup.com/';
