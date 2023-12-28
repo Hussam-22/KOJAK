@@ -19,7 +19,6 @@ function CareerItemView() {
   useEffect(() => {
     (async () => {
       setJobPost(await getJobPostDetails(jobID));
-      // await new Promise((resolve) => setTimeout(resolve, 500));
       loading.onFalse();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +34,7 @@ function CareerItemView() {
         <Skeleton variant="rectangular" width={400} height={400} />
       ) : (
         <Stack spacing={3}>
-          <CareerItemHeader />
+          <CareerItemHeader jobPostDetails={jobPost} />
           <Container sx={{ py: 8 }}>
             <CareerItemBody jobPostDetails={jobPost} />
             <WhyWorkWithUs />

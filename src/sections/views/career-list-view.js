@@ -1,18 +1,16 @@
 /* eslint-disable no-nested-ternary */
 import { useState, useEffect } from 'react';
 
-import { Box, Stack, Skeleton, Container, Typography } from '@mui/material';
+import { Box, Stack, Button, Skeleton, Container, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import CareerListCard from 'src/sections/career/list/career-list-card';
 
 function CareerListView() {
-  const { addNewCareerPost, getCareersList } = useAuthContext();
+  const { getCareersList } = useAuthContext();
   const [careersList, setCareersList] = useState(null);
-  const { translate, currentLang } = useLocales();
-
-  const addNewJobHandler = async () => addNewCareerPost();
+  const { translate } = useLocales();
 
   useEffect(() => {
     (async () => {
@@ -25,11 +23,6 @@ function CareerListView() {
       <Stack sx={{ mb: 4 }} spacing={2}>
         <Typography variant="h1">{translate('career.title')}</Typography>
         <Typography>{translate('career.description')}</Typography>
-        {/* <Box>
-          <Button variant="contained" onClick={addNewJobHandler}>
-            Add New Job
-          </Button>
-        </Box> */}
       </Stack>
 
       <Box
@@ -53,7 +46,7 @@ function CareerListView() {
           <Typography variant="h5">No Career Posts Available at the Moment</Typography>
         ) : (
           careersList.map((jobDetails) => (
-            <CareerListCard key={jobDetails.id} jobDetails={jobDetails} />
+            <CareerListCard key={jobDetails.docID} jobDetails={jobDetails} />
           ))
         )}
       </Box>
