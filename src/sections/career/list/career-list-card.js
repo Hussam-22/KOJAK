@@ -17,7 +17,9 @@ function CareerListCard({ jobDetails }) {
   return (
     <Card>
       <Stack spacing={1} sx={{ p: 2 }}>
-        <Typography variant="caption">{docID}</Typography>
+        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+          {docID}
+        </Typography>
         <Link component={RouterLink} to={paths(currentLang.value).website.careerItem + docID}>
           <TextMaxLine line={1} variant="h5" color="secondary">
             {title}

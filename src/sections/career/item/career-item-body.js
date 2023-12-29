@@ -6,12 +6,12 @@ import { Box, Card, Stack, Typography } from '@mui/material';
 import Label from 'src/components/label';
 
 function CareerItemBody({ jobPostDetails }) {
-  const { description, responsibilities, skills, benefits, requirements, languages } =
+  const { description, responsibilities, skills, benefits, requirements, languages, salary } =
     jobPostDetails;
   return (
     <Grid container spacing={3} sx={{ mb: 4 }}>
       <Grid md={8} xs={12}>
-        <Stack spacing={2}>
+        <Stack spacing={4}>
           <Box>
             <Typography variant="h3">Job Description</Typography>
             <Typography>{description}</Typography>
@@ -48,25 +48,24 @@ function CareerItemBody({ jobPostDetails }) {
       <Grid md={4} xs={12}>
         <Stack spacing={3} direction={{ md: 'column', xs: 'column-reverse' }}>
           <Card sx={{ p: 3 }}>
-            <Stack spacing={2}>
-              <Box>
-                <Typography variant="h3">Languages</Typography>
-                {languages.map((language) => (
-                  <Label key={language} sx={{ mx: 1 }}>
-                    {language}
-                  </Label>
-                ))}
-              </Box>
-
-              <Box>
-                <Typography variant="h3">Benefits</Typography>
-                <ul>
-                  {benefits.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Box>
-            </Stack>
+            <Typography variant="h3">Languages</Typography>
+            {languages.map((language) => (
+              <Label key={language} sx={{ mx: 1 }}>
+                {language}
+              </Label>
+            ))}
+          </Card>
+          <Card sx={{ p: 3 }}>
+            <Typography variant="h3">Benefits</Typography>
+            <ul>
+              {benefits.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Card>
+          <Card sx={{ p: 3 }}>
+            <Typography variant="h3">Salary</Typography>
+            <Typography>{salary !== 0 ? `${salary} AED` : 'Competitive'}</Typography>
           </Card>
         </Stack>
       </Grid>
