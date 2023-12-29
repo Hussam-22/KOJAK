@@ -73,7 +73,11 @@ export function AuthProvider({ children }) {
 
   // GET Careers List
   const getCareersList = useCallback(async () => {
-    const docRef = query(collectionGroup(DB, 'jobs'), where('isActive', '==', true));
+    const docRef = query(
+      collectionGroup(DB, 'jobs'),
+      where('isActive', '==', true),
+      where('expiryDate', '>=', new Date().getTime())
+    );
     const querySnapshot = await getDocs(docRef);
     const documents = [];
 
