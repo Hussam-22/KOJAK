@@ -1,31 +1,48 @@
+import PropTypes from 'prop-types';
+
 import { Box, Stack, Divider, Container, Typography } from '@mui/material';
 
+import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-function CareerItemHeader() {
+function CareerItemHeader({ jobPostDetails }) {
+  const { title, group, department, expiryDate, contractType } = jobPostDetails;
   const isMobile = useResponsive('down', 'sm');
+
+  const lastDateToApply = new Date(expiryDate).toDateString();
 
   return (
     <Box sx={{ bgcolor: 'primary.lighter', py: 4 }}>
       <Container>
-        <Stack direction={{ md: 'row', xs: 'column' }} justifyContent="space-between">
+        <Stack
+          direction={{ sm: 'row', xs: 'column' }}
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+        >
           <Stack direction="column" spacing={2}>
             <Box>
-              <Typography variant="overline">Job ID: IT-2023-1</Typography>
-              <Typography variant="h2">Full Stack Developer</Typography>
+              <Typography variant="h2">{title}</Typography>
             </Box>
-            <Stack direction="row" spacing={2}>
-              <Typography variant="caption">Kojak Group</Typography>
-              <Typography variant="caption">IT Department</Typography>
-              <Typography variant="caption">Sharjah, Industrial Area 4</Typography>
+            <Stack direction="row" spacing={3}>
+              <Stack spacing={1} direction="row">
+                <Iconify icon="clarity:organization-line" />
+                <Typography variant="caption">{group}</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row">
+                <Iconify icon="tabler:building" />
+                <Typography variant="caption">{department}</Typography>
+              </Stack>
+              <Stack spacing={1} direction="row">
+                <Iconify icon="formkit:time" />
+                <Typography variant="caption">{contractType}</Typography>
+              </Stack>
             </Stack>
           </Stack>
-          {isMobile && <Divider sx={{ my: 2 }} />}
           <Stack direction="column" spacing={1}>
-            <Typography variant="h4">Apply Now</Typography>
             <Typography>Send your CV to</Typography>
             <Typography color="primary">info@kojak-group.com</Typography>
-            <Typography variant="caption">Expiry Date: 25-12-2023</Typography>
+            <Typography variant="caption">Expiry Date: {lastDateToApply}</Typography>
           </Stack>
         </Stack>
       </Container>
@@ -33,4 +50,4 @@ function CareerItemHeader() {
   );
 }
 export default CareerItemHeader;
-// CareerListHeader.propTypes = { tables: PropTypes.array };
+CareerItemHeader.propTypes = { jobPostDetails: PropTypes.object };

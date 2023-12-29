@@ -10,15 +10,19 @@ import TextMaxLine from 'src/components/text-max-line';
 
 function CareerListCard({ jobDetails }) {
   const { currentLang } = useLocales();
-  const { id, jobID, jobTitle, department, location, jobType, experienceYears, salary, createdAt } =
-    jobDetails;
+  const { docID, title, department, group, contractType, salary, expiryDate } = jobDetails;
+
+  const lastDayToApply = new Date(expiryDate).toDateString();
+
   return (
     <Card>
       <Stack spacing={1} sx={{ p: 2 }}>
-        <Typography variant="caption">{jobID}</Typography>
-        <Link component={RouterLink} to={paths(currentLang.value).website.careerItem + id}>
+        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+          {docID}
+        </Typography>
+        <Link component={RouterLink} to={paths(currentLang.value).website.careerItem + docID}>
           <TextMaxLine line={1} variant="h5" color="secondary">
-            {jobTitle}
+            {title}
           </TextMaxLine>
         </Link>
         <Stack spacing={0.5}>
@@ -27,18 +31,18 @@ function CareerListCard({ jobDetails }) {
             value={`${department} Department`}
             direction="row"
           />
-          <CareerCardIcon icon="tdesign:location" value={location} direction="row" />
+          <CareerCardIcon icon="tdesign:location" value={group} direction="row" />
         </Stack>
       </Stack>
       <Divider flexItem />
       <Box sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="space-between">
-          <CareerCardIcon icon="formkit:time" value={jobType} />
-          <CareerCardIcon icon="fa6-solid:chart-line" value={`${experienceYears} Year Exp`} />
+          <CareerCardIcon icon="formkit:time" value={contractType} />
           <CareerCardIcon
             icon="dashicons:money-alt"
-            value={salary === 0 ? 'Competitive' : salary}
+            value={+salary === 0 ? 'Competitive' : +salary}
           />
+          <CareerCardIcon icon="uit:calender" value={lastDayToApply} />
         </Stack>
       </Box>
     </Card>
