@@ -98,8 +98,8 @@ export function AuthProvider({ children }) {
       website: SITE_NAME,
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      // to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
-      to: ['hussam@hotmail.co.uk'],
+      to: ['querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
+      // to: ['hussam@hotmail.co.uk'],
       message: {
         subject: 'Kojak Building - New Form Submitted',
         text: payload?.subject || '',
