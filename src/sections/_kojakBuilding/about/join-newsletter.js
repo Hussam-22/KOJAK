@@ -10,9 +10,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { useLocales } from 'src/locales';
 import Image from 'src/components/image';
+import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { NEWSLETTER_FORM } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 
@@ -69,7 +70,7 @@ export default function JoinNewsletter() {
       // Add Form Submit to Slack Channel
       await fetch(url, requestOptions);
       addNewForm({
-        source: 'newsletter',
+        source: NEWSLETTER_FORM,
         fullName: '',
         mobile: '',
         email: formData.email,

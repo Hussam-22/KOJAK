@@ -17,7 +17,7 @@ import {
   collectionGroup,
 } from 'firebase/firestore';
 
-import { FIREBASE_API } from 'src/config-global';
+import { SITE_NAME, FIREBASE_API } from 'src/config-global';
 
 import { AuthContext } from './auth-context';
 
@@ -95,22 +95,24 @@ export function AuthProvider({ children }) {
     const dateTime = date.toDateString();
     setDoc(newDocRef, {
       ...payload,
+      website: SITE_NAME,
       id: newDocRef.id,
       createdAt: Timestamp.fromDate(new Date()),
-      to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
+      // to: ['info.kgmarketing@gmail.com', 'querieskb@kojak-group.com', 'hussam@hotmail.co.uk'],
+      to: ['hussam@hotmail.co.uk'],
       message: {
         subject: 'Kojak Building - New Form Submitted',
-        text: payload.subject,
+        text: payload?.subject || '',
         html: `
-        <p>Source: ${payload.source}</p>
-        <p>Name: ${payload.fullName}</p>
-        <p>Mobile: ${payload.mobile}</p>
-        <p>Email: ${payload.email}</p>
-        <p>Subject: ${payload.subject}</p>
-        <p>Inquiry: ${payload.inquiry}</p>
+        <p>Source: ${payload?.source || ''}</p>
+        <p>Name: ${payload?.fullName || ''}</p>
+        <p>Mobile: ${payload?.mobile || ''}</p>
+        <p>Email: ${payload?.email || ''}</p>
+        <p>Subject: ${payload?.subject || ''}</p>
+        <p>Inquiry: ${payload?.inquiry || ''}</p>
         <p>---------------------------</p>
-        <p>${dateTime.toLocaleString()}</p>
-        <p>${newDocRef.id}</p>
+        <p>${dateTime?.toLocaleString() || ''}</p>
+        <p>${newDocRef?.id || ''}</p>
         `,
       },
     });

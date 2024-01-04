@@ -9,9 +9,9 @@ import { Card, Stack, Typography } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { SLACK_WEBHOOK_URL } from 'src/config-global';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { SLACK_WEBHOOK_URL, SPACE_INQUIRY_FORM } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
 
       addNewForm({
         ...formData,
-        source: 'Call Back',
+        source: SPACE_INQUIRY_FORM,
         subject: spaceInfo.description,
       });
 
@@ -108,9 +108,7 @@ export default function PropertyDetailsContactForm({ spaceInfo }) {
         <FormProvider methods={methods} onSubmit={onSubmit}>
           <Stack spacing={2.5}>
             <RHFTextField variant="outlined" name="fullName" label={translate('form.name')} />
-
             <RHFTextField variant="outlined" name="mobile" label={translate('form.mobile')} />
-
             <RHFTextField variant="outlined" name="email" label={translate('form.email')} />
 
             <RHFTextField

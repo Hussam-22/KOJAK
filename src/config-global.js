@@ -1,8 +1,10 @@
-export const SITE_NAME = 'kojak-group';
+export const SITE_NAME = 'building';
 
 export const CONTACT_US_FORM = 'CONTACT-US';
 export const NEWSLETTER_FORM = 'NEWSLETTER';
 export const WHATSAPP_FORM = 'WHATSAPP';
+export const CART_FORM = 'CART';
+export const SPACE_INQUIRY_FORM = 'SPACE_INQUIRY';
 
 export const AUTO_URL = 'http://kojak-auto-maintenance.com/';
 export const SPARE_PART_URL = 'https://kojak-spareparts.com/';

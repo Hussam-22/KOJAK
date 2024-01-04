@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Stack } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Stack, Divider, MenuItem } from '@mui/material';
 
 import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
-import { SLACK_WEBHOOK_URL } from 'src/config-global';
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
+import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -18,6 +18,8 @@ const DIALOG_CONTENT = {
   ar: 'شكرًا للتواصل مع كوجاك، سيقوم أحد وكلاء نجاح العملاء بالتواصل معك قريبًا!!',
   en: 'Thank you for contact Kojak, one of your customer success agents will contact you soon !!',
 };
+
+const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
 
 export default function ContactUsForm() {
   const { addNewForm } = useAuthContext();
@@ -40,6 +42,7 @@ export default function ContactUsForm() {
     email: Yup.string().required().email('That is not an email'),
     subject: Yup.string().required('Subject is required'),
     messageText: Yup.string().required('Message is required'),
+    hearAbout: Yup.string().required('How did you hear about us is required'),
   });
 
   const defaultValues = {
@@ -48,6 +51,7 @@ export default function ContactUsForm() {
     email: '',
     subject: '',
     messageText: '',
+    hearAbout: '',
   };
 
   const methods = useForm({
@@ -81,8 +85,8 @@ export default function ContactUsForm() {
 
       addNewForm({
         ...formData,
-        source: 'Contact Us',
-        inquiry: formData.messageText,
+        source: CONTACT_US_FORM,
+        subject: `${SITE_NAME} - New Contact Us Form`,
       });
 
       await new Promise((resolve) =>
@@ -102,13 +106,23 @@ export default function ContactUsForm() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2.5} alignItems="flex-start">
           <RHFTextField variant="outlined" name="fullName" label={translate('form.name')} />
-
           <RHFTextField variant="outlined" name="mobile" label={translate('form.mobile')} />
-
           <RHFTextField variant="outlined" name="email" label={translate('form.email')} />
-
+          <RHFSelect
+            name="hearAbout"
+            label="How did you hear about us ?"
+            variant="outlined"
+            sx={{ textAlign: 'left' }}
+          >
+            <MenuItem value="">None</MenuItem>
+            <Divider sx={{ borderStyle: 'dashed' }} />
+            {hearAboutEn.map((item, index) => (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </RHFSelect>
           <RHFTextField variant="outlined" name="subject" label={translate('form.subject')} />
-
           <RHFTextField
             name="messageText"
             variant="outlined"
@@ -117,7 +131,6 @@ export default function ContactUsForm() {
             label={translate('form.message')}
             sx={{ pb: 2.5 }}
           />
-
           <LoadingButton
             size="large"
             type="submit"
