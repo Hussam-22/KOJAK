@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 import { memo, useState, useEffect } from 'react';
 
@@ -12,25 +13,18 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import PropertyDetailsHeader from 'src/sections/_kojakBuilding/properties/details/property-details-header';
 import PropertyDetailsSummary from 'src/sections/_kojakBuilding/properties/details/property-details-summary';
 
-function FeaturedProperty() {
+function FeaturedProperty({ spaceInfo }) {
   const theme = useTheme();
   const navigate = useNavigate();
   const isMdUp = useResponsive('up', 'md');
   const { fsGetFeaturedProperty, fsGetFolderImages } = useAuthContext();
   const [images, setImages] = useState([]);
-  const [featuredProperty, setFeaturedProperty] = useState([]);
 
   useEffect(() => {
     (async () => {
-      setFeaturedProperty(await fsGetFeaturedProperty());
+      if (spaceInfo?.docID) setImages(await fsGetFolderImages(spaceInfo.docID));
     })();
-  }, [fsGetFeaturedProperty]);
-
-  useEffect(() => {
-    (async () => {
-      if (featuredProperty?.docID) setImages(await fsGetFolderImages(featuredProperty.docID));
-    })();
-  }, [featuredProperty.docID, fsGetFolderImages]);
+  }, [spaceInfo?.docID, fsGetFolderImages]);
 
   return (
     <Box
@@ -58,24 +52,24 @@ function FeaturedProperty() {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => navigate(`/properties/${featuredProperty?.docID}`)}
+          onClick={() => navigate(`/properties/${spaceInfo?.docID}`)}
         >
           View Property
         </Button>
       </Stack>
-      <Image src={images[0]} alt={featuredProperty.description} sx={{ borderRadius: 1 }} />
+      <Image src={images[0]} alt={spaceInfo.description} sx={{ borderRadius: 1 }} />
       {/* {images.length !== 0 && <PropertyDetailsGallery images={images} />} */}
-      {featuredProperty?.docID && <PropertyDetailsHeader spaceInfo={featuredProperty} />}
+      {spaceInfo?.docID && <PropertyDetailsHeader spaceInfo={spaceInfo} />}
 
       <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
-      {featuredProperty?.docID && (
-        <PropertyDetailsSummary spaceInfo={featuredProperty} hideSummery />
-      )}
+      {spaceInfo?.docID && <PropertyDetailsSummary spaceInfo={spaceInfo} hideSummery />}
     </Box>
   );
 }
 
 export default memo(FeaturedProperty);
 
-// ----------------------------------------------------------------------
+FeaturedProperty.propTypes = {
+  spaceInfo: PropTypes.object,
+};
