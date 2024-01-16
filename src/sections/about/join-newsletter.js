@@ -89,7 +89,7 @@ export default function JoinNewsletter() {
             />
           </Box>
 
-          <Typography variant="h3" color="white">
+          <Typography variant="h4" color="white">
             {translate('newsLetter.title')}
           </Typography>
           <Typography color="white">{translate('newsLetter.subTitle')}</Typography>

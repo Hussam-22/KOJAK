@@ -175,6 +175,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
       number: '06 5334 312 EXT. 220',
       location:
         'K-EXCLUSIVE CARS L.L.C Showroom no.37 - block no.4 Al Aweer - Ras Al Khor Auto Market Dubai - United Arab - Emirates',
+      locationShj: 'Industrial Area 4, Sharjah, United Arab Emirates',
       hours: '9:30 AM to 1 PM - 4:30 PM to 9:00 PM (Saturday to Thursday)',
       follow: 'FOLLOW US',
     },

@@ -30,7 +30,12 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography>97143330533</Typography>
+        <Typography>97143330533 (Dubai Branch)</Typography>
+      </Stack>
+
+      <Stack direction="row" spacing={1}>
+        <Iconify icon="tabler:device-landline-phone" width={24} />
+        <Typography>971529242625 (Sharjah Branch)</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
@@ -49,6 +54,26 @@ export default function ContactUsInfo({ light, small }) {
             }}
           >
             {translate('contactUs.details.location')}
+          </Link>
+        </Typography>
+      </Stack>
+
+      <Stack spacing={1} direction="row">
+        <Box>
+          <Iconify icon="carbon:location" width={24} height={24} />
+        </Box>
+
+        <Typography>
+          <Link
+            href="https://www.google.com/maps/place/Kojak+Group+of+Companies/@25.3253059,55.4046755,15z/data=!4m6!3m5!1s0x3e5f57dbcabe0c49:0x67452d730806d23a!8m2!3d25.3253059!4d55.4046755!16s%2Fg%2F11bbwn0zxl?entry=ttu"
+            target="_blank"
+            rel="noopener"
+            sx={{
+              color: light ? 'primary.light' : 'primary.main',
+              textDecorationLine: 'underline',
+            }}
+          >
+            {translate('contactUs.details.locationShj')}
           </Link>
         </Typography>
       </Stack>
