@@ -104,7 +104,7 @@ const LandingHero = () => {
               <ProofIcon icon="simple-icons:mercedes" text="Genuine Spare Parts" />
               <ProofIcon icon="la:shipping-fast" text="Fast Delivery & International Shipping" />
               <ProofIcon icon="basil:headset-outline" text="Responsive Customer Support" />
-              <ProofIcon icon="solar:money-bag-outline" text="Best Price Grantee" />
+              <ProofIcon icon="solar:money-bag-outline" text="Best Price Guarantee" />
             </Box>
           </Grid>
         </Grid>
