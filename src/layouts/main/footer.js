@@ -12,25 +12,26 @@ import { RouterLink } from 'src/routes/components';
 import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
+import { AUTO_URL, GROUP_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
 const GROUPS = [
   {
-    title: 'exclusive',
-    url: 'www.kojak-exclusive.com',
-  },
-  {
-    title: 'spareparts',
-    url: 'www.kojak-spareparts.com',
+    title: 'group',
+    url: GROUP_URL,
   },
   {
     title: 'auto',
-    url: 'www.kojak-auto-maintenance.com',
+    url: AUTO_URL,
+  },
+  {
+    title: 'exclusive',
+    url: EXCLUSIVE_URL,
   },
   {
     title: 'building',
-    url: 'www.kojak-building.com',
+    url: BUILDING_URL,
   },
 ];
 
