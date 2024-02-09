@@ -24,7 +24,7 @@ export default function ContactUsInfo({ light, small }) {
       </Stack>
 
       <Stack direction="row" spacing={1}>
-        <Iconify icon="carbon:mobile" width={24} />
+        <Iconify icon="mdi:whatsapp" width={24} />
         <Typography>{WHATSAPP_MOBILE.replace('+', '')}</Typography>
       </Stack>
 
@@ -34,7 +34,7 @@ export default function ContactUsInfo({ light, small }) {
       </Stack>
 
       <Stack direction="row" spacing={1}>
-        <Iconify icon="tabler:device-landline-phone" width={24} />
+        <Iconify icon="icomoon-free:mobile" width={24} />
         <Typography>971529242625 (Sharjah Branch)</Typography>
       </Stack>
 
