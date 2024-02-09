@@ -32,8 +32,6 @@ export default function SparePartsListViewGridItem({
     (storageItem) => storageItem.partNumber === product.partNumber
   );
 
-  console.log(product);
-
   const getStockInfo = () => {
     if (+product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
     if (+product.stock > 0 && +product.stock <= 10)
