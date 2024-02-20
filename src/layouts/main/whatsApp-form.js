@@ -67,7 +67,7 @@ export default function WhatsAppForm() {
     addNewForm({
       ...formData,
       source: WHATSAPP_FORM,
-      mobile: WHATSAPP_MOBILE,
+      mobile: formData.mobile,
     });
 
     setIsOpen(false);
