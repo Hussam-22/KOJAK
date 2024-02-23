@@ -28,14 +28,15 @@ export default function ContactUsInfo({ light, small }) {
         <Typography>{WHATSAPP_MOBILE.replace('+', '')}</Typography>
       </Stack>
 
-      <Stack direction="row" spacing={1}>
+      {/* <Stack direction="row" spacing={1}>
         <Iconify icon="tabler:device-landline-phone" width={24} />
         <Typography>97143330533 (Dubai Branch)</Typography>
-      </Stack>
+      </Stack> */}
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="icomoon-free:mobile" width={24} />
-        <Typography>971529242625 (Sharjah Branch)</Typography>
+        {/* <Typography>971529242625 (Sharjah Branch)</Typography> */}
+        <Typography>971529242625</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
