@@ -14,7 +14,8 @@ export const GROUP_URL = 'https://kojakgroup.com/';
 export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';
 
-export const WHATSAPP_MOBILE = '+971529242557';
+// export const WHATSAPP_MOBILE = '+971529242557';
+export const WHATSAPP_MOBILE = '+971529242548';
 
 export const GOOGLE_MAP_API = process.env.NEXT_PUBLIC_MAP_API;
 
