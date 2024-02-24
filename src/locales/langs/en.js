@@ -200,7 +200,7 @@ const en = {
     appointmentDate: 'Appointment Date',
     issue: 'Issue Description',
     whatsApp: {
-      howCanWeHelpYou: 'How can we help you ?',
+      howCanWeHelpYou: 'Have any complaint ?',
       workingHours: 'Our working hours from 9 AM to 6 PM, Saturday to Thursday',
     },
   },

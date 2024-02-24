@@ -201,7 +201,7 @@ const ar = {
     issue: 'تفاصيل المشكلة',
     serviceType: 'نوع الخدمة',
     whatsApp: {
-      howCanWeHelpYou: 'كيف يمكننا مساعدتك؟',
+      howCanWeHelpYou: 'هل لديك اي شكوى او ملاحظة ؟',
     },
   },
 
