@@ -36,7 +36,7 @@ export default function ContactUsInfo({ light, small }) {
       <Stack direction="row" spacing={1}>
         <Iconify icon="icomoon-free:mobile" width={24} />
         {/* <Typography>971529242625 (Sharjah Branch)</Typography> */}
-        <Typography>971529242625</Typography>
+        <Typography>{WHATSAPP_MOBILE}</Typography>
       </Stack>
 
       <Stack spacing={1} direction="row">
