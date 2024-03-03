@@ -5,6 +5,7 @@ import { Link, Stack, IconButton, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
 import { useLocales } from 'src/locales';
+import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
 
 export default function ContactUsInfo({ light, small }) {
@@ -24,7 +25,7 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography variant="body2">052 924 2623</Typography>
+        <Typography variant="body2">{WHATSAPP_MOBILE}</Typography>
       </Stack>
 
       <Stack direction="row" spacing={1}>
