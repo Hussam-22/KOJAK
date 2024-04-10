@@ -87,7 +87,7 @@ export default function SparePartsListViewGridItem({
           >
             {getStockInfo().text}
           </Label>
-          {product.stock !== 0 && (
+          {+product.stock !== 0 && (
             <Fab
               onClick={addRemoveCartPart}
               className="add-to-cart"
@@ -152,7 +152,7 @@ SparePartsListViewGridItem.propTypes = {
     subCategory: PropTypes.string,
     brandModel: PropTypes.string,
     brandClass: PropTypes.string,
-    stock: PropTypes.string,
+    stock: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }),
   sx: PropTypes.object,
   addToCartOnClickHandler: PropTypes.func,
