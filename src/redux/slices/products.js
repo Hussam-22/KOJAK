@@ -48,6 +48,7 @@ const slice = createSlice({
     },
 
     rdxGetRecordsCount(state, action) {
+      console.log(action.payload);
       state.recordsCount = action.payload;
     },
     // ----------------------------------------------------

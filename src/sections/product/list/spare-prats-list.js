@@ -9,6 +9,7 @@ import { Stack, Button, Typography, IconButton } from '@mui/material';
 import { paths } from 'src/routes/paths';
 import Iconify from 'src/components/iconify';
 import { useSelector } from 'src/redux/store';
+import { useAuthContext } from 'src/auth/hooks';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { rdxUpdatePage, rdxUpdateCart } from 'src/redux/slices/products';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
@@ -20,9 +21,10 @@ import SparePartsListViewGridItemSkeleton from '../item/spare-parts-list-view-gr
 
 export default function SparePartsList({ loading, products, totalDocs, recordsLimit }) {
   const dispatch = useDispatch();
-  const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const navigate = useNavigate();
+  const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const { currentPage, filter } = useSelector((state) => state.products);
+  const { covertToInt } = useAuthContext();
 
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
@@ -54,6 +56,8 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
     dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
   };
+
+  const runFn = async () => covertToInt();
 
   const renderView = () => {
     if (products.length === 0 && noFilterApplied) {
@@ -94,6 +98,9 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
 
     return (
       <>
+        {/* <Button variant="contained" sx={{ alignSelf: 'flex-end' }} onClick={runFn}>
+          Convert to Int
+        </Button> */}
         <Box
           rowGap={2}
           columnGap={2}
@@ -106,17 +113,18 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
           }}
           sx={{ bgcolor: 'background.paper', p: 3, borderRadius: 1 }}
         >
-          {(loading ? [...Array(16)] : products).map((product, index) =>
-            product ? (
-              <SparePartsListViewGridItem
-                key={product.docID}
-                product={product}
-                addToCartOnClickHandler={addToCartOnClickHandler}
-                localStorageCart={localStorageCart}
-              />
-            ) : (
-              <SparePartsListViewGridItemSkeleton key={index} />
-            )
+          {(loading ? [...Array(16)] : products.filter((product) => product.stock !== 0)).map(
+            (product, index) =>
+              product ? (
+                <SparePartsListViewGridItem
+                  key={product.docID}
+                  product={product}
+                  addToCartOnClickHandler={addToCartOnClickHandler}
+                  localStorageCart={localStorageCart}
+                />
+              ) : (
+                <SparePartsListViewGridItemSkeleton key={index} />
+              )
           )}
         </Box>
 

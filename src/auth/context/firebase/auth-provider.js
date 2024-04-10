@@ -16,6 +16,7 @@ import {
   updateDoc,
   collection,
   startAfter,
+  writeBatch,
   getFirestore,
   collectionGroup,
   getCountFromServer,
@@ -145,18 +146,20 @@ export function AuthProvider({ children }) {
 
   const fsGetProductsDocumentsCount = useCallback(async (filter) => {
     let docRef = collectionGroup(DB, 'spare-parts-list');
-    docRef = query(docRef, orderBy('partNumber', 'desc'));
+    // docRef = query(docRef, orderBy('partNumber', 'desc'));
 
     if (filter.partNo) {
       docRef = query(
         docRef,
         where('partNumber', '>=', filter.partNo),
-        where('partNumber', '<', `${filter.partNo}\uf8ff`)
+        where('partNumber', '<', `${filter.partNo}\uf8ff`),
+        orderBy('partNumber', 'desc')
       );
     }
 
     if (!filter.partNo) {
-      docRef = query(docRef, where('partNumber', '!=', ''));
+      // docRef = query(docRef, where('partNumber', '!=', ''), orderBy('partNumber', 'desc'));
+      docRef = query(docRef, where('stock', '!=', 0), orderBy('stock', 'desc'));
     }
 
     if (filter.model && filter.model.length > 0) {
@@ -173,21 +176,23 @@ export function AuthProvider({ children }) {
   }, []);
   // ----------------------------------------------------------------------------
   const fsGetProductsByPage = useCallback(async (startAfterDocument, recordsLimit, filter) => {
+    console.log(startAfterDocument);
     const dataArr = [];
     let docRef = collectionGroup(DB, 'spare-parts-list');
-    docRef = query(docRef, orderBy('partNumber', 'desc'), limit(recordsLimit));
+    docRef = query(docRef, limit(recordsLimit));
 
     // Conditionally add filters based on the provided filter object
     if (filter.partNo) {
       docRef = query(
         docRef,
         where('partNumber', '>=', filter.partNo),
-        where('partNumber', '<', `${filter.partNo}\uf8ff`)
+        where('partNumber', '<', `${filter.partNo}\uf8ff`),
+        orderBy('partNumber', 'desc')
       );
     }
 
     if (!filter.partNo) {
-      docRef = query(docRef, where('partNumber', '!=', ''));
+      docRef = query(docRef, where('partNumber', '!=', ''), orderBy('partNumber', 'desc'));
     }
 
     if (filter.model && filter.model.length > 0) {
@@ -206,6 +211,21 @@ export function AuthProvider({ children }) {
     const querySnapshot = await getDocs(docRef);
     querySnapshot.forEach((document) => dataArr.push(document.data()));
     return dataArr;
+  }, []);
+
+  const covertToInt = useCallback(async () => {
+    const batch = writeBatch(DB);
+    const docRef = query(collectionGroup(DB, 'spare-parts-list'));
+    const querySnapshot = await getDocs(docRef);
+
+    querySnapshot.forEach((document) => {
+      if (typeof document.data().stock === 'string') {
+        console.log(document.data());
+        batch.update(document.ref, { stock: +document.data().stock });
+      }
+    });
+
+    await batch.commit();
   }, []);
 
   // ----------------------------------------------------------------------------
@@ -311,6 +331,8 @@ export function AuthProvider({ children }) {
       fsGetCartParts,
       fsGetArrayOfParts,
       getClassModelsList,
+      //
+      covertToInt,
     }),
     [
       addNewForm,
@@ -323,6 +345,8 @@ export function AuthProvider({ children }) {
       fsGetCartParts,
       fsGetArrayOfParts,
       getClassModelsList,
+      //
+      covertToInt,
     ]
   );
 
