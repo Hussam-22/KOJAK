@@ -41,7 +41,7 @@ function CareerItemHeader({ jobPostDetails }) {
           </Stack>
           <Stack direction="column" spacing={1}>
             <Typography>Send your CV to</Typography>
-            <Typography color="primary">info@kojak-group.com</Typography>
+            <Typography color="primary">cv@kojak-group.com</Typography>
             <Typography variant="caption">Expiry Date: {lastDateToApply}</Typography>
           </Stack>
         </Stack>
