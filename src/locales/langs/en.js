@@ -176,7 +176,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
       location:
         'K-EXCLUSIVE CARS L.L.C Showroom no.37 - block no.4 Al Aweer - Ras Al Khor Auto Market Dubai - United Arab - Emirates',
       locationShj: 'Industrial Area 4, Sharjah, United Arab Emirates',
-      hours: '9:30 AM to 1 PM - 4:30 PM to 9:00 PM (Saturday to Thursday)',
+      hours: '8:00 AM to 1 PM - 4:00 PM to 8:00 PM (Saturday to Thursday)',
       follow: 'FOLLOW US',
     },
   },
@@ -190,7 +190,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
     building: { title: 'Building', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'Visit Website',
-    allRights: '© 2023. All rights reserved - Kojak Group of Companies',
+    allRights: '© 2024. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
     availableVehicles: 'Available Vehicles',
