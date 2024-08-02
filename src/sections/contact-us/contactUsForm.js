@@ -104,7 +104,7 @@ export default function ContactUsForm() {
     reset,
     handleSubmit,
     setValue,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting, errors, isDirty },
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
@@ -182,6 +182,7 @@ export default function ContactUsForm() {
             variant="contained"
             color="primary"
             loading={isSubmitting}
+            disabled={!isDirty}
             // sx={{
             //   mx: { xs: 'auto !important', md: 'unset !important' },
             // }}
