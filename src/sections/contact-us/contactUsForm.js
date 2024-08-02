@@ -125,8 +125,8 @@ export default function ContactUsForm() {
         source: CONTACT_US_FORM,
       });
 
-      if (formPayload.parts.length !== 0 && pathname !== '/contact-us')
-        formPayload.parts.map((part) => fsUpdatePartStatistics(part, formPayload.source));
+      if (formPayload?.parts?.length !== 0 && pathname !== '/contact-us')
+        formPayload?.parts?.map((part) => fsUpdatePartStatistics(part, formPayload.source));
 
       await new Promise((resolve) =>
         setTimeout(() => {
