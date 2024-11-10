@@ -64,7 +64,7 @@ export default function CoreValues() {
 
           <Grid md={4} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
             <Image
-              src="https://img.freepik.com/free-photo/watercolor-car-painting-illustration_23-2151706315.jpg?t=st=1731226288~exp=1731229888~hmac=247a300034db65524872f5c856d4a03c217badc2e8602a22727e18d31d7b0291&w=996"
+              src="/assets/images/cars/about-mission.webp"
               sx={{ borderRadius: 2 }}
               ratio="9/16"
             />
