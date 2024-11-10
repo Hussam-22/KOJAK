@@ -1,3 +1,4 @@
+const THIS_YEAR = new Date().getFullYear();
 const en = {
   header: {
     home: 'Home',
@@ -190,7 +191,7 @@ To inquire about exporting a Mercedes-Benz vehicle from [Your Country] to your l
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
     building: { title: 'Building', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'Visit Website',
-    allRights: '© 2024. All rights reserved - Kojak Group of Companies',
+    allRights: `© ${THIS_YEAR}. All rights reserved - Kojak Group of Companies`,
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
     availableVehicles: 'Available Vehicles',

@@ -141,7 +141,7 @@ export default function Footer() {
             {translate('footer.allRights')}
           </Typography>
 
-          <Link href="mailto:hello@prozeffect.com" variant="caption" sx={{ color: 'primary.main' }}>
+          <Link href="mailto:hussam@hotmail.co.uk" variant="caption" sx={{ color: 'primary.main' }}>
             {translate('footer.designedBy')}
           </Link>
         </Stack>

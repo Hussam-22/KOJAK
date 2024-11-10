@@ -1,3 +1,4 @@
+const THIS_YEAR = new Date().getFullYear();
 const ar = {
   header: {
     home: 'الصفحة الرئيسية',
@@ -328,7 +329,7 @@ const ar = {
     auto: { title: 'صيانة السيارات', text: 'إصلاح مرسيدسك على يد خبراء' },
     building: { title: 'العقارات', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'زيارة الموقع الإلكتروني',
-    allRights: '© 2024. كل الحقوق محفوظة - مجموعة شركات Kojak',
+    allRights: `© ${THIS_YEAR}. كل الحقوق محفوظة - مجموعة شركات Kojak`,
     designedBy: 'صمم بواسطة ProzEffect | hello@prozeffect.com',
     sitemap: 'خريطة الموقع',
     since: 'منذ 1983',
