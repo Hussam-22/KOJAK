@@ -1,3 +1,4 @@
+const THIS_YEAR = new Date().getFullYear();
 const en = {
   header: {
     home: 'Home',
@@ -351,7 +352,7 @@ const en = {
     building: 'Building',
     group: 'Kojak Group of Companies',
     visitWebsite: 'Visit Website',
-    allRights: '© 2023. All rights reserved - Kojak Group of Companies',
+    allRights: `© ${THIS_YEAR}. All rights reserved - Kojak Group of Companies`,
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
   },

@@ -67,7 +67,6 @@ function RenderDesktopHero() {
               }}
               spacing={3}
             >
-              <SvgColor src="/assets/mercedes-logo.svg" sx={{ width: 175, height: 175 }} />
               <Typography
                 sx={{
                   textTransform: 'capitalize',
