@@ -126,7 +126,7 @@ export default function Footer() {
             </Typography>
 
             <Link
-              href="mailto:hello@prozeffect.com"
+              href="mailto:hussam@hotmail.co.uk"
               variant="caption"
               sx={{ color: 'primary.main' }}
             >
