@@ -7,7 +7,6 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Stack, useTheme, Container } from '@mui/material';
 
 import { useLocales } from 'src/locales';
-import Image from 'src/components/image';
 import { textGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -39,18 +38,8 @@ const LandingHero = () => {
         }}
       >
         <Grid container spacing={4} sx={{ position: 'relative' }}>
-          <Grid md={10} xs={12} sx={{ textAlign: { md: 'unset', xs: 'center' } }}>
+          <Grid md={12} xs={12} sx={{ textAlign: { md: 'center', xs: 'center' } }}>
             <Box component={m.div} {...getVariant('fadeInUp')} sx={{ my: 2 }}>
-              {!mdUp && (
-                <Box sx={{ mb: 2 }}>
-                  <Image
-                    src="/assets/mercedes-logo.svg"
-                    width={{ md: 200, xs: 100 }}
-                    height={{ md: 200, xs: 100 }}
-                    alt="mercedes logo"
-                  />
-                </Box>
-              )}
               <Typography variant="overline" sx={{ color: 'secondary.light' }}>
                 {translate('landing.hero.heroText')}
               </Typography>
@@ -59,7 +48,7 @@ const LandingHero = () => {
                 <Box component="span" sx={{ color: 'common.white' }}>
                   {translate('landing.hero.partOne')}
                 </Box>
-                <Box component="span" sx={{ ...textGradientColor }}>
+                <Box component="span" sx={{ ...textGradientColor, whiteSpace: 'nowrap' }}>
                   {translate('landing.hero.partTwo')}
                 </Box>
                 <Box component="span" sx={{ color: 'common.white' }}>
@@ -68,24 +57,6 @@ const LandingHero = () => {
               </Typography>
             </Box>
           </Grid>
-
-          {mdUp && (
-            <Grid
-              md={2}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Image
-                src="/assets/mercedes-logo.svg"
-                width={{ xl: 200, md: 175, xs: 100 }}
-                height={{ xl: 200, md: 175, xs: 100 }}
-                alt="mercedes logo"
-              />
-            </Grid>
-          )}
 
           <Grid md={12} xs={12}>
             <LandingSearchParts />
@@ -101,7 +72,7 @@ const LandingHero = () => {
                 textAlign: 'center',
               }}
             >
-              <ProofIcon icon="simple-icons:mercedes" text="Genuine Spare Parts" />
+              <ProofIcon icon="lets-icons:check-fill" text="Genuine Spare Parts" />
               <ProofIcon icon="la:shipping-fast" text="Fast Delivery & International Shipping" />
               <ProofIcon icon="basil:headset-outline" text="Responsive Customer Support" />
               <ProofIcon icon="solar:money-bag-outline" text="Best Price Guarantee" />

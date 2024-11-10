@@ -1,3 +1,4 @@
+const THIS_YEAR = new Date().getFullYear();
 const en = {
   header: {
     home: 'Home',
@@ -158,7 +159,7 @@ const en = {
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
     building: { title: 'Building', text: '-' },
     visitWebsite: 'Visit Website',
-    allRights: '© 2023. All rights reserved - Kojak Group of Companies',
+    allRights: `© ${THIS_YEAR}. All rights reserved - Kojak Group of Companies`,
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
     availableVehicles: 'Available Vehicles',

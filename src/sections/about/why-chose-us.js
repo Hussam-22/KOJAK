@@ -1,4 +1,3 @@
-
 import { Box, Stack, Container, Typography } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
@@ -14,7 +13,7 @@ const DATA = [
     color: 'common.white',
   },
   {
-    icon: 'simple-icons:mercedes', // You can specify the actual icon name or URL here
+    icon: 'lets-icons:check-fill', // You can specify the actual icon name or URL here
     description: `At Kojak Spare Parts, we take pride in offering only genuine spare parts for your Mercedes-Benz. Our commitment to authenticity ensures that your vehicle's performance and safety are never compromised.`,
     title: 'Genuine Spare Parts',
     bgcolor: 'background.opposite',

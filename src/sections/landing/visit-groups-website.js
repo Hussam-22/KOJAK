@@ -15,7 +15,7 @@ const GROUPS = [
   {
     title: 'group',
     link: GROUP_URL,
-    icon: 'mercedes-logo',
+    icon: 'kojak-logo',
     ariaLabel: 'Kojak Group Website',
   },
   {
