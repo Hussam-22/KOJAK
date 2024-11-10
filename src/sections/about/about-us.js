@@ -67,7 +67,7 @@ export default function AboutUs() {
       >
         <Grid container spacing={3}>
           <Grid
-            md={8}
+            md={12}
             xs={12}
             sx={{
               display: 'flex',
@@ -82,7 +82,7 @@ export default function AboutUs() {
             <Typography sx={{ textAlign: 'center' }}>{translate('about.description')}</Typography>
           </Grid>
 
-          <Grid md={4} xs={12}>
+          {/* <Grid md={4} xs={12}>
             <Box sx={{ textAlign: 'center' }}>
               <Image
                 src="/assets/mercedes-logo.svg"
@@ -90,7 +90,7 @@ export default function AboutUs() {
                 sx={{ width: 175, height: 175 }}
               />
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Box>

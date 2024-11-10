@@ -57,13 +57,13 @@ const LandingHero = () => {
               gap: 3,
             }}
           >
-            <Box component={m.div} {...getVariant('fadeInRight')}>
+            {/* <Box component={m.div} {...getVariant('fadeInRight')}>
               <SvgColor
                 src="/assets/mercedes-logo.svg"
                 sx={{ width: { sm: 175, xs: 75 }, height: { sm: 175, xs: 75 }, bgcolor: '#FFF' }}
                 alt="mercedes-logo"
               />
-            </Box>
+            </Box> */}
             <Box component={m.div} {...getVariant('fadeInUp')}>
               <Typography variant="overline" color="primary">
                 {translate('landing.hero.heroText')}

@@ -11,12 +11,7 @@ import Image from 'src/components/image/Image';
 
 // ----------------------------------------------------------------------
 
-const CORE_VALUES = [
-  'carbon:badge',
-  'solar:shield-up-linear',
-  'arcticons:mercedes-me',
-  'tabler:star',
-];
+const CORE_VALUES = ['carbon:badge', 'solar:shield-up-linear', 'file-icons:dna', 'tabler:star'];
 
 // ----------------------------------------------------------------------
 
@@ -68,7 +63,11 @@ export default function CoreValues() {
           </Grid>
 
           <Grid md={4} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/mercedes-background.jpeg" sx={{ borderRadius: 2 }} ratio="9/16" />
+            <Image
+              src="https://img.freepik.com/free-photo/watercolor-car-painting-illustration_23-2151706315.jpg?t=st=1731226288~exp=1731229888~hmac=247a300034db65524872f5c856d4a03c217badc2e8602a22727e18d31d7b0291&w=996"
+              sx={{ borderRadius: 2 }}
+              ratio="9/16"
+            />
           </Grid>
 
           <Grid md={4} xs={12} sx={{ p: 4 }}>
