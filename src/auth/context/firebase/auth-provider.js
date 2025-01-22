@@ -1,29 +1,29 @@
-import PropTypes from 'prop-types';
-import { useMemo, useCallback } from 'react';
 import { initializeApp } from 'firebase/app';
-import { ref, listAll, getStorage, getDownloadURL } from 'firebase/storage';
 import {
+  collection,
+  collectionGroup,
   doc,
-  where,
-  query,
-  limit,
-  setDoc,
+  getCountFromServer,
   getDoc,
   getDocs,
-  orderBy,
+  getFirestore,
   increment,
+  limit,
+  orderBy,
+  query,
+  setDoc,
+  startAfter,
   Timestamp,
   updateDoc,
-  collection,
-  startAfter,
+  where,
   writeBatch,
-  getFirestore,
-  collectionGroup,
-  getCountFromServer,
 } from 'firebase/firestore';
+import { getDownloadURL, getStorage, listAll, ref } from 'firebase/storage';
+import PropTypes from 'prop-types';
+import { useCallback, useMemo } from 'react';
 
 // config
-import { CART_FORM, SITE_NAME, FIREBASE_API, CONTACT_US_FORM } from 'src/config-global';
+import { CART_FORM, CONTACT_US_FORM, FIREBASE_API, SITE_NAME } from 'src/config-global';
 
 //
 import { AuthContext } from './auth-context';
@@ -66,6 +66,7 @@ export function AuthProvider({ children }) {
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
         to: [
+          'asstpurchaseparts@kojak-group.com',
           'hussam@hotmail.co.uk',
           'queriesksp@kojak-group.com',
           'info.marketing@kojak-group.com',
