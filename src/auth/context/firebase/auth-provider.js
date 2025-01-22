@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {
+  Timestamp,
   collection,
   collectionGroup,
   doc,
@@ -13,7 +14,6 @@ import {
   query,
   setDoc,
   startAfter,
-  Timestamp,
   updateDoc,
   where,
   writeBatch,
@@ -95,6 +95,7 @@ export function AuthProvider({ children }) {
         id: newDocRef.id,
         createdAt: Timestamp.fromDate(new Date()),
         to: [
+          'asstpurchaseparts@kojak-group.com',
           'hussam@hotmail.co.uk',
           'queriesksp@kojak-group.com',
           'info.marketing@kojak-group.com',
