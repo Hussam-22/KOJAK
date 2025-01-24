@@ -97,7 +97,7 @@
       }
     ],
     "perfectionist/sort-imports": [
-      2,
+      0,
       {
         "type": "line-length",
         "order": "asc",
@@ -123,14 +123,14 @@
       }
     ],
     "perfectionist/sort-named-imports": [
-      2,
+      0,
       {
         "type": "line-length",
         "order": "asc"
       }
     ],
     "perfectionist/sort-exports": [
-      2,
+      0,
       {
         "type": "line-length",
         "order": "asc"
