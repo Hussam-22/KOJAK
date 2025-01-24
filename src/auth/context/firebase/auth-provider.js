@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-imports */
 import { initializeApp } from 'firebase/app';
 import {
   collection,
