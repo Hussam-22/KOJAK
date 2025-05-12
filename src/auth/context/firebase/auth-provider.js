@@ -182,18 +182,22 @@ export function AuthProvider({ children }) {
     const dataArr = [];
     let docRef = collectionGroup(DB, 'spare-parts-list');
     docRef = query(docRef, limit(recordsLimit));
+    const partNumber = filter.partNo || '';
+
+    // uppercase first letter of partNumber
+    const upperPartNumber = partNumber.charAt(0).toUpperCase() + partNumber.slice(1);
 
     // Conditionally add filters based on the provided filter object
     if (filter.partNo) {
       docRef = query(
         docRef,
-        where('partNumber', '>=', filter.partNo),
-        where('partNumber', '<', `${filter.partNo}\uf8ff`),
+        where('partNumber', '>=', upperPartNumber),
+        where('partNumber', '<', `${upperPartNumber}\uf8ff`),
         orderBy('partNumber', 'desc')
       );
     }
 
-    if (!filter.partNo) {
+    if (!upperPartNumber) {
       docRef = query(docRef, where('partNumber', '!=', ''), orderBy('partNumber', 'desc'));
     }
 
