@@ -1,17 +1,17 @@
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 
+import { Container, Stack, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Stack, useTheme, Container } from '@mui/material';
 
-import { useLocales } from 'src/locales';
-import { textGradient } from 'src/theme/css';
+import getVariant from 'src/components/animate/variants/get-variant';
 import Iconify from 'src/components/iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
-import getVariant from 'src/components/animate/variants/get-variant';
+import { useLocales } from 'src/locales';
 import LandingSearchParts from 'src/sections/components/landing-search-parts';
+import { textGradient } from 'src/theme/css';
 
 const LandingHero = () => {
   const theme = useTheme();
@@ -44,11 +44,11 @@ const LandingHero = () => {
                 {translate('landing.hero.heroText')}
               </Typography>
 
-              <Typography variant="h1">
+              <Typography variant="h2">
                 <Box component="span" sx={{ color: 'common.white' }}>
                   {translate('landing.hero.partOne')}
                 </Box>
-                <Box component="span" sx={{ ...textGradientColor, whiteSpace: 'nowrap' }}>
+                <Box component="span" sx={{ ...textGradientColor }}>
                   {translate('landing.hero.partTwo')}
                 </Box>
                 <Box component="span" sx={{ color: 'common.white' }}>
