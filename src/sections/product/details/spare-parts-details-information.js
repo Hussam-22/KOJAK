@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { Box, Stack, Divider, useTheme, Typography } from '@mui/material';
+import { Box, Divider, Stack, Typography, useTheme } from '@mui/material';
 
+import { useEffect } from 'react';
 import Label from 'src/components/label';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
@@ -15,6 +16,19 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   };
 
   const applicableModels = `${partDetails.brandClass} - ${partDetails.brandModel}`;
+
+  console.log(partDetails);
+
+  useEffect(() => {
+    if (partDetails?.id)
+      window.fbq('track', 'ViewContent', {
+        product_name: partDetails.partNumber,
+        content_ids: [partDetails.partNumber],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+  }, [partDetails]);
 
   return (
     partDetails?.docID && (

@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
+import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
+import { Button, IconButton, Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Stack, Button, Typography, IconButton } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import Iconify from 'src/components/iconify';
-import { useSelector } from 'src/redux/store';
 import { useAuthContext } from 'src/auth/hooks';
+import Iconify from 'src/components/iconify';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
-import { rdxUpdatePage, rdxUpdateCart } from 'src/redux/slices/products';
+import { rdxUpdateCart, rdxUpdatePage } from 'src/redux/slices/products';
+import { useSelector } from 'src/redux/store';
+import { paths } from 'src/routes/paths';
 import NoResultsReturned from 'src/sections/product/list/no-results-returned';
 
 import SparePartsListViewGridItem from '../item/spare-parts-list-view-grid-item';
@@ -51,9 +51,19 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
         prevState.filter((item) => item.partNumber !== partNumber)
       );
     }
-    if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
+    if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
-
+      if (window.fbq) {
+        console.log('addToCartOnClickHandler', partNumber);
+        window.fbq('track', 'AddToCart', {
+          product_name: partNumber,
+          content_ids: [partNumber],
+          content_type: 'product',
+          value: 0.0,
+          currency: 'AED',
+        });
+      }
+    }
     dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
   };
 

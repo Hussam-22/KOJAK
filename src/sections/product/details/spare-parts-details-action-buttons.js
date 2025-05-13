@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 
 import { LoadingButton } from '@mui/lab';
 import { Box, Button, IconButton } from '@mui/material';
 
-import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
-import { useLocalStorage } from 'src/hooks/use-local-storage';
+import Iconify from 'src/components/iconify';
 import { OUT_OF_STOCK, WHATSAPP_FORM, WHATSAPP_MOBILE } from 'src/config-global';
-import { rdxUpdateCart, rdxFormPayload, rdxToggleDrawer } from 'src/redux/slices/products';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { rdxFormPayload, rdxToggleDrawer, rdxUpdateCart } from 'src/redux/slices/products';
 
 function SparePartsDetailsActionButtons({ partDetails }) {
   return partDetails.stock === 0 ? (
@@ -55,6 +55,15 @@ function AvailableStockActionBar({ partDetails }) {
   };
 
   const onAddClickHandler = () => {
+    if (window.fbq) {
+      window.fbq('track', 'AddToCart', {
+        product_name: partDetails.partNumber,
+        content_ids: [partDetails.partNumber],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+    }
     setLoading((state) => ({ ...state, add: true }));
     setLocalStorageCart((prevState) =>
       prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
