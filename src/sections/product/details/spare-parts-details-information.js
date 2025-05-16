@@ -51,6 +51,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
         <Divider sx={{ borderStyle: 'dashed', my: 2, borderColor: theme.palette.divider }} />
 
         <Stack direction="column" spacing={1} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
+          {partDetails?.price && <Block title="Price" description={`${partDetails.price} AED`} />}
           <Block title="Applicable Model(s)" description={applicableModels} />
           <Block title="Category" description={partDetails.category} />
           <Block title="Part Group" description={partDetails.itemGroup} />

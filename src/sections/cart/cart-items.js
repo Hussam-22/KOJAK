@@ -1,39 +1,39 @@
+import { AnimatePresence, m } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import {
   Box,
-  Link,
-  Stack,
   Button,
   Divider,
-  useTheme,
-  Skeleton,
-  Typography,
   IconButton,
+  Link,
+  Skeleton,
+  Stack,
+  Typography,
+  useTheme,
 } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import Iconify from 'src/components/iconify';
-import { CART_FORM } from 'src/config-global';
-import Image from 'src/components/image/Image';
 import { useAuthContext } from 'src/auth/hooks';
-import { RouterLink } from 'src/routes/components';
-import { useResponsive } from 'src/hooks/use-responsive';
-import SvgColor from 'src/components/svg-color/svg-color';
-import { useLocalStorage } from 'src/hooks/use-local-storage';
 import getVariant from 'src/components/animate/variants/get-variant';
 import DeleteConfirmationDialog from 'src/components/Dialog/deleteConfirmationDialog';
+import Iconify from 'src/components/iconify';
+import Image from 'src/components/image/Image';
+import SvgColor from 'src/components/svg-color/svg-color';
+import { CART_FORM } from 'src/config-global';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { useResponsive } from 'src/hooks/use-responsive';
 import {
-  rdxUpdateCart,
   rdxFormPayload,
-  rdxToggleDrawer,
-  rdxUpdatePartQty,
   rdxLoadCartFromStorage,
+  rdxToggleDrawer,
+  rdxUpdateCart,
+  rdxUpdatePartQty,
 } from 'src/redux/slices/products';
+import { RouterLink } from 'src/routes/components';
+import { paths } from 'src/routes/paths';
 
 function CartItems() {
   const dispatch = useDispatch();
@@ -152,6 +152,7 @@ function CartItems() {
                       qty={cartItem.qty}
                       onDeleteClickHandler={onDeleteClickHandler}
                       onUpdateQtyClickHandler={onUpdateQtyClickHandler}
+                      price={cartItem.partData.price}
                     />
                   </Stack>
                   {!smUp && <PartInfo partData={cartItem.partData} />}
@@ -181,10 +182,12 @@ function CartItems() {
             variant="contained"
             color="primary"
             size="large"
-            startIcon={<Iconify icon="ant-design:dollar-twotone" width={24} height={24} />}
+            startIcon={
+              <Iconify icon="material-symbols:phone-callback-sharp" width={24} height={24} />
+            }
             onClick={openDrawerHandler}
           >
-            Inquire About Part Price(s)
+            Send Parts & Request Callback
           </Button>
         </Stack>
       )}
@@ -292,7 +295,7 @@ PartInfo.propTypes = { partData: PropTypes.object };
 
 // ----------------------------------------------------------------------------
 
-function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClickHandler }) {
+function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClickHandler, price }) {
   // if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
   //   SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
 
@@ -305,7 +308,10 @@ function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClick
   };
 
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={1} alignItems="center">
+      <Typography variant="subtitle2" sx={{ color: 'success.main' }}>
+        {(qty * price).toFixed(2)} AED
+      </Typography>
       <Stack direction="column" alignItems="center">
         <IconButton disableRipple onClick={() => updateQty(+1)}>
           <Iconify icon="bxs:up-arrow" width={16} height={16} sx={{ color: 'secondary.main' }} />
@@ -323,6 +329,7 @@ function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClick
 }
 
 ActionButtons.propTypes = {
+  price: PropTypes.number,
   partNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   qty: PropTypes.number,
   onDeleteClickHandler: PropTypes.func,

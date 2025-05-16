@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
 
+import { Card, Typography, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import { Card, useTheme, Typography } from '@mui/material';
 
+import { useAuthContext } from 'src/auth/hooks';
+import Iconify from 'src/components/iconify';
 import Image from 'src/components/image';
 import Label from 'src/components/label';
-import Iconify from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
-import { RouterLink } from 'src/routes/components';
 import TextMaxLine from 'src/components/text-max-line';
+import { RouterLink } from 'src/routes/components';
 
 // ----------------------------------------------------------------------
 
@@ -127,11 +127,18 @@ export default function SparePartsListViewGridItem({
             {product.category}
           </Typography>
           <TextMaxLine line={1}>{product.partName}</TextMaxLine>
-          <Link component={RouterLink} to={product.docID}>
-            <Typography variant="caption" sx={{ textDecoration: 'underline' }}>
-              {product?.partNumber}
-            </Typography>
-          </Link>
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <Link component={RouterLink} to={product.docID}>
+              <Typography variant="caption" sx={{ textDecoration: 'underline' }}>
+                {product?.partNumber}
+              </Typography>
+            </Link>
+            {product?.price && (
+              <Typography variant="subtitle2" sx={{ color: 'success.main' }}>
+                {`${product.price} AED`}
+              </Typography>
+            )}
+          </Stack>
         </Stack>
       </Stack>
     </Card>
