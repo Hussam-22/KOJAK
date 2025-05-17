@@ -120,9 +120,6 @@ export default function SparePartsListViewGridItem({
         </Box>
 
         <Stack spacing={0.5} sx={{ p: 2 }}>
-          {/* <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-            {product.docID}
-          </Typography> */}
           <Typography sx={{ color: 'text.disabled', fontSize: '0.68rem' }}>
             {product.category}
           </Typography>

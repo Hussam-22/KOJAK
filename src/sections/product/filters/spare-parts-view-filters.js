@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -12,21 +12,7 @@ import FilterBrand from './filter-brand';
 export default function SparePartsViewFilters({ open, onClose }) {
   const mdUp = useResponsive('up', 'md');
 
-  const renderContent = (
-    <FilterBrand closeDrawer={onClose} />
-
-    //  <Block
-    //   title="Filter Results By Category"
-    //   sx={{
-    //     visibility: isDisabled ? 'hidden' : 'visible',
-    //     opacity: isDisabled ? 0 : 1,
-    //     height: isDisabled ? 0 : 1,
-    //     transition: 'height visibility 0.5s ease-out, opacity 0.5s ease-out',
-    //   }}
-    // >
-    //   <FilterCategory />
-    // </Block>
-  );
+  const renderContent = <FilterBrand closeDrawer={onClose} />;
 
   return (
     <>

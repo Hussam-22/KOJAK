@@ -1,16 +1,15 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography, useTheme } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
-import { paths } from 'src/routes/paths';
-import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
-import { useResponsive } from 'src/hooks/use-responsive';
 import SvgColor from 'src/components/svg-color/svg-color';
+import { useResponsive } from 'src/hooks/use-responsive';
+import { useLocales } from 'src/locales';
 import { rdxFormPayload } from 'src/redux/slices/products';
+import { paths } from 'src/routes/paths';
 
 function InternationalBusiness() {
   const theme = useTheme();
@@ -25,16 +24,10 @@ function InternationalBusiness() {
   };
 
   return (
-    <Box
-      sx={{
-        py: 8,
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
+    <Box sx={{ py: 8, position: 'relative', overflow: 'hidden' }}>
       <Container maxWidth="xl">
         <Grid container>
-          <Grid md={7} xs={12}>
+          <Grid size={{ xs: 12, md: 7 }}>
             <Stack spacing={3} sx={{ px: 1 }}>
               <Typography variant="overline" color="primary">
                 {translate('landing.international.overline')}
@@ -49,10 +42,7 @@ function InternationalBusiness() {
                 </Box>
               )}
               <Typography
-                sx={{
-                  whiteSpace: 'pre-line',
-                  fontWeight: theme.typography.fontWeightLight,
-                }}
+                sx={{ whiteSpace: 'pre-line', fontWeight: theme.typography.fontWeightLight }}
                 variant="h5"
               >
                 {translate('landing.international.text')}
@@ -70,8 +60,7 @@ function InternationalBusiness() {
             </Stack>
           </Grid>
           <Grid
-            md={5}
-            xs={0}
+            size={{ xs: 0, md: 5 }}
             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
             <SvgColor

@@ -1,11 +1,9 @@
-import React from 'react';
+import { Box, Button, Container, Stack, Typography, useTheme } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, Button, useTheme, Container, Typography } from '@mui/material';
-
-import { useLocales } from 'src/locales';
-import { AUTO_URL } from 'src/config-global';
 import Image from 'src/components/image/Image';
+import { AUTO_URL } from 'src/config-global';
+import { useLocales } from 'src/locales';
 
 function FixOffer() {
   const theme = useTheme();
@@ -15,7 +13,7 @@ function FixOffer() {
     <Box sx={{ py: 8, px: { xs: 3 } }}>
       <Container maxWidth="xl" sx={{ bgcolor: 'info.main', borderRadius: 1, p: 3 }}>
         <Grid container spacing={3}>
-          <Grid md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', alignItems: 'center' }}>
             <Stack spacing={2}>
               <Typography variant="h1" color="white">
                 5% Discount
@@ -38,7 +36,7 @@ function FixOffer() {
               </Box>
             </Stack>
           </Grid>
-          <Grid md={6} xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Image
               src="https://cdnb.artstation.com/p/assets/images/images/054/299/461/large/roman-tikhonov-05-15-03.jpg?1664222669"
               ratio="21/9"

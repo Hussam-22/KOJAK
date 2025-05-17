@@ -60,7 +60,7 @@ function AvailableStockActionBar({ partDetails }) {
         product_name: partDetails.partNumber,
         content_ids: [partDetails.partNumber],
         content_type: 'product',
-        value: 0.0,
+        value: partDetails.price,
         currency: 'AED',
       });
     }
@@ -75,6 +75,14 @@ function AvailableStockActionBar({ partDetails }) {
   };
 
   const onWhatsAppClickHandler = async () => {
+    if (window.fbq) {
+      window.fbq('track', 'Contact', {
+        content_ids: [partDetails.partNumber],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+    }
     setLoading((state) => ({ ...state, whatsApp: true }));
 
     // Create WhatsApp link

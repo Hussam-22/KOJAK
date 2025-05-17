@@ -1,20 +1,20 @@
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 
-import Stack from '@mui/material/Stack';
 import { LoadingButton } from '@mui/lab';
 import { Divider, MenuItem } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
-import Iconify from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
 import { _partsCategory } from 'src/_mock/_partsCategory';
-import FormProvider from 'src/components/hook-form/form-provider';
+import { useAuthContext } from 'src/auth/hooks';
 import { RHFSelect, RHFTextField } from 'src/components/hook-form';
-import { rdxUpdatePage, rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
+import FormProvider from 'src/components/hook-form/form-provider';
+import Iconify from 'src/components/iconify';
+import { rdxClearFilter, rdxUpdateFilter, rdxUpdatePage } from 'src/redux/slices/products';
 
 export default function FilterBrand({ closeDrawer }) {
   const dispatch = useDispatch();
@@ -61,6 +61,14 @@ export default function FilterBrand({ closeDrawer }) {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
+    if (window.fbq) {
+      window.fbq('track', 'Search', {
+        content_ids: [formData.class],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+    }
     await new Promise((resolve) => setTimeout(resolve, 1000));
     // dispatch(rdxClearFilter());
 
@@ -85,33 +93,6 @@ export default function FilterBrand({ closeDrawer }) {
         <RHFTextField name="partNo" label="Part Number" variant="outlined" />
 
         <Divider sx={{ borderStyle: 'dashed' }} orientation="vertical" flexItem />
-
-        {/* <RHFSelect name="class" label="Mercedes Class" variant="outlined">
-          <MenuItem value="">None</MenuItem>
-          <Divider sx={{ borderStyle: 'dashed' }} />
-          {_mercedesClasses.map((option) => (
-            <MenuItem key={option.class} value={option.class}>
-              {option.class}
-            </MenuItem>
-          ))}
-        </RHFSelect>
-
-        <RHFSelect
-          name="model"
-          label="Production Year"
-          variant="outlined"
-          disabled={values.class === ''}
-        >
-          <Divider sx={{ borderStyle: 'dashed' }} />
-          {values.class !== '' &&
-            _mercedesClasses
-              .find((option) => option.class === values.class)
-              ?.models.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-        </RHFSelect> */}
 
         <RHFSelect
           native
@@ -160,21 +141,6 @@ export default function FilterBrand({ closeDrawer }) {
             </MenuItem>
           ))}
         </RHFSelect>
-
-        {/* <RHFSelect
-          name="category"
-          label="Category"
-          variant="outlined"
-          disabled={values.model === '' || values.class === ''}
-        >
-          <MenuItem value="">None</MenuItem>
-          <Divider sx={{ borderStyle: 'dashed' }} />
-          {TEMP_CATEGORY.sort((a, b) => a.localeCompare(b)).map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </RHFSelect> */}
 
         <Stack spacing={2} direction="row">
           <LoadingButton

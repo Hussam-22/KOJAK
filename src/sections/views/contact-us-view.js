@@ -1,13 +1,13 @@
 // @mui
 
-import { Box, useTheme, Container, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Container, Grid, Typography, useTheme } from '@mui/material';
 
 // components
 import { useLocales } from 'src/locales';
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
-import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
+import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
 
 export default function ContactUsView() {
   const theme = useTheme();
@@ -15,11 +15,7 @@ export default function ContactUsView() {
   const { translate } = useLocales();
 
   return (
-    <Box
-      sx={{
-        py: 5,
-      }}
-    >
+    <Box sx={{ py: 5 }}>
       <Container>
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography variant="h1">{translate('contactUs.title')}</Typography>
@@ -44,7 +40,7 @@ export default function ContactUsView() {
           >
             <ContactUsInfo />
           </Grid>
-          <Grid xs={12} md={7} sx={{ textAlign: { xs: 'center' }, pl: { md: 5 } }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ textAlign: { xs: 'center' }, pl: { md: 5 } }}>
             <ContactUsForm />
           </Grid>
         </Grid>

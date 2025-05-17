@@ -2,15 +2,15 @@ import { useState } from 'react';
 
 // @mui
 import {
-  Box,
-  Stack,
-  useTheme,
-  Container,
   Accordion,
-  Typography,
   AccordionDetails,
   AccordionSummary,
-  Unstable_Grid2 as Grid,
+  Box,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+  useTheme,
 } from '@mui/material';
 
 // components
@@ -74,27 +74,17 @@ export default function LandingFaqs() {
   };
 
   return (
-    <Box
-      sx={{
-        py: 15,
-        position: 'relative',
-      }}
-    >
+    <Box sx={{ py: 15, position: 'relative' }}>
       <Container maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid md={6} xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ px: 1 }}>
               <Typography variant="overline" color="primary">
                 FAQ
               </Typography>
               <Stack spacing={3}>
                 <Typography variant="h1">Frequently Asked Questions</Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontWeight: theme.typography.fontWeightLight,
-                  }}
-                >
+                <Typography variant="h5" sx={{ fontWeight: theme.typography.fontWeightLight }}>
                   Our FAQ section is where we address common questions and provide helpful answers.
                   We&#39;ve compiled a list of inquiries that customers frequently ask us. Below,
                   you&#39;ll find information on various topics to assist you in getting the answers
@@ -103,7 +93,7 @@ export default function LandingFaqs() {
               </Stack>
             </Box>
           </Grid>
-          <Grid md={6} xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Stack spacing={2}>
               {CONTENTS.map((faq, index) => (
                 <Accordion
@@ -118,13 +108,7 @@ export default function LandingFaqs() {
                   }}
                 >
                   <AccordionSummary>
-                    <Typography
-                      sx={{
-                        flexGrow: 1,
-                      }}
-                    >
-                      {faq.question}
-                    </Typography>
+                    <Typography sx={{ flexGrow: 1 }}>{faq.question}</Typography>
 
                     <Iconify
                       width={24}

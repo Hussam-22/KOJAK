@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Divider, Container, Typography } from '@mui/material';
+import { Box, Container, Divider, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
-import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
-import SideDrawer from 'src/components/drawer/side-drawer';
-import { rdxToggleDrawer } from 'src/redux/slices/products';
-import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs/custom-breadcrumbs';
+import SideDrawer from 'src/components/drawer/side-drawer';
+import Image from 'src/components/image/Image';
+import { rdxToggleDrawer } from 'src/redux/slices/products';
+import { paths } from 'src/routes/paths';
+import ContactUsForm from 'src/sections/contact-us/contactUsForm';
 import SparePartsDetailsInformation from 'src/sections/product/details/spare-parts-details-information';
 
 function SparePartDetailsView({ partDetails, productDescription }) {
@@ -29,7 +29,7 @@ function SparePartDetailsView({ partDetails, productDescription }) {
           sx={{ my: 1, px: 1 }}
         />
         <Grid container spacing={3}>
-          <Grid md={6} xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box
               sx={{
                 bgcolor: 'background.paper',
@@ -52,7 +52,7 @@ function SparePartDetailsView({ partDetails, productDescription }) {
               />
             </Box>
           </Grid>
-          <Grid md={6} xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <SparePartsDetailsInformation
               productDescription={productDescription}
               partDetails={partDetails}

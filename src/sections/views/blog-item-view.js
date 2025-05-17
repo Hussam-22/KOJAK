@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 
-import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';
-import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
-import Image from 'src/components/image/Image';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+import Image from 'src/components/image/Image';
+import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 export default function BlogItemView({ title, description, content }) {
@@ -19,7 +19,7 @@ export default function BlogItemView({ title, description, content }) {
 
       <Container sx={{ overflow: 'hidden', mb: 8 }}>
         <Grid container spacing={3} justifyContent={{ md: 'center' }}>
-          <Grid xs={12} md={12}>
+          <Grid size={12}>
             <CustomBreadcrumbs
               links={[
                 { name: 'Home', href: '/' },

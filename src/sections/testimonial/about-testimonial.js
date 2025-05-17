@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
 
 // @mui
+import { Avatar, Box, Button, Card, Container, Rating, Stack, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Card, Stack, Button, Rating, Avatar, Container, Typography } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 // components
 import Iconify from 'src/components/iconify/Iconify';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -22,7 +22,7 @@ export default function LandingTestimonial() {
   return (
     <Container maxWidth="xl" sx={{ py: 8 }}>
       <Grid container spacing={3}>
-        <Grid md={5} xs={12}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <Typography variant="h2" sx={{ zIndex: 9, color: 'common.white', mb: 2 }}>
             {translate('testimonial.title')}
           </Typography>
@@ -43,7 +43,7 @@ export default function LandingTestimonial() {
           )}
         </Grid>
 
-        <Grid md={7} xs={12}>
+        <Grid size={{ xs: 12, md: 7 }}>
           <Stack direction={{ md: 'row', xs: 'column' }} spacing={4}>
             <Stack
               spacing={2}
@@ -116,20 +116,8 @@ function TestimonialItem({ testimonial, index, sx, ...other }) {
   const theme = useTheme();
 
   return (
-    <Card
-      sx={{
-        p: 2,
-        bgcolor: 'background.neutral',
-      }}
-    >
-      <Stack
-        alignItems="center"
-        sx={{
-          textAlign: 'center',
-          ...sx,
-        }}
-        {...other}
-      >
+    <Card sx={{ p: 2, bgcolor: 'background.neutral' }}>
+      <Stack alignItems="center" sx={{ textAlign: 'center', ...sx }} {...other}>
         <Rating value={5} readOnly />
 
         <Typography

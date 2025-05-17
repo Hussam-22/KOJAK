@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
+import Avatar from '@mui/material/Avatar';
+import CardActionArea from '@mui/material/CardActionArea';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
-import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
 
 import Iconify from 'src/components/iconify';
 
@@ -14,7 +14,7 @@ import Iconify from 'src/components/iconify';
 export default function PostPrevAndNext({ prevPost, nextPost }) {
   return (
     <Grid container spacing={5} sx={{ py: 8 }}>
-      <Grid xs={12} md={6}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <PostItem
           title={prevPost?.title}
           coverUrl={prevPost?.coverUrl}
@@ -22,7 +22,7 @@ export default function PostPrevAndNext({ prevPost, nextPost }) {
         />
       </Grid>
 
-      <Grid xs={12} md={6}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <PostItem
           isNext
           title={nextPost?.title}
@@ -35,14 +35,8 @@ export default function PostPrevAndNext({ prevPost, nextPost }) {
 }
 
 PostPrevAndNext.propTypes = {
-  nextPost: PropTypes.shape({
-    coverUrl: PropTypes.string,
-    title: PropTypes.string,
-  }),
-  prevPost: PropTypes.shape({
-    coverUrl: PropTypes.string,
-    title: PropTypes.string,
-  }),
+  nextPost: PropTypes.shape({ coverUrl: PropTypes.string, title: PropTypes.string }),
+  prevPost: PropTypes.shape({ coverUrl: PropTypes.string, title: PropTypes.string }),
 };
 
 // ----------------------------------------------------------------------
@@ -55,26 +49,13 @@ function PostItem({ coverUrl, title, icon, isNext }) {
           alignItems="center"
           direction={isNext ? 'row-reverse' : 'row'}
           spacing={2}
-          sx={{
-            p: 2.5,
-            pl: 1,
-            ...(isNext && {
-              pr: 1,
-            }),
-          }}
+          sx={{ p: 2.5, pl: 1, ...(isNext && { pr: 1 }) }}
         >
           {icon}
 
           <Avatar src={coverUrl} sx={{ width: 64, height: 64 }} />
 
-          <Stack
-            spacing={0.5}
-            sx={{
-              ...(isNext && {
-                textAlign: 'right',
-              }),
-            }}
-          >
+          <Stack spacing={0.5} sx={{ ...(isNext && { textAlign: 'right' }) }}>
             <Typography variant="overline" sx={{ color: 'text.disabled' }}>
               {isNext ? 'Next Post' : 'Previous Post'}
             </Typography>

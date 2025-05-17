@@ -1,20 +1,20 @@
-import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { useMemo, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Stack, Divider, MenuItem, Typography } from '@mui/material';
+import { Divider, MenuItem, Stack, Typography } from '@mui/material';
 
-import { useLocales } from 'src/locales';
-import Iconify from 'src/components/iconify';
 import { useAuthContext } from 'src/auth/hooks';
-import { useLocalStorage } from 'src/hooks/use-local-storage';
-import { CART_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
-import { rdxFormPayload, rdxToggleDrawer, rdxLoadCartFromStorage } from 'src/redux/slices/products';
+import Iconify from 'src/components/iconify';
+import { CART_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
+import { useLocalStorage } from 'src/hooks/use-local-storage';
+import { useLocales } from 'src/locales';
+import { rdxFormPayload, rdxLoadCartFromStorage, rdxToggleDrawer } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 const DIALOG_CONTENT = {
@@ -87,6 +87,15 @@ export default function CartDrawerForm() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
+    if (window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_ids: cart.map((item) => item.partNumber),
+        content_type: 'product',
+        value: cart.reduce((acc, item) => acc + item.price * item.qty, 0),
+        currency: 'AED',
+      });
+    }
+
     const slackCart = cart.map((item) => `%${item.partNumber} | x${item.qty}*`);
     try {
       const dataToSend = Object.entries({ ...formData, ...slackCart })

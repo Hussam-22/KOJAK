@@ -1,24 +1,17 @@
-import React from 'react';
+import { Box, Container, Stack, Typography, useTheme } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
-import { Box, Stack, useTheme, Container, Typography } from '@mui/material';
-
-import SvgColor from 'src/components/svg-color/svg-color';
 import { _partsCategoryWithIcon } from 'src/_mock/_partsCategory';
+import SvgColor from 'src/components/svg-color/svg-color';
 
 function PartsCount() {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        py: 8,
-        bgcolor: 'background.neutral',
-      }}
-    >
+    <Box sx={{ py: 8, bgcolor: 'background.neutral' }}>
       <Container maxWidth="xl">
         <Grid container>
-          <Grid md={12} xs={12} sx={{ px: 1 }}>
+          <Grid size={12} sx={{ px: 1 }}>
             <Stack spacing={3}>
               <Box>
                 <Typography variant="overline" color="primary">
@@ -26,12 +19,7 @@ function PartsCount() {
                 </Typography>
                 <Typography variant="h1">A Steadfast Commitment to Availability</Typography>
               </Box>
-              <Typography
-                sx={{
-                  fontWeight: theme.typography.fontWeightLight,
-                }}
-                variant="h5"
-              >
+              <Typography sx={{ fontWeight: theme.typography.fontWeightLight }} variant="h5">
                 {`At Kojak Spare Parts, we understand the importance of having the right part when you
                 need it. That's why we maintain a substantial inventory of Mercedes spare parts,
                 ensuring that many critical components are always in stock and readily available for
@@ -39,7 +27,7 @@ function PartsCount() {
               </Typography>
             </Stack>
           </Grid>
-          <Grid md={12} xs={12}>
+          <Grid size={12}>
             <Box
               sx={{
                 display: 'grid',

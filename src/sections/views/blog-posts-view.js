@@ -1,6 +1,6 @@
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Stack, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 import { blogPosts } from 'src/_mock';
 import { useLocales } from 'src/locales';
@@ -13,15 +13,9 @@ export default function BlogPostsView() {
   const { translate } = useLocales();
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
-      <Container
-        maxWidth="xl"
-        sx={{
-          pt: { xs: 0, md: 5 },
-          pb: { xs: 8, md: 15 },
-        }}
-      >
+      <Container maxWidth="xl" sx={{ pt: { xs: 0, md: 5 }, pb: { xs: 8, md: 15 } }}>
         <Grid container spacing={{ md: 8 }}>
-          <Grid xs={12} md={12}>
+          <Grid size={12}>
             <Stack spacing={3} textAlign="center" sx={{ mb: 5 }}>
               <Typography variant="h1">{translate('blog.title')}</Typography>
               <Typography>{translate('blog.subTitle')}</Typography>

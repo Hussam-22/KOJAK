@@ -1,38 +1,26 @@
+import { Box, useTheme } from '@mui/material';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import { Box, useTheme } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import Logo from 'src/components/logo';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, GROUP_URL } from 'src/config-global';
+import { navConfig } from 'src/layouts/main/config-navigation';
 import { useLocales } from 'src/locales';
 import { RouterLink } from 'src/routes/components';
-import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
-import { AUTO_URL, GROUP_URL, BUILDING_URL, EXCLUSIVE_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
 const GROUPS = [
-  {
-    title: 'group',
-    url: GROUP_URL,
-  },
-  {
-    title: 'auto',
-    url: AUTO_URL,
-  },
-  {
-    title: 'exclusive',
-    url: EXCLUSIVE_URL,
-  },
-  {
-    title: 'building',
-    url: BUILDING_URL,
-  },
+  { title: 'group', url: GROUP_URL },
+  { title: 'auto', url: AUTO_URL },
+  { title: 'exclusive', url: EXCLUSIVE_URL },
+  { title: 'building', url: BUILDING_URL },
 ];
 
 // ----------------------------------------------------------------------
@@ -52,15 +40,11 @@ export default function Footer() {
         }}
       >
         <Container
-          sx={{
-            overflow: 'hidden',
-            py: { xs: 1.5, md: 3 },
-            alignSelf: 'flex-end',
-          }}
+          sx={{ overflow: 'hidden', py: { xs: 1.5, md: 3 }, alignSelf: 'flex-end' }}
           maxWidth="xl"
         >
           <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
-            <Grid xs={12} md={5}>
+            <Grid size={{ xs: 12, md: 5 }}>
               <Stack spacing={2}>
                 <Logo small light />
                 <Typography
@@ -74,7 +58,7 @@ export default function Footer() {
               </Stack>
             </Grid>
 
-            <Grid xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Typography variant="h6" sx={{ color: 'primary.main' }}>
                 {translate('footer.groupTitle')}
               </Typography>
@@ -114,8 +98,7 @@ export default function Footer() {
             </Grid>
 
             <Grid
-              md={4}
-              xs={12}
+              size={{ xs: 12, md: 4 }}
               sx={{
                 textAlign: 'center',
                 display: 'flex',

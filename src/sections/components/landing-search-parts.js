@@ -1,21 +1,21 @@
-import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import * as Yup from 'yup';
 
 import { LoadingButton } from '@mui/lab';
-import { Box, Tab, Tabs, Stack, Divider, MenuItem } from '@mui/material';
+import { Box, Divider, MenuItem, Stack, Tab, Tabs } from '@mui/material';
 
-import { paths } from 'src/routes/paths';
-import Iconify from 'src/components/iconify';
-import { useAuthContext } from 'src/auth/hooks';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { _partsCategory } from 'src/_mock/_partsCategory';
-import FormProvider from 'src/components/hook-form/form-provider';
+import { useAuthContext } from 'src/auth/hooks';
 import { RHFSelect, RHFTextField } from 'src/components/hook-form';
+import FormProvider from 'src/components/hook-form/form-provider';
+import Iconify from 'src/components/iconify';
+import { useResponsive } from 'src/hooks/use-responsive';
 import { rdxClearFilter, rdxUpdateFilter } from 'src/redux/slices/products';
+import { paths } from 'src/routes/paths';
 
 function LandingSearchParts() {
   const mdUp = useResponsive('up', 'md');
@@ -132,6 +132,15 @@ function SearchAdvanced() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
+    if (window.fbq) {
+      window.fbq('track', 'Search', {
+        content_ids: [formData.class],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+    }
+
     setLoading(true);
 
     dispatch(rdxClearFilter());
@@ -150,35 +159,6 @@ function SearchAdvanced() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={{ md: 'row', xs: 'column' }} spacing={2.5}>
-        {/* <RHFSelect
-          name="class"
-          label="Mercedes Class"
-          variant="outlined"
-          size={mdUp ? 'large' : 'unset'}
-        >
-          <MenuItem value="">None</MenuItem>
-          <Divider sx={{ borderStyle: 'dashed' }} />
-          {classModelsList.length !== 0 &&
-            classModelsList.map((option) => (
-              <MenuItem key={option.class} value={option.class}>
-                {option.class}
-              </MenuItem>
-            ))}
-        </RHFSelect>
-
-        <RHFSelect name="model" label="Model" variant="outlined" size={mdUp ? 'large' : 'unset'}>
-          <MenuItem value="">None</MenuItem>
-          <Divider sx={{ borderStyle: 'dashed' }} />
-          {classModelsList.length !== 0 &&
-            classModelsList
-              .filter((option) => option.class === values.class)[0]
-              .models.map((option) => (
-                <MenuItem key={option} value={option}>
-                  {`${option}`}
-                </MenuItem>
-              ))}
-        </RHFSelect> */}
-
         <RHFSelect
           native
           name="class"
@@ -283,6 +263,14 @@ function SearchPartNumber() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
+    if (window.fbq) {
+      window.fbq('track', 'Search', {
+        content_ids: [formData.class],
+        content_type: 'product',
+        value: 0.0,
+        currency: 'AED',
+      });
+    }
     dispatch(rdxClearFilter());
     dispatch(rdxUpdateFilter({ ...formData }));
     navigate(paths.website.spareParts);

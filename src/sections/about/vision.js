@@ -1,12 +1,12 @@
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
-import { useLocales } from 'src/locales';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useLocales } from 'src/locales';
 
 const DATA = [
   {
@@ -52,15 +52,10 @@ export default function Vision() {
   const mdUp = useResponsive('up', 'md');
   const theme = useTheme();
   return (
-    <Box
-      sx={{
-        py: 8,
-        bgcolor: 'background.default',
-      }}
-    >
+    <Box sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid md={12} xs={12} sx={{ p: 4 }}>
+          <Grid size={12} sx={{ p: 4 }}>
             <Stack spacing={3} direction="column" justifyContent={{ md: 'space-between' }}>
               <Box>
                 <Typography variant="overline" color="primary">

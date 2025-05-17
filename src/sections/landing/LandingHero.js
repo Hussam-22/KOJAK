@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Container, Stack, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
 
 import getVariant from 'src/components/animate/variants/get-variant';
 import Iconify from 'src/components/iconify';
@@ -38,7 +38,7 @@ const LandingHero = () => {
         }}
       >
         <Grid container spacing={4} sx={{ position: 'relative' }}>
-          <Grid md={12} xs={12} sx={{ textAlign: { md: 'center', xs: 'center' } }}>
+          <Grid size={12} sx={{ textAlign: { md: 'center', xs: 'center' } }}>
             <Box component={m.div} {...getVariant('fadeInUp')} sx={{ my: 2 }}>
               <Typography variant="overline" sx={{ color: 'secondary.light' }}>
                 {translate('landing.hero.heroText')}
@@ -58,11 +58,11 @@ const LandingHero = () => {
             </Box>
           </Grid>
 
-          <Grid md={12} xs={12}>
+          <Grid size={12}>
             <LandingSearchParts />
           </Grid>
 
-          <Grid md={12} xs={12}>
+          <Grid size={12}>
             <Box
               sx={{
                 display: 'grid',

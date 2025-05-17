@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 import Image from 'src/components/image';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -18,16 +18,10 @@ export default function AuthIllustrationLayout({ children }) {
     <>
       <Header />
 
-      <Container
-        sx={{
-          pb: 10,
-          minHeight: 1,
-          pt: { xs: 12, md: 21 },
-        }}
-      >
+      <Container sx={{ pb: 10, minHeight: 1, pt: { xs: 12, md: 21 } }}>
         <Grid container columnSpacing={{ md: 5 }} justifyContent="space-between">
           {mdUp && (
-            <Grid xs={12} md={7}>
+            <Grid size={{ xs: 12, md: 7 }}>
               <Image
                 visibleByDefault
                 disabledEffect
@@ -37,7 +31,7 @@ export default function AuthIllustrationLayout({ children }) {
             </Grid>
           )}
 
-          <Grid xs={12} md={5} lg={4}>
+          <Grid size={{ xs: 12, md: 5, lg: 4 }}>
             <Stack
               spacing={4}
               sx={{
@@ -56,6 +50,4 @@ export default function AuthIllustrationLayout({ children }) {
   );
 }
 
-AuthIllustrationLayout.propTypes = {
-  children: PropTypes.node,
-};
+AuthIllustrationLayout.propTypes = { children: PropTypes.node };

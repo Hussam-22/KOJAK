@@ -45,7 +45,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     dispatch(rdxUpdatePage({ page: currentPage + 1, startAfterDocument }));
 
   // Function to update the cart and localStorage
-  const addToCartOnClickHandler = (partNumber) => {
+  const addToCartOnClickHandler = (partNumber, price) => {
     if (localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) =>
         prevState.filter((item) => item.partNumber !== partNumber)
@@ -54,20 +54,17 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
       if (window.fbq) {
-        console.log('addToCartOnClickHandler', partNumber);
         window.fbq('track', 'AddToCart', {
           product_name: partNumber,
           content_ids: [partNumber],
           content_type: 'product',
-          value: 0.0,
+          value: +price,
           currency: 'AED',
         });
       }
     }
     dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
   };
-
-  const runFn = async () => covertToInt();
 
   const renderView = () => {
     if (products.length === 0 && noFilterApplied) {
@@ -129,7 +126,9 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
                 <SparePartsListViewGridItem
                   key={product.docID}
                   product={product}
-                  addToCartOnClickHandler={addToCartOnClickHandler}
+                  addToCartOnClickHandler={() =>
+                    addToCartOnClickHandler(product.partNumber, product.price)
+                  }
                   localStorageCart={localStorageCart}
                 />
               ) : (
