@@ -17,8 +17,6 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
 
   const applicableModels = `${partDetails.brandClass} - ${partDetails.brandModel}`;
 
-  console.log(partDetails);
-
   useEffect(() => {
     if (partDetails?.id)
       window.fbq('track', 'ViewContent', {

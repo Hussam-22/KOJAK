@@ -1,20 +1,19 @@
-import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
+import { Button, Stack, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
-import { LoadingButton } from '@mui/lab';
-import { Stack, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import { useLocales } from 'src/locales';
-import Image from 'src/components/image';
 import { useAuthContext } from 'src/auth/hooks';
+import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import FormProvider, { RHFTextField } from 'src/components/hook-form';
+import Image from 'src/components/image';
 import { NEWSLETTER_FORM } from 'src/config-global';
 import { useResponsive } from 'src/hooks/use-responsive';
-import FormProvider, { RHFTextField } from 'src/components/hook-form';
-import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
+import { useLocales } from 'src/locales';
 
 const DIALOG_TEXT = {
   ar: 'لقد تم اضافتك الى قائمة المتابعين , شكراً !!',
@@ -97,7 +96,7 @@ export default function JoinNewsletter() {
           <Stack direction="row" spacing={1}>
             <RHFTextField name="email" label={translate('form.email')} variant="outlined" focused />
 
-            <LoadingButton
+            <Button
               size="large"
               type="submit"
               variant="contained"
@@ -108,7 +107,7 @@ export default function JoinNewsletter() {
               }}
             >
               {translate('form.register')}
-            </LoadingButton>
+            </Button>
           </Stack>
         </Stack>
       </FormProvider>

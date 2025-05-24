@@ -1,16 +1,36 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Box, Link, Stack, useTheme, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Link, Stack, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
-import { useLocales } from 'src/locales';
-import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
+import { WHATSAPP_MOBILE } from 'src/config-global';
+import { useLocales } from 'src/locales';
 
 export default function ContactUsInfo({ light, small }) {
   const { translate } = useLocales();
-  const theme = useTheme();
+
+  const onEmailClick = () => {
+    if (window.fbq) {
+      window.fbq('track', 'Contact', {
+        content_ids: ['footer-contact-email'],
+        content_type: 'page',
+        content_name: 'Contact Us',
+      });
+    }
+  };
+
+  const onTelephoneClick = () => {
+    if (window.fbq) {
+      window.fbq('track', 'Contact', {
+        content_ids: ['footer-contact-telephone'],
+        content_type: 'page',
+        content_name: 'Contact Us',
+      });
+    }
+  };
+
   return (
     <Stack
       spacing={small ? 2.5 : 5}
@@ -19,14 +39,21 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-        <Link color="inherit" href="mailto:queriesksp@kojak-group.com">
+        <Link color="inherit" href="mailto:queriesksp@kojak-group.com" onClick={onEmailClick}>
           queriesksp@kojak-group.com
         </Link>
       </Stack>
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
-        <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
+        <Link
+          color="inherit"
+          href={`tel:${WHATSAPP_MOBILE}`}
+          onClick={onTelephoneClick}
+          sx={{ textDecoration: 'none' }}
+        >
+          {WHATSAPP_MOBILE.replace('+97152', '052-')}
+        </Link>
       </Stack>
 
       <Stack spacing={1} direction="row">

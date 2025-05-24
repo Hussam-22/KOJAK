@@ -1,19 +1,19 @@
-import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router';
-import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import * as Yup from 'yup';
 
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Stack, Divider, MenuItem } from '@mui/material';
+import { Divider, MenuItem, Stack } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
-import { rdxFormPayload, rdxToggleDrawer } from 'src/redux/slices/products';
 import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
-import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
+import { CONTACT_US_FORM, SITE_NAME, SLACK_WEBHOOK_URL } from 'src/config-global';
+import { useLocales } from 'src/locales';
+import { rdxFormPayload, rdxToggleDrawer } from 'src/redux/slices/products';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -109,6 +109,14 @@ export default function ContactUsForm() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
+      if (window.fbq) {
+        window.fbq('track', 'Contact', {
+          content_ids: ['contact-us-page'],
+          content_type: 'page',
+          content_name: 'Contact Us',
+        });
+      }
+
       const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
       const requestOptions = {
         method: 'POST',
