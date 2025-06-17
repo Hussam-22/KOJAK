@@ -53,13 +53,20 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     }
     if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
-      if (window.fbq) {
-        window.fbq('track', 'AddToCart', {
-          product_name: partNumber,
-          content_ids: [partNumber],
-          content_type: 'product',
-          value: +price,
-          currency: 'AED',
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'add_to_cart',
+          ecommerce: {
+            currency: 'AED',
+            value: +price,
+            items: [{
+              item_id: item.partNumber,
+              item_name: item.item_name,
+              item_category: category,
+              quantity: 1,
+              price: +price
+            }]
+          }
         });
       }
     }

@@ -18,14 +18,24 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const applicableModels = `${partDetails.brandClass} - ${partDetails.brandModel}`;
 
   useEffect(() => {
-    if (partDetails?.id)
-      window.fbq('track', 'ViewContent', {
-        product_name: partDetails.partNumber,
-        content_ids: [partDetails.partNumber],
-        content_type: 'product',
-        value: 0.0,
-        currency: 'AED',
-      });
+    if (partDetails?.id){
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'view_item',
+          ecommerce: {
+            currency: 'AED',
+            value: partDetails.price,
+            items: [{
+              item_id: partDetails.id,
+              item_name: partDetails.item_name,
+              item_category: partDetails.category,
+              price: partDetails.price,
+              quantity: 1
+            }]
+          }
+        });
+      }
+    }
   }, [partDetails]);
 
   return (

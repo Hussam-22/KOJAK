@@ -55,13 +55,20 @@ function AvailableStockActionBar({ partDetails }) {
   };
 
   const onAddClickHandler = () => {
-    if (window.fbq) {
-      window.fbq('track', 'AddToCart', {
-        product_name: partDetails.partNumber,
-        content_ids: [partDetails.partNumber],
-        content_type: 'product',
-        value: partDetails.price,
-        currency: 'AED',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'add_to_cart',
+        ecommerce: {
+          currency: 'AED',
+          value: partDetails.price,
+          items: [{
+            item_id: partDetails.partNumber,
+            item_name: partDetails.item_name,
+            item_category: partDetails.category,
+            quantity: 1,
+            price: partDetails.price
+          }]
+        }
       });
     }
     setLoading((state) => ({ ...state, add: true }));
@@ -75,12 +82,10 @@ function AvailableStockActionBar({ partDetails }) {
   };
 
   const onWhatsAppClickHandler = async () => {
-    if (window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_ids: [partDetails.partNumber],
-        content_type: 'product',
-        value: 0.0,
-        currency: 'AED',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact',
+        contact_method: 'WhatsApp'
       });
     }
     setLoading((state) => ({ ...state, whatsApp: true }));

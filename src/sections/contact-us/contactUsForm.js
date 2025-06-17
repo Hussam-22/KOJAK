@@ -109,11 +109,10 @@ export default function ContactUsForm() {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      if (window.fbq) {
-        window.fbq('track', 'Contact', {
-          content_ids: ['contact-us-page'],
-          content_type: 'page',
-          content_name: 'Contact Us',
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'contact',
+          contact_method: 'Contact form'
         });
       }
 

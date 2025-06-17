@@ -12,21 +12,19 @@ export default function ContactUsInfo({ light, small }) {
   const { translate } = useLocales();
 
   const onEmailClick = () => {
-    if (window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_ids: ['footer-contact-email'],
-        content_type: 'page',
-        content_name: 'Contact Us',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact',
+        contact_method: 'E-Mail'
       });
     }
   };
 
   const onTelephoneClick = () => {
-    if (window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_ids: ['footer-contact-telephone'],
-        content_type: 'page',
-        content_name: 'Contact Us',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact',
+        contact_method: 'Phone'
       });
     }
   };
