@@ -87,12 +87,22 @@ export default function CartDrawerForm() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    if (window.fbq) {
-      window.fbq('track', 'Lead', {
-        content_ids: cart.map((item) => item.partNumber),
-        content_type: 'product',
-        value: cart.reduce((acc, item) => acc + item.price * item.qty, 0),
-        currency: 'AED',
+    const leadValue = inquiryItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'generate_lead',
+        ecommerce: {
+          transaction_id: `LEAD-${Date.now()}`,
+          currency: 'AED',
+          value: leadValue,
+          items: cart.map(item => ({
+            item_id: item.partNumber,
+            item_name: item.partName || 'unknown',
+            item_category: item.category || 'unknown',
+            quantity: item.qty,
+            price: item.price || 0
+          }))
+        }
       });
     }
 

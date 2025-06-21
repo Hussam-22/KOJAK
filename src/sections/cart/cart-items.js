@@ -69,6 +69,29 @@ function CartItems() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (cartItems.length > 0 && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'view_cart',
+        ecommerce: {
+          currency: 'AED',
+          value: cartItems.reduce(
+            (sum, item) => sum + (item.partData.price || 0) * (item.qty || 1),
+            0
+          ),
+          items: cartItems.map(item => ({
+            item_id: item.partData.partNumber,
+            item_name: item.partData.partName || 'unknown',
+            item_category: item.partData.category || 'unknown',
+            quantity: item.qty || 1,
+            price: item.partData.price || 0
+          }))
+        }
+      });
+    }
+  }, [cartItems]);
+
+
   const onDeleteClickHandler = (partNumber) => {
     setLocalStorageCart((prevState) =>
       prevState.filter((localStorageItem) => localStorageItem.partNumber !== partNumber)

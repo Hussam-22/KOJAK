@@ -61,16 +61,24 @@ export default function FilterBrand({ closeDrawer }) {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    if (window.fbq) {
-      window.fbq('track', 'Search', {
-        content_ids: [formData.class],
-        content_type: 'product',
-        value: 0.0,
-        currency: 'AED',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'search',
+        ecommerce: {
+          items: [
+            {
+              item_id: formData.partNo || 'unknown-id',
+              item_name: `${formData.class} ${formData.model}`.trim() || 'unknown-product',
+              item_category: formData.category || 'unknown-category',
+              price: 0,
+              currency: 'AED'
+            }
+          ]
+        }
       });
     }
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    // dispatch(rdxClearFilter());
 
     dispatch(
       rdxUpdateFilter({

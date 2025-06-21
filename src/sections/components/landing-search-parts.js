@@ -132,12 +132,20 @@ function SearchAdvanced() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    if (window.fbq) {
-      window.fbq('track', 'Search', {
-        content_ids: [formData.class],
-        content_type: 'product',
-        value: 0.0,
-        currency: 'AED',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'search',
+        ecommerce: {
+          items: [
+            {
+              item_id: formData.partNo || 'unknown-id',
+              item_name: `${formData.class} ${formData.model}`.trim() || 'unknown-product',
+              item_category: formData.category || 'unknown-category',
+              price: 0,
+              currency: 'AED'
+            }
+          ]
+        }
       });
     }
 
@@ -263,14 +271,23 @@ function SearchPartNumber() {
   const values = watch();
 
   const onSubmit = handleSubmit(async (formData) => {
-    if (window.fbq) {
-      window.fbq('track', 'Search', {
-        content_ids: [formData.class],
-        content_type: 'product',
-        value: 0.0,
-        currency: 'AED',
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'search',
+        ecommerce: {
+          items: [
+            {
+              item_id: formData.partNo || 'unknown-id',
+              item_name: `${formData.partNo}` || 'unknown-product',
+              item_category: 'unknown-category',
+              price: 0,
+              currency: 'AED'
+            }
+          ]
+        }
       });
     }
+
     dispatch(rdxClearFilter());
     dispatch(rdxUpdateFilter({ ...formData }));
     navigate(paths.website.spareParts);
