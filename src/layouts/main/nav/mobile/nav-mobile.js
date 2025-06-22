@@ -1,24 +1,25 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
+import { useTheme } from '@mui/material';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
-import { useTheme } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 
-import Logo from 'src/components/logo';
-import { paths } from 'src/routes/paths';
-import { useLocales } from 'src/locales';
 import Iconify from 'src/components/iconify';
-import { usePathname } from 'src/routes/hooks';
+import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
-import ModeIcon from 'src/layouts/main/mode-icon';
 import { useBoolean } from 'src/hooks/use-boolean';
+import ModeIcon from 'src/layouts/main/mode-icon';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
+import { useLocales } from 'src/locales';
+import { usePathname } from 'src/routes/hooks';
+import { paths } from 'src/routes/paths';
 
+import CurrencySwitcher from 'src/components/CurrencySwitcher';
 import { NAV } from '../../../config-layout';
 
 import NavList from './nav-list';
@@ -43,16 +44,13 @@ export default function NavMobile({ data, toggleLanguage, useLightIcon, themeMod
 
   return (
     <>
-      <Stack direction="row" spacing={0}>
+      <Stack direction="row" spacing={0} alignItems="center">
+        <CurrencySwitcher />
         <ModeIcon light={useLightIcon} />
         <OpenCartIconButton light={useLightIcon} />
         {/* <TranslateIcon light={useLightIcon} toggleLanguageHandler={toggleLanguage} /> */}
 
-        <IconButton
-          onClick={mobileOpen.onTrue}
-          sx={{ ml: 1, color: 'inherit' }}
-          aria-label="open-menu"
-        >
+        <IconButton onClick={mobileOpen.onTrue} sx={{ color: 'inherit' }} aria-label="open-menu">
           <Iconify icon="carbon:menu" />
         </IconButton>
       </Stack>

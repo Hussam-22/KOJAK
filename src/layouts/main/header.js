@@ -1,33 +1,34 @@
 import PropTypes from 'prop-types';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useState, useCallback } from 'react';
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import { Backdrop, Button, CircularProgress, Divider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
-import { Button, Divider, Backdrop, CircularProgress } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
 
-import Logo from 'src/components/logo';
-import { bgBlur } from 'src/theme/css';
-import { useLocales } from 'src/locales';
-import { paths } from 'src/routes/paths';
-import { usePathname } from 'src/routes/hooks';
-import ModeIcon from 'src/layouts/main/mode-icon';
 import Iconify from 'src/components/iconify/Iconify';
+import Logo from 'src/components/logo';
+import { useSettingsContext } from 'src/components/settings';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useSettingsContext } from 'src/components/settings';
+import ModeIcon from 'src/layouts/main/mode-icon';
 import OpenCartIconButton from 'src/layouts/main/open-cart-icon-button';
+import { useLocales } from 'src/locales';
+import { usePathname } from 'src/routes/hooks';
+import { paths } from 'src/routes/paths';
+import { bgBlur } from 'src/theme/css';
 
-import { HEADER } from '../config-layout';
+import CurrencySwitcher from 'src/components/CurrencySwitcher';
 import HeaderShadow from '../common/header-shadow';
+import { HEADER } from '../config-layout';
 
-import NavMobile from './nav/mobile';
-import NavDesktop from './nav/desktop';
 import { navConfig } from './config-navigation';
+import NavDesktop from './nav/desktop';
+import NavMobile from './nav/mobile';
 
 // ----------------------------------------------------------------------
 
@@ -110,7 +111,7 @@ export default function Header({ headerOnDark }) {
               )}
 
               {mdUp && (
-                <Stack direction="row" spacing={1}>
+                <Stack direction="row" spacing={0} alignItems="center" justifyContent="flex-end">
                   <Button
                     variant="contained"
                     color="info"
@@ -126,7 +127,8 @@ export default function Header({ headerOnDark }) {
                     flexItem
                     sx={{ mx: 1, borderStyle: 'dashed', borderColor: theme.palette.grey[500] }}
                   />
-                  {/* <TranslateIcon light={light} toggleLanguageHandler={toggleLanguageHandler} /> */}
+                  {/* <TranslateIcon toggleLanguageHandler={toggleLanguageHandler} /> */}
+                  <CurrencySwitcher />
                   <ModeIcon light={getIsLight()} />
                   <OpenCartIconButton light={getIsLight()} />
                 </Stack>

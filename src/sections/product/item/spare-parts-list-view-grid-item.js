@@ -8,6 +8,7 @@ import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 
+import { useSelector } from 'react-redux';
 import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify';
 import Image from 'src/components/image';
@@ -31,6 +32,7 @@ export default function SparePartsListViewGridItem({
   const isInCart = localStorageCart.find(
     (storageItem) => storageItem.partNumber === product.partNumber
   );
+  const { currency } = useSelector((state) => state.siteStore);
 
   const getStockInfo = () => {
     if (+product.stock === 0) return { text: 'OUT OF STOCK', color: 'error' };
@@ -132,7 +134,7 @@ export default function SparePartsListViewGridItem({
             </Link>
             {product?.price && (
               <Typography variant="subtitle2" sx={{ color: 'success.main' }}>
-                {`${product.price} AED`}
+                {`${(product.price / currency.rate).toFixed(2)} ${currency.label}`}
               </Typography>
             )}
           </Stack>

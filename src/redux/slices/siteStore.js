@@ -8,6 +8,7 @@ const initialState = {
   vehiclesList: [],
   vehiclesCoverUrls: [],
   featuredProperty: {},
+  currency: { code: 'AED', label: 'AED (د.إ)', rate: 1 }, // Default currency
 };
 
 const slice = createSlice({
@@ -36,6 +37,11 @@ const slice = createSlice({
     rdxAddFeaturedProperty(state, action) {
       state.featuredProperty = action.payload;
     },
+
+    rdxSetCurrency(state, action) {
+      const { code, label, rate } = action.payload;
+      state.currency = { code, label, rate };
+    },
   },
 });
 
@@ -48,4 +54,5 @@ export const {
   rdxAddVehiclesToStore,
   rdxAddVehiclesCoverUrlsToStore,
   rdxAddFeaturedProperty,
+  rdxSetCurrency,
 } = slice.actions;

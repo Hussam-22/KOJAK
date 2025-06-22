@@ -44,6 +44,7 @@ function CartItems() {
   const [cartItems, setCartItems] = useState([]);
   const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const [open, setOpen] = useState(false);
+  const { currency } = useSelector((state) => state.siteStore);
 
   const openDrawerHandler = () => {
     const parts = cartItems.map((item) => item.partData.docID);
@@ -74,23 +75,22 @@ function CartItems() {
       window.dataLayer.push({
         event: 'view_cart',
         ecommerce: {
-          currency: 'AED',
+          currency: currency.code,
           value: cartItems.reduce(
-            (sum, item) => sum + (item.partData.price || 0) * (item.qty || 1),
+            (sum, item) => sum + (item.partData.price / currency.rate || 0) * (item.qty || 1),
             0
           ),
-          items: cartItems.map(item => ({
+          items: cartItems.map((item) => ({
             item_id: item.partData.partNumber,
             item_name: item.partData.partName || 'unknown',
             item_category: item.partData.category || 'unknown',
             quantity: item.qty || 1,
-            price: item.partData.price || 0
-          }))
-        }
+            price: item.partData.price / currency.rate || 0,
+          })),
+        },
       });
     }
-  }, [cartItems]);
-
+  }, [cartItems, currency]);
 
   const onDeleteClickHandler = (partNumber) => {
     setLocalStorageCart((prevState) =>
@@ -175,7 +175,8 @@ function CartItems() {
                       qty={cartItem.qty}
                       onDeleteClickHandler={onDeleteClickHandler}
                       onUpdateQtyClickHandler={onUpdateQtyClickHandler}
-                      price={cartItem.partData.price}
+                      price={cartItem.partData.price / currency.rate}
+                      currency={currency.code}
                     />
                   </Stack>
                   {!smUp && <PartInfo partData={cartItem.partData} />}
@@ -318,7 +319,14 @@ PartInfo.propTypes = { partData: PropTypes.object };
 
 // ----------------------------------------------------------------------------
 
-function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClickHandler, price }) {
+function ActionButtons({
+  partNumber,
+  qty,
+  onDeleteClickHandler,
+  onUpdateQtyClickHandler,
+  price,
+  currency,
+}) {
   // if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber))
   //   SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
 
@@ -333,7 +341,7 @@ function ActionButtons({ partNumber, qty, onDeleteClickHandler, onUpdateQtyClick
   return (
     <Stack direction="row" spacing={1} alignItems="center">
       <Typography variant="subtitle2" sx={{ color: 'success.main' }}>
-        {(qty * price).toFixed(2)} AED
+        {(qty * price).toFixed(2)} {currency}
       </Typography>
       <Stack direction="column" alignItems="center">
         <IconButton disableRipple onClick={() => updateQty(+1)}>
@@ -357,4 +365,5 @@ ActionButtons.propTypes = {
   qty: PropTypes.number,
   onDeleteClickHandler: PropTypes.func,
   onUpdateQtyClickHandler: PropTypes.func,
+  currency: PropTypes.string,
 };

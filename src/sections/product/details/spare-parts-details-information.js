@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { Box, Divider, Stack, Typography, useTheme } from '@mui/material';
 
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Label from 'src/components/label';
 import SparePartsDetailsActionButtons from 'src/sections/product/details/spare-parts-details-action-buttons';
 
 function SparePartsDetailsInformation({ partDetails, productDescription }) {
   const theme = useTheme();
+  const { currency } = useSelector((state) => state.siteStore);
 
   const getStockInfo = (qty) => {
     if (qty === 0) return { text: 'OUT OF STOCK', color: 'error' };
@@ -23,14 +25,14 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
         window.dataLayer.push({
           event: 'view_item',
           ecommerce: {
-            currency: 'AED',
-            value: partDetails.price,
+            currency: currency.code,
+            value: partDetails.price / currency.rate,
             items: [
               {
                 item_id: partDetails.partNumber,
                 item_name: partDetails.item_name,
                 item_category: partDetails.category,
-                price: partDetails.price,
+                price: partDetails.price / currency.rate,
                 quantity: 1,
               },
             ],
@@ -38,7 +40,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
         });
       }
     }
-  }, [partDetails]);
+  }, [partDetails, currency]);
 
   return (
     partDetails?.docID && (
@@ -64,7 +66,7 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
           {partDetails?.price && (
             <Block
               title="Price"
-              description={`${partDetails.price} AED`}
+              description={`${(partDetails.price / currency.rate).toFixed(2)} ${currency.label}`}
               color="success"
               subtitle="Please write to us so that we can determine the final price, as customs and transport costs may vary depending on the country"
             />

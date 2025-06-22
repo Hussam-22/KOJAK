@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router';
 import { Button, IconButton, Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import { useAuthContext } from 'src/auth/hooks';
 import Iconify from 'src/components/iconify';
 import { useLocalStorage } from 'src/hooks/use-local-storage';
 import { rdxUpdateCart, rdxUpdatePage } from 'src/redux/slices/products';
@@ -24,7 +23,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
   const navigate = useNavigate();
   const [localStorageCart, SetLocalStorageCart] = useLocalStorage('cart', []);
   const { currentPage, filter } = useSelector((state) => state.products);
-  const { covertToInt } = useAuthContext();
+  const { currency } = useSelector((state) => state.siteStore);
 
   const pagesCount = useMemo(() => Math.ceil(totalDocs / recordsLimit), [recordsLimit, totalDocs]);
 
@@ -56,28 +55,30 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) => [
         ...prevState,
-        { partNumber, qty: 1, price: +price, partName, category },
+        { partNumber, qty: 1, price: +price / currency.rate, partName, category },
       ]);
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'add_to_cart',
           ecommerce: {
-            currency: 'AED',
-            value: +price,
+            currency: currency.code,
+            value: +price / currency.rate,
             items: [
               {
                 item_id: partNumber,
                 item_name: partName,
                 item_category: category,
                 quantity: 1,
-                price: +price,
+                price: +price / currency.rate,
               },
             ],
           },
         });
       }
     }
-    dispatch(rdxUpdateCart({ partNumber, qty: 1, price: +price, partName, category }));
+    dispatch(
+      rdxUpdateCart({ partNumber, qty: 1, price: +price / currency.rate, partName, category })
+    );
   };
 
   const renderView = () => {

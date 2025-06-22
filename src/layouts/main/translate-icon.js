@@ -1,15 +1,17 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 // @mui
-import { useTheme } from '@mui/material/styles';
 import { Box, IconButton } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { useSettingsContext } from 'src/components/settings';
 
 // ----------------------------------------------------------------------
 
-function TranslateIcon({ light, toggleLanguageHandler, sx }) {
+function TranslateIcon({ toggleLanguageHandler, sx }) {
   const theme = useTheme();
-  const COLOR = light ? theme.palette.common.white : theme.palette.common.black;
+  const { themeMode } = useSettingsContext();
+  const COLOR = themeMode === 'dark' ? theme.palette.common.white : theme.palette.common.black;
 
   const singleLogo = (
     <svg
@@ -45,7 +47,6 @@ function TranslateIcon({ light, toggleLanguageHandler, sx }) {
 }
 
 TranslateIcon.propTypes = {
-  light: PropTypes.bool,
   sx: PropTypes.object,
   toggleLanguageHandler: PropTypes.func,
 };
