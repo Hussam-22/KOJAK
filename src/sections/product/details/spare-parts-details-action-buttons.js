@@ -61,22 +61,50 @@ function AvailableStockActionBar({ partDetails }) {
         ecommerce: {
           currency: 'AED',
           value: partDetails.price,
-          items: [{
-            item_id: partDetails.partNumber,
-            item_name: partDetails.item_name,
-            item_category: partDetails.category,
-            quantity: 1,
-            price: partDetails.price
-          }]
-        }
+          items: [
+            {
+              item_id: partDetails.partNumber,
+              item_name: partDetails.item_name,
+              item_category: partDetails.category,
+              quantity: 1,
+              price: partDetails.price,
+            },
+          ],
+        },
       });
     }
     setLoading((state) => ({ ...state, add: true }));
     setLocalStorageCart((prevState) =>
-      prevState ? [...prevState, { partNumber, qty: tempQty }] : [{ partNumber, qty: tempQty }]
+      prevState
+        ? [
+            ...prevState,
+            {
+              partNumber,
+              qty: tempQty,
+              price: partDetails.price,
+              partName: partDetails.partName,
+              category: partDetails.category,
+            },
+          ]
+        : [
+            {
+              partNumber,
+              qty: tempQty,
+              price: partDetails.price,
+              partName: partDetails.partName,
+              category: partDetails.category,
+            },
+          ]
     );
     setTimeout(() => {
-      dispatch(rdxUpdateCart({ partNumber, qty: tempQty }));
+      dispatch(
+        rdxUpdateCart({
+          partNumber,
+          qty: tempQty,
+          price: partDetails.price,
+          partName: partDetails.partName,
+        })
+      );
       setLoading((state) => ({ ...state, add: false }));
     }, 1000);
   };
@@ -85,7 +113,7 @@ function AvailableStockActionBar({ partDetails }) {
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'contact',
-        contact_method: 'WhatsApp'
+        contact_method: 'WhatsApp',
       });
     }
     setLoading((state) => ({ ...state, whatsApp: true }));

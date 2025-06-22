@@ -61,7 +61,14 @@ function SparePartsDetailsInformation({ partDetails, productDescription }) {
         <Divider sx={{ borderStyle: 'dashed', my: 2, borderColor: theme.palette.divider }} />
 
         <Stack direction="column" spacing={1} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
-          {partDetails?.price && <Block title="Price" description={`${partDetails.price} AED`} />}
+          {partDetails?.price && (
+            <Block
+              title="Price"
+              description={`${partDetails.price} AED`}
+              color="success"
+              subtitle="Please write to us so that we can determine the final price, as customs and transport costs may vary depending on the country"
+            />
+          )}
           <Block title="Applicable Model(s)" description={applicableModels} />
           <Block title="Category" description={partDetails.category} />
           <Block title="Part Group" description={partDetails.itemGroup} />
@@ -82,17 +89,24 @@ SparePartsDetailsInformation.propTypes = {
 
 // ----------------------------------------------------------------------------
 
-function Block({ title, description }) {
+function Block({ title, description, color, subtitle }) {
   return (
     <Stack spacing={0}>
       <Typography variant="caption" sx={{ color: 'text.secondary' }}>
         {title}
       </Typography>
-      <Typography>{description}</Typography>
+      <Typography color={color}>{description}</Typography>
+      {subtitle && (
+        <Typography variant="caption" sx={{ color: 'error.main' }}>
+          {subtitle}
+        </Typography>
+      )}
     </Stack>
   );
 }
 Block.propTypes = {
   title: PropTypes.string,
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.any]),
+  color: PropTypes.string,
+  subtitle: PropTypes.string,
 };

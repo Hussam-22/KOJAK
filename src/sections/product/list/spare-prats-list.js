@@ -45,32 +45,39 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
     dispatch(rdxUpdatePage({ page: currentPage + 1, startAfterDocument }));
 
   // Function to update the cart and localStorage
-  const addToCartOnClickHandler = (partNumber, price) => {
+  const addToCartOnClickHandler = (part) => {
+    const { partNumber, price, partName, category } = part;
+
     if (localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
       SetLocalStorageCart((prevState) =>
         prevState.filter((item) => item.partNumber !== partNumber)
       );
     }
     if (!localStorageCart.some((storageItem) => storageItem.partNumber === partNumber)) {
-      SetLocalStorageCart((prevState) => [...prevState, { partNumber, qty: 1 }]);
+      SetLocalStorageCart((prevState) => [
+        ...prevState,
+        { partNumber, qty: 1, price: +price, partName, category },
+      ]);
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'add_to_cart',
           ecommerce: {
             currency: 'AED',
             value: +price,
-            items: [{
-              item_id: item.partNumber,
-              item_name: item.item_name,
-              item_category: category,
-              quantity: 1,
-              price: +price
-            }]
-          }
+            items: [
+              {
+                item_id: partNumber,
+                item_name: partName,
+                item_category: category,
+                quantity: 1,
+                price: +price,
+              },
+            ],
+          },
         });
       }
     }
-    dispatch(rdxUpdateCart({ partNumber, qty: 1 }));
+    dispatch(rdxUpdateCart({ partNumber, qty: 1, price: +price, partName, category }));
   };
 
   const renderView = () => {
@@ -133,9 +140,7 @@ export default function SparePartsList({ loading, products, totalDocs, recordsLi
                 <SparePartsListViewGridItem
                   key={product.docID}
                   product={product}
-                  addToCartOnClickHandler={() =>
-                    addToCartOnClickHandler(product.partNumber, product.price)
-                  }
+                  addToCartOnClickHandler={() => addToCartOnClickHandler(product)}
                   localStorageCart={localStorageCart}
                 />
               ) : (

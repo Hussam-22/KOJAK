@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
 
-import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
-import DialogContent from '@mui/material/DialogContent';
+import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import { Box, Divider, Typography } from '@mui/material';
+import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 
-import Image from 'src/components/image';
+import { Typography } from '@mui/material';
+import { useSettingsContext } from 'src/components/settings';
 import { useLocales } from 'src/locales';
 
 export default function ConfirmationDialog({ content, open, handleClose }) {
   const { currentLang } = useLocales();
+  const theme = useSettingsContext();
+
   return (
     <Dialog
       maxWidth="md"
@@ -22,23 +24,12 @@ export default function ConfirmationDialog({ content, open, handleClose }) {
     >
       {/* <DialogTitle id="alert-dialog-title">{title}</DialogTitle> */}
       <DialogContent>
-        <Box
-          sx={{
-            p: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Image src="/assets/illustrations/success-request.svg" />
-          <Typography variant="h2" sx={{ color: 'success.main' }}>
-            SUCCESS !!
+        <DialogContentText id="alert-dialog-description">
+          <Typography
+            sx={{ color: theme.themeMode === 'dark' ? 'common.white' : 'common.black', mt: 3 }}
+          >
+            {content}
           </Typography>
-          <Divider flexItem />
-        </Box>
-        <DialogContentText id="alert-dialog-description" sx={{ color: 'common.white' }}>
-          {content}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

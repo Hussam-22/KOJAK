@@ -18,8 +18,8 @@ import { rdxFormPayload, rdxLoadCartFromStorage, rdxToggleDrawer } from 'src/red
 
 // ----------------------------------------------------------------------
 const DIALOG_CONTENT = {
-  ar: `لقد قمنا باستلام قائمة قطع الغيار, سيتم التواصل معك قريباً`,
-  en: 'We have received the parts list, we will get back to you soon',
+  ar: `لقد استلمنا قائمة قطع الغيار، وسنقوم بالتواصل معك قريبًا. يرجى ملاحظة أن السعر النهائي قد يختلف حسب رسوم الجمارك وتكاليف الشحن إلى بلدك.`,
+  en: 'We have received the parts list and will contact you shortly. Please note that the final price may vary depending on customs and transportation costs to your country.',
 };
 
 const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
@@ -87,7 +87,7 @@ export default function CartDrawerForm() {
   } = methods;
 
   const onSubmit = handleSubmit(async (formData) => {
-    const leadValue = inquiryItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    const leadValue = cart.reduce((total, item) => total + item.price * item.qty, 0);
     if (window.dataLayer) {
       window.dataLayer.push({
         event: 'generate_lead',
@@ -95,14 +95,14 @@ export default function CartDrawerForm() {
           transaction_id: `LEAD-${Date.now()}`,
           currency: 'AED',
           value: leadValue,
-          items: cart.map(item => ({
+          items: cart.map((item) => ({
             item_id: item.partNumber,
             item_name: item.partName || 'unknown',
             item_category: item.category || 'unknown',
             quantity: item.qty,
-            price: item.price || 0
-          }))
-        }
+            price: item.price || 0,
+          })),
+        },
       });
     }
 
