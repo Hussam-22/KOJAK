@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
+import { _testimonials } from 'src/_mock';
 import { useAuthContext } from 'src/auth/hooks';
-import { blogPosts, _testimonials } from 'src/_mock';
 import FAQs from 'src/sections/_kojakBuilding/landing/Faqs';
-import LatestPosts from 'src/sections/blog/kojak/latest-posts';
 import LandingHero from 'src/sections/_kojakBuilding/landing/LandingHero';
-import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
 import PopularProperties from 'src/sections/_kojakBuilding/landing/PopularProperties';
+import WhyKojakBuilding from 'src/sections/_kojakBuilding/landing/WhyKojakBuilding';
 import AboutTestimonial from 'src/sections/_kojakBuilding/testimonial/about-testimonial';
 
 export default function LandingView() {
@@ -29,7 +28,7 @@ export default function LandingView() {
       )}
       <AboutTestimonial testimonials={_testimonials} />
       <FAQs />
-      <LatestPosts posts={blogPosts.slice(0, 6)} />
+      {/* <LatestPosts posts={blogPosts.slice(0, 6)} /> */}
     </>
   );
 }

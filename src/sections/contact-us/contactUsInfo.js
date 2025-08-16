@@ -1,12 +1,12 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Box, Link, Stack, useTheme, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Link, Stack, Typography, useTheme } from '@mui/material';
 
 import { _socials } from 'src/_mock';
-import { useLocales } from 'src/locales';
-import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
+import { WHATSAPP_MOBILE } from 'src/config-global';
+import { useLocales } from 'src/locales';
 
 export default function ContactUsInfo({ light, small }) {
   const { translate } = useLocales();
@@ -26,6 +26,7 @@ export default function ContactUsInfo({ light, small }) {
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="carbon:mobile" width={24} />
+
         <Typography>{WHATSAPP_MOBILE.replace('+97152', '052-')}</Typography>
       </Stack>
 
