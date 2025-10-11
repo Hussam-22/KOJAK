@@ -17,7 +17,7 @@ export const SLACK_WEBHOOK_URL =
   'https://hooks.slack.com/services/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';
 
 // export const WHATSAPP_MOBILE = '+971529242616';
-export const WHATSAPP_MOBILE = '+971529242548';
+export const WHATSAPP_MOBILE = '+971529242724';
 
 export const GOOGLE_MAP_API = process.env.NEXT_PUBLIC_MAP_API;
 

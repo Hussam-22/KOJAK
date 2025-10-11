@@ -1,17 +1,17 @@
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
-import { useMemo, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import PropTypes from 'prop-types';
+import { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Stack, Divider, MenuItem } from '@mui/material';
+import { Divider, MenuItem, Stack } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
 import ConfirmationDialog from 'src/components/Dialog/confirmationDialog';
 import FormProvider, { RHFSelect, RHFTextField } from 'src/components/hook-form';
-import { SITE_NAME, CONTACT_US_FORM, SLACK_WEBHOOK_URL } from 'src/config-global';
+import { CONTACT_US_FORM, SITE_NAME } from 'src/config-global';
+import { useLocales } from 'src/locales';
 
 // ----------------------------------------------------------------------
 const DIALOG_TEXT = { ar: 'لقد وصلنا طلبك !!', en: 'We have received your request !!' };
@@ -78,15 +78,12 @@ export default function ContactUsForm({ payload }) {
 
   const onSubmit = handleSubmit(async (formData) => {
     try {
-      const dataToSend = Object.entries(formData).join('\r\n').replaceAll(',', ': ');
-      const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({ text: dataToSend }),
-        credentials: 'omit', // This is equivalent to withCredentials: false in Axios
-      };
-
-      // Add Form Submit to Slack Channel
-      await fetch(SLACK_WEBHOOK_URL, requestOptions);
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'contact',
+          contact_method: 'Contact form',
+        });
+      }
 
       addNewForm({
         ...formData,

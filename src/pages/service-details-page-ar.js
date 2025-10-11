@@ -1,15 +1,16 @@
-import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
-import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { PAGE_VISIT } from 'src/config-global';
+import { useLocales } from 'src/locales';
 import ServiceDetailsView from 'src/sections/views/service-details-view';
 
 export default function ServiceDetailsPageAr() {
   const { vehicleID } = useParams();
   const { onChangeLang, currentLang, translate } = useLocales();
-  const { getVehicleInfo } = useAuthContext();
+  const { getVehicleInfo, fsUpdateStatistics } = useAuthContext();
   const [vehicleInfo, setVehicleInfo] = useState();
 
   useEffect(() => {
@@ -19,6 +20,35 @@ export default function ServiceDetailsPageAr() {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (vehicleInfo?.docID) {
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'view_item',
+          ecommerce: {
+            currency: 'AED',
+            value: vehicleInfo.price || 0,
+            items: [
+              {
+                item_id: vehicleInfo.docID,
+                item_name: `${vehicleInfo.brand} ${vehicleInfo.model} ${vehicleInfo.year}`,
+                item_color: `${vehicleInfo.exteriorColorString} / ${vehicleInfo.interiorColorString}`,
+                price: vehicleInfo.price || 0,
+                quantity: 1,
+              },
+            ],
+          },
+        });
+      }
+    }
+
+    (async () => {
+      if (vehicleInfo?.docID) {
+        await fsUpdateStatistics(vehicleInfo?.docID, PAGE_VISIT);
+      }
+    })();
+  }, [fsUpdateStatistics, vehicleInfo?.docID, vehicleInfo]);
 
   return (
     <>

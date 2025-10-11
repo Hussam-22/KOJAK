@@ -1,15 +1,34 @@
 // @mui
 import PropTypes from 'prop-types';
 
-import { Box, Link, Stack, Typography, IconButton } from '@mui/material';
+import { Box, IconButton, Link, Stack, Typography } from '@mui/material';
 
 import { _socials } from 'src/_mock';
-import { useLocales } from 'src/locales';
-import { WHATSAPP_MOBILE } from 'src/config-global';
 import Iconify from 'src/components/iconify/Iconify';
+import { WHATSAPP_MOBILE } from 'src/config-global';
+import { useLocales } from 'src/locales';
 
 export default function ContactUsInfo({ light, small }) {
   const { translate } = useLocales();
+
+  const onEmailClick = () => {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact',
+        contact_method: 'E-Mail',
+      });
+    }
+  };
+
+  const onTelephoneClick = () => {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'contact',
+        contact_method: 'Phone',
+      });
+    }
+  };
+
   return (
     <Stack
       spacing={small ? 2.5 : 5}
@@ -18,25 +37,26 @@ export default function ContactUsInfo({ light, small }) {
     >
       <Stack spacing={1} direction="row">
         <Iconify icon="carbon:email" width={24} />
-        <Link color="inherit" href="mailto:querieskex@kojak-group.com">
+        <a
+          color="inherit"
+          href="mailto:querieskex@kojak-group.com"
+          onClick={onEmailClick}
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
           querieskex@kojak-group.com
-        </Link>
+        </a>
       </Stack>
-
-      <Stack direction="row" spacing={1}>
-        <Iconify icon="mdi:whatsapp" width={24} />
-        <Typography>{WHATSAPP_MOBILE.replace('+', '')}</Typography>
-      </Stack>
-
-      {/* <Stack direction="row" spacing={1}>
-        <Iconify icon="tabler:device-landline-phone" width={24} />
-        <Typography>97143330533 (Dubai Branch)</Typography>
-      </Stack> */}
 
       <Stack direction="row" spacing={1}>
         <Iconify icon="icomoon-free:mobile" width={24} />
         {/* <Typography>971529242625 (Sharjah Branch)</Typography> */}
-        <Typography>{WHATSAPP_MOBILE}</Typography>
+        <a
+          href={`tel:${WHATSAPP_MOBILE}`}
+          onClick={onTelephoneClick}
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          {WHATSAPP_MOBILE}
+        </a>
       </Stack>
 
       <Stack spacing={1} direction="row">

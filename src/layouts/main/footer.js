@@ -1,18 +1,18 @@
+import { Box, useTheme } from '@mui/material';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import { Box, useTheme } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Unstable_Grid2';
 
 import Logo from 'src/components/logo';
+import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
+import { navConfig } from 'src/layouts/main/config-navigation';
 import { useLocales } from 'src/locales';
 import { RouterLink } from 'src/routes/components';
-import { navConfig } from 'src/layouts/main/config-navigation';
 import JoinNewsletter from 'src/sections/about/join-newsletter';
 import ContactUsInfo from 'src/sections/contact-us/contactUsInfo';
-import { AUTO_URL, BUILDING_URL, EXCLUSIVE_URL, SPARE_PART_URL } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
