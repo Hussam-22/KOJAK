@@ -23,7 +23,7 @@ const DIALOG_CONTENT = {
 const hearAboutEn = ['Search Engine (e.g., Google)', 'Social Media', 'Word of Mouth'];
 const hearAboutAr = ['محرك البحث (مثل جوجل)', 'وسائل التواصل الاجتماعي', 'صديق'];
 
-export default function ContactUsForm({ payload }) {
+export default function ContactUsForm({ payload,isMakeItYoursForm=false ,vehicleInfo={} }) {
   const { addNewForm } = useAuthContext();
   const [open, setOpen] = useState(false);
   const { translate, currentLang } = useLocales();
@@ -79,7 +79,21 @@ export default function ContactUsForm({ payload }) {
   const onSubmit = handleSubmit(async (formData) => {
     try {
       if (window.dataLayer) {
-        window.dataLayer.push({
+        window.dataLayer.push(isMakeItYoursForm ? {
+          event: 'generate_lead',
+          ecommerce: {
+ transaction_id: `LEAD-${Date.now()}`,
+ currency: 'AED',
+ value: vehicleInfo?.price || 0,
+ items: [{
+item_id: vehicleInfo?.docID,
+item_name: `${vehicleInfo?.brand} ${vehicleInfo?.model}` || 'unknown',
+item_category: 'vehicle',
+quantity: 1,
+price: vehicleInfo?.price || 0
+ }]
+},
+        } : {
           event: 'contact',
           contact_method: 'Contact form',
         });
@@ -165,4 +179,6 @@ export default function ContactUsForm({ payload }) {
 
 ContactUsForm.propTypes = {
   payload: PropTypes.object,
+  isMakeItYoursForm: PropTypes.bool,
+  vehicleInfo: PropTypes.object,
 };

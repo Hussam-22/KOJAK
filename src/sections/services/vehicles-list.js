@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Box, Stack, Skeleton, useTheme, Container, Typography } from '@mui/material';
+import { Box, Container, Skeleton, Stack, Typography, useTheme } from '@mui/material';
 
-import { useLocales } from 'src/locales';
 import { useAuthContext } from 'src/auth/hooks';
+import { useLocales } from 'src/locales';
 import VehicleCard from 'src/sections/services/vehicle-card';
 
 function VehiclesList() {
   const theme = useTheme();
   const { translate } = useLocales();
-  const { addNewCar, getCars, fsListAllFolderItems, fsUpdateDoc } = useAuthContext();
+  const { getCars, fsListAllFolderItems } = useAuthContext();
   const [vehiclesList, setVehiclesList] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,31 @@ function VehiclesList() {
       setVehiclesList(await getCars());
     })();
   }, [fsListAllFolderItems, getCars]);
+
+  console.log(vehiclesList);
+  
+
+    useEffect(() => {
+      if (vehiclesList.length !==0 ) {
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: 'search',
+            ecommerce: {
+              items: [
+                ...vehiclesList.map((vehicle) => ({
+                  item_id: vehicle.data.docID,
+                  item_name: `${vehicle.data.brand} ${vehicle.data.model} ${vehicle.data.year}`,
+                  item_color: `${vehicle.data.exteriorColorString} / ${vehicle.data.interiorColorString}`,
+                  price: vehicle.data.price || 0,
+                  quantity: 1,
+                  currency: 'AED'
+                })),
+              ],
+            },
+          });
+        }
+      }
+    }, [vehiclesList]);
 
   // const addCar = async () => addNewCar();
   // const addCar = async () => fsUpdateDoc();

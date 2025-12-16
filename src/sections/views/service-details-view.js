@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
-import Grid from '@mui/material/Unstable_Grid2';
+import { Box, Card, Stack, Typography, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
-import { Box, Card, Stack, useTheme, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
-import { paths } from 'src/routes/paths';
 import { useLocales } from 'src/locales';
+import { paths } from 'src/routes/paths';
 import { fNumber } from 'src/utils/format-number';
 // import { _products } from 'src/_mock';
+import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+import { SplashScreen } from 'src/components/loading-screen';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { SplashScreen } from 'src/components/loading-screen';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import ContactUsForm from 'src/sections/contact-us/contactUsForm';
-import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 import ProductDetailsCarousel from 'src/sections/services/components/product-details-carousel';
+import VehicleFeature from 'src/sections/services/components/vehicle-feature';
 
 // ----------------------------------------------------------------------
 
@@ -179,7 +179,7 @@ export default function ServiceDetailsView({ vehicleInfo }) {
                 <Typography variant="h3" sx={{ mb: 2 }}>
                   {translate('inventory.makeItYours')}
                 </Typography>
-                {vehicleInfo?.docID !== undefined && <ContactUsForm payload={payload} />}
+                {vehicleInfo?.docID !== undefined && <ContactUsForm payload={payload} isMakeItYoursForm vehicleInfo={vehicleInfo} />}
               </Card>
             </Grid>
           )}
