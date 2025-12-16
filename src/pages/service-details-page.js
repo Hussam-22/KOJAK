@@ -102,7 +102,6 @@ export default function ServiceDetailsPage() {
         "description": "We take pride in offering a wide range of products that cater to various preferences and requirements. Whether you're a casual shopper or a dedicated collector, there's something here for everyone.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Showroom no.37 - block no.4 Al Aweer - Ras Al Khor Auto Market Dubai",
           "addressLocality": "Dubai",
           "addressRegion": "Dubai",
           "addressCountry": "AE"
