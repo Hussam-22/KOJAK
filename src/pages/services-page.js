@@ -55,7 +55,7 @@ export default function ServicesPage() {
       latitude: '25.32918941289578',
       longitude: '55.405793522826315',
     },
-    openingHours: '8 AM to 1 PM - 4 PM to 8 PM (Saturday to Thursday)',
+    openingHours: '9 AM to 1 PM - 8 PM to 11:30 PM (Saturday to Thursday)',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+971529242557',
