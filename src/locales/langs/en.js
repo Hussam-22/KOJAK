@@ -156,7 +156,7 @@ const en = {
     spareParts: { title: 'Spare Parts', text: 'Geniun spare parts for your Mercedes' },
     auto: { title: 'Auto Maintenance', text: 'Fix your Mercedes by experts' },
     visitWebsite: 'Visit Website',
-    allRights: '© 2023. All rights reserved - Kojak Group of Companies',
+    allRights: '© 2026. All rights reserved - Kojak Group of Companies',
     designedBy: 'Designed by ProzEffect | hello@prozeffect.com',
     sitemap: 'Sitemap',
   },
